@@ -25,6 +25,21 @@ get_header(); ?>
 		</div><!-- .site-content -->
 </section><!-- .home-page -->
 
+<section class="recent-posts">
+	<div class="site-content">
+		<div class="blog-post">
+			<h4>From the Blog</h4>
+			<?php query_posts('posts_per_page=1'); ?>
+			<?php while ( have_posts() ) : the_post(); ?>
+			   <h2><?php the_title(); ?></h2>
+                <?php the_excerpt(); ?>
+                <a href="<?php the_permalink(); ?>" class="read-more-link">Read More <span>&rsaquo;</span></a>
+			<?php endwhile; //end the while loop
+			wp_reset_query(); ?> <!-- reset altered query back to the original -->
+		</div><!-- .blog-post -->
+	</div><!-- .site-content -->
+</section><!-- .recent-posts -->
+
 <?php get_footer(); ?>
 
 
