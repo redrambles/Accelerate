@@ -21,12 +21,7 @@ Text Domain: accelerate-theme-child
     background: none repeat scroll 0 0 #45ac9d;
 }
 
-/*.nav-menu ul li a{
-	display: inline-block;
-	margin-left: 35px;
-}*/
-
-#masthead nav ul li{
+#primary-navigation ul li{
 	display: inline-block;
 	margin-left: 35px;
 }
