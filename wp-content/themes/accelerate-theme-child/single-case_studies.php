@@ -36,7 +36,7 @@ get_header(); ?>
 
 				<?php the_content(); ?>
 
-				<p><a href="<?php echo $link; ?>">Site Link</a></p>
+				<p><strong><a href="<?php echo $link; ?>">Site Link</a></strong></p>
 			</aside>
 
 			<div class="case-study-images">
@@ -52,7 +52,8 @@ get_header(); ?>
 					echo wp_get_attachment_image( $image_3, $size );
 				} ?>
 			</div>
-		</article>	
+		</article>
+			
 	<?php endwhile; // end of the loop. ?>
 
 	</div><!-- #content -->
