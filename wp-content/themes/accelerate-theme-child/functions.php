@@ -25,6 +25,12 @@
  * @since Accelerate Marketing 1.0
  */
 
+
+// Turns on widgets & menus
+if (function_exists('register_sidebar')) {
+	register_sidebar();
+}
+
 // Custom Post Type Function
 function create_custom_post_types() {
 // Create a case study custom post type
