@@ -154,6 +154,11 @@ div.case-study-images img{
     padding-bottom: 20px;
 }
 
+.page-content {
+    padding: 55px 47px 0 0;
+    width: 75%;
+    margin: 0 auto;
+}
 
 /* Sidebar */
 
@@ -188,5 +193,35 @@ aside.sidebar li a {
     margin-left: -20px;
 }
 
+
+/* Contact Us Page */
+
+#ninja_forms_form_1_all_fields_wrap label {
+    font-weight: normal;
+    font-size: 0.8em;
+}
+
+#ninja_forms_field_1_div_wrap, 
+#ninja_forms_field_2_div_wrap {
+    width: 48%;
+    float: left;
+    margin-bottom: 4%;
+}
+
+#ninja_forms_field_1, #ninja_forms_field_2 {
+    height: 40px;
+}
+
+#ninja_forms_field_2_div_wrap {
+    margin-left: 4%;
+}
+
+#ninja_forms_field_5 {
+    float: right;
+    margin-bottom: 10%;
+    color: #FFF;
+    background-color: #45AC9D;
+    padding: 15px 80px;
+}
 
 
