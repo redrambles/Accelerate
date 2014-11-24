@@ -18,6 +18,10 @@ get_header(); ?>
 <section class="blog-page">
 	<div class="site-content">
 		<div class="main-content">
+
+			<header>
+				<h5 class="entry-title"><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h5>
+			</header>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php the_content(); ?>
 			<?php endwhile; // end of the loop. ?>
