@@ -107,6 +107,21 @@ div.case-study-images img{
     border: 1px solid #dddddd;
 }
 
+/* Footer */
+
+p.footer-desc {
+    font-weight: 300;
+    letter-spacing: .65px;
+}
+
+p.footer-desc span{
+    font-weight: normal;
+}
+
+p.footer-copy {
+    font-weight: 300;
+    font-size: 0.8em;
+}
 
 
 /* Home Page Featured Work */
