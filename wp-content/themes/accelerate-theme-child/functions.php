@@ -47,19 +47,19 @@ function create_custom_post_types() {
 				),
 			)
 	 );
-		// register_post_type('recipes', 
+		// register_post_type('about_sections', 
 		// array( 
 		// 	'labels' => array(
-		// 		'name' => _( 'Recipes' ),
-		// 		'singular_name' => _( 'Recipe' )
+		// 		'name' => _( 'About Sections' ),
+		// 		'singular_name' => _( 'About Section' )
 		// 		),
 		// 	'public' => true,
 		// 	'has_archive' => true,
 		// 	'rewrite' => array(
-		// 		'slug' => 'recipes'
+		// 		'slug' => 'about-sections'
 		// 		),
 		// 	)
-	 //);
+	 // );
 }
 
 // Hook this custom post type function into the theme

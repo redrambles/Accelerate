@@ -26,7 +26,7 @@ get_header(); ?>
 				while ( have_posts() ) : the_post(); ?>
 				
 					<article class="post-entry">
-					<div class="entry-wrap">
+					<div class="con">
 						<header class="entry-header">
 							<div class="entry-meta">
 								<time class="entry-time" datetime="2014-09-29T04:33:51+00:00" itemprop="datePublished" title="Monday, September 29, 2014, 4:33 am"><?php the_date();?></time>

@@ -224,4 +224,75 @@ aside.sidebar li a {
     padding: 15px 80px;
 }
 
+/* About Page */
 
+.hero-about {
+    background: url("img/taxi-photo-about.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
+    height: 360px;
+    margin: 0 0 10px;
+}
+.hero-text h3 {
+    padding-top: 80px;
+    text-align: center;
+    line-height: 1.5em;
+    letter-spacing: 0.75px;
+    color: white;
+    font-family: "open sans";
+    font-size: 24px;
+    font-weight: normal;
+    margin: 16px 0 80px;
+}
+
+.about-intro {
+    text-align: center;
+    padding: 30px 0 0 0;
+}
+.about-intro h5{
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    color: #555;
+    font-weight: 700;
+}
+
+.about-section h2 {
+    font-weight: 600;
+    padding-bottom: 15px;
+}
+
+.service-description {
+    margin-top: 60px;
+    display: inline-block;
+    padding: 10px;
+    width: 67%;
+}
+
+.service-description p{
+    color: #555;
+}
+.service-image {
+    width: 29%;
+    margin-top: 80px;
+}
+
+.align-left {
+    float: left;
+}
+.align-right {
+    float: right;
+}
+
+.about-contact {
+    margin-top: 50px;
+    text-align: center;
+    border-top: 1px dotted #e3e1e1;
+}
+
+.contact-description {
+    margin-top: 30px;
+    display: inline-block;
+}
+
+.contact-button {
+    margin-left: 10%;
+    display: inline-block;
+}
