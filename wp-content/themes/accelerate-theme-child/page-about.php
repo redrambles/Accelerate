@@ -1,15 +1,12 @@
 <?php
 /**
- * Template: About Page
+ * Template: Custom About Page
  *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site will use a
- * different template.
+ * This page will override the generic page.php 
+ * for the About Page
+ * 
+ * It pulls in several fields defined in the Advanced Custom Fields Plug-in
  *
- * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
  */
 
 get_header(); ?>
@@ -17,7 +14,6 @@ get_header(); ?>
 
 <!-- 	<div id="content" role="main"> -->
 		<?php
-			$hero_text = get_field("hero_text");
 			$services_intro_title = get_field('services_intro_title');
 			$services_intro_text = get_field('services_intro_text');
 			$service_1_title = get_field('service_1_title');
@@ -39,9 +35,11 @@ get_header(); ?>
 		?>
 
 		<section class="hero-about">
-			<div class="hero-text">
-				<h3><?php echo $hero_text; ?><h3>
-			</div>
+				<?php while ( have_posts() ) : the_post(); ?>
+				<div class="hero-text">
+					<h3><?php the_content(); ?></h3>
+				</div>
+				<?php endwhile; // end of the loop. ?>
 		</section>
 
 	<div class="site-content">
