@@ -57,6 +57,19 @@ Text Domain: accelerate-theme-child
     text-transform: uppercase;
 }
 
+/* Single Blog Page */
+
+div.left {
+    padding-left: 10%;
+}
+
+footer.navigation.container {
+    border: none;
+}
+
+input#email {
+    margin-left: -10px;
+}
 
 
 /* Case Studies */
@@ -138,8 +151,8 @@ p.footer-copy {
 
 .individual-featured-work {
     display: inline-block;
-    width: 300px;
-    padding-right: 10px;
+    width: 30%;
+    padding-right: 3%;
 }
 
 .individual-featured-work h5 {
