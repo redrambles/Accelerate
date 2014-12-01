@@ -261,6 +261,16 @@ aside.sidebar li a {
     display: none;
 }
 
+.reply-contact {
+    text-align: center;
+    padding-bottom: 20%;
+}
+
+.reply-contact h2 {
+    color: #45AC9D;
+}
+
+
 /* About Page */
 
 .hero-about {
