@@ -34,9 +34,10 @@ Text Domain: accelerate-theme-child
 
 .blog-post {
     width: 50%;
+    display: inline-block;
 }
 
-.blog-post h4 {
+.blog-post h4, #pi_simpletwittertweets-2 h3 {
     font-size: 16px;
     font-family: 'Montserrat';
     color: #a6a6a6;
@@ -44,9 +45,15 @@ Text Domain: accelerate-theme-child
 }
 
 .blog-post h2 {
+    padding-bottom: 20px;
     font-size: 24px;
     font-family: 'Montserrat';
     font-weight: bold;
+}
+
+.blog-post p {
+    font-size: 16.5px;
+    color: #818181;
 }
 
 .blog-post .read-more-link {
@@ -56,6 +63,63 @@ Text Domain: accelerate-theme-child
     color: #45ac9d;
     text-transform: uppercase;
 }
+
+/* Home Page Featured Work */
+
+.featured-work{
+    margin-bottom: 20px;
+}
+
+.homepage-featured-work {
+    list-style: none;
+    margin: 0;
+    padding-bottom: 10%;
+}
+
+.individual-featured-work {
+    display: inline-block;
+    width: 30%;
+    padding-right: 3%;
+}
+
+.individual-featured-work h5 {
+    text-align: center;
+    font-weight: 400;
+    margin-top: 20px;
+}
+
+.site-content>h4 {
+    text-align: center;
+    padding-bottom: 3%;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    color: #444;
+    text-transform: uppercase;
+}
+
+
+/* Home Page Tweet Sidebar */
+
+#secondary {
+    padding: 2% 0 0 5%;
+    width: 45%;
+    float: right;
+}
+
+.tweets {
+    list-style: none;
+    padding-top: 20px;
+}
+
+.tweets li{
+    color: #818181;
+    font-style: normal;
+}
+
+.tweets li em a{
+    display: none;
+}
+
 
 /* Single Blog Page */
 
@@ -136,39 +200,6 @@ p.footer-copy {
     font-size: 0.8em;
 }
 
-
-/* Home Page Featured Work */
-
-.featured-work{
-    margin-bottom: 20px;
-}
-
-.homepage-featured-work {
-    list-style: none;
-    margin: 0;
-    padding-bottom: 10%;
-}
-
-.individual-featured-work {
-    display: inline-block;
-    width: 30%;
-    padding-right: 3%;
-}
-
-.individual-featured-work h5 {
-    text-align: center;
-    font-weight: 400;
-    margin-top: 20px;
-}
-
-.site-content>h4 {
-    text-align: center;
-    padding-bottom: 3%;
-    font-size: 16px;
-    font-family: 'Montserrat';
-    color: #444;
-    text-transform: uppercase;
-}
 
 /* Archive Case Study Page */
 

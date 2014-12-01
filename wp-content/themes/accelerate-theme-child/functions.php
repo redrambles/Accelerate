@@ -26,10 +26,22 @@
  */
 
 
-// Turns on widgets & menus
+// Turns on widgets & menus 
 if (function_exists('register_sidebar')) {
 	register_sidebar();
 }
+
+// Register second sidebar - will create a new dynamic widget area in the admin
+register_sidebar( array(
+    'name' =>__( 'Homepage sidebar', 'homepage-sidebar'),
+    'id' => 'sidebar-2',
+    'description' => __( 'Appears on the static front page template', 'homepage-sidebar' ),
+    'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget' => '</aside>',
+    'before_title' => '<h3 class="widget-title">',
+    'after_title' => '</h3>',
+) );
+
 
 // Custom Post Type Function
 function create_custom_post_types() {
@@ -74,3 +86,7 @@ function accelerate_child_scripts() {
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 
 ?>
+
+
+
+
