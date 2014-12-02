@@ -261,6 +261,24 @@ aside.sidebar li a {
     margin-left: -20px;
 }
 
+/* MailChimp Widget */
+#mc4wp_widget-2 {
+    padding-top: 10px;
+}
+
+#mc4wp_widget-2 .widgettitle {
+    font-size: 1.1em;
+    padding-bottom: 5px;
+}
+
+#mc4wp_widget-2 label {
+    display: none;
+}
+
+#mc4wp_widget-2 input[type="submit"]{
+    background: #45AC9D;
+    color: #fff;
+}
 
 /* Contact Us Page */
 
