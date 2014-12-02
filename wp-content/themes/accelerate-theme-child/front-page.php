@@ -65,14 +65,4 @@ get_header(); ?>
 	</div><!-- .site-content -->
 </section><!-- .recent-posts -->
 
-
-
 <?php get_footer(); ?>
-
-
-
-
-
-
-
-

@@ -97,7 +97,6 @@ get_header(); ?>
 				<a class="button" href="<?php echo home_url(); ?>/contact"><?php echo $contact_button_text; ?></a>
 			</div>
 		</section>
-<!-- 	</div> -->
 	</div>
 
 <?php get_footer(); ?>
