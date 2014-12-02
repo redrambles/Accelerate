@@ -58,8 +58,10 @@ get_header(); ?>
 		<?php if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
 		<div id="secondary" class="widget-area" role="complementary">
 		    <?php dynamic_sidebar( 'sidebar-2' ); ?>
+		    <a href="www.twitter.com/redrambles" class="follow-us-link">Follow Us <span>&rsaquo;</span></a>
 		</div>
 		<?php endif; ?>
+
 
 
 	</div><!-- .site-content -->

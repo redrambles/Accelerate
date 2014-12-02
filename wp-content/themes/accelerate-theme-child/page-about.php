@@ -31,7 +31,6 @@ get_header(); ?>
 			$about_contact_title = get_field('about_contact_title');
 			$contact_button_text = get_field('contact_button_text');
 			$size = "small";
-			$hero_size = "full";
 		?>
 
 		<section class="hero-about">

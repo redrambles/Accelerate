@@ -108,10 +108,10 @@ Text Domain: accelerate-theme-child
 
 .tweets {
     list-style: none;
-    padding-top: 20px;
+    padding-top: 30px;
 }
 
-.tweets li{
+ul.tweets li{
     color: #818181;
     font-style: normal;
 }
@@ -120,6 +120,14 @@ Text Domain: accelerate-theme-child
     display: none;
 }
 
+ a.follow-us-link {
+    font-size: 15px;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #45ac9d;
+    text-transform: uppercase;
+    padding-left: 40px;
+}
 
 /* Single Blog Page */
 
