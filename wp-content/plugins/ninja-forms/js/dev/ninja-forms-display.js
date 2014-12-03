@@ -120,7 +120,12 @@ jQuery(document).ready(function(jQuery) {
 	jQuery(".ninja-forms-form").each(function(){
 		var form_id = this.id.replace("ninja_forms_form_", "");
 		var settings = window['ninja_forms_form_' + form_id + '_settings'];
-		ajax = settings.ajax
+		if ( typeof settings != 'undefined' ) {
+			ajax = settings.ajax
+		} else {
+			ajax = 0;
+		}
+		
 		if(ajax == 1){
 			var options = {
             beforeSerialize: function($form, add_product_form_options) {

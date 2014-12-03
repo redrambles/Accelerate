@@ -2,8 +2,8 @@
 Contributors: kstover, jameslaws, wpnzach, daveshine, mordauk, bftrick, helgatheviking
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 3.8
-Tested up to: 4.0
-Stable tag: 2.8.9
+Tested up to: 4.0.1
+Stable tag: 2.8.10
 License: GPLv2 or later
 
 Forms created with a simple drag and drop interface. Contact forms, Email collection forms, or any other form you want on your WordPress site.
@@ -74,22 +74,33 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 2.8.9 (20 November 2014 ) =
+= 2.8.10 (2 December 2014) =
 
 *Security Update:*
 
-* This version includes a fix to a security vulnerability. Please take the time to update to this version.
+* This version includes a fix for a potential security vulnerability for admin users.
 
 *Bugs:*
 
-* Fixed a bug with conversions from older versions of Ninja Forms.
-* Fixed a bug that could cause two forms on the same page to behave improperly.
+* Fixed a bug that can throw JS errors if multiple forms are on the same page.
+* Fixed typos in the welcome screen.
 
 == Requested Features ==
 
 If you have any feature requests, please feel free to visit [ninjaforms.com](http://ninjaforms.com) and let us know about it.
 
 == Changelog ==
+
+= 2.8.10 (2 December 2014) =
+
+*Security Update:*
+
+* This version includes a fix for a potential security vulnerability for admin users.
+
+*Bugs:*
+
+* Fixed a bug that can throw JS errors if multiple forms are on the same page.
+* Fixed typos in the welcome screen.
 
 = 2.8.9 (20 November 2014 ) =
 

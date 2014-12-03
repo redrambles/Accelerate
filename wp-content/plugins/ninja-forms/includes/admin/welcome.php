@@ -350,7 +350,7 @@ class NF_Welcome {
 
 					<div class="col-1">
 						<h4><?php _e( 'Ninja Forms Widget', 'ninja-forms' );?></h4>
-						<p><?php printf( __( 'Ninja Forms provides a widget that you can place in any widgetized area of your site and select exactly which form you would like displayed in tat space.', 'ninja-forms' ), admin_url( 'edit.php?post_type=download&page=nf-settings&tab=misc' ) ); ?></p>
+						<p><?php printf( __( 'Ninja Forms provides a widget that you can place in any widgetized area of your site and select exactly which form you would like displayed in that space.', 'ninja-forms' ), admin_url( 'edit.php?post_type=download&page=nf-settings&tab=misc' ) ); ?></p>
 					</div>
 
 					<div class="col-2 last-feature">

@@ -954,7 +954,7 @@ class NF_Subs_CPT {
 											$edit_value_function = 'nf_field_text_edit_sub_value';
 										}
 										$args['field_id'] = $field_id;
-										$args['user_value'] = $user_value;
+										$args['user_value'] = wp_kses_post( $user_value );
 										$args['field'] = $field;
 
 										call_user_func_array( $edit_value_function, $args );
@@ -1094,7 +1094,7 @@ class NF_Subs_CPT {
 	    	return $sub_id;
 
 	    foreach ( $_POST['fields'] as $field_id => $user_value ) {
-	    	$user_value = apply_filters( 'nf_edit_sub_user_value', $user_value, $field_id, $sub_id );
+	    	$user_value = wp_kses_post( apply_filters( 'nf_edit_sub_user_value', $user_value, $field_id, $sub_id ) );
 	    	Ninja_Forms()->sub( $sub_id )->update_field( $field_id, $user_value );
 	    }
 

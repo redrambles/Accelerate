@@ -35,6 +35,8 @@ Text Domain: accelerate-theme-child
 .blog-post {
     width: 50%;
     display: inline-block;
+    float: left;
+    padding-bottom: 20px;
 }
 
 .blog-post h4, #pi_simpletwittertweets-2 h3 {
@@ -128,6 +130,19 @@ ul.tweets li{
     text-transform: uppercase;
     padding-left: 40px;
 }
+
+/* Social icons homepage */
+
+ul.social-media-menu {
+    list-style: none
+}
+
+.social-media-menu li{
+    display: inline-block;
+    padding-right: 15px;
+}
+
+
 
 /* Single Blog Page */
 
@@ -416,6 +431,7 @@ aside.sidebar li a {
 }
 
 .text_404 {
+    padding-top: 20px;
     font-family: 'Montserrat';
     color: #45AC9D;
     text-align: center;
