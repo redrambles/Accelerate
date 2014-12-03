@@ -20,7 +20,7 @@
 				<p class="footer-copy">&copy; <?php echo date("Y"); ?> <?php bloginfo('title'); ?>, LLC </p>
 				</div>
 				
-			<nav class="social-media-navigation" role="navigation">
+			<nav class="social-media-navigation screen-reader-text" role="navigation">
 				<?php wp_nav_menu( array( 'theme_location' => 'social-media', 'menu_class' => 'social-media-menu' ) ); ?>
 			</nav>
 

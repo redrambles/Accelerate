@@ -405,3 +405,33 @@ aside.sidebar li a {
     margin-left: 10%;
     display: inline-block;
 }
+
+
+/* 404 page */
+
+.image_404 {
+    height: 500px;
+    background: url("img/sad-cat.jpg")no-repeat scroll left center/ cover rgba(0, 0, 0, 0);
+    border: 3px solid #45AC9D;
+}
+
+.text_404 {
+    font-family: 'Montserrat';
+    color: #45AC9D;
+    text-align: center;
+}
+
+.text_404 h4{
+    font-weight: 400;
+    padding-top: 0;
+    margin-top: 20px;
+}
+
+.forgive {
+    font-size: 0.9em;
+    font-weight: 300;
+}
+
+
+
+
