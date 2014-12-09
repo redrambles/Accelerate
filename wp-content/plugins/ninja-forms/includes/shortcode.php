@@ -30,7 +30,7 @@ function ninja_forms_field_shortcode( $atts ){
 	} else {
 		$value = '';
 	}
-	return wp_kses_post( $value );
+	return nf_wp_kses_post_deep( $value );
 }
 add_shortcode( 'ninja_forms_field', 'ninja_forms_field_shortcode' );
 

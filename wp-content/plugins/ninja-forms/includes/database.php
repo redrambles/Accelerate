@@ -284,6 +284,13 @@ function ninja_forms_esc_html_deep( $value ){
     return $value;
 }
 
+function nf_wp_kses_post_deep( $value ){
+    $value = is_array( $value ) ?
+        array_map( 'nf_wp_kses_post_deep', $value ) :
+        wp_kses_post($value);
+    return $value;
+}
+
 function ninja_forms_strip_tags_deep($value ){
  	$value = is_array($value) ?
         array_map('ninja_forms_strip_tags_deep', $value) :

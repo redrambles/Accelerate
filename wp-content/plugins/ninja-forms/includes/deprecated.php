@@ -792,7 +792,7 @@ function nf_deprecate_success_message_filter( $message, $n_id ) {
 
 add_filter( 'nf_success_msg', 'nf_deprecate_success_message_filter', 10, 2 );
 
-// Remove any references to "admin email" or "user email" from our imported forms.
+// Remove any references to "admin email" from our imported forms.
 function nf_deprecate_form_import( $form ) {
 	if ( isset ( $form['data']['admin_mailto'] ) )
 		unset( $form['data']['admin_mailto'] );
@@ -816,3 +816,19 @@ function nf_deprecate_form_import( $form ) {
 }
 
 add_filter( 'ninja_forms_before_import_form', 'nf_deprecate_form_import' );
+
+// Remove any references to "user email" from our imported forms.
+function nf_deprecate_field_import( $data ) {
+	if ( isset ( $data['send_email'] ) )
+		unset ( $data['send_email'] );
+
+	if ( isset ( $data['from_email'] ) )
+		unset ( $data['from_email'] );
+
+	if ( isset ( $data['replyto_email'] ) )
+		unset ( $data['replyto_email'] );
+
+	return $data;
+}
+
+add_filter( 'nf_before_import_field', 'nf_deprecate_field_import' );

@@ -55,6 +55,7 @@ get_header(); ?>
 			wp_reset_query(); ?> <!-- reset altered query back to the original -->
 		</div><!-- .blog-post -->
 
+		<!-- Sidebar to host the twitter module  -->
 		<?php if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
 		<div id="secondary" class="widget-area" role="complementary">
 		    <?php dynamic_sidebar( 'sidebar-2' ); ?>

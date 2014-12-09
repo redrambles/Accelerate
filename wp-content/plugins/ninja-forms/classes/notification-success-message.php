@@ -37,7 +37,7 @@ class NF_Notification_Success_Message extends NF_Notification_Base_Type
 			)
 		);
 		?>
-		<tr>
+		<!-- <tr>
 			<th scope="row"><label for="success_message_loc"><?php _e( 'Location', 'ninja-forms' ); ?></label></th>
 			<td>
 				<select name="settings[success_message_loc]">
@@ -50,7 +50,7 @@ class NF_Notification_Success_Message extends NF_Notification_Base_Type
 					?>
 				</select>
 			</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<th scope="row"><label for="success_msg"><?php _e( 'Message', 'ninja-forms' ); ?></label></th>
 			<td>
