@@ -294,7 +294,10 @@ class MC4WP_Lite_Admin
 		wp_enqueue_script( array( 'jquery', 'mc4wp-beautifyhtml', 'mc4wp-admin' ) );
 		wp_localize_script( 'mc4wp-admin', 'mc4wp',
 			array(
-				'has_captcha_plugin' => $this->has_captcha_plugin
+				'has_captcha_plugin' => $this->has_captcha_plugin,
+				'strings' => array(
+					'pro_only' => __( 'This option is only available in MailChimp for WordPress Pro.', 'mailchimp-for-wp' )
+				)
 			)
 		);
 	}
@@ -323,13 +326,13 @@ class MC4WP_Lite_Admin
             $checkbox_plugins['bbpress_forms'] = "bbPress";
         }
 
-		if ( class_exists( 'Easy_Digital_Downloads' ) ) {
-            $checkbox_plugins['_edd_checkout'] = __( '(PRO ONLY)', 'mailchimp-for-wp' ) . ' ' . "Easy Digital Downloads checkout";
-        }
+		if ( class_exists( 'WooCommerce' ) ) {
+			$checkbox_plugins['woocommerce_checkout'] = sprintf( __( '%s checkout', 'mailchimp-for-wp' ), 'WooCommerce' );
+		}
 
-		if ( class_exists( 'Woocommerce' ) ) {
-            $checkbox_plugins['_woocommerce_checkout'] = __( '(PRO ONLY)', 'mailchimp-for-wp' ) . ' ' . "WooCommerce checkout";
-        }
+		if ( class_exists( 'Easy_Digital_Downloads' ) ) {
+			$checkbox_plugins['edd_checkout'] = sprintf( __( '%s checkout', 'mailchimp-for-wp' ), 'Easy Digital Downloads' );
+		}
 
 		return $checkbox_plugins;
 	}
