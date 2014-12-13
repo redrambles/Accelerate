@@ -81,8 +81,6 @@ add_action( 'init', 'create_custom_post_types' );
 function accelerate_child_scripts() {
 
 	wp_enqueue_style('accelerate-child-google-fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,700,300');
-	wp_register_style( 'accelerate-theme-parent-style', get_template_directory_uri() . '/style.css' );
-	wp_enqueue_style( 'accelerate-theme-child', get_stylesheet_uri(), array( 'accelerate-theme-parent-style' ) );
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 
