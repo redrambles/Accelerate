@@ -287,13 +287,17 @@ class NF_Notification_Email extends NF_Notification_Base_Type
 
 		if ( ! empty( $cc ) ) {
 			foreach ($cc as $ccemail) {
-				$headers[] = 'Cc: ' . $ccemail;
+				if ( ! empty( $ccemail ) ) {
+					$headers[] = 'Cc: ' . $ccemail;
+				}
 			}
 		}
 
 		if ( ! empty( $bcc ) ) {
 			foreach ($bcc as $bccemail) {
-				$headers[] = 'Bcc: ' . $bccemail;
+				if ( ! empty( $bccemail ) ) {
+					$headers[] = 'Bcc: ' . $bccemail;
+				}
 			}
 		}
 

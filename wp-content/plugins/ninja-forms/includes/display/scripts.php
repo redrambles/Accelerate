@@ -244,6 +244,12 @@ function ninja_forms_display_js( $form_id, $local_vars = '' ) {
 	}
 
 	$date_format = ninja_forms_date_to_datepicker($date_format);
+
+	$datepicker_args = array();
+	if ( !empty( $date_format ) ) {
+		$datepicker_args['dateFormat'] = $date_format;
+	}
+
 	$currency_symbol = $plugin_settings['currency_symbol'];
 
 	$password_mismatch = esc_html(stripslashes($plugin_settings['password_mismatch']));
@@ -255,7 +261,7 @@ function ninja_forms_display_js( $form_id, $local_vars = '' ) {
 		array( 'jquery', 'jquery-form', 'backbone', 'underscore' ) );
 
 	if( !isset( $ninja_forms_display_localize_js ) OR !$ninja_forms_display_localize_js ){
-		wp_localize_script( 'ninja-forms-display', 'ninja_forms_settings', array('ajax_msg_format' => $msg_format, 'password_mismatch' => $password_mismatch, 'plugin_url' => NINJA_FORMS_URL, 'date_format' => $date_format, 'currency_symbol' => $currency_symbol ) );
+		wp_localize_script( 'ninja-forms-display', 'ninja_forms_settings', array('ajax_msg_format' => $msg_format, 'password_mismatch' => $password_mismatch, 'plugin_url' => NINJA_FORMS_URL, 'datepicker_args' => apply_filters( 'ninja_forms_forms_display_datepicker_args', $datepicker_args ), 'currency_symbol' => $currency_symbol, 'date_format' => $date_format ) );
 		$ninja_forms_display_localize_js = true;
 	}
 	wp_localize_script( 'ninja-forms-display','thousandsSeparator', addslashes( $wp_locale->number_format['thousands_sep'] ) );

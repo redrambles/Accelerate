@@ -126,7 +126,9 @@ class NF_Notification
 	 */
 	public function process() {
 		$type = $this->type;
-		Ninja_Forms()->notification_types[ $type ]->process( $this->id );
+		if ( isset ( Ninja_Forms()->notification_types[ $type ] ) && is_object( Ninja_Forms()->notification_types[ $type ] ) ) {
+			Ninja_Forms()->notification_types[ $type ]->process( $this->id );			
+		}
 	}
 
 	/**

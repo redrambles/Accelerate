@@ -8,6 +8,7 @@ function ninja_forms_register_tab_addons(){
         'display_function' => 'ninja_forms_tab_addons',
         'save_function' => '',
         'show_save' => false,
+        'title' => '<div class="nf-brand-header"><div class="nf-logo"></div><div class="wpn-logo">brought by</div></div>',
     );
     ninja_forms_register_tab('extend', $args);
 }
@@ -29,7 +30,7 @@ function ninja_forms_tab_addons(){
             'link' => 'http://ninjaforms.com/downloads/layout-styles/',
             'plugin' => 'ninja-forms-style/ninja-forms-style.php',
             'docs' => 'http://ninjaforms.com/documentation/extensions/layout-styles/',
-        ),       
+        ),
         array (
             'title' => __( 'PayPal Express', 'ninja-forms' ),
             'image' => 'http://ninjaforms.com/wp-content/uploads/edd/2013/09/paypal-express-300x121.png',
@@ -133,7 +134,7 @@ function ninja_forms_tab_addons(){
             'link' => 'http://ninjaforms.com/downloads/freshbooks/',
             'plugin' => 'ninja-forms-freshbooks/ninja-forms-freshbooks.php',
             'docs' => '',
-        ), 
+        ),
         array (
             'title' => __( 'AWeber', 'ninja-forms' ),
             'image' => 'http://ninjaforms.com/wp-content/uploads/edd/2013/08/aweber-300x121.png',
@@ -141,7 +142,7 @@ function ninja_forms_tab_addons(){
             'link' => 'http://ninjaforms.com/downloads/aweber/',
             'plugin' => 'ninja-forms-aweber/ninja-forms-aweber.php',
             'docs' => '',
-        ),        
+        ),
         array (
             'title' => __( 'Picatcha', 'ninja-forms' ),
             'image' => 'http://ninjaforms.com/wp-content/uploads/edd/2013/08/picatcha-header-300x121.png',
@@ -149,7 +150,7 @@ function ninja_forms_tab_addons(){
             'link' => 'http://ninjaforms.com/downloads/picatcha/',
             'plugin' => 'ninja-forms-picatcha/ninja-forms-picatcha.php',
             'docs' => 'http://ninjaforms.com/documentation/extension-docs/picatcha/',
-        ),       
+        ),
         array (
             'title' => __( 'MailPoet (formerly Wysija)', 'ninja-forms' ),
             'image' => 'http://ninjaforms.com/wp-content/uploads/edd/2013/09/mailpoet-300x121.png',
@@ -157,7 +158,7 @@ function ninja_forms_tab_addons(){
             'link' => 'http://ninjaforms.com/downloads/mailpoet/',
             'plugin' => 'ninja-forms-mailpoet/nf-mailpoet.php',
             'docs' => '',
-        ),        
+        ),
         array (
             'title' => __( 'Text Message Notifications', 'ninja-forms' ),
             'image' => 'http://ninjaforms.com/wp-content/uploads/edd/2013/10/text-message-notifications-300x121.png',
@@ -197,7 +198,7 @@ function ninja_forms_tab_addons(){
             'link' => 'http://ninjaforms.com/downloads/table-editor/',
             'plugin' => 'ninja-forms-table-editor/ninja-forms-table-editor.php',
             'docs' => 'http://ninjaforms.com/documentation/extension-docs/table-editor/',
-        ),        
+        ),
         array (
             'title' => __( 'Stripe', 'ninja-forms' ),
             'image' => 'http://ninjaforms.com/wp-content/uploads/edd/2013/09/stripe-300x121.png',
@@ -214,7 +215,7 @@ function ninja_forms_tab_addons(){
             'plugin' => 'ninja-forms-pop-control/PopControl.php',
             'docs' => '',
         ),
-		
+
 		array (
             'title' => __( 'Sendy', 'ninja-forms' ),
             'image' => 'http://ninjaforms.com/wp-content/uploads/edd/2014/08/sendy-300x121.png',
@@ -270,7 +271,7 @@ function ninja_forms_tab_addons(){
             'link' => 'http://ninjaforms.com/downloads/capsule-crm/',
             'plugin' => 'ninja-forms-capsule-crm/ninja-forms-capsule-crm.php',
             'docs' => 'http://ninjaforms.com/documentation/extension-docs/capsule-crm/',
-        ),	
+        ),
     );
 
     shuffle( $items );

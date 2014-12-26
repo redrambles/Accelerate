@@ -2,8 +2,8 @@
 Contributors: kstover, jameslaws, wpnzach, daveshine, mordauk, bftrick, helgatheviking
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 3.8
-Tested up to: 4.0.1
-Stable tag: 2.8.11
+Tested up to: 4.1
+Stable tag: 2.8.13
 License: GPLv2 or later
 
 Forms created with a simple drag and drop interface. Contact forms, Email collection forms, or any other form you want on your WordPress site.
@@ -74,20 +74,38 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 2.8.11 (8 December 2014) =
+= 2.8.13 (18 December 2014) =
 
 *Bugs:*
 
-* Fixed a bug that could cause submissions to view improperly.
-* Appending forms to a post or page from the post/page edit screen should now work properly in all instances.
-* Importing form from versions previous to 2.8 should no longer create a phantom email.
-* Importing or duplicating a form that has submissions shouldn't cause the sequential numbers for the new form to start with the same number.
+* Fixed a bug introduced in the previous version that could prevent javascript from working properly on the front-end.
 
 == Requested Features ==
 
 If you have any feature requests, please feel free to visit [ninjaforms.com](http://ninjaforms.com) and let us know about it.
 
 == Changelog ==
+
+= 2.8.13 (18 December 2014) =
+
+*Bugs:*
+
+* Fixed a bug introduced in the previous version that could prevent javascript from working properly on the front-end.
+
+= 2.8.12 (17 December 2014) =
+
+*Bugs:*
+
+* Fixed a bug that could cause field settings to appear incorrectly on WordPress version 4.1.
+* Fixed several PHP notices.
+* Fetching a form over AJAX from the frontend via the shortcode should now work properly.
+* Fixed a bug that prevented the NL translation from working properly.
+* Fixed issues that could be caused by sending blank CC and BCC headers.
+
+*Changes:*
+
+* Added a rating request at the bottom of Ninja Forms pages in the admin area.
+* Added filters for the datepicker args so that it is more easily customisable.
 
 = 2.8.11 (8 December 2014) =
 

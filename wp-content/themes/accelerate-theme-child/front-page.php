@@ -64,7 +64,6 @@ get_header(); ?>
 		<?php endif; ?>
 
 
-
 	</div><!-- .site-content -->
 </section><!-- .recent-posts -->
 

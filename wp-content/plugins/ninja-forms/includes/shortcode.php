@@ -1,7 +1,7 @@
 <?php
 
 function ninja_forms_shortcode( $atts ){
-	if ( is_admin() ) {
+	if ( is_admin() && ( !defined( 'DOING_AJAX' ) || !DOING_AJAX ) ) {
 		$return = '[ninja_forms_display_form';
 		if ( is_array ( $atts ) ) {
 			foreach ( $atts as $key => $value ) {

@@ -85,4 +85,48 @@ function accelerate_child_scripts() {
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 
 
+// Displaying a Quick Performance Report for Admins in the source code
+
+add_action( 'wp_footer', 'wp_footer_example' );
+ 
+function wp_footer_example() {
+    $stat = sprintf( '%d queries in %.3f seconds, using %.2fMB memory',
+        get_num_queries(),
+        timer_stop( 0, 3 ),
+        memory_get_peak_usage() / 1024 / 1024
+    );
+    if( current_user_can( 'manage_options' ) ) {
+        echo "<!-- {$stat} -->";
+    }
+}
+ 
+// Example Source: http://wordpress.stackexchange.com/a/1866
+
+
+// Warning Logged-in Users About Website Maintenance (using 'error' class) or Success message (using 'updated' class)
+add_action( 'admin_notices', 'admin_message' );
+ 
+function admin_message() {  
+    echo '<div class="error">
+            <p>Do not change themes or everything will go to hell and you will cry bitter, bitter tears. Thank you.</p>
+          </div>';
+}
+ 
+// Example Source: http://wpsnippy.com/show-notification-message-wordpress-admin-pages/
+
+
+// Provide a quick link for your clients to reach you in the admin toolbar
+add_action( 'wp_before_admin_bar_render', 'wp_before_admin_bar_render_example' ); 
+ 
+function wp_before_admin_bar_render_example() {
+    global $wp_admin_bar;
+    $wp_admin_bar->add_node( array(
+        'id'    => 'contact-developer',
+        'title' => 'Contact Developer',
+        'href'  => 'http://redrambles.com/contact/',
+        'meta'  => array( 'target' => '_blank' )
+    ) );
+}
+ 
+
 ?>

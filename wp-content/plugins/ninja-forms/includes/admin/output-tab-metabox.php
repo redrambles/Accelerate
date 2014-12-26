@@ -147,7 +147,7 @@ function ninja_forms_output_tab_metabox($form_id = '', $slug, $metabox){
 						}
 					}
 				}
-				$value = $tmp;
+				$value = (!is_array ($tmp) && !is_object ($tmp)) ? $tmp : '';
 			}else{
 				if(isset($current_settings[$name])){
 					if(is_array($current_settings[$name])){

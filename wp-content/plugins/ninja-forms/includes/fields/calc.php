@@ -841,7 +841,7 @@ function ninja_forms_calc_filter_list_options_span( $class, $field_id ) {
 			$field = $ninja_forms_processing->get_field_settings( $f_id );
 		}
 
-		if ( $field['type'] == '_calc' ) {
+		if ( isset ( $field['type'] ) && $field['type'] == '_calc' ) {
 			if ( isset ( $field['data']['calc_method'] ) ) {
 				$calc_method = $field['data']['calc_method'];
 			} else {
