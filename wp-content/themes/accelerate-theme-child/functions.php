@@ -127,6 +127,43 @@ function wp_before_admin_bar_render_example() {
         'meta'  => array( 'target' => '_blank' )
     ) );
 }
+
+
+// Color separate posts of different statuses in the Dashboard
+add_action( 'admin_footer', 'admin_footer_example' );
+
+function admin_footer_example() {
+ 
+    echo '<style type="text/css">
+    .status-draft   { background-color: #FCE3F2; }
+    .status-pending { background-color: #87C5D6; }
+    .status-future  { background-color: #C6EBF5; }
+    .status-private { background-color: #F2D46F; }
+    </style>';
+     
+}
+
+// customize admin footer text
+add_filter('admin_footer_text', 'shapeSpace_admin_footer');
+
+function shapeSpace_admin_footer($footer_text) {
+	$footer_text = '<span class="custom-footer">' . __('&copy; ', 'accelerate-theme-child') . date('Y') . ' <a href="' . home_url() .
+	'">' . get_bloginfo('name') . '</a> &bull; Accelerate Child Theme</span>';
+	echo $footer_text;
+}
+
+
+// in lieu of a 'maintenance mode plugin' - if in a hurry - will shut down the site to everyone but admins
+
+// add_action( 'get_header', 'get_header_example' );
+ 
+// function get_header_example() {
+ 
+//     if ( ! current_user_can( 'activate_plugins' ) ) {
+//         wp_die( 'Emergency repair underway. The website will be back soon.' );
+//     }
+     
+// }
  
 
 ?>
