@@ -152,8 +152,11 @@ function shapeSpace_admin_footer($footer_text) {
 	echo $footer_text;
 }
 
+// Add post meta - format: add_post_meta($post_id, $meta_key, $meta_value, $unique);
+add_post_meta(47372, 'mood', 'adventurous', true);
+add_post_meta(47333, 'sanity', 'good', true);
 
-// in lieu of a 'maintenance mode plugin' - if in a hurry - will shut down the site to everyone but admins
+// In lieu of a 'maintenance mode plugin' - if in a hurry - will shut down the site to everyone but admins
 
 // add_action( 'get_header', 'get_header_example' );
  
@@ -164,6 +167,27 @@ function shapeSpace_admin_footer($footer_text) {
 //     }
      
 // }
+
+// shortcode for user access content. Format = [user_access cap="read" deny="Log in to view content"] text [/user_access]
+function user_access($attr, $content = null) {
+	extract(shortcode_atts(array(
+		'cap' => 'read',
+		'deny' => '',
+	), $attr));
+
+	if (current_user_can($cap) && !is_null($content) &&
+	!is_feed()) return $content;
+
+	return apply_filters('diy_user_access_filter', $deny); // This hook will permit us to filter the deny message if we need to in the future
+}
+add_shortcode('user_access', 'user_access');
+
+// Callback function - to change deny message - in case you put the shortcode all over the place and you want to change it in one place:
+function diy_modify_user_access($deny) {
+	$deny = 'Skinnemarinky dinky dink, skinermarinky doooo';
+	return '<h5>'. $deny .'</h5>';
+}
+add_filter('diy_user_access_filter', 'diy_modify_user_access');
  
 
 ?>

@@ -23,6 +23,9 @@ get_header(); ?>
 			<div class="contact-form"> 
 
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?> 
+					<?php //the_meta(); ?>
+					<?php $sanity = get_post_meta(47333, 'sanity'); ?>
+					<!-- <p>Sanity: <?//php echo implode($sanity); ?></p> -->
 
 					<?php if ($method == 'POST' ): ?> 
 					<div class="reply-contact">
