@@ -45,6 +45,47 @@ abstract class MC4WP_Integration {
 	}
 
 	/**
+	 * Is this a spam request?
+	 *
+	 * @return bool
+	 */
+	protected function is_spam() {
+
+		// check if honeypot was filled
+		if( $this->is_honeypot_filled() ) {
+			return true;
+		}
+
+		// check user agent
+		$user_agent = substr( $_SERVER['HTTP_USER_AGENT'], 0, 254 );
+		if( strlen( $user_agent ) < 2 ) {
+			return true;
+		}
+
+		/**
+		 * @filter `mc4wp_is_spam`
+		 * @expects boolean True if this is a spam request
+		 * @default false
+		 */
+		return apply_filters( 'mc4wp_is_spam', false );
+	}
+
+	/**
+	 * Was the honeypot filled?
+	 *
+	 * @return bool
+	 */
+	protected function is_honeypot_filled() {
+
+		// Check if honeypot was filled (by spam bots)
+		if( isset( $_POST['_mc4wp_required_but_not_really'] ) && ! empty( $_POST['_mc4wp_required_but_not_really'] ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Should the checkbox be pre-checked?
 	 *
 	 * @return bool
@@ -79,29 +120,9 @@ abstract class MC4WP_Integration {
 	}
 
 	/**
-	 * Was the honeypot filled?
-	 *
-	 * @return bool
-	 */
-	protected function is_honeypot_filled() {
-
-		// Check if honeypot was filled (by spam bots)
-		if( isset( $_POST['_mc4wp_required_but_not_really'] ) && ! empty( $_POST['_mc4wp_required_but_not_really'] ) ) {
-			return true;
-		}
-
-		return false;
-	}
-
-	/**
 	* @return bool
 	*/
 	public function checkbox_was_checked() {
-
-		if( $this->is_honeypot_filled() ) {
-			return false;
-		}
-
 		return ( isset( $_POST[ $this->checkbox_name ] ) && $_POST[ $this->checkbox_name ] == 1 );
 	}
 
@@ -207,7 +228,7 @@ abstract class MC4WP_Integration {
 		$lists = $this->get_lists();
 
 		if( empty( $lists) ) {
-			if( ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) && current_user_can( 'manage_options' ) ) {
+			if( $this->show_error_messages() ) {
 				wp_die(
 					'<h3>' . __( 'MailChimp for WordPress - Error', 'mailchimp-for-wp' ) . '</h3>' .
 					'<p>' . sprintf( __( 'Please select a list to subscribe to in the <a href="%s">checkbox settings</a>.', 'mailchimp-for-wp' ), admin_url( 'admin.php?page=mc4wp-lite-checkbox-settings' ) ) . '</p>' .
@@ -289,7 +310,7 @@ abstract class MC4WP_Integration {
 		}
 
 		// check if result succeeded, show debug message to administrators (only in NON-AJAX requests)
-		if ( $result !== true && $api->has_error() && current_user_can( 'manage_options' ) && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) && ( ! isset( $_POST['_wpcf7_is_ajax_call'] ) || $_POST['_wpcf7_is_ajax_call'] != 1 ) ) {
+		if ( $result !== true && $api->has_error() && $this->show_error_messages() ) {
 			wp_die( '<h3>' . __( 'MailChimp for WordPress - Error', 'mailchimp-for-wp' ) . '</h3>' .
 					'<p>' . __( 'The MailChimp server returned the following error message as a response to our sign-up request:', 'mailchimp-for-wp' ) . '</p>' .
 					'<pre>' . $api->get_error_message() . '</pre>' .
@@ -303,5 +324,19 @@ abstract class MC4WP_Integration {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Should we show error messages?
+	 * - Not for AJAX requests
+	 * - Not for non-admins
+	 * - Not for CF7 requests (which uses a different AJAX mechanism)
+	 *
+	 * @return bool
+	 */
+	protected function show_error_messages() {
+		return ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX )
+		       && ( ! isset( $_POST['_wpcf7_is_ajax_call'] ) || $_POST['_wpcf7_is_ajax_call'] != 1 )
+		       && current_user_can( 'manage_options' );
 	}
 }

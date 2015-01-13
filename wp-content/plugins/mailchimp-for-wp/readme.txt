@@ -3,8 +3,8 @@ Contributors: DvanKooten
 Donate link: https://mc4wp.com/
 Tags: mailchimp,newsletter,optin,mailinglist,sign-up form,subscribe,form,shortcode,widget,checkbox,comment,buddypress,multisite,bbpress,woocommerce,easy digital downloads,contact form,contact form 7,events manager,comment form,registration form,captcha
 Requires at least: 3.6
-Tested up to: 4.0.1
-Stable tag: 2.2
+Tested up to: 4.1
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,19 +47,18 @@ Add sign-up checkboxes to *any* form on your website. The plugin offers built-in
 
 **Translations**
 
-The plugin is fully translated into the following languages: English, Dutch, Spanish, Brazilian, German, Italian, Slovak and Hungarian.
+New or improved [translations of the MailChimp for WordPress plugin are welcomed on Transifex](https://www.transifex.com/projects/p/mailchimp-for-wordpress/).
 
-The [MailChimp for WordPress translations](https://wordpress.org/plugins/mailchimp-for-wp/other_notes/) page lists all the wonderful people that helped translate the plugin.
+**Bug Reports**
 
-Want to [translate the plugin into your own language](https://www.transifex.com/projects/p/mailchimp-for-wordpress/)?
-
+Bug reports for [MailChimp for WordPress are welcomed on GitHub](https://github.com/dannyvankooten/mailchimp-for-wordpress). Please note that GitHub is _not_ a support forum.
 
 **More information**
 
 - [MailChimp for WordPress Pro](https://mc4wp.com/), containing [additional features](https://mc4wp.com/features/#utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=more-info-link).
 - [Translate the MailChimp for WordPress plugin into your language](https://www.transifex.com/projects/p/mailchimp-for-wordpress/)
 - Developers; follow or contribute to the [MailChimp for WP plugin on GitHub](https://github.com/dannyvankooten/mailchimp-for-wordpress)
-- Other [WordPress plugins](https://dannyvankooten.com/wordpress-plugins/#utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=more-info-link) by [Danny van Kooten](http://dannyvankooten.com#utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=more-info-link)
+- Other [WordPress plugins](https://dannyvankooten.com/wordpress-plugins/#utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=more-info-link) by [Danny van Kooten](https://dannyvankooten.com#utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=more-info-link)
 - [@DannyvanKooten](https://twitter.com/dannyvankooten) on Twitter
 
 
@@ -101,7 +100,7 @@ if( function_exists( 'mc4wp_form' ) ) {
 }
 `
 
-Need help? Please take a look at the [frequently asked questions](https://wordpress.org/plugins/mailchimp-for-wp/faq/) first. If you can't find your answer there, start a topic in the [MailChimp for WordPress plugin support forums](http://wordpress.org/support/plugin/mailchimp-for-wp).
+Need help? Please take a look at the [frequently asked questions](https://wordpress.org/plugins/mailchimp-for-wp/faq/) first. If you can't find your answer there, start a topic in the [MailChimp for WordPress plugin support forums](https://wordpress.org/support/plugin/mailchimp-for-wp).
 
 = Upgrade to MailChimp for WordPress Pro =
 If you like the plugin, [get the Pro version of MailChimp for WordPress](https://mc4wp.com/#utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=installation-instructions-link) for an even better plugin!
@@ -229,7 +228,13 @@ Your theme probably does not support the necessary comment hook this plugin uses
 
 Your theme folder can be found by browsing to `/wp-content/themes/your-theme-name/`.
 
-== Translations ==
+== Other Notes ==
+
+= Bug Reports =
+
+Bug reports for [MailChimp for WordPress are welcomed on GitHub](https://github.com/dannyvankooten/mailchimp-for-wordpress). Please note that GitHub is _not_ a support forum.
+
+= Translations =
 
 The MailChimp for WordPress plugin is translated into the following languages.
 
@@ -241,8 +246,10 @@ The MailChimp for WordPress plugin is translated into the following languages.
 - Italian (it_IT) - [Gianpaolo Rolando](http://www.gianpaolorolando.eu/) & [Tiziano D'Angelo](http://www.dangelos.it/)
 - Slovak (sk_SK) - [Henrich Koszegi](http://www.webworks.sk/)
 - Hungarian (hu_HU) - Németh Balázs
+- Various other awesome people!
 
 It's easy to translate the plugin into your own language. Head over to the [translation project on Transifex](https://www.transifex.com/projects/p/mailchimp-for-wordpress/) and click on "[Help translate MailChimp for WordPress](https://www.transifex.com/signup/?join_project=mailchimp-for-wordpress)".
+
 
 == Screenshots ==
 
@@ -256,6 +263,28 @@ It's easy to translate the plugin into your own language. Head over to the [tran
 8. **Pro only:** Create your own CSS styles with the form designer in the Pro version.
 
 == Changelog ==
+
+= 2.2.2 - January 13, 2014 =
+
+**Fixes**
+
+- Plugin wasn't connecting to MailChimp for users on MailChimp server `us10` (API keys ending in `-us10`)
+
+= 2.2.1 - January 12, 2014 =
+
+**Improvements**
+
+- Use JS object to transfer lists data to Field Wizard.
+- Field Wizard strings are now translatable
+- Add `is_spam` method to checkbox integration to battle spam sign-ups
+- Minor code & code style improvements
+- Updated Danish, German, Spanish, French, Italian and Portugese (Brazil) translations
+
+**Additions**
+
+- You can now set `MC_LOCATION`, `MC_NOTES` and `MC_LANGUAGE` from your form HTML
+- The submit button now has a default value when generating HTML for it
+
 
 = 2.2 - December 9, 2014 =
 
@@ -648,5 +677,5 @@ It's easy to translate the plugin into your own language. Head over to the [tran
 
 == Upgrade Notice ==
 
-= 2.2 =
-Contains many code improvements, updated translations and checkbox integration with WooCommerce & EDD checkout.
+= 2.2.2 =
+Fix for users on MailChimp server us10. Anti-spam improvements for checkbox integrations. Updated translations.

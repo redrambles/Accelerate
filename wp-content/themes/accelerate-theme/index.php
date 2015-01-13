@@ -25,7 +25,7 @@ get_header(); ?>
 				// Start the Loop.
 				while ( have_posts() ) : the_post(); ?>
 				
-					<article class="post-entry">
+					<article class="post-entry" id="post-<?php the_ID(); ?>">
 					<div class="con">
 						<header class="entry-header">
 							<div class="entry-meta">
@@ -33,7 +33,7 @@ get_header(); ?>
 							</div>
 							<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 						</header>
-						<div class="entry-summary">
+						<div class="entry-summary" id="blog-summary">
 							<?php the_excerpt(); ?>
 						</div>
 						<footer class="entry-footer">

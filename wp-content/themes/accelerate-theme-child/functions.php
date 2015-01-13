@@ -42,10 +42,24 @@ register_sidebar( array(
     'after_title' => '</h3>',
 ) );
 
+// Add Theme Support - Post Format and Featured Images
+add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
+//add_theme_support( 'post-thumbnails', array( 'test_posts' ) );
 
 // Custom Post Type Function
 function create_custom_post_types() {
 // Create a case study custom post type
+	$supports = array(
+		'title', // post title
+		'editor', // post content
+		'author', // post author
+		'thumbnail', // featured images
+		'excerpt', // post excerpt
+		'custom-fields', // custom fields
+		'comments', // post comments
+		'revisions', // post revisions
+		'post-formats', // post formats
+	);
 	register_post_type('case_studies', 
 		array( 
 			'labels' => array(
@@ -59,19 +73,21 @@ function create_custom_post_types() {
 				),
 			)
 	 );
-		// register_post_type('about_sections', 
-		// array( 
-		// 	'labels' => array(
-		// 		'name' => _( 'About Sections' ),
-		// 		'singular_name' => _( 'About Section' )
-		// 		),
-		// 	'public' => true,
-		// 	'has_archive' => true,
-		// 	'rewrite' => array(
-		// 		'slug' => 'about-sections'
-		// 		),
-		// 	)
-	 // );
+	// Created the below CPT for support quesiton - January 13th 2015
+	// register_post_type('test_posts', 
+	// 	array( 
+	// 		'supports' => $supports,
+	// 		'labels' => array(
+	// 			'name' => _( 'Test Posts' ),
+	// 			'singular_name' => _( 'Test Post' )
+	// 			),
+	// 		'public' => true,
+	// 		'has_archive' => true,
+	// 		'rewrite' => array(
+	// 			'slug' => 'test-posts'
+	// 			),
+	// 		)
+	//  );
 }
 
 // Hook this custom post type function into the theme

@@ -22,7 +22,7 @@ get_header(); ?>
 					<div class="entry-wrap">
 						<header class="entry-header">
 							<div class="entry-meta">
-								<?php the_meta(); ?>
+								<?php //the_meta(); ?>
 								<time class="entry-time" datetime="2014-09-20T04:33:51+00:00" itemprop="datePublished" title="Monday, September 20, 2014, 4:33 am">September 29, 2014</time>
 							</div>
 							<h2 class="entry-title"><?php the_title(); ?></h2>
