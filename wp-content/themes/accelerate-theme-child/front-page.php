@@ -42,36 +42,6 @@ get_header(); ?>
 	</div>
 </section>
 
-<!-- This was for a support question - Jan 13th 2005 -->
-<!-- <section class="featured-work">
-	<div class="site-content">
-	// <?php
-	// 	$args = array (
-	// 		'post_type' => 'test_posts',
-	// 		'post_status' => 'publish',
-	// 		'posts_per_page' => 3,
-	// 		);
-	// 	$wp_query = new WP_Query($args); ?>
-			<ul class="homepage-featured-work">
-			<?//php if ( $wp_query->have_posts() ) : while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
-			<li class="individual-featured-work">
-				<h2><a href="<?//php the_permalink(); ?>"><?//php the_title(); ?></a></h2>
-				<figure>
-					<?//php the_post_thumbnail('medium'); ?>
-				</figure>
-				<div class="entry-content">
-					<?//php the_excerpt(); ?>
-				</div>
-			</li>
-			// <?php //endwhile;
-			// 	else : ?>
-				<h2>Not Found</h2>
-					<?php //get_search_form(); ?>
-			<?php //endif;
-			//wp_reset_query(); ?>
-			</ul>
-	</div>
-</section> -->
 
 <section class="recent-posts">
 	<div class="site-content">
