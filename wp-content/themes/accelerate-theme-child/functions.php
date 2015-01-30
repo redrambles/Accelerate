@@ -49,19 +49,20 @@ add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
 // Custom Post Type Function
 function create_custom_post_types() {
 // Create a case study custom post type
-	$supports = array(
-		'title', // post title
-		'editor', // post content
-		'author', // post author
-		'thumbnail', // featured images
-		'excerpt', // post excerpt
-		'custom-fields', // custom fields
-		'comments', // post comments
-		'revisions', // post revisions
-		'post-formats', // post formats
-	);
+	// $supports = array(
+	// 	'title', // post title
+	// 	'editor', // post content
+	// 	'author', // post author
+	// 	'thumbnail', // featured images
+	// 	'excerpt', // post excerpt
+	// 	'custom-fields', // custom fields
+	// 	'comments', // post comments
+	// 	'revisions', // post revisions
+	// 	'post-formats', // post formats
+	// );
 	register_post_type('case_studies', 
 		array( 
+			// 'supports' => $supports,
 			'labels' => array(
 				'name' => _( 'Case Studies' ),
 				'singular_name' => _( 'Case Study' )
@@ -73,21 +74,6 @@ function create_custom_post_types() {
 				),
 			)
 	 );
-	// Created the below CPT for support quesiton - January 13th 2015
-	// register_post_type('test_posts', 
-	// 	array( 
-	// 		'supports' => $supports,
-	// 		'labels' => array(
-	// 			'name' => _( 'Test Posts' ),
-	// 			'singular_name' => _( 'Test Post' )
-	// 			),
-	// 		'public' => true,
-	// 		'has_archive' => true,
-	// 		'rewrite' => array(
-	// 			'slug' => 'test-posts'
-	// 			),
-	// 		)
-	//  );
 }
 
 // Hook this custom post type function into the theme
