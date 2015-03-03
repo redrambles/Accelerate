@@ -275,6 +275,22 @@ class NF_Sub {
 	}
 
 	/**
+	 * Delete a meta value.
+	 *
+	 * @access public
+	 * @since 2.9
+	 * @return bool
+	 */
+	public function delete_meta( $meta_key, $value = '' ) {
+		if ( empty( $value ) ) {
+			return delete_post_meta( $this->sub_id, $meta_key );
+		} else {
+			return delete_post_meta( $this->sub_id, $meta_key, $value );
+		}
+		
+	}
+
+	/**
 	 * Add a field value to our submission.
 	 *
 	 * @access public

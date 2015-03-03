@@ -20,10 +20,9 @@ function ninja_forms_import_form( $file ){
 	if ( isset ( $form['data']['last_sub'] ) )
 		unset( $form['data']['last_sub'] );
 
-	$form['data'] = serialize( $form['data'] ) ;
+	// Create our form
+	$form_id = Ninja_Forms()->form()->create( $form['data'] );
 
-	$wpdb->insert( NINJA_FORMS_TABLE_NAME, $form );
-	$form_id = $wpdb->insert_id;
 	$form['id'] = $form_id;
 
 	if(is_array($form_fields)){
@@ -40,7 +39,6 @@ function ninja_forms_import_form( $file ){
 		}
 	}
 
-	$form['data'] = unserialize( $form['data'] );
 	$form['field'] = $form_fields;
 	$form['notifications'] = $notifications;	
 

@@ -8,7 +8,7 @@
  * @returns void
  */
 
-function ninja_forms_user_info_fields_groups( $field_id ){
+function ninja_forms_user_info_fields_groups( $field_id, $field_data ){
 	global $ninja_forms_fields;
 	$field = ninja_forms_get_field_by_id( $field_id );
 	$field_type = $field['type'];
@@ -22,7 +22,7 @@ function ninja_forms_user_info_fields_groups( $field_id ){
 		}
 	}
 
-	if ( ( isset ( $field['data']['user_info_field_group'] ) AND $field['data']['user_info_field_group'] == 1 ) or ( ( !isset ( $field['data']['user_info_field_group'] ) or $field['data']['user_info_field_group'] !== 0 ) and $default_user_info == 1 ) ) {
+	if ( ( isset ( $field_data['user_info_field_group'] ) AND $field_data['user_info_field_group'] == 1 ) or ( ( !isset ( $field_data['user_info_field_group'] ) or $field_data['user_info_field_group'] !== 0 ) and $default_user_info == 1 ) ) {
 		$options = array(
 			array( 'name' => '- '.__( 'None', 'ninja-forms' ), 'value' => '' ),
 			array( 'name' => __( 'Billing', 'ninja-forms' ), 'value' => 'billing' ),
@@ -30,14 +30,14 @@ function ninja_forms_user_info_fields_groups( $field_id ){
 			array( 'name' => __( 'Custom', 'ninja-forms' ).' ->', 'value' => 'custom' ),
 		);
 
-		if ( isset ( $field['data']['user_info_field_group_name'] ) ) {
-			$group_name = $field['data']['user_info_field_group_name'];
+		if ( isset ( $field_data['user_info_field_group_name'] ) ) {
+			$group_name = $field_data['user_info_field_group_name'];
 		} else { 
 			$group_name = '';
 		}
 
-		if ( isset ( $field['data']['user_info_field_group_custom'] ) ) {
-			$group_custom = $field['data']['user_info_field_group_custom'];
+		if ( isset ( $field_data['user_info_field_group_custom'] ) ) {
+			$group_custom = $field_data['user_info_field_group_custom'];
 		} else {
 			$group_custom = '';
 		}
@@ -53,4 +53,4 @@ function ninja_forms_user_info_fields_groups( $field_id ){
 	}
 }
 
-add_action( 'ninja_forms_edit_field_after_registered', 'ninja_forms_user_info_fields_groups', 10 );
+add_action( 'ninja_forms_edit_field_after_registered', 'ninja_forms_user_info_fields_groups', 10, 2 );

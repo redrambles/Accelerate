@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 2.8.13
+Version: 2.9.2
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -90,11 +90,16 @@ class Ninja_Forms {
 			// Add our registration class object
 			self::$instance->register = new NF_Register();
 
+			// The forms variable won't be interacted with directly.
+			// Instead, the forms() methods will act as wrappers for it.
+			self::$instance->forms = new NF_Forms();
+
 			register_activation_hook( __FILE__, 'ninja_forms_activation' );
 			add_action( 'plugins_loaded', array( self::$instance, 'load_lang' ) );
 			add_action( 'init', array( self::$instance, 'set_transient_id'), 1 );
 			add_action( 'init', array( self::$instance, 'init' ), 5 );
 			add_action( 'admin_init', array( self::$instance, 'admin_init' ), 5 );
+			add_action( 'update_option_ninja_forms_settings', array( self::$instance, 'refresh_plugin_settings' ), 10, 2 );
 		}
 
 		return self::$instance;
@@ -103,11 +108,14 @@ class Ninja_Forms {
 	/**
 	 * Run all of our plugin stuff on init.
 	 * This allows filters and actions to be used by third-party classes.
-	 * 
+	 *
 	 * @since 2.7
 	 * @return void
 	 */
 	public function init() {
+		// The settings variable will hold our plugin settings.
+		self::$instance->plugin_settings = self::$instance->get_plugin_settings();
+
 		// The subs variable won't be interacted with directly.
 		// Instead, the subs() methods will act as wrappers for it.
 		self::$instance->subs = new NF_Subs();
@@ -121,23 +129,27 @@ class Ninja_Forms {
 			self::$instance->step_processing = new NF_Step_Processing();
 			self::$instance->download_all_subs = new NF_Download_All_Subs();
 			self::$instance->convert_notifications = new NF_Convert_Notifications();
+			self::$instance->convert_forms = new NF_Convert_Forms();
 			self::$instance->update_email_settings = new NF_Update_Email_Settings();
 		}
 
-		// Fire our Ninja Forms init filter.
+		// Fire our Ninja Forms init action.
 		// This will allow other plugins to register items to the instance.
 		do_action( 'nf_init', self::$instance );
 	}
 
 	/**
 	 * Run all of our plugin stuff on admin init.
-	 * 
+	 *
 	 * @since 2.7.4
 	 * @return void
 	 */
 	public function admin_init() {
 		// Check and update our version number.
 		self::$instance->update_version_number();
+
+		// Fire our Ninja Forms init action.
+		do_action( 'nf_admin_init', self::$instance );
 	}
 
 	/**
@@ -171,7 +183,7 @@ class Ninja_Forms {
 	 * Function that acts as a wrapper for our individual notification objects.
 	 * It checks to see if an object exists for this notification id.
 	 * If it does, it returns that object. Otherwise, it creates a new one and returns it.
-	 * 
+	 *
 	 * @access public
 	 * @param int $n_id
 	 * @since 2.8
@@ -195,7 +207,7 @@ class Ninja_Forms {
 	 * Function that acts as a wrapper for our individual sub objects.
 	 * It checks to see if an object exists for this sub id.
 	 * If it does, it returns that object. Otherwise, it creates a new one and returns it.
-	 * 
+	 *
 	 * @access public
 	 * @param int $sub_id
 	 * @since 2.7
@@ -205,7 +217,7 @@ class Ninja_Forms {
 		// Bail if we don't get a sub id.
 		if ( $sub_id == '' )
 			return false;
-		
+
 		$sub_var = 'sub_' . $sub_id;
 		// Check to see if an object for this sub already exists.
 		// Create one if it doesn't exist.
@@ -218,7 +230,7 @@ class Ninja_Forms {
 	/**
 	 * Function that acts as a wrapper for our subs_var - NF_Subs() class.
 	 * It doesn't set a sub_id and can be used to interact with methods that affect mulitple submissions
-	 * 
+	 *
 	 * @access public
 	 * @since 2.7
 	 * @return object self::$instance->subs_var
@@ -231,7 +243,7 @@ class Ninja_Forms {
 	 * Function that acts as a wrapper for our form_var - NF_Form() class.
 	 * It sets the form_id and then returns the instance, which is now using the
 	 * proper form id
-	 * 
+	 *
 	 * @access public
 	 * @param int $form_id
 	 * @since 2.7
@@ -239,9 +251,7 @@ class Ninja_Forms {
 	 */
 	public function form( $form_id = '' ) {
 		// Bail if we don't get a form id.
-		if ( $form_id == '' )
-			return false;
-		
+
 		$form_var = 'form_' . $form_id;
 		// Check to see if an object for this form already exists
 		// Create one if it doesn't exist.
@@ -249,6 +259,17 @@ class Ninja_Forms {
 			self::$instance->$form_var = new NF_Form( $form_id );
 
 		return self::$instance->$form_var;
+	}
+
+	/**
+	 * Function that acts as a wrapper for our forms_var - NF_Form() class.
+	 *
+	 * @access public
+	 * @since 2.9
+	 * @return object self::$instance->forms_var
+	 */
+	public function forms( $form_id = '' ) {
+		return self::$instance->forms;
 	}
 
 	/**
@@ -263,7 +284,7 @@ class Ninja_Forms {
 
 		// Plugin version
 		if ( ! defined( 'NF_PLUGIN_VERSION' ) )
-			define( 'NF_PLUGIN_VERSION', '2.8.13' );
+			define( 'NF_PLUGIN_VERSION', '2.9.2' );
 
 		// Plugin Folder Path
 		if ( ! defined( 'NF_PLUGIN_DIR' ) )
@@ -298,7 +319,7 @@ class Ninja_Forms {
 		// Ninja Forms plugin directory
 		if ( ! defined( 'NINJA_FORMS_DIR' ) )
 			define( 'NINJA_FORMS_DIR', NF_PLUGIN_DIR );
-		
+
 		// Ninja Forms plugin url
 		if ( ! defined( 'NINJA_FORMS_URL' ) )
 			define( 'NINJA_FORMS_URL', NF_PLUGIN_URL );
@@ -340,6 +361,8 @@ class Ninja_Forms {
 		require_once( NF_PLUGIN_DIR . 'classes/subs-cpt.php' );
 		// Include our form object.
 		require_once( NF_PLUGIN_DIR . 'classes/form.php' );
+		// Include our form sobject.
+		require_once( NF_PLUGIN_DIR . 'classes/forms.php' );
 		// Include our field, notification, and sidebar registration class.
 		require_once( NF_PLUGIN_DIR . 'classes/register.php' );
 		// Include our 'nf_action' watcher.
@@ -365,6 +388,7 @@ class Ninja_Forms {
 			require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/update-email-settings.php' );
 			require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/upgrade-functions.php' );
 			require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/convert-subs.php' );
+			require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/convert-forms.php' );
 			require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/upgrades.php' );
 		}
 
@@ -376,7 +400,7 @@ class Ninja_Forms {
 		require_once( NF_PLUGIN_DIR . 'includes/deprecated.php' );
 
 		/* Legacy includes */
-		
+
 		/* Require Core Files */
 		require_once( NINJA_FORMS_DIR . "/includes/ninja-settings.php" );
 		require_once( NINJA_FORMS_DIR . "/includes/database.php" );
@@ -392,6 +416,7 @@ class Ninja_Forms {
 		require_once( NINJA_FORMS_DIR . "/includes/import-export.php" );
 
 		require_once( NINJA_FORMS_DIR . "/includes/display/scripts.php" );
+		require_once( NINJA_FORMS_DIR . "/includes/display/upgrade-functions.php" );
 
 		// Include Processing Functions if a form has been submitted.
 		require_once( NINJA_FORMS_DIR . "/includes/display/processing/class-ninja-forms-processing.php" );
@@ -408,6 +433,7 @@ class Ninja_Forms {
 
 		//Display Form Functions
 		require_once( NINJA_FORMS_DIR . "/includes/display/form/display-form.php" );
+		require_once( NINJA_FORMS_DIR . "/includes/display/form/not-logged-in.php" );
 		require_once( NINJA_FORMS_DIR . "/includes/display/fields/display-fields.php" );
 		require_once( NINJA_FORMS_DIR . "/includes/display/form/response-message.php" );
 		require_once( NINJA_FORMS_DIR . "/includes/display/fields/label.php" );
@@ -471,6 +497,7 @@ class Ninja_Forms {
 		require_once( NINJA_FORMS_DIR . "/includes/admin/edit-field/post-meta-values.php" );
 		require_once( NINJA_FORMS_DIR . "/includes/admin/edit-field/input-limit.php" );
 		require_once( NINJA_FORMS_DIR . "/includes/admin/edit-field/sub-settings.php" );
+		require_once( NINJA_FORMS_DIR . "/includes/admin/edit-field/autocomplete-off.php" );
 
 		/* * * * ninja-forms - Main Form Editing Page
 
@@ -569,7 +596,7 @@ class Ninja_Forms {
 
 	/**
 	 * Load our language files
-	 * 
+	 *
 	 * @access public
 	 * @since 2.7
 	 * @return void
@@ -598,7 +625,7 @@ class Ninja_Forms {
 
 	/**
 	 * Update our version number if necessary
-	 * 
+	 *
 	 * @access public
 	 * @since 2.7
 	 * @return void
@@ -614,11 +641,11 @@ class Ninja_Forms {
 
 	/**
 	 * Set $_SESSION variable used for storing items in transient variables
-	 * 
+	 *
 	 * @access public
 	 * @since 2.7
 	 * @return void
-	 */	 
+	 */
 	public function set_transient_id(){
 		if( !session_id() )
 	        session_start();
@@ -630,6 +657,58 @@ class Ninja_Forms {
 			}
 			$_SESSION['ninja_forms_transient_id'] = $t_id;
 		}
+	}
+
+	/**
+	 * Get our plugin settings.
+	 *
+	 * @access public
+	 * @since 2.9
+	 * @return array $settings
+	 */
+	public function get_plugin_settings() {
+	  $settings = apply_filters( "ninja_forms_settings", get_option( "ninja_forms_settings" ) );
+
+	  $settings['date_format'] = isset ( $settings['date_format'] ) ? $settings['date_format'] : 'd/m/Y';
+	  $settings['currency_symbol'] = isset ( $settings['currency_symbol'] ) ? $settings['currency_symbol'] : '$';
+	  $settings['req_div_label'] = isset ( $settings['req_div_label'] ) ? $settings['req_div_label'] : sprintf( __( 'Fields marked with an %s*%s are required', 'ninja-forms' ), '<span class="ninja-forms-req-symbol">','</span>' );
+	  $settings['req_field_symbol'] = isset ( $settings['req_field_symbol'] ) ? $settings['req_field_symbol'] : '<strong>*</strong>';
+	  $settings['req_error_label'] = isset ( $settings['req_error_label'] ) ? $settings['req_error_label'] : __( 'Please ensure all required fields are completed.', 'ninja-forms' );
+	  $settings['req_field_error'] = isset ( $settings['req_field_error'] ) ? $settings['req_field_error'] : __( 'This is a required field', 'ninja-forms' );
+	  $settings['spam_error'] = isset ( $settings['spam_error'] ) ? $settings['spam_error'] : __( 'Please answer the anti-spam question correctly.', 'ninja-forms' );
+	  $settings['honeypot_error'] = isset ( $settings['honeypot_error'] ) ? $settings['honeypot_error'] : __( 'Please leave the spam field blank.', 'ninja-forms' );
+	  $settings['timed_submit_error'] = isset ( $settings['timed_submit_error'] ) ? $settings['timed_submit_error'] : __( 'Please wait to submit the form.', 'ninja-forms' );
+	  $settings['javascript_error'] = isset ( $settings['javascript_error'] ) ? $settings['javascript_error'] : __( 'You cannot submit the form without Javascript enabled.', 'ninja-forms' );
+	  $settings['invalid_email'] = isset ( $settings['invalid_email'] ) ? $settings['invalid_email'] : __( 'Please enter a valid email address.', 'ninja-forms' );
+	  $settings['process_label'] = isset ( $settings['process_label'] ) ? $settings['process_label'] : __( 'Processing', 'ninja-forms' );
+	  $settings['password_mismatch'] = isset ( $settings['password_mismatch'] ) ? $settings['password_mismatch'] : __( 'The passwords provided do not match.', 'ninja-forms' );
+
+	  $settings['date_format']           = apply_filters( 'ninja_forms_labels/date_format'           , $settings['date_format'] );
+	  $settings['currency_symbol']       = apply_filters( 'ninja_forms_labels/currency_symbol'       , $settings['currency_symbol'] );
+	  $settings['req_div_label']         = apply_filters( 'ninja_forms_labels/req_div_label'         , $settings['req_div_label'] );
+	  $settings['req_field_symbol']      = apply_filters( 'ninja_forms_labels/req_field_symbol'      , $settings['req_field_symbol'] );
+	  $settings['req_error_label']       = apply_filters( 'ninja_forms_labels/req_error_label'       , $settings['req_error_label'] );
+	  $settings['req_field_error']       = apply_filters( 'ninja_forms_labels/req_field_error'       , $settings['req_field_error'] );
+	  $settings['spam_error']            = apply_filters( 'ninja_forms_labels/spam_error'            , $settings['spam_error'] );
+	  $settings['honeypot_error']        = apply_filters( 'ninja_forms_labels/honeypot_error'        , $settings['honeypot_error'] );
+	  $settings['timed_submit_error']    = apply_filters( 'ninja_forms_labels/timed_submit_error'    , $settings['timed_submit_error'] );
+	  $settings['javascript_error']      = apply_filters( 'ninja_forms_labels/javascript_error'      , $settings['javascript_error'] );
+	  $settings['invalid_email']         = apply_filters( 'ninja_forms_labels/invalid_email'         , $settings['invalid_email'] );
+	  $settings['process_label']         = apply_filters( 'ninja_forms_labels/process_label'         , $settings['process_label'] );
+	  $settings['password_mismatch']     = apply_filters( 'ninja_forms_labels/password_mismatch'     , $settings['password_mismatch'] );
+
+	  return $settings;
+	}
+
+	/**
+	 * Refresh our plugin settings if we update the ninja_forms_settings option
+	 * 
+	 * @access public
+	 * @since 2.9
+	 * @return void
+	 */
+	public function refresh_plugin_settings( $old_value, $value ) {
+		self::$instance->plugin_settings = self::$instance->get_plugin_settings();
 	}
 
 } // End Class

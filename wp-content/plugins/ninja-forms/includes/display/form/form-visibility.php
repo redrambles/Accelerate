@@ -8,17 +8,10 @@ function ninja_forms_register_display_form_visibility(){
 function ninja_forms_display_form_visibility( $display, $form_id ){
 	global $ninja_forms_processing;
 
-	$form_row = ninja_forms_get_form_by_id( $form_id );
-	$form_data = $form_row['data'];
-
 	if( is_object( $ninja_forms_processing ) ){
 		$hide_complete = $ninja_forms_processing->get_form_setting( 'hide_complete' );
 	}else{
-		if( isset( $form_data['hide_complete'] ) ){
-			$hide_complete = $form_data['hide_complete'];
-		}else{
-			$hide_complete = 0;
-		}
+		$hide_complete = Ninja_Forms()->form( $form_id )->get_setting( 'hide_complete' );
 	}
 
 	//If the plugin setting 'hide complete' has been set and a success message exists, hide the form.

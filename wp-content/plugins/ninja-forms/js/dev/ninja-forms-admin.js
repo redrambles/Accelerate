@@ -86,9 +86,70 @@ jQuery.fn.nextElementInDom = function(selector, options) {
 	}
 };
 
+jQuery.fn.nfAdminModal = function( action, options ) {
+	if ( 'object' === typeof action ) {
+		options = action;
+	}
+
+	var defaults = { 'title' : '', 'buttons' : false };
+
+	if ( 'undefined' === typeof options ) {
+		options = jQuery( this ).data( 'nfAdminModal' );
+		if ( 'undefined' === typeof options ) {
+			// Merge our default options with the options sent
+			options = jQuery.extend( defaults, options );
+		}
+	} else {
+		// Merge our default options with the options sent
+		options = jQuery.extend( defaults, options );
+	}
+
+	// Set our data with the current options
+	jQuery( this ).data( 'nfAdminModal', options );
+
+	jQuery( this ).hide();
+	jQuery( '#nf-admin-modal-content' ).html( this.html() );
+
+	jQuery( '#nf-modal-title' ).html( options.title );
+
+	if ( options.buttons ) {
+		jQuery( options.buttons ).hide();
+		var buttons = jQuery( options.buttons ).html();
+		jQuery( '#modal-contents-wrapper' ).find( '.submitbox' ).html( buttons );
+		jQuery( '#nf-admin-modal-content' ).addClass( 'admin-modal-inside' );
+		jQuery( '#modal-contents-wrapper' ).find( '.submitbox' ).show();
+	} else {
+		jQuery( '#nf-admin-modal-content' ).removeClass( 'admin-modal-inside' );
+		jQuery( '#modal-contents-wrapper' ).find( '.submitbox' ).hide();
+	}
+
+	if ( 'close' == action ) {
+		jQuery.fn.nfAdminModal.close();
+	} else if ( 'open' == action ) {
+		jQuery.fn.nfAdminModal.open();
+	}
+
+	jQuery( document ).on( 'click', '.modal-close', function( e ) {
+		e.preventDefault();
+		jQuery.fn.nfAdminModal.close();
+	} );
+
+};
+
+jQuery.fn.nfAdminModal.close = function() {
+	jQuery( '#nf-admin-modal-backdrop' ).hide();
+	jQuery( '#nf-admin-modal-wrap' ).hide();
+	jQuery( document ).triggerHandler( 'nfAdminModalClose' );
+}
+
+jQuery.fn.nfAdminModal.open = function() {
+	jQuery( '#nf-admin-modal-backdrop' ).show();
+	jQuery( '#nf-admin-modal-wrap' ).show();
+	jQuery( document ).triggerHandler( 'nfAdminModalOpen' );
+}
+
 jQuery(document).ready(function($) {
 	/* * * General JS * * */
-
 
 	$(".ninja-forms-admin-date").datepicker( ninja_forms_settings.datepicker_args );
 
@@ -97,45 +158,6 @@ jQuery(document).ready(function($) {
 		var tmp_class = this.title;
 		var checked = this.checked;
 		$("." + tmp_class).prop("checked", checked);
-	});
-
-	//Hide the Success Page option if ajax is selected.
-	$("#ajax").change( function(e){
-		if( this.checked ){
-			$(".ajax-hide").hide();
-			$(".no-ajax-hide").show();
-		}else{
-			$(".ajax-hide").show();
-			$(".no-ajax-hide").hide();
-		}
-	});
-
-	//Hide the Ajax button, the Success Message, and the clear and hide form options if a landing page is selected.
-	$(".landing-page-select").change(function(e){
-		if( this.value == '' ){
-			$(".landing-page-hide").show();
-		}else{
-			$(".landing-page-hide").hide();
-		}
-	});
-
-	//Sidebar Toggle
-	$(document).on('click', '.item-edit', function(event){
-		event.preventDefault();
-		//$(this).parent().next('div.inside').toggle();
-		$(this).nextElementInDom('.inside:first').toggle();
-		if($(this).hasClass("metabox-item-edit")){
-			var page = $("#_page").val();
-			var tab = $("#_tab").val();
-			var slug = $(this).parent().parent().prop("id").replace("ninja_forms_metabox_", "");
-			if($(this).nextElementInDom('.inside:first').is(":visible")){
-				var state = '';
-			}else{
-				var state = 'display:none;'
-			}
-
-			$.post( ajaxurl, { page: page, tab: tab, slug: slug, state: state, action:"ninja_forms_save_metabox_state", nf_ajax_nonce:ninja_forms_settings.nf_ajax_nonce } );
-		}
 	});
 
 	//Make the Sidebar Sortable.
@@ -162,119 +184,14 @@ jQuery(document).ready(function($) {
 			}
 		}
 	});
-	/*
-	//Make Metaboxes Sortable.
-	$("#ninja_forms_admin_metaboxes").sortable({
-		placeholder: "ui-state-highlight",
-		helper: 'clone',
-		handle: '.hndl',
-		stop: function(e,ui) {
-			alert('done');
-		}
-	});
 
-		$(".add-new-h2").draggable({
-		connectToSortable: ".ninja-forms-field-list",
-		revert: true,
-		start: function(e,ui){
-			$.data( document.body, 'test', e.target.id );
-		},
-		helper: function(){
-			var el = $( "li.ninja-forms-no-nest:last" ).clone();
-			return el;
-		}
-	});
-
-	$(".ninja-forms-field-list").droppable({
-		drop: function( event, ui ) {
-      		alert( $("li.ninja-forms-no-nest:last" ).length );
-		}
-    });
-	*/
-
-	//Listen to the keydown and keyup of our New Form title. Then remove or add the class as appropriate to add/remove default text.
-	$("#title").keydown(function(){
-		if(this.value == ''){
-			$("#title-prompt-text").removeClass("screen-reader-text");
-		}else{
-			$("#title-prompt-text").addClass("screen-reader-text");
-		}
-	});
-	$("#title").keyup(function(){
-		if(this.value == ''){
-			$("#title-prompt-text").removeClass("screen-reader-text");
-		}else{
-			$("#title-prompt-text").addClass("screen-reader-text");
-		}
-	});
+	$( document ).on( 'click', '.metabox-item-edit', function( e ) {
+		e.preventDefault();
+		$( this ).parent().parent().find('.inside' ).slideToggle( 'fast' );
+	} );
 
 	$(".hndle").dblclick(function(event){
 		$(this).prevAll(".item-controls:first").find("a").click();
-	});
-
-
-	//Make the field list sortable
-	$(".ninja-forms-field-list").sortable({
-		handle: '.menu-item-handle',
-		items: "li:not(.not-sortable)",
-		connectWith: ".ninja-forms-field-list",
-		//cursorAt: {left: -10, top: -1},
-		start: function(e, ui){
-			var wp_editor_count = $(ui.item).find(".wp-editor-wrap").length;
-			if(wp_editor_count > 0){
-				$(ui.item).find(".wp-editor-wrap").each(function(){
-					var ed_id = this.id.replace("wp-", "");
-					ed_id = ed_id.replace("-wrap", "");
-					tinyMCE.execCommand( 'mceRemoveControl', false, ed_id );
-				});
-			}
-		},
-		stop: function(e,ui) {
-			/*
-			if( $(ui.item).prop("tagName") == "A" ){
-				//alert( $.data( document.body, 'test' ) );
-				var el = $( "li.ninja-forms-no-nest:last" ).clone();
-				$(ui.item).replaceWith(el);
-			}
-			*/
-			var wp_editor_count = $(ui.item).find(".wp-editor-wrap").length;
-			if(wp_editor_count > 0){
-				$(ui.item).find(".wp-editor-wrap").each(function(){
-					var ed_id = this.id.replace("wp-", "");
-					ed_id = ed_id.replace("-wrap", "");
-					tinyMCE.execCommand( 'mceAddControl', true, ed_id );
-				});
-			}
-			$(this).sortable("refresh");
-		}
-	});
-
-	//Save the sortable list as an array when the save button is pressed
-	$(".ninja-forms-save-data").click(function(event){
-		//event.preventDefault();
-		var order = $("#ninja_forms_field_list").sortable("toArray");
-		$("#ninja_forms_field_order").val(order);
-	});
-
-	//Add New Field
-	$(".ninja-forms-new-field").click(function(event){
-		event.preventDefault();
-		var limit = this.name.replace('_', '');
-		var type = this.id;
-		var form_id = $("#_form_id").val();
-		if(limit != ''){
-			var current_count = $("." + type + "-li").length;
-		}else{
-			var current_count = '';
-		}
-
-		if((limit != '' && current_count < limit) || limit == '' || current_count == '' || current_count == 0){
-
-			$.post( ajaxurl, { type: type, form_id: form_id, action:'ninja_forms_new_field', nf_ajax_nonce:ninja_forms_settings.nf_ajax_nonce }, ninja_forms_new_field_response );
-
-		}else{
-			$(this).addClass('disabled');
-		}
 	});
 
 	//Listen to the Field Label and change the LI title and update select lists on KeyUp
@@ -337,27 +254,6 @@ jQuery(document).ready(function($) {
 		}
 	});
 
-	//Remove Field
-	$(document).on( 'click', '.ninja-forms-field-remove', function(event){
-		event.preventDefault();
-		var field_id = this.id.replace("ninja_forms_field_", "");
-		field_id = field_id.replace("_remove", "");
-		var answer = confirm("Remove this field? It will be removed even if you do not save.");
-		if(answer){
-			$.post(ajaxurl, { field_id: field_id, action:"ninja_forms_remove_field", nf_ajax_nonce:ninja_forms_settings.nf_ajax_nonce }, function(){
-				$("#ninja_forms_field_" + field_id).remove();
-				$(document).trigger('removeField', [ field_id ]);
-				$(".ninja-forms-field-conditional-cr-field").each(function(){
-					$(this).children('option').each(function(){
-						if(this.value == field_id){
-							$(this).remove();
-						}
-					});
-				});
-			});
-		}
-	});
-
 	//Delete individual submissions
 	$(".ninja-forms-delete-sub").click(function(event){
 		event.preventDefault();
@@ -392,10 +288,6 @@ jQuery(document).ready(function($) {
 
 		if(this.value != '' && this.value != 'today' ){
 			$("#ninja_forms_field_" + id + "_datepicker").prop('checked', false);
-			if(this.value != '_user_email'){
-				$("#ninja_forms_field_" + id + "_email").prop("checked", false);
-				$("#ninja_forms_field_" + id + "_send_email").prop("checked", false);
-			}
 		}
 	});
 
@@ -413,8 +305,6 @@ jQuery(document).ready(function($) {
 
 		if(this.value != ''){
 			$("#ninja_forms_field_" + id + "_datepicker").prop('checked', false);
-			$("#ninja_forms_field_" + id + "_email").prop("checked", false);
-			$("#ninja_forms_field_" + id + "_send_email").prop("checked", false);
 		}
 	});
 
@@ -440,69 +330,8 @@ jQuery(document).ready(function($) {
 			$("#default_value_label_" + id).hide();
 			$("#mask_" + id).val("");
 			$("#mask_label_" + id).hide();
-			$("#ninja_forms_field_" + id + "_email").prop("checked", false);
-			$("#ninja_forms_field_" + id + "_send_email").prop("checked", false);
-			$("#ninja_forms_field_" + id + "_from_email").prop("checked", false);
 		}
 	});
-
-	// Email
-
-	$(document).on( 'change', '.ninja-forms-_text-email', function(){
-		var id = this.id.replace("ninja_forms_field_", "");
-		id = id.replace("_email", "");
-		if(this.checked == true){
-			if( $("#ninja_forms_field_" + id + "_default_value").val() != '_user_email' ){
-				$("#ninja_forms_field_" + id + "_default_value").val("");
-				$("#default_value_" + id).val("");
-				$("#default_value_label_" + id).hide();
-			}
-			$("#ninja_forms_field_" + id + "_mask").val("");
-			$("#mask_" + id).val("");
-			$("#mask_label_" + id).hide();
-			$("#ninja_forms_field_" + id + "_datepicker").prop("checked", false);
-		}else{
-			$("#ninja_forms_field_" + id + "_send_email").prop("checked", false);
-			$("#ninja_forms_field_" + id + "_from_email").prop("checked", false);
-		}
-	});
-
-	// Send Email
-	$(document).on( 'change', '.ninja-forms-_text-send_email', function(){
-		var id = this.id.replace("ninja_forms_field_", "");
-		id = id.replace("_send_email", "");
-		if(this.checked == true){
-			$("#ninja_forms_field_" + id + "_email").prop("checked", true);
-			if( $("#ninja_forms_field_" + id + "_default_value").val() != '_user_email' ){
-				$("#ninja_forms_field_" + id + "_default_value").val("");
-				$("#default_value_" + id).val("");
-				$("#default_value_label_" + id).hide();
-			}
-			$("#ninja_forms_field_" + id + "_mask").val("");
-			$("#mask_" + id).val("");
-			$("#mask_label_" + id).hide();
-			$("#ninja_forms_field_" + id + "_datepicker").prop("checked", false);
-		}
-	});
-
-	// From Email
-	$(document).on( 'change', '.ninja-forms-_text-from_email', function(){
-		var id = this.id.replace("ninja_forms_field_", "");
-		id = id.replace("_from_email", "");
-		if(this.checked == true){
-			$("#ninja_forms_field_" + id + "_email").prop("checked", true);
-			if( $("#ninja_forms_field_" + id + "_default_value").val() != '_user_email' ){
-				$("#ninja_forms_field_" + id + "_default_value").val("");
-				$("#default_value_" + id).val("");
-				$("#default_value_label_" + id).hide();
-			}
-			$("#ninja_forms_field_" + id + "_mask").val("");
-			$("#mask_" + id).val("");
-			$("#mask_label_" + id).hide();
-			$("#ninja_forms_field_" + id + "_datepicker").prop("checked", false);
-		}
-	});
-
 
 	/* List Field JS */
 
@@ -585,7 +414,7 @@ jQuery(document).ready(function($) {
 	});
 
 	//Remove List Option
-	$(document).on( 'click', '.ninja-forms-field-remove-list-option', function(event){
+	$(document).on( 'click', '.nf-remove-list-option', function(event){
 		event.preventDefault();
 		var field_id = this.id.replace("ninja_forms_field_", "");
 		field_id = field_id.replace("_list_remove_option", "");
@@ -809,18 +638,18 @@ jQuery(document).ready(function($) {
 		field_id = field_id.replace("_calc_display_type", "");
 		// Show the extra settings if the "none" option isn't selected.
 		if(this.value == 'html'){
-			$("#ninja_forms_field_" + field_id + "_clac_text_display").hide();
-			$("#ninja_forms_field_" + field_id + "_clac_html_display").show();
-			$("#ninja_forms_field_" + field_id + "_clac_extra_display").show();
+			$("#ninja_forms_field_" + field_id + "_calc_text_display").hide();
+			$("#ninja_forms_field_" + field_id + "_calc_html_display").show();
+			$("#ninja_forms_field_" + field_id + "_calc_extra_display").show();
 			$("#ninja_forms_field_" + field_id + "_label").val('');
 		}else if(this.value == 'text'){
-			$("#ninja_forms_field_" + field_id + "_clac_text_display").show();
-			$("#ninja_forms_field_" + field_id + "_clac_html_display").hide();
-			$("#ninja_forms_field_" + field_id + "_clac_extra_display").show();
+			$("#ninja_forms_field_" + field_id + "_calc_text_display").show();
+			$("#ninja_forms_field_" + field_id + "_calc_html_display").hide();
+			$("#ninja_forms_field_" + field_id + "_calc_extra_display").show();
 		}else{
-			$("#ninja_forms_field_" + field_id + "_clac_text_display").hide();
-			$("#ninja_forms_field_" + field_id + "_clac_html_display").hide();
-			$("#ninja_forms_field_" + field_id + "_clac_extra_display").hide();
+			$("#ninja_forms_field_" + field_id + "_calc_text_display").hide();
+			$("#ninja_forms_field_" + field_id + "_calc_html_display").hide();
+			$("#ninja_forms_field_" + field_id + "_calc_extra_display").hide();
 			$("#ninja_forms_field_" + field_id + "_label").val('');
 		}
 	});
@@ -876,19 +705,19 @@ jQuery(document).ready(function($) {
 			}
 		})
 
-		var fav_name = prompt("What would you like to name this favorite?", "");
+		var fav_name = prompt( ninja_forms_settings.add_fav_prompt, '' );
 		if(fav_name.length >= 1){
 			$.post(ajaxurl, { fav_name: fav_name, field_data: field_data, field_id: field_id, action:"ninja_forms_add_fav", nf_ajax_nonce:ninja_forms_settings.nf_ajax_nonce }, function(response){
 				//document.write(response);
 				$("#ninja_forms_field_" + field_id + "_fav").removeClass("ninja-forms-field-add-fav");
 				$("#ninja_forms_field_" + field_id + "_fav").addClass("ninja-forms-field-remove-fav");
 				$("#ninja_forms_sidebar_fav_fields").append(response.link_html);
-				$("#ninja_forms_field_" + field_id + "_title").nextElementInDom('.item-type:first').prop("innerHTML", response.fav_name);
+				$("#ninja_forms_field_" + field_id + "_title").nextElementInDom('.item-type-name:first').prop("innerHTML", response.fav_name);
 				$("#ninja_forms_field_" + field_id + "_fav_id").val(response.fav_id);
 
 			});
 		}else{
-			var answer = confirm('You must supply a name for this favorite.');
+			var answer = confirm( ninja_forms_settings.add_fav_error );
 			if(answer){
 				$("#" + this_id).click();
 			}
@@ -908,18 +737,10 @@ jQuery(document).ready(function($) {
 					remove_id = remove_id.replace("_fav_id", "");
 					$("#ninja_forms_field_" + remove_id + "_fav").removeClass("ninja-forms-field-remove-fav");
 					$("#ninja_forms_field_" + remove_id + "_fav").addClass("ninja-forms-field-add-fav");
-					$("#ninja_forms_field_" + remove_id + "_title").nextElementInDom('.item-type:first').prop("innerHTML", response.type_name);
+					$("#ninja_forms_field_" + remove_id + "_title").nextElementInDom('.item-type-name:first').prop("innerHTML", response.type_name);
 				}
 			});
 		});
-	});
-
-	//Insert a Favorite Field
-	$(document).on( 'click', '.ninja-forms-insert-fav-field', function(event){
-		event.preventDefault();
-		var fav_id = this.id.replace("ninja_forms_insert_fav_field_", "");
-		var form_id = $("#_form_id").val();
-		$.post(ajaxurl, {fav_id: fav_id, form_id: form_id, action:"ninja_forms_insert_fav", nf_ajax_nonce:ninja_forms_settings.nf_ajax_nonce }, ninja_forms_new_field_response)
 	});
 
 	/* * * End Favorite Fields JS * * */
@@ -970,84 +791,25 @@ jQuery(document).ready(function($) {
 		});
 	});
 
-
-	//Insert a Defined Field
-	$(document).on( 'click', '.ninja-forms-insert-def-field', function(event){
-		event.preventDefault();
-		var limit = this.name.replace('_', '');
-		var def_id = this.id.replace("ninja_forms_insert_def_field_", "");
-		var form_id = $("#_form_id").val();
-		var type = this.rel;
-		if(limit != ''){
-			var current_count = $("." + type + "-li").length;
-		}else{
-			var current_count = '';
-		}
-		if((limit != '' && current_count < limit) || limit == '' || current_count == '' || current_count == 0){
-			$.post(ajaxurl, {def_id: def_id, form_id: form_id, action:"ninja_forms_insert_def", nf_ajax_nonce:ninja_forms_settings.nf_ajax_nonce }, ninja_forms_new_field_response);
-		}
-	});
-
 	/* * * End Defined Fields JS * * */
 
-	/* * * Begin Form Settings JS * * */
-
-	$(".ninja-forms-add-mailto").click(function(event){
-		event.preventDefault();
-		var id = this.id.replace("ninja_forms_add_mailto_", "");
-		if($(".ninja-forms-mailto-address").length > 0){
-			var count = $(".ninja-forms-mailto-address:last").parent().prop("id");
-			count = count.replace("ninja_forms_mailto_", "");
-			count = count.replace("_span", "");
-			count++;
-		}else{
-			var count = 0;
+	$( document ).on( 'click', '#nf_deactivate_all_licenses', function( e ) {
+		var answer = confirm( ninja_forms_settings.deactivate_all_licenses_confirm );
+		if ( ! answer ) {
+			return false;
 		}
+	} );
 
-		var html = '<span id="ninja_forms_mailto_' + count + '_span"><a href="#" id="" class="ninja-forms-remove-mailto">X</a> <input type="text" name="admin_mailto[]" id="" value="" class="ninja-forms-mailto-address"></span>';
-		$("#ninja_forms_mailto").append(html);
-		$(".ninja-forms-mailto-address:last").focus();
-	});
+	$( document ).on( 'change', '#delete_on_uninstall', function( e ) {
+		if ( this.checked ) {
+			var answer = confirm( ninja_forms_settings.nuke_warning );
+			if ( ! answer ) {
+				this.checked = false;
+			}
+		}
+	} );
 
-	$(document).on( 'click', '.ninja-forms-remove-mailto', function(event){
-		event.preventDefault();
-		$(this).parent().remove();
-	});
-
-	/* * * End Form Settings JS * * */
-
-}); //Document.read();
-
-function ninja_forms_new_field_response( response ){
-	jQuery("#ninja_forms_field_list").append(response.new_html).show('slow');
-	if ( response.new_type == 'List' ) {
-		//Make List Options sortable
-		jQuery(".ninja-forms-field-list-options").sortable({
-			helper: 'clone',
-			handle: '.ninja-forms-drag',
-			items: 'div',
-			placeholder: "ui-state-highlight",
-		});
-	}
-	if ( typeof nf_ajax_rte_editors !== 'undefined' ) {
-		for (var x = nf_ajax_rte_editors.length - 1; x >= 0; x--) {
-			var editor_id = nf_ajax_rte_editors[x];
-			tinyMCE.init( tinyMCEPreInit.mceInit[ editor_id ] );
-			try { quicktags( tinyMCEPreInit.qtInit[ editor_id ] ); } catch(e){}
-		};
-	}
-
-	jQuery(".ninja-forms-field-conditional-cr-field").each(function(){
-		jQuery(this).append('<option value="' + response.new_id + '">' + response.new_type + '</option>');
-	});
-	jQuery("#ninja_forms_field_" + response.new_id + "_toggle").click();
-
-	jQuery("#ninja_forms_field_" + response.new_id + "_label").focus();
-
-	// Fire our custom jQuery addField event.
-	jQuery(document).trigger('addField', [ response ]);
-
-}
+}); //Document.ready();
 
 function ninja_forms_escape_html(html) {
 	var escape = document.createElement('textarea');

@@ -4,8 +4,8 @@ function ninja_forms_edit_field_output_ul( $form_id ){
 	$fields = ninja_forms_get_fields_by_form_id( $form_id );
 	?>
 	<div id="ninja-forms-viewport">
-		<input class="button-primary menu-save ninja-forms-save-data" id="ninja_forms_save_data_top" type="submit" value="<?php _e('Save Field Settings', 'ninja-forms'); ?>" />
-
+		<input class="button-primary menu-save nf-save-admin-fields" id="ninja_forms_save_data_top" type="button" value="<?php _e('Save', 'ninja-forms'); ?>" />
+		<a href="#" class="button-secondary nf-save-spinner" style="display:none;" disabled><span class="spinner nf-save-spinner" style="float:left;"></span></a>
 		<ul class="menu ninja-forms-field-list" id="ninja_forms_field_list">
 	  		<?php
 				if( is_array( $fields ) AND !empty( $fields ) ){
@@ -15,6 +15,9 @@ function ninja_forms_edit_field_output_ul( $form_id ){
 				}
 			?>
 		</ul>
+
+		<input class="button-primary menu-save nf-save-admin-fields" id="ninja_forms_save_data_bot" type="button" value="<?php _e('Save', 'ninja-forms'); ?>" />
+		<a href="#" class="button-secondary nf-save-spinner" style="display:none;" disabled><span class="spinner nf-save-spinner" style="float:left;"></span></a>
 	</div>
 		<?php
 

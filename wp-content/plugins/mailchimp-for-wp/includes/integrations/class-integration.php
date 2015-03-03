@@ -1,6 +1,6 @@
 <?php
 
-if( ! defined("MC4WP_LITE_VERSION") ) {
+if( ! defined( 'MC4WP_LITE_VERSION' ) ) {
 	header( 'Status: 403 Forbidden' );
 	header( 'HTTP/1.1 403 Forbidden' );
 	exit;
@@ -158,12 +158,12 @@ abstract class MC4WP_Integration {
 		 	} else if( in_array( 'default:0', $args['options'] ) ) {
 		 		$checked = '';
 		 	}
-		 	
+
 		}
 
-		$content = "<!-- MailChimp for WP v". MC4WP_LITE_VERSION ." - https://mc4wp.com/ -->";
+		$content = '<!-- MailChimp for WP v'. MC4WP_LITE_VERSION .' - https://mc4wp.com/ -->';
 
-		do_action( 'mc4wp_before_checkbox' ); 
+		do_action( 'mc4wp_before_checkbox' );
 
 		// checkbox
 		$content .= '<p id="mc4wp-checkbox">';
@@ -213,15 +213,18 @@ abstract class MC4WP_Integration {
 
 
 	/**
-	* Makes a subscription request
-	*
-	* @param string $email
-	* @param array $merge_vars
-	* @param string $signup_type
-	* @param int $comment_id
-	* @return boolean
-	*/
-	protected function subscribe( $email, array $merge_vars = array(), $signup_type = 'comment', $comment_id = null ) {
+	 * Makes a subscription request
+	 *
+	 * @param string $email
+	 * @param array  $merge_vars
+	 * @param string $type
+	 * @param null   $related_object_id
+	 *
+	 * @return bool
+	 */
+	protected function subscribe( $email, array $merge_vars = array(), $type = '', $related_object_id = null ) {
+
+		$type = ( '' !== $type ) ? $type : $this->type;
 
 		$api = mc4wp_get_api();
 		$opts = $this->get_options();
@@ -242,7 +245,7 @@ abstract class MC4WP_Integration {
 		}
 
 		// maybe guess first and last name
-		if ( isset( $merge_vars['NAME'] ) && !isset( $merge_vars['FNAME'] ) && !isset( $merge_vars['LNAME'] ) ) {
+		if ( isset( $merge_vars['NAME'] ) && ! isset( $merge_vars['FNAME'] ) && ! isset( $merge_vars['LNAME'] ) ) {
 
 			$strpos = strpos( $merge_vars['NAME'], ' ' );
 			if ( $strpos !== false ) {
@@ -264,11 +267,11 @@ abstract class MC4WP_Integration {
 		 * @filter `mc4wp_merge_vars`
 		 * @expects array
 		 * @param array $merge_vars
-		 * @param string $signup_type
+		 * @param string $type
 		 *
 		 * Use this to filter the final merge vars before the request is sent to MailChimp
 		 */
-		$merge_vars = apply_filters( 'mc4wp_merge_vars', $merge_vars, $signup_type );
+		$merge_vars = apply_filters( 'mc4wp_merge_vars', $merge_vars, $type );
 
 		/**
 		 * @filter `mc4wp_merge_vars`
@@ -289,7 +292,8 @@ abstract class MC4WP_Integration {
 		do_action( 'mc4wp_before_subscribe', $email, $merge_vars );
 
 		foreach( $lists as $list_id ) {
-			$result = $api->subscribe( $list_id, $email, $merge_vars, $email_type, $opts['double_optin'], false, true );
+			$result = $api->subscribe( $list_id, $email, $merge_vars, $email_type, $opts['double_optin'], false, true, $opts['send_welcome'] );
+			do_action( 'mc4wp_subscribe', $email, $list_id, $merge_vars, $result, 'checkbox', $type, $related_object_id );
 		}
 
 		/**
@@ -302,25 +306,18 @@ abstract class MC4WP_Integration {
 		 */
 		do_action( 'mc4wp_after_subscribe', $email, $merge_vars, $result );
 
-		if ( $result === true ) {
-
-			// TODO: Remove this
-			$from_url = ( isset( $_SERVER['HTTP_REFERER'] ) ) ? sanitize_text_field( $_SERVER['HTTP_REFERER'] ) : '';
-			do_action( 'mc4wp_subscribe_checkbox', $email, $lists, $signup_type, $merge_vars, $comment_id, $from_url );
-		}
-
 		// check if result succeeded, show debug message to administrators (only in NON-AJAX requests)
 		if ( $result !== true && $api->has_error() && $this->show_error_messages() ) {
 			wp_die( '<h3>' . __( 'MailChimp for WordPress - Error', 'mailchimp-for-wp' ) . '</h3>' .
-					'<p>' . __( 'The MailChimp server returned the following error message as a response to our sign-up request:', 'mailchimp-for-wp' ) . '</p>' .
-					'<pre>' . $api->get_error_message() . '</pre>' .
-					'<p>' . __( 'This is the data that was sent to MailChimp:', 'mailchimp-for-wp' ) . '</p>' .
-					'<strong>' . __( 'Email address:', 'mailchimp-for-wp' ) . '</strong>' .
-					'<pre>' . esc_html( $email ) . '</pre>' .
-					'<strong>' . __( 'Merge variables:', 'mailchimp-for-wp' ) . '</strong>' .
-					'<pre>' . esc_html( print_r( $merge_vars, true ) ) . '</pre>' .
-			        '<p style="font-style:italic; font-size:12px;">' . __( 'This message is only visible to administrators for debugging purposes.', 'mailchimp-for-wp' ) . '</p>',
-					__( 'MailChimp for WordPress - Error', 'mailchimp-for-wp' ), array( 'back_link' => true ) );
+				'<p>' . __( 'The MailChimp server returned the following error message as a response to our sign-up request:', 'mailchimp-for-wp' ) . '</p>' .
+				'<pre>' . $api->get_error_message() . '</pre>' .
+				'<p>' . __( 'This is the data that was sent to MailChimp:', 'mailchimp-for-wp' ) . '</p>' .
+				'<strong>' . __( 'Email address:', 'mailchimp-for-wp' ) . '</strong>' .
+				'<pre>' . esc_html( $email ) . '</pre>' .
+				'<strong>' . __( 'Merge variables:', 'mailchimp-for-wp' ) . '</strong>' .
+				'<pre>' . esc_html( print_r( $merge_vars, true ) ) . '</pre>' .
+				'<p style="font-style:italic; font-size:12px;">' . __( 'This message is only visible to administrators for debugging purposes.', 'mailchimp-for-wp' ) . '</p>',
+			__( 'MailChimp for WordPress - Error', 'mailchimp-for-wp' ), array( 'back_link' => true ) );
 		}
 
 		return $result;

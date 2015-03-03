@@ -17,12 +17,7 @@ function nf_check_post() {
 		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'nf_form_' . absint( $_POST['_form_id'] ) ) )
 			return false;
 
-		$form_row = ninja_forms_get_form_by_id( absint( $_POST['_form_id'] ) );
-		if( isset( $form_row['data']['ajax'] ) ){
-			$ajax = $form_row['data']['ajax'];
-		}else{
-			$ajax = '';
-		}
+		$ajax = Ninja_Forms()->form( absint( $_POST['_form_id'] ) )->get_setting( 'ajax' );
 
 		if( $ajax != 1 ){
 			add_action( 'init', 'ninja_forms_setup_processing_class', 5 );
@@ -74,9 +69,12 @@ add_action( 'wp_head', 'ninja_forms_clear_transient' );
 function ninja_forms_page_append_check(){
 	global $post, $ninja_forms_append_page_form_id;
 
-	if(is_array($ninja_forms_append_page_form_id)){
-		unset($ninja_forms_append_page_form_id);
+	if ( ! empty ( $_REQUEST['preview'] ) && ! empty ( $_REQUEST['preview'] ) ) {
+		if(is_array($ninja_forms_append_page_form_id)){
+			unset($ninja_forms_append_page_form_id);
+		}
 	}
+
 	if(!isset($ninja_forms_append_page_form_id)){
 		$ninja_forms_append_page_form_id = array();
 	}
@@ -97,9 +95,10 @@ add_action('wp_head', 'ninja_forms_page_append_check');
 
 function ninja_forms_append_to_page($content){
 	global $ninja_forms_append_page_form_id;
-	if( !is_admin() AND is_main_query() AND ( is_page() OR is_single() ) ){
+
+	if( !is_admin() && is_main_query() && ( is_page() OR is_single() ) ){
 		$form = '';
-		if(is_array($ninja_forms_append_page_form_id) AND !empty($ninja_forms_append_page_form_id)){
+		if(is_array($ninja_forms_append_page_form_id) && !empty($ninja_forms_append_page_form_id)){
 			foreach($ninja_forms_append_page_form_id as $form_id){
 				$form .= ninja_forms_return_echo('ninja_forms_display_form', $form_id);
 			}
@@ -133,6 +132,7 @@ function ninja_forms_display_form( $form_id = '' ){
 		$function = true;
 	}
 	if($form_id != ''){ //Make sure that we have an active form_id.
+		do_action( 'nf_before_display_loading', $form_id );
 
 		// Instantiate our loading global singleton.
 		if ( !isset ( $ninja_forms_processing ) or ( isset ( $ninja_forms_processing ) and $ninja_forms_processing->get_form_ID() != $form_id ) ) {

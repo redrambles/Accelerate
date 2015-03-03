@@ -1,7 +1,7 @@
 <?php
 
 // prevent direct file access
-if( ! defined("MC4WP_LITE_VERSION") ) {
+if( ! defined( 'MC4WP_LITE_VERSION' ) ) {
 	header( 'Status: 403 Forbidden' );
 	header( 'HTTP/1.1 403 Forbidden' );
 	exit;
@@ -34,14 +34,14 @@ class MC4WP_BuddyPress_Integration extends MC4WP_Integration {
 		}
 
 		if ( $this->checkbox_was_checked() === false ) {
-			return false; 
+			return false;
 		}
 
 		// gather emailadress and name from user who BuddyPress registered
 		$email = $user_email;
 
 		$merge_vars = array(
-			'NAME' => $user_login
+			'NAME' => $user_login,
 		);
 
 		return $this->subscribe( $email, $merge_vars, 'buddypress_registration' );

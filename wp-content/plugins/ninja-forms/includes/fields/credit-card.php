@@ -154,7 +154,7 @@ function ninja_forms_field_credit_card_display( $field_id, $data, $form_id = '' 
 	$cc_exp_month_label = isset ( $data['cc_exp_month_label'] ) ? $data['cc_exp_month_label'] : __( 'Expiration month (MM)', 'ninja-forms' );
 	$cc_exp_month_desc = isset ( $data['cc_exp_month_desc'] ) ? $data['cc_exp_month_desc'] : __( 'The month your credit card expires, typically on the front of the card.', 'ninja-forms' );
 
-	$cc_exp_year_label = isset ( $data['cc_exp_year_label'] ) ? $data['cc_exp_year_label'] : __( 'Expiration year (YYY)', 'ninja-forms' );
+	$cc_exp_year_label = isset ( $data['cc_exp_year_label'] ) ? $data['cc_exp_year_label'] : __( 'Expiration year (YYYY)', 'ninja-forms' );
 	$cc_exp_year_desc = isset ( $data['cc_exp_year_desc'] ) ? $data['cc_exp_year_desc'] : __( 'The year your credit card expires, typically on the front of the card.', 'ninja-forms' );
 
 	if ( isset ( $ninja_forms_processing ) ){
@@ -221,7 +221,7 @@ function ninja_forms_field_credit_card_display( $field_id, $data, $form_id = '' 
 			}
 			?>
 		</div>
-		<div class="ninja-forms-error">
+		<div>
 			<div class="ninja-forms-credit-card-number-error ninja-forms-field-error">
 				<?php
 				if ( $card_number_errors ) {
@@ -278,7 +278,7 @@ function ninja_forms_field_credit_card_display( $field_id, $data, $form_id = '' 
 			?>
 
 		</div>
-		<div class="ninja-forms-error">
+		<div>
 			<div class="ninja-forms-credit-card-cvc-error ninja-forms-field-error">
 				<?php
 				if ( $card_cvc_errors ) {
@@ -336,7 +336,7 @@ function ninja_forms_field_credit_card_display( $field_id, $data, $form_id = '' 
 			?>
 
 		</div>
-		<div class="ninja-forms-error">
+		<div>
 			<div class="ninja-forms-credit-card-name-error ninja-forms-field-error">
 				<?php
 				if ( $card_name_errors ) {
@@ -393,7 +393,7 @@ function ninja_forms_field_credit_card_display( $field_id, $data, $form_id = '' 
 			?>
 
 		</div>
-		<div class="ninja-forms-error">
+		<div>
 			<div class="ninja-forms-credit-card-exp-month-error ninja-forms-field-error">
 				<?php
 				if ( $card_month_errors ) {
@@ -444,7 +444,7 @@ function ninja_forms_field_credit_card_display( $field_id, $data, $form_id = '' 
 			?>
 
 		</div>
-		<div class="ninja-forms-error">
+		<div>
 			<div class="ninja-forms-credit-card-exp-year-error ninja-forms-field-error">
 				<?php
 				if ( $card_year_errors ) {

@@ -34,49 +34,6 @@ function ninja_forms_insert_field( $form_id, $args = array() ){
 	return $new_id;
 }
 
-function ninja_forms_get_form_by_id($form_id){
-	global $wpdb;
-	$form_row = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".NINJA_FORMS_TABLE_NAME." WHERE id = %d", $form_id), ARRAY_A);
-	$form_row['data'] = unserialize($form_row['data']);
-	$form_row['data'] = ninja_forms_stripslashes_deep($form_row['data']);
-	return $form_row;
-}
-
-function ninja_forms_get_all_forms( $debug = false ){
-	global $wpdb;
-	if( isset( $_REQUEST['debug'] ) AND $_REQUEST['debug'] == true ){
-		$debug = true;
-	}
-	$form_results = $wpdb->get_results("SELECT * FROM ".NINJA_FORMS_TABLE_NAME, ARRAY_A);
-	if(is_array($form_results) AND !empty($form_results)){
-		$x = 0;
-		$count = count($form_results) - 1;
-		while($x <= $count){
-			if( isset( $form_results[$x]['data'] ) ){
-				$form_results[$x]['data'] = unserialize($form_results[$x]['data']);
-				$form_results[$x]['name'] = $form_results[$x]['data']['form_title'];
-				if( substr( $form_results[$x]['data']['form_title'], 0, 1 ) == '_' ){
-					if( !$debug ){
-						unset( $form_results[$x] );
-					}
-				}
-			}
-			$x++;
-		}
-	}
-	$form_results = array_values( $form_results );
-	$form_results = ninja_forms_subval_sort( $form_results, 'name' );
-	return $form_results;
-}
-
-function ninja_forms_get_form_by_field_id( $field_id ){
-	global $wpdb;
-	$form_id = $wpdb->get_row($wpdb->prepare("SELECT form_id FROM ".NINJA_FORMS_FIELDS_TABLE_NAME." WHERE id = %d", $field_id), ARRAY_A);
-	$form_row = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".NINJA_FORMS_TABLE_NAME." WHERE id = %d", $form_id), ARRAY_A);
-	$form_row['data'] = unserialize($form_row['data']);
-	return $form_row;
-}
-
 function ninja_forms_get_form_ids_by_post_id( $post_id ){
 	global $wpdb;
 	$form_ids = array();
@@ -108,20 +65,12 @@ function ninja_forms_get_form_ids_by_post_id( $post_id ){
 
 function ninja_forms_get_form_by_sub_id( $sub_id ){
 	global $wpdb;
-	$sub_row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM ".NINJA_FORMS_SUBS_TABLE_NAME." WHERE id = %d", $sub_id ), ARRAY_A );
-	$form_id = $sub_row['form_id'];
+	$form_id = Ninja_Forms()->sub( $sub_id )->form_id;
 	$form_row = ninja_forms_get_form_by_id( $form_id );
 	return $form_row;
 }
 
-// The ninja_forms_delete_form( $form_id ) function is in includes/admin/ajax.php
-
-function ninja_forms_update_form( $args ){
-	global $wpdb;
-	$update_array = $args['update_array'];
-	$where = $args['where'];
-	$wpdb->update(NINJA_FORMS_TABLE_NAME, $update_array, $where);
-}
+// The ninja_forms_delete_form( $form_id ) function is in includes/deprecated.php
 
 // Begin Field Interaction Functions
 
@@ -309,7 +258,8 @@ function ninja_forms_json_response(){
 	$form_settings = $ninja_forms_processing->get_all_form_settings();
 	$extras = $ninja_forms_processing->get_all_extras();
 
-
+	// Success will default to false if there is not success message.
+	if ( ! $success && ! $errors ) $success = true;
 
 	if( version_compare( phpversion(), '5.3', '>=' ) ){
 		$json = json_encode( array( 'form_id' => $form_id, 'errors' => $errors, 'success' => $success, 'fields' => $fields, 'form_settings' => $form_settings, 'extras' => $extras ), JSON_HEX_QUOT | JSON_HEX_TAG  );
@@ -446,18 +396,6 @@ function nf_get_sub_count( $form_id, $post_status = 'publish' ) {
 	$count = $wpdb->get_var($sql);
 
 	return $count;
- }
-
-/**
- * Get an array of form settings by form ID
- *
- * @since 2.7
- * @param int $form_id
- * @return array $form['data']
- */
-function nf_get_form_settings( $form_id ) {
-	$form = ninja_forms_get_form_by_id( $form_id );
-	return $form['data'];
 }
 
 /**

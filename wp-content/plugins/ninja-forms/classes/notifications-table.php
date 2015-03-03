@@ -86,6 +86,7 @@ class NF_Notifications_List_Table extends WP_List_Table {
     public function column_default($item, $column_name){
         switch($column_name){
             case 'type':
+                return Ninja_Forms()->notification( $item['id'] )->type_name();
             case 'date_updated':
                 return $item[$column_name];
             default:

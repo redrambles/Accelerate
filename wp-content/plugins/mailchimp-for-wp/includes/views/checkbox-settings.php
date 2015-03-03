@@ -1,5 +1,5 @@
-<?php 
-if( ! defined("MC4WP_LITE_VERSION") ) {
+<?php
+if( ! defined( 'MC4WP_LITE_VERSION' ) ) {
 	header( 'Status: 403 Forbidden' );
 	header( 'HTTP/1.1 403 Forbidden' );
 	exit;
@@ -32,16 +32,16 @@ if( ! defined("MC4WP_LITE_VERSION") ) {
 					
 					<?php // loop through lists
 					if( ! $lists || empty( $lists ) ) {
-						?><td colspan="2"><?php printf( __( 'No lists found, %sare you connected to MailChimp?%s', 'mailchimp-for-wp' ), '<a href="'. admin_url( 'admin.php?page=mailchimp-for-wp' ) .'">', '</a>' ); ?></td><?php
+						?><td colspan="2"><?php printf( __( 'No lists found, <a href="%s">are you connected to MailChimp</a>?', 'mailchimp-for-wp' ), admin_url( 'admin.php?page=mailchimp-for-wp' ) ); ?></td><?php
 					} else { ?>
 						<td class="nowrap">
 							<?php foreach( $lists as $list ) {
-							?><label><input type="checkbox" name="mc4wp_lite_checkbox[lists][<?php echo esc_attr( $list->id ); ?>]" value="<?php echo esc_attr($list->id); ?>" <?php checked( array_key_exists( $list->id, $opts['lists'] ), true ); ?>> <?php echo esc_html( $list->name ); ?></label><br /><?php
-							} ?>
+							?><label><input type="checkbox" name="mc4wp_lite_checkbox[lists][<?php echo esc_attr( $list->id ); ?>]" value="<?php echo esc_attr( $list->id ); ?>" <?php checked( array_key_exists( $list->id, $opts['lists'] ), true ); ?>> <?php echo esc_html( $list->name ); ?></label><br /><?php
+} ?>
 						</td>
 						<td class="desc"><?php _e( 'Select the list(s) to which people who check the checkbox should be subscribed.' ,'mailchimp-for-wp' ); ?></td>
-					<?php 
-					} 
+					<?php
+					}
 					?>
 				</tr>
 				<tr valign="top">
@@ -73,7 +73,7 @@ if( ! defined("MC4WP_LITE_VERSION") ) {
 					} else {
 						?><label class="pro-feature"><input type="checkbox" disabled> <?php echo esc_html( $name ); ?></label><br /><?php
 					}
-				} ?>
+} ?>
 			</td>
 			<td class="desc">
 				<?php _e( 'Selecting a form will automatically add the sign-up checkbox to it.', 'mailchimp-for-wp' ); ?>

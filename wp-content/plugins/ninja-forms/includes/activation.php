@@ -69,15 +69,6 @@ function ninja_forms_activation( $network_wide ){
 			$opt = nf_pre_20_opts();
 		}
 
-		$sql = "CREATE TABLE IF NOT EXISTS ".NINJA_FORMS_TABLE_NAME." (
-		  `id` int(11) NOT NULL AUTO_INCREMENT,
-		  `data` longtext CHARACTER SET utf8 NOT NULL,
-		  `date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-		  PRIMARY KEY (`id`)
-		) DEFAULT CHARSET=utf8 ;";
-
-		dbDelta($sql);
-
 		$sql = "CREATE TABLE IF NOT EXISTS ".NINJA_FORMS_FAV_FIELDS_TABLE_NAME." (
 		`id` int(11) NOT NULL AUTO_INCREMENT,
 		`row_type` int(11) NOT NULL,
@@ -89,7 +80,10 @@ function ninja_forms_activation( $network_wide ){
 		) DEFAULT CHARSET=utf8;";
 
 		dbDelta($sql);
-
+		
+		if (!function_exists('nf_change_email_fav')){
+  			require_once dirname(__FILE__).'/admin/upgrades/upgrade-functions.php';
+		}
 		// Remove old email settings.
 		nf_change_email_fav();
 

@@ -127,6 +127,10 @@ a.tooltip span
     display: block;
 }
 
+.ninja-forms-field-error {
+    color: red;
+}
+
 .ninja-forms-form-wrap input,
 .ninja-forms-form-wrap select ,
 .ninja-forms-form-wrap textarea {

@@ -42,7 +42,6 @@ get_header(); ?>
 	</div>
 </section>
 
-
 <section class="recent-posts">
 	<div class="site-content">
 		<div class="blog-post">

@@ -1,8 +1,19 @@
 (function($) {
+	'use strict';
 
-	var $context = $('#mc4wp-admin');
+	/**
+	 * Variables
+	 */
+	var $context = $(document.getElementById('mc4wp-admin'));
+	var $listInputs = $(document.getElementById('mc4wp-lists')).find(':input');
+	var $formMarkup = $(document.getElementById('mc4wpformmarkup'));
+	var $missingFieldsNotice = $(document.getElementById('missing-fields-notice'));
+	var $missingFieldsList = $(document.getElementById('missing-fields-list'));
 
-	function proOnlyNotice() {
+	/**
+	 * Functions
+	 */
+	function showProNotice() {
 
 		// prevent checking of radio buttons
 		if( typeof this.checked === 'boolean' ) {
@@ -13,50 +24,47 @@
 		event.stopPropagation();
 	}
 
-	$context.find(".pro-feature, .pro-feature label, .pro-feature :radio").click(proOnlyNotice);
+	function toggleSendWelcomeFields() {
 
-	$context.find('input[name$="[show_at_woocommerce_checkout]"]').change(function() {
-		$context.find('tr#woocommerce-settings').toggle( $(this).prop( 'checked') );
-	});
+		var $el = $(document.getElementById('mc4wp-send-welcome'));
 
-	var $listInputs = $("#mc4wp-lists").find(':input');
-	$listInputs.change(
-		function() {
-			var hasListSelected = $listInputs.filter(':checked').length > 0;
-			$(".mc4wp-notice.no-lists-selected").toggle( ! hasListSelected );
-			$( document.getElementById( 'mc4wp-fw-fields')).toggle( hasListSelected );
-			$( document.getElementById( 'mc4wp-fw-mailchimp-fields' )).toggle( hasListSelected );
+		if($(this).val() == 0) {
+			$el.removeClass('hidden').find(':input').removeAttr('disabled');
+		} else {
+			$el.addClass('hidden').find(':input').attr('disabled', 'disabled').prop('checked', false);
 		}
-	);
+	}
 
+	function toggleWooCommerceSettings() {
+		var $el = $(document.getElementById('woocommerce-settings'));
+		$el.toggle( $(this).prop('checked'));
+	}
 
+	function toggleFieldWizard() {
+		var hasListSelected = $listInputs.filter(':checked').length > 0;
+		$(".mc4wp-notice.no-lists-selected").toggle( ! hasListSelected );
+		$( document.getElementById( 'mc4wp-fw-fields')).toggle( hasListSelected );
+		$( document.getElementById( 'mc4wp-fw-mailchimp-fields' )).toggle( hasListSelected );
+	}
 
-
-	// Allow tabs inside the form mark-up
-	$(document).delegate('#mc4wpformmarkup', 'keydown', function(e) {
+	function allowTabKey(e) {
 		var keyCode = e.keyCode || e.which;
 
-		if (keyCode == 9) {
+		if (keyCode === 9) {
 			e.preventDefault();
 			var start = this.selectionStart;
 			var end = this.selectionEnd;
 
 			// set textarea value to: text before caret + tab + text after caret
-			$(this).val($(this).val().substring(0, start)
-			+ "\t"
-			+ $(this).val().substring(end));
+			$(this).val($(this).val().substring(0, start) + "\t" + $(this).val().substring(end));
 
 			// put caret at right position again
-			this.selectionStart =
-				this.selectionEnd = start + 1;
+			this.selectionStart = this.selectionEnd = start + 1;
 		}
-	});
+	}
 
-
-	// Add buttons to QTags editor
-	(function() {
-
-		if ( typeof(QTags) == 'undefined' ) {
+	function addQTagsButtons() {
+		if ( typeof(QTags) === 'undefined' ) {
 			return;
 		}
 
@@ -65,10 +73,31 @@
 		QTags.addButton( 'mc4wp_response', 'form response', '{response}', '', 'response', 'Shows the form response' );
 		QTags.addButton( 'mc4wp_subscriber_count', '# of subscribers', '{subscriber_count}', '', 'subscribers', 'Shows number of subscribers of selected list(s)' );
 
-		if( window.mc4wp.hasCaptchaPlugin == true ) {
+		if( window.mc4wp.hasCaptchaPlugin === true ) {
 			QTags.addButton( 'mc4wp_captcha', 'CAPTCHA', '{captcha}', '', 'captcha', 'Display a CAPTCHA field' );
 		}
-	})();
+	}
+
+	/**
+	 * Bind Event Handlers
+	 */
+
+	// show a notice when clicking a pro feature
+	$context.find(".pro-feature, .pro-feature label, .pro-feature :radio").click(showProNotice);
+
+	// Show send-welcome field only when double opt-in is disabled
+	$context.find('input[name$="[double_optin]"]').change(toggleSendWelcomeFields);
+
+	// show woocommerce settings only when `show at woocommerce checkout` is checked.
+	$context.find('input[name$="[show_at_woocommerce_checkout]"]').change(toggleWooCommerceSettings());
+
+	// only show fieldwizard when a list is selected
+	$listInputs.change(toggleFieldWizard);
+
+	// Allow tabs inside the form mark-up
+	$(document).delegate('#mc4wpformmarkup', 'keydown', allowTabKey);
+
+	addQTagsButtons();
 
 
 	/**
@@ -94,13 +123,47 @@
 		var fieldType, fieldName;
 		var $codePreview = $("#mc4wp-fw-preview");
 		var strings = mc4wp.strings.fieldWizard;
+		var requiredFields = [];
+
 		// functions
+		function checkRequiredFields() {
+
+			// check presence of reach required field
+			var missingFields = {};
+			for(var i=0; i<requiredFields.length; i++) {
+				var htmlString = 'name="' + requiredFields[i].tag.toLowerCase();
+				if( $formMarkup.val().toLowerCase().indexOf( htmlString ) == -1 ) {
+					missingFields[requiredFields[i].tag] = requiredFields[i];
+				}
+			}
+
+			// do nothing if no fields are missing
+			if($.isEmptyObject(missingFields)) {
+				$missingFieldsNotice.hide();
+				return;
+			}
+
+			// show notice
+			$missingFieldsList.html('');
+			for( var key in missingFields ) {
+				var field = missingFields[key];
+				var $listItem = $("<li></li>");
+				$listItem.html( field.name + " (<code>" + field.tag + "</code>)");
+				$listItem.appendTo( $missingFieldsList );
+			}
+
+			$missingFieldsNotice.show();
+			return;
+		}
 
 		// set the fields the user can choose from
 		function setMailChimpFields()
 		{
 			// empty field select
 			$mailchimpFields.find('option').not('.default').remove();
+
+			// empty required fields array
+			requiredFields = [];
 			
 			// loop through checked lists
 			$lists.filter(':checked').each(function() {
@@ -109,10 +172,15 @@
 
 				// loop through merge fields from this list
 				for(var i = 0, fieldCount = list.merge_vars.length; i < fieldCount; i++) {
+
 					var listField = list.merge_vars[i];
 
+					if( listField.req ) {
+						requiredFields.push( listField );
+					}
+
 					// add field to select if no similar option exists yet
-					if($mailchimpMergeFields.find("option[value='"+ listField.tag +"']").length == 0) {
+					if($mailchimpMergeFields.find("option[value='"+ listField.tag +"']").length === 0) {
 
 						var text = (listField.name.length > 25) ? listField.name.substring(0, 25) + '..' : listField.name;
 						if(listField.req) { text += '*'; }
@@ -138,7 +206,7 @@
 					var listGrouping = list.interest_groupings[i];
 
 					// add field to select if no similar option exists yet
-					if($mailchimpGroupings.find("option[value='"+ listGrouping.id +"']").length == 0) {
+					if($mailchimpGroupings.find("option[value='"+ listGrouping.id +"']").length === 0) {
 						var text = (listGrouping.name.length > 25) ? listGrouping.name.substring(0, 25) + '..' : listGrouping.name;
 						
 						// build option HTML
@@ -160,6 +228,9 @@
 
 
 			});
+
+			// check required fields with new selected lists
+			checkRequiredFields();
 		}
 
 		/**
@@ -324,13 +395,13 @@
 				'dropdown': 'select', 'date': 'date', 'birthday': 'date', 'radio': 'radio',  'checkbox': 'checkbox'
 			};
 
-			if(fieldTypesMap[data.field_type] != undefined) {
+			if( typeof(fieldTypesMap[data.field_type]) !== "undefined") {
 				fieldType = fieldTypesMap[data.field_type];
 			} else {
 				fieldType = 'text';
 			}
-
-			if(visibleRowsMap[fieldType] != undefined) {
+			
+			if( typeof(visibleRowsMap[fieldType]) !== "undefined") {
 				var visibleRows = visibleRowsMap[fieldType];
 			} else {
 				var visibleRows = visibleRowsMap["default"];
@@ -443,7 +514,7 @@
 			}
 
 			// only do this piece when we're not adding radio inputs
-			if(fieldType != 'radio' && fieldType != 'checkbox') {
+			if(fieldType !== 'radio' && fieldType !== 'checkbox') {
 
 				// set name attribute
 				if(fieldName.length > 0) {
@@ -452,7 +523,7 @@
 
 				// set value
 				if($value.is(":visible") && $value.val().length > 0) {
-					if(fieldType == 'textarea') {
+					if(fieldType === 'textarea') {
 						$input.text($value.val());
 					} else {
 						$input.attr('value', $value.val());
@@ -482,8 +553,7 @@
 				$code.wrapInner($("<p />"));
 			}
 			
-			var html = $code.html();
-			setCodePreview(html);
+			setCodePreview($code.html());
 		}
 
 		/**
@@ -494,15 +564,17 @@
 			var result = false;
 
 			// try to insert in QuickTags editor at cursor position
-			if(typeof wpActiveEditor != 'undefined' && typeof QTags != 'undefined' && QTags.insertContent) {
+			if(typeof wpActiveEditor !== 'undefined' && typeof QTags !== 'undefined' && QTags.insertContent) {
 				result = QTags.insertContent($codePreview.val());
 			}
 			
 			// fallback, just append
 			if(!result) {
-				var $formContent = $( document.getElementById('mc4wpformmarkup') );
-				$formContent.val($formContent.val() + "\n" + $codePreview.val());
+				$formMarkup.val($formMarkup.val() + "\n" + $codePreview.val());
 			}
+
+			// trigger change event
+			$formMarkup.change();
 		}
 
 		/**
@@ -519,6 +591,15 @@
 		$mailchimpFields.change(setPresets);
 		$wizardFields.change(updateCodePreview);
 		$("#mc4wp-fw-add-to-form").click(addCodeToFormMarkup);
+
+		// Validate the form fields after every change
+		$formMarkup.bind({
+			'input': function() {
+				$formMarkup.unbind('keydown');
+				checkRequiredFields.call(this);
+			},
+			'keydown': checkRequiredFields
+		});
 
 		// init
 		setMailChimpFields();

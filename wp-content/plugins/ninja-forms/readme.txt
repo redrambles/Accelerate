@@ -1,9 +1,9 @@
 === Ninja Forms ===
-Contributors: kstover, jameslaws, wpnzach, daveshine, mordauk, bftrick, helgatheviking
+Contributors: wpninjasllc, kstover, jameslaws, wpnzach, daveshine, mordauk, bftrick, helgatheviking
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 3.8
-Tested up to: 4.1
-Stable tag: 2.8.13
+Tested up to: 4.1.1
+Stable tag: 2.9.2
 License: GPLv2 or later
 
 Forms created with a simple drag and drop interface. Contact forms, Email collection forms, or any other form you want on your WordPress site.
@@ -13,7 +13,7 @@ Ninja Forms is the ultimate FREE form creation solution for WordPress. Build Wor
 
 The Ninja Forms framework is now on [GitHub](https://github.com/wpninjas/ninja-forms)! If you're a developer and want to help make Ninja Forms better, check out our [GitHub repo](https://github.com/wpninjas/ninja-forms). It's also a great resource for developers who are interested in creating premium extensions for our online store.
 
-[youtube http://www.youtube.com/watch?v=2yf2Fqvbmkk]
+[youtube https://www.youtube.com/watch?v=DFAz8kKVi08]
 
 Here are just a few of the things you will find in Ninja Forms:
 
@@ -66,25 +66,69 @@ This section describes how to install the plugin and get it working.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Visit the 'Forms' menu item in your admin sidebar
 
-Shortcodes have been re-implemented. They are used like so: [ninja_forms_display_form id=3] where 3 is the ID number of the form you want to display.
+Shortcodes have been re-implemented. They are used like so: [ninja_form id=3] where 3 is the ID number of the form you want to display.
 
 == Use ==
 
-For help and video tutorials, please visit our website: [Ninja Forms Documentation](http://ninjaforms.com/documentation/)
+For help and video tutorials, please visit our website: [Ninja Forms Documentation](http://docs.ninjaforms.com/)
 
 == Upgrade Notice ==
 
-= 2.8.13 (18 December 2014) =
+= 2.9.2 (3 March 2015) =
+
+*Changes:*
+
+* Simplified the form creation interface by adding a "Build Your Form" tab, an "Emails & Actions" tab, and a "Settings" tab. All other tabs have been removed.
+* Form Preview and Submissions are now buttons that can be clicked at any stage of editing a form.
+* Field settings have been simplified by introducing a series of new, expandable settings sections. These sections house more advanced or less-common settings.
 
 *Bugs:*
 
-* Fixed a bug introduced in the previous version that could prevent javascript from working properly on the front-end.
+* Preview pages should now always display properly.
+* Success messages should now always be shown after submission properly.
+* Fixed a bug that could cause a PHP notice to show in placeholders.
+* Fixed a bug that could cause forms not to display properly when added via the "append to page" option.
+* Fixed a major bug that could prevent longer forms from saving properly. Previous fixes required modifying a php.ini file.
+* Creating a new action should now show the proper saved message.
+* Updated the Ninja Forms translation file with several new strings and cleaned up existing strings.
+* Modified the way that options are grabbed from the database to make them more effecient and prevent errors.
+* Fixed a bug that caused post meta to be added to a post/page even if no form was selected.
 
 == Requested Features ==
 
 If you have any feature requests, please feel free to visit [ninjaforms.com](http://ninjaforms.com) and let us know about it.
 
 == Changelog ==
+
+= 2.9.2 (3 March 2015) =
+
+*Bugs:*
+
+* Preview pages should now always display properly.
+* Success messages should now always be shown after submission properly.
+
+= 2.9.1 (3 March 2015) =
+
+*Bugs:*
+
+* Fixed a bug that could cause a PHP notice to show in placeholders.
+* Fixed a bug that could cause forms not to display properly when added via the "append to page" option.
+
+= 2.9 (3 March 2015) =
+
+*Changes:*
+
+* Simplified the form creation interface by adding a "Build Your Form" tab, an "Emails & Actions" tab, and a "Settings" tab. All other tabs have been removed.
+* Form Preview and Submissions are now buttons that can be clicked at any stage of editing a form.
+* Field settings have been simplified by introducing a series of new, expandable settings sections. These sections house more advanced or less-common settings.
+
+*Bugs:*
+
+* Fixed a major bug that could prevent longer forms from saving properly. Previous fixes required modifying a php.ini file.
+* Creating a new action should now show the proper saved message.
+* Updated the Ninja Forms translation file with several new strings and cleaned up existing strings.
+* Modified the way that options are grabbed from the database to make them more effecient and prevent errors.
+* Fixed a bug that caused post meta to be added to a post/page even if no form was selected.
 
 = 2.8.13 (18 December 2014) =
 
@@ -177,7 +221,7 @@ If you have any feature requests, please feel free to visit [ninjaforms.com](htt
 
 * Fixed a bug with converting notifications from previous versions of Ninja Forms.
 * Re-Added the password mismatch label to the label settings tab.
-* The [ninja_forms_all_fields] short code should now function properly in plain text emails. 
+* The [ninja_forms_all_fields] short code should now function properly in plain text emails.
 * Submitted forms that are set to clear upon completion should now properly re-populate default values that are based upon logged-in user information.
 * Fixed an issue with doubles slashes on Windows servers.
 * Importing forms should now work properly in all instances.
@@ -254,7 +298,7 @@ If you have any feature requests, please feel free to visit [ninjaforms.com](htt
 
 *Security:*
 
-* Version 2.8 fixes a minor security issue that could allow non-admins and other forms to delete Ninja Forms. This won't affect all users, but we encourage everyone to update. 
+* Version 2.8 fixes a minor security issue that could allow non-admins and other forms to delete Ninja Forms. This won't affect all users, but we encourage everyone to update.
 
 *Features:*
 

@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-	
+
 	var progressbar = $( "#progressbar" ),
 	progressLabel = $( ".progress-label" );
 
@@ -22,36 +22,20 @@ jQuery(document).ready(function($) {
 
  	if ( nfProcessingAction != 'none' ) {
 		var nfProgressBar = {
-			labels: {
-				0: 'Lacing Our Tabis',
-				1: 'Cleaning The Dojo',
-				2: 'Doing Splits',
-				3: 'Buffing Bo Staff',
-				4: 'Intimidating Gaze',
-				5: 'Sparring',
-				6: 'Packing Smoke Bombs',
-				7: 'Polishing Shuriken',
-				8: 'Throwing Sais',
-				9: 'Calling Our Mom',
-				10: 'Practicing Katas',
-				11: 'Swinging Nunchucks',
-				12: 'Sharpening Swords',
-				13: 'Ironing Ninja Gi',
-				14: 'Eating Breakfast',
-				15: 'Cutting Stuff',
-				16: 'Doing Dishes',
-				17: 'Climbing Walls'
-			},
+			labels: nf_processing.step_labels,
+			currentLabel: 0,
 			getTextLabel: function() {
 				var label = this.labels[ this.currentLabel ];
 				return label;
 			},
 			changeTextLabel: function() {
-				var max = Object.keys( this.labels ).length - 1;
-				var labelNum = Math.floor( Math.random() * ( max - 2 + 1 ) ) + 2;
+				var max = Object.keys( this.labels ).length;
+				if ( max == 1 ) {
+					max = 0;
+				}
+				var labelNum = Math.floor( Math.random() * ( max - 2 + 1 ) ) + 1;
 				this.currentLabel = labelNum;		
-			},
-			currentLabel: 0
+			}
       	};
 
       	var nfProcessing = {
@@ -78,7 +62,7 @@ jQuery(document).ready(function($) {
 		      		} else {
 		      			progressbar.progressbar( "value", 100 );
 		      			if ( typeof response.redirect != 'undefined' && response.redirect != '' ) {
-		      				document.location.href = response.redirect;
+		      				//document.location.href = response.redirect;
 		      			}
 		      		}
 		      	});

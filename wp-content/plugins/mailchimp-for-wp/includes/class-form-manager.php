@@ -1,6 +1,6 @@
 <?php
 
-if( ! defined("MC4WP_LITE_VERSION") ) {
+if( ! defined( 'MC4WP_LITE_VERSION' ) ) {
 	header( 'Status: 403 Forbidden' );
 	header( 'HTTP/1.1 403 Forbidden' );
 	exit;
@@ -22,6 +22,16 @@ class MC4WP_Lite_Form_Manager {
 	private $form_request = false;
 
 	/**
+	 * @var bool Is the inline JavaScript printed to the page already?
+	 */
+	private $inline_js_printed = false;
+
+	/**
+	 * @var bool Whether to print the JS snippet "fixing" date fields
+	 */
+	private $print_date_fallback = false;
+
+	/**
 	* Constructor
 	*/
 	public function __construct() {
@@ -34,8 +44,9 @@ class MC4WP_Lite_Form_Manager {
 		add_filter( 'widget_text', 'shortcode_unautop' );
 		add_filter( 'widget_text', 'do_shortcode', 11 );
 
-        // load checkbox css if necessary
-        add_action('wp_enqueue_scripts', array( $this, 'load_stylesheet' ) );
+		// load checkbox css if necessary
+		add_action( 'wp_head', array( $this, 'print_css' ), 90 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'load_stylesheet' ) );
 
 		/**
 		* @deprecated
@@ -60,7 +71,7 @@ class MC4WP_Lite_Form_Manager {
 		// frontend only
 		if( ! is_admin() ) {
 			// register placeholder script, which will later be enqueued for IE only
-			wp_register_script( 'mc4wp-placeholders', MC4WP_LITE_PLUGIN_URL . 'assets/js/placeholders.min.js', array(), MC4WP_LITE_VERSION, true );
+			wp_register_script( 'mc4wp-placeholders', MC4WP_LITE_PLUGIN_URL . 'assets/js/third-party/placeholders.min.js', array(), MC4WP_LITE_VERSION, true );
 
 			// register non-AJAX script (that handles form submissions)
 			wp_register_script( 'mc4wp-form-request', MC4WP_LITE_PLUGIN_URL . 'assets/js/form-request' . $suffix . '.js', array(), MC4WP_LITE_VERSION, true );
@@ -72,26 +83,26 @@ class MC4WP_Lite_Form_Manager {
 	* Load the form stylesheet(s)
 	*/
 	public function load_stylesheet( ) {
-		$opts = mc4wp_get_options('form');
+		$opts = mc4wp_get_options( 'form' );
 
-        if( $opts['css'] == false ) {
-            return false;
-        }
+		if( $opts['css'] == false ) {
+			return false;
+		}
 
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-        if( $opts['css'] != 1 && $opts['css'] !== 'default' ) {
+		if( $opts['css'] != 1 && $opts['css'] !== 'default' ) {
 
-            $form_theme = $opts['css'];
-            if( in_array( $form_theme, array( 'blue', 'green', 'dark', 'light', 'red' ) ) ) {
-                wp_enqueue_style( 'mailchimp-for-wp-form-theme-' . $opts['css'], MC4WP_LITE_PLUGIN_URL . 'assets/css/form-theme-' . $opts['css'] . $suffix . '.css', array(), MC4WP_LITE_VERSION, 'all' );
-            }
+			$form_theme = $opts['css'];
+			if( in_array( $form_theme, array( 'blue', 'green', 'dark', 'light', 'red' ) ) ) {
+				wp_enqueue_style( 'mailchimp-for-wp-form-theme-' . $opts['css'], MC4WP_LITE_PLUGIN_URL . 'assets/css/form-theme-' . $opts['css'] . $suffix . '.css', array(), MC4WP_LITE_VERSION, 'all' );
+			}
 
-        } else {
-            wp_enqueue_style( 'mailchimp-for-wp-form', MC4WP_LITE_PLUGIN_URL . 'assets/css/form' . $suffix . '.css', array(), MC4WP_LITE_VERSION, 'all' );
-        }
+		} else {
+			wp_enqueue_style( 'mailchimp-for-wp-form', MC4WP_LITE_PLUGIN_URL . 'assets/css/form' . $suffix . '.css', array(), MC4WP_LITE_VERSION, 'all' );
+		}
 
-        return true;
+		return true;
 	}
 
 	/**
@@ -144,13 +155,13 @@ class MC4WP_Lite_Form_Manager {
 		}
 
 		// Get form options
-		$opts = mc4wp_get_options('form');
+		$opts = mc4wp_get_options( 'form' );
 
 		// was this form submitted?
 		$was_submitted = ( is_object( $this->form_request ) && $this->form_request->get_form_instance_number() === $this->form_instance_number );
 
 		// Generate opening HTML
-		$opening_html = "<!-- Form by MailChimp for WordPress plugin v". MC4WP_LITE_VERSION ." - https://mc4wp.com/ -->";
+		$opening_html = '<!-- Form by MailChimp for WordPress plugin v'. MC4WP_LITE_VERSION .' - https://mc4wp.com/ -->';
 		$opening_html .= '<div id="mc4wp-form-' . $this->form_instance_number . '" class="' . $this->get_css_classes() . '">';
 
 		// Generate before & after fields HTML
@@ -169,14 +180,7 @@ class MC4WP_Lite_Form_Manager {
 		// Process fields, if not submitted or not successfull or hide_after_success disabled
 		if( ! $was_submitted || ! $opts['hide_after_success'] || ! $this->form_request->is_successful() ) {
 
-			/**
-			 * @filter mc4wp_form_action
-			 * @expects string
-			 *
-			 * Sets the `action` attribute of the form element. Defaults to the current URL.
-			 */
-			$form_action = apply_filters( 'mc4wp_form_action', mc4wp_get_current_url() );
-			$form_opening_html = '<form method="post" action="'. $form_action .'">';
+			$form_opening_html = '<form method="post">';
 
 			// add form fields from settings
 			$visible_fields = __( $opts['markup'], 'mailchimp-for-wp' );
@@ -200,8 +204,13 @@ class MC4WP_Lite_Form_Manager {
 			 */
 			$visible_fields = apply_filters( 'mc4wp_form_content', $visible_fields );
 
+			if( $this->form_contains_field_type( $visible_fields, 'date' ) ) {
+				$this->print_date_fallback = true;
+			}
+
 			// hidden fields
-			$hidden_fields = '<textarea name="_mc4wp_required_but_not_really" style="display: none !important;"></textarea>';
+			$hidden_fields = '<input type="text" name="_mc4wp_required_but_not_really" value="" />';
+			$hidden_fields .= '<input type="hidden" name="_mc4wp_timestamp" value="'. time() . '" />';
 			$hidden_fields .= '<input type="hidden" name="_mc4wp_form_submit" value="1" />';
 			$hidden_fields .= '<input type="hidden" name="_mc4wp_form_instance" value="'. $this->form_instance_number .'" />';
 			$hidden_fields .= '<input type="hidden" name="_mc4wp_form_nonce" value="'. wp_create_nonce( '_mc4wp_form_nonce' ) .'" />';
@@ -218,13 +227,13 @@ class MC4WP_Lite_Form_Manager {
 			wp_enqueue_script( 'mc4wp-form-request' );
 			wp_localize_script( 'mc4wp-form-request', 'mc4wpFormRequestData', array(
 					'success' => ( $this->form_request->is_successful() ) ? 1 : 0,
-					'submittedFormId' => $this->form_request->get_form_instance_number(),
-					'postData' => $this->form_request->get_data()
+					'formId' => $this->form_request->get_form_instance_number(),
+					'data' => $this->form_request->get_data()
 				)
 			);
 
 			// get actual response html
-			$response_html = $this->form_request->get_response_html();
+			$response_html .= $this->form_request->get_response_html();
 
 			// add form response after or before fields if no {response} tag
 			if( stristr( $visible_fields, '{response}' ) === false || $opts['hide_after_success']) {
@@ -255,7 +264,7 @@ class MC4WP_Lite_Form_Manager {
 		$visible_fields = str_ireplace( '{response}', $response_html, $visible_fields );
 
 		// Generate closing HTML
-		$closing_html = "</div><!-- / MailChimp for WP Plugin -->";
+		$closing_html = '</div><!-- / MailChimp for WP Plugin -->';
 
 		// increase form instance number in case there is more than one form on a page
 		$this->form_instance_number++;
@@ -274,41 +283,89 @@ class MC4WP_Lite_Form_Manager {
 	}
 
 	/**
+	 * @param $form
+	 * @param $field_type
+	 *
+	 * @return bool
+	 */
+	private function form_contains_field_type( $form, $field_type ) {
+		$html = sprintf( ' type="%s" ', $field_type );
+		return stristr( $form, $html ) !== false;
+	}
+
+	/**
+	 * Prints some inline CSS that does the following
+	 * - Hides the honeypot field through CSS
+	 */
+	public function print_css() {
+		?><style type="text/css">.mc4wp-form input[name="_mc4wp_required_but_not_really"] { position: absolute; top: -1000000px; }</style><?php
+	}
+
+	/**
 	 * Prints some JavaScript to enhance the form functionality
 	 *
 	 * This is only printed on pages that actually contain a form.
-	 * Uses jQuery if its loaded, otherwise falls back to vanilla JS.
 	 */
 	public function print_js() {
-		if( wp_script_is( 'jquery', 'done' ) ) {
-			// print jQuery
-			?><script type="text/javascript">
-				jQuery('.mc4wp-form').find('[type="submit"]').click(function () {
-					jQuery(this).parents('.mc4wp-form').addClass('mc4wp-form-submitted');
-				});
-			</script><?php
-		} else {
-			// Print vanilla JavaScript
-			?><script type="text/javascript">
-				(function() {
-					var forms = document.querySelectorAll('.mc4wp-form');
-					for (var i = 0; i < forms.length; i++) {
-						(function(el) {
-							var onclick = function( event ) {
-								el.classList.toggle('mc4wp-form-submitted');
-							};
-							var button = el.querySelector('[type="submit"]');
 
-							if (button.addEventListener) {
-								button.addEventListener( 'click', onclick);
-							} else {
-								button.attachEvent( 'onclick', onclick);
-							}
-						})(forms[i]);
-					}
-				})();
-			</script><?php
+		if( $this->inline_js_printed === true ) {
+			return false;
 		}
+
+		// Print vanilla JavaScript
+		?><script type="text/javascript">
+			(function() {
+
+				function addSubmittedClass() {
+					var className = 'mc4wp-form-submitted';
+					(this.classList) ? this.classList.add(className) : this.className += ' ' + className;
+				}
+
+				var forms = document.querySelectorAll('.mc4wp-form');
+				for (var i = 0; i < forms.length; i++) {
+					(function(f) {
+
+						// hide honeypot
+						var honeypot = f.querySelector('input[name="_mc4wp_required_but_not_really"]');
+						honeypot.style.display = 'none';
+
+						// add class on submit
+						var button = f.querySelector('[type="submit"]');
+						if (button.addEventListener) {
+							button.addEventListener( 'click', addSubmittedClass.bind(f));
+						} else {
+							button.attachEvent( 'onclick', addSubmittedClass.bind(f));
+						}
+
+					})(forms[i]);
+				}
+			})();
+
+			<?php if( $this->print_date_fallback ) { ?>
+			(function() {
+				// test if browser supports date fields
+				var testInput = document.createElement('input');
+				testInput.setAttribute('type', 'date');
+				if( testInput.type !== 'date') {
+
+					// add placeholder & pattern to all date fields
+					var dateFields = document.querySelectorAll('.mc4wp-form input[type="date"]');
+					for(var i=0; i<dateFields.length; i++) {
+						if(!dateFields[i].placeholder) {
+							dateFields[i].placeholder = 'yyyy/mm/dd';
+						}
+						if(!dateFields[i].pattern) {
+							dateFields[i].pattern = '(?:19|20)[0-9]{2}/(?:(?:0[1-9]|1[0-2])/(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])/(?:30))|(?:(?:0[13578]|1[02])-31))';
+						}
+					}
+				}
+			})();
+			<?php } ?>
+		</script><?php
+
+		// make sure this function only runs once
+		$this->inline_js_printed = true;
+		return true;
 	}
 
 }

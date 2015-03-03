@@ -31,8 +31,8 @@ class NF_Notification_Email extends NF_Notification_Base_Type
 
 		if ( $id == '' ) {
 			$email_format = 'html';
-			$from_name = '';
-			$from_address = '';
+			$from_name = get_bloginfo( 'name' );
+			$from_address = get_bloginfo( 'admin_email' );
 			$reply_to = '';
 			$to = '';
 			$cc = '';

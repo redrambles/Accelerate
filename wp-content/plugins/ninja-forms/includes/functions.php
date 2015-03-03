@@ -243,7 +243,7 @@ function nf_delete_notification( $n_id ) {
 function nf_get_object_meta_value( $object_id, $meta_key ) {
 	global $wpdb;
 
-	$meta_value = $wpdb->get_row( $wpdb->prepare( "SELECT meta_value FROM ".NF_OBJECT_META_TABLE_NAME." WHERE object_id = %d AND meta_key = %s", $object_id, $meta_key ), ARRAY_A );
+	$meta_value = $wpdb->get_row( $wpdb->prepare( 'SELECT meta_value FROM ' . NF_OBJECT_META_TABLE_NAME . ' WHERE object_id = %d AND meta_key = %s', $object_id, $meta_key ), ARRAY_A );
 	if ( is_array ( $meta_value['meta_value'] ) ) {
 		$meta_value['meta_value'] = unserialize(  $meta_value['meta_value'] );
 	}
@@ -350,14 +350,11 @@ function nf_get_object_meta( $object_id ) {
 	global $wpdb;
 
 	$tmp_array = array();
-	$settings = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . NF_OBJECT_META_TABLE_NAME . ' WHERE object_id = %d', $object_id ), ARRAY_A);
+	$settings = $wpdb->get_results( $wpdb->prepare( 'SELECT meta_key, meta_value FROM ' . NF_OBJECT_META_TABLE_NAME . ' WHERE object_id = %d', $object_id ), ARRAY_A);
 
 	if ( is_array( $settings ) ) {
 		foreach( $settings as $setting ) {
-			if ( is_serialized ( $setting['meta_value'] ) ) {
-				$setting['meta_value'] = unserialize( $setting['meta_value'] );
-			}
-			$tmp_array[ $setting['meta_key'] ] = $setting['meta_value'];
+			$tmp_array[ $setting['meta_key'] ] = $setting['meta_value'] = maybe_unserialize( $setting['meta_value'] );
 		}
 	}
 
@@ -372,9 +369,9 @@ function nf_get_object_meta( $object_id ) {
  * @return int $object_id
  */
 
-function nf_insert_object( $type ) {
+function nf_insert_object( $type, $id = NULL ) {
 	global $wpdb;
-	$wpdb->insert( NF_OBJECTS_TABLE_NAME, array( 'type' => $type ) );
+	$wpdb->insert( NF_OBJECTS_TABLE_NAME, array( 'id' => $id, 'type' => $type ) );
 	return $wpdb->insert_id;
 }
 
@@ -449,28 +446,15 @@ function nf_get_object_parent( $child_id ) {
  *
  * @since 2.8.6
  * @param $object_id
- * @return string $type
+ * @return string $return
  */
 
 function nf_get_object_type( $object_id ) {
 	global $wpdb;
 	// Get our object type
 	$type = $wpdb->get_row( $wpdb->prepare( 'SELECT type FROM ' . NF_OBJECTS_TABLE_NAME . ' WHERE id = %d', $object_id ), ARRAY_A );
-	return $type['type'];
-}
-
-/**
- * Return our form count
- *
- * @since 2.8
- * @return int $count
- */
-
-function nf_get_form_count() {
-	global $wpdb;
-
-	$count = $wpdb->get_var( 'SELECT COUNT(*) FROM ' . NINJA_FORMS_TABLE_NAME );
-	return $count;
+	$return = ( isset ( $type['type'] ) ) ? $type['type'] : false;
+	return $return;
 }
 
 /*
@@ -512,7 +496,7 @@ function nf_get_objects_by_type( $object_type ) {
 	if ( $object_type == '' )
 		return false;
 
-	$results = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . NF_OBJECTS_TABLE_NAME . ' WHERE type = %s', $object_type ), ARRAY_A );
+	$results = $wpdb->get_results( $wpdb->prepare( 'SELECT id FROM ' . NF_OBJECTS_TABLE_NAME . ' WHERE type = %s', $object_type ), ARRAY_A );
 
 	return $results;
 }
@@ -535,12 +519,18 @@ add_filter( 'nf_delete_form_capabilities', 'nf_add_permissions_filters' );
 function nf_admin_footer_text( $footer_text ) {
 	global $current_screen, $pagenow, $typenow;
 
+	$current_tab = ninja_forms_get_current_tab();
+
 	// only display custom text on Ninja Admin Pages
 	if ( isset( $current_screen->id ) && strpos( $current_screen->id, 'ninja' ) !== false || ( ( $pagenow == 'edit.php' || $pagenow == 'post.php' ) && $typenow == 'nf_sub' ) ) {
-		return sprintf( __( 'Please rate <strong>Ninja Forms</strong> <a href="%1$s" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a> on <a href="%1$s" target="_blank">WordPress.org</a> to help us keep this plugin free.  Thank you from the WP Ninjas team!', 'ninja-forms' ), __( 'http://wordpress.org/support/view/plugin-reviews/ninja-forms?filter=5', 'ninja-forms' ) );
-	} else {
-		return $footer_text;
+		$footer_text = sprintf( __( 'Please rate %sNinja Forms%s %s on %sWordPress.org%s to help us keep this plugin free.  Thank you from the WP Ninjas team!', 'ninja-forms' ), '<strong>', '</strong>', '<a href="http://wordpress.org/support/view/plugin-reviews/ninja-forms?filter=5" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a>', '<a href="http://wordpress.org/support/view/plugin-reviews/ninja-forms?filter=5" target="_blank">', '</a>' );
 	}
+
+	if ( 'builder' == $current_tab ) {
+		$footer_text = '';
+	}
+
+	return $footer_text;
 }
 
 add_filter( 'admin_footer_text', 'nf_admin_footer_text' , 1, 2 );

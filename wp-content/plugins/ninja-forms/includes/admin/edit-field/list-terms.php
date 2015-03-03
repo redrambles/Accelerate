@@ -9,14 +9,13 @@
 
 // Make sure that this function isn't already defined.
 if ( !function_exists ( 'ninja_forms_edit_field_list_term' ) ) {
-    function ninja_forms_edit_field_list_term( $field_id ){
+    function ninja_forms_edit_field_list_term( $field_id, $field_data ){
         $add_field = apply_filters( 'ninja_forms_use_post_fields', false );
         if ( !$add_field )
             return false;
 
         $field_row = ninja_forms_get_field_by_id( $field_id );
         $field_type = $field_row['type'];
-        $field_data = $field_row['data'];
 
         if( isset( $field_data['populate_term'] ) ){
             $populate_term = $field_data['populate_term'];
@@ -69,5 +68,5 @@ if ( !function_exists ( 'ninja_forms_edit_field_list_term' ) ) {
         }
     }
 
-    add_action('ninja_forms_edit_field_after_registered', 'ninja_forms_edit_field_list_term', 9);
+    add_action( 'ninja_forms_edit_field_after_registered', 'ninja_forms_edit_field_list_term', 9, 2 );
 }

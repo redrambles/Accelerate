@@ -1,14 +1,13 @@
 <?php
 add_action( 'init', 'ninja_forms_register_edit_field_desc' );
 function ninja_forms_register_edit_field_desc() {
-	add_action( 'ninja_forms_edit_field_after_registered', 'ninja_forms_edit_field_desc', 10 );
+	add_action( 'ninja_forms_edit_field_after_registered', 'ninja_forms_edit_field_desc', 10 , 2);
 }
 
-function ninja_forms_edit_field_desc( $field_id ) {
+function ninja_forms_edit_field_desc( $field_id, $field_data ) {
 	global $ninja_forms_fields;
 	$field_row = ninja_forms_get_field_by_id( $field_id );
 	$field_type = $field_row['type'];
-	$field_data = $field_row['data'];
 	$reg_field = $ninja_forms_fields[$field_type];
 	if ( isset ( $reg_field['edit_desc'] ) ) {
 		$edit_desc = $reg_field['edit_desc'];

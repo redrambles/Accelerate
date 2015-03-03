@@ -23,6 +23,7 @@ class NF_Extension_Updater
 	public $store_url = 'http://ninjaforms.com';
 	public $file = '';
 	public $author = '';
+	public $error = '';
 
 	/*
 	 *
@@ -46,7 +47,6 @@ class NF_Extension_Updater
 		$this->author = $author;
 
 		$this->add_license_fields();
-		$this->license_status();
 		$this->auto_update();
 
 	} // function constructor
@@ -60,6 +60,10 @@ class NF_Extension_Updater
 	 */
 
 	function add_license_fields() {
+		$valid = $this->is_valid();
+		$error = $this->get_error();
+		$note = $valid ? '' : __( 'You will find this included with your purchase email.', 'ninja-forms' );
+		$desc = $error ? $error : $note;
 		$args = array(
 			'page' => 'ninja-forms-settings',
 			'tab' => 'license_settings',
@@ -67,10 +71,12 @@ class NF_Extension_Updater
 			'settings' => array(
 				array(
 					'name'          => $this->product_name.'_license',
-					'type'          => 'text',
-					'label'         => $this->product_nice_name.' '.__( 'License Key', 'ninja-forms' ),
-					'desc'          => __( 'You will find this included with your purchase email.', 'ninja-forms' ),
-					'save_function' => array( $this, 'check_license' )
+					'type'          => 'custom',
+					'label'         => $this->product_nice_name.' '.__( 'Key', 'ninja-forms' ),
+					'desc'          => $desc,
+					'save_function' => array( $this, 'check_license' ),
+					'class'			=> 'test',
+					'display_function'	=> array( $this, 'output_field' ),
 				),
 			),
 		);
@@ -88,27 +94,16 @@ class NF_Extension_Updater
 	 */
 
 	function check_license( $data ) {
-		$plugin_settings = nf_get_settings();
-
-		if( isset( $plugin_settings[ $this->product_name.'_license_status' ] ) ){
-			$status = $plugin_settings[ $this->product_name.'_license_status' ];
-		}else{
-			$status = 'invalid';
-		}
-
-		if( isset( $plugin_settings[ $this->product_name.'_license' ] ) ){
-			$old_license = $plugin_settings[ $this->product_name.'_license'];
-		}else{
-			$old_license = '';
-		}
-
-		if ( $old_license != '' AND $old_license != $data[ $this->product_name.'_license' ] AND $status == 'valid' ) {
+		// Check to see if we've clicked the deactivate all button.
+		if ( isset ( $data['deactivate_all'] ) ) {
 			$this->deactivate_license();
-		}
-
-		if( $old_license == '' OR ( $old_license != $data[ $this->product_name.'_license' ] ) OR $status == 'invalid' ){
+		} else if ( isset ( $data[ 'deactivate_license_' . $this->product_name ] ) ) { // Check to see if we've clicked a deactivation button.
+			$this->deactivate_license();
+			return false;
+		} else if ( isset ( $data[ $this->product_name . '_license' ] ) ) {
 	 		$this->activate_license( $data );
 		}
+
 	} // function check_license
 
 	/*
@@ -120,6 +115,7 @@ class NF_Extension_Updater
 	 */
 
 	function activate_license( $data ) {
+	
 		$plugin_settings = nf_get_settings();
 		// retrieve the license from the database
 		$license = $data[ $this->product_name.'_license' ];
@@ -133,7 +129,7 @@ class NF_Extension_Updater
  
 		// Call the custom API.
 		$response = wp_remote_get( add_query_arg( $api_params, $this->store_url ) );
- 
+
 		// make sure the response came back okay
 		if ( is_wp_error( $response ) )
 			return false;
@@ -142,7 +138,16 @@ class NF_Extension_Updater
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 		// $license_data->license will be either "valid" or "invalid"
- 		$plugin_settings[  $this->product_name.'_license_status' ] = $license_data->license;
+ 		$plugin_settings[  $this->product_name . '_license' ] = $license;
+ 		$plugin_settings[  $this->product_name . '_license_status' ] = $license_data->license;
+
+		if ( 'invalid' == $license_data->license ) {
+			$error = '<span style="color: red;">' . __( 'Could not activate license. Please verify your license key', 'ninja-forms' ) . '</span>';
+		} else {
+			$error = '';
+		}
+
+		$plugin_settings[ $this->product_name . '_license_error' ] = $error;
 
 		update_option( 'ninja_forms_settings', $plugin_settings );
 	}
@@ -186,39 +191,16 @@ class NF_Extension_Updater
 
 		// decode the license data
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
-		
+
+		$plugin_settings[  $this->product_name.'_license_error' ] = '';
 		// $license_data->license will be either "deactivated" or "failed"
-		if( $license_data->license == 'deactivated' ) {
+		if( 'deactivated' == $license_data->license ) {
 			// $license_data->license will be either "valid" or "invalid"
 			$plugin_settings[  $this->product_name.'_license_status' ] = 'invalid';
 	 		$plugin_settings[  $this->product_name.'_license' ] = '';
-			update_option( 'ninja_forms_settings', $plugin_settings );
 		}
+		update_option( 'ninja_forms_settings', $plugin_settings );
 	}
-
-	/*
-	 *
-	 * Function that adds the green checkmark or red X to indicate license status
-	 *
-	 * @since 2.2.46
-	 * @return void
-	 */
-
-	function license_status() {
-		global $ninja_forms_tabs_metaboxes;
-
-		for ($x=0; $x < count( $ninja_forms_tabs_metaboxes['ninja-forms-settings']['license_settings']['license_settings']['settings'] ); $x++) { 
-			if( $ninja_forms_tabs_metaboxes['ninja-forms-settings']['license_settings']['license_settings']['settings'][$x]['name'] == $this->product_name.'_license' ){
-				$plugin_settings = nf_get_settings();
-				if( !isset( $plugin_settings[ $this->product_name.'_license_status' ] ) OR $plugin_settings[ $this->product_name.'_license_status' ] == 'invalid' ){
-					$status = ' <img src="'.NINJA_FORMS_URL.'/images/no.png">';
-				}else{
-					$status = ' <img src="'.NINJA_FORMS_URL.'/images/yes.png">';
-				}
-				$ninja_forms_tabs_metaboxes['ninja-forms-settings']['license_settings']['license_settings']['settings'][$x]['label'] .= $status;
-			}		
-		}
-	} // function license_status
 
 	/*
 	 *
@@ -247,5 +229,56 @@ class NF_Extension_Updater
 		  )
 		);
 	} // function auto_update
+
+	/**
+	 * Return whether or not this license is valid.
+	 * 
+	 * @access public
+	 * @since 2.9
+	 * @return bool
+	 */
+	public function is_valid() {
+		$plugin_settings = nf_get_settings();
+		if( isset( $plugin_settings[ $this->product_name.'_license_status' ] ) && $plugin_settings[ $this->product_name.'_license_status' ] == 'valid' ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	/**
+	 * Output our field for entering and deactivating a license.
+	 * 
+	 * @access public
+	 * @since 2.9
+	 * @return void
+	 */
+	public function output_field( $form_id, $data, $field ) {
+		$valid = $this->is_valid();
+		if ( $valid ) {
+			$license = isset ( $data[ $this->product_name . '_license' ] ) ? $data[ $this->product_name . '_license' ] : '';
+			?>
+			<span class="nf-license"><?php echo $license; ?></span>
+			<input type="submit" class="button-secondary" name="deactivate_license_<?php echo $this->product_name; ?>" value="<?php _e( 'Deactivate License', 'ninja-forms' ); ?>">
+			<?php
+		} else {
+			?>
+			<input type="text" style="width:55%" class="code" name="<?php echo $this->product_name . '_license'; ?>" id="" value="" />
+			<?php
+		}
+	}
+
+	/**
+	 * Get any error messages for this license field.
+	 * 
+	 * @access public
+	 * @since 2.9
+	 * @return string $error
+	 */
+	public function get_error() {
+		$plugin_settings = nf_get_settings();
+		$error = ! empty( $plugin_settings[ $this->product_name . '_license_error' ] ) ? $plugin_settings[ $this->product_name . '_license_error' ] : false;
+		return $error;
+	}
 
 } // class

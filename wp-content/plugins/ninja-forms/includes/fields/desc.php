@@ -66,7 +66,7 @@ function ninja_forms_field_desc_display( $field_id, $data, $form_id = '' ){
 		$default_value = '';
 	}
 
-	$default_value = html_entity_decode( $default_value );
+	$default_value = html_entity_decode( $default_value, ENT_COMPAT, "UTF-8" );
 
 	if($desc_el == "div"){
 		$default_value = wpautop( $default_value );		
@@ -81,6 +81,7 @@ function ninja_forms_field_desc_display( $field_id, $data, $form_id = '' ){
 	}
 	$default_value = do_shortcode( $default_value );
 	$field_class = ninja_forms_get_field_class( $field_id, $form_id );
+	$field_class .= ' nf-desc';
 	?>
 	<<?php echo $desc_el;?> class="<?php echo $field_class;?>" id="ninja_forms_field_<?php echo $field_id;?>_div_wrap" style="<?php echo $display_style;?>" rel="<?php echo $field_id;?>"><?php echo $default_value;?></<?php echo $desc_el;?>>
 	<?php

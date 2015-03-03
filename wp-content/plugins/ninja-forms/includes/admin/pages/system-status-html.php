@@ -106,7 +106,7 @@
 				<td><?php echo ini_get('SMTP'); ?></td>
 			</tr>
 			<tr>
-				<td><?php _e( 'smtp_port','ninja-forms' ); ?>:</td>
+				<td>smtp_port:</td>
 				<td><?php echo ini_get('smtp_port'); ?></td>
 			</tr>
 		<?php endif; ?>
@@ -125,7 +125,7 @@
 			$posting = array();
 
 			// fsockopen/cURL
-			$posting['fsockopen_curl']['name'] = __( 'fsockopen/cURL','ninja-forms');
+			$posting['fsockopen_curl']['name'] = 'fsockopen/cURL';
 			if ( function_exists( 'fsockopen' ) || function_exists( 'curl_init' ) ) {
 				if ( function_exists( 'fsockopen' ) && function_exists( 'curl_init' )) {
 					$posting['fsockopen_curl']['note'] = __('Your server has fsockopen and cURL enabled.', 'ninja-forms' );
@@ -146,7 +146,7 @@
 				$posting['soap_client']['note'] = __('Your server has the SOAP Client class enabled.', 'ninja-forms' );
 				$posting['soap_client']['success'] = true;
 			} else {
-				$posting['soap_client']['note'] = sprintf( __( 'Your server does not have the <a href="%s">SOAP Client</a> class enabled - some gateway plugins which use SOAP may not work as expected.', 'ninja-forms' ), 'http://php.net/manual/en/class.soapclient.php' );
+				$posting['soap_client']['note'] = sprintf( __( 'Your server does not have the %sSOAP Client%s class enabled - some gateway plugins which use SOAP may not work as expected.', 'ninja-forms' ), '<a href="http://php.net/manual/en/class.soapclient.php">', '</a>' );
 				$posting['soap_client']['success'] = false;
 			}
 

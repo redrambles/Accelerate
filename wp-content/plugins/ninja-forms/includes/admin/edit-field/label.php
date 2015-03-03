@@ -1,14 +1,13 @@
 <?php
 add_action('init', 'ninja_forms_register_edit_field_label');
 function ninja_forms_register_edit_field_label(){
-	add_action('ninja_forms_edit_field_before_registered', 'ninja_forms_edit_field_label', 10);
+	add_action('ninja_forms_edit_field_before_registered', 'ninja_forms_edit_field_label', 10, 2);
 }
 
-function ninja_forms_edit_field_label($field_id){
+function ninja_forms_edit_field_label( $field_id, $field_data ) {
 	global $ninja_forms_fields;
 	$field_row = ninja_forms_get_field_by_id($field_id);
 	$field_type = $field_row['type'];
-	$field_data = $field_row['data'];
 	$reg_field = $ninja_forms_fields[$field_type];
 	$edit_label = $reg_field['edit_label'];
 	if($edit_label){
@@ -24,14 +23,13 @@ function ninja_forms_edit_field_label($field_id){
 
 add_action('init', 'ninja_forms_register_edit_field_label_pos');
 function ninja_forms_register_edit_field_label_pos(){
-	add_action('ninja_forms_edit_field_before_registered', 'ninja_forms_edit_field_label_pos', 10);
+	add_action('ninja_forms_edit_field_before_registered', 'ninja_forms_edit_field_label_pos', 10, 2 );
 }
 
-function ninja_forms_edit_field_label_pos($field_id){
+function ninja_forms_edit_field_label_pos( $field_id, $field_data ){
 	global $ninja_forms_fields;
 	$field_row = ninja_forms_get_field_by_id($field_id);
 	$field_type = $field_row['type'];
-	$field_data = $field_row['data'];
 	$reg_field = $ninja_forms_fields[$field_type];
 	$edit_label_pos = $reg_field['edit_label_pos'];
 	$label_pos_options = $reg_field['label_pos_options'];

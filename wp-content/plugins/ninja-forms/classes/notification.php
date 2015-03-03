@@ -154,4 +154,17 @@ class NF_Notification
 		return true;
 	}
 
+	/**
+	 * Get our notification type name
+	 * 
+	 * @access public
+	 * @since 2.9
+	 * @return string $name
+	 */
+	public function type_name() {
+		$type = $this->type;
+		// Call our type edit screen.
+		return Ninja_Forms()->notification_types[ $type ]->name;
+	}
+
 }

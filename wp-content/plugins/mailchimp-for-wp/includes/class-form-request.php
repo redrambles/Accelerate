@@ -140,11 +140,18 @@ class MC4WP_Lite_Form_Request {
 			return false;
 		}
 
-		// ensure honeypot was not filed
-		if ( isset( $this->data['_MC4WP_REQUIRED_BUT_NOT_REALLY'] ) && ! empty( $this->data['_MC4WP_REQUIRED_BUT_NOT_REALLY'] ) ) {
+		// ensure honeypot was given but not filled
+		if ( ! isset( $this->data['_MC4WP_REQUIRED_BUT_NOT_REALLY'] ) || '' !== $this->data['_MC4WP_REQUIRED_BUT_NOT_REALLY'] ) {
 			$this->error_code = 'spam';
 			return false;
 		}
+
+		// check timestamp difference, token should be generated at least 2 seconds before form submit
+		if( ! isset( $this->data['_MC4WP_TIMESTAMP'] ) || time() < ( intval( $this->data['_MC4WP_TIMESTAMP'] ) + 2 ) ) {
+			$this->error_code = 'spam';
+			return false;
+		}
+
 
 		// check if captcha was present and valid
 		if( isset( $this->data['_MC4WP_HAS_CAPTCHA'] ) && $this->data['_MC4WP_HAS_CAPTCHA'] == 1 && function_exists( 'cptch_check_custom_form' ) && cptch_check_custom_form() !== true ) {
@@ -364,7 +371,7 @@ class MC4WP_Lite_Form_Request {
 					// format new grouping
 					$grouping = array(
 						'id' => $grouping->id,
-						'groups' => $group_data
+						'groups' => $group_data,
 					);
 
 					// make sure groups is an array
@@ -426,6 +433,7 @@ class MC4WP_Lite_Form_Request {
 		$result = false;
 		$email_type = $this->get_email_type();
 
+		// loop through selected lists
 		foreach ( $lists_data as $list_id => $list_field_data ) {
 
 			// allow plugins to alter merge vars for each individual list
@@ -433,6 +441,7 @@ class MC4WP_Lite_Form_Request {
 
 			// send a subscribe request to MailChimp for each list
 			$result = $api->subscribe( $list_id, $this->data['EMAIL'], $list_merge_vars, $email_type, $this->form_options['double_optin'], $this->form_options['update_existing'], $this->form_options['replace_interests'], $this->form_options['send_welcome'] );
+			do_action( 'mc4wp_subscribe', $this->data['EMAIL'], $list_id, $list_merge_vars, $result, 'form', 'form', 0 );
 		}
 
 		do_action( 'mc4wp_after_subscribe', $this->data['EMAIL'], $this->data, 0, $result );
@@ -449,13 +458,6 @@ class MC4WP_Lite_Form_Request {
 
 		// store user email in a cookie
 		$this->set_email_cookie( $this->data['EMAIL'] );
-
-		/**
-		 * @deprecated Don't use, will be removed in v2.0
-		 * TODO: remove this
-		 */
-		$from_url = ( isset( $_SERVER['HTTP_REFERER'] ) ) ? $_SERVER['HTTP_REFERER'] : '';
-		do_action( 'mc4wp_subscribe_form', $this->data['EMAIL'], array_keys( $lists_data ), 0, $this->data, $from_url );
 
 		// Store success result
 		$this->success = true;
@@ -639,7 +641,7 @@ class MC4WP_Lite_Form_Request {
 		 *
 		 * Used to alter the error message, don't use. Use `mc4wp_form_messages` instead.
 		 */
-		$message['text'] = apply_filters('mc4wp_form_error_message', $message['text'], $this->error_code );
+		$message['text'] = apply_filters( 'mc4wp_form_error_message', $message['text'], $this->error_code );
 
 		$html = '<div class="mc4wp-alert mc4wp-'. $message['type'].'">' . $message['text'] . '</div>';
 
@@ -673,32 +675,32 @@ class MC4WP_Lite_Form_Request {
 		$messages = array(
 			'already_subscribed' => array(
 				'type' => 'notice',
-				'text' => $this->form_options['text_already_subscribed']
+				'text' => $this->form_options['text_already_subscribed'],
 			),
 			'error' => array(
 				'type' => 'error',
-				'text' => $this->form_options['text_error']
+				'text' => $this->form_options['text_error'],
 			),
 			'invalid_email' => array(
 				'type' => 'error',
-				'text' => $this->form_options['text_invalid_email']
+				'text' => $this->form_options['text_invalid_email'],
 			),
 			'success' => array(
 				'type' => 'success',
-				'text' => $this->form_options['text_success']
+				'text' => $this->form_options['text_success'],
 			),
 			'invalid_captcha' => array(
 				'type' => 'error',
-				'text' => $this->form_options['text_invalid_captcha']
+				'text' => $this->form_options['text_invalid_captcha'],
 			),
 			'required_field_missing' => array(
 				'type' => 'error',
-				'text' => $this->form_options['text_required_field_missing']
+				'text' => $this->form_options['text_required_field_missing'],
 			),
 			'no_lists_selected' => array(
 				'type' => 'error',
-				'text' => __( 'Please select at least one list to subscribe to.', 'mailchimp-for-wp' )
-			)
+				'text' => __( 'Please select at least one list to subscribe to.', 'mailchimp-for-wp' ),
+			),
 		);
 
 		/**

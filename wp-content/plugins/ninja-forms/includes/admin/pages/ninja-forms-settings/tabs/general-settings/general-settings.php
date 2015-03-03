@@ -29,24 +29,41 @@ function ninja_forms_register_general_settings_metabox(){
 		'title' => __( 'General Settings', 'ninja-forms' ),
 		'settings' => array(
 			array(
-				'name' => 'version',
-				'type' => 'desc',
+				'name' 	=> 'version',
+				'type' 	=> 'desc',
 				'label' => __( 'Version', 'ninja-forms' ),
-				'desc' => $current_version,
+				'desc' 	=> $current_version,
 			),
 			array(
-				'name' => 'date_format',
-				'type' => 'text',
+				'name' 	=> 'date_format',
+				'type' 	=> 'text',
 				'label' => __( 'Date Format', 'ninja-forms' ),
-				'desc' => __( 'e.g. m/d/Y, d/m/Y - Tries to follow the <a href="http://www.php.net/manual/en/function.date.php" target="_blank">PHP date() function</a> specifications, but not every format is supported.', 'ninja-forms' ),
+				'desc' 	=> 'e.g. m/d/Y, d/m/Y - ' . sprintf( __( 'Tries to follow the %sPHP date() function%s specifications, but not every format is supported.', 'ninja-forms' ), '<a href="http://www.php.net/manual/en/function.date.php" target="_blank">', '</a>' ),
 			),
 			array(
-				'name' => 'currency_symbol',
-				'type' => 'text',
+				'name' 	=> 'currency_symbol',
+				'type' 	=> 'text',
 				'label' => __( 'Currency Symbol', 'ninja-forms' ),
-				'desc' => __( 'e.g. $, &pound;, &euro;', 'ninja-forms' ),
+				'desc' 	=> 'e.g. $, &pound;, &euro;',
 			),
 		),
+	);
+	ninja_forms_register_tab_metabox( $args );	
+
+	$args = array(
+		'page' => 'ninja-forms-settings',
+		'tab' => 'general_settings',
+		'slug' => 'advanced_settings',
+		'title' => __( 'Advanced Settings', 'ninja-forms' ),
+		'settings' => array(
+			array(
+				'name'	=> 'delete_on_uninstall',
+				'type'	=> 'checkbox',
+				'label'	=> __( 'Remove ALL Ninja Forms data upon uninstall?', 'ninja-forms' ),
+				'desc'	=> sprintf( __( 'If this box is checked, ALL Ninja Forms data will be removed from the database upon deletion. %sAll form and submission data will be unrecoverable.%s', 'ninja-forms' ), '<span class="nf-nuke-warning">', '</span>' ),
+			)
+		),
+		'state' => 'closed',
 	);
 	ninja_forms_register_tab_metabox( $args );
 

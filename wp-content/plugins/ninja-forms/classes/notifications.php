@@ -75,7 +75,7 @@ class NF_Notifications
 		}
 
 		$args = array(
-			'name' => __( 'Notifications', 'ninja-forms' ),
+			'name' => __( 'Email & Actions', 'ninja-forms' ),
 			'page' => 'ninja-forms',
 			'display_function' => array( $this, 'output_admin' ),
 			'save_function' => array( $this, 'save_admin' ),
@@ -216,7 +216,7 @@ class NF_Notifications
 			<?php
 		if ( '' == $action ) {
 			?>
-			<h2><?php _e( 'Notifications', 'ninja-forms' ); ?> <a href="<?php echo add_query_arg( array( 'notification-action' => 'new' ) ); ?>" class="add-new-h2"><?php _e( 'Add New', 'ninja-forms' );?></a></h2>
+			<h2><?php _e( 'Email & Actions', 'ninja-forms' ); ?> <a href="<?php echo add_query_arg( array( 'notification-action' => 'new' ) ); ?>" class="add-new-h2"><?php _e( 'Add New', 'ninja-forms' );?></a></h2>
 
 	        <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
 	      	 <form id="forms-filter" method="get">
@@ -239,10 +239,10 @@ class NF_Notifications
 			if ( $id == '' ) {
 				$id = 'new';
 				$this_type = 'email';
-				$title = __( 'New Notification', 'ninja-forms' );
+				$title = __( 'New Action', 'ninja-forms' );
 			} else {
 				$this_type = Ninja_Forms()->notification( $id )->type;
-				$title = __( 'Edit Notification', 'ninja-forms' ) . ' - ID ' . $id;
+				$title = __( 'Edit Action', 'ninja-forms' ) . ' - ID ' . $id;
 			}
 
 			?>
@@ -252,7 +252,7 @@ class NF_Notifications
 			<table class="form-table">
 				<tbody id="notification-main">
 					<tr>
-						<th scope="row"><label for="setting-name"><?php _e( 'Notification Name', 'ninja-forms' ); ?></label></th>
+						<th scope="row"><label for="setting-name"><?php _e( 'Action Name', 'ninja-forms' ); ?></label></th>
 						<td><input name="settings[name]" type="text" id="settings-name" value="<?php echo nf_get_object_meta_value( $id, 'name' ); ?>" class="regular-text"></td>
 					</tr>
 					<tr>
@@ -330,12 +330,12 @@ class NF_Notifications
 
 		if ( $new ) {
 			$redirect = remove_query_arg( array( 'notification-action' ) );
-			$redirect = add_query_arg( array( 'id' => $n_id, 'notification-action' => 'edit' ), $redirect );
+			$redirect = add_query_arg( array( 'id' => $n_id, 'notification-action' => 'edit', 'update_message' => urlencode( __( 'Action Updated', 'ninja-forms' ) ) ), $redirect );
 			wp_redirect( $redirect );
 			die();
 		}
 
-		return __( 'Notification Updated', 'ninja-forms' );
+		return __( 'Action Updated', 'ninja-forms' );
 	}
 
 	/**

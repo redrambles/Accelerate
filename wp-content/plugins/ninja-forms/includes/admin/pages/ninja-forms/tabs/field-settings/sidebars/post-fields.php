@@ -15,7 +15,7 @@ if ( !function_exists ( 'ninja_forms_register_field_post_tags' ) ) {
 		if( function_exists( 'ninja_forms_get_current_tab' ) ){
 			$current_tab = ninja_forms_get_current_tab();
 		}
-		if($form_id != '' AND $current_tab == 'field_settings'){
+		if($form_id != '' AND $current_tab == 'fields'){
 			$form_row = ninja_forms_get_form_by_id($form_id);
 			if(is_array($form_row) AND !empty($form_row)){
 				$form_data = $form_row['data'];
@@ -34,7 +34,7 @@ if ( !function_exists ( 'ninja_forms_register_field_post_tags' ) ) {
 		$args = array(
 			'name' => 'Post Creation Fields',
 			'page' => 'ninja-forms',
-			'tab' => 'field_settings',
+			'tab' => 'builder',
 			'display_function' => 'ninja_forms_sidebar_display_fields'
 		);
 		if($create_post == 1){

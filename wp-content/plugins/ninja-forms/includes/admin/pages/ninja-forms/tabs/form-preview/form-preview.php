@@ -20,4 +20,4 @@ function ninja_forms_register_tab_form_preview(){
 	ninja_forms_register_tab( 'form_preview', $args );
 }
 
-add_action('admin_init', 'ninja_forms_register_tab_form_preview', 1001);
+// add_action('admin_init', 'ninja_forms_register_tab_form_preview', 1001);

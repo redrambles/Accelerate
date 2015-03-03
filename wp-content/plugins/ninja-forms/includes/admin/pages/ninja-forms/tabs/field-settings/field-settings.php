@@ -8,87 +8,86 @@ function ninja_forms_register_tab_field_settings(){
 	}
 
 	$args = array(
-		'name' => __( 'Field Settings', 'ninja-forms' ),
+		'name' => __( 'Build Your Form', 'ninja-forms' ),
 		'page' => 'ninja-forms',
 		'display_function' => 'ninja_forms_tab_field_settings',
-		'save_function' => 'ninja_forms_save_field_settings',
 		'disable_no_form_id' => true,
 		'show_save' => false,
 		'tab_reload' => false,
 	);
-	ninja_forms_register_tab('field_settings', $args);
+	ninja_forms_register_tab( 'builder', $args );
 }
 
 add_action('admin_init', 'ninja_forms_register_tab_field_settings');
 
 function ninja_forms_tab_field_settings(){
 	global $wpdb;
-	if(isset($_REQUEST['form_id'])){
+
+	if ( isset ( $_REQUEST['form_id'] ) ) {
 		$form_id = absint( $_REQUEST['form_id'] );
-	}else{
+	} else {
 		$form_id = '';
 	}
-	if($form_id != ''){
-		?>
-		<input type="hidden" name="_ninja_forms_field_order" id="ninja_forms_field_order" value="">
-		<?php
+
+	if ( ! empty ( $form_id ) && 'new' != $form_id ) {
 		do_action( 'ninja_forms_edit_field_before_ul', $form_id );
 		do_action( 'ninja_forms_edit_field_ul', $form_id );
 		do_action( 'ninja_forms_edit_field_after_ul', $form_id );
 	}
+
+	?>
+	<div style="display:none;">
+		<div id="nf-save-title">
+			<div id="admin-modal-selector">
+				<div id="admin-modal-options">
+					<div>
+						<label><input id="nf-form-title" class="widefat" style="width:100%;" type="text" name="admin-modaltitle" placeholder="<?php _e( 'Give your form a title. This is how you\'ll find the form later.', 'ninja-forms' ); ?>"></label>
+					</div>
+				</div>
+				<div id="nf-insert-submit-div">
+					<div class="admin-modal-target">
+						<p class="howto"><?php _e( 'You have not added a submit button to your form.', 'ninja-forms' ); ?></p>
+						<label><span>&nbsp;</span><input type="checkbox" id="nf-insert-submit" value="1" checked> Insert Submit Button</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="nf-save-title-buttons">
+			<div id="nf-admin-modal-cancel">
+				<a class="submitdelete deletion modal-close" href="#">Cancel</a>
+			</div>
+			<div id="nf-admin-modal-update">
+				<input type="submit" value="Save" class="button button-secondary" id="nf-save-title-submit" disabled>
+			</div>
+		</div>
+	</div>
+	<?php
 }
 
-function ninja_forms_save_field_settings($form_id, $data){
-	global $wpdb, $ninja_forms_fields, $ninja_forms_admin_update_message;
+/**
+ * Listen for a new form action and create one if necessary.
+ * 
+ * @since 2.9
+ * @return void
+ */
+function nf_create_form_listen() {
+	$page = isset ( $_REQUEST['page'] ) ? $_REQUEST['page'] : '';
+	$tab = isset ( $_REQUEST['tab'] ) ? $_REQUEST['tab'] : '';
+	$form_id = isset ( $_REQUEST['form_id'] ) ? $_REQUEST['form_id'] : '';
 
-	$order = esc_html( $_POST['_ninja_forms_field_order'] );
-
-	$order = str_replace("ninja_forms_field_", "", $order);
-	$order = explode(',', $order);
-	if(is_array($order)){
-		$order_array = array();
-		$x = 0;
-		foreach($order as $id){
-			$order_array[$id] = $x;
-			$x++;
-		}
+	if ( 'ninja-forms' == $page && 'builder' == $tab && 'new' == $form_id ) {
+		$defaults = apply_filters( 'nf_new_form_defaults', array(
+			'clear_complete' 	=> 1,
+			'hide_complete' 	=> 1,
+			'show_title'		=> 0,
+			'status'			=> 'new',
+		) );
+		$form_id = Ninja_Forms()->form()->create( $defaults );
+		$redirect = add_query_arg( array( 'form_id' => $form_id ) );
+		wp_redirect( $redirect );
+		die();		
 	}
-
-	$tmp_array = array();
-	foreach ( $data as $field_id => $vals ) {
-		$field_id = str_replace('ninja_forms_field_', '', $field_id);
-		$tmp_array[$field_id] = $vals;
-	}
-
-	$data = $tmp_array;
-
-	if(isset($ninja_forms_fields) AND is_array($ninja_forms_fields)){
-		foreach($ninja_forms_fields as $slug => $field){
-			if($field['save_function'] != ''){
-				$save_function = $field['save_function'];
-				$arguments['form_id'] = $form_id;
-				$arguments['data'] = $data;
-				$data = call_user_func_array($save_function, $arguments);
-			}
-		}
-	}
-
-	if($form_id != '' AND $form_id != 0 AND $form_id != 'new'){
-		foreach($data as $field_id => $vals){
-			$order = $order_array[$field_id];
-			$field_row = ninja_forms_get_field_by_id( $field_id );
-			$field_data = $field_row['data'];
-			foreach( $vals as $k => $v ){
-				$field_data[$k] = $v;
-			}
-			$data_array = array('data' => serialize( $field_data ), 'order' => $order);
-			$wpdb->update( NINJA_FORMS_FIELDS_TABLE_NAME, $data_array, array( 'id' => $field_id ));
-		}
-		$date_updated = date( 'Y-m-d H:i:s', strtotime ( 'now' ) );
-		$data_array = array( 'date_updated' => $date_updated );
-		$wpdb->update( NINJA_FORMS_TABLE_NAME, $data_array, array( 'id' => $form_id ) );
-	}
-
-	$update_msg = __( 'Field Settings Saved', 'ninja-forms' );
-	return $update_msg;
 }
+
+add_action( 'admin_init', 'nf_create_form_listen', 5 );

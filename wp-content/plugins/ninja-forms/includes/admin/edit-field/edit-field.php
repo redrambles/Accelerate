@@ -1,10 +1,10 @@
 <?php
-function ninja_forms_edit_field($field_id){
+function ninja_forms_edit_field( $field_id, $new = false ){
 	global $wpdb, $ninja_forms_fields;
 
-	do_action( 'ninja_forms_edit_field_before_li', $field_id );
-	do_action( 'ninja_forms_edit_field_li', $field_id );
-	do_action( 'ninja_forms_edit_field_after_li', $field_id );
+	do_action( 'ninja_forms_edit_field_before_li', $field_id, $new );
+	do_action( 'ninja_forms_edit_field_li', $field_id, $new );
+	do_action( 'ninja_forms_edit_field_after_li', $field_id, $new );
 
 }
 
@@ -128,7 +128,7 @@ function ninja_forms_edit_field_el_output($field_id, $type, $label = '', $name =
 			wp_editor( $value, $editor_id, $args );				
 
 			// If we're using ajax, add this editor ID to our global var so that we can instantiate it on the front-end.
-			if ( isset ( $_POST['action'] ) && $_POST['action'] == 'ninja_forms_new_field' )
+			if ( isset ( $_POST['action'] ) && ( $_POST['action'] == 'ninja_forms_new_field' || $_POST['action'] == 'nf_output_field_settings_html' ) )
 				$nf_rte_editors[] = $editor_id;
 
 		break;

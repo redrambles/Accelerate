@@ -811,6 +811,9 @@ function nf_deprecate_form_import( $form ) {
 
 	if ( isset ( $form['data']['user_subject'] ) )
 		unset ( $form['data']['user_subject'] );
+	
+	if ( isset ( $form['data']['landing_page'] ) )
+		unset ( $form['data']['landing_page'] );
 
 	return $form;
 }
@@ -832,3 +835,137 @@ function nf_deprecate_field_import( $data ) {
 }
 
 add_filter( 'nf_before_import_field', 'nf_deprecate_field_import' );
+
+
+/** 
+ * Deprecated as of version 2.9
+ *
+ */
+
+
+/**
+ * Get an array of form settings by form ID
+ *
+ * @since 2.7
+ * @param int $form_id
+ * @return array $form['data']
+ */
+function nf_get_form_settings( $form_id ) {
+	return nf_get_object_meta( $form_id );
+}
+
+/**
+ * Return form data
+ * 
+ * @since 1.0
+ * @param int $form_id
+ * @return array $form
+ */
+function ninja_forms_get_form_by_id( $form_id ) {
+	$settings = Ninja_Forms()->form( $form_id )->get_all_settings();
+	$date_updated = Ninja_Forms()->form( $form_id )->get_setting( 'date_updated' );
+	return array( 'id' => $form_id, 'data' => $settings, 'date_updated' => $date_updated );
+}
+
+/**
+ * Get a form by field id
+ * 
+ * @since 1.0
+ * @param int $field_id
+ * @param array $form
+ */
+function ninja_forms_get_form_by_field_id( $field_id ){
+	global $wpdb;
+	$form_id = $wpdb->get_row($wpdb->prepare("SELECT form_id FROM ".NINJA_FORMS_FIELDS_TABLE_NAME." WHERE id = %d", $field_id), ARRAY_A);
+	$form_id = $form_id['form_id'];
+	$form = ninja_forms_get_form_by_id( $form_id );
+	return $form;
+}
+
+/**
+ * Delete a form
+ *
+ * @since 1.0
+ */
+function ninja_forms_delete_form( $form_id = '' ){
+	global $wpdb;
+
+	// Bail if we aren't in the admin
+	if ( ! is_admin() )
+		return false;
+
+	// Bail if we don't have proper permissions
+	if ( ! current_user_can( apply_filters( 'nf_delete_form_capabilities', 'manage_options' ) ) )
+		return false;
+
+	if( $form_id == '' ){
+		$ajax = true;
+		$form_id = absint( $_REQUEST['form_id'] );
+		check_ajax_referer( 'nf_ajax', 'nf_ajax_nonce' );
+	}else{
+		$ajax = false;
+	}
+
+	Ninja_Forms()->form( $form_id )->delete();
+
+	if( $ajax ){
+		die();
+	}
+}
+
+add_action('wp_ajax_ninja_forms_delete_form', 'ninja_forms_delete_form');
+
+function ninja_forms_get_all_forms( $debug = false ){
+	$forms = Ninja_Forms()->forms()->get_all();
+
+	$tmp_array = array();
+	$x = 0;
+	foreach ( $forms as $form_id ) {
+		$tmp_array[ $x ]['id'] = $form_id;
+		$tmp_array[ $x ]['data'] = Ninja_Forms()->form( $form_id )->get_all_settings();
+		$tmp_array[ $x ]['name'] = Ninja_Forms()->form( $form_id )->get_setting( 'form_title' );
+		$x++;
+	}
+
+	return $tmp_array;
+}
+
+/**
+ * Return our form count
+ *
+ * @since 2.8
+ * @return int $count
+ */
+
+function nf_get_form_count() {
+	global $wpdb;
+
+	$forms = Ninja_Forms()->forms()->get_all();
+	return count( $forms );
+}
+
+/**
+ * Old update form function.
+ * 
+ * @since 1.0
+ * @return void
+ */
+function ninja_forms_update_form( $args ){
+	// Get our form id
+	$form_id = $args['where']['id'];
+	$update_array = $args['update_array'];
+	if ( isset ( $update_array['data'] ) ) {
+		$data = maybe_unserialize( $update_array['data'] );
+		if ( is_array( $data ) ) {
+			foreach ( $data as $key => $val ) {
+				Ninja_Forms()->form( $form_id )->update_setting( $key, $val );
+			}	
+		}
+		unset( $update_array['data'] );	
+	}
+
+	foreach ( $update_array as $key => $val ) {
+		Ninja_Forms()->form( $form_id )->update_setting( $key, $val );
+	}
+	
+}

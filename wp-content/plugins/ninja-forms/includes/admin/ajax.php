@@ -12,11 +12,126 @@ function ninja_forms_save_metabox_state(){
 	$page = esc_html( $_REQUEST['page'] );
 	$tab = esc_html( $_REQUEST['tab'] );
 	$slug = esc_html( $_REQUEST['slug'] );
-	$state = esc_html( $_REQUEST['state'] );
-	$plugin_settings['metabox_state'][$page][$tab][$slug] = $state;
+	$metabox_state = esc_html( $_REQUEST['metabox_state'] );
+	$plugin_settings['metabox_state'][$page][$tab][$slug] = $metabox_state;
 	update_option( 'ninja_forms_settings', $plugin_settings );
+
 	die();
 }
+
+/**
+ * When a field settings metabox is expanded, return a JSON element containing the field settings HTML
+ * 
+ * @since 2.9
+ * @return false;
+ */
+
+function nf_output_field_settings_html() {
+	global $nf_rte_editors;
+
+	// Bail if we aren't in the admin
+	if ( ! is_admin() )
+		return false;
+
+	// Bail if we don't have proper permissions
+	if ( ! current_user_can( apply_filters( 'nf_new_field_capabilities', 'manage_options' ) ) )
+		return false;
+
+	check_ajax_referer( 'nf_ajax', 'nf_ajax_nonce' );
+
+	$field_id = esc_html( $_REQUEST['field_id'] );
+	$data = isset ( $_REQUEST['data'] ) ? json_decode( stripslashes( $_REQUEST['data'] ), true ) : array();
+
+	$field = ninja_forms_get_field_by_id( $field_id );
+	$field_data = $field['data'];
+	$data = wp_parse_args( $data, $field_data );
+
+	nf_output_registered_field_settings( $field_id, $data );
+
+	die();
+}
+
+add_action( 'wp_ajax_nf_output_field_settings_html', 'nf_output_field_settings_html' );
+
+/**
+ * Save our admin fields page.
+ * 
+ * @since 2.9
+ * @return false;
+ */
+
+function nf_admin_save_builder() {
+	global $ninja_forms_fields, $wpdb;
+
+	// Bail if we aren't in the admin
+	if ( ! is_admin() )
+		return false;
+
+	// Bail if we don't have proper permissions
+	if ( ! current_user_can( apply_filters( 'nf_new_field_capabilities', 'manage_options' ) ) )
+		return false;
+
+	check_ajax_referer( 'nf_ajax', 'nf_ajax_nonce' );
+
+	$field_data = json_decode( stripslashes( $_REQUEST['field_data'] ), true );
+	$form_id = esc_html( $_REQUEST['form_id'] );
+	$form_title = stripslashes( $_REQUEST['form_title'] );
+	$field_order = json_decode( strip_tags( stripslashes( $_REQUEST['field_order'] ) ), true );
+
+	if ( is_array ( $field_order ) ) {
+		$order_array = array();
+		$x = 0;
+		foreach ( $field_order as $id ) {
+			$id = str_replace( 'ninja_forms_field_', '', $id );
+			$order_array[ $id ] = $x;
+			$x++;
+		}
+	}
+
+	$tmp_array = array();
+	foreach ( $field_data as $field ) {
+		$field_id = $field['id'];
+		unset( $field['id'] );
+		unset( $field['metabox_state'] );
+		$tmp_array[ $field_id ] = $field;
+	}
+
+	$field_data = $tmp_array;
+
+	if ( isset ( $ninja_forms_fields ) && is_array( $ninja_forms_fields ) ) {
+		foreach ( $ninja_forms_fields as $slug => $field ){
+			if ( $field['save_function'] != '') {
+				$save_function = $field['save_function'];
+				$arguments['form_id'] = $form_id;
+				$arguments['data'] = $field_data;
+				$field_data = call_user_func_array( $save_function, $arguments );
+			}
+		}
+	}
+
+	if( $form_id != '' && $form_id != 0 && $form_id != 'new' ){
+		foreach ( $field_data as $field_id => $vals )  {
+			$field_order = $order_array[$field_id];
+			$field_row = ninja_forms_get_field_by_id( $field_id );
+			$data = $field_row['data'];
+			foreach( $vals as $k => $v ){
+				$data[$k] = $v;
+			}
+			$data_array = array('data' => serialize( $data ), 'order' => $field_order);
+			$wpdb->update( NINJA_FORMS_FIELDS_TABLE_NAME, $data_array, array( 'id' => $field_id ));
+		}
+
+		$date_updated = date( 'Y-m-d H:i:s', strtotime ( 'now' ) );
+		Ninja_Forms()->form( $form_id )->update_setting( 'form_title', $form_title );
+		Ninja_Forms()->form( $form_id )->update_setting( 'date_updated', $date_updated );
+		Ninja_Forms()->form( $form_id )->update_setting( 'status', '' );
+	}
+
+	die();
+}
+
+add_action( 'wp_ajax_nf_admin_save_builder', 'nf_admin_save_builder' );
+
 
 add_action('wp_ajax_ninja_forms_new_field', 'ninja_forms_new_field');
 function ninja_forms_new_field(){
@@ -65,14 +180,14 @@ function ninja_forms_new_field(){
 
 	$order = 999;
 
-	if($form_id != 0 AND $form_id != ''){
+	if($form_id != 0 && $form_id != ''){
 		$args = array(
 			'type' => $type,
 			'data' => $data,
 		);
 
 		$new_id = ninja_forms_insert_field( $form_id, $args );
-		$new_html = ninja_forms_return_echo('ninja_forms_edit_field', $new_id);
+		$new_html = ninja_forms_return_echo('ninja_forms_edit_field', $new_id, true );
 		header("Content-type: application/json");
 		$array = array ('new_id' => $new_id, 'new_type' => $type_name, 'new_html' => $new_html, 'edit_options' => $edit_options, 'new_type_slug' => $type );
 		echo json_encode($array);
@@ -99,42 +214,6 @@ function ninja_forms_remove_field(){
 	die();
 }
 
-add_action('wp_ajax_ninja_forms_delete_form', 'ninja_forms_delete_form');
-function ninja_forms_delete_form( $form_id = '' ){
-	global $wpdb;
-
-	// Bail if we aren't in the admin
-	if ( ! is_admin() )
-		return false;
-
-	// Bail if we don't have proper permissions
-	if ( ! current_user_can( apply_filters( 'nf_delete_form_capabilities', 'manage_options' ) ) )
-		return false;
-
-	if( $form_id == '' ){
-		$ajax = true;
-		$form_id = absint( $_REQUEST['form_id'] );
-		check_ajax_referer( 'nf_ajax', 'nf_ajax_nonce' );
-	}else{
-		$ajax = false;
-	}
-
-	$wpdb->query($wpdb->prepare("DELETE FROM ".NINJA_FORMS_TABLE_NAME." WHERE id = %d", $form_id));
-	$wpdb->query($wpdb->prepare("DELETE FROM ".NINJA_FORMS_FIELDS_TABLE_NAME." WHERE form_id = %d", $form_id));
-
-	// Delete any notifications attached to this form.
-	// Grab notifications.
-	$notifications = nf_get_notifications_by_form_id( $form_id, false );
-	foreach ( $notifications as $n_id ) {
-		nf_delete_object( $n_id );
-	}
-
-	if( $ajax ){
-		die();
-	}
-
-}
-
 add_action('wp_ajax_ninja_forms_add_list_option', 'ninja_forms_add_list_options');
 function ninja_forms_add_list_options(){
 	global $wpdb;
@@ -156,7 +235,6 @@ function ninja_forms_add_list_options(){
 	die();
 }
 
-add_action('wp_ajax_ninja_forms_insert_fav', 'ninja_forms_insert_fav');
 function ninja_forms_insert_fav(){
 	global $wpdb, $ninja_forms_fields;
 	// Bail if we aren't in the admin
@@ -165,7 +243,7 @@ function ninja_forms_insert_fav(){
 
 	check_ajax_referer( 'nf_ajax', 'nf_ajax_nonce' );
 
-	$fav_id = absint( $_REQUEST['fav_id'] );
+	$fav_id = absint( $_REQUEST['field_id'] );
 	$form_id = absint( $_REQUEST['form_id'] );
 
 	$fav_row = ninja_forms_get_fav_by_id($fav_id);
@@ -174,14 +252,14 @@ function ninja_forms_insert_fav(){
 	$type = $fav_row['type'];
 	$type_name = $ninja_forms_fields[$type]['name'];
 
-	if($form_id != 0 AND $form_id != ''){
+	if($form_id != 0 && $form_id != ''){
 		$args = array(
 			'type' => $type,
 			'data' => $data,
 			'fav_id' => $fav_id,
 		);
 		$new_id = ninja_forms_insert_field( $form_id, $args );
-		$new_html = ninja_forms_return_echo('ninja_forms_edit_field', $new_id);
+		$new_html = ninja_forms_return_echo('ninja_forms_edit_field', $new_id, true );
 		header("Content-type: application/json");
 		$array = array ('new_id' => $new_id, 'new_type' => $type_name, 'new_html' => $new_html);
 		echo json_encode($array);
@@ -189,7 +267,9 @@ function ninja_forms_insert_fav(){
 	die();
 }
 
-add_action('wp_ajax_ninja_forms_insert_def', 'ninja_forms_insert_def');
+
+add_action('wp_ajax_ninja_forms_insert_fav', 'ninja_forms_insert_fav');
+
 function ninja_forms_insert_def(){
 	global $wpdb, $ninja_forms_fields;
 
@@ -199,7 +279,7 @@ function ninja_forms_insert_def(){
 
 	check_ajax_referer( 'nf_ajax', 'nf_ajax_nonce' );
 
-	$def_id = absint( $_REQUEST['def_id'] );
+	$def_id = absint( $_REQUEST['field_id'] );
 	$form_id = absint( $_REQUEST['form_id'] );
 
 	$def_row = ninja_forms_get_def_by_id($def_id);
@@ -208,20 +288,22 @@ function ninja_forms_insert_def(){
 	$type = $def_row['type'];
 	$type_name = $ninja_forms_fields[$type]['name'];
 
-	if($form_id != 0 AND $form_id != ''){
+	if($form_id != 0 && $form_id != ''){
 		$args = array(
 			'type' => $type,
 			'data' => $data,
 			'def_id' => $def_id,
 		);
 		$new_id = ninja_forms_insert_field( $form_id, $args );
-		$new_html = ninja_forms_return_echo('ninja_forms_edit_field', $new_id);
+		$new_html = ninja_forms_return_echo('ninja_forms_edit_field', $new_id, true );
 		header("Content-type: application/json");
 		$array = array ('new_id' => $new_id, 'new_type' => $type_name, 'new_html' => $new_html);
 		echo json_encode($array);
 	}
 	die();
 }
+
+add_action('wp_ajax_ninja_forms_insert_def', 'ninja_forms_insert_def');
 
 add_action('wp_ajax_ninja_forms_add_fav', 'ninja_forms_add_fav');
 function ninja_forms_add_fav(){
@@ -282,7 +364,7 @@ function ninja_forms_add_fav(){
 	$wpdb->update( NINJA_FORMS_FIELDS_TABLE_NAME, $update_array, array( 'id' => $field_id ));
 
 	$new_html = '<p class="button-controls" id="ninja_forms_insert_fav_field_'.$fav_id.'_p">
-				<a class="button add-new-h2 ninja-forms-insert-fav-field" id="ninja_forms_insert_fav_field_'.$fav_id.'" name=""  href="#">'.__($name, 'ninja-forms').'</a>
+				<a class="button add-new-h2 ninja-forms-insert-fav-field" id="ninja_forms_insert_fav_field_'.$fav_id.'" data-field="' . $fav_id . '" data-type="fav" href="#">'.__($name, 'ninja-forms').'</a>
 			</p>';
 
 	header("Content-type: application/json");
@@ -522,15 +604,15 @@ function ninja_forms_list_terms_checkboxes( $field_id = '', $tax_name = '' ){
 
 	check_ajax_referer( 'nf_ajax', 'nf_ajax_nonce' );
 
-	if ( $field_id == '' AND isset ( $_POST['field_id'] ) ) {
+	if ( $field_id == '' && isset ( $_POST['field_id'] ) ) {
 		$field_id = absint( $_POST['field_id'] );
 	}	
 
-	if ( $tax_name == '' AND isset ( $_POST['tax_name'] ) ) {
+	if ( $tax_name == '' && isset ( $_POST['tax_name'] ) ) {
 		$tax_name = esc_html( $_POST['tax_name'] );
 	}
 
-	if ( $field_id != '' AND $tax_name != '' ) {
+	if ( $field_id != '' && $tax_name != '' ) {
 		$field = ninja_forms_get_field_by_id( $field_id );
 		if ( isset ( $field['data']['exclude_terms'] ) ) {
 			$exclude_terms = $field['data']['exclude_terms'];
@@ -539,7 +621,7 @@ function ninja_forms_list_terms_checkboxes( $field_id = '', $tax_name = '' ){
 		}
 
 		$terms = get_terms( $tax_name, array( 'hide_empty' => false ) );
-		if ( is_array ( $terms ) AND !empty ( $terms ) ) {
+		if ( is_array ( $terms ) && !empty ( $terms ) ) {
 			?>
 			<h4><?php _e( 'Do not show these terms', 'ninja-forms' );?>:</h4>
             <input type="hidden" name="ninja_forms_field_<?php echo $field_id;?>[exclude_terms]" value="">
@@ -557,7 +639,7 @@ function ninja_forms_list_terms_checkboxes( $field_id = '', $tax_name = '' ){
 		}
 	}
 
-	if ( isset ( $_POST['from_ajax'] ) AND absint( $_POST['from_ajax'] ) == 1 ) {
+	if ( isset ( $_POST['from_ajax'] ) && absint( $_POST['from_ajax'] ) == 1 ) {
 		die();
 	}
 }
@@ -592,7 +674,7 @@ add_action( 'wp_ajax_ninja_forms_add_calc_row', 'ninja_forms_add_calc_row' );
 /**
  * 
  * Covert a multi-line CSV string into a 2d array. Follows RFC 4180, allows
- * "cells with ""escaped delimiters""" and multi-line enclosed cells
+ * "cells with ""escaped delimiters""" && multi-line enclosed cells
  * It assumes the CSV file is properly formatted, and doesn't check for errors
  * in CSV format.
  * @param string $str The CSV string
