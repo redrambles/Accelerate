@@ -10,9 +10,9 @@
 get_header(); ?>
 
 	<!-- BLOG PAGE -->
+				
 	<section class="blog-page">
-		<div class="container wrap">
-
+		<div class="site-content">
 			<div class="main-content">
 <?php
 				// Start the Loop.
@@ -22,14 +22,15 @@ get_header(); ?>
 					<div class="entry-wrap">
 						<header class="entry-header">
 							<div class="entry-meta">
+								<?php //the_meta(); ?>
 								<time class="entry-time" datetime="2014-09-20T04:33:51+00:00" itemprop="datePublished" title="Monday, September 20, 2014, 4:33 am">September 29, 2014</time>
 							</div>
 							<h2 class="entry-title"><?php the_title(); ?></h2>
 						</header>
 						<div class="entry-summary">
-							<figure class="wp-caption">
+<!-- 							<figure class="wp-caption">
 								<img src="upload/entry-img.jpg" alt="">
-							</figure>
+							</figure> -->
 							<?php the_content(); ?>
 						</div>
 						<footer class="entry-footer">
@@ -64,11 +65,9 @@ get_header(); ?>
 					</div>
 				</div>
 
-			</div>
-
-<?php get_sidebar(); ?>
-
-		</div>
+			</div> <!-- main-content -->
+		<?php get_sidebar(); ?>
+		</div> <!-- site-content -->
 	</section>
 	<!-- END blog page -->
 

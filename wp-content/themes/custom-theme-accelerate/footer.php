@@ -16,11 +16,11 @@
 		<footer id="colophon" class="site-footer" role="contentinfo">
 			<div class="site-info">
 				<div class="site-description">
-				<p><?php bloginfo('description'); ?></p>
-				<p>&copy; <?php bloginfo('title'); ?>, LLC
+				<p class="footer-desc"><span class="main-color">Accelerate </span><?php bloginfo('description'); ?></p>
+				<p class="footer-copy">&copy; <?php echo date("Y"); ?> <?php bloginfo('title'); ?>, LLC </p>
 				</div>
 				
-			<nav class="social-media-navigation" role="navigation">
+			<nav class="social-media-navigation screen-reader-text" role="navigation">
 				<?php wp_nav_menu( array( 'theme_location' => 'social-media', 'menu_class' => 'social-media-menu' ) ); ?>
 			</nav>
 
