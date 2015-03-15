@@ -104,13 +104,13 @@ function wp_footer_example() {
 
 
 // Warning Logged-in Users About Website Maintenance (using 'error' class) or Success message (using 'updated' class)
-add_action( 'admin_notices', 'admin_message' );
+// add_action( 'admin_notices', 'admin_message' );
  
-function admin_message() {  
-    echo '<div class="error">
-            <p>Do not change themes or everything will go to hell and you will cry bitter, bitter tears. Thank you.</p>
-          </div>';
-}
+// function admin_message() {  
+//     echo '<div class="error">
+//             <p>Do not change themes or everything will go to hell and you will cry bitter, bitter tears. Thank you.</p>
+//           </div>';
+// }
  
 // Example Source: http://wpsnippy.com/show-notification-message-wordpress-admin-pages/
 
@@ -130,31 +130,31 @@ function wp_before_admin_bar_render_example() {
 
 
 // Color separate posts of different statuses in the Dashboard
-add_action( 'admin_footer', 'admin_footer_example' );
+// add_action( 'admin_footer', 'admin_footer_example' );
 
-function admin_footer_example() {
+// function admin_footer_example() {
  
-    echo '<style type="text/css">
-    .status-draft   { background-color: #FCE3F2; }
-    .status-pending { background-color: #87C5D6; }
-    .status-future  { background-color: #C6EBF5; }
-    .status-private { background-color: #F2D46F; }
-    </style>';
+//     echo '<style type="text/css">
+//     .status-draft   { background-color: #FCE3F2; }
+//     .status-pending { background-color: #87C5D6; }
+//     .status-future  { background-color: #C6EBF5; }
+//     .status-private { background-color: #F2D46F; }
+//     </style>';
      
-}
+// }
 
-// customize admin footer text
-add_filter('admin_footer_text', 'shapeSpace_admin_footer');
+// // customize admin footer text
+// add_filter('admin_footer_text', 'shapeSpace_admin_footer');
 
-function shapeSpace_admin_footer($footer_text) {
-	$footer_text = '<span class="custom-footer">' . __('&copy; ', 'accelerate-theme-child') . date('Y') . ' <a href="' . home_url() .
-	'">' . get_bloginfo('name') . '</a> &bull; Accelerate Child Theme</span>';
-	echo $footer_text;
-}
+// function shapeSpace_admin_footer($footer_text) {
+// 	$footer_text = '<span class="custom-footer">' . __('&copy; ', 'accelerate-theme-child') . date('Y') . ' <a href="' . home_url() .
+// 	'">' . get_bloginfo('name') . '</a> &bull; Accelerate Child Theme</span>';
+// 	echo $footer_text;
+// }
 
-// Add post meta - format: add_post_meta($post_id, $meta_key, $meta_value, $unique);
-add_post_meta(47372, 'mood', 'adventurous', true);
-add_post_meta(47333, 'sanity', 'good', true);
+// // Add post meta - format: add_post_meta($post_id, $meta_key, $meta_value, $unique);
+// add_post_meta(47372, 'mood', 'adventurous', true);
+// add_post_meta(47333, 'sanity', 'good', true);
 
 // In lieu of a 'maintenance mode plugin' - if in a hurry - will shut down the site to everyone but admins
 
@@ -169,25 +169,25 @@ add_post_meta(47333, 'sanity', 'good', true);
 // }
 
 // shortcode for user access content. Format = [user_access cap="read" deny="Log in to view content"] text [/user_access]
-function user_access($attr, $content = null) {
-	extract(shortcode_atts(array(
-		'cap' => 'read',
-		'deny' => '',
-	), $attr));
+// function user_access($attr, $content = null) {
+// 	extract(shortcode_atts(array(
+// 		'cap' => 'read',
+// 		'deny' => '',
+// 	), $attr));
 
-	if (current_user_can($cap) && !is_null($content) &&
-	!is_feed()) return $content;
+// 	if (current_user_can($cap) && !is_null($content) &&
+// 	!is_feed()) return $content;
 
-	return apply_filters('diy_user_access_filter', $deny); // This hook will permit us to filter the deny message if we need to in the future
-}
-add_shortcode('user_access', 'user_access');
+// 	return apply_filters('diy_user_access_filter', $deny); // This hook will permit us to filter the deny message if we need to in the future
+// }
+// add_shortcode('user_access', 'user_access');
 
 // Callback function - to change deny message - in case you put the shortcode all over the place and you want to change it in one place:
-function diy_modify_user_access($deny) {
-	$deny = 'Skinnemarinky dinky dink, skinermarinky doooo';
-	return '<h5>'. $deny .'</h5>';
-}
-add_filter('diy_user_access_filter', 'diy_modify_user_access');
+// function diy_modify_user_access($deny) {
+// 	$deny = 'Skinnemarinky dinky dink, skinermarinky doooo';
+// 	return '<h5>'. $deny .'</h5>';
+// }
+// add_filter('diy_user_access_filter', 'diy_modify_user_access');
  
 
 ?>
