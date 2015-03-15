@@ -83,11 +83,12 @@ class MC4WP_Lite_Form_Request {
 
 	/**
 	 * Constructor
+	 *
+	 * @param array $form_data
 	 */
-	public function __construct() {
+	public function __construct( $form_data ) {
 
-		// uppercase all POST keys
-		$this->data = array_change_key_case( $_POST, CASE_UPPER );
+		$this->data = $this->normalize_form_data( $form_data );
 
 		// store number of submitted form
 		$this->form_instance_number = absint( $this->data['_MC4WP_FORM_INSTANCE'] );
@@ -95,16 +96,13 @@ class MC4WP_Lite_Form_Request {
 
 		$this->is_valid = $this->validate();
 
-		// normalize posted data
-		$this->data = $this->sanitize();
-
 		if( $this->is_valid ) {
 
 			// add some data to the posted data, like FNAME and LNAME
-			$this->guess_missing_fields( $this->data );
+			$this->data = $this->guess_missing_fields( $this->data );
 
 			// map fields to corresponding MailChimp lists
-			if( $this->map_data() ) {
+			if( $this->map_data( $this->data ) ) {
 
 				// subscribe using the processed data
 				$this->success = $this->subscribe( $this->lists_fields_map );
@@ -115,6 +113,35 @@ class MC4WP_Lite_Form_Request {
 		$this->send_http_response();
 
 		return $this->success;
+	}
+
+	/**
+	 * @param array $data
+	 *
+	 * @return array
+	 */
+	private function normalize_form_data( array $data ) {
+
+		// uppercase all data keys
+		$data = array_change_key_case( $data, CASE_UPPER );
+
+		// strip slashes on everything
+		$data = stripslashes_deep( $data );
+
+		// sanitize all scalar values
+		foreach( $data as $key => $value ) {
+			if( is_scalar( $value ) ) {
+				$data[ $key ] = sanitize_text_field( $value );
+			}
+		}
+
+		/**
+		 * @filter `mc4wp_form_data`
+		 * @expects array
+		 */
+		$data = apply_filters( 'mc4wp_form_data', $data );
+
+		return (array) $data;
 	}
 
 	/**
@@ -190,46 +217,6 @@ class MC4WP_Lite_Form_Request {
 	}
 
 	/**
-	 * Sanitize the request data.
-	 *
-	 * - Strips internal variables
-	 * - Strip ignored fields
-	 * - Sanitize scalar values
-	 * - Strip slashes on everything
-	 *
-	 * @return array
-	 */
-	private function sanitize() {
-		$data = array();
-
-		// Ignore those fields, we don't need them
-		$ignored_fields = array( 'CPTCH_NUMBER', 'CNTCTFRM_CONTACT_ACTION', 'CPTCH_RESULT', 'CPTCH_TIME' );
-
-		foreach( $this->data as $key => $value ) {
-
-			// Sanitize key
-			$key = trim( $key );
-
-			// Skip field if it starts with _ or if it's in ignored_fields array
-			if( $key[0] === '_' || in_array( $key, $ignored_fields ) ) {
-				continue;
-			}
-
-			// Sanitize value
-			$value = ( is_scalar( $value ) ) ? sanitize_text_field( $value ) : $value;
-
-			// Add value to array
-			$data[ $key ] = $value;
-		}
-
-		// strip slashes on everything
-		$data = stripslashes_deep( $data );
-
-		// store data somewhere safe
-		return $data;
-	}
-
-	/**
 	 * Guesses the value of some fields.
 	 *
 	 * - FNAME and LNAME, if NAME is given
@@ -261,6 +248,17 @@ class MC4WP_Lite_Form_Request {
 
 		// do stuff on success, non-AJAX only
 		if( $this->success ) {
+
+			/**
+			 * @action mc4wp_form_success
+			 *
+			 * Use to hook into successful form sign-ups
+			 *
+			 * @param   int     $form_id        The ID of the submitted form (PRO ONLY)
+			 * @param   string  $email          The email of the subscriber
+			 * @param   array   $data           Additional list fields, like FNAME etc (if any)
+			 */
+			do_action( 'mc4wp_form_success', 0, $this->data['EMAIL'], $this->data );
 
 			// check if we want to redirect the visitor
 			if ( ! empty( $this->form_options['redirect'] ) ) {
@@ -297,9 +295,7 @@ class MC4WP_Lite_Form_Request {
 	 *
 	 * @return array
 	 */
-	private function map_data() {
-
-		$data = $this->data;
+	private function map_data( $data ) {
 
 		$map = array();
 		$mapped_fields = array( 'EMAIL' );
@@ -344,6 +340,7 @@ class MC4WP_Lite_Form_Request {
 				// grab field value from data
 				$field_value = $data[ $field->tag ];
 
+				// format field value according to its type
 				$field_value = $this->format_field_value( $field_value, $field->field_type );
 
 				// add field value to map
@@ -406,6 +403,11 @@ class MC4WP_Lite_Form_Request {
 		$total_fields_mapped = count( $mapped_fields ) + count( $this->global_fields );
 		if( $total_fields_mapped < count( $data ) ) {
 			foreach( $data as $field_key => $field_value ) {
+
+				if( $this->is_internal_var( $field_key ) ) {
+					continue;
+				}
+
 				if( ! in_array( $field_key, $mapped_fields ) ) {
 					$unmapped_fields[ $field_key ] = $field_value;
 				}
@@ -712,6 +714,26 @@ class MC4WP_Lite_Form_Request {
 		$messages = apply_filters( 'mc4wp_form_messages', $messages, 0 );
 
 		return (array) $messages;
+	}
+
+	/**
+	 * @param $var
+	 *
+	 * @return bool
+	 */
+	protected function is_internal_var( $var ) {
+
+		if( $var[0] === '_' ) {
+			return true;
+		}
+
+		// Ignore those fields, we don't need them
+		$ignored_vars = array( 'CPTCH_NUMBER', 'CNTCTFRM_CONTACT_ACTION', 'CPTCH_RESULT', 'CPTCH_TIME' );
+		if( in_array( $var, $ignored_vars ) ) {
+			return true;;
+		}
+
+		return false;
 	}
 
 

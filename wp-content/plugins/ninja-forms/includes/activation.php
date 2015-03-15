@@ -187,6 +187,7 @@ function ninja_forms_activation( $network_wide ){
 			update_option( 'nf_upgrade_notice', 'closed' );
 			update_option( 'nf_update_email_settings_complete', true );
 			update_option( 'nf_email_fav_updated', true );
+			update_option( 'nf_convert_forms_complete', true );
 	 	}
 
 	 	update_option( "ninja_forms_settings", $opt );

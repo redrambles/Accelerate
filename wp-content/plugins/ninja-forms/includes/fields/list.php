@@ -382,7 +382,7 @@ function ninja_forms_field_list_display( $field_id, $data, $form_id = '' ){
 			break;
 		case 'checkbox':
 			$x = 0;
-			?><input type="hidden" name="ninja_forms_field_<?php echo $field_id;?>" value=""><span id="ninja_forms_field_<?php echo $field_id;?>_options_span" class="<?php echo $list_options_span_class;?>" rel="<?php echo $field_id;?>"><ul><?php
+			?><input type="hidden" id="ninja_forms_field_<?php echo $field_id;?>" name="ninja_forms_field_<?php echo $field_id;?>" value=""><span id="ninja_forms_field_<?php echo $field_id;?>_options_span" class="<?php echo $list_options_span_class;?>" rel="<?php echo $field_id;?>"><ul><?php
 			foreach($options as $option){
 
 				if(isset($option['value'])){

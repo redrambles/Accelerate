@@ -2,6 +2,11 @@
 
 function nf_get_settings(){
   $instance = Ninja_Forms();
-  $settings = ! empty ( $instance ) ? Ninja_Forms()->plugin_settings : array();
+  if ( ! empty ( $instance ) && ! empty ( $instance->plugin_settings ) ) {
+	$settings = Ninja_Forms()->plugin_settings;
+  } else {
+  	$settings = Ninja_Forms()->get_plugin_settings();
+  }
+
   return $settings;
 } // nf_get_settings

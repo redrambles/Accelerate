@@ -3,14 +3,11 @@
 add_action( 'init', 'ninja_forms_preview_form' );
 function ninja_forms_preview_form() {
 	global $ninja_forms_append_page_form_id;
-	if( isset( $_REQUEST['form_id'] ) AND isset($_REQUEST['preview']) ) { //I
+	if( ! empty ( $_REQUEST['form_id'] ) AND ! empty ( $_REQUEST['preview'] ) ) { //I
 		$form_id = absint( $_REQUEST['form_id'] );
-	} else {
-		$form_id = '';
+		$ninja_forms_append_page_form_id = array($form_id);
+		add_filter( 'the_content', 'ninja_forms_append_to_page', 9999 );		
 	}
-
-	$ninja_forms_append_page_form_id = array($form_id);
-	add_filter( 'the_content', 'ninja_forms_append_to_page', 9999 );
 }
 
 function ninja_forms_preview_link( $form_id = '', $echo = true ) {

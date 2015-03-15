@@ -90,6 +90,7 @@ function ninja_forms_register_field_textbox(){
 		'pre_process' => 'ninja_forms_field_text_pre_process',
 		'edit_sub_value' => 'nf_field_text_edit_sub_value',
 		'sub_table_value' => 'nf_field_text_sub_table_value',
+		'edit_placeholder' => true,
 	);
 
 	ninja_forms_register_field( '_text', $args );

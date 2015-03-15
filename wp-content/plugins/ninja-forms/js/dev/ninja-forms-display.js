@@ -834,6 +834,9 @@ function ninja_forms_toggle_login_register(form_type, form_id) {
 
 function ninja_forms_get_form_id(element){
 	var form_id = jQuery(element).closest('form').prop("id");
+	if ( 'undefined' === typeof form_id ) {
+		return false;
+	}
 	form_id = form_id.replace("ninja_forms_form_", "");
 	if(form_id == '' || form_id == 'ninja_forms_admin'){
 		form_id = jQuery("#_form_id").val();

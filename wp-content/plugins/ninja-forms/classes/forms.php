@@ -36,8 +36,10 @@ class NF_Forms {
 	 * @since 2.9
 	 * @return array $forms
 	 */
-	public function get_all( $debug = false, $show_new = false ) {
+	public function get_all( $show_new = false ) {
 		global $wpdb;
+
+		$debug = ! empty ( $_REQUEST['debug'] ) ? true : false;
 
 		if ( empty ( $this->forms ) ) {
 			$forms = nf_get_objects_by_type( 'form' );

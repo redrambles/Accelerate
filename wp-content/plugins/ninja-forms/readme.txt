@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, wpnzach, daveshine, mordauk, bftr
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 3.8
 Tested up to: 4.1.1
-Stable tag: 2.9.2
+Stable tag: 2.9.6
 License: GPLv2 or later
 
 Forms created with a simple drag and drop interface. Contact forms, Email collection forms, or any other form you want on your WordPress site.
@@ -74,16 +74,20 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 2.9.2 (3 March 2015) =
+= 2.9.6 (6 March 2015) =
 
 *Changes:*
 
 * Simplified the form creation interface by adding a "Build Your Form" tab, an "Emails & Actions" tab, and a "Settings" tab. All other tabs have been removed.
 * Form Preview and Submissions are now buttons that can be clicked at any stage of editing a form.
 * Field settings have been simplified by introducing a series of new, expandable settings sections. These sections house more advanced or less-common settings.
+* Added HTML5 placeholders to text fields.
 
 *Bugs:*
 
+* Deleting Ninja Forms from the plugins page should now work in all instances.
+* Display of checkbox lists should now work properly.
+* Fixed a bug that could prompt users to run unnecessary updates on their site.
 * Preview pages should now always display properly.
 * Success messages should now always be shown after submission properly.
 * Fixed a bug that could cause a PHP notice to show in placeholders.
@@ -99,6 +103,31 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 If you have any feature requests, please feel free to visit [ninjaforms.com](http://ninjaforms.com) and let us know about it.
 
 == Changelog ==
+
+= 2.9.6 (6 March 2015) =
+
+*Bugs:*
+
+* Fixed a bug that could prevent field settings dropdowns from being clicked on in FireFox.
+* Fixed a bug that could prevent the preview page from showing properly.
+
+= 2.9.5 (4 March 2015) =
+
+*Bugs:*
+
+* Deleting Ninja Forms from the plugins page should now work in all instances.
+
+= 2.9.4 (4 March 2015) =
+
+*Changes:*
+
+* Added placeholders for text fields.
+
+= 2.9.3 (4 March 2015) =
+
+*Bugs:*
+
+* Fixed a bug that could prompt users to run unnecessary updates on their site.
 
 = 2.9.2 (3 March 2015) =
 

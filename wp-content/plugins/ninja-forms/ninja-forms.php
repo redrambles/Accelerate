@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 2.9.2
+Version: 2.9.6
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -284,7 +284,7 @@ class Ninja_Forms {
 
 		// Plugin version
 		if ( ! defined( 'NF_PLUGIN_VERSION' ) )
-			define( 'NF_PLUGIN_VERSION', '2.9.2' );
+			define( 'NF_PLUGIN_VERSION', '2.9.6' );
 
 		// Plugin Folder Path
 		if ( ! defined( 'NF_PLUGIN_DIR' ) )
@@ -484,6 +484,7 @@ class Ninja_Forms {
 		//Edit Field Functions
 		require_once( NINJA_FORMS_DIR . "/includes/admin/edit-field/edit-field.php" );
 		require_once( NINJA_FORMS_DIR . "/includes/admin/edit-field/label.php" );
+		require_once( NINJA_FORMS_DIR . "/includes/admin/edit-field/placeholder.php" );
 		require_once( NINJA_FORMS_DIR . "/includes/admin/edit-field/hr.php" );
 		require_once( NINJA_FORMS_DIR . "/includes/admin/edit-field/req.php" );
 		require_once( NINJA_FORMS_DIR . "/includes/admin/edit-field/custom-class.php" );
