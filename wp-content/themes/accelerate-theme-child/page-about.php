@@ -30,7 +30,6 @@ get_header(); ?>
 		$contact_button_text = get_field('contact_button_text');
 		$size = "small";
 	?>
-
 	<section class="hero-about">
 			<?php while ( have_posts() ) : the_post(); ?>
 			<div class="hero-text">
