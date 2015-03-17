@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 function ninja_forms_register_field_textbox(){
 	$args = array(
 		'name' => __( 'Textbox', 'ninja-forms' ),

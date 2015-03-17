@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * This Ninja Forms Loading Class is used to interact with Ninja Forms as it loads form data.
  * It is based upon the WordPress Error API.

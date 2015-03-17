@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 add_action( 'init', 'ninja_forms_register_field_settings_help', 9 );
 function ninja_forms_register_field_settings_help(){
 	$args = array(

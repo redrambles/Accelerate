@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 
 function ninja_forms_admin_save(){
 	global $ninja_forms_tabs, $ninja_forms_sidebars, $ninja_forms_tabs_metaboxes, $ninja_forms_admin_update_message;

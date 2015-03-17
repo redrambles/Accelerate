@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Update form settings to the new storage system when the form is viewed for the first time.
  *
@@ -10,7 +10,7 @@ function nf_29_update_form_settings( $form_id ) {
 
 	// Check to see if an object exists with our form id.
 	$type = nf_get_object_type( $form_id );
-	if ( 'form' != $type ) {
+	if ( $type && 'form' != $type ) {
 		// We have an object with our form id.
 		// Insert a new object.
 		$next_id = nf_insert_object( $type );

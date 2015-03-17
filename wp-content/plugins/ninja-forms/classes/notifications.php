@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Main Notifications Class
  *
@@ -502,7 +502,7 @@ class NF_Notifications
 		$html = '<select class="nf-fields-combobox" data-first-option="' . $first_option . '">';
 		$html .= '<option value="">' . $first_option .'</option>';
 		foreach( $all_fields as $field_id => $field ) {
-			$label = $field['label'];
+			$label = esc_html( $field['label'] );
 			if ( strlen( $label ) > 30 )
 				$label = substr( $label, 0, 30 ) . '...';
 

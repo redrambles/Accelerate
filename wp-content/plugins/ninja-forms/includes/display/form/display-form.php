@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 
 /*
  * Function that checks to see if we are processing a submission

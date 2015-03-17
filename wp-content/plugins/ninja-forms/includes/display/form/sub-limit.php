@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Function that checks the current sub count and updates the loading class if neccesary.

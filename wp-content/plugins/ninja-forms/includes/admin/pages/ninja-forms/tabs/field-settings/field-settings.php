@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 
 function ninja_forms_register_tab_field_settings(){
 	if(isset($_REQUEST['form_id'])){

@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Submission CPT.
  * This class adds our submission CPT and handles displaying submissions in the wp-admin.

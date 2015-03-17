@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 /*
  *
  * This class handles all the update-related stuff for extensions, including adding a license section to the license tab.

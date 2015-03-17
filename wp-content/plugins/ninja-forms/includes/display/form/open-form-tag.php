@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 
 function ninja_forms_register_display_open_form_tag() {
 	add_action( 'ninja_forms_display_open_form_tag', 'ninja_forms_display_open_form_tag' );

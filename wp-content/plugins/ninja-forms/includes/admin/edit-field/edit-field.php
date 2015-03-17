@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 function ninja_forms_edit_field( $field_id, $new = false ){
 	global $wpdb, $ninja_forms_fields;
 

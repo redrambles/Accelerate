@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 
 function ninja_forms_add_menu(){
 	$page = add_menu_page("Ninja Forms" , __( 'Forms', 'ninja-forms' ), apply_filters( 'ninja_forms_admin_parent_menu_capabilities', 'manage_options' ), "ninja-forms", "ninja_forms_admin", "dashicons-feedback", "35.1337" );

@@ -1,10 +1,10 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 //Load up our WP Ninja Custom Form JS files.
 function ninja_forms_admin_css(){
 	$plugin_settings = nf_get_settings();
 
 	wp_enqueue_style( 'jquery-smoothness', NINJA_FORMS_URL .'css/smoothness/jquery-smoothness.css' );
-	wp_enqueue_style( 'ninja-forms-admin', NINJA_FORMS_URL .'css/ninja-forms-admin.css', 'editor' );
+	wp_enqueue_style( 'ninja-forms-admin', NINJA_FORMS_URL .'css/ninja-forms-admin.css?nf_ver=' . NF_PLUGIN_VERSION, 'editor' );
 
 	add_filter('admin_body_class', 'ninja_forms_add_class');
 
@@ -45,14 +45,15 @@ function ninja_forms_admin_js(){
 	}
 
 	wp_enqueue_script('ninja-forms-admin',
-	NINJA_FORMS_URL . 'js/' . $src .'/ninja-forms-admin' . $suffix . '.js',
+	NINJA_FORMS_URL . 'js/' . $src .'/ninja-forms-admin' . $suffix . '.js?nf_ver=' . NF_PLUGIN_VERSION,
 	array('jquery', 'jquery-ui-core', 'jquery-ui-sortable', 'jquery-ui-datepicker', 'jquery-ui-draggable', 'jquery-ui-droppable'));
 
 	wp_localize_script( 'ninja-forms-admin', 'ninja_forms_settings', array( 'nf_ajax_nonce' => wp_create_nonce( 'nf_ajax'), 'form_id' => $form_id, 'datepicker_args' => apply_filters( 'ninja_forms_admin_forms_datepicker_args', $datepicker_args ), 'add_fav_prompt' => __( 'What would you like to name this favorite?', 'ninja-forms' ), 'add_fav_error' => __( 'You must supply a name for this favorite.', 'ninja-forms' ), 'deactivate_all_licenses_confirm' => __( 'Really deactivate all licenses?', 'ninja-forms' ), 'nuke_warning' => 'This setting will COMPLETELY remove anything Ninja Forms related. This includes SUBMISSIONS and FORMS. It cannot be undone.', 'ninja-forms' ) );
 
 	if ( isset ( $_REQUEST['page'] ) && $_REQUEST['page'] == 'ninja-forms' && isset ( $_REQUEST['tab'] ) ) {
 		wp_enqueue_script( 'nf-builder',
-			NINJA_FORMS_URL . 'assets/js/' . $src .'/builder' . $suffix . '.js', array( 'backbone' ) );
+			NINJA_FORMS_URL . 'assets/js/' . $src .'/builder' . $suffix . '.js?nf_ver=' . NF_PLUGIN_VERSION,
+			array( 'backbone' ) );
 
 		if ( '' != $form_id ) {
 			$fields = Ninja_Forms()->form( $form_id )->fields;

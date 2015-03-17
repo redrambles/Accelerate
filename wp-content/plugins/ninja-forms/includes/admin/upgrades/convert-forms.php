@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 
 class NF_Convert_Forms extends NF_Step_Processing {
 

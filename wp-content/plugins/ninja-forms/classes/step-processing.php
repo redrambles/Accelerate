@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Class for performing actions incrementally. Internally used for converting submissions, exporting submissions, etc.
  * Very useful when interacting with large amounts of data.

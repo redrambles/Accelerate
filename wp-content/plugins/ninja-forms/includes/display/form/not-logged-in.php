@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Adds our not logged-in message if the user is not logged-in and the form requires the user to be logged-in.
