@@ -13,15 +13,15 @@ Text Domain: accelerate-theme-child
     margin: 0;
 }
 
-.home-page {
+section.home-page {
     background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
 }
 
-#masthead {
+header#masthead {
     background: none repeat scroll 0 0 #45ac9d;
 }
 
-.button {
+a.button {
     background: none repeat scroll 0 0 #45ac9d;
 }
 
@@ -449,7 +449,7 @@ aside.sidebar li a {
 
 
 /* TEST */
-/*
-#post-47372 p, #post-47374 p{
-    color: tomato;
+
+/*body {
+    background-color: tomato;
 }*/
