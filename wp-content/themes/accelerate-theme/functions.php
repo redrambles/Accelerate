@@ -25,5 +25,9 @@
  * @since Accelerate Marketing 1.0
  */
 
+if (function_exists('add_theme_support') ) {
+	add_theme_support('menus');
+}
+
 register_nav_menu('top-nav', 'Top Nav');
 register_nav_menu('social-media', 'Social Media Nav');

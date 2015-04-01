@@ -8,6 +8,7 @@ Text Domain: accelerate-theme-child
 */
 
 @import url('../accelerate-theme/style.css'); 
+
 .blog-page {
     padding: 0;
     margin: 0;
