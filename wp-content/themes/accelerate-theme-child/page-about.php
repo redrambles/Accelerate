@@ -1,6 +1,6 @@
 <?php
 /**
- * Template: Custom About Page
+ * Template: Custom About Page - yeah!
  *
  * This page will override the generic page.php 
  * for the About Page
