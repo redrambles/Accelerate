@@ -26,6 +26,7 @@ a.button {
     background: none repeat scroll 0 0 #45ac9d;
 }
 
+/* THIS is the style that so many students a looking for to make their menu inline */
 #primary-navigation ul li{
     text-transform: uppercase;
 	display: inline-block;

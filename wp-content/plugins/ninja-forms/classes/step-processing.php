@@ -33,6 +33,11 @@ class NF_Step_Processing
 	 */
 	var $redirect = '';
 
+    /**
+     * @var array
+     */
+    var $errors = array();
+
 	/**
 	 * @var args
 	 */
@@ -136,6 +141,8 @@ class NF_Step_Processing
 		if ( isset ( $this->redirect ) && ! empty ( $this->redirect ) ) {
 			$this->args['redirect'] = $this->redirect;
 		}
+
+        $return['errors'] = ( $this->errors ) ? $this->errors : FALSE;
 
 		$return['args'] = $this->args;
 
