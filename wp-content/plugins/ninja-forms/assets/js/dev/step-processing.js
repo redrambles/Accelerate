@@ -73,7 +73,7 @@ jQuery(document).ready(function($) {
 		      		} else {
 		      			progressbar.progressbar( "value", 100 );
 		      			if ( typeof response.redirect != 'undefined' && response.redirect != '' ) {
-		      				//document.location.href = response.redirect;
+		      				document.location.href = response.redirect;
 		      			}
 		      		}
 		      	});

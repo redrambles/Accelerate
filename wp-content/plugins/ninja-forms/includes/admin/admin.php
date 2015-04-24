@@ -96,7 +96,7 @@ function ninja_forms_admin(){
 				}
 
 				if ( 'form_list' == $current_tab ) {
-					$builder_url = add_query_arg( array( 'form_id' => 'new', 'tab' => 'builder' ) );
+					$builder_url = esc_url( add_query_arg( array( 'form_id' => 'new', 'tab' => 'builder' ) ) );
 					?>
 					<h2><?php _e( 'Forms', 'ninja-forms' ); ?> <a href="<?php echo $builder_url; ?>" class="add-new-h2"><?php _e( 'Add New', 'ninja-forms'); ?></a></h2>
 					<?php

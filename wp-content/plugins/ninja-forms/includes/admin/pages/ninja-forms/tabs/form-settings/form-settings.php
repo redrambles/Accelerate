@@ -2,7 +2,7 @@
 
 
 function ninja_forms_register_tab_form_settings(){
-	$all_forms_link = esc_url(remove_query_arg(array('form_id', 'tab')));
+	$all_forms_link = esc_url( remove_query_arg( array( 'form_id', 'tab' ) ) );
 	$args = array(
 		'name' => __( 'Settings', 'ninja-forms' ),
 		'page' => 'ninja-forms',

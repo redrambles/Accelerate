@@ -175,7 +175,7 @@ function ninja_forms_display_form( $form_id = '' ){
 
 		if($ajax == 1){
 			$url = admin_url( 'admin-ajax.php' );
-			$url = add_query_arg('action', 'ninja_forms_ajax_submit', $url);
+			$url = esc_url_raw( add_query_arg('action', 'ninja_forms_ajax_submit', $url ) );
 		}else{
 			$url = '';
 		}

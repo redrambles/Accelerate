@@ -120,7 +120,7 @@ function nf_output_step_processing_page() {
 		}
 
 		$tmp_array = array();
-		$url_params = parse_url( add_query_arg( array() ) );
+		$url_params = parse_url( esc_url_raw( add_query_arg( array() ) ) );
 		$query = $url_params['query'];
 		$query = parse_str( $query, $tmp_array );
 		unset ( $tmp_array['action'] );

@@ -107,7 +107,7 @@ function ninja_forms_admin_save(){
 			}
 			if ( $tab_reload ) {
 				$redirect_array = array( 'update_message' => urlencode( $ninja_forms_admin_update_message ) );
-				$url = add_query_arg( $redirect_array );
+				$url = esc_url_raw( add_query_arg( $redirect_array ) );
 				wp_redirect( $url );
 			}		
 		}

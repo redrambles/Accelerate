@@ -26,21 +26,38 @@
  */
 
 
-// Turns on widgets & menus 
-if (function_exists('register_sidebar')) {
-	register_sidebar();
-}
+/**
+ * Register widget areas
+ *
+ */
 
-// Register second sidebar - will create a new dynamic widget area in the admin
-register_sidebar( array(
-    'name' =>__( 'Homepage sidebar', 'homepage-sidebar'),
-    'id' => 'sidebar-2',
-    'description' => __( 'Appears on the static front page template', 'homepage-sidebar' ),
-    'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget' => '</aside>',
-    'before_title' => '<h3 class="widget-title">',
-    'after_title' => '</h3>',
-) );
+function accelerate_theme_child_init() {
+	// Register first sidebar - main widget area
+	register_sidebar( array(
+		'name'          => __( 'Main sidebar', 'accelerate-theme-child' ),
+		'id'            => 'sidebar-1',
+		'description'   => __( 'Add widgets here to appear in your blog sidebar.', 'accelerate-theme-child' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
+	// Register second sidebar - will create a new dynamic widget area in the admin
+	register_sidebar( array(
+	    'name' =>__( 'Homepage sidebar', 'accelerate-theme-child'),
+	    'id' => 'sidebar-2',
+	    'description' => __( 'Appears on the static front page template', 'accelerate-theme-child' ),
+	    'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+	    'after_widget' => '</aside>',
+	    'before_title' => '<h3 class="widget-title">',
+	    'after_title' => '</h3>',
+	) );
+
+}
+add_action( 'widgets_init', 'accelerate_theme_child_init' );
+
+
 
 // Add Theme Support - Post Format and Featured Images
 add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
@@ -84,6 +101,24 @@ function accelerate_child_scripts() {
 	wp_enqueue_style('accelerate-child-google-fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,700,300');
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
+
+// Display an actual title in the <title> tags in the source code
+
+function custom_wp_title( $title, $sep ) {
+     global $page;
+
+     // Add the site name.
+     $title .= get_bloginfo( 'name' );
+
+     // Add the site description for the home/front page.
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) ) {
+		$title = "$title $sep $site_description";
+	}
+
+     return $title;
+}
+add_filter( 'wp_title', 'custom_wp_title', 20, 2 );
 
 
 // Displaying a Quick Performance Report for Admins in the source code
