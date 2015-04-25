@@ -26,23 +26,9 @@
  */
 
 
-/**
- * Register widget areas
- *
- */
+ //Register additional widget area
 
 function accelerate_theme_child_init() {
-	// Register first sidebar - main widget area
-	register_sidebar( array(
-		'name'          => __( 'Main sidebar', 'accelerate-theme-child' ),
-		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your blog sidebar.', 'accelerate-theme-child' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
-
 	// Register second sidebar - will create a new dynamic widget area in the admin
 	register_sidebar( array(
 	    'name' =>__( 'Homepage sidebar', 'accelerate-theme-child'),
@@ -56,7 +42,6 @@ function accelerate_theme_child_init() {
 
 }
 add_action( 'widgets_init', 'accelerate_theme_child_init' );
-
 
 
 // Add Theme Support - Post Format and Featured Images
@@ -102,7 +87,7 @@ function accelerate_child_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 
-// Display an actual title in the <title> tags in the source code
+// Display an actual title in the <title> tags in the source code - source: WordPress Pushing the limits
 
 function custom_wp_title( $title, $sep ) {
      global $page;

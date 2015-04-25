@@ -25,9 +25,30 @@
  * @since Accelerate Marketing 1.0
  */
 
-if (function_exists('add_theme_support') ) {
-	add_theme_support('menus');
+// Theme support for menus
+function accelerate_setup() {
+
+	// Register Menus 
+	register_nav_menus ( array (
+		'top-nav' => __( 'Top Nav', 'accelerate' ),
+		'social-media' => __( 'Social Media Nav', 'accelerate' ),  
+	) );
 }
 
-register_nav_menu('top-nav', 'Top Nav');
-register_nav_menu('social-media', 'Social Media Nav');
+add_action( 'after_setup_theme', 'accelerate_setup' );
+
+
+ //Register main widget area
+function accelerate_widget_init() {
+	// Register first sidebar - main widget area
+	register_sidebar( array(
+		'name'          => __( 'Main sidebar', 'accelerate' ),
+		'id'            => 'sidebar-1',
+		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'accelerate' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+}
+add_action( 'widgets_init', 'accelerate_widget_init' );
