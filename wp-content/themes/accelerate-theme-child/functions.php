@@ -87,8 +87,7 @@ function accelerate_child_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 
-// Display an actual title in the <title> tags in the source code - source: WordPress Pushing the limits
-
+// Display an actual title in the <title> tags in the source code - source: TT Actions & Filters class - local: wp_hooks
 function custom_wp_title( $title, $sep ) {
      global $page;
 

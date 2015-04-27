@@ -162,9 +162,13 @@ input#email {
 
 /* Case Studies */
 
+article.case-study {
+    max-width: 100%; /* testing this out */
+}
+
 aside.case-study-sidebar{
     float: left;
-    width: 314px;
+    width: 33%; /* testing this out */
     margin: 60px 40px 0 0;
 }
 
@@ -199,11 +203,12 @@ aside .visit_link {
 div.case-study-images{
     margin-top: 60px;
     float: left;
-    width: 600px;
+    width: 62%; /* testing this out */
 }
 
 div.case-study-images img{
     display: block;
+    max-width: 100%; /* testing this out */
     margin-bottom: 50px;
     border: 1px solid #dddddd;
 }
