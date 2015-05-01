@@ -28,7 +28,7 @@
 
  //Register additional widget area
 
-function accelerate_theme_child_init() {
+function accelerate_theme_child_widget_init() {
 	// Register second sidebar - will create a new dynamic widget area in the admin
 	register_sidebar( array(
 	    'name' =>__( 'Homepage sidebar', 'accelerate-theme-child'),
@@ -41,7 +41,7 @@ function accelerate_theme_child_init() {
 	) );
 
 }
-add_action( 'widgets_init', 'accelerate_theme_child_init' );
+add_action( 'widgets_init', 'accelerate_theme_child_widget_init' );
 
 
 // Add Theme Support - Post Format and Featured Images
