@@ -460,3 +460,9 @@ aside.sidebar li a {
 /*body {
     background-color: tomato;
 }*/
+
+/* Playing around the the output of the Custom Fields */
+.sanity {
+    text-align: center;
+    color: tomato;
+}
