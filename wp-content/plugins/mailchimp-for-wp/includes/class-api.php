@@ -1,11 +1,5 @@
 <?php
 
-if( ! defined( 'MC4WP_LITE_VERSION' ) ) {
-	header( 'Status: 403 Forbidden' );
-	header( 'HTTP/1.1 403 Forbidden' );
-	exit;
-}
-
 /**
 * Takes care of requests to the MailChimp API
 *
@@ -110,7 +104,7 @@ class MC4WP_API {
 	* @param boolean $replace_interests
 	* @param boolean $send_welcome
 	*
-	* @return boolean|string True if success, 'error' if error
+	* @return boolean Successful?
 	*/
 	public function subscribe( $list_id, $email, array $merge_vars = array(), $email_type = 'html', $double_optin = true, $update_existing = false, $replace_interests = true, $send_welcome = false ) {
 		$data = array(
@@ -126,23 +120,11 @@ class MC4WP_API {
 
 		$response = $this->call( 'lists/subscribe', $data );
 
-		if( is_object( $response ) ) {
-
-			if( isset( $response->error ) ) {
-
-				// check error
-				if( (int) $response->code === 214 ) {
-					return 'already_subscribed';
-				}
-
-				return 'error';
-			} else {
-				return true;
-			}
-
+		if( is_object( $response ) && isset( $response->email ) ) {
+			return true;
 		}
 
-		return 'error';
+		return false;
 	}
 
 	/**
@@ -310,13 +292,8 @@ class MC4WP_API {
 		);
 
 		if( is_object( $response ) ) {
-
 			if ( isset( $response->complete ) && $response->complete ) {
 				return true;
-			}
-
-			if( isset( $response->error ) ) {
-				$this->error_message = $response->error;
 			}
 		}
 

@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Menu Social Icons
-Description: Change menu links to social sites to icons automatically. Uses <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">FontAwesome</a> and supports: Bitbucket, Dribbble, Dropbox, Flickr, Foursquare, Gittip, Instagram, RenRen, Stack Overflow, Trello, Tumblr, VK, Weibo, Xing, and YouTube.
-Version: 1.3.9
-Author: Paul Clark, 10up
+Description: Change menu links to social sites to icons automatically. Uses <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">FontAwesome</a> and supports: Bitbucket, Dribbble, Dropbox, Flickr, Foursquare, Gittip, Instagram, RenRen, SlideShare, Stack Overflow, Trello, Tumblr, VK, Weibo, Xing, and YouTube.
+Version: 1.3.10
+Author: Paul Clark
 Author URI: http://pdclark.com
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -15,7 +15,7 @@ define( 'MSI_VERSION', '1.3.9' );
 add_action( 'init', 'storm_menu_social_icons_init' );
 
 function storm_menu_social_icons_init() {
-	
+
 	// PHP Version Check
 	$php_is_outdated = version_compare( PHP_VERSION, '5.2', '<' );
 

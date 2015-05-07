@@ -1,11 +1,11 @@
 === Menu Social Icons ===
-Contributors: pdclark, 10up
-Plugin URI: https://github.com/10up/menu-social-icons
+Contributors: pdclark
+Plugin URI: https://github.com/pdclark/menu-social-icons
 Author URI: http://pdclark.com
 Tags: social, icons, menus, FontAwesome, social media, easy
 Requires at least: 3.4
 Tested up to: 3.8.1
-Stable tag: 1.3.9
+Stable tag: 1.3.10
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,12 +26,13 @@ bitbucket.org           dribbble.com         dropbox.com
 facebook.com            flickr.com           foursquare.com
 github.com              gittip.com           instagram.com
 linkedin.com            mailto:(email)       pinterest.com
-plus.google.com         renren.com           stackoverflow.com
-*stackexchange.com      trello.com           tumblr.com
-twitter.com             *vimeo.com           vk.com
-weibo.com               xing.com             youtube.com
+plus.google.com         renren.com           *slideshare.net
+stackoverflow.com       *stackexchange.com   trello.com
+tumblr.com              twitter.com          *vimeo.com
+vk.com                  weibo.com            xing.com
+youtube.com
 
-*Requires storm_social_icons_use_latest be turned on. (See below.)
+* Requires storm_social_icons_use_latest be turned on. (See below.)
 `
 
 **Changing Icon Appearance**
@@ -180,6 +181,10 @@ We load FontAwesome onto your site using NetDNA's [Bootstrap CDN](http://www.boo
 
 == Changelog ==
 
+= 1.3.10 =
+
+* New: Add SlideShare. Thanks @mjiderhamn.
+
 = 1.3.9 =
 
 * Fix: Change `use_latest` filter to request "latest" version of FontAwesome, rather than stopping at `4.0.0`. Current version is `4.0.3`.
@@ -236,6 +241,6 @@ We load FontAwesome onto your site using NetDNA's [Bootstrap CDN](http://www.boo
 
 == Upgrade Notice ==
 
-= 1.3.9 =
+= 1.3.10 =
 
-* Fix: Change `use_latest` filter to request "latest" version of FontAwesome, rather than stopping at `4.0.0`. Current version is `4.0.3`.
+* New: Add SlideShare. Thanks @mjiderhamn.

@@ -41,9 +41,17 @@ get_header(); ?>
 						</div>
 						<footer class="entry-footer">
 							<div class="entry-meta">
-								<span class="entry-terms author">Written by <a href=""><?php the_author(); ?></a></span>
+								<span class="entry-terms comments author">
+									Written by <?php the_author(); ?>
+									/
+									Posted in <?php the_category(', ') ?>
+									/
+									<?php echo get_comments_number() ?> comments
+								</span>
+<!-- 							This is what used to be here before I changed it - it had all this hardcoded stuff. Weird.
+								<span class="entry-terms author">Written by <a href=""><?php //the_author(); ?></a></span>
 								<span class="entry-terms category">Posted in <a href="">Books</a></span>
-								<span class="entry-terms commets"><a href="">2 Comments</a></span>
+								<span class="entry-terms comments"><a href="">2 Comments</a></span> -->
 							</div>
 						</footer>
 					</div>
