@@ -48,7 +48,7 @@ get_header(); ?>
 									/
 									<?php echo get_comments_number() ?> comments
 								</span>
-<!-- 							This is what used to be here before I changed it - it had all this hardcoded stuff. Weird.
+<!-- 							This is what used to be here before I changed it - it had all this hardcoded stuff. Weird. 
 								<span class="entry-terms author">Written by <a href=""><?php //the_author(); ?></a></span>
 								<span class="entry-terms category">Posted in <a href="">Books</a></span>
 								<span class="entry-terms comments"><a href="">2 Comments</a></span> -->
