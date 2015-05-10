@@ -29,10 +29,12 @@ register_nav_menu('top-nav', 'Top Nav');
 register_nav_menu('social-media', 'Social Media Nav');
 
 
-// Turns on widgets & menus 
-if (function_exists('register_sidebar')) {
-	register_sidebar();
-}
+// Turns on widgets & menus - I copied this bit over from 103 - thinking I could go ahead and add widgets to my sidebar-1 
+//(instead of using the hardcoded stuff) - but it broke when updating to 4.2 as the sidebar wasn't properly register with an 
+//id of sidebar-1
+// if (function_exists('register_sidebar')) {
+// 	register_sidebar();
+// }
 
 // Register second sidebar - will create a new dynamic widget area in the admin
 register_sidebar( array(
