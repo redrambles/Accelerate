@@ -25,7 +25,7 @@
  * @since Accelerate Marketing 1.0
  */
 
-// Theme support for menus
+// Theme support for menus - I wrapped this in a function and hooked it (otherwise it's pretty much the same as original code)
 function accelerate_setup() {
 
 	// Register Menus 

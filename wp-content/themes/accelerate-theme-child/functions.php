@@ -29,6 +29,16 @@
  //Register Main Sidebar widget area - AND homepage sidebar area (Added the main to override hard-coded stuff in sidebar.php)
 
 function accelerate_theme_child_widget_init() {
+	// Register main sidebar - blog (optional)
+		register_sidebar( array(
+		'name'          => __( 'Main sidebar', 'accelerate' ),
+		'id'            => 'sidebar-1',
+		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'accelerate' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
 	// Register second sidebar - will create a new dynamic widget area in the admin
 	register_sidebar( array(
 	    'name' =>__( 'Homepage sidebar', 'accelerate-theme-child'),
@@ -39,16 +49,6 @@ function accelerate_theme_child_widget_init() {
 	    'before_title' => '<h3 class="widget-title">',
 	    'after_title' => '</h3>',
 	) );
-		register_sidebar( array(
-		'name'          => __( 'Main sidebar', 'accelerate' ),
-		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'accelerate' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
-
 }
 add_action( 'widgets_init', 'accelerate_theme_child_widget_init' );
 
