@@ -87,6 +87,12 @@ jQuery.fn.nextElementInDom = function(selector, options) {
 };
 
 jQuery.fn.nfAdminModal = function( action, options ) {
+
+	if ( 0 == jQuery( '#nf-admin-modal-backdrop' ).length ) {
+		var modalHtml = '<div id="nf-admin-modal-backdrop" style="display: none;"></div><div id="nf-admin-modal-wrap" class="wp-core-ui" style="display: none;"><div id="nf-admin-modal" tabindex="-1"><div id="admin-modal-title"><span id="nf-modal-title"></span><button type="button" id="nf-admin-modal-close" class="modal-close"><span class="screen-reader-text modal-close">Close</span></button></div><div id="modal-contents-wrapper" style="padding:20px;"><div id="nf-admin-modal-content" class="admin-modal-inside"></div><div class="submitbox" style="display:block;"></div></div></div></div>';
+		jQuery( 'body' ).append( modalHtml );
+	}
+
 	if ( 'object' === typeof action ) {
 		options = action;
 	}

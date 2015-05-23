@@ -21,6 +21,9 @@ get_header(); ?>
 		</div><!-- .site-content -->
 </section><!-- .home-page -->
 
+	<!-- Testing -->
+			<!-- <pre><?php //print_r($wp_query); exit; ?></pre> --> 
+
 <section class="featured-work">
 	<div class="site-content">
 		<h4>Featured Work</h4>

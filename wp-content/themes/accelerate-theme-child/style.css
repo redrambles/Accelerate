@@ -26,7 +26,7 @@ a.button {
     background: none repeat scroll 0 0 #45ac9d;
 }
 
-/* THIS is the style that so many students a looking for to make their menu inline */
+/* THIS is the style that so many students are looking for to make their menu inline */
 #primary-navigation ul li{
     text-transform: uppercase;
 	display: inline-block;
@@ -382,6 +382,10 @@ aside.sidebar li a {
     padding-bottom: 10px;
     color: #555;
     font-weight: 700;
+}
+
+.about-section {
+    clear: both;
 }
 
 .about-section h2 {

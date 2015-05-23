@@ -1,10 +1,10 @@
 === MailChimp for WordPress ===
-Contributors: DvanKooten, iMazed, hchouhan
+Contributors: DvanKooten, ibericode, iMazed, hchouhan
 Donate link: https://mc4wp.com/#utm_source=wp-plugin-repo&utm-medium=mailchimp-for-wp&utm_campaign=donate-link
 Tags: mailchimp,newsletter,sign-up,contact form 7,woocommerce,buddypress,widget,form
 Requires at least: 3.7
-Tested up to: 4.2.1
-Stable tag: 2.3.1
+Tested up to: 4.2.2
+Stable tag: 2.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,13 +60,13 @@ New or improved [translations of the MailChimp for WordPress plugin are welcomed
 
 **Bug Reports**
 
-Bug reports for [MailChimp for WordPress are welcomed on GitHub](https://github.com/dannyvankooten/mailchimp-for-wordpress). Please note that GitHub is _not_ a support forum.
+Bug reports for [MailChimp for WordPress are welcomed on GitHub](https://github.com/ibericode/mailchimp-for-wordpress). Please note that GitHub is _not_ a support forum.
 
 **More information**
 
 - [MailChimp for WordPress Pro](https://mc4wp.com/), containing [additional features](https://mc4wp.com/features/#utm_source=wp-plugin-repo&utm_medium=mailchimp-for-wp&utm_campaign=more-info-link).
 - [Translate the MailChimp for WordPress plugin into your language](https://www.transifex.com/projects/p/mailchimp-for-wordpress/)
-- Developers; follow or contribute to the [MailChimp for WP plugin on GitHub](https://github.com/dannyvankooten/mailchimp-for-wordpress)
+- Developers; follow or contribute to the [MailChimp for WP plugin on GitHub](https://github.com/ibericode/mailchimp-for-wordpress)
 - Other [WordPress plugins](https://dannyvankooten.com/wordpress-plugins/#utm_source=wp-plugin-repo&utm_medium=mailchimp-for-wp&utm_campaign=more-info-link) by [Danny van Kooten](https://dannyvankooten.com#utm_source=wp-plugin-repo&utm_medium=mailchimp-for-wp&utm_campaign=more-info-link)
 - [@DannyvanKooten](https://twitter.com/dannyvankooten) on Twitter
 
@@ -230,7 +230,7 @@ More detailed documentation can be found on the [MailChimp for WordPress documen
 
 = Bug Reports =
 
-Bug reports for [MailChimp for WordPress are welcomed on GitHub](https://github.com/dannyvankooten/mailchimp-for-wordpress). Please note that GitHub is _not_ a support forum.
+Bug reports for [MailChimp for WordPress are welcomed on GitHub](https://github.com/ibericode/mailchimp-for-wordpress). Please note that GitHub is _not_ a support forum.
 
 = Translations =
 
@@ -251,7 +251,7 @@ It's easy to translate the plugin into your own language. Head over to the [tran
 
 = Development =
 
-Development of the plugin happens on GitHub: [dannyvankooten/mailchimp-for-wordpress](https://github.com/dannyvankooten/mailchimp-for-wordpress)
+Development of the plugin happens on GitHub: [dannyvankooten/mailchimp-for-wordpress](https://github.com/ibericode/mailchimp-for-wordpress)
 
 == Screenshots ==
 
@@ -265,6 +265,18 @@ Development of the plugin happens on GitHub: [dannyvankooten/mailchimp-for-wordp
 8. **Pro only:** Create your own CSS styles with the form designer in the Pro version.
 
 == Changelog ==
+
+= 2.3.2 - May 12, 2015 =
+
+**Fixes**
+
+- Groupings not being sent to MailChimp
+- Get correct IP address when using proxy like Cloudflare or Sucuri WAF.
+- Issue when using more than one `{data_xx}` replacement
+
+**Improvements**
+
+- IE8 compatibility for honeypot fallback script.
 
 = 2.3.1 - May 6, 2015 =
 
@@ -297,7 +309,7 @@ Development of the plugin happens on GitHub: [dannyvankooten/mailchimp-for-wordp
 
 **Fixes**
 
-- Menu item for settings page not appearing on Google App Engine ([#88](https://github.com/dannyvankooten/mailchimp-for-wordpress/issues/88))
+- Menu item for settings page not appearing on Google App Engine ([#88](https://github.com/ibericode/mailchimp-for-wordpress/issues/88))
 
 **Improvements**
 
@@ -334,8 +346,8 @@ Development of the plugin happens on GitHub: [dannyvankooten/mailchimp-for-wordp
 
 **Additions**
 
-- Added [mc4wp_form_success](https://github.com/dannyvankooten/mailchimp-for-wordpress/blob/06f0c833027f347a288d2cb9805e0614767409b6/includes/class-form-request.php#L292-L301) action hook to hook into successful sign-ups
-- Added [mc4wp_form_data](https://github.com/dannyvankooten/mailchimp-for-wordpress/blob/06f0c833027f347a288d2cb9805e0614767409b6/includes/class-form-request.php#L138-L142) filter hook to modify all form data before processing
+- Added [mc4wp_form_success](https://github.com/ibericode/mailchimp-for-wordpress/blob/06f0c833027f347a288d2cb9805e0614767409b6/includes/class-form-request.php#L292-L301) action hook to hook into successful sign-ups
+- Added [mc4wp_form_data](https://github.com/ibericode/mailchimp-for-wordpress/blob/06f0c833027f347a288d2cb9805e0614767409b6/includes/class-form-request.php#L138-L142) filter hook to modify all form data before processing
 
 
 = 2.2.6 - February 26, 2015 =
@@ -395,7 +407,7 @@ A huge thank you to [Stefan Oderbolz](http://metaodi.ch/) for various fixed and 
 
 **Additions**
 
-- Now showing a heads up when at limit of 100 MailChimp lists. ([#71](https://github.com/dannyvankooten/mailchimp-for-wordpress/issues/71))
+- Now showing a heads up when at limit of 100 MailChimp lists. ([#71](https://github.com/ibericode/mailchimp-for-wordpress/issues/71))
 - Added `wpml-config.xml` file for better WPML compatibility
 - Added filter `mc4wp_menu_items` for adding & removing menu items from add-ons
 
@@ -816,5 +828,5 @@ Minor improvements and additions for compatibility with the [MailChimp Sync plug
 
 == Upgrade Notice ==
 
-= 2.3.1 =
-Handle unsubscribe calls from your forms and use dynamic variables everywhere. Updated translations.
+= 2.3.2 =
+Fixes issue with GROUPINGS not being sent to MailChimp.

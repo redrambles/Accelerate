@@ -92,7 +92,6 @@ a.tooltip span
     border-color: #ddd !important;
     border-style: solid;
     border-width: 1px;
-    float: left;
     margin: 13px 5px 5px 1px;
     padding: 3px 5px;
     text-align: center;
@@ -195,6 +194,7 @@ TEXT FIELDS & TEXTAREAS
     width: 100%;
 }
 
+.profile_pass-wrap input,
 .text-wrap.label-above input,
 .text-wrap.label-below input,
 .text-wrap.label-inside input,

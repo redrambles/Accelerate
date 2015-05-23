@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 2.9.11
+Version: 2.9.12
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -123,16 +123,6 @@ class Ninja_Forms {
 		// Get our notifications up and running.
 		self::$instance->notifications = new NF_Notifications();
 
-		// Get our step processor up and running.
-		// We only need this in the admin.
-		if ( is_admin() ) {
-			self::$instance->step_processing = new NF_Step_Processing();
-			self::$instance->download_all_subs = new NF_Download_All_Subs();
-			self::$instance->convert_notifications = new NF_Convert_Notifications();
-			self::$instance->convert_forms = new NF_Convert_Forms();
-			self::$instance->update_email_settings = new NF_Update_Email_Settings();
-		}
-
 		// Fire our Ninja Forms init action.
 		// This will allow other plugins to register items to the instance.
 		do_action( 'nf_init', self::$instance );
@@ -246,17 +236,26 @@ class Ninja_Forms {
 	 *
 	 * @access public
 	 * @param int $form_id
-	 * @since 2.7
+	 * @since 2.9.11
 	 * @return object self::$instance->form_var
 	 */
 	public function form( $form_id = '' ) {
 		// Bail if we don't get a form id.
 
 		$form_var = 'form_' . $form_id;
-		// Check to see if an object for this form already exists
-		// Create one if it doesn't exist.
-		if ( ! isset( self::$instance->$form_var ) )
+		// Check to see if an object for this form already exists in memory. If it does, return it.
+		if ( isset( self::$instance->$form_var ) )
+			return self::$instance->$form_var;
+		
+		// Check to see if we have a transient object stored for this form.
+		if ( false != ( $form_obj = get_transient( 'nf_form_' . $form_id ) ) ) {
+			self::$instance->$form_var = $form_obj;
+		} else {
+			// Create a new form object for this form.
 			self::$instance->$form_var = new NF_Form( $form_id );
+			// Save it into a transient.
+			set_transient( 'nf_form_' . $form_id, self::$instance->$form_var, DAY_IN_SECONDS );
+		}
 
 		return self::$instance->$form_var;
 	}
@@ -284,7 +283,7 @@ class Ninja_Forms {
 
 		// Plugin version
 		if ( ! defined( 'NF_PLUGIN_VERSION' ) )
-			define( 'NF_PLUGIN_VERSION', '2.9.11' );
+			define( 'NF_PLUGIN_VERSION', '2.9.12' );
 
 		// Plugin Folder Path
 		if ( ! defined( 'NF_PLUGIN_DIR' ) )
@@ -384,13 +383,18 @@ class Ninja_Forms {
 
 			// Include our download all submissions php files
 			require_once( NF_PLUGIN_DIR . 'classes/download-all-subs.php' );
-			require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/convert-notifications.php' );
-			require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/update-email-settings.php' );
+
+            // Include Upgrade Base Class
+            require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/class-upgrade.php');
+
+            // Include Upgrades
 			require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/upgrade-functions.php' );
-			require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/convert-subs.php' );
-			require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/convert-forms.php' );
 			require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/upgrades.php' );
             require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/convert-forms-reset.php' );
+
+            // Include Upgrade Handler
+            require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/upgrade-handler-page.php');
+            require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/class-upgrade-handler.php');
 		}
 
 		// Include our upgrade files.

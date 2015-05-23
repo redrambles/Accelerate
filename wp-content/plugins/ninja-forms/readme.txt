@@ -1,9 +1,9 @@
 === Ninja Forms ===
-Contributors: wpninjasllc, kstover, jameslaws, wpnzach, daveshine, mordauk, bftrick, helgatheviking
+Contributors: wpninjasllc, kstover, jameslaws, wpnzach, kbjohnson90, daveshine, mordauk, bftrick, helgatheviking
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
-Requires at least: 3.8
-Tested up to: 4.1.1
-Stable tag: 2.9.11
+Requires at least: 3.9
+Tested up to: 4.2.2
+Stable tag: 2.9.12
 License: GPLv2 or later
 
 Forms created with a simple drag and drop interface. Contact forms, Email collection forms, or any other form you want on your WordPress site.
@@ -74,21 +74,41 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 2.9.11 (20 April 2015) =
-
-*Security:*
-
-* Fixed a security vulnerability that could allow users to inject scripts if they were logged in as administrators.
+= 2.9.12 (20 May 2015) =
 
 *Bugs:*
 
-* The "Download All" button should now work properly for submissions.
+* Fixed a bug that could prevent licenses from being deactivated properly.
+* Fixed some styling issues with the password field.
+* Fixed several PHP notices.
+
+*Changes:*
+
+* Added a new upgrade handler to make upgrading a smoother, more stable process.
+* Added support for European thousands separators in currency masks and calculations.
+* Added form caching to speed up installations with large numbers of forms.
+* Added support for using multi-select or checkbox lists as the recipient of email actions.
 
 == Requested Features ==
 
 If you have any feature requests, please feel free to visit [ninjaforms.com](http://ninjaforms.com) and let us know about it.
 
 == Changelog ==
+
+= 2.9.12 (20 May 2015) =
+
+*Bugs:*
+
+* Fixed a bug that could prevent licenses from being deactivated properly.
+* Fixed some styling issues with the password field.
+* Fixed several PHP notices.
+
+*Changes:*
+
+* Added a new upgrade handler to make upgrading a smoother, more stable process.
+* Added support for European thousands separators in currency masks and calculations.
+* Added form caching to speed up installations with large numbers of forms.
+* Added support for using multi-select or checkbox lists as the recipient of email actions.
 
 = 2.9.11 (20 April 2015) =
 
