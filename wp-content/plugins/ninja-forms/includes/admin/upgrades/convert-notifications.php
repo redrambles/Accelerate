@@ -8,7 +8,11 @@ final class NF_Upgrade_Notifications extends NF_Upgrade
 
     public $description = 'An update is necessary for the new Emails & Actions tab to function properly. This new section gives the user much more control over what happens when a form is submitted.';
 
-    public $completed_forms;
+    public $completed_forms = array();
+
+    public $args = array();
+
+    public $errors = array();
 
     public function loading()
     {

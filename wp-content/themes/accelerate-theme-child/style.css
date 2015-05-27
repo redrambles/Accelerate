@@ -213,6 +213,34 @@ div.case-study-images img{
     border: 1px solid #dddddd;
 }
 
+/* Rather pitiful attempt and responsiveness */
+@media screen and (max-width:  1056px) {
+
+
+    article.case-study {
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    aside.case-study-sidebar,
+    div.case-study-images{
+        float: none;
+    }
+
+    div.case-study-images {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width:  700px) {
+
+    div.case-study-images {
+        margin: 0;
+        width: 75%;
+    }
+
+}
+
 /* Footer */
 
 p.footer-desc {

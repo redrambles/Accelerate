@@ -1,10 +1,10 @@
 === MailChimp for WordPress ===
-Contributors: DvanKooten, ibericode, iMazed, hchouhan
-Donate link: https://mc4wp.com/#utm_source=wp-plugin-repo&utm-medium=mailchimp-for-wp&utm_campaign=donate-link
+Contributors: ibericode, DvanKooten, iMazed, hchouhan
+Donate link: https://mc4wp.com/#utm_source=wp-plugin-repo&utm_medium=mailchimp-for-wp&utm_campaign=donate-link
 Tags: mailchimp,newsletter,sign-up,contact form 7,woocommerce,buddypress,widget,form
 Requires at least: 3.7
 Tested up to: 4.2.2
-Stable tag: 2.3.2
+Stable tag: 2.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -236,8 +236,8 @@ Bug reports for [MailChimp for WordPress are welcomed on GitHub](https://github.
 
 The MailChimp for WordPress plugin is translated into the following languages.
 
-- English (en_US) - [Danny van Kooten](https://dannyvankooten.com)
-- Dutch (nl_NL) - [Danny van Kooten](https://dannyvankooten.com)
+- English (en_US) - [Danny van Kooten](https://dannyvankooten.com#utm_source=wp-plugin-repo&utm_medium=mailchimp-for-wp&utm_campaign=other-notes)
+- Dutch (nl_NL) - [Danny van Kooten](https://dannyvankooten.com#utm_source=wp-plugin-repo&utm_medium=mailchimp-for-wp&utm_campaign=other-notes)
 - German (de_DE) - [Stefan Oderbolz](http://metaodi.ch/)
 - Spanish (es_ES) - [Paul Benitez ](http://www.administrandowp.com/) & [Enrique Pinto](http://www.thehivecluster.com/en)
 - Brazilian (pt_BR) - [Felipe Scuissiatto](http://www.evonline.com.br/)
@@ -266,12 +266,23 @@ Development of the plugin happens on GitHub: [dannyvankooten/mailchimp-for-wordp
 
 == Changelog ==
 
+= 2.3.3 - May 27, 2015 =
+
+**Fixes**
+
+- Get correct IP address when using proxy like Cloudflare or Sucuri WAF.
+- Use strict type check for printing inline CSS that hides honeypot field
+
+**Improvements**
+
+- Add `contactemail` and `contactname` to field name guesses when integrating with third-party form.
+- Re-enable `sslverify`
+
 = 2.3.2 - May 12, 2015 =
 
 **Fixes**
 
 - Groupings not being sent to MailChimp
-- Get correct IP address when using proxy like Cloudflare or Sucuri WAF.
 - Issue when using more than one `{data_xx}` replacement
 
 **Improvements**
@@ -828,5 +839,5 @@ Minor improvements and additions for compatibility with the [MailChimp Sync plug
 
 == Upgrade Notice ==
 
-= 2.3.2 =
-Fixes issue with GROUPINGS not being sent to MailChimp.
+= 2.3.3 =
+Updated translations & minor edge-case bugfixes.

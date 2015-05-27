@@ -28,10 +28,6 @@ class NF_UpgradeHandler
 
     public function __construct()
     {
-        // Bail if we aren't in the admin or we don't have the appropriate permissions.
-        if ( ( ! is_admin() ) OR ( is_multisite() AND ! is_super_admin() ) ) {
-            return false;
-        }
 
         ignore_user_abort( true );
 

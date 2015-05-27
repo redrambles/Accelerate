@@ -8,7 +8,6 @@ class NF_UpgradeHandlerPage
     {
         add_action( 'admin_menu', array( $this, 'register' ) );
         add_action( 'admin_notices', array( $this, 'show_upgrade_notices' ) );
-        add_action( 'admin_menu', 'ninja_forms_admin_js');
     }
 
     public function register()
@@ -24,6 +23,7 @@ class NF_UpgradeHandlerPage
 
         add_action( 'admin_print_styles-' . $page, array( $this, 'scripts' ) );
         add_action( 'admin_print_styles-' . $page, array( $this, 'styles' ) );
+        add_action( 'admin_print_styles-' . $page, 'ninja_forms_admin_js');
     }
 
     public function display()

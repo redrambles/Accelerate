@@ -8,6 +8,10 @@ final class NF_Upgrade_Submissions extends NF_Upgrade
 
     public $description = 'The new submission database allows submissions to be stored and retrieved more efficiently. It also allows for much better submission searching.';
 
+    public $args = array();
+
+    public $errors = array();
+
     public function loading()
     {
         $old_sub_count = $this->countOldSubs();

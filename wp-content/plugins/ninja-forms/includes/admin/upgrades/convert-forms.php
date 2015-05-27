@@ -10,6 +10,10 @@ final class NF_Upgrade_Forms extends NF_Upgrade
 
     public $completed_forms = array();
 
+    public $args = array();
+
+    public $errors = array();
+
     public function loading()
     {
         global $wpdb;

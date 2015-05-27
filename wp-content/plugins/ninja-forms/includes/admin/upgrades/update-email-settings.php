@@ -8,6 +8,10 @@ final class NF_Upgrade_Email_Settings extends NF_Upgrade
 
     public $description = 'Email settings need to be transferred to a new storage method.';
 
+    public $args = array();
+
+    public $errors = array();
+
     public function loading()
     {
         // Remove old email settings.

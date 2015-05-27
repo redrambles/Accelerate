@@ -2,12 +2,15 @@
 
 final class NF_Upgrade_Database_Migrations extends NF_Upgrade
 {
-
     public $name = 'database_migrations';
 
     public $priority = "0.0.1";
 
     public $description = 'The database needs to be updated to support the new version.';
+
+    public $args = array();
+
+    public $errors = array();
 
     public function loading()
     {

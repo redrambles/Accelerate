@@ -49,7 +49,7 @@ abstract class NF_Upgrade
      *
      * The args variable is passes between calls.
      */
-    public $args;
+    public $args = array();
 
 
 
@@ -58,7 +58,7 @@ abstract class NF_Upgrade
      *
      * The errors property is used to store errors for the Upgrade Handler to reference.
      */
-    public $errors;
+    public $errors = array();
 
 
 

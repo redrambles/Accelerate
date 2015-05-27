@@ -446,7 +446,7 @@ jQuery(document).ready(function(jQuery) {
 
 									if ( typeof ninja_forms_settings.currency_symbol !== 'undefined' ) {
                                         // Strip the Currency Symbol
-                                        f_value = f_value.replace( ninja_forms_settings.currency_symbol, "" );
+                                        f_value = new_value.replace( ninja_forms_settings.currency_symbol, "" );
 
                                         // Strip the Thousands Separator
                                         f_value = f_value.replace( /thousandsSeparator/g, "" );
@@ -500,7 +500,7 @@ jQuery(document).ready(function(jQuery) {
 							if ( typeof ninja_forms_settings.currency_symbol !== 'undefined' && typeof current_value != 'undefined' ) {
 
                                 // Strip the Currency Symbol
-                                f_value = f_value.replace( ninja_forms_settings.currency_symbol, "" );
+                                f_value = current_value.replace( ninja_forms_settings.currency_symbol, "" );
 
                                 // Strip the Thousands Separator
                                 f_value = f_value.replace( /thousandsSeparator/g, "" );
