@@ -261,10 +261,13 @@ class NF_Notification_Email extends NF_Notification_Base_Type
 		$email_from 	= $from_name.' <'.$from_address.'>';
 
 		$subject 		= $this->process_setting( $id, 'email_subject' );
-		$subject 		= implode( ' ', $subject );
+		$subject 		= $this->flatten_array_recursive( ' ', $subject );
+
 		if ( empty( $subject ) ) {
 			$subject = $form_title;
-		}
+		} elseif( is_array( $subject ) ){
+            $subject = implode( ',', $subject );
+        }
 
 		$message 		= $this->process_setting( $id, 'email_message' );
 		if ( is_array ( $message ) )
@@ -347,7 +350,7 @@ class NF_Notification_Email extends NF_Notification_Base_Type
 
 		if ( is_array( $to ) AND !empty( $to ) ){
 
-            $to = explode( ",", $this->flatten_email_array( $to ) );
+            $to = explode( ",", $this->flatten_array_recursive( ',', $to ) );
 
 			wp_mail( $to, $subject, $message, $headers, $attachments );
 		}
@@ -358,25 +361,25 @@ class NF_Notification_Email extends NF_Notification_Base_Type
 		}
 	}
 
-    public function flatten_email_array( array $emails = array() ) {
+    public function flatten_array_recursive( $glue = ',', array $array = array() ) {
 
         $return = array();
 
-        foreach ( $emails as $email ) {
+        foreach ( $array as $value ) {
 
-            if ( is_array( $email ) ) {
+            if ( is_array( $value ) ) {
 
-                $return[] = $this->flatten_email_array( $email );
+                $return[] = $this->flatten_array_recursive( $glue, $value );
 
             } else {
 
-                $return[] = $email;
+                $return[] = $value;
 
             }
 
         }
 
-        return implode( ',', $return );
+        return implode( $glue, $return );
 
     }
 

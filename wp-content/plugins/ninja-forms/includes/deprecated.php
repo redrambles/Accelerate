@@ -967,5 +967,7 @@ function ninja_forms_update_form( $args ){
 	foreach ( $update_array as $key => $val ) {
 		Ninja_Forms()->form( $form_id )->update_setting( $key, $val );
 	}
+
+	Ninja_Forms()->form( $form_id )->dump_cache();
 	
 }

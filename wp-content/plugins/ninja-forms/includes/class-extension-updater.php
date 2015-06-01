@@ -20,7 +20,7 @@ class NF_Extension_Updater
 	public $product_nice_name = '';
 	public $product_name = '';
 	public $version = '';
-	public $store_url = 'http://ninjaforms.com';
+	public $store_url = 'https://ninjaforms.com';
 	public $file = '';
 	public $author = '';
 	public $error = '';
@@ -208,11 +208,11 @@ class NF_Extension_Updater
 
 		$plugin_settings[  $this->product_name.'_license_error' ] = '';
 		// $license_data->license will be either "deactivated" or "failed"
-		if( 'deactivated' == $license_data->license ) {
+		// if( 'deactivated' == $license_data->license ) {
 			// $license_data->license will be either "valid" or "invalid"
 			$plugin_settings[  $this->product_name.'_license_status' ] = 'invalid';
 	 		$plugin_settings[  $this->product_name.'_license' ] = '';
-		}
+		// }
 		update_option( 'ninja_forms_settings', $plugin_settings );
 	}
 

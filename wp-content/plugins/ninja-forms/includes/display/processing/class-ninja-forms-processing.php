@@ -144,6 +144,8 @@ class Ninja_Forms_Processing {
 					$val = false;
 				}
 
+				$val = nf_wp_kses_post_deep( $val );
+
 				$this->data['fields'][$field_id] = $val;
 				$field_row = ninja_forms_get_field_by_id( $field_id );
 				$field_row['data']['field_class'] = 'ninja-forms-field';
@@ -171,10 +173,10 @@ class Ninja_Forms_Processing {
 				foreach($form_data as $key => $val){
 					if(!is_array($val)){
 						$value = stripslashes($val);
-						//$value = esc_html($value);
+						$value = nf_wp_kses_post_deep( $value );
 						//$value = htmlspecialchars($value);
 					}else{
-						$value = $val;
+						$value = nf_wp_kses_post_deep( $val );
 					}
 					$this->data['form'][$key] = $value;
 				}
@@ -200,7 +202,7 @@ class Ninja_Forms_Processing {
 						}
 
 						$val = ninja_forms_stripslashes_deep( $val );
-						//$val = ninja_forms_esc_html_deep( $val );
+						$val = nf_wp_kses_post_deep( $val );
 
 						$this->data['fields'][$field_id] = $val;
 						if ( isset ( $cache['field_settings'][$field_id] ) ) {
