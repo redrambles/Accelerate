@@ -18,20 +18,27 @@ get_header(); ?>
 	<div id="content" role="main">
 
 	<?php while ( have_posts() ) : the_post(); 
-		$service = get_field('services');
-		$client = get_field('client');
-		$link = get_field('site_link');
+		//$services = get_field('services');
+		$services  = get_post_meta($post->ID, "services", true);
+		//$client = get_field('client');
+		$client  = get_post_meta($post->ID, "client", true);
+		//$link = get_field('site_link');
+		$link  = get_post_meta($post->ID, "site_link", true);
 		$size = "full";
-		$image_1 = get_field('image_1');
-		$image_2 = get_field('image_2');
-		$image_3 = get_field('image_3');
+		//$image_1 = get_field('image_1');
+		$image_1  = get_post_meta($post->ID, "image_1", true);
+		//$image_2 = get_field('image_2');
+		$image_2  = get_post_meta($post->ID, "image_2", true);
+		//$image_3 = get_field('image_3');
+		$image_3  = get_post_meta($post->ID, "image_3", true);
+
 	?>
 
 		<article class="case-study">
 			<aside class="case-study-sidebar">
 
 				<h2><?php the_title();?></h2>
-				<h6><?php echo $service; ?></h6>
+				<h6><?php echo $services; ?></h6>
 				<h6 id="client">Client: <?php echo $client; ?></h6>
 
 				<?php the_content(); ?>

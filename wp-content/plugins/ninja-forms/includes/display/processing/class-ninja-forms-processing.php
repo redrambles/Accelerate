@@ -125,7 +125,8 @@ class Ninja_Forms_Processing {
 		
 		$this->data['action'] = 'submit';
 		$this->data['form']['form_url'] = $this->get_current_url();
-		$cache = isset( $_SESSION['ninja_forms_transient_id'] ) ? get_transient( $_SESSION['ninja_forms_transient_id'] ) : null;
+		$transient_id = Ninja_Forms()->session->get( 'nf_transient_id' );
+		$cache = ( $transient_id ) ? get_transient( $transient_id ) : null;
 
 		// If we have fields in our $_POST object, then loop through the $_POST'd field values and add them to our global variable.
 		if ( isset ( $_POST['_ninja_forms_display_submit'] ) OR isset ( $_POST['_ninja_forms_edit_sub'] ) ) {
@@ -184,9 +185,9 @@ class Ninja_Forms_Processing {
 				$this->data['form']['user_attachments'] = array();
 			}
 
-		} else if ( $cache !== false ) { // Check to see if we have $_SESSION values from a submission.
+		} else if ( $cache !== false ) { // Check to see if we have cached values from a submission.
 			if ( is_array ( $cache['field_values'] ) ) {
-				// We do have a submission contained in our $_SESSION variable. We'll populate the field values with that data.
+				// We do have a submission contained in our cache. We'll populate the field values with that data.
 				foreach ( $cache['field_values'] as $field_id => $val ) {
 					$field_row = ninja_forms_get_field_by_id($field_id);
 					if(is_array($field_row) AND !empty($field_row)){

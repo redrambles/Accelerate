@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, wpnzach, kbjohnson90, daveshine, 
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 2.9.17
+Stable tag: 2.9.18
 License: GPLv2 or later
 
 Forms created with a simple drag and drop interface. Contact forms, Email collection forms, or any other form you want on your WordPress site.
@@ -74,22 +74,33 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 2.9.17 (29 May 2015) =
+= 2.9.18 (2 June 2015) =
 
-*Security:*
+*Changes:*
 
-* Hardened form display to protect against certain cross-site scripting methods.
+* Removed usage of PHP session variables in favour of an implementation of WP Session Manager.
 
 *Bugs:*
 
-* Fixed a bug that could prevent licenses from being activated properly.
-* Submission #'s should now be properly assigned.
+* The use of WP Session manager should fix any bugs related to session_start() or headers already sent messages related to Ninja Forms.
+* Fixed a bug that could cause form caching to prevent new form settings from appearing.
 
 == Requested Features ==
 
 If you have any feature requests, please feel free to visit [ninjaforms.com](http://ninjaforms.com) and let us know about it.
 
 == Changelog ==
+
+= 2.9.18 (2 June 2015) =
+
+*Changes:*
+
+* Removed usage of PHP session variables in favour of an implementation of WP Session Manager.
+
+*Bugs:*
+
+* The use of WP Session manager should fix any bugs related to session_start() or headers already sent messages related to Ninja Forms.
+* Fixed a bug that could cause form caching to prevent new form settings from appearing.
 
 = 2.9.17 (29 May 2015) =
 

@@ -102,7 +102,10 @@ class NF_Welcome {
 		remove_submenu_page( 'index.php', 'nf-getting-started' );
 		remove_submenu_page( 'index.php', 'nf-credits' );
 
-		// Badge for welcome page
+		// Ensures style is only on welcome page
+		if ((isset($_GET['page'])) && ($_GET['page']=='nf-about' || $_GET['page']=='nf-getting-started' || $_GET['page']=='nf-credits' || $_GET['page']=='nf-changelog')){
+                
+                // Badge for welcome page
 		$badge_url = NF_PLUGIN_URL . 'assets/images/nf-badge.png';
 		?>
 		<style type="text/css" media="screen">
@@ -144,6 +147,7 @@ class NF_Welcome {
 		/*]]>*/
 		</style>
 		<?php
+		} 
 	}
 
 	/**
@@ -434,7 +438,8 @@ class NF_Welcome {
 			$readme = file_get_contents( $file );
 			$readme = nl2br( esc_html( $readme ) );
 
-			$readme = end( explode( '== Changelog ==', $readme ) );
+			$readme = explode( '== Changelog ==', $readme );
+                        $readme = end( $readme );
 
 			$readme = preg_replace( '/`(.*?)`/', '<code>\\1</code>', $readme );
 			$readme = preg_replace( '/[\040]\*\*(.*?)\*\*/', ' <strong>\\1</strong>', $readme );

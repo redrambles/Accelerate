@@ -325,6 +325,10 @@ function ninja_forms_set_transient(){
 	global $ninja_forms_processing;
 
 	$form_id = $ninja_forms_processing->get_form_ID();
+	$transient_id = Ninja_Forms()->session->get( 'nf_transient_id' );
+	if ( ! $transient_id ) {
+		$transient_id = Ninja_Forms()->set_transient_id();
+	}
 	// Setup our transient variable.
 	$transient = array();
 	$transient['form_id'] = $form_id;
@@ -341,18 +345,12 @@ function ninja_forms_set_transient(){
 
 	$transient['field_settings'] = $all_fields_settings;
 
-	// Set errors and success messages as $_SESSION variables.
+	// Set errors and success messages as Ninja_Forms()->session variables.
 	$success = $ninja_forms_processing->get_all_success_msgs();
 	$errors = $ninja_forms_processing->get_all_errors();
 
 	$transient['success_msgs'] = $success;
 	$transient['error_msgs'] = $errors;
-	if ( ! isset ( $_SESSION['ninja_forms_transient_id'] ) )
-		ninja_forms_set_transient_id();
-
-	if ( isset ( $_SESSION['ninja_forms_transient_id'] ) ) {
-		$transient_id = $_SESSION['ninja_forms_transient_id'];
-	}
 
 	//delete_transient( 'ninja_forms_test' );
 	set_transient( $transient_id, $transient, DAY_IN_SECONDS );
@@ -367,8 +365,9 @@ function ninja_forms_set_transient(){
  */
 
 function ninja_forms_delete_transient(){
-	if( isset( $_SESSION['ninja_forms_transient_id'] ) ) {
-		delete_transient( $_SESSION['ninja_forms_transient_id'] );
+	$transient_id = Ninja_Forms()->session->get( 'nf_transient_id' );
+	if( $transient_id ) {
+		delete_transient( $transient_id );
 	}
 }
 

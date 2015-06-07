@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 2.9.17
+Version: 2.9.18
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -94,12 +94,15 @@ class Ninja_Forms {
 			// Instead, the forms() methods will act as wrappers for it.
 			self::$instance->forms = new NF_Forms();
 
+			// Our session manager wrapper class
+			self::$instance->session = new NF_Session();
+
 			register_activation_hook( __FILE__, 'ninja_forms_activation' );
 			add_action( 'plugins_loaded', array( self::$instance, 'load_lang' ) );
 			add_action( 'init', array( self::$instance, 'set_transient_id'), 1 );
 			add_action( 'init', array( self::$instance, 'init' ), 5 );
 			add_action( 'admin_init', array( self::$instance, 'admin_init' ), 5 );
-			add_action( 'update_option_ninja_forms_settings', array( self::$instance, 'refresh_plugin_settings' ), 10, 2 );
+			add_action( 'update_option_ninja_forms_settings', array( self::$instance, 'refresh_plugin_settings' ), 10 );
 		}
 
 		return self::$instance;
@@ -253,7 +256,7 @@ class Ninja_Forms {
 		// Check to see if an object for this form already exists in memory. If it does, return it.
 		if ( isset( self::$instance->$form_var ) )
 			return self::$instance->$form_var;
-		
+
 		// Check to see if we have a transient object stored for this form.
 		if ( is_object ( ( $form_obj = get_transient( 'nf_form_' . $form_id ) ) ) ) {
 			self::$instance->$form_var = $form_obj;
@@ -290,7 +293,7 @@ class Ninja_Forms {
 
 		// Plugin version
 		if ( ! defined( 'NF_PLUGIN_VERSION' ) )
-			define( 'NF_PLUGIN_VERSION', '2.9.17' );
+			define( 'NF_PLUGIN_VERSION', '2.9.18' );
 
 		// Plugin Folder Path
 		if ( ! defined( 'NF_PLUGIN_DIR' ) )
@@ -359,6 +362,8 @@ class Ninja_Forms {
 	 * @return void
 	 */
 	private function includes() {
+		// Include our session manager
+		require_once( NF_PLUGIN_DIR . 'classes/session.php' );
 		// Include our sub object.
 		require_once( NF_PLUGIN_DIR . 'classes/sub.php' );
 		// Include our subs object.
@@ -405,7 +410,6 @@ class Ninja_Forms {
 
 		// Include our upgrade files.
 		require_once( NF_PLUGIN_DIR . 'includes/admin/welcome.php' );
-
 
 		// Include deprecated functions and filters.
 		require_once( NF_PLUGIN_DIR . 'includes/deprecated.php' );
@@ -652,23 +656,23 @@ class Ninja_Forms {
 	}
 
 	/**
-	 * Set $_SESSION variable used for storing items in transient variables
+	 * Set Ninja_Forms()->session variable used for storing items in transient variables
 	 *
 	 * @access public
 	 * @since 2.7
-	 * @return void
+	 * @return string $t_id;
 	 */
 	public function set_transient_id(){
-		if( !session_id() )
-	        session_start();
-		if ( !isset ( $_SESSION['ninja_forms_transient_id'] ) AND !is_admin() ) {
-			$t_id = ninja_forms_random_string();
+		$transient_id = $this->session->get( 'nf_transient_id' );
+		if ( ! $transient_id && ! is_admin() ) {
+			$transient_id = ninja_forms_random_string();
 			// Make sure that our transient ID isn't currently in use.
-			while ( get_transient( $t_id ) !== false ) {
+			while ( get_transient( $transient_id ) !== false ) {
 				$_id = ninja_forms_random_string();
 			}
-			$_SESSION['ninja_forms_transient_id'] = $t_id;
+			$this->session->set( 'nf_transient_id', $transient_id );
 		}
+		return $transient_id;
 	}
 
 	/**
@@ -714,12 +718,12 @@ class Ninja_Forms {
 
 	/**
 	 * Refresh our plugin settings if we update the ninja_forms_settings option
-	 * 
+	 *
 	 * @access public
 	 * @since 2.9
 	 * @return void
 	 */
-	public function refresh_plugin_settings( $old_value, $value ) {
+	public function refresh_plugin_settings() {
 		self::$instance->plugin_settings = self::$instance->get_plugin_settings();
 	}
 
