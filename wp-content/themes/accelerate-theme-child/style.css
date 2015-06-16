@@ -382,10 +382,9 @@ aside.sidebar li a {
 .hero-about {
     background: url("img/taxi-photo-about.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
     height: 360px;
-    margin: 0 0 10px;
 }
 .hero-text h3 {
-    padding-top: 80px;
+    padding-top: 3em;
     text-align: center;
     line-height: 1.5em;
     letter-spacing: 0.75px;
@@ -393,7 +392,7 @@ aside.sidebar li a {
     font-family: "open sans";
     font-size: 24px;
     font-weight: normal;
-    margin: 6px 0 80px;
+    margin: 6px 0 2em;
 }
 
 .main-color {
@@ -403,7 +402,7 @@ aside.sidebar li a {
 
 .about-intro {
     text-align: center;
-    padding: 30px 0 0 0;
+    padding: 40px 0 0 0;
 }
 .about-intro h5{
     text-transform: uppercase;
@@ -424,7 +423,7 @@ aside.sidebar li a {
 .service-description {
     margin-top: 60px;
     display: inline-block;
-    padding: 10px;
+    padding: .5em;
     width: 67%;
 }
 

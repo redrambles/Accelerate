@@ -106,7 +106,7 @@ get_header(); ?>
 				<h4><?php echo $about_contact_title; ?></h4>
 			</div>
 			<div class="contact-button">	
-				<a class="button" href="<?php echo home_url(); ?>/contact"><?php echo $contact_button_text; ?></a>
+				<a class="button" href="<?php echo esc_url( home_url() ); ?>/contact"><?php echo $contact_button_text; ?></a>
 			</div>
 		</section>
 	</div>
