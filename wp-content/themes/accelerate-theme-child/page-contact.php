@@ -21,6 +21,7 @@ get_header(); ?>
 		<?php $method = $_SERVER['REQUEST_METHOD']; ?> 
 
 			<div class="contact-form"> 
+				
 
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?> 
 					<?php //the_meta(); ?>
