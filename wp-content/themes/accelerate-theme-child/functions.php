@@ -157,7 +157,6 @@ function wp_before_admin_bar_render_example() {
     ) );
 }
 
-
 // Color separate posts of different statuses in the Dashboard
 add_action( 'admin_footer', 'color_my_world' );
 
@@ -173,9 +172,9 @@ function color_my_world() {
 }
 
 // // customize admin footer text
-// add_filter('admin_footer_text', 'shapeSpace_admin_footer');
+// add_filter('admin_footer_text', 'accelerate_footer');
 
-// function shapeSpace_admin_footer($footer_text) {
+// function accelerate_footer($footer_text) {
 // 	$footer_text = '<span class="custom-footer">' . __('&copy; ', 'accelerate-theme-child') . date('Y') . ' <a href="' . home_url() .
 // 	'">' . get_bloginfo('name') . '</a> &bull; Accelerate Child Theme</span>';
 // 	echo $footer_text;
@@ -187,12 +186,13 @@ function color_my_world() {
 
 // In lieu of a 'maintenance mode plugin' - if in a hurry - will shut down the site to everyone but admins
 
-// add_action( 'get_header', 'get_header_example' );
+// add_action( 'get_header', 'emergency_repair' );
  
-// function get_header_example() {
+// function emergency_repair() {
  
 //     if ( ! current_user_can( 'activate_plugins' ) ) {
-//         wp_die( 'Emergency repair underway. The website will be back soon.' );
+//         wp_die( '<h3>Emergency repair underway. The website will be back soon.</h3></br>
+//         	<p>In the meantime, how about <a href="http://explosm.net/">something funny</a>?</p>' );
 //     }
      
 // }
