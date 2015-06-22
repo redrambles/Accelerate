@@ -28,10 +28,18 @@ get_header(); ?>
 	<div class="site-content">
 		<h4>Featured Work</h4>
 		<ul class="homepage-featured-work">
-			<?php query_posts('posts_per_page=3&post_type=case_studies'); ?>
-			<?php while ( have_posts() ) : the_post();
-				$image_1 = get_field("image_1");
-				//$image_1  = get_post_meta($post->ID, "image_1", true);
+			<?php //query_posts('posts_per_page=3&post_type=case_studies'); ?>
+
+			<?php $args = array (
+					'posts_per_page' => 3,
+					'post_type' => 'case_studies'
+				);
+
+			$featured = new WP_Query($args);?>
+
+			<?php while ($featured-> have_posts() ) : $featured->the_post();
+				//$image_1 = get_field("image_1");
+				$image_1  = get_post_meta($post->ID, "image_1", true);
 				$size = "medium";
 			 ?>
 			 	<li class="individual-featured-work">	
@@ -41,7 +49,8 @@ get_header(); ?>
 					<h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
 				</li>
 			<?php endwhile; //end the while loop
-			wp_reset_query(); ?> <!-- reset altered query back to the original -->
+			wp_reset_postdata();
+			//wp_reset_query(); ?> <!-- reset altered query back to the original -->
 		</ul>
 	</div>
 </section>
@@ -50,13 +59,19 @@ get_header(); ?>
 	<div class="site-content">
 		<div class="blog-post">
 			<h4>From the Blog</h4>
-			<?php query_posts('posts_per_page=1'); ?>
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php //query_posts('posts_per_page=1'); ?>
+			<?php $args = array (
+					'posts_per_page' => 1
+				);
+			$blog = new WP_Query($args);?>
+
+			<?php while ( $blog->have_posts() ) : $blog->the_post(); ?>
 			   <h2><?php the_title(); ?></h2>
                 <?php the_excerpt(); ?>
                 <a href="<?php the_permalink(); ?>" class="read-more-link">Read More <span>&rsaquo;</span></a>
 			<?php endwhile; //end the while loop
-			wp_reset_query(); ?> <!-- reset altered query back to the original -->
+			wp_reset_postdata();
+			//wp_reset_query(); ?> <!-- reset altered query back to the original -->
 		</div><!-- .blog-post -->
 
 		<!-- Sidebar to host the twitter module  -->

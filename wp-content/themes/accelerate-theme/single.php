@@ -66,7 +66,7 @@ get_header(); ?>
 
 			</div>
 
-<?php get_sidebar(); ?>
+	<?php get_sidebar(); ?>
 
 		</div>
 	</section>
@@ -76,7 +76,7 @@ get_header(); ?>
 		<div class="left">&larr;<a href="">back to posts</a></div>
 	</footer>
 	
-				<?php endwhile; ?>
+	<?php endwhile; ?>
 
 <?php
 get_footer();

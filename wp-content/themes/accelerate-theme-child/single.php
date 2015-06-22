@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-	<!-- BLOG PAGE -->
+	<!-- This is not part of the original assignment -->
 				
 	<section class="blog-page">
 		<div class="site-content">
@@ -23,23 +23,25 @@ get_header(); ?>
 						<header class="entry-header">
 							<div class="entry-meta">
 								<?php //the_meta(); ?>
-								<time class="entry-time" datetime="2014-09-20T04:33:51+00:00" itemprop="datePublished" title="Monday, September 20, 2014, 4:33 am">September 29, 2014</time>
+								<time class="entry-time"><?php the_time('F j, Y');?></time>
 							</div>
 							<h2 class="entry-title"><?php the_title(); ?></h2>
 						</header>
+
 						<div class="entry-summary">
-<!-- 							<figure class="wp-caption">
-								<img src="upload/entry-img.jpg" alt="">
-							</figure> -->
 							<?php the_content(); ?>
 						</div>
+						
 						<footer class="entry-footer">
-							<div class="entry-meta">
-								<span class="entry-terms author">Written by <a href="">Emily Davis</a></span>
-								<span class="entry-terms category">Posted in <a href="">My Notes</a></span>
-								<span class="entry-terms commets">No Comments</span>
-							</div>
+								<span class="entry-terms comments author">
+									Written by <?php the_author(); ?>
+									/
+									Posted in <?php the_category(', ') ?>
+									/
+									<?php echo get_comments_number() ?> comments
+								</span>
 						</footer>
+					
 					</div>
 				</article>
 

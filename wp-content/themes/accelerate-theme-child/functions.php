@@ -29,7 +29,7 @@
  //Register Main Sidebar widget area - AND homepage sidebar area (Added the main to override hard-coded stuff in sidebar.php)
 
 function accelerate_theme_child_widget_init() {
-	// Register main sidebar - blog (optional)
+	// Register main sidebar - blog (optional) - also called the widget area (defensively) in sidebar.php
 		register_sidebar( array(
 		'name'          => __( 'Main sidebar', 'accelerate' ),
 		'id'            => 'sidebar-1',
@@ -59,18 +59,6 @@ add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
 
 // Custom Post Type Function
 function create_custom_post_types() {
-// Create a case study custom post type
-	// $supports = array(
-	// 	'title', // post title
-	// 	'editor', // post content
-	// 	'author', // post author
-	// 	'thumbnail', // featured images
-	// 	'excerpt', // post excerpt
-	// 	'custom-fields', // custom fields
-	// 	'comments', // post comments
-	// 	'revisions', // post revisions
-	// 	'post-formats', // post formats
-	// );
 	register_post_type('case_studies', 
 		array( 
 			// 'supports' => $supports,

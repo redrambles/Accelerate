@@ -16,6 +16,8 @@
 
 get_header(); ?>
 
+	<!-- This is not part of the original assignment -->
+
 	<!-- BLOG PAGE -->
 	<section class="blog-page">
 		<div class="site-content">
@@ -31,8 +33,8 @@ get_header(); ?>
 					<article class="post-entry">
 					<div class="entry-wrap">
 						<header class="entry-header">
-							<div class="entry-meta">
-								<time class="entry-time" datetime="2014-09-29T04:33:51+00:00" itemprop="datePublished" title="Monday, September 29, 2014, 4:33 am"><?php the_date();?></time>
+							<div class="entry-meta"> <!-- Modified the time -->
+								<time class="entry-time"><?php the_time('F j, Y');?></time>
 							</div>
 							<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 						</header>
@@ -40,11 +42,14 @@ get_header(); ?>
 							<?php the_excerpt(); ?>
 						</div>
 						<footer class="entry-footer">
-							<div class="entry-meta"> 
-								<span class="entry-terms author">Written by <a href=""><?php //the_author(); ?></a></span>
-								<span class="entry-terms category">Posted in <a href="">Books</a></span>
-								<span class="entry-terms comments"><a href="">2 Comments</a></span>
-							</div>
+							<div class="entry-meta">
+								<span class="entry-terms comments author">
+									Written by <?php the_author(); ?>
+									/
+									Posted in <?php the_category(', ') ?>
+									/
+									<?php echo get_comments_number() ?> comments
+								</span>
 						</footer>
 					</div>
 				</article>
@@ -54,7 +59,7 @@ get_header(); ?>
 			
 			<?php get_sidebar(); ?>
 		</div>
-				<div class="clearfix"></div>
+		<div class="clearfix"></div>
 
 	</section>
 	<!-- END blog page -->
