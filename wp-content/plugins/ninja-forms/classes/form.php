@@ -135,6 +135,7 @@ class NF_Form {
 	public function update_setting( $setting, $value ) {
 		$this->settings[ $setting ] = $value;
 		nf_update_object_meta( $this->form_id, $setting, $value );
+		$this->dump_cache();
 		return true;
 	}
 

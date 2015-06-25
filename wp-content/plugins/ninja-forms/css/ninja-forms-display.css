@@ -255,6 +255,20 @@ RADIO & CHECKBOX LISTS
 .list-checkbox-wrap.label-right ul li {
     float: left;
 }
+.rtl .list-radio-wrap.label-left label,
+.rtl .list-radio-wrap.label-left ul,
+.rtl .list-radio-wrap.label-left ul li,
+.rtl .list-radio-wrap.label-right label,
+.rtl .list-radio-wrap.label-right ul,
+.rtl .list-radio-wrap.label-right ul li,
+.rtl .list-checkbox-wrap.label-left label,
+.rtl .list-checkbox-wrap.label-left ul,
+.rtl .list-checkbox-wrap.label-left ul li,
+.rtl .list-checkbox-wrap.label-right label,
+.rtl .list-checkbox-wrap.label-right ul,
+.rtl .list-checkbox-wrap.label-right ul li {
+    float: right;
+}
 .list-radio-wrap.label-left ul li,
 .list-radio-wrap.label-right ul li,
 .list-checkbox-wrap.label-left ul li,

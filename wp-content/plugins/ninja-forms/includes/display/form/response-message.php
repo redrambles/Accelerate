@@ -34,6 +34,8 @@ function ninja_forms_display_response_message( $form_id ){
 		$class = '';
 	}
 
+	$class = apply_filters( 'ninja_forms_display_response_message_class', $class, $form_id );
+
 	//if ( $class != '' ) {
 		echo '<div id="ninja_forms_form_' . $form_id . '_response_msg" style="' . $display . '" class="ninja-forms-response-msg '.$class.'">';
 			

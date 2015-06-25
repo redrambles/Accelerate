@@ -323,7 +323,7 @@ class NF_Notifications
 		$data = Ninja_Forms()->notification_types[ $type ]->save_admin( $n_id, $data );
 
 		foreach ( $settings as $meta_key => $meta_value ) {
-			nf_update_object_meta( $n_id, $meta_key, $meta_value );
+			nf_update_object_meta( $n_id, $meta_key, wp_kses_post( $meta_value ) );
 		}
 
 		do_action( 'nf_save_notification', $n_id, $data, $new );

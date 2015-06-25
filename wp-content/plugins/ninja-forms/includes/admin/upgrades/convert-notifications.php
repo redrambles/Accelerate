@@ -87,7 +87,7 @@ final class NF_Upgrade_Notifications extends NF_Upgrade
         }
 
         // Create a notification for our admin email
-        if ( isset ( $form_settings['admin_email_msg'] ) && ! empty ( $form_settings['admin_email_msg'] ) ) {
+        if ( ( isset ( $form_settings['admin_email_msg'] ) && ! empty ( $form_settings['admin_email_msg'] ) ) || ( isset ( $form_settings['admin_email_fields'] ) && 1 == $form_settings['admin_email_fields'] ) ) {
 
             // Create a notification
             $n_id = nf_insert_notification( $form_id );

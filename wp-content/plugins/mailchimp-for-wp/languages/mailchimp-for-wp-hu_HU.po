@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: MailChimp for WordPress\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/mailchimp-for-wp\n"
 "POT-Creation-Date: 2015-05-26 14:41:46+00:00\n"
-"PO-Revision-Date: 2015-05-26 14:42+0000\n"
-"Last-Translator: Danny van Kooten <dannyvankooten@gmail.com>\n"
+"PO-Revision-Date: 2015-06-02 07:31+0000\n"
+"Last-Translator: Németh Balázs <nb0000@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/projects/p/mailchimp-for-wordpress/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,7 +126,7 @@ msgstr "Feliratkozás"
 #: mailchimp-for-wordpress/includes/admin/class-admin.php:292
 #: mailchimp-for-wordpress-pro/includes/admin/class-admin.php:616
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Leiratkozás"
 
 #: mailchimp-for-wordpress/includes/admin/class-admin.php:316
 #: mailchimp-for-wordpress-pro/includes/admin/class-admin.php:654
@@ -253,12 +253,12 @@ msgstr "Kérjük, töltse ki a kötelező mezőket."
 #: mailchimp-for-wordpress/includes/functions/general.php:50
 #: mailchimp-for-wordpress-pro/includes/config/default-options.php:40
 msgid "You were successfully unsubscribed."
-msgstr ""
+msgstr "Sikeresen leiratkoztattuk."
 
 #: mailchimp-for-wordpress/includes/functions/general.php:51
 #: mailchimp-for-wordpress-pro/includes/config/default-options.php:41
 msgid "Given email address is not subscribed."
-msgstr ""
+msgstr "A megadott emailcím nincs feliratkozva."
 
 #: mailchimp-for-wordpress/includes/integrations/class-cf7.php:55
 #: mailchimp-for-wordpress/includes/views/checkbox-settings.php:52
@@ -738,12 +738,12 @@ msgstr "Példa: %s"
 msgid ""
 "Leave empty or enter <code>0</code> for no redirect. Otherwise, use complete"
 " (absolute) URLs, including <code>http://</code>."
-msgstr ""
+msgstr "Hagyja üresen, vagy írjon be <code>0</code>-t, hogy ne legyen átirányítás. Egyébként használjon teljes (abszolút) URLeket, amiben van <code>http://</code>."
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:195
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-general-settings.php:140
 msgid "Successfully subscribed"
-msgstr ""
+msgstr "Sikeresen feliratkoztatva."
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:198
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/optional-form-settings.php:156
@@ -751,7 +751,7 @@ msgstr ""
 msgid ""
 "The text that shows when an email address is successfully subscribed to the "
 "selected list(s)."
-msgstr ""
+msgstr "A szöveg, ami megjelenik, ha egy emailcímet sikeresen feliratkoztattunk a kiválasztott listá(k)ra."
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:202
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/optional-form-settings.php:160
@@ -763,7 +763,7 @@ msgstr "Érvénytelen emailcím"
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/optional-form-settings.php:163
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-general-settings.php:150
 msgid "The text that shows when an invalid email address is given."
-msgstr ""
+msgstr "A szöveg, ami megjelenik, ha egy érvénytelen emailcímet adnak meg."
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:209
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/optional-form-settings.php:167
@@ -777,7 +777,7 @@ msgstr "Kötelező mező nincs kitöltve"
 msgid ""
 "The text that shows when a required field for the selected list(s) is "
 "missing."
-msgstr ""
+msgstr "A szöveg, ami megjelenik, ha egy, a listá(k)hoz szükséges mező nincs kitöltve."
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:216
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/optional-form-settings.php:174
@@ -791,7 +791,7 @@ msgstr "Már feliratkozott"
 msgid ""
 "The text that shows when the given email is already subscribed to the "
 "selected list(s)."
-msgstr ""
+msgstr "A szöveg, ami megjelenik, ha a megadott emailcím már fel van iratkozva a kiválasztott listá(k)ra."
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:224
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/optional-form-settings.php:182
@@ -802,19 +802,19 @@ msgstr "Érvénytelen CAPTCHA"
 #: mailchimp-for-wordpress/includes/views/form-settings.php:229
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-general-settings.php:174
 msgid "General error"
-msgstr ""
+msgstr "Általános hiba"
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:232
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/optional-form-settings.php:193
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-general-settings.php:177
 msgid "The text that shows when a general error occured."
-msgstr ""
+msgstr "A szöveg, ami megjelenik, ha általános hiba történt."
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:236
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/optional-form-settings.php:197
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-general-settings.php:181
 msgid "Unsubscribed"
-msgstr ""
+msgstr "Leiratkoztatva"
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:239
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/optional-form-settings.php:200
@@ -822,13 +822,13 @@ msgstr ""
 msgid ""
 "When using the unsubscribe method, this is the text that shows when the "
 "given email address is successfully unsubscribed from the selected list(s)."
-msgstr ""
+msgstr "A leiratkozás használatakor ez a szöveg jelenik meg egy adott emailcím sikeres leiratkoztatásakor a kijelölt listá(k)ról."
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:243
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/optional-form-settings.php:204
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-general-settings.php:188
 msgid "Not subscribed"
-msgstr ""
+msgstr "Nem feliratkoztatva"
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:246
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/optional-form-settings.php:207
@@ -836,7 +836,7 @@ msgstr ""
 msgid ""
 "When using the unsubscribe method, this is the text that shows when the "
 "given email address is not on the selected list(s)."
-msgstr ""
+msgstr "A leiratkozás használatakor ez a szöveg jelenik meg egy adott emailcím nincs a kijelölt listá(ko)n."
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:252
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/optional-form-settings.php:213
@@ -856,7 +856,7 @@ msgstr "Az űrlap vizuális megjelenésének módosítása %s-re vonatkozó CSS 
 msgid ""
 "You can add the CSS rules to your theme stylesheet using the <a "
 "href=\"%s\">Theme Editor</a> or by using a plugin like %s"
-msgstr ""
+msgstr "A CSS szabályokat a sablon stíluslapjába teheti a <a href=\"%s\">Téma szerkesztő</a> vagy egy bővítmény segítségével: %s"
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:269
 msgid ""
@@ -869,24 +869,24 @@ msgid ""
 "If you need an easier way to style your forms, consider <a "
 "href=\"%s\">upgrading to MailChimp for WordPress Pro</a> which comes with an"
 " easy Styles Builder."
-msgstr ""
+msgstr "Ha egyszerűbben szeretné megformázni az űrlapjait, akkor esetleg <a href=\"%s\">váltson a MailChimp for WordPress Pro verzióra</a>, amiben van Stílus építő."
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:272
 #: mailchimp-for-wordpress-pro/includes/admin/class-admin.php:366
 msgid "Variables"
-msgstr ""
+msgstr "Változók"
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:274
 #: mailchimp-for-wordpress-pro/includes/views/parts/admin-text-variables.php:11
 msgid ""
 "The following list of variables can be used to <a href=\"%s\">add some "
 "dynamic content to your form or success and error messages</a>."
-msgstr ""
+msgstr "Az alábbi változókat arra lehet használni, hogy <a href=\"%s\">dinamikus tartalmat adjunk az űrlaphoz vagy a siker és hiba üzenetekhez</a>."
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:274
 #: mailchimp-for-wordpress-pro/includes/views/parts/admin-text-variables.php:11
 msgid "This allows you to personalise your form or response messages."
-msgstr ""
+msgstr "Ezzel testre szabhatja az űrlapokat vagy a válasz üzeneteket."
 
 #: mailchimp-for-wordpress/includes/views/form-settings.php:282
 #: mailchimp-for-wordpress-pro/includes/views/parts/admin-text-variables.php:16
@@ -958,7 +958,7 @@ msgstr "Aktuális URL"
 #: mailchimp-for-wordpress/includes/views/form-settings.php:336
 #: mailchimp-for-wordpress-pro/includes/views/parts/admin-text-variables.php:70
 msgid "The value of the <strong>FNAME</strong> field, if set."
-msgstr ""
+msgstr "Az <strong>FNAME</strong> mező értéke, ha meg van adva."
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-field-wizard.php:10
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/required-form-settings.php:31
@@ -980,12 +980,12 @@ msgstr "Elküldés gomb"
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-field-wizard.php:20
 msgid "Subscribe / unsubscribe choice"
-msgstr ""
+msgstr "Feliratkozás / leiratkozás lehetőség"
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-field-wizard.php:21
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/required-form-settings.php:40
 msgid "List choice"
-msgstr ""
+msgstr "Lista választási lehetőség"
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-field-wizard.php:29
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/required-form-settings.php:49
@@ -1043,7 +1043,7 @@ msgstr "A MailChimp for WordPress fordításokra vár. Nincs lefordítva a bőv�
 msgid ""
 "Enjoying this plugin? <a href=\"%s\">Upgrade to MailChimp for WordPress "
 "Pro</a> for an even better plugin, you will love it."
-msgstr ""
+msgstr "Tetszik a bővítmény? <a href=\"%s\">Váltson a MailChimp for WordPress Pro verzióra</a>! Szeretni fogja."
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-footer.php:20
 #: mailchimp-for-wordpress-pro/includes/views/parts/admin-footer.php:13
@@ -1053,18 +1053,18 @@ msgstr "Ezt a bővítményt nem a MailChimp fejleszti, és nem áll vele közvet
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-need-support.php:9
 msgid "Looking for help?"
-msgstr ""
+msgstr "Segítséget keres?"
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-need-support.php:10
 msgid ""
 "Make sure to look at the <a href=\"%s\">MailChimp for WordPress "
 "documentation</a>, the plugin <a href=\"%s\">FAQ</a> or use the <a "
 "href=\"%s\">support forums</a> on WordPress.org."
-msgstr ""
+msgstr "Nézzen bele a <a href=\"%s\">MailChimp for WordPress dokumentációba</a>, a bővítmény <a href=\"%s\">GYIK</a>-be vagy használja a <a href=\"%s\">támogató fórumokat</a> a WordPress.org weboldalon."
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-need-support.php:14
 msgid "Do you enjoy this plugin?"
-msgstr ""
+msgstr "Tetszik a bővítmény?"
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-need-support.php:17
 msgid "Leave a %s plugin review on WordPress.org"
@@ -1086,7 +1086,7 @@ msgstr "Értékelje a bővítményt a blogján, és linkeljen a <a href=\"%s\">a
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-need-support.php:19
 msgid "There is an <a href=\"%s\">affiliate program</a> as well."
-msgstr ""
+msgstr "Van egy <a href=\"%s\">tag-program</a>unk is."
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-need-support.php:20
 msgid "Vote \"works\" on the WordPress.org plugin page"
@@ -1095,27 +1095,27 @@ msgstr "Írja meg, hogy „működik” a WordPress.org bővítmény oldalán!"
 #: mailchimp-for-wordpress/includes/views/parts/admin-upgrade-to-pro.php:10
 msgid ""
 "This plugin has an even better premium version, you will absolutely love it."
-msgstr ""
+msgstr "Ennek a bővítménynek van egy még jobb prémium verziója is, biztosan szeretni fogja."
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-upgrade-to-pro.php:11
 msgid "Some differences with this free version of the plugin:"
-msgstr ""
+msgstr "A bővítmény néhány eltérése ezen ingyenes verziótól:"
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-upgrade-to-pro.php:14
 msgid "Multiple forms"
-msgstr ""
+msgstr "Több űrlap"
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-upgrade-to-pro.php:15
 msgid "Each subscribing to one or multiple MailChimp lists."
-msgstr ""
+msgstr "Mind egy vagy több MailChimp listára iratkoztat fel."
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-upgrade-to-pro.php:18
 msgid "AJAX forms"
-msgstr ""
+msgstr "AJAX űrlapok"
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-upgrade-to-pro.php:19
 msgid "Forms do not require a full page reload."
-msgstr ""
+msgstr "Az űrlapoknak nem kell újratölteni az egész oldalt."
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-upgrade-to-pro.php:22
 #: mailchimp-for-wordpress-pro/includes/views/pages/admin-reports.php:14
@@ -1124,15 +1124,15 @@ msgstr "Statisztika"
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-upgrade-to-pro.php:23
 msgid "Every form interaction is logged and visualised in insightful charts."
-msgstr ""
+msgstr "Minden űrlap interakció naplózásra kerül, és szép grafikonokon jelenik meg."
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-upgrade-to-pro.php:26
 msgid "Styles Builder"
-msgstr ""
+msgstr "Stílus építő"
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-upgrade-to-pro.php:27
 msgid "Create beautiful form themes with ease."
-msgstr ""
+msgstr "Hozzon létre gyönyörű űrlap témákat könnyedén."
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-upgrade-to-pro.php:31
 msgid "Upgrade Now"
@@ -1140,7 +1140,7 @@ msgstr "Frissítés most"
 
 #: mailchimp-for-wordpress/includes/views/parts/admin-upgrade-to-pro.php:32
 msgid "View Demo"
-msgstr ""
+msgstr "Demó megtekintése"
 
 #: mailchimp-for-wordpress-pro/includes/admin/class-admin.php:176
 msgid "Documentation"
@@ -1211,7 +1211,7 @@ msgstr "A befejezés dátuma nem lehet a kézdés dátuma előtt."
 msgid ""
 "Couldn't create the stylesheet. Manually add the generated CSS to your theme"
 " stylesheet or use a plugin like <em>%s</em>."
-msgstr ""
+msgstr "Nem sikerült a stíluslap létrehozása. Adja kézzel a létrehozott CSS kódot a sablon stíluslapjához vagy használjon egy bővítményt: <em>%s</em>."
 
 #: mailchimp-for-wordpress-pro/includes/admin/class-styles-builder.php:437
 msgid "%sShow generated CSS%s"
@@ -1623,11 +1623,11 @@ msgstr "Egyéb hibák"
 
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/required-form-settings.php:39
 msgid "Submit button"
-msgstr ""
+msgstr "Elküldés gomb"
 
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/required-form-settings.php:41
 msgid "Subscribe / unsubscribe action"
-msgstr ""
+msgstr "Feliratkozás / leiratkozás művelet"
 
 #: mailchimp-for-wordpress-pro/includes/views/metaboxes/required-form-settings.php:90
 msgid "Form usage"
@@ -1675,12 +1675,12 @@ msgstr "Nem találtam listá(ka)t a MailChimp fiókjában."
 msgid ""
 "Need help? Have a look at the <a href=\"%s\">plugin documentation</a> or "
 "email us directly at <a href=\"%s\">support@mc4wp.com</a>."
-msgstr ""
+msgstr "Segítség kell? Nézzen bele a <a href=\"%s\">bővítmény dokumentáció</a>ba vagy írjon emailt nekünk: <a href=\"%s\">support@mc4wp.com</a>."
 
 #: mailchimp-for-wordpress-pro/includes/views/parts/admin-footer.php:11
 msgid ""
 "Please use the same email address as you used when purchasing the plugin."
-msgstr ""
+msgstr "Kérjük, hogy használja azt az emailcímet, amit a bővítmény megvásárlásakor használt."
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:11
 msgid "Use the fields below to create custom styling rules for your forms."
@@ -1691,14 +1691,14 @@ msgid ""
 "Tip: have a look at our <a href=\"%s\">knowledge base</a> articles on <a "
 "href=\"%s\">creating an inline form</a> or <a href=\"%s\">styling your "
 "form</a> in general."
-msgstr ""
+msgstr "Tipp: nézzen bele <a href=\"%s\">tudás bázis</a> cikkekbe: <a href=\"%s\">beágyazott űrlap létrehozása</a> vagy <a href=\"%s\">űrlap formázása</a>."
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:22
 msgid ""
 "You are not loading your custom stylesheet at this moment. To apply these "
 "styles on your site, select \"load custom form styles\" in the <a "
 "href=\"%s\">MailChimp for WordPress form settings</a>."
-msgstr ""
+msgstr "Jelenleg nem tölti be az egyedi stíluslapot. Ezen stílusok alkalmazásához válassza az „egyedi stílusok betöltése” opciót a <a href=\"%s\">MailChimp for WordPress űrlap beállítások</a>nál."
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:30
 msgid "Select form to build styles for:"
@@ -1715,204 +1715,204 @@ msgstr "Szükség van JavaScriptre az űrlap előnézetének megtekintéséhez."
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:62
 msgid "Form container style"
-msgstr ""
+msgstr "Űrlap befoglaló stílus"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:66
 msgid "Form width"
-msgstr ""
+msgstr "Űrlap szélesség"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:66
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:118
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:160
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:202
 msgid "px or %"
-msgstr ""
+msgstr "px vagy %"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:70
 msgid "Text alignment"
-msgstr ""
+msgstr "Szöveg igazítás"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:73
 msgid "Choose alignment"
-msgstr ""
+msgstr "Igazítás választása"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:74
 msgid "Left"
-msgstr ""
+msgstr "Balra"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:75
 msgid "Center"
-msgstr ""
+msgstr "Középre"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:76
 msgid "Right"
-msgstr ""
+msgstr "Jobbra"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:81
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:210
 msgid "Background color"
-msgstr ""
+msgstr "Háttér szín"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:83
 msgid "Padding"
-msgstr ""
+msgstr "Térköz"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:89
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:168
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:219
 msgid "Border color"
-msgstr ""
+msgstr "Keret szín"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:91
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:170
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:215
 msgid "Border width"
-msgstr ""
+msgstr "Keret szélesség"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:95
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:126
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:228
 msgid "Text color"
-msgstr ""
+msgstr "Szöveg szín"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:97
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:128
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:230
 msgid "Text size"
-msgstr ""
+msgstr "Szövegméret"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:101
 msgid "Background image"
-msgstr ""
+msgstr "Háttér kép"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:114
 msgid "Label styles"
-msgstr ""
+msgstr "Címke stílusok"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:118
 msgid "Label width"
-msgstr ""
+msgstr "Címke szélesség"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:132
 msgid "Text style"
-msgstr ""
+msgstr "Szöveg stílus"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:135
 msgid "Choose text style.."
-msgstr ""
+msgstr "Válasszon szöveg stílust..."
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:136
 msgid "Normal"
-msgstr ""
+msgstr "Normál"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:137
 msgid "Bold"
-msgstr ""
+msgstr "Félkövér"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:138
 msgid "Italic"
-msgstr ""
+msgstr "Dőlt"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:139
 msgid "Bold & Italic"
-msgstr ""
+msgstr "Félkövér és dőlt"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:142
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:174
 msgid "Display"
-msgstr ""
+msgstr "Megjelenítés"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:146
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:178
 msgid "Inline"
-msgstr ""
+msgstr "Azonos sorban"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:147
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:179
 msgid "New line"
-msgstr ""
+msgstr "Új sorban"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:156
 msgid "Field styles"
-msgstr ""
+msgstr "Mező stílusok"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:160
 msgid "Field width"
-msgstr ""
+msgstr "Mező szélesség"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:164
 msgid "Field height"
-msgstr ""
+msgstr "Mező magasság"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:182
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:224
 msgid "Border radius"
-msgstr ""
+msgstr "Keret sugár"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:186
 msgid "Focus outline"
-msgstr ""
+msgstr "Fókusz kiemelés"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:198
 msgid "Button styles"
-msgstr ""
+msgstr "Gomb stílusok"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:202
 msgid "Button width"
-msgstr ""
+msgstr "Gomb szélesség"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:206
 msgid "Button height"
-msgstr ""
+msgstr "Gomb magasság"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:238
 msgid "Error and success messages"
-msgstr ""
+msgstr "Hiba és siker üzenetek"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:242
 msgid "Success text color"
-msgstr ""
+msgstr "Szövegszín siker esetén"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:244
 msgid "Error text color"
-msgstr ""
+msgstr "Szövegszín hiba esetén"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:252
 msgid "Advanced"
-msgstr ""
+msgstr "Haladó"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:256
 msgid "CSS Selector Prefix"
-msgstr ""
+msgstr "CSS jelölő előtag"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:258
 msgid ""
 "Use this to create a more specific (and thus more \"important\") CSS "
 "selector."
-msgstr ""
+msgstr "Használja pontosabb (így fontosabb) CSS jelölő létrehozásához."
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:261
 msgid "Manual CSS"
-msgstr ""
+msgstr "Kézi CSS"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:261
 msgid ""
 "The CSS rules you enter here will be appended to the custom stylesheet."
-msgstr ""
+msgstr "Az itt megadott CSS szabályok az egyedi stíluslap végéhez lesznek csatolva."
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:269
 msgid "Copy styles from other form"
-msgstr ""
+msgstr "Stílusok másolása másik űrlapból"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:283
 msgid "Copy Styles"
-msgstr ""
+msgstr "Stílusok másolása"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:283
 msgid ""
 "Are you sure you want to copy form styles from another form? This will "
 "overwrite current styles for this form."
-msgstr ""
+msgstr "Biztosan átmásolja egy másik űrlap stílusait? Ez felülírja ennek az űrlapnak az aktuális stílusait."
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:298
 msgid "Are you sure you want to delete all custom styles for this form?"
@@ -1924,7 +1924,7 @@ msgstr "Űrlap stílusok törlése"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-css-builder.php:305
 msgid "Form preview"
-msgstr ""
+msgstr "Űrlap előnézet"
 
 #: mailchimp-for-wordpress-pro/includes/views/tabs/admin-forms-general-settings.php:8
 msgid "Sign-Up Forms"
