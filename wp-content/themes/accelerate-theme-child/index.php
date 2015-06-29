@@ -25,7 +25,6 @@ get_header(); ?>
 
 				<!-- Testing -->
 			<!-- <pre><?php //print_r($wp_query); exit; ?></pre> -->
-				
 				<?php if ( have_posts() ) :
 				// Start the Loop.
 				while ( have_posts() ) : the_post(); ?>

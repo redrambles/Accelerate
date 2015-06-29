@@ -163,7 +163,8 @@ input#email {
 /* Case Studies */
 
 article.case-study {
-    max-width: 100%; /* testing this out */
+    width: 100%; /* testing this out */
+    overflow: hidden;
 }
 
 aside.case-study-sidebar{
