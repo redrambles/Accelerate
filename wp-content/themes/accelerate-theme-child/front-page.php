@@ -11,18 +11,18 @@
 get_header(); ?>
 
 <section class="home-page">
-		<div class="site-content">
+		<!-- <div class="site-content"> -->
 			<?php while ( have_posts() ) : the_post(); ?>
 				<div class='homepage-hero'>
 					<?php the_content(); ?>
 					<a class="button" href="<?php echo home_url(); ?>/case-studies">View Our Work</a>
 				</div>
 			<?php endwhile; // end of the loop. ?>
-		</div><!-- .site-content -->
+		<!-- </div -->><!-- .site-content -->
 </section><!-- .home-page -->
 
 	<!-- Testing -->
-			<!-- <pre><?php //print_r($wp_query); exit; ?></pre> --> 
+<?php //print_r($wp_query); exit; ?>
 
 <section class="featured-work">
 	<div class="site-content">
@@ -55,6 +55,63 @@ get_header(); ?>
 	</div>
 </section>
 
+	<?php //testing a different way to fetch the info from the about page - it works as well but I think below is more clear
+	//$args = array (
+	// 		'pagename' => 'about'
+	// 	);
+
+	// $test = new WP_Query($args);
+	// if while ($test-> have_posts() ) : $test->the_post(); 
+	// 	$service_1_title = get_field('service_1_title');
+	// 	echo $service_1_title;
+	// endwhile;
+	?>
+
+<section class="featured-services">
+	<div class="site-content">
+		<h4><a href="<?php echo home_url(); ?>/about">Services</a></h4>
+		<ul class="homepage-featured-services">
+			<?php
+				// You could also create a new custom query fetching pagename="about" info and then use the variables exactly 
+				$service_1_image = get_field('service_1_image', 47331); 
+				//$service_1_image  = get_post_meta(47331, "service_1_image", true); - This would be the NON ACF dependant method
+				$service_2_image = get_field('service_2_image', 47331);
+				$service_3_image = get_field('service_3_image', 47331);
+				$service_4_image = get_field('service_4_image', 47331);
+				$service_1_title = get_field('service_1_title', 47331);
+				$service_2_title = get_field('service_2_title', 47331);
+				$service_3_title = get_field('service_3_title', 47331);
+				$service_4_title = get_field('service_4_title', 47331);
+				$size = "medium";
+			 ?>
+		 	<li class="individual-featured-service">	
+			 	<figure>
+			 		<?php echo wp_get_attachment_image($service_1_image, $size); ?>
+			 	</figure>
+				<h5><a href="<?php the_permalink(); ?>"><?php echo $service_1_title; ?></a></h5>
+			</li>
+			<li class="individual-featured-service">	
+			 	<figure>
+			 		<?php echo wp_get_attachment_image($service_2_image, $size); ?>
+			 	</figure>
+				<h5><a href="<?php the_permalink(); ?>"><?php echo $service_2_title; ?></a></h5>
+			</li>
+			<li class="individual-featured-service">	
+			 	<figure>
+			 		<?php echo wp_get_attachment_image($service_3_image, $size); ?>
+			 	</figure>
+				<h5><a href="<?php the_permalink(); ?>"><?php echo $service_3_title; ?></a></h5>
+			</li>
+			<li class="individual-featured-service">	
+			 	<figure>
+			 		<?php echo wp_get_attachment_image($service_4_image, $size); ?>
+			 	</figure>
+				<h5><a href="<?php the_permalink(); ?>"><?php echo $service_4_title; ?></a></h5>
+			</li>
+		</ul>
+	</div>
+</section>
+
 <section class="recent-posts">
 	<div class="site-content">
 		<div class="blog-post">
@@ -76,12 +133,11 @@ get_header(); ?>
 
 		<!-- Sidebar to host the twitter module  -->
 		<?php if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
-		<div id="secondary" class="widget-area" role="complementary">
+		<div id="secondary" class="widget-area tweet-module" role="complementary">
 		    <?php dynamic_sidebar( 'sidebar-2' ); ?>
 		    <a href="www.twitter.com/redrambles" class="follow-us-link">Follow Us <span>&rsaquo;</span></a>
 		</div>
 		<?php endif; ?>
-
 
 	</div><!-- .site-content -->
 </section><!-- .recent-posts -->

@@ -20,18 +20,11 @@ get_header(); ?>
 	<?php while ( have_posts() ) : the_post(); 
 		//$services = get_field('services');
 		$services  = get_post_meta($post->ID, "services", true);
-		//$client = get_field('client');
 		$client  = get_post_meta($post->ID, "client", true);
-		//$link = get_field('site_link');
 		$link  = get_post_meta($post->ID, "site_link", true);
-		$size = "full";
-		//$image_1 = get_field('image_1');
 		$image_1  = get_post_meta($post->ID, "image_1", true);
-		//$image_2 = get_field('image_2');
 		$image_2  = get_post_meta($post->ID, "image_2", true);
-		//$image_3 = get_field('image_3');
 		$image_3  = get_post_meta($post->ID, "image_3", true);
-
 	?>
 
 		<article class="case-study">

@@ -9,6 +9,10 @@ Text Domain: accelerate-theme-child
 
 @import url('../accelerate-theme/style.css'); 
 
+.site-content {
+    max-width: 100%;
+}
+
 .blog-page {
     padding: 0;
     margin: 0;
@@ -33,11 +37,120 @@ a.button {
 	margin-left: 35px;
 }
 
+
+/* Home Page Featured Work */
+
+.featured-work{
+    margin-bottom: 20px;
+}
+
+.homepage-featured-work {
+    list-style: none;
+    overflow: hidden;   
+    margin: 0;
+    padding-bottom: 10%;
+}
+
+.individual-featured-work {
+    display: inline-block;
+    width: 30%;
+    padding-right: 3%;
+}
+.individual-featured-work figure{
+    text-align: center;
+}
+
+.individual-featured-work h5 {
+    text-align: center;
+    font-weight: 400;
+    margin-top: 20px;
+}
+
+.site-content>h4 {
+    text-align: center;
+    padding-bottom: 3%;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    color: #444;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 980px) {
+    .individual-featured-work {
+        width: 40%;
+        float: none;
+        padding: 1rem 1rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .individual-featured-work {
+        width: 100%;
+        float: left;
+        padding: 1rem 1rem;
+    }
+}
+
+/* Home Page Services */
+
+.featured-services{
+    margin-bottom: 20px;
+}
+
+.homepage-featured-services {
+    list-style: none;
+    margin: 0;
+    padding-bottom: 10%;
+}
+
+.individual-featured-service {
+    display: inline-block;
+    width: 21%;
+    padding-right: 3%;
+}
+.individual-featured-service figure{
+    text-align: center;
+}
+
+.individual-featured-service h5 {
+    text-align: center;
+    font-weight: 400;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 980px) {
+    .individual-featured-service {
+        width: 40%;
+        float: left;
+        padding: 1rem 1rem;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .individual-featured-service {
+        width: 100%;
+        float: left;
+        padding: 1rem 0;
+    }
+}
+
+
+/* Home Page Recent Posts Section */
+
+.recent-posts{
+    clear: both;
+    overflow: hidden;
+}
+
+/* Home Page Blog Post */
+
 .blog-post {
-    width: 50%;
+/*    clear: both;*/
+    width: 48%;
     display: inline-block;
     float: left;
-    padding-bottom: 20px;
+    padding: 0 0 1em 1em;
+    word-wrap: break-word;
 }
 
 .blog-post h4, #pi_simpletwittertweets-2 h3 {
@@ -67,43 +180,10 @@ a.button {
     text-transform: uppercase;
 }
 
-/* Home Page Featured Work */
-
-.featured-work{
-    margin-bottom: 20px;
-}
-
-.homepage-featured-work {
-    list-style: none;
-    margin: 0;
-    padding-bottom: 10%;
-}
-
-.individual-featured-work {
-    display: inline-block;
-    width: 30%;
-    padding-right: 3%;
-}
-
-.individual-featured-work h5 {
-    text-align: center;
-    font-weight: 400;
-    margin-top: 20px;
-}
-
-.site-content>h4 {
-    text-align: center;
-    padding-bottom: 3%;
-    font-size: 16px;
-    font-family: 'Montserrat';
-    color: #444;
-    text-transform: uppercase;
-}
-
 
 /* Home Page Tweet Sidebar */
 
-#secondary {
+.tweet-module {
     padding: 2% 0 0 5%;
     width: 45%;
     float: right;
@@ -130,6 +210,15 @@ ul.tweets li{
     color: #45ac9d;
     text-transform: uppercase;
     padding-left: 40px;
+}
+
+/* This is a WORK IN PROGRESS */
+@media screen and (max-width: 850px) {
+    .blog-post, .tweet-module {
+        width: 90%;
+        float: left;
+        /*padding: 1rem 1rem;*/
+    }
 }
 
 /* Social icons homepage */
@@ -221,6 +310,9 @@ div.case-study-images img{
     article.case-study {
         padding: 20px;
         margin: 0 auto;
+    }
+    aside.case-study-sidebar {
+        width: 95%;
     }
 
     aside.case-study-sidebar,
