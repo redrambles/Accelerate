@@ -31,9 +31,9 @@
 function accelerate_theme_child_widget_init() {
 	// Register main sidebar - blog (optional) - also called the widget area (defensively) in sidebar.php
 		register_sidebar( array(
-		'name'          => __( 'Main sidebar', 'accelerate' ),
+		'name'          => __( 'Main sidebar', 'accelerate-theme-child' ),
 		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'accelerate' ),
+		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'accelerate-theme-child' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h2 class="widget-title">',
@@ -79,9 +79,9 @@ add_action( 'init', 'create_custom_post_types' );
 
 //Enqueue scripts and styles.
 function accelerate_child_scripts() {
-	//wp_enqueue_style( 'parent-theme-css', get_template_directory_uri() . '/style.css' );
 	wp_enqueue_style('accelerate-child-google-fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,700,300');
 	wp_enqueue_style('accelerate-child-font-awesome', 'http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+	wp_enqueue_style( 'parent-theme-css', get_template_directory_uri() . '/style.css' );
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 

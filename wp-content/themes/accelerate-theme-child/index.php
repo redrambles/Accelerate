@@ -23,8 +23,6 @@ get_header(); ?>
 		<div class="site-content">
 			<div class="main-content">
 
-				<!-- Testing -->
-			<!-- <pre><?php //print_r($wp_query); exit; ?></pre> -->
 				<?php if ( have_posts() ) :
 				// Start the Loop.
 				while ( have_posts() ) : the_post(); ?>
@@ -54,9 +52,19 @@ get_header(); ?>
 				</article>
 			<?php endwhile; endif; ?>
 
+			<!-- I put this here - copied over from skillcrushstarter --> 
+			<?php if ( have_posts() ): ?>
+				<div id="navigation" class="container"> 
+			        <div class="left"><?php next_posts_link('&larr; <span>Older Posts</span>'); ?></div>
+			        <div class="right"><?php previous_posts_link('<span>Newer Posts</span> &rarr;'); ?></div>
+			    </div>
+			<?php endif; ?>
+
 			</div>
+
 			
 			<?php get_sidebar(); ?>
+			
 		</div>
 		<div class="clearfix"></div>
 

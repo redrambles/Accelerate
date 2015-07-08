@@ -7,10 +7,11 @@ Version: 1.0.0
 Text Domain: accelerate-theme-child
 */
 
-@import url('../accelerate-theme/style.css'); 
+/*@import url('../accelerate-theme/style.css'); */
 
 .site-content {
     max-width: 100%;
+    overflow: hidden; 
 }
 
 .blog-page {
@@ -75,6 +76,7 @@ a.button {
     text-transform: uppercase;
 }
 
+/*Home Page Featured Work Responsive*/
 @media screen and (max-width: 980px) {
     .individual-featured-work {
         width: 40%;
@@ -117,6 +119,8 @@ a.button {
     font-weight: 400;
     margin-top: 20px;
 }
+
+/*Home Page Services Responsive*/
 
 @media screen and (max-width: 980px) {
     .individual-featured-service {
@@ -329,7 +333,7 @@ div.case-study-images img{
 
     div.case-study-images {
         margin: 0;
-        width: 75%;
+        max-width: 100%;
     }
 
 }
@@ -469,6 +473,24 @@ aside.sidebar li a {
     color: #45AC9D;
 }
 
+/*Contact Form Responsive*/
+
+@media screen and (max-width: 800px) {
+    #ninja_forms_field_1_div_wrap, 
+    #ninja_forms_field_2_div_wrap {
+        float: none;
+        width: 100%;
+    }
+
+    #ninja_forms_field_2_div_wrap {
+        margin-left: 0;
+    }
+
+    .contact-form p{
+        font-size: 0.9rem;
+    }
+}
+
 
 /* About Page */
 
@@ -578,6 +600,84 @@ aside.sidebar li a {
     font-weight: 300;
 }
 
+
+
+/* Sidebar Experiment - BLOG PAGE */
+/* Added styles from skillcrushstarter but used the class sidebar instead of the id  - and moved the white arrow image over */
+/* ALSO - WILL NEED TO MOVE SEARCHFORM OVER if we want the search to DO something. Needed to do this in order to get the 'Search' bit out of the clickable area that should only have the arrow - must investigate */
+
+.sidebar .widget_search {
+    border-bottom: 1px solid #BFBFBF;
+}
+.sidebar .widget_search input[type="text"] {
+    border-top: 1px solid #a6a6a6;
+    border-bottom: 1px solid #a6a6a6;
+    border-left: 1px solid #a6a6a6;
+    border-right: none;
+    width: 200px;
+    height: 36px;
+    padding: 8px;
+    vertical-align: middle;
+}
+.sidebar .widget_search input[type="submit"] {
+    border-top: 1px solid #a6a6a6;
+    border-bottom: 1px solid #a6a6a6;
+    border-right: 1px solid #a6a6a6;
+    border-left: none;
+    width: 35px;
+    height: 36px;
+    background: url('img/white-arrow-right.png') no-repeat 13px 10px #45ac9d;
+    color: #ffffff;
+    margin-left: -5px;
+    vertical-align: middle;
+}
+
+
+
+/* Next / Prev - BLOG PAGE - From Skillcrushstarter */
+#navigation {
+    background: #fff;
+    border: solid #bfbfbf;
+    border-width: 1px 0;
+    clear: both;
+    font: 0.8em/4.08 'OpenSans', Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 40px;
+    text-align: center;
+}
+#navigation .left {
+    float: left;
+}
+#navigation .right {
+    float: right;
+}
+#navigation .left a,
+#navigation .right a {
+    color: #45ac9d;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+#navigation .left a span,
+#navigation .right a span {
+    color: #150300;
+}
+#navigation .left a span {
+    padding-left: 8px;
+}
+#navigation .right a span {
+    padding-right: 8px;
+}
+#navigation .left a:hover,
+#navigation .right a:hover {
+    text-decoration: none;
+}
+#navigation .left a:hover span,
+#navigation .right a:hover span {
+    text-decoration: underline;
+}
 
 /* TEST */
 

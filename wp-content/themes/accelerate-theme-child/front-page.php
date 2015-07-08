@@ -56,6 +56,8 @@ get_header(); ?>
 </section>
 
 	<?php //testing a different way to fetch the info from the about page - it works as well but I think below is more clear
+	// and we can't really benefit form using a loop because it's all custom fields - the only advantace is that you don't have
+	// to enter the post ID - you would let the loop figure it out
 	//$args = array (
 	// 		'pagename' => 'about'
 	// 	);
