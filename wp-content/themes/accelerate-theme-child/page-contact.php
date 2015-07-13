@@ -17,11 +17,10 @@ get_header(); ?>
 <div id="primary" class="site-content">
 	<div id="content" role="main">
 		<div class="page-content">
-
+	
 		<?php $method = $_SERVER['REQUEST_METHOD']; ?> 
 
 			<div class="contact-form"> 
-				
 
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?> 
 					<?php //the_meta(); ?>
