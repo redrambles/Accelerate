@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 2.9.19
+Version: 2.9.21
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -293,7 +293,7 @@ class Ninja_Forms {
 
 		// Plugin version
 		if ( ! defined( 'NF_PLUGIN_VERSION' ) )
-			define( 'NF_PLUGIN_VERSION', '2.9.19' );
+			define( 'NF_PLUGIN_VERSION', '2.9.21' );
 
 		// Plugin Folder Path
 		if ( ! defined( 'NF_PLUGIN_DIR' ) )
@@ -606,6 +606,7 @@ class Ninja_Forms {
 		require_once( NINJA_FORMS_DIR . "/includes/fields/tax.php" );
 		require_once( NINJA_FORMS_DIR . "/includes/fields/credit-card.php" );
 		require_once( NINJA_FORMS_DIR . "/includes/fields/number.php" );
+		require_once( NINJA_FORMS_DIR . "/includes/fields/recaptcha.php" );
 
 		require_once( NINJA_FORMS_DIR . "/includes/admin/save.php" );
 	}
@@ -687,6 +688,7 @@ class Ninja_Forms {
 
 	  $settings['date_format'] = isset ( $settings['date_format'] ) ? $settings['date_format'] : 'd/m/Y';
 	  $settings['currency_symbol'] = isset ( $settings['currency_symbol'] ) ? $settings['currency_symbol'] : '$';
+	  $settings['recaptcha_lang'] = isset ( $settings['recaptcha_lang'] ) ? $settings['recaptcha_lang'] : 'en';
 	  $settings['req_div_label'] = isset ( $settings['req_div_label'] ) ? $settings['req_div_label'] : sprintf( __( 'Fields marked with an %s*%s are required', 'ninja-forms' ), '<span class="ninja-forms-req-symbol">','</span>' );
 	  $settings['req_field_symbol'] = isset ( $settings['req_field_symbol'] ) ? $settings['req_field_symbol'] : '<strong>*</strong>';
 	  $settings['req_error_label'] = isset ( $settings['req_error_label'] ) ? $settings['req_error_label'] : __( 'Please ensure all required fields are completed.', 'ninja-forms' );

@@ -196,7 +196,7 @@ class Ninja_Forms_Loading {
 					} else {
 						$date_format = 'm/d/Y';
 					}
-					$default_value = date( $date_format, strtotime( 'now' ) );
+					$default_value = date( $date_format, current_time( 'timestamp' ) );
 					break;
 				default:
 					if ( 'querystring' == $default_value_type ) {

@@ -48,7 +48,38 @@ function ninja_forms_register_general_settings_metabox(){
 			),
 		),
 	);
-	ninja_forms_register_tab_metabox( $args );	
+	ninja_forms_register_tab_metabox( $args );
+
+	$args = array(
+		'page' => 'ninja-forms-settings',
+		'tab' => 'general_settings',
+		'slug' => 'recaptcha_settings',
+		'title' => __( 'reCAPTCHA Settings', 'ninja-forms' ),
+		'settings' => array(
+			array(
+				'name' 	=> 'recaptcha_site_key',
+				'type' 	=> 'text',
+				'label' => __( 'reCAPTCHA Site Key', 'ninja-forms' ),
+				'desc' 	=>  sprintf( __( 'Get a site key for your domain by registering  %shere%s', 'ninja-forms' ), '<a href="https://www.google.com/recaptcha/intro/index.html" target="_blank">', '</a>' )
+			),
+			array(
+				'name' 	=> 'recaptcha_secret_key',
+				'type' 	=> 'text',
+				'label' => __( 'reCAPTCHA Secret Key', 'ninja-forms' ),
+				'desc' 	=> '',
+			),
+			array(
+				'name' 	=> 'recaptcha_lang',
+				'type' 	=> 'text',
+				'label' => __( 'reCAPTCHA Language', 'ninja-forms' ),
+				'desc' 	=> 'e.g. en, da - ' . sprintf( __( 'Language used by reCAPTCHA. To get the code for your language click %shere%s', 'ninja-forms' ), '<a href="https://developers.google.com/recaptcha/docs/language" target="_blank">', '</a>' )
+			),
+		),
+		'state' => 'closed',
+	);
+    $args['settings'] = apply_filters( 'nf_general_settings_recaptcha', $args['settings'] );
+
+	ninja_forms_register_tab_metabox( $args );
 
 	$args = array(
 		'page' => 'ninja-forms-settings',
