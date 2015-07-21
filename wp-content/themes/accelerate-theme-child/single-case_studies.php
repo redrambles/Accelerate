@@ -25,6 +25,7 @@ get_header(); ?>
 		$image_1  = get_post_meta($post->ID, "image_1", true);
 		$image_2  = get_post_meta($post->ID, "image_2", true);
 		$image_3  = get_post_meta($post->ID, "image_3", true);
+		$size = "full";
 	?>
 
 		<article class="case-study">
