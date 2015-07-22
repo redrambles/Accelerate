@@ -11,7 +11,6 @@
  * @subpackage Twenty_Twelve
  * @since Twenty Twelve 1.0
  * 
- * Template Name: 404
  */
 
 get_header(); ?>
