@@ -103,6 +103,22 @@ function custom_wp_title( $title, $sep ) {
 add_filter( 'wp_title', 'custom_wp_title', 20, 2 );
 
 
+// Testing a function to pop in somewhere randomly (in page.php) - July 2015
+function red_get_me_some_posts() {
+			global $post;
+			
+			$args = array( 'posts_per_page' => 3 );
+			$lastposts = get_posts( $args );
+			foreach ( $lastposts as $post ) :
+		   	setup_postdata( $post ); ?>
+
+			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+			<?php the_excerpt();
+
+		endforeach; 
+		wp_reset_postdata(); 
+}
+
 // Displaying a Quick Performance Report for Admins in the source code
 
 // add_action( 'wp_footer', 'wp_footer_example' );

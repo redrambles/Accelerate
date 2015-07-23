@@ -19,18 +19,21 @@ get_header(); ?>
 	<div id="content" role="main">
 		<div class="page-content">
 
+		<!-- Testing the same function detailed below - put in functions.php and called here - WORKS! -->
+		<?php red_get_me_some_posts(); ?>
+
 		<!-- Testing calling some info OUTSIDE of a loop and playing with get_posts - WORKS! -->
 		<?php
-		// $args = array( 'posts_per_page' => 3 );
-		// $lastposts = get_posts( $args );
-		// foreach ( $lastposts as $post ) :
-		//   setup_postdata( $post ); ?>
+			//$args = array( 'posts_per_page' => 3 );
+			//$lastposts = get_posts( $args );
+			//foreach ( $lastposts as $post ) :
+		   	//setup_postdata( $post ); ?>
 
 			<!-- <h2><a href="<?php //the_permalink(); ?>"><?php //the_title(); ?></a></h2> -->
 			<?php //the_excerpt(); ?>
 
 		<?php //endforeach; 
-		// wp_reset_postdata(); ?>
+		//wp_reset_postdata(); ?>
 		<!-- End test-->
 
 			<?php while ( have_posts() ) : the_post(); ?>

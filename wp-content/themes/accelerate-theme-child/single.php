@@ -74,7 +74,7 @@ get_header(); ?>
 	<!-- END blog page -->
 
 	<footer class="navigation container">
-		<div class="left">&larr;<a href="">back to posts</a></div>
+		<div class="left">&larr;<a href="<?php echo esc_url( home_url() ); ?>/blog">Back to posts</a></div>
 	</footer>
 	
 				<?php endwhile; ?>
