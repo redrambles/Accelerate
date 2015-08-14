@@ -32,7 +32,7 @@
 
 <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400' rel='stylesheet' type='text/css'>
-<link href="<?php echo get_stylesheet_uri(); ?>" rel="stylesheet" type='text/css'>
+<!-- <link href="<?php echo get_stylesheet_uri(); ?>" rel="stylesheet" type='text/css'> Loaded in functions.php instead -->
 	<?php wp_head(); ?>
 </head>
 

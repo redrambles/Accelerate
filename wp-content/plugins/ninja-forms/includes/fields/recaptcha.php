@@ -18,7 +18,21 @@ function ninja_forms_register_field_recaptcha() {
 		'edit_help' => false,
 		'edit_meta' => false,
 		'sidebar' => 'template_fields',
-		'edit_conditional' => false,
+		'edit_conditional' => true,
+		'conditional' => array(
+			'action' => array(
+				'show' => array(
+					'name'        => __( 'Show This', 'ninja-forms' ),
+					'js_function' => 'show',
+					'output'      => 'hide',
+				),
+				'hide' => array(
+					'name'        => __( 'Hide This', 'ninja-forms' ),
+					'js_function' => 'hide',
+					'output'      => 'hide',
+				),
+			),
+		),
 		'display_label' => true,
 		'process_field' => false,
 		'pre_process' => 'ninja_forms_field_recaptcha_pre_process',

@@ -213,7 +213,9 @@ function ninja_forms_remove_field(){
 	check_ajax_referer( 'nf_ajax', 'nf_ajax_nonce' );
 
 	$field_id = absint( $_REQUEST['field_id'] );
+	$form_id = absint( $_REQUEST['form_id'] );
 	$wpdb->query($wpdb->prepare("DELETE FROM ".NINJA_FORMS_FIELDS_TABLE_NAME." WHERE id = %d", $field_id));
+	Ninja_Forms()->form( $form_id )->dump_cache();
 	die();
 }
 

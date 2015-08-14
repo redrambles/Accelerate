@@ -141,6 +141,30 @@ function twentyfifteen_widgets_init() {
 }
 add_action( 'widgets_init', 'twentyfifteen_widgets_init' );
 
+/*** TESTING ***/
+
+// Custom Post Type Function
+function create_custom_post_types() {
+	register_post_type('case_studies', 
+		array( 
+			// 'supports' => $supports,
+			'labels' => array(
+				'name' => _( 'Case Studies' ),
+				'singular_name' => _( 'Case Study' )
+				),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array(
+				'slug' => 'case-studies'
+				),
+			)
+	 );
+}
+// Hook this custom post type function into the theme
+add_action( 'init', 'create_custom_post_types' );
+
+
+
 if ( ! function_exists( 'twentyfifteen_fonts_url' ) ) :
 /**
  * Register Google fonts for Twenty Fifteen.

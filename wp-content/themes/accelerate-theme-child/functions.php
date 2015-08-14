@@ -103,7 +103,7 @@ function custom_wp_title( $title, $sep ) {
 add_filter( 'wp_title', 'custom_wp_title', 20, 2 );
 
 
-// Testing a function to pop in somewhere randomly (in page.php) - July 2015
+// Testing a function to ppull in 3 latest blog posts (in page.php) - July 2015
 function red_get_me_some_posts() {
 			global $post;
 			
@@ -148,6 +148,14 @@ function red_get_me_some_posts() {
  
 // Example Source: http://wpsnippy.com/show-notification-message-wordpress-admin-pages/
 
+// Make it hard to folks to find out the authors of the site by appending ?author=1 at the end of the url (author 1 is also the admin in most cases)
+
+add_action('template_redirect', 'bwp_template_redirect');
+function bwp_template_redirect() {
+	if (is_author()) {
+		wp_redirect( home_url() ); exit;
+	}
+}
 
 // Provide a quick link for your clients to reach you in the admin toolbar
 add_action( 'wp_before_admin_bar_render', 'wp_before_admin_bar_render_example' ); 

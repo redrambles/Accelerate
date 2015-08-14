@@ -65,8 +65,8 @@ class NF_Notifications
 	 * @return void
 	 */
 	public function register_tab() {
-		$form_id = isset ( $_REQUEST['form_id'] ) ? $_REQUEST['form_id'] : '';
-		$action = isset ( $_REQUEST['notification-action'] ) ? $_REQUEST['notification-action'] : '';
+		$form_id = isset ( $_REQUEST['form_id'] ) ? absint( $_REQUEST['form_id'] ) : '';
+		$action = isset ( $_REQUEST['notification-action'] ) ? esc_html( $_REQUEST['notification-action'] ) : '';
 		$output_form = false;
 		$show_save = false;
 		if ( 'edit' == $action || 'new' == $action ) {
@@ -98,7 +98,7 @@ class NF_Notifications
 	public function add_js() {
 		global $ninja_forms_fields;
 
-		$form_id = isset ( $_REQUEST['form_id'] ) ? $_REQUEST['form_id'] : '';
+		$form_id = isset ( $_REQUEST['form_id'] ) ? absint( $_REQUEST['form_id'] ) : '';
 		if ( empty ( $form_id ) )
 			return false;
 
@@ -209,7 +209,7 @@ class NF_Notifications
 	 * @return void
 	 */
 	public function output_admin() {
-		$action = isset ( $_REQUEST['notification-action'] ) ? $_REQUEST['notification-action'] : '';
+		$action = isset ( $_REQUEST['notification-action'] ) ? esc_html( $_REQUEST['notification-action'] ) : '';
 
 		?>
 		<div class="wrap">
@@ -235,7 +235,7 @@ class NF_Notifications
         	</form>
             <?php
 		} else {
-			$id = isset ( $_REQUEST['id'] ) ? $_REQUEST['id'] : '';
+			$id = isset ( $_REQUEST['id'] ) ? absint( $_REQUEST['id'] ) : '';
 			if ( $id == '' ) {
 				$id = 'new';
 				$this_type = 'email';
@@ -267,7 +267,7 @@ class NF_Notifications
 								}
 								?>
 							</select>
-							<span class="nf-more-actions"><a href="https://ninjaforms.com/extensions/?display=actions" target="_blank"><?php _e( 'Get More Actions', 'ninja-forms' ); ?> <span class="dashicons dashicons-external"></span></a></span>
+							<span class="nf-more-actions"><a href="https://ninjaforms.com/extensions/?display=actions&utm_medium=plugin&utm_source=action-single&utm_campaign=Ninja+Forms+Upsell&utm_content=Ninja+Forms+Actions" target="_blank"><?php _e( 'Get More Actions', 'ninja-forms' ); ?> <span class="dashicons dashicons-external"></span></a></span>
 						</td>
 					</tr>
 				</tbody>
@@ -324,7 +324,7 @@ class NF_Notifications
 		$data = Ninja_Forms()->notification_types[ $type ]->save_admin( $n_id, $data );
 
 		foreach ( $settings as $meta_key => $meta_value ) {
-			nf_update_object_meta( $n_id, $meta_key, wp_kses_post( $meta_value ) );
+			nf_update_object_meta( $n_id, $meta_key, nf_wp_kses_post_deep( $meta_value ) );
 		}
 
 		do_action( 'nf_save_notification', $n_id, $data, $new );
@@ -366,7 +366,7 @@ class NF_Notifications
 		// Bail if our nonce doesn't verify.
 		check_ajax_referer( 'nf_ajax', 'nf_ajax_nonce' );
 
-		$n_id = $_REQUEST['n_id'];
+		$n_id = absint( $_REQUEST['n_id'] );
 		Ninja_Forms()->notification( $n_id )->delete();
 	}
 
@@ -382,7 +382,7 @@ class NF_Notifications
 		// Bail if our nonce doesn't verify.
 		check_ajax_referer( 'nf_ajax', 'nf_ajax_nonce' );
 
-		$n_id = $_REQUEST['n_id'];
+		$n_id = absint( $_REQUEST['n_id'] );
 		Ninja_Forms()->notification( $n_id )->activate();
 	}
 
@@ -398,7 +398,7 @@ class NF_Notifications
 		// Bail if our nonce doesn't verify.
 		check_ajax_referer( 'nf_ajax', 'nf_ajax_nonce' );
 
-		$n_id = $_REQUEST['n_id'];
+		$n_id = absint( $_REQUEST['n_id'] );
 		Ninja_Forms()->notification( $n_id )->deactivate();
 	}
 
@@ -413,7 +413,7 @@ class NF_Notifications
 		if ( ! isset ( $_REQUEST['notification-action'] ) || $_REQUEST['notification-action'] != 'duplicate' )
 			return false;
 
-		$n_id = isset ( $_REQUEST['id'] ) ? $_REQUEST['id'] : '';
+		$n_id = isset ( $_REQUEST['id'] ) ? absint( $_REQUEST['id'] ) : '';
 
 		// Bail if we don't have an ID.
 		if ( '' === $n_id )
@@ -456,12 +456,12 @@ class NF_Notifications
 		$action = '';
 
 		if ( isset( $_REQUEST['action2'] ) && -1 != $_REQUEST['action2'] )
-			$action = $_REQUEST['action2'];
+			$action = esc_html( $_REQUEST['action2'] );
 
 		if ( isset( $_REQUEST['action'] ) && -1 != $_REQUEST['action'] )
-			$action = $_REQUEST['action'];
+			$action = esc_html( $_REQUEST['action'] );
 
-		$n_ids = isset ( $_REQUEST['notification'] ) ? $_REQUEST['notification'] : '';
+		$n_ids = isset ( $_REQUEST['notification'] ) ? esc_html( $_REQUEST['notification'] ) : '';
 
 		if ( ! is_array( $n_ids ) || empty( $n_ids ) )
 			return false;
@@ -492,7 +492,7 @@ class NF_Notifications
 	 * @return void
 	 */
 	public function tinymce_buttons( $context ) {
-		$form_id = isset ( $_REQUEST['form_id'] ) ? $_REQUEST['form_id'] : '';
+		$form_id = isset ( $_REQUEST['form_id'] ) ? absint( $_REQUEST['form_id'] ) : '';
 		if ( empty ( $form_id ) )
 			return $context;
 

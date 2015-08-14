@@ -104,7 +104,7 @@ class NF_Welcome {
 
 		// Ensures style is only on welcome page
 		if ((isset($_GET['page'])) && ($_GET['page']=='nf-about' || $_GET['page']=='nf-getting-started' || $_GET['page']=='nf-credits' || $_GET['page']=='nf-changelog')){
-                
+
                 // Badge for welcome page
 		$badge_url = NF_PLUGIN_URL . 'assets/images/nf-badge.png';
 		?>
@@ -147,7 +147,7 @@ class NF_Welcome {
 		/*]]>*/
 		</style>
 		<?php
-		} 
+		}
 	}
 
 	/**
@@ -250,8 +250,8 @@ class NF_Welcome {
 						<h4><?php _e( 'Documentation', 'ninja-forms' );?></h4>
 						<p><?php _e( 'Take a look at our in-depth Ninja Forms documentation below.', 'ninja-forms' ); ?></p>
 						<p>
-							<a href="<?php echo esc_url( 'http://ninjaforms.com/documentation/using-ninja-forms/creating-new-notification/' ); ?>"><?php _e( 'Ninja Forms Documentation', 'ninja-forms' ); ?></a> &middot;
-							<a href="<?php echo esc_url( 'http://ninjaforms.com/contact/' ); ?>"><?php _e( 'Get Support', 'ninja-forms' ); ?></a>
+							<a href="<?php echo esc_url( 'http://docs.ninjaforms.com/?utm_medium=plugin&utm_source=welcome-screen&utm_campaign=Ninja+Forms+Welcome&utm_content=Ninja+Forms+Docs' ); ?>"><?php _e( 'Ninja Forms Documentation', 'ninja-forms' ); ?></a> &middot;
+							<a href="<?php echo esc_url( 'https://ninjaforms.com/contact/?utm_medium=plugin&utm_source=welcome-screen&utm_campaign=Ninja+Forms+Welcome&utm_content=Ninja+Forms+Support' ); ?>"><?php _e( 'Get Support', 'ninja-forms' ); ?></a>
 						</p>
 					</div>
 
@@ -383,12 +383,12 @@ class NF_Welcome {
 
 					<div class="col-1">
 						<h4><?php _e( 'Growing Documentation', 'ninja-forms' );?></h4>
-						<p><?php printf( __( 'Documentation is available covering everything from %sTroubleshooting%s to our %sDeveloper API%s. New Documents are always being added.', 'ninja-forms' ), '<a href="http://ninjaforms.com/documentation/using-ninja-forms/faq-troubleshooting/">', '</a>', '<a href="http://ninjaforms.com/documentation/developer-api/">', '</a>' ); ?></p>
+						<p><?php printf( __( 'Documentation is available covering everything from %sTroubleshooting%s to our %sDeveloper API%s. New Documents are always being added.', 'ninja-forms' ), '<a href="http://docs.ninjaforms.com/customer/portal/articles/2045713-troubleshooting-ninja-forms/?utm_medium=plugin&utm_source=welcome-screen&utm_campaign=Ninja+Forms+Welcome&utm_content=Ninja+Forms+Docs">', '</a>', '<a href="http://docs.ninjaforms.com/customer/portal/topics/798123-developer-api/articles/?utm_medium=plugin&utm_source=welcome-screen&utm_campaign=Ninja+Forms+Welcome&utm_content=Ninja+Forms+Docs">', '</a>' ); ?></p>
 					</div>
 
 					<div class="col-2 last-feature">
 						<h4><?php _e( 'Best Support in the Business', 'ninja-forms' );?></h4>
-						<p><?php printf( __( 'We do all we can to provide every Ninja Forms user with the best support possible. If you encounter a problem or have a question, %splease contact us%s.', 'ninja-forms' ), '<a href="http://ninjaforms.com/contact/">', '</a>' ); ?></p>
+						<p><?php printf( __( 'We do all we can to provide every Ninja Forms user with the best support possible. If you encounter a problem or have a question, %splease contact us%s.', 'ninja-forms' ), '<a href="https://ninjaforms.com/contact/?utm_medium=plugin&utm_source=welcome-screen&utm_campaign=Ninja+Forms+Welcome&utm_content=Ninja+Forms+Support">', '</a>' ); ?></p>
 					</div>
 
 				</div>

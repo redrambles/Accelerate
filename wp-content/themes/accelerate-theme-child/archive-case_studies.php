@@ -26,7 +26,7 @@ get_header(); ?>
 			<h6><?php echo $services; ?></h6>
 
 			<?php the_excerpt(); ?>
-
+			
 			<p class="view-project"><a href="<?php the_permalink(); ?>">View Project &#x276f;</a></p>
 		</aside>
 

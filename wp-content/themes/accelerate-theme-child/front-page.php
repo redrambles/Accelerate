@@ -27,8 +27,9 @@ get_header(); ?>
 <section class="featured-work">
 	<div class="site-content">
 		<h4>Featured Work</h4>
+		
 		<ul class="homepage-featured-work">
-			<?php //query_posts('posts_per_page=3&post_type=case_studies'); ?>
+			<?php //query_posts('posts_per_page=3&post_type=case_studies&order=DESC'); ?>
 
 			<?php $args = array (
 					'posts_per_page' => 3,
@@ -134,10 +135,15 @@ get_header(); ?>
 		</div><!-- .blog-post -->
 
 		<!-- Sidebar to host the twitter module  -->
+		<?php 
+		    $twitter_link = get_field('twitter_link');
+		    $link_name = get_field('link_name');
+		?>
 		<?php if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
 		<div id="secondary" class="widget-area tweet-module" role="complementary">
-		    <?php dynamic_sidebar( 'sidebar-2' ); ?>
-		    <a href="www.twitter.com/redrambles" class="follow-us-link">Follow Us <span>&rsaquo;</span></a>
+		    <a href="<?php echo $twitter_link ?>"><?php dynamic_sidebar( 'sidebar-2' ); ?></a>
+
+		    <a href="<?php echo $twitter_link ?>" class="follow-us-link"><?php echo $link_name; ?><span> &rsaquo;</span></a>
 		</div>
 		<?php endif; ?>
 

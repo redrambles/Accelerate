@@ -26,14 +26,14 @@ get_header(); ?>
 				<!-- <img src="<?php //echo $pic; ?>"/>  -->
 			<?php // } ?>
 
-	<!-- <img src="<?php //echo get_stylesheet_directory_uri(); ?>/img/taxi-photo-about.jpg"/> -->
+	<!-- <img src="<?php //echo get_stylesheet_directory_uri(); ?>/img/taxi-photo-about.jpg"/> --> <!-- Worked! -->
 	
-	<?php //$image_src = wp_get_attachment_url(47459, 'full'); ?>
+	<?php //$image_src = wp_get_attachment_url(47459, 'full'); ?> <!-- Fetch the attachment directly with its id -->
 
-	<!-- <img src="<?php //echo $image_src; ?>"/> -->
+	<!-- <img src="<?php //echo $image_src; ?>"/> --> <!-- worked -->
 
-	<!-- <iframe src="https://cloudup.com/cL3NbLNWqAY?chromeless" width="500" height="500"></iframe> -->
-
+	<!-- <iframe src="https://cloudup.com/cL3NbLNWqAY?chromeless" width="500" height="500"></iframe>
+ -->
 			<h2>That page!</h2>
 			<h4>She is nowhere to be found.</h4>
 			<p class="forgive">Forgive Us.</p>

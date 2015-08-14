@@ -38,6 +38,19 @@ function accelerate_setup() {
 add_action( 'after_setup_theme', 'accelerate_setup' );
 
 
+ /*
+ * Enqueue scripts and styles.
+ * Tried loading here instead of the <head> of header.php because it would not load properly using functions.php from the child theme (some styling was overriden)
+ */
+function accelerate_scripts() {
+
+
+	// Load our main stylesheet.
+	wp_enqueue_style( 'twentyfifteen-style', get_stylesheet_uri() );
+}
+add_action( 'wp_enqueue_scripts', 'accelerate_scripts' );
+
+
  //Register main widget area - I did this in the child theme
 // function accelerate_widget_init() {
 // 	// Register first sidebar - main widget area

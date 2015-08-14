@@ -314,6 +314,10 @@ CREDIT CARD BLOCK
 HONEYPOT
 ----------------------------------*/
 
+.hp-wrap {
+    display: none;
+}
+
 .honeypot-wrap {
     display: none;
 }

@@ -973,3 +973,6 @@ function ninja_forms_update_form( $args ){
 	Ninja_Forms()->form( $form_id )->dump_cache();
 	
 }
+
+// Add our old form fields
+require_once( NINJA_FORMS_DIR . "/includes/fields/honeypot.php" );

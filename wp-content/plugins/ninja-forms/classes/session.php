@@ -53,6 +53,7 @@ class NF_Session {
 			require_once NF_PLUGIN_DIR . 'includes/libraries/class-wp-session.php';
 			require_once NF_PLUGIN_DIR . 'includes/libraries/wp-session.php';
 		}
+
 		add_filter( 'wp_session_expiration_variant', array( $this, 'set_expiration_variant_time' ), 99999 );
 		add_filter( 'wp_session_expiration', array( $this, 'set_expiration_time' ), 99999 );
 
@@ -111,7 +112,7 @@ class NF_Session {
 	}
 
 	/**
-	 * Force the cookie expiration variant time to 23 hours
+	 * Force the cookie expiration variant time to 23 minutes
 	 *
 	 * @access public
 	 * @since 2.9.18
@@ -119,10 +120,10 @@ class NF_Session {
 	 * @return int
 	 */
 	public function set_expiration_variant_time( $exp ) {
-		return ( 30 * 60 * 23 );
+		return 60 * 23;
 	}
 	/**
-	 * Force the cookie expiration time to 24 hours
+	 * Force the cookie expiration time to 24 minutes
 	 *
 	 * @access public
 	 * @since 2.9.18
@@ -130,6 +131,6 @@ class NF_Session {
 	 * @return int
 	 */
 	public function set_expiration_time( $exp ) {
-		return ( 30 * 60 * 24 );
+		return 60 * 24;
 	}
 }

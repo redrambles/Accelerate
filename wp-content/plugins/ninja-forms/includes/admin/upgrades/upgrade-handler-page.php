@@ -43,7 +43,7 @@ class NF_UpgradeHandlerPage
 
         wp_enqueue_script(
             /* Handle       */ $this->slug,
-            /* Source       */ NF_PLUGIN_URL . '/assets/js/' . $src . '/nf-upgrade-handler' . $suffix . '.js',
+            /* Source       */ NF_PLUGIN_URL . 'assets/js/' . $src . '/nf-upgrade-handler' . $suffix . '.js',
             /* Dependencies */ array( 'jquery', 'jquery-ui-core', 'jquery-ui-progressbar' ),
             /* Version      */ '0.0.1',
             /* In Footer    */ TRUE
@@ -75,12 +75,17 @@ class NF_UpgradeHandlerPage
     {
         wp_enqueue_style(
             /* Handle */ $this->slug,
-            /* Source */ NF_PLUGIN_URL . '/assets/css/nf-upgrade-handler.css'
+            /* Source */ NF_PLUGIN_URL . 'assets/css/nf-upgrade-handler.css'
         );
 
         wp_enqueue_style(
         /* Handle */ 'ninja-forms-admin',
-            /* Source */ NF_PLUGIN_URL . '/css/ninja-forms-admin.css'
+            /* Source */ NF_PLUGIN_URL . 'css/ninja-forms-admin.css'
+        );
+
+        wp_enqueue_style(
+        /* Handle */ 'ninja-forms-admin',
+            /* Source */ NF_PLUGIN_URL . 'assets/css/admin-modal.css'
         );
     }
 

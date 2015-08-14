@@ -58,7 +58,7 @@ class NF_Notifications_List_Table extends WP_List_Table {
             'ajax'      => false        //does this table support ajax?
         ) );
 
-        $this->form_id = isset ( $_REQUEST['form_id'] ) ? $_REQUEST['form_id'] : '';
+        $this->form_id = isset ( $_REQUEST['form_id'] ) ? absint( $_REQUEST['form_id'] ) : '';
 
     }
 
@@ -230,7 +230,7 @@ class NF_Notifications_List_Table extends WP_List_Table {
             return false;
 
         if ( isset ( $_REQUEST['type'] ) ) {
-            $type = $_REQUEST['type'];
+            $type = esc_html( $_REQUEST['type'] );
         } else {
             $type = '';
         }
@@ -247,7 +247,7 @@ class NF_Notifications_List_Table extends WP_List_Table {
                 }
                 ?>
             </select>
-            <span class="nf-more-actions"><a href="https://ninjaforms.com/extensions/?display=actions" target="_blank"><?php _e( 'Get More Types', 'ninja-forms' ); ?> <span class="dashicons dashicons-external"></span></a></span>
+            <span class="nf-more-actions"><a href="https://ninjaforms.com/extensions/?display=actions&utm_medium=plugin&utm_source=actions-table&utm_campaign=Ninja+Forms+Upsell&utm_content=Ninja+Forms+Actions" target="_blank"><?php _e( 'Get More Types', 'ninja-forms' ); ?> <span class="dashicons dashicons-external"></span></a></span>
             <span style="float:left;" class="spinner"></span>
         </div>
         <?php
@@ -339,7 +339,7 @@ class NF_Notifications_List_Table extends WP_List_Table {
         if ( is_array( $notifications ) ) {
             foreach ( $notifications as $id => $n ) {
                 if ( isset ( $_REQUEST['type'] ) && ! empty( $_REQUEST['type'] ) ) {
-                    if ( nf_get_object_meta_value( $id, 'type' ) == $_REQUEST['type'] ) {
+                    if ( nf_get_object_meta_value( $id, 'type' ) == esc_html( $_REQUEST['type'] ) ) {
                         $n['id'] = $id;
                         $data[] = $n;
                     }
@@ -360,8 +360,8 @@ class NF_Notifications_List_Table extends WP_List_Table {
          * sorting technique would be unnecessary.
          */
         function usort_reorder($a,$b){
-            $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'name'; //If no sort, default to title
-            $order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'asc'; //If no order, default to asc
+            $orderby = (!empty($_REQUEST['orderby'])) ? esc_html( $_REQUEST['orderby'] ) : 'name'; //If no sort, default to title
+            $order = (!empty($_REQUEST['order'])) ? esc_html( $_REQUEST['order'] ) : 'asc'; //If no order, default to asc
             $result = strcmp($a[$orderby], $b[$orderby]); //Determine sort order
             return ($order==='asc') ? $result : -$result; //Send final sort direction to usort
         }
