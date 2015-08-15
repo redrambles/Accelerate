@@ -67,6 +67,22 @@ function ninja_forms_field_recaptcha_display( $field_id, $data, $form_id = '' ) 
 function ninja_forms_field_recaptcha_pre_process( $field_id, $user_value  ) {
 	global $ninja_forms_processing;
 
+	// Set our captcha field id for later processing.
+	$ninja_forms_processing->update_form_setting( 'recaptcha_field', $field_id );
+
+	// Add our captcha processing.
+	add_action( 'ninja_forms_process', 'nf_field_recaptcha_pre_process', -1 );
+}
+
+/**
+ * Function that actually processes our recaptcha. Runs on a later priority than the field pre_process function
+ * @since  2.9.27
+ * @param  int  $form_id
+ * @return void
+ */
+function nf_field_recaptcha_pre_process( $form_id ) {
+	global $ninja_forms_processing;
+
 	if ( empty( $_POST['g-recaptcha-response'] ) ) {
 		$ninja_forms_processing->add_error( 'error_recaptcha', __( 'Please complete the captcha field' , 'ninja-forms' ) );
 	}else {
@@ -87,5 +103,4 @@ function ninja_forms_field_recaptcha_pre_process( $field_id, $user_value  ) {
 			}
 		}
 	}
-
 }

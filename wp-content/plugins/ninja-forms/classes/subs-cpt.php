@@ -1166,8 +1166,9 @@ class NF_Subs_CPT {
 		if ( isset ( $_REQUEST['export_single'] ) && ! empty( $_REQUEST['export_single'] ) )
 			Ninja_Forms()->sub( esc_html( $_REQUEST['export_single'] ) )->export();
 
-		if ( ( isset ( $_REQUEST['action'] ) && $_REQUEST['action'] == 'export' ) || ( isset ( $_REQUEST['action2'] ) && $_REQUEST['action2'] == 'export' ) )
-			Ninja_Forms()->subs()->export( esc_html( $_REQUEST['post'] ) );
+		if ( ( isset ( $_REQUEST['action'] ) && $_REQUEST['action'] == 'export' ) || ( isset ( $_REQUEST['action2'] ) && $_REQUEST['action2'] == 'export' ) ) {
+			Ninja_Forms()->subs()->export( ninja_forms_esc_html_deep( $_REQUEST['post'] ) );
+		}
 
 		if ( isset ( $_REQUEST['download_file'] ) && ! empty( $_REQUEST['download_file'] ) ) {
 			// Open our download all file

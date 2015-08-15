@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, wpnzach, kbjohnson90, aman086, da
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 2.9.26
+Stable tag: 2.9.27
 License: GPLv2 or later
 
 Create forms and manage submissions easily with a simple drag and drop interface. Contact forms, subscription forms, or any other form for WordPress.
@@ -97,13 +97,23 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 2.9.26 (7 August 2015) =
+= 2.9.27 (13 August 2015) =
 
 *Bugs:*
 
-* Fixed a bug that could prevent the metaboxes from being dragged properly on the post/page edit screen.
+* Fixed a bug that could cause bulk downloads to fail.
+* Google reCaptcha should now work properly with AJAX submissions.
+* Calculations in regions that don't use decimals as separators shouldn't fail.
 
 == Changelog ==
+
+= 2.9.27 (13 August 2015) =
+
+*Bugs:*
+
+* Fixed a bug that could cause bulk downloads to fail.
+* Google reCaptcha should now work properly with AJAX submissions.
+* Calculations in regions that don't use decimals as separators shouldn't fail.
 
 = 2.9.26 (7 August 2015) =
 
