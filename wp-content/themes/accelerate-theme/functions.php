@@ -46,7 +46,7 @@ function accelerate_scripts() {
 
 
 	// Load our main stylesheet.
-	wp_enqueue_style( 'twentyfifteen-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'accelerate-style', get_stylesheet_uri() );
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_scripts' );
 

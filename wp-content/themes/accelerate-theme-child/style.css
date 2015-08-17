@@ -76,7 +76,7 @@ a.button {
     text-transform: uppercase;
 }
 
-/*Home Page Featured Work Responsive*/
+/* Home Page Featured Work Responsive */
 @media screen and (max-width: 980px) {
     .individual-featured-work {
         width: 40%;
@@ -120,7 +120,7 @@ a.button {
     margin-top: 20px;
 }
 
-/*Home Page Services Responsive*/
+/* Home Page Services Responsive */
 
 @media screen and (max-width: 980px) {
     .individual-featured-service {
