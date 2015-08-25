@@ -3,8 +3,8 @@ Contributors: Ibericode, DvanKooten, iMazed, hchouhan
 Donate link: https://mc4wp.com/#utm_source=wp-plugin-repo&utm_medium=mailchimp-for-wp&utm_campaign=donate-link
 Tags: email, mailchimp, marketing, newsletter, signup, widget, mc4wp, contact form 7, woocommerce, buddypress
 Requires at least: 3.7
-Tested up to: 4.2.2
-Stable tag: 2.3.7
+Tested up to: 4.2.4
+Stable tag: 2.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -169,6 +169,27 @@ Development of the plugin happens on GitHub: [ibericode/mailchimp-for-wordpress]
 8. **Pro only:** Create your own CSS styles with the form designer in the Pro version.
 
 == Changelog ==
+
+= 2.3.8 - August 18, 2015 =
+
+**Fixes**
+
+- Prevented JS error when outputting forms with no submit button.
+- Using `0` as a Redirect URL resulted in a blank page.
+- Sign-up checkbox was showing twice in the Easy Digital Downloads checkout when showing registration fields, thanks [Daniel Espinoza](https://github.com/growdev).
+- Default form was not automatically translated for languages other than English.
+
+**Improvements**
+
+- Better way to hide the honeypot field, which stops bots from subscribing to your lists.
+- role="form" is no longer needed, thanks [XhmikosR](https://github.com/XhmikosR)!
+- Filter `mc4wp_form_animate_scroll` now disables just the scroll animation, not the scroll itself.
+- Revamped UI for MailChimp lists overview
+- Updated German & Greek translations.
+
+**Additions**
+
+- Added `mc4wp_form_is_submitted()` and `mc4wp_form_get_response_html()` functions.
 
 = 2.3.7 - July 13, 2015 =
 

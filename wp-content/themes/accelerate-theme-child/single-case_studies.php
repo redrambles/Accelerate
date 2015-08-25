@@ -19,7 +19,8 @@ get_header(); ?>
 
 	<?php while ( have_posts() ) : the_post(); 
 		//$services = get_field('services');
-		$services  = get_post_meta($post->ID, "services", true);
+		//$services  = get_post_meta($post->ID, "services", true); - would only need to use this '$post->ID' if outside of the loop and needed to access the global post variable
+		$services  = get_post_meta(get_the_ID(), "services", true);
 		$client  = get_post_meta($post->ID, "client", true);
 		$link  = get_post_meta($post->ID, "site_link", true);
 		$image_1  = get_post_meta($post->ID, "image_1", true);

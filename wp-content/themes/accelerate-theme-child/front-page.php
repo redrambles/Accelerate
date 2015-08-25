@@ -40,7 +40,7 @@ get_header(); ?>
 
 			<?php while ($featured-> have_posts() ) : $featured->the_post();
 				//$image_1 = get_field("image_1");
-				$image_1  = get_post_meta($post->ID, "image_1", true);
+				$image_1  = get_post_meta(get_the_id(), "image_1", true);
 				$size = "medium";
 			 ?>
 			 	<li class="individual-featured-work">	
@@ -57,7 +57,7 @@ get_header(); ?>
 </section>
 
 	<?php //testing a different way to fetch the info from the about page - it works as well but I think below is more clear
-	// and we can't really benefit form using a loop because it's all custom fields - the only advantace is that you don't have
+	// and we can't really benefit form using a loop because it's all custom fields - the only advantage is that you don't have
 	// to enter the post ID - you would let the loop figure it out
 	//$args = array (
 	// 		'pagename' => 'about'

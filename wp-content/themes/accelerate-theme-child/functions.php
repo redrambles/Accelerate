@@ -52,10 +52,18 @@ function accelerate_theme_child_widget_init() {
 }
 add_action( 'widgets_init', 'accelerate_theme_child_widget_init' );
 
+// Ann testing theme support stuff
+function accelerate_theme_support_stuff() {
 
-// Add Theme Support - Post Format and Featured Images
-add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
-//add_theme_support( 'post-thumbnails', array( 'test_posts' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
+
+	//add_theme_support( 'post-thumbnails', array( 'test_posts' ) );
+
+	// since WordPress 4.2 
+	add_theme_support( 'title-tag'); 
+	}
+add_action( 'after_setup_theme', 'accelerate_theme_support_stuff' );
+
 
 // Custom Post Type Function
 function create_custom_post_types() {
@@ -79,28 +87,28 @@ add_action( 'init', 'create_custom_post_types' );
 
 //Enqueue scripts and styles.
 function accelerate_child_scripts() {
+	wp_enqueue_style('accelerate-child-google-fonts', 'http://fonts.googleapis.com/css?family=Montserrat:400,700');
 	wp_enqueue_style('accelerate-child-google-fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,700,300');
 	wp_enqueue_style('accelerate-child-font-awesome', 'http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 	wp_enqueue_style( 'parent-theme-css', get_template_directory_uri() . '/style.css' );
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 
-// Display an actual title in the <title> tags in the source code - source: TT Actions & Filters class - local: wp_hooks
-function custom_wp_title( $title, $sep ) {
-     global $page;
+// function custom_wp_title( $title, $sep ) {
+//      global $page;
 
-     // Add the site name.
-     $title .= get_bloginfo( 'name' );
+//      // Add the site name.
+//      $title .= get_bloginfo( 'name' );
 
-     // Add the site description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) ) {
-		$title = "$title $sep $site_description";
-	}
+//      // Add the site description for the home/front page.
+// 	$site_description = get_bloginfo( 'description', 'display' );
+// 	if ( $site_description && ( is_home() || is_front_page() ) ) {
+// 		$title = "$title $sep $site_description";
+// 	}
 
-     return $title;
-}
-add_filter( 'wp_title', 'custom_wp_title', 20, 2 );
+//      return $title;
+// }
+// add_filter( 'wp_title', 'custom_wp_title', 20, 2 );
 
 
 // Testing a function to ppull in 3 latest blog posts (in page.php) - July 2015
@@ -183,6 +191,7 @@ function color_my_world() {
     </style>';
      
 }
+
 
 // // customize admin footer text
 // add_filter('admin_footer_text', 'accelerate_footer');
