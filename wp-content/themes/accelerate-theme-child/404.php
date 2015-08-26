@@ -26,7 +26,7 @@ get_header(); ?>
 				<!-- <img src="<?php //echo $pic; ?>"/>  -->
 			<?php // } ?>
 
-	<!-- <img src="<?php //echo get_stylesheet_directory_uri(); ?>/img/taxi-photo-about.jpg"/> --> <!-- Worked! -->
+	<!-- <img src="<?php //echo get_stylesheet_directory_uri(); ?>/img/taxi-photo-about.jpg"/>  -->
 	
 	<?php //$image_src = wp_get_attachment_url(47459, 'full'); ?> <!-- Fetch the attachment directly with its id -->
 
