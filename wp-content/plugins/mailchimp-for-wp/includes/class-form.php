@@ -208,6 +208,29 @@ class MC4WP_Form {
 	}
 
 	/**
+	 * Get the `action` attribute of the form element.
+	 *
+	 * @return string
+	 */
+	protected function get_form_action_attribute() {
+
+		/**
+		 * @filter `mc4wp_form_action`
+		 * @expects string
+		 * @param MC4WP_Form $form
+		 */
+		$form_action = apply_filters( 'mc4wp_form_action', null, $this );
+
+		if( is_string( $form_action ) ) {
+			$form_action_attribute = sprintf( 'action="%s"', esc_attr( $form_action ) );
+		} else {
+			$form_action_attribute = '';
+		}
+
+		return $form_action_attribute;
+	}
+
+	/**
 	 * @param string $element_id
 	 * @param array $attributes
 	 * @return string
@@ -237,7 +260,7 @@ class MC4WP_Form {
 		    || ! $this->settings['hide_after_success']
 		    || ! $this->request->success ) {
 
-			$form_opening_html = '<form method="post">';
+			$form_opening_html = '<form method="post" '. $this->get_form_action_attribute() .'>';
 			$visible_fields = $this->get_visible_fields( $element_id, $attributes, $response_html );
 			$hidden_fields = $this->get_hidden_fields( $element_id, $attributes );
 			$form_closing_html = '</form>';
@@ -390,6 +413,14 @@ class MC4WP_Form {
 				'text' => $this->settings['text_not_subscribed'],
 			),
 		);
+
+		// add some admin-only messages
+		if( current_user_can( 'manage_options' ) ) {
+			$messages['no_lists_selected'] = array(
+				'type' => 'notice',
+				'text' => sprintf( __( 'You did not select a list in <a href="%s">your form settings</a>.', 'mailchimp-for-wp' ), admin_url( 'admin.php?page=mailchimp-for-wp-form-settings' ) )
+			);
+		}
 
 		/**
 		 * @filter mc4wp_form_messages
