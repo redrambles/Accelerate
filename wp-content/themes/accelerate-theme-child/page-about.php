@@ -23,14 +23,12 @@ get_header(); ?>
 		$service_2_image = get_field('service_2_image');
 		$service_3_title = get_field('service_3_title');
 		$service_3_description = get_field('service_3_desc');
-		$service_3_description  = get_post_meta($post->ID, "service_3_desc", true);
 		$service_3_image = get_field('service_3_image');
 		$service_4_title = get_field('service_4_title');
 		$service_4_description = get_field('service_4_desc');
 		$service_4_image = get_field('service_4_image');
 		$about_contact_title = get_field('about_contact_title');
-		//$contact_button_text = get_field('contact_button_text');
-		$contact_button_text  = get_post_meta(get_the_ID(), "contact_button_text", true);
+		$contact_button_text = get_field('contact_button_text');
 		$size = "small";
 	?>
 	<section class="hero-about">
@@ -42,6 +40,7 @@ get_header(); ?>
 	</section>
 
 	<div class="site-content">
+		<?php //the_meta(); ?>
 
 		<section class="about-intro">
 			<h5><?php echo $services_intro_title; ?></h5>

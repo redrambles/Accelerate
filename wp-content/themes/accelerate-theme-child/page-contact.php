@@ -24,9 +24,6 @@ get_header(); ?>
 
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?> 
 					<?php //the_meta(); ?>
-					<!-- Fooling around with custom fields -->
-					<?php //$sanity = get_post_meta(47333, 'sanity'); ?>
-					<!-- <p class="sanity">Sanity: <?php //echo implode($sanity); ?></p> -->
 
 					<?php if ($method == 'POST' ): ?> 
 					<div class="reply-contact">
