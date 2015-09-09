@@ -58,13 +58,14 @@ get_header(); ?>
 		</section>
 
 		<section class="about-section">
+			<div class="service-image align-right">
+				<?php echo wp_get_attachment_image( $service_2_image, $size ); ?>
+			</div>
 			<div class="service-description">
 					<h2><?php echo $service_2_title; ?></h2>
 					<p><?php echo $service_2_description; ?></p>
 			</div>
-			<div class="service-image align-right">
-				<?php echo wp_get_attachment_image( $service_2_image, $size ); ?>
-			</div>
+
 		</section>
 
 		<section class="about-section">
@@ -78,12 +79,12 @@ get_header(); ?>
 		</section>
 
 		<section class="about-section">
+			<div class="service-image align-right">
+				<?php echo wp_get_attachment_image( $service_4_image, $size ); ?>
+			</div>
 			<div class="service-description">
 				<h2><?php echo $service_4_title; ?></h2>
 				<p><?php echo $service_4_description; ?></p>
-			</div>
-			<div class="service-image align-right">
-				<?php echo wp_get_attachment_image( $service_4_image, $size ); ?>
 			</div>
 		</section>
 

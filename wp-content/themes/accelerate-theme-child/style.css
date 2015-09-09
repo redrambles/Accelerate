@@ -19,10 +19,6 @@ Text Domain: accelerate-theme-child
     margin: 0;
 }
 
-section.home-page {
-    background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
-}
-
 header#masthead {
     background: none repeat scroll 0 0 #45ac9d;
 }
@@ -38,6 +34,48 @@ a.button {
 	margin-left: 35px;
 }
 
+section.home-page {
+    background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
+}
+
+@media screen and (max-width: 1000px) {
+
+    .homepage-hero h1,
+    .homepage-hero h3 {
+        padding: 10px 20px; 
+    }
+
+    .social-media-navigation {
+        float: left;
+        padding-left: 50px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    .social-media-navigation {
+        float: none;
+        padding: 15px 0 0 0;
+    }
+
+}
+
+@media screen and (max-width: 550px) {
+
+    .homepage-hero h1 {
+        font-size: 2.5rem; 
+    }
+    .homepage-hero h3 {
+        font-size: 1.3rem;
+    }
+    li.individual-featured-work {
+    padding: 0;
+    }
+    p.footer-desc {
+        width: 80%;
+    }
+
+}
 
 /* Home Page Featured Work */
 
@@ -236,6 +274,15 @@ ul.tweets li{
         width: 90%;
         float: left;
         /*padding: 1rem 1rem;*/
+    }
+    #secondary {
+        padding-left: 1em;
+    }
+    aside#pi_simpletwittertweets-2 {
+        padding: 0;
+    }
+    a.follow-us-link {
+        padding: 0;
     }
 }
 
@@ -539,7 +586,7 @@ aside.sidebar li a {
 
 .about-intro {
     text-align: center;
-    padding: 40px 0 0 0;
+    padding: 40px 0 60px 0;
 }
 .about-intro h5{
     text-transform: uppercase;
@@ -593,6 +640,58 @@ aside.sidebar li a {
 .contact-button {
     margin-left: 10%;
     display: inline-block;
+}
+
+
+@media screen and (max-width: 950px) {
+
+    .site-content {
+        padding: 0;
+    }
+
+    .hero-text {
+        padding: 1.5em; 
+    }
+    .hero-text h3 {
+        padding-top: 1.5em;
+    }
+    .hero-text p {
+        font-size: 0.8em;
+        margin-bottom: 2em;
+    }
+
+    .about-intro {
+        padding: 2em 2em 3em;
+    }
+
+    .about-section {
+        text-align: center;
+    }
+
+    .align-right, .align-left {
+        float: none;
+    }
+
+    .service-image {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .service-description {
+        margin-top: 60px;
+        display: block;
+        padding: 2em;
+        margin: 0 auto;
+        text-align: center;
+        clear: both;
+    }
+    .about-contact {
+        text-align: center;
+    }
+    .contact-button {
+        margin-left: 0;
+        padding: 2em;
+    }
 }
 
 
