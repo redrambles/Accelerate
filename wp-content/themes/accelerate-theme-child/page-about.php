@@ -1,7 +1,6 @@
 <?php
 /**
- * Template: Custom About Page - yeah!
- *
+ * 
  * This page will override the generic page.php 
  * for the About Page
  * 
@@ -15,7 +14,7 @@ get_header(); ?>
 		$services_intro_title = get_field('services_intro_title');
 		//$services_intro_title  = get_post_meta($post->ID, "services_intro_title", true);
 		$services_intro_text = get_field('services_intro_text');
-		$service_1_title = get_field('service_1_title');;
+		$service_1_title = get_field('service_1_title');
 		$service_1_description = get_field('service_1_desc');
 		$service_1_image = get_field('service_1_image');
 		$service_2_title = get_field('service_2_title');
@@ -53,7 +52,7 @@ get_header(); ?>
 			</div>
 			<div class="service-description">
 					<h2><?php echo $service_1_title; ?></h2>
-					<p><?php echo $service_1_description; ?></2>
+					<p><?php echo $service_1_description; ?></p>
 			</div>
 		</section>
 

@@ -595,14 +595,26 @@ aside.sidebar li a {
     font-weight: 700;
 }
 
-.about-section {
+.about-section,
+.service-section {
     clear: both;
 }
 
-.about-section h2 {
+.about-section h2,
+.service-section h2 {
     font-weight: 600;
     padding-bottom: 15px;
 }
+
+/* Testing for the CPT - CPT-About Template page version of the About page */
+.service-section:nth-child(odd) .service-image {
+    float: left;
+}
+
+.service-section:nth-child(even) .service-image {
+    float: right;
+}
+
 
 .service-description {
     margin-top: 60px;
