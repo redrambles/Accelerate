@@ -320,6 +320,15 @@ function twentyfifteen_nav_description( $item_output, $item, $depth, $args ) {
 }
 add_filter( 'walker_nav_menu_start_el', 'twentyfifteen_nav_description', 10, 4 );
 
+
+
+/* test */
+
+function ann_footer_test() {
+	echo 'Booya, Bitch!';
+}
+add_action('twentyfifteen_credits', 'ann_footer_test');
+
 /**
  * Add a `screen-reader-text` class to the search form's submit button.
  *

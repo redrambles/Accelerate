@@ -32,8 +32,26 @@ get_header(); ?>
 
 	<!-- <img src="<?php //echo $image_src; ?>"/> --> <!-- worked -->
 
-	<!-- <iframe src="https://cloudup.com/cL3NbLNWqAY?chromeless" width="500" height="500"></iframe>
+	<?php 
+	//unnecessarily full of variables - haha - totally works, though.
+	//$chibi_pic_id = 47576; 
+	//$pico = wp_get_attachment_url($chibi_pic_id, 'full'); 
+
+	//if($pico) { ?>
+		<!-- <img src="<?php //echo $pico; ?>"/> -->
+	<?php //} ?>
+
+
+	<!-- <img src="http://localhost/accelerate/wp-content/uploads/2006/11/IMG_3231.jpg"/>
  -->
+	<?php //$image_id = 47603; //<!-- Fetch the attachment directly with its id - and use wp_get_attachment_image -->
+
+	//echo wp_get_attachment_image($image_id, 'full' ); ?> <!-- worked -->
+
+	<!-- <iframe src="https://cloudup.com/cL3NbLNWqAY?chromeless" width="500" height="500"></iframe>  -->
+
+	<!-- <iframe src="https://cloudup.com/cQX8FG-Vn8L?chromeless" width="500" height="500"></iframe> -->
+
 			<h2>That page!</h2>
 			<h4>She is nowhere to be found.</h4>
 			<p class="forgive">Forgive Us.</p>

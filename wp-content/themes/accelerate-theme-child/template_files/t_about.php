@@ -16,7 +16,6 @@ get_header(); ?>
 			<?php endwhile; // end of the loop. ?>
 	</section>
 
-
 	<section class="about-intro">
 
 		<?php 
