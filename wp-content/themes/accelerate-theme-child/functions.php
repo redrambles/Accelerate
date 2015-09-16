@@ -224,16 +224,16 @@ function color_my_world() {
 
 // In lieu of a 'maintenance mode plugin' - if in a hurry - will shut down the site to everyone but admins
 
-add_action( 'get_header', 'emergency_repair' );
+// add_action( 'get_header', 'emergency_repair' );
  
-function emergency_repair() {
+// function emergency_repair() {
  
-    if ( ! current_user_can( 'activate_plugins' ) ) {
-        wp_die( '<h3>Emergency repair underway. The website will be back soon.</h3></br>
-        	<p>In the meantime, how about <a href="http://explosm.net/">something funny</a>?</p>' );
-    }
+//     if ( ! current_user_can( 'activate_plugins' ) ) {
+//         wp_die( '<h3>Emergency repair underway. The website will be back soon.</h3></br>
+//         	<p>In the meantime, how about <a href="http://explosm.net/">something funny</a>?</p>' );
+//     }
      
-}
+// }
 
 // shortcode for user access content. Format = [user_access cap="read" deny="Log in to view content"] text [/user_access]
 // function user_access($attr, $content = null) {
