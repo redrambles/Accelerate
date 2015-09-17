@@ -9,10 +9,10 @@ Text Domain: accelerate-theme-child
 
 /*@import url('../accelerate-theme/style.css');*/
 
-.site-content {
+/*.site-content {
     max-width: 100%;
     overflow: hidden; 
-}
+}*/
 
 .blog-page {
     padding: 0;
@@ -21,10 +21,20 @@ Text Domain: accelerate-theme-child
 
 header#masthead {
     background: none repeat scroll 0 0 #45ac9d;
+    overflow: hidden;
 }
 
 a.button {
     background: none repeat scroll 0 0 #45ac9d;
+}
+
+.site-content, 
+.site-footer,
+.header-main {
+    width: 100%; /* Without a 'width' value - even if there was a 'max-width' value - it was taking the 'width' from the parent theme */
+    max-width: 960px;
+    margin: auto;
+    padding: 0 10px;
 }
 
 /* THIS is the style that so many students are looking for to make their menu inline */
@@ -33,6 +43,22 @@ a.button {
 	display: inline-block;
 	margin-left: 35px;
 }
+
+.menu-top-nav-container {
+    float: right;
+}
+
+button.menu-toggle {
+    display: none;
+}
+
+@media screen and (max-width: 1000px){
+
+    .menu-top-nav-container {
+        padding-right: 30px;
+    }
+}
+
 
 section.home-page {
     background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
