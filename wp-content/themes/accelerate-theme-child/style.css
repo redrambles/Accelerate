@@ -11,7 +11,7 @@ Text Domain: accelerate-theme-child
 
 .site-content {
     max-width: 100%;
-    overflow: hidden; 
+    /*overflow: hidden; */
 }
 
 .blog-page {
@@ -43,7 +43,7 @@ section.home-page {
     .homepage-hero h1,
     .homepage-hero h3 {
         padding: 10px 20px; 
-    }
+    }   
 
     .social-media-navigation {
         float: left;

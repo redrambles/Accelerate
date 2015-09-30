@@ -67,6 +67,7 @@ add_action( 'after_setup_theme', 'accelerate_theme_support_stuff' );
 
 // Custom Post Type Function
 function create_custom_post_types() {
+
 	register_post_type('case_studies', 
 		array( 
 			// 'supports' => $supports,
@@ -186,6 +187,7 @@ add_action( 'wp_before_admin_bar_render', 'your_awesome_admin_contact_info_of_wo
  
 function your_awesome_admin_contact_info_of_wow() {
     global $wp_admin_bar;
+
     $wp_admin_bar->add_node( array(
         'id'    => 'contact-developer',
         'title' => 'Contact Developer',

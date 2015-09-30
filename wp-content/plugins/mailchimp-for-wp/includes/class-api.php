@@ -375,6 +375,11 @@ class MC4WP_API {
 			if( isset( $response->code ) ) {
 				$this->error_code = (int) $response->code;
 			}
+
+		}
+
+		if( is_null( $response ) ) {
+			return false;
 		}
 
 		return $response;
@@ -433,11 +438,11 @@ class MC4WP_API {
 	private function get_headers() {
 
 		$headers = array(
-			'Accept-Encoding' => ''
+			'Accept' => 'application/json'
 		);
 
 		// Copy Accept-Language from browser headers
-		if( isset( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) ) {
+		if( ! empty( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) ) {
 			$headers['Accept-Language'] = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
 		}
 

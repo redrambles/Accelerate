@@ -3,8 +3,8 @@ Contributors: Ibericode, DvanKooten, iMazed, hchouhan
 Donate link: https://mc4wp.com/#utm_source=wp-plugin-repo&utm_medium=mailchimp-for-wp&utm_campaign=donate-link
 Tags: email, mailchimp, marketing, newsletter, signup, widget, mc4wp, contact form 7, woocommerce, buddypress,ibericode
 Requires at least: 3.7
-Tested up to: 4.3
-Stable tag: 2.3.10
+Tested up to: 4.3.1
+Stable tag: 2.3.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -166,6 +166,48 @@ MailChimp for WordPress is being developed on GitHub. If you want to collaborate
 6. Detailed statistics on which methods are generating the most subscribers. **(Pro Feature)**
 
 == Changelog ==
+
+= 2.3.14 - September 25 =
+
+**Fixes**
+
+- Use of undefined constant in previous update.
+
+= 2.3.13 - September 25, 2015 =
+
+**Fixes**
+
+- Honeypot causing horizontal scrollbar on RTL sites.
+- List choice fields not showing when using one of the default form themes.
+
+**Improvements**
+
+- Minor styling improvements for RTL sites.
+- MailChimp list fields of type "website" will now become HTML5 `url` type fields.
+- Auto-prefix fields of type `url` with `http://`
+
+= 2.3.12 - September 21, 2015 =
+
+**Fixes**
+
+- Issue with interest groupings not being fetched after updating to version 2.3.11
+
+= 2.3.11 - September 21, 2015 =
+
+**Fixes**
+
+- Honeypot field being filled by browser's autocomplete.
+- Styling issue for submit buttons in Mobile Safari.
+- Empty response from MailChimp API
+
+**Improvements**
+
+- Do not query MailChimp API for interest groupings if list has none.
+- Integration errors are now logged to PHP's error log for easier debugging.
+
+**Additions**
+
+- You can now use shortcodes in the form content.
 
 = 2.3.10 - September 7, 2015 =
 
