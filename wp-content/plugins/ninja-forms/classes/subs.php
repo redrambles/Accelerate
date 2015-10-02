@@ -228,12 +228,20 @@ class NF_Subs {
 						// We're working with a piece of meta, grabe the value.
 						$user_value = Ninja_Forms()->sub( $sub_id )->get_meta( $field_id );
 					}
+
 					// Run our value through the appropriate filters before we flatten any arrays.
 					$user_value = apply_filters( 'nf_subs_export_pre_value', $user_value, $field_id );
+					
 					// Implode any arrays we might have.
 					if ( is_array( $user_value ) ) {
 						$user_value = implode( ',', $user_value );
 					}
+
+					// Add an ' to the beginning = sign to prevent any CSV/Excel security issues.
+					if ( strpos( $user_value, '=' ) === 0 ) {
+						$user_value = "'" . $user_value;
+					}
+					
 					// Run our final value through the appropriate filters and assign it to the array.
 					$value_array[ $x ][ $field_id ] = htmlspecialchars_decode( apply_filters( 'nf_subs_csv_field_value', $user_value, $field_id ), ENT_QUOTES );					
 				}
