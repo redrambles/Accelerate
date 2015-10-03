@@ -34,6 +34,12 @@ a.button {
 	margin-left: 35px;
 }
 
+/* This will make the current menu item bold in top navigation bar */
+.nav-menu .current-menu-item > a,
+.nav-menu .current_page_item > a {
+font-weight: bold;
+}
+
 section.home-page {
     background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
 }
