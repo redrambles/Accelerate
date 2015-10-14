@@ -20,8 +20,8 @@ get_header(); ?>
 
 		<?php 
 		// About CPT Page variables and two fields from the original About Page (id# 47331)
-		$cpt_services_intro_title = get_field('cpt_services_intro_title');
-		$cpt_services_intro_text = get_field('cpt_services_intro_text'); 
+		$cpt_services_intro_title = get_field('cpt_services_intro_title'); //in CPT ABOUT field group - available to this page
+		$cpt_services_intro_text = get_field('cpt_services_intro_text'); // in CPT ABOUT field group - available to this page
 		$about_contact_title = get_field('about_contact_title', 47331);
 		$contact_button_text = get_field('contact_button_text', 47331); ?>
 
@@ -32,7 +32,8 @@ get_header(); ?>
 
 	<div class="site-content">
 		<?php $args = array (
-				'post_type' => 'services'
+				'post_type' => 'services',
+				'order' => 'ASC'
 			);
 
 		$services_query = new WP_Query($args);?>
@@ -42,8 +43,8 @@ get_header(); ?>
 
 			// Variables from our 'services' CPT
 			// NEEDED to put the VARIABLES INSIDE THE LOOP - wouldn't work otherwise as this is a custom query!!
-			$cpt_service_description = get_field('cpt_service_description');
-			$cpt_service_image = get_field('cpt_service_image');
+			$cpt_service_description = get_field('cpt_service_description'); // in CPT SERVICES field group
+			$cpt_service_image = get_field('cpt_service_image'); // in CPT SERVICES field group
 			$size = "small";
 		?>
 
@@ -57,8 +58,8 @@ get_header(); ?>
 				</div>
 			</section>
 
-			<?php endwhile; //end the while loop
-				wp_reset_postdata(); ?>
+		<?php endwhile; //end the while loop
+			wp_reset_postdata(); ?>
 
 			<section class="about-contact">
 				<div class="contact-description">

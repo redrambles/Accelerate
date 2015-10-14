@@ -40,6 +40,13 @@ a.button {
 font-weight: bold;
 }
 
+/* Test - if I wanted to make the current menu item have a background-color of tomato but ONLY if it is the blog-menu item - first add the CSS class to the menu item in the Dashboard (blog-menu) */
+.current-menu-item.blog-menu,
+.current-menu-item.blog-menu {
+background-color: tomato;
+}
+
+
 section.home-page {
     background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
 }

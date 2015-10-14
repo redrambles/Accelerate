@@ -37,10 +37,9 @@ get_header(); ?>
 		<!-- End test-->
 
 			<?php while ( have_posts() ) : the_post(); ?>
-				<?php //the_meta(); ?> <!-- Will echo out all custom fields -->
 				<h2><?php the_title(); ?></h2>
 				<?php the_content(); ?>
-			<?php endwhile; // end of the loop. ?>
+			<?php endwhile; ?>
 		</div> <!-- .page-content -->
 	</div> <!-- #content -->
 </div>
