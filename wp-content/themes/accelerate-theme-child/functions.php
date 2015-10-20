@@ -65,6 +65,13 @@ function accelerate_theme_support_stuff() {
 add_action( 'after_setup_theme', 'accelerate_theme_support_stuff' );
 
 
+// Testing the addition of excerpts for pages
+function wpcodex_add_excerpt_support_for_pages() {
+	add_post_type_support( 'page', 'excerpt' );
+}
+add_action( 'init', 'wpcodex_add_excerpt_support_for_pages' );
+
+
 // Custom Post Type Function
 function create_custom_post_types() {
 
