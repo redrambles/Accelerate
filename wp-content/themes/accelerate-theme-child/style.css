@@ -9,6 +9,18 @@ Text Domain: accelerate-theme-child
 
 /*@import url('../accelerate-theme/style.css');*/
 
+/* testing */
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+/* end test */
+
 .site-content {
     max-width: 100%;
     /*overflow: hidden; */
@@ -41,10 +53,9 @@ font-weight: bold;
 }
 
 /* Test - if I wanted to make the current menu item have a background-color of tomato but ONLY if it is the blog-menu item - first add the CSS class to the menu item in the Dashboard (blog-menu) */
-.current-menu-item.blog-menu,
-.current-menu-item.blog-menu {
+/*.current-menu-item.blog-menu {
 background-color: tomato;
-}
+}*/
 
 
 section.home-page {
