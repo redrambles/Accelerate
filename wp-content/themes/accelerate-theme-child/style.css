@@ -10,7 +10,7 @@ Text Domain: accelerate-theme-child
 /*@import url('../accelerate-theme/style.css');*/
 
 /* testing */
-.clearfix:before,
+/*.clearfix:before,
 .clearfix:after {
     content: " ";
     display: table;
@@ -18,7 +18,7 @@ Text Domain: accelerate-theme-child
 
 .clearfix:after {
     clear: both;
-}
+}*/
 /* end test */
 
 .site-content {
