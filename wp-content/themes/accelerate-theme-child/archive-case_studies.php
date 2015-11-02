@@ -20,24 +20,25 @@ get_header(); ?>
 			//$services = get_field('services');
 			$services = get_post_meta($post->ID, "services", true); ?>
 
-	<article class="case-study">
-		<aside class="case-study-sidebar">
-			<h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
-			<h6><?php echo $services; ?></h6>
+		<article class="case-study">
+			<aside class="case-study-sidebar">
+				<h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
+				<h6><?php echo $services; ?></h6>
 
-			<?php the_excerpt(); ?>
-			
-			<p class="view-project"><a href="<?php the_permalink(); ?>">View Project &#x276f;</a></p>
-		</aside>
+				<?php the_excerpt(); ?>
+				
+				<p class="view-project"><a href="<?php the_permalink(); ?>">View Project &#x276f;</a></p>
+			</aside>
 
-		<div class="case-study-images">
-			<a href="<?php the_permalink(); ?>">
-				<?php if($image_1) { 
-					echo wp_get_attachment_image( $image_1, $size );
-				} ?>
-			</a>
-		</div>
-	</article>
+			<div class="case-study-images">
+				<a href="<?php the_permalink(); ?>">
+					<?php if($image_1) { 
+						echo wp_get_attachment_image( $image_1, $size );
+					} ?>
+				</a>
+			</div>
+		</article>
+		
 	<?php endwhile; // end of the loop. ?>
 	</div><!-- #content -->
 </div><!-- #primary -->
