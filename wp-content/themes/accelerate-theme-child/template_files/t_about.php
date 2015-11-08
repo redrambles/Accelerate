@@ -22,7 +22,7 @@ get_header(); ?>
 		// About CPT Page variables and two fields from the original About Page (id# 47331)
 		$cpt_services_intro_title = get_field('cpt_services_intro_title'); //in CPT ABOUT field group - available to this page
 		$cpt_services_intro_text = get_field('cpt_services_intro_text'); // in CPT ABOUT field group - available to this page
-		$about_contact_title = get_field('about_contact_title', 47331);
+		$about_contact_title = get_field('about_contact_title', 47331); // Pulled this value and the next from the original about page - hence the '47331' value
 		$contact_button_text = get_field('contact_button_text', 47331); ?>
 
 		<h5><?php echo $cpt_services_intro_title; ?></h5>
@@ -42,7 +42,7 @@ get_header(); ?>
 		<?php while ($services_query-> have_posts() ) : $services_query->the_post(); 
 
 			// Variables from our 'services' CPT
-			// NEEDED to put the VARIABLES INSIDE THE LOOP - wouldn't work otherwise as this is a custom query!!
+			// NEEDED to put the VARIABLES INSIDE THE LOOP - as they are only available to the services CPT
 			$cpt_service_description = get_field('cpt_service_description'); // in CPT SERVICES field group
 			$cpt_service_image = get_field('cpt_service_image'); // in CPT SERVICES field group
 			$size = "small";
