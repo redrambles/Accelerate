@@ -31,11 +31,11 @@ Text Domain: accelerate-theme-child
     margin: 0;
 }
 
-header#masthead {
+#masthead {
     background: none repeat scroll 0 0 #45ac9d;
 }
 
-a.button {
+.button {
     background: none repeat scroll 0 0 #45ac9d;
 }
 
