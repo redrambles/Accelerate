@@ -72,6 +72,16 @@ function wpcodex_add_excerpt_support_for_pages() {
 add_action( 'init', 'wpcodex_add_excerpt_support_for_pages' );
 
 
+// Reverse Archive order
+function reverse_archive_order( $query ){
+	
+	if( !is_admin() && $query->is_archive() && $query->is_main_query() ) {
+		$query->set('order', 'ASC');
+	}
+}
+
+add_action( 'pre_get_posts', 'reverse_archive_order' );
+
 // Custom Post Type Function
 function create_custom_post_types() {
 
