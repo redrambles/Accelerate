@@ -116,8 +116,11 @@ section.home-page {
 
 .individual-featured-work {
     display: inline-block;
-    width: 30%;
-    padding-right: 3%;
+    width: 31%;
+    margin-right: 3%;
+}
+.individual-featured-work:nth-child(3n){
+    margin-right: 0;
 }
 .individual-featured-work figure{
     text-align: center;
@@ -142,7 +145,6 @@ section.home-page {
 @media screen and (max-width: 980px) {
     .individual-featured-work {
         width: 40%;
-        float: none;
         padding: 1rem 1rem;
     }
 }
@@ -150,7 +152,6 @@ section.home-page {
 @media screen and (max-width: 700px) {
     .individual-featured-work {
         width: 100%;
-        float: left;
         padding: 1rem 1rem;
     }
 }
