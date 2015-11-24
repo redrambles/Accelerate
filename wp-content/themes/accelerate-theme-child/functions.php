@@ -72,10 +72,10 @@ function wpcodex_add_excerpt_support_for_pages() {
 add_action( 'init', 'wpcodex_add_excerpt_support_for_pages' );
 
 
-// Reverse Archive order
+// Reverse Case Studies Archive order
 function reverse_archive_order( $query ){
 	
-	if( !is_admin() && $query->is_archive() && $query->is_main_query() ) {
+	if( !is_admin() && $query->is_post_type_archive('case_studies')  && $query->is_main_query() ) {
 		$query->set('order', 'ASC');
 	}
 }
