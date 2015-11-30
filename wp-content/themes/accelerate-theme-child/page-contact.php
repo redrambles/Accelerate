@@ -16,7 +16,7 @@ get_header(); ?>
 
 <div id="primary" class="site-content">
 	<div id="content" role="main">
-		<div class="page-content">
+		<div class="narrow-contact">
 	
 		<?php $method = $_SERVER['REQUEST_METHOD']; ?> 
 

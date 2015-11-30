@@ -21,6 +21,18 @@ Text Domain: accelerate-theme-child
 }*/
 /* end test */
 
+::selection {
+    background: #45AC9D;
+    color: #fff;
+    text-shadow: none;
+}
+
+::-moz-selection {
+    background: #45AC9D;
+    color: #fff;
+    text-shadow: none;
+}
+
 .site-content {
     max-width: 100%;
     /*overflow: hidden; */
@@ -456,8 +468,8 @@ p.footer-copy {
     padding-bottom: 20px;
 }
 
-.page-content {
-    padding: 55px 47px 0 0;
+.narrow-contact {
+    padding-top: 55px;
     width: 75%;
     margin: 0 auto;
 }
