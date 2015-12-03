@@ -34,7 +34,8 @@ Text Domain: accelerate-theme-child
 }
 
 .site-content {
-    max-width: 100%;
+    width: 100%;
+    max-width: 960px;
     /*overflow: hidden; */
 }
 
@@ -74,44 +75,6 @@ section.home-page {
     background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
 }
 
-@media screen and (max-width: 1000px) {
-
-    .homepage-hero h1,
-    .homepage-hero h3 {
-        padding: 10px 20px; 
-    }   
-
-    .social-media-navigation {
-        float: left;
-        padding-left: 50px;
-    }
-}
-
-@media screen and (max-width: 800px) {
-
-    .social-media-navigation {
-        float: none;
-        padding: 15px 0 0 0;
-    }
-
-}
-
-@media screen and (max-width: 550px) {
-
-    .homepage-hero h1 {
-        font-size: 2.5rem; 
-    }
-    .homepage-hero h3 {
-        font-size: 1.3rem;
-    }
-    li.individual-featured-work {
-    padding: 0;
-    }
-    p.footer-desc {
-        width: 80%;
-    }
-
-}
 
 /* Home Page Featured Work */
 
@@ -153,20 +116,6 @@ section.home-page {
     text-transform: uppercase;
 }
 
-/* Home Page Featured Work Responsive */
-@media screen and (max-width: 980px) {
-    .individual-featured-work {
-        width: 40%;
-        padding: 1rem 1rem;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .individual-featured-work {
-        width: 100%;
-        padding: 1rem 1rem;
-    }
-}
 
 /* Home Page Services */
 
@@ -193,24 +142,6 @@ section.home-page {
     text-align: center;
     font-weight: 400;
     margin-top: 20px;
-}
-
-/* Home Page Services Responsive */
-
-@media screen and (max-width: 980px) {
-    .individual-featured-service {
-        width: 40%;
-        float: left;
-        padding: 1rem 1rem;
-    }
-}
-
-@media screen and (max-width: 560px) {
-    .individual-featured-service {
-        width: 100%;
-        float: left;
-        padding: 1rem 0;
-    }
 }
 
 
@@ -304,25 +235,6 @@ ul.tweets li{
     margin-bottom: 25px;
 }
 
-
-/* This is a WORK IN PROGRESS */
-@media screen and (max-width: 850px) {
-    .blog-post, .tweet-module {
-        width: 90%;
-        float: left;
-        /*padding: 1rem 1rem;*/
-    }
-    #secondary {
-        padding-left: 1em;
-    }
-    aside#pi_simpletwittertweets-2 {
-        padding: 0;
-    }
-    a.follow-us-link {
-        padding: 0;
-    }
-}
-
 /* Social icons homepage */
 
 ul.social-media-menu {
@@ -333,8 +245,6 @@ ul.social-media-menu {
     display: inline-block;
     padding-right: 15px;
 }
-
-
 
 /* Single Blog Page */
 
@@ -407,36 +317,6 @@ div.case-study-images img{
     border: 1px solid #dddddd;
 }
 
-/* Rather pitiful attempt and responsiveness */
-@media screen and (max-width:  1056px) {
-
-
-    article.case-study {
-        padding: 20px;
-        margin: 0 auto;
-    }
-    aside.case-study-sidebar {
-        width: 95%;
-    }
-
-    aside.case-study-sidebar,
-    div.case-study-images{
-        float: none;
-    }
-
-    div.case-study-images {
-        max-width: 100%;
-    }
-}
-
-@media screen and (max-width:  700px) {
-
-    div.case-study-images {
-        margin: 0;
-        max-width: 100%;
-    }
-
-}
 
 /* Footer */
 
@@ -579,24 +459,6 @@ aside.sidebar li a {
     background-color: tomato;
 }
 */
-/*Contact Form Responsive*/
-
-@media screen and (max-width: 800px) {
-    #ninja_forms_field_1_div_wrap, 
-    #ninja_forms_field_2_div_wrap {
-        float: none;
-        width: 100%;
-    }
-
-    #ninja_forms_field_2_div_wrap {
-        margin-left: 0;
-    }
-
-    .contact-form p{
-        font-size: 0.9rem;
-    }
-}
-
 
 /* About Page */
 
@@ -689,58 +551,6 @@ aside.sidebar li a {
 .contact-button {
     margin-left: 10%;
     display: inline-block;
-}
-
-
-@media screen and (max-width: 950px) {
-
-    .site-content {
-        padding: 0;
-    }
-
-    .hero-text {
-        padding: 1.5em; 
-    }
-    .hero-text h3 {
-        padding-top: 1.5em;
-    }
-    .hero-text p {
-        font-size: 0.8em;
-        margin-bottom: 2em;
-    }
-
-    .about-intro {
-        padding: 2em 2em 3em;
-    }
-
-    .about-section {
-        text-align: center;
-    }
-
-    .align-right, .align-left {
-        float: none;
-    }
-
-    .service-image {
-        width: 100%;
-        margin-top: 0;
-    }
-
-    .service-description {
-        margin-top: 60px;
-        display: block;
-        padding: 2em;
-        margin: 0 auto;
-        text-align: center;
-        clear: both;
-    }
-    .about-contact {
-        text-align: center;
-    }
-    .contact-button {
-        margin-left: 0;
-        padding: 2em;
-    }
 }
 
 
@@ -853,6 +663,201 @@ aside.sidebar li a {
 #navigation .right a:hover span {
     text-decoration: underline;
 }
+
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 1000px) {
+
+    .homepage-hero h1,
+    .homepage-hero h3 {
+        padding: 10px 20px; 
+    }   
+
+    .social-media-navigation {
+        float: left;
+        padding-left: 50px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    .social-media-navigation {
+        float: none;
+        padding: 15px 0 0 0;
+    }
+
+}
+
+@media screen and (max-width: 550px) {
+
+    .homepage-hero h1 {
+        font-size: 2.5rem; 
+    }
+    .homepage-hero h3 {
+        font-size: 1.3rem;
+    }
+    li.individual-featured-work {
+    padding: 0;
+    }
+    p.footer-desc {
+        width: 80%;
+    }
+
+}
+
+/* Home Page Featured Work Responsive */
+@media screen and (max-width: 980px) {
+    .individual-featured-work {
+        width: 40%;
+        padding: 1rem 1rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .individual-featured-work {
+        width: 100%;
+        padding: 1rem 1rem;
+    }
+}
+
+/* Home Page Services Responsive */
+
+@media screen and (max-width: 980px) {
+    .individual-featured-service {
+        width: 40%;
+        float: left;
+        padding: 1rem 1rem;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .individual-featured-service {
+        width: 100%;
+        float: left;
+        padding: 1rem 0;
+    }
+}
+
+/* This is a WORK IN PROGRESS */
+@media screen and (max-width: 850px) {
+    .blog-post, .tweet-module {
+        width: 90%;
+        float: left;
+        /*padding: 1rem 1rem;*/
+    }
+    #secondary {
+        padding-left: 1em;
+    }
+    aside#pi_simpletwittertweets-2 {
+        padding: 0;
+    }
+    a.follow-us-link {
+        padding: 0;
+    }
+}
+
+/* Case Studies Rather pitiful attempt at responsiveness */
+@media screen and (max-width:  1056px) {
+
+    article.case-study {
+        padding: 20px;
+        margin: 0 auto;
+    }
+    aside.case-study-sidebar {
+        width: 95%;
+    }
+
+    aside.case-study-sidebar,
+    div.case-study-images{
+        float: none;
+    }
+
+    div.case-study-images {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width:  700px) {
+
+    div.case-study-images {
+        margin: 0;
+        max-width: 100%;
+    }
+
+}
+
+/*Contact Form Responsive*/
+
+@media screen and (max-width: 800px) {
+    #ninja_forms_field_1_div_wrap, 
+    #ninja_forms_field_2_div_wrap {
+        float: none;
+        width: 100%;
+    }
+
+    #ninja_forms_field_2_div_wrap {
+        margin-left: 0;
+    }
+
+    .contact-form p{
+        font-size: 0.9rem;
+    }
+}
+
+
+
+@media screen and (max-width: 950px) {
+
+    .site-content {
+        padding: 0;
+    }
+
+    .hero-text {
+        padding: 1.5em; 
+    }
+    .hero-text h3 {
+        padding-top: 1.5em;
+    }
+    .hero-text p {
+        font-size: 0.8em;
+        margin-bottom: 2em;
+    }
+
+    .about-intro {
+        padding: 2em 2em 3em;
+    }
+
+    .about-section {
+        text-align: center;
+    }
+
+    .align-right, .align-left {
+        float: none;
+    }
+
+    .service-image {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .service-description {
+        margin-top: 60px;
+        display: block;
+        padding: 2em;
+        margin: 0 auto;
+        text-align: center;
+        clear: both;
+    }
+    .about-contact {
+        text-align: center;
+    }
+    .contact-button {
+        margin-left: 0;
+        padding: 2em;
+    }
+}
+
 
 /* TEST */
 
