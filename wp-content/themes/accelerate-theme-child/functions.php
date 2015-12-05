@@ -108,10 +108,7 @@ function create_custom_post_types() {
 				'singular_name' => _( 'Service' )
 				),
 			'public' => true,
-			'has_archive' => true,
-			'rewrite' => array(
-				'slug' => 'services'
-				),
+			'has_archive' => false
 			)
 	 );
 
