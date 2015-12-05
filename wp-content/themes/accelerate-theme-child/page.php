@@ -21,7 +21,7 @@ get_header(); ?>
 
 		<!-- Testing the same function detailed below - put in functions.php and called here - WORKS! -->
 		<?php //red_get_me_some_posts(); ?>
-
+		
 		<!-- Testing calling some info OUTSIDE of a loop and playing with get_posts - WORKS! -->
 		<?php
 			//$args = array( 'posts_per_page' => 3 );

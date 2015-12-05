@@ -36,7 +36,9 @@ get_header(); ?>
 				'order' => 'ASC'
 			);
 
-		$services_query = new WP_Query($args);?>
+		$services_query = new WP_Query($args);
+		//$entry = 0;
+		?>
 
 
 		<?php while ($services_query-> have_posts() ) : $services_query->the_post(); 
@@ -46,10 +48,13 @@ get_header(); ?>
 			$cpt_service_description = get_field('cpt_service_description'); // in CPT SERVICES field group
 			$cpt_service_image = get_field('cpt_service_image'); // in CPT SERVICES field group
 			$size = "small";
+			//$entry++;
+			//$align = ($entry % 2 == 0) ? 'align-right' : 'align-left';
+
 		?>
 
 			<section class="service-section">
-				<div class="service-image">
+				<div class="service-image <?php echo $align ?>">
 					<?php echo wp_get_attachment_image( $cpt_service_image, $size ); ?>
 				</div>
 				<div class="service-description">
