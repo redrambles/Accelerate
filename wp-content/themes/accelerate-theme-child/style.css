@@ -21,6 +21,14 @@ Text Domain: accelerate-theme-child
 }*/
 /* end test */
 
+.site {
+    width: 100%;
+    min-width: 320px;
+    margin: auto;
+    overflow: hidden;
+}
+
+
 img {
     border: 0;
     height: auto;
