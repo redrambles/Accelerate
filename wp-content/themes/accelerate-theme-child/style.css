@@ -511,7 +511,6 @@ aside.sidebar li a {
 .about-section,
 .service-section {
     clear: both;
-    overflow: hidden;
 }
 
 .about-section h2,
@@ -529,9 +528,10 @@ aside.sidebar li a {
     float: right;
 }
 
+
 .service-description {
     margin-top: 60px;
-    float: left;
+    display: inline-block;
     padding: .5em;
     width: 67%;
 }
