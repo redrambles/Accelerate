@@ -28,7 +28,6 @@ Text Domain: accelerate-theme-child
     overflow: hidden;
 }
 
-
 img {
     border: 0;
     height: auto;
@@ -512,6 +511,7 @@ aside.sidebar li a {
 .about-section,
 .service-section {
     clear: both;
+    overflow: hidden;
 }
 
 .about-section h2,
@@ -529,10 +529,9 @@ aside.sidebar li a {
     float: right;
 }
 
-
 .service-description {
     margin-top: 60px;
-    display: inline-block;
+    float: left;
     padding: .5em;
     width: 67%;
 }

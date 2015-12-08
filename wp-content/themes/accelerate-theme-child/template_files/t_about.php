@@ -54,7 +54,7 @@ get_header(); ?>
 		?>
 
 			<section class="service-section">
-				<div class="service-image <?php echo $align ?>">
+				<div class="service-image <?php //echo $align ?>">
 					<?php echo wp_get_attachment_image( $cpt_service_image, $size ); ?>
 				</div>
 				<div class="service-description">
