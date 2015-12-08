@@ -511,7 +511,12 @@ aside.sidebar li a {
 .about-section,
 .service-section {
     clear: both;
-    overflow: hidden;
+    /*overflow: hidden;*/
+}
+
+.service-section {
+    display: flex;
+    justify-content: center;
 }
 
 .about-section h2,
@@ -520,18 +525,22 @@ aside.sidebar li a {
     padding-bottom: 15px;
 }
 
+.service-section:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
 /* Testing for the CPT - CPT-About Template page version of the About page */
-.service-section:nth-child(odd) .service-image {
+/*.service-section:nth-child(odd) .service-image {
     float: left;
 }
 
 .service-section:nth-child(even) .service-image {
     float: right;
-}
+}*/
 
 .service-description {
     margin-top: 60px;
-    float: left;
+    /*float: left;*/
     padding: .5em;
     width: 67%;
 }
