@@ -1,6 +1,10 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit;
 function ninja_forms_setup_processing_class( $form_id = '' ){
 	global $ninja_forms_processing;
+
+	// Manually set the cookie.
+	Ninja_Forms()->session->init()->set_cookie();
+
 	$transient_id = Ninja_Forms()->session->get( 'nf_transient_id' );
 	//Set the form id
 	if ( $form_id == '' ) {

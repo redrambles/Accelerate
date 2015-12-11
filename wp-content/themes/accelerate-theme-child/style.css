@@ -67,7 +67,7 @@ img {
 }
 
 /* THIS is the style that so many students are looking for to make their menu inline */
-#primary-navigation ul li{
+.menu-top-nav-container ul li{
     text-transform: uppercase;
 	display: inline-block;
 	margin-left: 35px;
