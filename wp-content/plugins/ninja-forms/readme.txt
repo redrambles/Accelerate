@@ -1,9 +1,9 @@
 === Ninja Forms ===
 Contributors: wpninjasllc, kstover, jameslaws, wpnzach, kbjohnson90, aman086, daveshine, mordauk, bftrick, helgatheviking
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
-Requires at least: 3.9
+Requires at least: 4.2
 Tested up to: 4.4
-Stable tag: 2.9.29
+Stable tag: 2.9.30
 License: GPLv2 or later
 
 Create forms and manage submissions easily with a simple drag and drop interface. Contact forms, subscription forms, or any other form for WordPress.
@@ -97,14 +97,38 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
+= 2.9.30 (11 December 2015) =
+
+*Security:*
+
+* Fixed a serious security issue that could allow for possible SQL injection. Please update as soon as possible.
+
+*Bugs:*
+
+* Fixed a bug that could cause HTML elements in success messages and redirects to be accidentally stripped.
+
+== Changelog ==
+
+= 2.9.30 (11 December 2015) =
+
+*Security:*
+
+* Fixed a serious security issue that could allow for possible SQL injection. Please update as soon as possible.
+
+*Bugs:*
+
+* Fixed a bug that could cause HTML elements in success messages and redirects to be accidentally stripped.
+
 = 2.9.29 (08 December 2015) =
+
+*Security:*
+
+* Fixed a security issue that could allow users to run Javascript on the front-end after a submission in some circumstances. Thank you to Kenan G. ( @K3n4nG on Twitter ) for finding this issue and reporting it to us.
 
 *Bugs:*
 
 * Fixed a bug that could cause session cookies to be set on every page, rather than just upon form submission.
 * Fixed a bug that caused Ninja Forms to override translation strings on non-submission custom post types.
-
-== Changelog ==
 
 = 2.9.28 (30 September 2015) =
 

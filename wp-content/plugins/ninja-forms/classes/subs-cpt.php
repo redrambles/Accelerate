@@ -643,13 +643,13 @@ class NF_Subs_CPT {
 
 		$messages[$post_type] = array(
 			0 => 	'', // Unused. Messages start at index 1.
-	 		1 => 	sprintf( __( '%s updated.', 'ninja-forms' ), $singular ) . $view_post_link_html,
+	 		1 => 	sprintf( __( '%s updated.', 'ninja-forms' ), $singular ),
 	 		2 => 	__( 'Custom field updated.' ),
 	 		3 => 	__( 'Custom field deleted.' ),
 	 		4 => 	sprintf( __( '%s updated.', 'ninja-forms' ), $singular ),
 			/* translators: %s: date and time of the revision */
 	 		5 => 	isset($_GET['revision']) ? sprintf( __( '%1$s restored to revision from %2$s.' ), $singular, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-	 		6 => 	sprintf( __( '%s published.', 'ninja-forms' ), $singular ) . $view_post_link_html,
+	 		6 => 	sprintf( __( '%s published.', 'ninja-forms' ), $singular ),
 	 		7 => 	sprintf( __( '%s saved.', 'ninja-forms' ), $singular ),
 	 		8 => 	sprintf( __( '%1$s submitted. <a href="%2$s" target="_blank">Preview %3$s</a>', 'ninja-forms' ), $singular, esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ), $singular ),
 	 		9 => 	sprintf( __( '%1$s scheduled for: <strong>%2$s</strong>. <a href="%3$s" target="_blank">Preview %4$s</a>', 'ninja-forms' ), $singular, date_i18n( get_option( 'data_format' ) . ' ' . get_option( 'time_format' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post_ID ) ), $singular ),
