@@ -242,7 +242,7 @@ function nf_wp_kses_post_deep( $value ){
 	if( ! is_array( $value ) ) {
 
 		while (
-            stripos($value, 'script') ||
+            stripos($value, 'script>') ||
             ( stripos($value, 'script') && ( stripos($value, '"&gt;') || stripos($value, '">') || stripos($value, "'&gt;") || stripos($value, "'>") ) ) ||
             stripos($value, '</textarea>') ||
             ( stripos($value, '</textarea>') && ( stripos($value, '"&gt;') || stripos($value, '">') || stripos($value, "'&gt;") || stripos($value, "'>") ) ) ||
