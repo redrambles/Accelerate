@@ -98,6 +98,9 @@ function ninja_forms_field_textarea_display( $field_id, $data, $form_id = '' ){
 
 	$field_class = ninja_forms_get_field_class( $field_id, $form_id );
 
+	$default_value = filter_var( $default_value, FILTER_SANITIZE_STRING );
+	$default_value = filter_var( $default_value, FILTER_SANITIZE_SPECIAL_CHARS );
+
 	if($textarea_rte == 1){
 		$settings = array( 'media_buttons' => $textarea_media );
 		$args = apply_filters( 'ninja_forms_textarea_rte', $settings );
