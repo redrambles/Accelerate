@@ -21,10 +21,11 @@
 					<p class="footer-desc"><span class="main-color"><?php bloginfo( 'name' ); ?></span> <?php bloginfo('description'); ?></p>
 					<p class="footer-copy">&copy; <?php echo date("Y"); ?> <?php bloginfo('title'); ?>, LLC </p>
 				</div>
-				
-				<nav class="social-media-navigation" role="navigation">
-					<?php wp_nav_menu( array( 'theme_location' => 'social-media', 'menu_class' => 'social-media-menu' ) ); ?>
-				</nav>
+				<?php if ( has_nav_menu ( 'social-media' ) ) { ?>
+					<nav class="social-media-navigation" role="navigation">
+						<?php wp_nav_menu( array( 'theme_location' => 'social-media', 'menu_class' => 'social-media-menu' ) ); ?>
+					</nav>
+				<?php } ?>
 	
 			</div><!-- .site-info -->
 		</footer><!-- #colophon -->
