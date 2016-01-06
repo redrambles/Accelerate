@@ -195,6 +195,15 @@ function bwp_template_redirect() {
 	}
 }
 
+// TEST
+add_filter( 'the_content', 'replace_NYC' );
+function replace_NYC( $content ) {
+	    if ( is_page('about') ) { 
+        $content = str_replace('Accelerate', '<span class="main-color">Accelerate</span>', $content);
+        return $content;
+    }
+}
+
 // Provide a quick link for your clients to reach you in the admin toolbar
 add_action( 'wp_before_admin_bar_render', 'your_awesome_admin_contact_info_of_wow' ); 
  
