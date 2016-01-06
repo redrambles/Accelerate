@@ -199,9 +199,9 @@ function bwp_template_redirect() {
 add_filter( 'the_content', 'replace_NYC' );
 function replace_NYC( $content ) {
 	    if ( is_page('about') ) { 
-        $content = str_replace('Accelerate', '<span class="main-color">Accelerate</span>', $content);
-        return $content;
-    }
+        	$content = str_replace('Accelerate', '<span class="main-color">Accelerate</span>', $content);
+    	}
+   	return $content;
 }
 
 // Provide a quick link for your clients to reach you in the admin toolbar
