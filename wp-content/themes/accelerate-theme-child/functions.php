@@ -112,6 +112,22 @@ function create_custom_post_types() {
 			)
 	 );
 
+	// FAQ section
+	register_post_type('faq', 
+		array( 
+			// 'supports' => $supports,
+			'labels' => array(
+				'name' => _( 'FAQ' ),
+				'singular_name' => _( 'FAQ' )
+				),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array(
+				'slug' => 'faqs'
+				),
+			)
+	 );
+
 }
 // Hook this custom post type function into the theme
 add_action( 'init', 'create_custom_post_types' );
@@ -121,6 +137,9 @@ function accelerate_child_scripts() {
 	wp_enqueue_style( 'parent-theme-css', get_template_directory_uri() . '/style.css' );
 	wp_enqueue_style('accelerate-child-google-fonts', 'http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300italic,400italic,600italic,400,600,700,300');
 	wp_enqueue_style('accelerate-child-font-awesome', 'http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
+	//Scripts
+	wp_enqueue_script('faqs', get_stylesheet_directory_uri() . '/js/faqs.js', array('jquery'), '20160105', false );
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 
@@ -195,9 +214,9 @@ function bwp_template_redirect() {
 	}
 }
 
-// TEST
-add_filter( 'the_content', 'replace_NYC' );
-function replace_NYC( $content ) {
+// Change Accelerate using a filter for about page
+add_filter( 'the_content', 'about_Accelerate_green' );
+function about_Accelerate_green( $content ) {
 	    if ( is_page('about') ) { 
         	$content = str_replace('Accelerate', '<span class="main-color">Accelerate</span>', $content);
     	}

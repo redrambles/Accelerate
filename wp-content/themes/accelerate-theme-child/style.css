@@ -679,6 +679,34 @@ aside.sidebar li a {
 }
 
 
+/***** FAQ *****/
+.faq-archive-title {
+    color: #3f3c3c;
+    text-align: center;
+    margin: 50px 0px 60px 0px;
+}
+
+section.faq .post-entry {
+    border-bottom: 1px dotted #bfbfbf;
+}
+
+section.faq .entry-wrap {
+    padding: 0.5em;
+    -webkit-transition: 800ms ease-in-out;
+    -moz-transition: 800ms ease-in-out;
+    -o-transition: 800ms ease-in-out;
+    transition: 800ms ease-in-out;
+}
+
+.faq-title:hover {
+    cursor: pointer;
+}
+
+.faq-selected {
+    background-color: lemonchiffon;
+}
+
+
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 1000px) {
