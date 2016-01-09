@@ -680,17 +680,18 @@ aside.sidebar li a {
 
 
 /***** FAQ *****/
+
 .faq-archive-title {
     color: #3f3c3c;
     text-align: center;
     margin: 50px 0px 60px 0px;
 }
 
-section.faq .post-entry {
+.faq .post-entry {
     border-bottom: 1px dotted #bfbfbf;
 }
 
-section.faq .entry-wrap {
+.faq .entry-wrap {
     padding: 0.5em;
     -webkit-transition: 800ms ease-in-out;
     -moz-transition: 800ms ease-in-out;
@@ -703,7 +704,17 @@ section.faq .entry-wrap {
 }
 
 .faq-selected {
-    background-color: lemonchiffon;
+    background-color: #ffffe5;
+}
+
+.post-entry .faq-left {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.post-entry .faq-right {
+    text-align: right;
+    padding-right: 20px;
 }
 
 

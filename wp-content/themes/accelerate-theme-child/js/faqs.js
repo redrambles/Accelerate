@@ -4,7 +4,6 @@ jQuery(document).ready(function($) {
 
 	$(".faq-title").click(function(){
 		$(this).next().slideToggle("slow");
-		// $(this).parent().css( "background-color", "lemonchiffon" );
 		$(this).parent().toggleClass("faq-selected");
 	});
 	

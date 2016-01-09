@@ -15,14 +15,17 @@ get_header(); ?>
 <section class="faq">
 	<div class="site-content">
 
-		<?php if ( have_posts() ) :
+	<?php if ( have_posts() ) :
 
-			the_archive_title( '<h1 class="faq-archive-title">', '</h1>' );
+		the_archive_title( '<h1 class="faq-archive-title">', '</h1>' );
 		// Start the Loop.
-			while ( have_posts() ) : the_post(); ?>
+		$faq_align = "faq-right";
+		while ( have_posts() ) : the_post(); 
+		$faq_align = ($faq_align == "faq-right") ? "faq-left" : "faq-right";
+		?>
 		
 		<article class="post-entry">
-			<div class="entry-wrap">
+			<div class="entry-wrap <?php echo $faq_align; ?>">
 				<header class="entry-header faq-title">
 					<h2 class="entry-title"><?php the_title(); ?></h2>
 				</header>
