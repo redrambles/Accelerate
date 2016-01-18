@@ -98,7 +98,7 @@ section.home-page {
 
 .homepage-featured-work {
     list-style: none;
-    overflow: hidden;   
+    overflow: hidden;
     margin: 0;
     padding-bottom: 10%;
 }
@@ -237,7 +237,7 @@ ul.tweets li{
 }
 
 /* To add the '@Accelerate' */
-#pi_simpletwittertweets-2 h3::after { 
+#pi_simpletwittertweets-2 h3::after {
     content: "@Accelerate";
     display: block;
     color: #3b3b3b;
@@ -284,7 +284,7 @@ article.case-study {
 
 aside.case-study-sidebar{
     float: left;
-    width: 33%; /* testing this out 
+    width: 33%; /* testing this out
     /*width: 314px; */
     margin: 60px 40px 0 0;
 }
@@ -427,7 +427,7 @@ aside.sidebar li a {
     font-size: 0.8em;
 }
 
-#ninja_forms_field_1_div_wrap, 
+#ninja_forms_field_1_div_wrap,
 #ninja_forms_field_2_div_wrap {
     width: 48%;
     float: left;
@@ -678,6 +678,102 @@ aside.sidebar li a {
     text-decoration: underline;
 }
 
+/* COMMENTS */
+
+.comments-area {
+    margin-bottom: 80px;
+    clear: both;
+    overflow: hidden;
+}
+.comments-area .comments-title {
+    border: solid #bfbfbf;
+    border-width: 1px 0;
+    color: #150300;
+    font: 600 0.8em/49px 'OpenSans', Arial, sans-serif;
+    height: 49px;
+    text-transform: uppercase;
+    margin: 15px 0;
+}
+.comment-list {
+    margin-bottom: 50px;
+}
+.comment-list .comment-head {
+    margin: 25px 0 10px;
+}
+.comment-list .comment {
+    font: 0.8em/2.08em 'OpenSans', Arial, sans-serif;
+    border-bottom: 1px solid #BFBFBF;
+    padding-bottom: 23px;
+}
+.comment-list .comment .comment-meta {
+    float: right;
+}
+.comment-list .comment a {
+    color: #45ac9d;
+    text-decoration: none;
+}
+.comment-list .comment a:hover {
+    text-decoration: underline;
+}
+.comment-list .comment .comment-author {
+    font-weight: 600;
+}
+.comments-area .comment-reply-title {
+    color: #45ac9d;
+    font: bold 1.176em 'Montserrat', 'OpenSans', Arial, sans-serif;
+    text-transform: uppercase;
+    margin: 2em 0 1em;
+}
+.comments-area .comment-reply-title a {
+    color: #45ac9d;
+}
+.comments-area .comment-reply-title a:hover {
+    text-decoration: underline;
+}
+.comments-area .comment-form p {
+    font: 0.8em/2.08em 'OpenSans', Arial, sans-serif;
+    padding-bottom: 23px;
+}
+.comments-area .comment-form p a {
+    color: #45ac9d;
+}
+.comments-area .comment-form p a:hover {
+    text-decoration: underline;
+}
+.comments-area .comment-form label {
+    display: block;
+    font: 600 1em 'OpenSans', Arial, sans-serif;
+    margin: 10px 0;
+}
+.comments-area .comment-form textarea {
+    height: 180px;
+    width: 100%;
+    resize: none;
+    font: 16px 'OpenSans', Arial, sans-serif;
+    padding: 5px 10px;
+}
+.comments-area .comment-form input[type="submit"] {
+    background: #45ac9d;
+    width: 206px;
+    height: 55px;
+    font: bold 1.3em/45px 'Montserrat', 'OpenSans', Arial, sans-serif;
+    color: #fff;
+    margin: 24px 0;
+    float: right;
+    border: 0;
+    -webkit-transition: all 450ms linear;
+    -moz-transition: all 450ms linear;
+    -ms-transition: all 450ms linear;
+    -o-transition: all 450ms linear;
+    transition: all 450ms linear;
+}
+.comments-area .comment-form input[type="submit"]:hover {
+    background: #31756b;
+    cursor: pointer;
+}
+/* Adding this to hide the text for HTML allowed tags in comments box */
+.form-allowed-tags {
+    display: none;
 
 /***** FAQ *****/
 
@@ -724,8 +820,8 @@ aside.sidebar li a {
 
     .homepage-hero h1,
     .homepage-hero h3 {
-        padding: 10px 20px; 
-    }   
+        padding: 10px 20px;
+    }
 
     .social-media-navigation {
         float: left;
@@ -745,7 +841,7 @@ aside.sidebar li a {
 @media screen and (max-width: 550px) {
 
     .homepage-hero h1 {
-        font-size: 2.5rem; 
+        font-size: 2.5rem;
     }
     .homepage-hero h3 {
         font-size: 1.3rem;
@@ -843,7 +939,7 @@ aside.sidebar li a {
 /*Contact Form Responsive*/
 
 @media screen and (max-width: 800px) {
-    #ninja_forms_field_1_div_wrap, 
+    #ninja_forms_field_1_div_wrap,
     #ninja_forms_field_2_div_wrap {
         float: none;
         width: 100%;
@@ -867,7 +963,7 @@ aside.sidebar li a {
     }
 
     .hero-text {
-        padding: 1.5em; 
+        padding: 1.5em;
     }
     .hero-text h3 {
         padding-top: 1.5em;
@@ -923,8 +1019,3 @@ aside.sidebar li a {
     text-align: center;
     color: tomato;
 }
-
-
-
-
-

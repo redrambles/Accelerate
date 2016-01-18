@@ -1,8 +1,8 @@
 <?php
 /**
- * 
+ *
  * Template Name: CPT About
- * 
+ *
  * Alternate Version of About Page Using CPTs and a Template
  */
 
@@ -18,7 +18,7 @@ get_header(); ?>
 
 	<section class="about-intro">
 
-		<?php 
+		<?php
 		// About CPT Page variables and two fields from the original About Page (id# 47331)
 		$cpt_services_intro_title = get_field('cpt_services_intro_title'); //in CPT ABOUT field group - available to this page
 		$cpt_services_intro_text = get_field('cpt_services_intro_text'); // in CPT ABOUT field group - available to this page
@@ -41,7 +41,7 @@ get_header(); ?>
 		?>
 
 
-		<?php while ($services_query-> have_posts() ) : $services_query->the_post(); 
+		<?php while ($services_query-> have_posts() ) : $services_query->the_post();
 
 			// Variables from our 'services' CPT
 			// NEEDED to put the VARIABLES INSIDE THE LOOP - as they are only available to the services CPT
@@ -70,7 +70,7 @@ get_header(); ?>
 				<div class="contact-description">
 					<h4><?php echo $about_contact_title; ?></h4>
 				</div>
-				<div class="contact-button">	
+				<div class="contact-button">
 					<a class="button" href="<?php echo esc_url( home_url() ); ?>/contact"><?php echo $contact_button_text; ?></a>
 				</div>
 			</section>
