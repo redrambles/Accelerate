@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {  
+jQuery(document).ready(function($) {
 
 	$(".faq-answer").hide();
 
@@ -6,5 +6,5 @@ jQuery(document).ready(function($) {
 		$(this).next().slideToggle("slow");
 		$(this).parent().toggleClass("faq-selected");
 	});
-	
+
 });

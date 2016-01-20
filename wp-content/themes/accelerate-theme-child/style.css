@@ -774,7 +774,7 @@ aside.sidebar li a {
 /* Adding this to hide the text for HTML allowed tags in comments box */
 .form-allowed-tags {
     display: none;
-
+}
 /***** FAQ *****/
 
 .faq-archive-title {
