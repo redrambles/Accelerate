@@ -313,7 +313,7 @@ aside #client{
     margin: 0 0 40px 0;
 }
 
-aside .visit_link {
+aside.visit_link {
     font-weight: 700;
 }
 
