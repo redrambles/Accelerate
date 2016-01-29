@@ -16,6 +16,10 @@ get_header(); ?>
 
 <section class="home-page">
 	<div class="site-content">
+
+		<?php //print_r($wp_query);?>
+		<?php //echo "Ann" . '</br>'; print_r($wp_query->query_vars['p']); ?>
+		
 		<?php while ( have_posts() ) : the_post(); ?>
 			<div class='homepage-hero'>
 				<?php the_content(); ?>
