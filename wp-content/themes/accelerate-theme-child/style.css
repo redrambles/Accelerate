@@ -68,9 +68,12 @@ img {
 
 /* THIS is the style that so many students are looking for to make their menu inline */
 .menu-top-nav-container ul li{
-    text-transform: uppercase;
+  text-transform: uppercase;
 	display: inline-block;
 	margin-left: 35px;
+}
+.menu-top-nav-container ul li:first-of-type{
+	margin-left: none;
 }
 
 /* This will make the current menu item bold in top navigation bar */
