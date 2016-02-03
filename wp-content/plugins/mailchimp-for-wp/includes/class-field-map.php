@@ -1,230 +1,244 @@
 <?php
 
+/**
+ * Class MC4WP_Field_Map
+ *
+ * @access private
+ * @since 2.0
+ * @ignore
+ */
 class MC4WP_Field_Map {
 
 	/**
+	 * Raw array of data
+	 *
 	 * @var array
 	 */
-	protected $form_data = array();
+	protected $raw_data = array();
 
 	/**
+	 * Global fields (default list fields)
+	 *
 	 * @var array
+	 */
+	protected $global_fields = array();
+
+	/**
+	 * Array of list instances
+	 *
+	 * @var MC4WP_MailChimp_List[]
 	 */
 	protected $lists = array();
 
 	/**
-	 * @var MC4WP_MailChimp
+	 * Formatted array of data
+	 *
+	 * @var array
 	 */
-	protected $mailchimp;
+	public $formatted_data = array(
+		'_MC4WP_LISTS' => array(),
+		'GROUPINGS' => array(),
+	);
 
 	/**
 	 * @var array
 	 */
-	protected $mapped_fields = array( 'EMAIL' );
+	public $pretty_data = array();
 
 	/**
-	 * @var string
+	 * Map of list id's with fields belonging to that list
+	 *
+	 * @var array
 	 */
-	public $error_code = '';
+	public $list_fields = array();
 
 	/**
-	 * @var array|bool
-	 */
-	public $list_fields;
-
-	/**
+	 * Array of fields not belonging to any of the given lists
+	 *
 	 * @var array
 	 */
 	public $custom_fields = array();
 
 	/**
-	 * @var array
+	 * @var MC4WP_Field_Formatter
 	 */
-	public $global_fields = array();
+	private $formatter;
 
 	/**
-	 * @var bool
+	 * @param array $raw_data
+	 * @param array $list_ids
 	 */
-	public $success = false;
+	public function __construct( array $raw_data, array $list_ids ) {
 
+		$this->formatter = new MC4WP_Field_Formatter();
+		$this->raw_data = $raw_data;
+		$this->lists = $this->fetch_lists( $list_ids );
 
-	/**
-	 * @param array $form_data
-	 * @param array $lists
-	 */
-	public function __construct( array $form_data, array $lists ) {
-		$this->form_data = $form_data;
-		$this->lists = $lists;
-		$this->mailchimp = new MC4WP_MailChimp();
+		// 1. Assume all given data is custom
+		$this->custom_fields = $raw_data;
 
-		$this->list_fields = $this->map_list_fields();
+		// 2. Extract global fields (default list fields)
+		$this->extract_global_fields();
 
-		// only proceed if successful
-		if( $this->list_fields ) {
-			$this->success = true;
-			$this->global_fields = $this->map_global_fields();
-			$this->custom_fields = $this->find_custom_fields();
-		}
+		// 3. Extract list-specific fields
+		$this->extract_list_fields();
 
+		// 4. Add all leftover fields to data but make sure not to overwrite known fields
+		$this->formatted_data = array_merge( $this->custom_fields, $this->formatted_data );
+		$this->pretty_data = array_merge( $this->custom_fields, $this->pretty_data );
 	}
 
 	/**
-	 * @return array|bool
+	 * @param array $list_ids
+	 * @return MC4WP_MailChimp_List[]
 	 */
-	public function map_list_fields() {
+	protected function fetch_lists( array $list_ids ) {
+		$mailchimp = new MC4WP_MailChimp();
+		$lists = array();
 
-		$map = array();
+		foreach( $list_ids as $id ) {
+			$list = $mailchimp->get_list( $id, true );
 
-		// loop through selected lists
-		foreach( $this->lists as $list_id ) {
-
-			$list = $this->mailchimp->get_list( $list_id, false, true );
-
-			// skip this list if it's unexisting
-			if( ! is_object( $list ) || ! isset( $list->merge_vars ) ) {
-				continue;
+			if( $list instanceof MC4WP_MailChimp_List ) {
+				$lists[ $id ] = $list;
 			}
-
-			// generate map for this given list
-			$list_map = $this->map_data_to_list( $list );
-			if( $list_map === false ) {
-				return false;
-			}
-
-			$map[ $list_id ] = $list_map;
 		}
 
-		return $map;
+		return $lists;
 	}
 
 	/**
 	 * @return array
 	 */
-	public function find_custom_fields() {
-
-		$unmapped_fields = array();
-
-		// is there still unmapped data left?
-		$total_fields_mapped = count( $this->mapped_fields ) + count( $this->global_fields );
-
-		if( $total_fields_mapped < count( $this->form_data ) ) {
-			foreach( $this->form_data as $field_key => $field_value ) {
-
-				if( $this->is_internal_var( $field_key ) ) {
-					continue;
-				}
-
-				if( ! in_array( $field_key, $this->mapped_fields ) ) {
-					$unmapped_fields[ $field_key ] = $field_value;
-				}
-			}
-		}
-
-		return $unmapped_fields;
+	protected function extract_list_fields() {
+		array_walk( $this->lists, array( $this, 'extract_fields_for_list' ) );
+		$this->list_fields = array_filter( $this->list_fields );
+		$this->formatted_data[ '_MC4WP_LISTS' ] = wp_list_pluck( $this->lists, 'name' );
+		$this->pretty_data[ 'Lists' ] = $this->formatted_data[ '_MC4WP_LISTS' ];
 	}
 
 	/**
-	 * @return array
-	 */
-	private function map_global_fields() {
-		$global_fields = array();
-
-		// map global fields
-		$global_field_names = array( 'MC_LOCATION', 'MC_NOTES', 'MC_LANGUAGE' );
-		foreach( $global_field_names as $field_name ) {
-			if( isset( $this->form_data[ $field_name ] ) ) {
-				$global_fields[ $field_name ] = $this->form_data[ $field_name ];
-			}
-		}
-
-		return $global_fields;
-	}
-
-	/**
-	 * @param $list
+	 * @param MC4WP_MailChimp_List $list
 	 *
 	 * @return array
 	 */
-	private function map_data_to_list( $list ) {
+	protected function extract_fields_for_list( MC4WP_MailChimp_List $list ) {
 
-		// start with empty list map
-		$list_map = array();
+		$this->list_fields[ $list->id ] = array(
+			'GROUPINGS' => array(),
+		);
 
-		// loop through other list fields
-		foreach( $list->merge_vars as $field ) {
+		// extract values for merge_vars & groupings
+		array_walk( $list->merge_vars, array( $this, 'extract_merge_var' ), $list );
+		array_walk( $list->groupings, array( $this, 'extract_grouping' ), $list );
 
-			// skip EMAIL field
-			if( $field->tag === 'EMAIL' ) {
-				continue;
-			}
+		// filter out empty values
+		$this->list_fields[ $list->id ]['GROUPINGS'] = array_filter( $this->list_fields[ $list->id ]['GROUPINGS'] );
+		$this->list_fields[ $list->id ] = array_filter( $this->list_fields[ $list->id ] );
 
-			// check if field is required
-			if( $field->req ) {
-				if( ! isset( $this->form_data[ $field->tag ] ) || '' === $this->form_data[ $field->tag ] ) {
-					$this->error_code = 'required_field_missing';
-					return false;
-				}
-			}
-
-			// if field is not set, continue.
-			if( ! isset( $this->form_data[ $field->tag ] ) ) {
-				continue;
-			}
-
-			// grab field value from data
-			$field_value = $this->form_data[ $field->tag ];
-
-			// format field value according to its type
-			$field_value = $this->format_field_value( $field_value, $field->field_type );
-
-			// add to mapped fields
-			$this->mapped_fields[] = $field->tag;
-
-			// add field value to map
-			$list_map[ $field->tag ] = $field_value;
+		// if we have values at this point, add global fields
+		if( ! empty( $this->list_fields[ $list->id ] ) ) {
+			// add global fields (fields belong to ALL lists automatically)
+			$this->list_fields[ $list->id ] = array_merge( $this->list_fields[ $list->id ], $this->global_fields );
 		}
 
-		// loop through list groupings if GROUPINGS data was sent
-		if( isset( $this->form_data['GROUPINGS'] ) && is_array( $this->form_data['GROUPINGS'] ) && ! empty( $list->interest_groupings ) ) {
+	}
 
-			$list_map['GROUPINGS'] = array();
+	/**
+	 * @param MC4WP_MailChimp_Merge_Var $merge_var
+	 *
+	 * @return mixed
+	 */
+	protected function extract_merge_var( MC4WP_MailChimp_Merge_Var $merge_var, $index, MC4WP_MailChimp_List $list ) {
 
-			foreach( $list->interest_groupings as $grouping ) {
+		// if field is not set, continue.
+		// don't use empty here as empty fields are perfectly valid (for non-required fields)
+		if( ! isset( $this->raw_data[ $merge_var->tag ] ) ) {
+			return;
+		}
 
-				// check if data for this group was sent
-				if( isset( $this->form_data['GROUPINGS'][$grouping->id] ) ) {
-					$group_data = $this->form_data['GROUPINGS'][$grouping->id];
-				} elseif( isset( $this->form_data['GROUPINGS'][$grouping->name] ) ) {
-					$group_data = $this->form_data['GROUPINGS'][$grouping->name];
-				} else {
-					// no data for this grouping was sent, just continue.
-					continue;
-				}
+		// grab field value from data
+		$value = $this->raw_data[ $merge_var->tag ];
+		unset( $this->custom_fields[ $merge_var->tag ] );
 
-				// format new grouping
-				$grouping = array(
-					'id' => $grouping->id,
-					'groups' => $group_data,
-				);
+		// format field value according to its type
+		$value = $this->format_merge_var_value( $value, $merge_var->field_type );
 
-				// make sure groups is an array
-				if( ! is_array( $grouping['groups'] ) ) {
-					$grouping['groups'] = sanitize_text_field( $grouping['groups'] );
-					$grouping['groups'] = array_map( 'trim', explode( ',', $grouping['groups'] ) );
-				}
+		// store
+		$this->list_fields[ $list->id ][ $merge_var->tag ] = $value;
+		$this->formatted_data[ $merge_var->tag ] = $value;
+		$this->pretty_data[ $merge_var->name ] = $value;
+	}
 
-				$this->mapped_fields[] = 'GROUPINGS';
-				$list_map['GROUPINGS'][] = $grouping;
-			}
+	/**
+	 * @param MC4WP_MailChimp_Grouping $grouping
+	 * @param string $index
+	 * @param MC4WP_MailChimp_List $list
+	 *
+	 * @return array|null
+	 */
+	protected function extract_grouping( MC4WP_MailChimp_Grouping $grouping, $index, MC4WP_MailChimp_List $list ) {
 
-			// unset GROUPINGS if no grouping data was found for this list
-			if( 0 === count( $list_map['GROUPINGS'] ) ) {
-				unset( $list_map['GROUPINGS'] );
+		// check if data for this group was sent
+		if( ! empty( $this->raw_data['GROUPINGS'][$grouping->id] ) ) {
+			$groups = $this->raw_data['GROUPINGS'][$grouping->id];
+		} elseif( ! empty( $this->raw_data['GROUPINGS'][$grouping->name] ) ) {
+			$groups = $this->raw_data['GROUPINGS'][$grouping->name];
+		} else {
+			return;
+		}
+
+		// reset entire groupings array here
+		unset( $this->custom_fields['GROUPINGS'] );
+
+		// make sure groups is an array
+		if( ! is_array( $groups ) ) {
+			$groups = array_map( 'trim', explode( ',', $groups ) );
+		}
+
+		// if groups is an array of id's, get the group name instead
+		foreach( $groups as $key => $group_name_or_id ) {
+			if( is_numeric( $group_name_or_id ) && isset( $grouping->groups[ $group_name_or_id ] ) ) {
+				$groups[ $key ] = $grouping->groups[ $group_name_or_id ];
 			}
 		}
 
-		// add to total map
-		return $list_map;
+		// format grouping data for MailChimp
+		$formatted_grouping = array(
+			'id' => $grouping->id,
+			'groups' => $groups,
+		);
+
+		// add to list data
+		$this->list_fields[ $list->id ]['GROUPINGS'][] = $formatted_grouping;
+		$this->formatted_data['GROUPINGS'][ $grouping->id ] = $groups;
+
+		//
+		$this->pretty_data[ $grouping->name ] = $groups;
+	}
+
+
+	/**
+	 * @return array
+	 */
+	protected function extract_global_fields() {
+		// map global fields
+		$global_field_names = array(
+			'MC_LOCATION',
+			'MC_NOTES',
+			'MC_LANGUAGE',
+			'OPTIN_IP',
+		);
+
+		foreach( $global_field_names as $field_name ) {
+			if( isset( $this->raw_data[ $field_name ] ) ) {
+
+				$this->global_fields[ $field_name ] = $this->raw_data[ $field_name ];
+				unset( $this->custom_fields[ $field_name ] );
+
+				$this->formatted_data[ $field_name ] = $this->raw_data[ $field_name ];
+			}
+		}
 	}
 
 	/**
@@ -235,79 +249,26 @@ class MC4WP_Field_Map {
 	 *
 	 * @return array|string
 	 */
-	protected function format_field_value( $field_value, $field_type ) {
+	protected function format_merge_var_value( $field_value, $field_type ) {
 
 		$field_type = strtolower( $field_type );
 
-		switch( $field_type ) {
-
-			// birthday fields need to be MM/DD for the MailChimp API
-			case 'birthday':
-				$field_value = (string) date( 'm/d', strtotime( $field_value ) );
-				break;
-
-			case 'address':
-
-				// auto-format if this is a string
-				if( is_string( $field_value ) ) {
-
-					// addr1, addr2, city, state, zip, country
-					$address_pieces = explode( ',', $field_value );
-
-					// try to fill it.... this is a long shot
-					$field_value = array(
-						'addr1' => $address_pieces[0],
-						'city'  => ( isset( $address_pieces[1] ) ) ?   $address_pieces[1] : '',
-						'state' => ( isset( $address_pieces[2] ) ) ?   $address_pieces[2] : '',
-						'zip'   => ( isset( $address_pieces[3] ) ) ?   $address_pieces[3] : ''
-					);
-				} elseif( is_array( $field_value ) ) {
-
-					// merge with array of empty defaults to allow skipping certain fields
-					$default_address = array(
-						'addr1' => '',
-						'city' => '',
-						'state' => '',
-						'zip' => ''
-					);
-
-					$field_value = array_merge( $default_address, $field_value );
-				}
-
-				break;
+		if( method_exists( $this->formatter, $field_type ) ) {
+			$field_value = call_user_func( array( $this->formatter, $field_type ), $field_value );
 		}
 
 		/**
-		 * @filter `mc4wp_format_field_value`
-		 * @param mixed $field_value
-		 * @param string $field_type
-		 * @expects mixed
+		 * Filters the value of a field after it is formatted.
 		 *
-		 *          Format a field value according to its MailChimp field type
+		 * Use this to format a field value according to the field type (in MailChimp).
+		 *
+		 * @since 3.0
+		 * @param string $field_value The value
+		 * @param string $field_type The type of the field (in MailChimp)
 		 */
 		$field_value = apply_filters( 'mc4wp_format_field_value', $field_value, $field_type );
 
 		return $field_value;
-	}
-
-	/**
-	 * @param $var
-	 *
-	 * @return bool
-	 */
-	protected function is_internal_var( $var ) {
-
-		if( $var[0] === '_' ) {
-			return true;
-		}
-
-		// Ignore those fields, we don't need them
-		$ignored_vars = array( 'CPTCH_NUMBER', 'CNTCTFRM_CONTACT_ACTION', 'CPTCH_RESULT', 'CPTCH_TIME', 'MC4WP_ACTION' );
-		if( in_array( $var, $ignored_vars ) ) {
-			return true;
-		}
-
-		return false;
 	}
 
 }
