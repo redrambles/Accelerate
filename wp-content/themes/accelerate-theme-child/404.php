@@ -10,53 +10,31 @@
  * @package WordPress
  * @subpackage Twenty_Twelve
  * @since Twenty Twelve 1.0
- * 
+ *
  */
 
 get_header(); ?>
 
 <div id="primary" class="site-content">
 	<div id="content" role="main">
+
+		<figure class="pic_404">
+			<?php //Pull in the 404 MAP pic from the media uploads using its attachment ID
+
+			//$image_src = wp_get_attachment_image(47459, 'full');
+
+			//if($image_src) {
+				//echo $image_src;
+		 	//} ?>
+		</figure>
+
 		<div class="text_404">
-		
-		<?php //$pic  = get_post_meta(47333, "pic_404", true); // stored this in the contact page - just a test
-		//$size = 'full'; 
-		
-		//if($pic) { //worked! ?>
-				<!-- <img src="<?php //echo $pic; ?>"/>  -->
-			<?php // } ?>
-
-	<!-- <img src="<?php //echo get_stylesheet_directory_uri(); ?>/img/taxi-photo-about.jpg"/>  -->
-	
-	<?php //$image_src = wp_get_attachment_url(47459, 'full'); ?> <!-- Fetch the attachment directly with its id -->
-
-	<!-- <img src="<?php //echo $image_src; ?>"/> --> <!-- worked -->
-
-	<?php 
-	//unnecessarily full of variables - haha - totally works, though.
-	//$chibi_pic_id = 47576; 
-	//$pico = wp_get_attachment_url($chibi_pic_id, 'full'); 
-
-	//if($pico) { ?>
-		<!-- <img src="<?php //echo $pico; ?>"/> -->
-	<?php //} ?>
-
-
-	<!-- <img src="http://localhost/accelerate/wp-content/uploads/2006/11/IMG_3231.jpg"/>
- -->
-	<?php //$image_id = 47603; //<!-- Fetch the attachment directly with its id - and use wp_get_attachment_image -->
-
-	//echo wp_get_attachment_image($image_id, 'full' ); ?> <!-- worked -->
-
-	<!-- <iframe src="https://cloudup.com/cL3NbLNWqAY?chromeless" width="500" height="500"></iframe>  -->
-
-	<!-- <iframe src="https://cloudup.com/cQX8FG-Vn8L?chromeless" width="500" height="500"></iframe> -->
-
 			<h2>That page!</h2>
 			<h4>She is nowhere to be found.</h4>
 			<p class="forgive">Forgive Us.</p>
 		</div>
-		<figure class="image_404">
+
+	 <figure class="image_404">
 		</figure>
 	</div>
 </div>
