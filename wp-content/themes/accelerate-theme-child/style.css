@@ -238,6 +238,9 @@ ul.tweets li{
     text-transform: uppercase;
     padding-left: 40px;
 }
+.stt-em a{
+  display: none;
+}
 
 /* To add the '@Accelerate' */
 #pi_simpletwittertweets-2 h3::after {
