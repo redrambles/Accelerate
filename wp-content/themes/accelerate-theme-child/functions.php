@@ -107,6 +107,7 @@ function create_custom_post_types() {
 				'name' => _( 'Services' ),
 				'singular_name' => _( 'Service' )
 				),
+			'supports' => array( 'title', 'thumbnail', 'excerpt', 'page-attributes'),
 			'public' => true,
 			'has_archive' => false
 			)

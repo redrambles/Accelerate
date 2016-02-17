@@ -73,7 +73,7 @@ img {
 	margin-left: 35px;
 }
 .menu-top-nav-container ul li:first-of-type{
-	margin-left: none;
+	margin-left: 0;
 }
 
 /* This will make the current menu item bold in top navigation bar */
@@ -180,7 +180,7 @@ section.home-page {
     word-wrap: break-word;
 }
 
-.blog-post h4, #pi_simpletwittertweets-2 h3 {
+.blog-post h4, .PI_SimpleTwitterTweets h3 {
     font-size: 16px;
     font-family: 'Montserrat';
     color: #a6a6a6;
