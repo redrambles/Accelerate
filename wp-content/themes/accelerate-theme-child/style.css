@@ -790,7 +790,8 @@ aside.sidebar li a {
 }
 
 .faq .post-entry {
-    border-bottom: 1px dotted #bfbfbf;
+    /*border-bottom: 1px dotted #bfbfbf;*/
+    border-bottom: none;
 }
 
 .faq .entry-wrap {
@@ -807,6 +808,7 @@ aside.sidebar li a {
 
 .faq-selected {
     background-color: #ffffe5;
+    border: 0.7px solid lightgray;
 }
 
 .post-entry .faq-left {

@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
 
 	$(".faq-title").click(function(){
 		$(this).next().slideToggle("slow");
-		$(this).parent().toggleClass("faq-selected");
+		$(this).parent().toggleClass("faq-selected").css("border", "1px solid lightgray");
 	});
 
 });
