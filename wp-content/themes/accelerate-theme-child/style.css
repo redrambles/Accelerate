@@ -800,6 +800,7 @@ aside.sidebar li a {
     -moz-transition: 800ms ease-in-out;
     -o-transition: 800ms ease-in-out;
     transition: 800ms ease-in-out;
+    border: 1px solid lightgray;
 }
 
 .faq-title:hover {
