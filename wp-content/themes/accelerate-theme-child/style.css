@@ -412,20 +412,37 @@ aside.sidebar li a {
     padding-top: 10px;
 }
 
-#mc4wp_widget-2 .widgettitle {
-    font-size: 1.1em;
-    padding-bottom: 5px;
+#mc4wp_form_widget-2 h2.widget-title {
+    font-size: 1.2em;
+    padding: 15px;
+    /*background-color: #fcfae8;*/
+    text-align: center;
+    border-left: 3px solid #828080;
+    border-right: 3px solid #828080;
+    margin-bottom: 30px;
 }
 
 #mc4wp_widget-2 label {
     display: none;
 }
 
-#mc4wp_widget-2 input[type="submit"]{
-    background: #45AC9D;
-    color: #fff;
+#mc4wp-form-1 p:nth-child(2) {
+  text-align: center;
 }
 
+#mc4wp-form-1 input[type="submit"]{
+  width: 100%;
+  background-color: #45AC9D;
+  padding: 10px;
+  font-size: 0.9em;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  border: 1px solid #A8A6A6;
+}
+#mc4wp-form-1 input#mc4wp_email::-webkit-input-placeholder{
+    font-size: 0.9em;
+}
 /* Contact Us Page */
 
 #ninja_forms_form_1_all_fields_wrap label {
