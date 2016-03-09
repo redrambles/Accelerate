@@ -966,6 +966,20 @@ aside.sidebar li a {
         padding: 0;
     }
 }
+/* 404 Responsiveness */
+@media screen and (max-width: 560px) {
+    .recentposts_404,
+    .recentwork_404 {
+      width: 90%;
+      float: none;
+      margin: 0 auto;
+      padding: 0;    
+    }
+    .recentposts_404 ul,
+    .recentwork_404 ul {
+      margin-left: .2em;;
+    }
+  }
 
 /* Case Studies Rather pitiful attempt at responsiveness */
 @media screen and (max-width:  1056px) {
