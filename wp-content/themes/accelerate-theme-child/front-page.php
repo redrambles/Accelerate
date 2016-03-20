@@ -59,7 +59,8 @@ get_header(); ?>
 		<h4><a href="<?php echo home_url(); ?>/about">Services</a></h4>
 		<?php $args = array (
 			'post_type' => 'services',
-			'posts_per_page' => 4
+			'posts_per_page' => 4,
+			'order' => "ASC"
 				);
 			$services = new WP_Query($args);?>
 
