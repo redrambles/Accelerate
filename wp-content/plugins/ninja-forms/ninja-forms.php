@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 2.9.37
+Version: 2.9.38
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -184,8 +184,11 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE )  && ! isset( $_POST[ 'nf2
                 self::$instance = new Ninja_Forms;
 
                 self::$dir = plugin_dir_path( __FILE__ );
+
+                // Define old constants for backwards compatibility.
                 if( ! defined( 'NF_PLUGIN_DIR' ) ){
                     define( 'NF_PLUGIN_DIR', self::$dir );
+                    define( 'NINJA_FORMS_DIR', self::$dir );
                 }
 
                 self::$url = plugin_dir_url( __FILE__ );
@@ -304,6 +307,8 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE )  && ! isset( $_POST[ 'nf2
                  * Admin Notices System
                  */
                 self::$instance->notices = new NF_Admin_Notices();
+
+                self::$instance->widgets[] = new NF_Widget();
 
                 /*
                  * Activation Hook
@@ -429,24 +434,50 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE )  && ! isset( $_POST[ 'nf2
             return $this->session;
         }
 
-        public function get_setting( $key = '' )
+	    /**
+	     * Get a setting
+	     *
+	     * @param string     $key
+	     * @param bool|false $default
+	     * @return bool
+	     */
+        public function get_setting( $key = '', $default = false )
         {
-            if( empty( $key ) || ! isset( $this->settings[ $key ] ) ) return FALSE;
+            if( empty( $key ) || ! isset( $this->settings[ $key ] ) ) return $default;
 
             return $this->settings[ $key ];
         }
 
+	    /**
+	     * Get all the settings
+	     *
+	     * @return array
+	     */
         public function get_settings()
         {
             return ( is_array( $this->settings ) ) ? $this->settings : array();
         }
 
-        public function update_setting( $key, $value )
+	    /**
+	     * Update a setting
+	     *
+	     * @param string           $key
+	     * @param mixed           $value
+	     * @param bool|false $defer_update Defer the database update of all settings
+	     */
+        public function update_setting( $key, $value, $defer_update = false )
         {
-            $this->settings[ $key ] = $value;
-            $this->update_settings();
+	        $this->settings[ $key ] = $value;
+	        if ( ! $defer_update ) {
+		        $this->update_settings();
+	        }
         }
 
+	    /**
+	     * Save settings to database
+	     *
+	     * @param array $settings
+	     */
         public function update_settings( $settings = array() )
         {
             if( ! is_array( $this->settings ) ) $this->settings = array( $this->settings );

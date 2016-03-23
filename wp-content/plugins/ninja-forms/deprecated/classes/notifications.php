@@ -267,7 +267,7 @@ class NF_Notifications
 								}
 								?>
 							</select>
-							<span class="nf-more-actions"><a href="https://ninjaforms.com/extensions/?display=actions&utm_medium=plugin&utm_source=action-single&utm_campaign=Ninja+Forms+Upsell&utm_content=Ninja+Forms+Actions" target="_blank"><?php _e( 'Get More Actions', 'ninja-forms' ); ?> <span class="dashicons dashicons-external"></span></a></span>
+							<span class="nf-more-actions"><a href="<?php echo nf_aff_link( 'https://ninjaforms.com/extensions/?display=actions&utm_medium=plugin&utm_source=action-single&utm_campaign=Ninja+Forms+Upsell&utm_content=Ninja+Forms+Actions' ); ?>" target="_blank"><?php _e( 'Get More Actions', 'ninja-forms' ); ?> <span class="dashicons dashicons-external"></span></a></span>
 						</td>
 					</tr>
 				</tbody>

@@ -247,7 +247,7 @@ class NF_Notifications_List_Table extends WP_List_Table {
                 }
                 ?>
             </select>
-            <span class="nf-more-actions"><a href="https://ninjaforms.com/extensions/?display=actions&utm_medium=plugin&utm_source=actions-table&utm_campaign=Ninja+Forms+Upsell&utm_content=Ninja+Forms+Actions" target="_blank"><?php _e( 'Get More Types', 'ninja-forms' ); ?> <span class="dashicons dashicons-external"></span></a></span>
+            <span class="nf-more-actions"><a href="<?php echo nf_aff_link( 'https://ninjaforms.com/extensions/?display=actions&utm_medium=plugin&utm_source=actions-table&utm_campaign=Ninja+Forms+Upsell&utm_content=Ninja+Forms+Actions' ); ?>" target="_blank"><?php _e( 'Get More Types', 'ninja-forms' ); ?> <span class="dashicons dashicons-external"></span></a></span>
             <span style="float:left;" class="spinner"></span>
         </div>
         <?php

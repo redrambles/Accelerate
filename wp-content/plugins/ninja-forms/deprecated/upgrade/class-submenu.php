@@ -56,7 +56,7 @@ class NF_THREE_Submenu
         $this->menu_title = __( 'Upgrade', 'ninja-forms' );
         $this->page_title = __( 'Upgrade to Ninja Forms THREE', 'ninja-forms' );
 
-        $this->capability = add_filter( 'submenu_' . $this->menu_slug . '_capability', $this->capability );
+        $this->capability = apply_filters( 'submenu_' . $this->menu_slug . '_capability', $this->capability );
 
         add_action( 'admin_menu', array( $this, 'register' ), $this->priority );
 

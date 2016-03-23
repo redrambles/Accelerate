@@ -2,7 +2,7 @@
 
 class NF_Database_Migrations
 {
-    private $migrations = array();
+    protected $migrations = array();
 
     public function __construct()
     {

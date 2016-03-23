@@ -13,20 +13,23 @@
 function nf_admin_notices( $notices ) {
 
     $three_info = add_query_arg( array( 'nf_admin_notice_ignore' => 'three_info' ) );
+    $three_link = nf_aff_link( 'https://ninjaforms.com/three/?utm_medium=plugin&utm_source=admin-notice&utm_campaign=Ninja+Forms+THREE&utm_content=Learn+More' );
     $notices['three_info'] = array(
         'title' => __( 'THREE is coming!', 'ninja-forms' ),
-        'msg' => sprintf( __( 'A major update is coming to Ninja Forms. %sLearn more about new features, backwards compatibility, and more Frequently Asked Questions.%s', 'ninja-forms' ), '<a target="_blank" href="https://ninjaforms.com/three/?utm_medium=plugin&utm_source=admin-notice&utm_campaign=Ninja+Forms+THREE&utm_content=Learn+More">', '</a>' ),
+        'msg' => sprintf( __( 'A major update is coming to Ninja Forms. %sLearn more about new features, backwards compatibility, and more Frequently Asked Questions.%s', 'ninja-forms' ), '<a target="_blank" href="' . $three_link . '">', '</a>' ),
         'link' => '',
         'int' => 0,
         'blacklist' => array( 'ninja-forms', 'ninja-forms-three' ),
     );
 
     $one_week_support = add_query_arg( array( 'nf_admin_notice_ignore' => 'one_week_support' ) );
+    $support_link = nf_aff_link( 'https://ninjaforms.com/contact/?utm_medium=plugin&utm_source=admin-notice&utm_campaign=Ninja+Forms+Upsell&utm_content=Ninja+Forms+Support' );
+    $support_docs_link = nf_aff_link( 'http://docs.ninjaforms.com/?utm_medium=plugin&utm_source=admin-notice&utm_campaign=Ninja+Forms+Upsell&utm_content=Ninja+Forms+Docs' );
     $notices['one_week_support'] = array(
         'title' => __( 'How\'s It Going?', 'ninja-forms' ),
         'msg' => __( 'Thank you for using Ninja Forms! We hope that you\'ve found everything you need, but if you have any questions:', 'ninja-forms' ),
-        'link' => '<li><span class="dashicons dashicons-media-text"></span><a target="_blank" href="http://docs.ninjaforms.com/?utm_medium=plugin&utm_source=admin-notice&utm_campaign=Ninja+Forms+Upsell&utm_content=Ninja+Forms+Docs">' . __( 'Check out our documentation', 'ninja-forms' ) . '</a></li>
-                    <li><span class="dashicons dashicons-sos"></span><a target="_blank" href="https://ninjaforms.com/contact/?utm_medium=plugin&utm_source=admin-notice&utm_campaign=Ninja+Forms+Upsell&utm_content=Ninja+Forms+Support">' . __( 'Get Some Help' ,'ninja-forms' ) . '</a></li>
+        'link' => '<li><span class="dashicons dashicons-media-text"></span><a target="_blank" href="' . $support_docs_link . '">' . __( 'Check out our documentation', 'ninja-forms' ) . '</a></li>
+                    <li><span class="dashicons dashicons-sos"></span><a target="_blank" href="' . $support_link . '">' . __( 'Get Some Help' ,'ninja-forms' ) . '</a></li>
                     <li><span class="dashicons dashicons-dismiss"></span><a href="' . $one_week_support . '">' . __( 'Dismiss' ,'ninja-forms' ) . '</a></li>',
         'int' => 7,
         'blacklist' => array( 'ninja-forms-three' ),

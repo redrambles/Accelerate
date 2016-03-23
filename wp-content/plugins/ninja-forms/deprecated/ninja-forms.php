@@ -265,7 +265,7 @@ class Ninja_Forms {
 
         // Plugin version
         if ( ! defined( 'NF_PLUGIN_VERSION' ) )
-            define( 'NF_PLUGIN_VERSION', '2.9.37' );
+            define( 'NF_PLUGIN_VERSION', '2.9.38' );
 
         // Plugin Folder Path
         if ( ! defined( 'NF_PLUGIN_DIR' ) )
@@ -751,6 +751,15 @@ function Ninja_Forms() {
 
 Ninja_Forms();
 
+function nf_aff_link( $link ){
+    $u_id = apply_filters( 'ninja_forms_affiliate_id', false );
+    $u_id = get_option( 'nf_aff', $u_id );
+    if ( $u_id ) {
+        $link = 'http://www.shareasale.com/r.cfm?u=' . $u_id . '&b=812237&m=63061&afftrack=&urllink=' . urlencode( $link );
+    }
+    return $link;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Ninja Forms THREE Upgrade
@@ -785,9 +794,11 @@ function ninja_forms_three_admin_notice(){
     wp_enqueue_style( 'nf-admin-notices', NINJA_FORMS_URL .'assets/css/admin-notices.css?nf_ver=' . NF_PLUGIN_VERSION );
     include plugin_dir_path( __FILE__ ) . 'upgrade/tmpl-notice.html.php';
 
+    $three_link = nf_aff_link( 'https://ninjaforms.com/three/?utm_medium=plugin&utm_source=admin-notice&utm_campaign=Ninja+Forms+THREE&utm_content=Learn+More' );
+
     ?>
     <div id="nf-admin-notice-three-is-coming" class="update-nag nf-admin-notice">
-		<div class="nf-notice-logo"></div> <p class="nf-notice-title">THREE is coming! </p> <p class="nf-notice-body">A major update is coming to Ninja Forms. <a target="_blank" href="https://ninjaforms.com/three/?utm_medium=plugin&amp;utm_source=admin-notice&amp;utm_campaign=Ninja+Forms+THREE&amp;utm_content=Learn+More">Learn more about new features, backwards compatibility, and more Frequently Asked Questions.</a> </p>
+		<div class="nf-notice-logo"></div> <p class="nf-notice-title">THREE is coming! </p> <p class="nf-notice-body">A major update is coming to Ninja Forms. <a target="_blank" href="<?php echo $three_link; ?>">Learn more about new features, backwards compatibility, and more Frequently Asked Questions.</a> </p>
 	</div>
     <?php
 }

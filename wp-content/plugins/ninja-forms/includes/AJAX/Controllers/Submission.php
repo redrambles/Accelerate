@@ -159,6 +159,8 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
 
             $type = $action_settings['type'];
 
+            if( ! apply_filters( 'ninja_forms_run_action_type_' . $type, TRUE ) ) continue;
+
             $action_settings[ 'id' ] = $action->get_id();
 
             if( ! isset( Ninja_Forms()->actions[ $type ] ) ) continue;
