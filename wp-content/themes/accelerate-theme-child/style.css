@@ -829,6 +829,11 @@ aside.sidebar li a {
     background: #31756b;
     cursor: pointer;
 }
+
+.comments-area .comment-form div.form-email {
+  padding: 0;
+}
+
 /* Adding this to hide the text for HTML allowed tags in comments box */
 .form-allowed-tags {
     display: none;

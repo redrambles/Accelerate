@@ -225,14 +225,12 @@ function your_awesome_admin_contact_info_of_wow() {
 add_action( 'admin_footer', 'color_my_world' );
 
 function color_my_world() {
-
     echo '<style type="text/css">
     .status-draft, .striped>tbody>:nth-child(odd).status-draft   { background-color: #FCE3F2; }
     .status-pending, .striped>tbody>:nth-child(odd).status-pending { background-color: #87C5D6; }
     .status-future, .striped>tbody>:nth-child(odd).status-future  { background-color: #C6EBF5; }
     .status-private, .striped>tbody>:nth-child(odd).status-private { background-color: #F2D46F; }
     </style>';
-
 }
 
 
