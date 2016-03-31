@@ -10,6 +10,12 @@
 
 get_header(); ?>
 
+<?php 
+// Testing displaying option field
+// $twitter = the_field('twitter', 'option'); 
+// echo $twitter;
+?>
+
 <section class="home-page">
 		<!-- <div class="site-content"> -->
 			<?php while ( have_posts() ) : the_post(); ?>

@@ -160,6 +160,20 @@ function red_get_me_some_posts() {
 		wp_reset_postdata();
 }
 
+// Use ACF Pro to Generate an Options page
+
+if( function_exists('acf_add_options_page') ) {
+
+	acf_add_options_page(array(
+		'page_title' => 'Social Media Profiles',
+		'menu_title' => 'Social Media',
+		'menu_slug' => 'social-media-profiles',
+		'capability' => 'edit_posts',
+		'redirect' => false
+	));
+
+}
+
 // Displaying a Quick Performance Report for Admins in the source code
 
 // add_action( 'wp_footer', 'wp_footer_example' );
