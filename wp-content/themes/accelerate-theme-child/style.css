@@ -71,6 +71,7 @@ img {
   text-transform: uppercase;
 	display: inline-block;
 	margin-left: 35px;
+  position: relative;
 }
 .menu-top-nav-container ul li:first-of-type{
 	margin-left: 0;
@@ -81,6 +82,24 @@ img {
 .nav-menu .current_page_item > a {
 font-weight: bold;
 }
+
+.menu-top-nav-container ul li a::after {
+  border-bottom: 2px solid #fff;
+  opacity: 0;
+  position: absolute;
+  content: '';
+  bottom:-2px;
+  left: 0;
+  width: 0;
+  transform-origin:left;
+  transition:width 0.45s ease;
+}
+/* Underline hover effect */
+.menu-top-nav-container ul li:hover a::after {
+  width: 100%;
+  opacity: 1;
+}
+
 
 /* Test - if I wanted to make the current menu item have a background-color of tomato but ONLY if it is the blog-menu item - first add the CSS class to the menu item in the Dashboard (blog-menu) */
 /*.current-menu-item.blog-menu {
