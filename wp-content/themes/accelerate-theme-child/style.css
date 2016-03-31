@@ -88,14 +88,15 @@ font-weight: bold;
   opacity: 0;
   position: absolute;
   content: '';
-  bottom:-2px;
+  bottom:-2.5px;
   left: 0;
   width: 0;
   transform-origin:left;
-  transition:width 0.45s ease;
+  transition:width 0.55s ease;
 }
 /* Underline hover effect */
-.menu-top-nav-container ul li:hover a::after {
+.menu-top-nav-container ul li:hover a::after,
+.menu-top-nav-container ul li:active a::after {
   width: 100%;
   opacity: 1;
 }
