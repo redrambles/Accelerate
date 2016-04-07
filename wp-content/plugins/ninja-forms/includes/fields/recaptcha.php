@@ -11,6 +11,8 @@ class NF_Fields_Recaptcha extends NF_Abstracts_Field
 
     protected $_section = 'misc';
 
+    protected $_icon = 'filter';
+
     protected $_templates = 'recaptcha';
 
     protected $_test_value = '';

@@ -1,6 +1,6 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit;
 
-return apply_filters( 'ninja_forms_from_display_settings', array(
+return apply_filters( 'ninja_forms_from_action_defaults', array(
 
     array(
         'id'      => 'tmp-1',

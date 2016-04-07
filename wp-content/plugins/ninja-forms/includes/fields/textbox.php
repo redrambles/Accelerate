@@ -9,6 +9,8 @@ class NF_Fields_Textbox extends NF_Abstracts_Input
 
     protected $_section = 'common';
 
+    protected $_icon = 'text-width';
+
     protected $_aliases = array( 'input' );
 
     protected $_type = 'textbox';
@@ -23,6 +25,6 @@ class NF_Fields_Textbox extends NF_Abstracts_Input
     {
         parent::__construct();
 
-        $this->_nicename = __( 'Textbox', 'ninja-forms' );
+        $this->_nicename = __( 'Single Line Text', 'ninja-forms' );
     }
 }

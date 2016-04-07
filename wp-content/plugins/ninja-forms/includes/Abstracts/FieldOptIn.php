@@ -21,9 +21,9 @@ abstract class NF_Abstracts_FieldOptIn extends NF_Abstracts_Input
 
     protected $_templates = 'optin';
 
-    protected $_settings = array( 'type', 'fieldset' );
+    protected $_settings = array( 'type', 'fieldset', 'checkbox_default_value' );
 
-    protected $_settings_exclude = array( 'required', 'placeholder', 'input_limit_set', 'disable_input' );
+    protected $_settings_exclude = array( 'default', 'required', 'placeholder', 'input_limit_set', 'disable_input' );
 
     protected $_lists = array();
 
@@ -56,14 +56,6 @@ abstract class NF_Abstracts_FieldOptIn extends NF_Abstracts_Input
          */
         $this->_settings[ 'type' ][ 'group' ] = '';
         $this->_settings[ 'fieldset' ][ 'group' ] = '';
-
-        /*
-         * Single Opt-In Default. Multiple Opt-In will use the groups fieldset.
-         */
-        $this->_settings[ 'default' ][ 'type' ] = 'toggle';
-        $this->_settings[ 'default' ][ 'value' ] = 0;
-        $this->_settings[ 'default' ][ 'label' ] = __( 'Opt-In by default', 'ninja-forms');
-        $this->_settings[ 'default' ][ 'group' ] = 'primary';
     }
 
     protected function addList( $name, $label )

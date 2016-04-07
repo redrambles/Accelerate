@@ -9,6 +9,8 @@ class NF_Fields_Submit extends NF_Fields_Button
 
     protected $_section = 'common';
 
+    protected $_icon = 'square';
+
     protected $_type = 'submit';
 
     protected $_templates = 'submit';

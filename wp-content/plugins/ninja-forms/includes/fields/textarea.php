@@ -9,6 +9,8 @@ class NF_Fields_Textarea extends NF_Abstracts_Input
 
     protected $_section = 'common';
 
+    protected $_icon = 'paragraph';
+
     protected $_type = 'textarea';
 
     protected $_templates = 'textarea';
@@ -21,7 +23,7 @@ class NF_Fields_Textarea extends NF_Abstracts_Input
     {
         parent::__construct();
 
-        $this->_nicename = __( 'Textarea', 'ninja-forms' );
+        $this->_nicename = __( 'Paragraph Text', 'ninja-forms' );
 
         $this->_settings[ 'default' ][ 'type' ] = 'textarea';
         $this->_settings[ 'placeholder' ][ 'type' ] = 'textarea';

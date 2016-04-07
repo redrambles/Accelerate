@@ -2,8 +2,8 @@
 Contributors: wpninjasllc, kstover, jameslaws, wpnzach, kbjohnson90, aman086, daveshine, mordauk, bftrick, helgatheviking
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.2
-Tested up to: 4.4.2
-Stable tag: 2.9.39
+Tested up to: 4.5
+Stable tag: 2.9.40
 License: GPLv2 or later
 
 Create forms and manage submissions easily with a simple drag and drop interface. Contact forms, subscription forms, or any other form for WordPress.
@@ -97,17 +97,33 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 2.9.38 (22 March 2016) =
+= 2.9.40 (05 April 2016) =
 
 *Changes:*
 
-* Removed the anti-spam question from the default contact form in 3.0.
+* 3.0: forms should no longer default to "require logged-in."
+* 3.0: added field type icons to the builder.
+* Added new filters.
+* Updated "tested up to" readme value to 4.5.
 
 *Bugs:*
 
-* Fixed a conflict with Jetpack that could cause the forms menu item to disappear.
+* 3.0: fixed a whitescreen in the system status page.
 
 == Changelog ==
+
+= 2.9.40 (05 April 2016) =
+
+*Changes:*
+
+* 3.0: forms should no longer default to "require logged-in."
+* 3.0: added field type icons to the builder.
+* Added new filters.
+* Updated "tested up to" readme value to 4.5.
+
+*Bugs:*
+
+* 3.0: fixed a whitescreen in the system status page.
 
 = 2.9.39 (22 March 2016) =
 

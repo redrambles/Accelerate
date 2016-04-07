@@ -11,6 +11,8 @@ class NF_Fields_Phone extends NF_Fields_Textbox
 
     protected $_section = 'userinfo';
 
+    protected $_icon = 'phone';
+
     protected $_type = 'textbox';
 
     protected $_templates = 'tel';

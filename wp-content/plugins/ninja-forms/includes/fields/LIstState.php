@@ -13,6 +13,8 @@ class NF_Fields_ListState extends NF_Abstracts_List
 
     protected $_section = 'userinfo';
 
+    protected $_icon = 'map-marker';
+
     protected $_templates = array( 'liststate', 'listselect' );
 
     protected $_old_classname = 'list-select';

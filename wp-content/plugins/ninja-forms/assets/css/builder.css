@@ -178,6 +178,10 @@ Header and Nav for Ninja Forms App
   .nf-drawer-opened .nf-field-label {
     width: 66%; }
 
+.nf-field-wrap .fa {
+  margin-right: 10px;
+  width: 24px; }
+
 .nf-setting-wrap {
   cursor: pointer;
   float: left;
@@ -248,6 +252,7 @@ Form field placeholders for the fields a user has added to their form
       display: none; }
       .nf-item-controls li.nf-item-expand .dashicons {
         -webkit-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
                 transform: rotate(-90deg); }
     .nf-item-controls li .nf-item-editing {
       display: none; }
@@ -333,6 +338,7 @@ Form field placeholders for the fields a user has added to their form
     color: #84CC1E; }
     .nf-group-wrap.expanded .nf-item-expand .dashicons {
       -webkit-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
               transform: rotate(90deg); }
     .nf-group-wrap.expanded .nf-field-wrap {
       opacity: 1.0;
@@ -389,6 +395,7 @@ All styles used within the drawer
     transition: all 0.50s ease; }
     .nf-drawer-opened #nf-drawer.nf-drawer-expand .nf-toggle-drawer .dashicons {
       -webkit-transform: rotate(180deg);
+          -ms-transform: rotate(180deg);
               transform: rotate(180deg);
       -webkit-transition: all 0.50s ease;
       transition: all 0.50s ease; }
@@ -877,10 +884,23 @@ All styles used within the drawer
   color: #A2A5A8;
   font-size: 14px;
   padding: 10px;
+  position: relative;
   text-align: center; }
   .nf-item.active {
     background: #1EA9EA;
     color: #fff; }
+  .nf-item .fa {
+    background: #30373E;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding: 9px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 34px;
+    height: 37px;
+    line-height: 20px; }
 
 .nf-saved .nf-item {
   position: relative; }
@@ -970,6 +990,7 @@ Various custom field styles
       background: #fff;
       color: #84CC1E;
       -webkit-transform: rotate(180deg);
+          -ms-transform: rotate(180deg);
               transform: rotate(180deg);
       -webkit-transition: all 0.5s ease;
       transition: all 0.5s ease; }
@@ -1363,6 +1384,7 @@ All styles used for displaying table content
       border: 3px solid #fff;
       border-radius: 100%;
       -webkit-transform: transformZ(0);
+          -ms-transform: transformZ(0);
               transform: transformZ(0);
       -webkit-animation: LOADING 2s infinite;
               animation: LOADING 2s infinite; }
@@ -1963,6 +1985,7 @@ label.has-merge-tags .merge-tags {
       display: none; }
       .nf-item-controls li.nf-item-expand .dashicons {
         -webkit-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
                 transform: rotate(-90deg); }
     .nf-item-controls li .nf-item-editing {
       display: none; }

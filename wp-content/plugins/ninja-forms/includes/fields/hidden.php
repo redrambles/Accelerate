@@ -11,6 +11,8 @@ class NF_Fields_Hidden extends NF_Abstracts_Input
 
     protected $_section = 'misc';
 
+    protected $_icon = 'eye-slash';
+
     protected $_type = 'hidden';
 
     protected $_templates = 'hidden';

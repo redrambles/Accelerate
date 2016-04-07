@@ -12,6 +12,8 @@ class NF_Fields_FirstName extends NF_Abstracts_UserInfo
 
     protected $_section = 'userinfo';
 
+    protected $_icon = 'user';
+
     protected $_templates = 'firstname';
 
     protected $_test_value = 'John';

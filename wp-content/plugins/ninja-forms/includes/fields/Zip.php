@@ -12,6 +12,8 @@ class NF_Fields_Zip extends NF_Fields_Textbox
 
     protected $_section = 'userinfo';
 
+    protected $_icon = 'map-marker';
+
     protected $_templates = array( 'zip', 'textbox', 'input' );
 
     protected $_test_value = '37312';

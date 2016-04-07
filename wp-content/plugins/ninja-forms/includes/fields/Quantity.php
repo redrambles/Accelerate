@@ -9,6 +9,8 @@ class NF_Fields_Quantity extends NF_Fields_Number
 
     protected $_section = 'pricing';
 
+    protected $_icon = 'hashtag';
+
     protected $_aliases = array();
 
     protected $_type = 'quantity';

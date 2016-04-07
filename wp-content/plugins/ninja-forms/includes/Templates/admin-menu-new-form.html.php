@@ -103,7 +103,7 @@
 </script>
 
 <script id="nf-tmpl-main-content-field" type="text/template">
-    <div id="<%= getFieldID() %>" class="<%= renderClasses() %>" data-id="<%= id %>"><span class="nf-field-label"><%= label %> <%= renderRequired() %></span>
+    <div id="<%= getFieldID() %>" class="<%= renderClasses() %>" data-id="<%= id %>"><%= renderIcon() %><span class="nf-field-label"><%= label %> <%= renderRequired() %></span>
         <ul class="nf-item-controls"></ul>
     </div>
 </script>
@@ -267,7 +267,7 @@
 
 <script id="nf-tmpl-drawer-field-type-button" type="text/template">
     <div class="nf-field-type-button nf-one-third <%= savedField() %>" data-id="<%= id %>">
-        <div class="nf-item" data-id="<%= id %>" tabindex="0"><%= nicename %></div>
+        <div class="nf-item" data-id="<%= id %>" tabindex="0"><span class="fa fa-<%= icon %>"></span><%= nicename %></div>
     </div>
 </script>
 

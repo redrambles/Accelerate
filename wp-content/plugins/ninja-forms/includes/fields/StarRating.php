@@ -9,6 +9,8 @@ class NF_Fields_StarRating extends NF_Abstracts_Input
 
     protected $_section = 'misc';
 
+    protected $_icon = 'star-half-o';
+
     protected $_aliases = array( 'rating' );
 
     protected $_type = 'starrating';

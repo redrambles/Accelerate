@@ -13,6 +13,8 @@ class NF_Fields_Email extends NF_Abstracts_UserInfo
 
     protected $_section = 'userinfo';
 
+    protected $_icon = 'envelope-o';
+
     protected $_templates = 'email';
 
     protected  $_test_value = 'foo@bar.dev';

@@ -89,8 +89,8 @@ function create_custom_post_types() {
 		array(
 			// 'supports' => $supports,
 			'labels' => array(
-				'name' => _( 'Case Studies' ),
-				'singular_name' => _( 'Case Study' )
+				'name' => __( 'Case Studies' ),
+				'singular_name' => __( 'Case Study' )
 				),
 			'public' => true,
 			'has_archive' => true,
@@ -104,8 +104,8 @@ function create_custom_post_types() {
 		array(
 			// 'supports' => $supports,
 			'labels' => array(
-				'name' => _( 'Services' ),
-				'singular_name' => _( 'Service' )
+				'name' => __( 'Services' ),
+				'singular_name' => __( 'Service' )
 				),
 			'supports' => array( 'title', 'thumbnail', 'excerpt', 'page-attributes'),
 			'public' => true,
@@ -118,8 +118,8 @@ function create_custom_post_types() {
 		array(
 			// 'supports' => $supports,
 			'labels' => array(
-				'name' => _( 'FAQ' ),
-				'singular_name' => _( 'FAQ' )
+				'name' => __( 'FAQ' ),
+				'singular_name' => __( 'FAQ' )
 				),
 			'public' => true,
 			'has_archive' => true,

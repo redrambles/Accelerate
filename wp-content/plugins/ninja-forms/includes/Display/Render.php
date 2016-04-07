@@ -198,7 +198,7 @@ final class NF_Display_Render
         </script>
 
         <?php
-        self::enqueue_scripts();
+        self::enqueue_scripts( $form_id );
     }
 
     public static function localize_preview( $form_id )
@@ -348,12 +348,11 @@ final class NF_Display_Render
         </script>
 
         <?php
-        self::enqueue_scripts();
+        self::enqueue_scripts( $form_id );
     }
 
-    public static function enqueue_scripts()
+    public static function enqueue_scripts( $form_id )
     {
-
         wp_enqueue_media();
         wp_enqueue_style( 'nf-display-structure', Ninja_Forms::$url . 'assets/css/display-structure.css' );
         wp_enqueue_style( 'jBox', Ninja_Forms::$url . 'assets/css/jBox.css' );
@@ -405,6 +404,8 @@ final class NF_Display_Render
         }
 
         wp_localize_script( 'nf-front-end', 'nfFrontEnd', $data );
+
+        do_action( 'ninja_forms_enqueue_scripts', array( 'form_id' => $form_id ) );
 
         /*
         ?>

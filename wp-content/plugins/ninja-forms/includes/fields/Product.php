@@ -9,6 +9,8 @@ class NF_Fields_Product extends NF_Abstracts_Input
 
     protected $_section = 'pricing';
 
+    protected $_icon = 'tag';
+
     protected $_aliases = array();
 
     protected $_type = 'product';

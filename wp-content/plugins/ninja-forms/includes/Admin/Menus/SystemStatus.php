@@ -48,7 +48,7 @@ final class NF_Admin_Menus_SystemStatus extends NF_Abstracts_Submenu
 
          //WPLANG
          if ( defined( 'WPLANG' ) && WPLANG ) {
-            $lang = WPLANG();
+            $lang = WPLANG;
          } else {
             $lang = __( 'Default', 'ninja-forms' );
          }

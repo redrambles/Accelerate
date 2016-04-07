@@ -151,7 +151,7 @@ class NF_Abstracts_Model
          */
         if( is_numeric( $id ) ) {
             $this->_id = absint( $id );
-        } else {
+        } elseif( $id ) {
 
             $field = $this->_db->get_row(
                 "

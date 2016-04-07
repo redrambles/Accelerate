@@ -9,6 +9,8 @@ class NF_Fields_Total extends NF_Abstracts_Input
 
     protected $_section = 'pricing';
 
+    protected $_icon = 'money';
+
     protected $_aliases = array();
 
     protected $_type = 'total';
