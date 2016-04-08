@@ -71,7 +71,7 @@ img {
   text-transform: uppercase;
 	display: inline-block;
 	margin-left: 35px;
-  position: relative;
+  position: relative; /* for the border-bottom effect for the link */
 }
 .menu-top-nav-container ul li:first-of-type{
 	margin-left: 0;
