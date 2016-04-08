@@ -92,7 +92,7 @@ font-weight: bold;
   left: 0;
   width: 0;
   transform-origin:left;
-  transition:width 0.55s ease;
+  transition:width 0.45s ease;
 }
 /* Underline hover effect */
 .menu-top-nav-container ul li:hover a::after,
