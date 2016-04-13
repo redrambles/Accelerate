@@ -17,7 +17,7 @@ function nf_clear_complete( $form_id ) {
 	foreach ( $all_fields as $field_id => $user_value ) {
 		$default_value = $ninja_forms_processing->get_field_setting( $field_id, 'default_value' );
 
-		get_currentuserinfo();
+		wp_get_current_user();
 		$user_ID 			= $current_user->ID;
 		if ( $user_ID and !empty( $user_ID ) ) {
 			$user_firstname 	= $current_user->user_firstname;

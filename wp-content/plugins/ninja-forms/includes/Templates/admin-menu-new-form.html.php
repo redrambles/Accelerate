@@ -3,12 +3,17 @@
 <div id="nf-builder" class="grey"></div>
 
 <script id="nf-tmpl-builder" type="text/template">
+    <div id="nf-app-admin-header"><div id="nf-logo"></div><a href="admin.php?page=ninja-forms" class="fa fa-times"></a></div>
     <div id="nf-overlay"></div>
     <div id="nf-header"></div>
     <div id="nf-main" class="nf-app-main"></div>
     <div id="nf-menu-drawer"></div>
     <div id="nf-drawer"></div>
     <span class="merge-tags-content" style="display:none;"></span>
+</script>
+
+<script id="nf-tmpl-admin-header" type="text/template">
+    <div id="nf-app-admin-header"></div>
 </script>
 
 <script id="nf-tmpl-header" type="text/template">
@@ -34,7 +39,7 @@
 </script>
 
 <script id="nf-tmpl-app-header" type="text/template">
-    <div id="nf-logo"></div>
+    <!-- <div id="nf-logo"></div> -->
     <ul class="nf-app-menu"></ul>
     <span class="nf-mobile-menu-button"></span>
     <span class="nf-app-buttons"></span>
@@ -255,7 +260,7 @@
 </script>
 
 <script id="nf-tmpl-drawer-staged-field" type="text/template">
-     <span class="nf-item-dock" id="<%= id %>" data-id="<%= slug %>"><%= nicename %><span class="dashicons dashicons-dismiss"></span>
+     <span class="nf-item-dock" id="<%= id %>" data-id="<%= slug %>"><span class="fa fa-<%= icon %>"></span><%= nicename %><span class="dashicons dashicons-dismiss"></span>
 </script>
 
 <script id="nf-tmpl-drawer-field-type-section" type="text/template">
@@ -266,7 +271,7 @@
 </script>
 
 <script id="nf-tmpl-drawer-field-type-button" type="text/template">
-    <div class="nf-field-type-button nf-one-third <%= savedField() %>" data-id="<%= id %>">
+    <div class="nf-field-type-button nf-field-type-draggable <%= savedField() %>" data-id="<%= id %>">
         <div class="nf-item" data-id="<%= id %>" tabindex="0"><span class="fa fa-<%= icon %>"></span><%= nicename %></div>
     </div>
 </script>
@@ -423,7 +428,7 @@
 
 <script id="nf-tmpl-edit-setting-toggle" type="text/template">
 
-    <span class="nf-setting-label"><%= label %></span> <%= renderTooltip() %>
+    <span class="nf-setting-label"><%= label %><%= renderTooltip() %></span>
     <input type="checkbox" id="<%= name %>" class="nf-toggle setting" <%= ( 1 == value ) ? 'checked' : '' %> />
     <label for="<%= name %>"><%= label %></label>
 
@@ -557,3 +562,5 @@
         <input type="button" class="insert-link extra" value="Insert">
     </div>
 </script>
+
+<?php do_action( 'ninja_forms_builder_templates' ); ?>

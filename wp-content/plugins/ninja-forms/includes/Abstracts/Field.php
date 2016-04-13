@@ -275,7 +275,7 @@ abstract class NF_Abstracts_Field
             }
         }
 
-        return $settings;
+        return apply_filters( 'ninja_forms_field_' . $this->_name . '_settings', $settings );
     }
 
     public static function get_base_template()

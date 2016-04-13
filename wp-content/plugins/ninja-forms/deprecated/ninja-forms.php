@@ -265,7 +265,7 @@ class Ninja_Forms {
 
         // Plugin version
         if ( ! defined( 'NF_PLUGIN_VERSION' ) )
-            define( 'NF_PLUGIN_VERSION', '2.9.40' );
+            define( 'NF_PLUGIN_VERSION', '2.9.41' );
 
         // Plugin Folder Path
         if ( ! defined( 'NF_PLUGIN_DIR' ) )
@@ -846,8 +846,9 @@ function ninja_forms_three_calc_check()
 }
 
 function ninja_forms_three_addons_version_check(){
-    $items = wp_remote_get( 'https://ninjaforms.com/?extend_feed=jlhrbgf89734go7387o4g3h' );
-    $items = wp_remote_retrieve_body( $items );
+//    $items = wp_remote_get( 'https://ninjaforms.com/?extend_feed=jlhrbgf89734go7387o4g3h' );
+//    $items = wp_remote_retrieve_body( $items );
+    $items = file_get_contents( dirname( __FILE__ ) . '/addons-feed.json' );
     $items = json_decode( $items, true );
 
     if( is_array( $items ) ) {
