@@ -4,7 +4,7 @@ Donate link: https://mc4wp.com/#utm_source=wp-plugin-repo&utm_medium=mailchimp-f
 Tags: mailchimp, mc4wp, email, marketing, newsletter, subscribe, widget, mc4wp, contact form 7, woocommerce, buddypress, ibericode, mailchimp forms, mailchimp integrations
 Requires at least: 3.8
 Tested up to: 4.4.2
-Stable tag: 3.1.5
+Stable tag: 3.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,8 @@ MailChimp for WordPress helps you add more subscribers to your MailChimp lists u
 	- [MailChimp User Sync](https://wordpress.org/plugins/mailchimp-sync/)
 	- [Scroll Triggered Boxes](https://wordpress.org/plugins/scroll-triggered-boxes/)
 	- [Captcha](https://wordpress.org/plugins/mc4wp-captcha/)
+	- Third Party:
+	    - [WPBruiser](https://wordpress.org/plugins/goodbye-captcha/)
 
 - Well documented. Our [knowledge base](https://mc4wp.com/kb/) is updated daily.
 
@@ -180,6 +182,23 @@ MailChimp for WordPress is being developed on GitHub. If you want to collaborate
 6. Detailed statistics on which methods are generating the most subscribers. **(Pro Feature)**
 
 == Changelog == 
+
+
+#### 3.1.6 - April 12, 2016
+
+**Fixes**
+
+- Form event for starting a form was named `start` where it should have been `started`.
+
+**Improvements**
+
+- Some preparations for the upcoming migration to the new MailChimp API (version 3).
+- Consistent hook parameters for `mc4wp_form_subscribed` action.
+- Improved logic for rendering form response.
+
+**Additions**
+
+- New checkbox position for WooCommerce checkout integration.
 
 
 #### 3.1.5 - March 22, 2016
