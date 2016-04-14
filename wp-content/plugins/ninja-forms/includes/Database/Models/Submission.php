@@ -101,13 +101,16 @@ final class NF_Database_Models_Submission
      */
     public function get_field_value( $field_ref )
     {
-        $field_id = ( is_int( $field_ref ) ) ? $field_ref : $this->get_field_id_by_key( $field_ref );
+        $field_id = ( is_numeric( $field_ref ) ) ? $field_ref : $this->get_field_id_by_key( $field_ref );
 
         $field = '_field_' . $field_id;
 
         if( isset( $this->_field_values[ $field ] ) ) return $this->_field_values[ $field ];
 
-        return $this->_field_values[ $field ] = get_post_meta($this->_id, $field, TRUE);
+        $this->_field_values[ $field ] = get_post_meta($this->_id, $field, TRUE);
+        $this->_field_values[ $field_ref ] = get_post_meta($this->_id, $field, TRUE);
+
+        return $this->_field_values[ $field ];
     }
 
     /**
@@ -119,7 +122,25 @@ final class NF_Database_Models_Submission
     {
         if( ! empty( $this->_field_values ) ) return $this->_field_values;
 
-        return $this->_field_values = get_post_meta( $this->_id );
+        $field_values = get_post_meta( $this->_id, '' );
+
+        foreach( $field_values as $field_id => $field_value ){
+            $this->_field_values[ $field_id ] = implode( ', ', $field_value );
+
+            if( 0 === strpos( $field_id, '_field_' ) ){
+                $field_id = substr( $field_id, 7 );
+            }
+
+            if( ! is_numeric( $field_id ) ) continue;
+
+            $field = Ninja_Forms()->form()->get_field( $field_id );
+            $key = $field->get_setting( 'key' );
+            if( $key ) {
+                $this->_field_values[ $key ] = implode(', ', $field_value);
+            }
+        }
+
+        return $this->_field_values;
     }
 
     /**
@@ -411,9 +432,11 @@ final class NF_Database_Models_Submission
         );
 
         if( ! empty( $where ) ) {
-            foreach ($where as $key => $value) {
+            foreach ($where as $ref => $value) {
 
-                $return[] = (is_array($value)) ? $value : array('key' => $key, 'value' => $value);
+                $field_id = ( is_int( $ref ) ) ? $ref : $this->get_field_id_by_key( $ref );
+
+                $return[] = ( is_array($value) ) ? $value : array('key' => "_field_$field_id", 'value' => $value);
             }
         }
 
@@ -428,7 +451,11 @@ final class NF_Database_Models_Submission
      */
     protected function get_field_id_by_key( $field_key )
     {
-        return $field_key;
+        global $wpdb;
+
+        $field_id = $wpdb->get_var( "SELECT id FROM {$wpdb->prefix}nf3_fields WHERE `key` = '{$field_key}' AND `parent_id` = {$this->_form_id}" );
+
+        return $field_id;
     }
 
 

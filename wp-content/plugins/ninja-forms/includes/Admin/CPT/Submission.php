@@ -59,7 +59,7 @@ class NF_Admin_CPT_Submission
             'labels'              => $labels,
             'supports'            => false,
             'hierarchical'        => false,
-            'public'              => true,
+            'public'              => false,
             'show_ui'             => true,
             'show_in_menu'        => false,
             'menu_position'       => 5,

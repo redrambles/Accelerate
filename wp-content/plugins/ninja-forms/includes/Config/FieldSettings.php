@@ -1015,6 +1015,30 @@ return apply_filters( 'ninja_forms_field_settings', array(
 
     /*
     |--------------------------------------------------------------------------
+    | Term Field Settings
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+     * Taxonomy
+     */
+
+    'taxonomy' => array(
+        'name' => 'taxonomy',
+        'type' => 'select',
+        'label' => __( 'Taxonomy', 'ninja-forms'),
+        'width' => 'full',
+        'group' => 'primary',
+        'options' => array(
+            array(
+                'label' => "-",
+                'value' => ''
+            )
+        )
+    ),
+
+    /*
+    |--------------------------------------------------------------------------
     | Backwards Compatibility Field Settings
     |--------------------------------------------------------------------------
     */

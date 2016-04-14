@@ -1,9 +1,9 @@
 === Ninja Forms ===
 Contributors: wpninjasllc, kstover, jameslaws, wpnzach, kbjohnson90, aman086, daveshine, mordauk, bftrick, helgatheviking
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
-Requires at least: 4.2
+Requires at least: 4.3
 Tested up to: 4.5
-Stable tag: 2.9.41
+Stable tag: 2.9.42
 License: GPLv2 or later
 
 Create forms and manage submissions easily with a simple drag and drop interface. Contact forms, subscription forms, or any other form for WordPress.
@@ -97,14 +97,19 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 2.9.41 (10 April 2016) =
+= 2.9.42 (14 April 2016) =
 
 *Bugs:*
 
-* Fixed a bug that caused Ninja Forms to fetch the add-ons RSS feed too often.
-* Fixed a bug that caused an image to be loaded remotely rather than from the plugin file.
+* 3.0: Fixed a bug that could cause merge tags to disappear underneath the full-screen builder.
 
 == Changelog ==
+
+= 2.9.42 (14 April 2016) =
+
+*Bugs:*
+
+* 3.0: Fixed a bug that could cause merge tags to disappear underneath the full-screen builder.
 
 = 2.9.41 (10 April 2016) =
 

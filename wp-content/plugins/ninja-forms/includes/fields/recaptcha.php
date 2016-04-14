@@ -23,6 +23,18 @@ class NF_Fields_Recaptcha extends NF_Abstracts_Field
 
         $this->_nicename = __( 'Recaptcha', 'ninja-forms' );
 
+        $this->_settings[ 'wrapper_class '] = array(
+            'name' => 'wrapper_class',
+            'type' => 'textbox',
+            'placeholder' => '',
+            'label' => __( 'Wrapper', 'ninja-forms' ),
+            'width' => 'full',
+            'value' => '',
+            'group' => 'primary',
+            'use_merge_tags' => FALSE,
+            'help' => __( 'Adds an extra class to your field wrapper.', 'ninja-forms' ),
+        );
+
         add_filter( 'nf_sub_hidden_field_types', array( $this, 'hide_field_type' ) );
     }
 

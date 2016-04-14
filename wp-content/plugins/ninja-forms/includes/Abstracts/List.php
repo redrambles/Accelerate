@@ -54,11 +54,13 @@ abstract class NF_Abstracts_List extends NF_Abstracts_Field
 
         $output = '';
         $options = $field->get_setting( 'options' );
-        foreach( $options as $option ){
+        if( ! empty( $options ) ) {
+            foreach ($options as $option) {
 
-            if( ! in_array( $option[ 'value'], $value ) ) continue;
+                if (!in_array($option['value'], $value)) continue;
 
-            $output .= $option[ 'label' ] . "<br />";
+                $output .= $option['label'] . "<br />";
+            }
         }
 
         return $output;

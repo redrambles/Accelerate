@@ -13,13 +13,13 @@
         <?php foreach( $fields as $field ): ?>
 
             <?php if( in_array( $field->get_setting( 'type' ), $hidden_field_types ) ) continue; ?>
+            <?php if( ! isset( Ninja_Forms()->fields[ $field->get_setting( 'type' ) ] ) ) continue; ?>
+            
+            <?php $field_class = Ninja_Forms()->fields[ $field->get_setting( 'type' ) ]; ?>
+            <?php if( ! $field_class ) continue; ?>
 
             <tr>
                 <td><?php echo ( $field->get_setting( 'admin_label' ) ) ? $field->get_setting( 'admin_label' ) : $field->get_setting( 'label' ) ; ?></td>
-
-                <?php
-                $field_class = Ninja_Forms()->fields[ $field->get_setting( 'type' ) ];
-                ?>
                 <td><?php echo $field_class->admin_form_element( $field->get_id(), $sub->get_field_value( $field->get_id() ) ); ?></td>
             </tr>
 

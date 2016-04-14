@@ -80,6 +80,8 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
             $this->run_actions();
         }
 
+        do_action( 'ninja_forms_after_submission', $this->_data );
+
         $this->_respond();
     }
 

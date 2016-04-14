@@ -1,4 +1,4 @@
-<h1><?php _e( 'Form Builder', 'ninja-forms' ); ?></h1>
+<div id="nf-pre-builder" style="background:#fff;position:fixed;top:0;right:0;bottom:0;left:0;z-index:9999999;"></div>
 
 <div id="nf-builder" class="grey"></div>
 

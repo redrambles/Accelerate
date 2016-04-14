@@ -73,7 +73,7 @@ final class NF_Admin_Menus_Licenses
     {
         foreach( $this->licenses as $license ){
 
-            if( ! $name == $license->product_name ) continue;
+            if( $name != $license->product_name ) continue;
 
             $license->activate_license( $key );
         }
@@ -83,7 +83,7 @@ final class NF_Admin_Menus_Licenses
     {
         foreach( $this->licenses as $license ){
 
-            if( ! $name == $license->product_name ) continue;
+            if( $name != $license->product_name ) continue;
 
             $license->deactivate_license();
         }

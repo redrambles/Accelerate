@@ -22,14 +22,14 @@ Normalize WordPress admin for Ninja Forms App
   background: #fff;
   padding: 30px 40px;
   overflow: hidden;
-  width: 100%;
   padding-top: 80px;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 10000000; }
+  z-index: 10000000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); }
 
 .product-content article > *:not(img) {
   padding-left: 30px;
@@ -174,7 +174,7 @@ Header and Nav for Ninja Forms App
   text-overflow: ellipsis;
   width: 80%; }
   .nf-drawer-opened .nf-field-label {
-    width: 66%; }
+    width: 60%; }
 
 .nf-field-wrap .fa {
   margin-right: 10px;
@@ -1497,6 +1497,9 @@ div.has-merge-tags .merge-tags {
 label.has-merge-tags .merge-tags {
   top: 33px;
   right: 12px; }
+
+.jBox-Tooltip {
+  z-index: 100000000 !important; }
 
 .jBox-TooltipBorder .jBox-container {
   border-radius: 5px;

@@ -89,6 +89,7 @@ final class NF_Display_Render
                 if( ! isset( Ninja_Forms()->fields[ $field_type ] ) ) continue;
 
                 $field = apply_filters('ninja_forms_localize_fields', $field);
+                $field = apply_filters('ninja_forms_localize_field_' . $field_type, $field);
 
                 $field_class = Ninja_Forms()->fields[$field_type];
 
@@ -130,6 +131,7 @@ final class NF_Display_Render
 
                 if( 'list' == $settings[ 'parentType' ] && isset( $settings[ 'options' ] ) && is_array( $settings[ 'options' ] ) ){
                     $settings[ 'options' ] = apply_filters( 'ninja_forms_render_options', $settings[ 'options' ], $settings );
+                    $settings[ 'options' ] = apply_filters( 'ninja_forms_render_options_' . $field_type, $settings[ 'options' ], $settings );
                 }
                 
                 if (isset($settings['default'])) {
@@ -249,6 +251,7 @@ final class NF_Display_Render
                 $field['settings']['id'] = $field_id;
 
                 $field = apply_filters('ninja_forms_localize_fields_preview', $field);
+                $field = apply_filters('ninja_forms_localize_field_' . $field_type . '_preview', $field);
 
                 $display_before = apply_filters( 'ninja_forms_display_before_field_type_' . $field['settings'][ 'type' ], '' );
                 $display_before = apply_filters( 'ninja_forms_display_before_field_key_' . $field['settings'][ 'key' ], $display_before );
