@@ -1030,8 +1030,9 @@ aside.sidebar li a {
 @media screen and (max-width:  700px) {
 
     div.case-study-images {
-        margin: 0;
+        width: 90%;
         max-width: 100%;
+        
     }
 
 }
@@ -1092,10 +1093,9 @@ aside.sidebar li a {
 
     .service-description {
         margin-top: 60px;
-        display: block;
-        padding: 2em;
-        margin: 0 auto;
-        text-align: center;
+        padding: 20px;
+        width: 90%;
+        /*text-align: center;*/
         clear: both;
     }
     .about-contact {
