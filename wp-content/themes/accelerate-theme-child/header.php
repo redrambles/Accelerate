@@ -21,7 +21,7 @@
 <head>
 	<title><?php bloginfo('name'); wp_title('|'); ?></title>
 	<!-- <title><?php //wp_title('|', true, 'right'); ?></title> -->
-	<meta name="descdription" content="<?php bloginfo('description'); ?>">
+	<meta name="description" content="<?php bloginfo('description'); ?>">
 	<meta name="viewport" content="width=device-width" initial-scale="1">
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
