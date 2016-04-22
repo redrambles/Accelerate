@@ -51,17 +51,17 @@ function accelerate_scripts() {
 add_action( 'wp_enqueue_scripts', 'accelerate_scripts' );
 
 
- //Register main widget area - I did this in the child theme
-// function accelerate_widget_init() {
-// 	// Register first sidebar - main widget area
-// 	register_sidebar( array(
-// 		'name'          => __( 'Main sidebar', 'accelerate' ),
-// 		'id'            => 'sidebar-1',
-// 		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'accelerate' ),
-// 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-// 		'after_widget'  => '</aside>',
-// 		'before_title'  => '<h2 class="widget-title">',
-// 		'after_title'   => '</h2>',
-// 	) );
-// }
-// add_action( 'widgets_init', 'accelerate_widget_init' );
+ //Register main widget area 
+function accelerate_widget_init() {
+	// Register first sidebar - main widget area
+	register_sidebar( array(
+		'name'          => __( 'Main sidebar', 'accelerate' ),
+		'id'            => 'sidebar-1',
+		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'accelerate' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+}
+add_action( 'widgets_init', 'accelerate_widget_init' );
