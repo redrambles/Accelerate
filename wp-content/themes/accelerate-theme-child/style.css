@@ -486,8 +486,10 @@ aside.sidebar li a {
 
 #ninja_forms_field_5 {
     float: right;
-    margin-bottom: 10%;
     color: #FFF;
+    font-family: 'Montserrat', serif;
+    font-weight: bold;
+    font-size: 18px;
     background-color: #45AC9D;
     padding: 15px 80px;
 }
