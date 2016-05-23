@@ -106,6 +106,13 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 5.3.8.1 =
+* Image field: Fixed JS bug causing errors when 'Uploaded to post' library setting is checked
+* File field: Same as above
+* Gallery field: Same as above
+* Flexible Content field: Fixed bug preventing `get_sub_field()` from working within 'layout_title' filter
+* Radio field: Fixed bug causing field name to change when adding 'other' choice to a sub field
+
 = 5.3.8 =
 * Gallery field: Added new 'Insert' setting to control where new attachments are added
 * Radio field: Added new 'Allow Null' setting

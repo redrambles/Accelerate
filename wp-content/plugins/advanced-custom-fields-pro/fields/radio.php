@@ -359,20 +359,14 @@ class acf_field_radio extends acf_field {
 			// value isn't in choices yet
 			if( !isset($field['choices'][ $value ]) ) {
 				
-				// get ID if local
-				if( !$field['ID'] ) {
-					
-					$field = acf_get_field( $field['key'], true );
-					
-				}
+				// get raw $field (may have been changed via repeater field)
+				// if field is local, it won't have an ID
+				$selector = $field['ID'] ? $field['ID'] : $field['key'];
+				$field = acf_get_field( $selector, true );
 				
 				
-				// bail early if no ID
-				if( !$field['ID'] ) {
-					
-					return $value;
-					
-				}
+				// bail early if no ID (JSON only)
+				if( !$field['ID'] ) return $value;
 				
 				
 				// update $field

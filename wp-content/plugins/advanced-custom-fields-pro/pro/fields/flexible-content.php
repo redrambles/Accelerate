@@ -1353,14 +1353,19 @@ class acf_field_flexible_content extends acf_field {
 	
 	
 	function get_layout_title( $field, $layout, $i, $value ) {
-
+		
+		// vars
+		$rows = array();
+		$rows[ $i ] = $value;
+		
+		
 		// add loop
 		acf_add_loop(array(
 			'selector'	=> $field['name'],
 			'name'		=> $field['name'],
-			'value'		=> array( $value ),
+			'value'		=> $rows,
 			'field'		=> $field,
-			'i'			=> 0,
+			'i'			=> $i,
 			'post_id'	=> 0,
 		));
 		
