@@ -25,7 +25,7 @@ get_header(); ?>
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?> 
 					<?php //the_meta(); ?>
 
-					<?php if ($method == 'POST' ): ?> 
+					<?php if ($method == 'POST' ){ ?> 
 					<div class="reply-contact">
 					
 						<h2>Thanks for Your Message!</h2>
@@ -34,13 +34,13 @@ get_header(); ?>
 
 					</div>
 
-					<?php else: ?> 
+					<?php } else { ?> 
 
 					<h3><?php the_title(); ?></h3> 
 
 					<?php the_content(); ?> 
 
-					<?php endif; ?> 
+					<?php } ?> 
 
 				<?php endwhile; endif; ?> 
 
