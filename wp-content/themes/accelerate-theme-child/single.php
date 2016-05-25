@@ -14,7 +14,8 @@ get_header(); ?>
 	<section class="blog-page">
 		<div class="site-content">
 			<div class="main-content">
-<?php
+	
+	<?php
 				// Start the Loop.
 				while ( have_posts() ) : the_post(); ?>
 
@@ -32,15 +33,7 @@ get_header(); ?>
 							<?php the_content(); ?>
 						</div>
 						
-						<footer class="entry-footer">
-								<span class="entry-terms comments author">
-									Written by <?php the_author(); ?>
-									/
-									Posted in <?php the_category(', ') ?>
-									/
-									<?php echo get_comments_number() ?> comments
-								</span>
-						</footer>
+						<?php accelerate_theme_child_footer_meta(); ?>
 					
 					</div>
 				</article>
@@ -54,9 +47,9 @@ get_header(); ?>
 
 	<!-- END blog page -->
 
-	<footer class="navigation container">
-		<div class="left">&larr;<a href="<?php echo esc_url( home_url() ); ?>/blog">Back to posts</a></div>
-	</footer>
+			<footer class="navigation container">
+				<div class="left">&larr;<a href="<?php echo esc_url( home_url() ); ?>/blog">Back to posts</a></div>
+			</footer>
 	
 				<?php endwhile; ?>
 			</div> <!-- site-content -->

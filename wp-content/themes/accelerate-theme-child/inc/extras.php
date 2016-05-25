@@ -28,3 +28,15 @@ function accelerate_theme_child_comment_nav() {
 	<?php
 	endif;
 }
+
+function accelerate_theme_child_footer_meta() { ?>
+  <footer class="entry-footer">
+      <span class="entry-terms comments author">
+        Written by <?php the_author_posts_link(); ?>
+        /
+        Posted in <?php the_category(', ') ?>
+        /
+        <?php echo get_comments_number() ?> comments
+      </span>
+  </footer>
+<?php } ?>

@@ -38,16 +38,9 @@ get_header(); ?>
 						<div class="entry-summary">
 							<?php the_excerpt(); ?>
 						</div>
-						<footer class="entry-footer">
-							<div class="entry-meta">
-								<span class="entry-terms comments author">
-									Written by <?php the_author_posts_link(); ?>
-									/
-									Posted in <?php the_category(', ') ?>
-									/
-									<?php echo get_comments_number() ?> comments
-								</span>
-						</footer>
+						
+						<?php accelerate_theme_child_footer_meta(); ?>
+						
 					</div>
 				</article>
 			<?php endwhile; endif; ?>
