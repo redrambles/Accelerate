@@ -18,6 +18,11 @@ get_header(); ?>
 	<div id="content" role="main">
 		<div class="narrow-contact">
 	
+	<?php 
+		$success_title = get_field('success_title');
+		$success_body = get_field('success_body');
+	?>
+	
 		<?php $method = $_SERVER['REQUEST_METHOD']; ?> 
 
 			<div class="contact-form"> 
@@ -25,12 +30,13 @@ get_header(); ?>
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?> 
 					<?php //the_meta(); ?>
 
+					<!-- Upon submission, show this message and hide the title and text of the page -->
 					<?php if ($method == 'POST' ){ ?> 
 					<div class="reply-contact">
 					
-						<h2>Thanks for Your Message!</h2>
+						<h2><?php echo $success_title; ?></h2>
 
-						<p>We'll get back to you shortly.</p>
+						<p><?php echo $success_body; ?></p>
 
 					</div>
 
