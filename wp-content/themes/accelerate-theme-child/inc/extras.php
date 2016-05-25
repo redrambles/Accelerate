@@ -36,7 +36,15 @@ function accelerate_theme_child_footer_meta() { ?>
         /
         Posted in <?php the_category(', ') ?>
         /
-        <?php echo get_comments_number() ?> comments
+        <?php $tags_list = get_the_tag_list( '', _x( ', ', 'Used between list items, there is a space after the comma.', 'accelerate-theme-child' ) );
+          if ( $tags_list ) {
+            echo '/ ';
+            printf( '<span class="tags-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
+              _x( 'Tagged ', 'Used before tag names.', 'accelerate-theme-child' ),
+              $tags_list
+            );
+          } ?>
+          <?php comments_number( 'No comments yet!', '1 comment', '% comments' ); ?>
       </span>
   </footer>
 <?php } ?>
