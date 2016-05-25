@@ -41,7 +41,7 @@ get_header(); ?>
 						<footer class="entry-footer">
 							<div class="entry-meta">
 								<span class="entry-terms comments author">
-									Written by <?php the_author(); ?>
+									Written by <?php the_author_posts_link(); ?>
 									/
 									Posted in <?php the_category(', ') ?>
 									/
