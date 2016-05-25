@@ -44,33 +44,14 @@ get_header(); ?>
 					
 					</div>
 				</article>
-
-				<div class="comments-area">
-					<h3 class="comments-title">no comments</h2>
-					<div class="comment-respond">
-						<h3 class="comment-reply-title">Leave a comment</h3>
-						<form action="" method="post" id="commentform" class="comment-form default-form">
-							<div class="form-author">
-								<label for="author">Name</label> 
-								<input id="author" name="author" type="text" value="" aria-required="true">
-							</div>
-							<div class="form-email">
-								<label for="email">Email <span>(hidden)</span></label> 
-								<input id="email" name="email" type="email" value="" aria-required="true">
-							</div>
-							<div class="form-comment">
-								<label for="comment">Your comment</label> 
-								<textarea id="comment" name="comment" rows="8" aria-required="true"></textarea>
-							</div>						
-							<input name="submit" type="submit" id="submit" class="submit" value="Post Comment">
-						</form>
-					</div>
-				</div>
+			<?php 	// If comments are open or we have at least one comment, load up the comment template.
+				if ( comments_open() || get_comments_number() ) :
+					comments_template();
+				endif; ?>
 
 			</div> <!-- main-content -->
 		<?php get_sidebar(); ?>
-		</div> <!-- site-content -->
-	</section>
+
 	<!-- END blog page -->
 
 	<footer class="navigation container">
@@ -78,6 +59,7 @@ get_header(); ?>
 	</footer>
 	
 				<?php endwhile; ?>
-
+			</div> <!-- site-content -->
+		</section>
 <?php
 get_footer();

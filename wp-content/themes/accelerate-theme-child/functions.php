@@ -284,5 +284,9 @@ function color_my_world() {
 // }
 // add_filter('diy_user_access_filter', 'diy_modify_user_access');
 
-
-?>
+/**
+ * Custom template tags for this theme.
+ *
+ * @since Accelerate Theme Child 1.0
+ */
+require get_stylesheet_directory() . '/inc/extras.php';
