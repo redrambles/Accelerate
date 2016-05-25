@@ -194,13 +194,6 @@ if( function_exists('acf_add_options_page') ) {
 
 // Make it hard to folks to find out the authors of the site by appending ?author=1 at the end of the url (author 1 is also the admin in most cases)
 
-add_action('template_redirect', 'bwp_template_redirect');
-function bwp_template_redirect() {
-	if (is_author()) {
-		wp_redirect( home_url() ); exit;
-	}
-}
-
 // Change Accelerate using a filter for about page
 add_filter( 'the_content', 'about_Accelerate_green' );
 function about_Accelerate_green( $content ) {
