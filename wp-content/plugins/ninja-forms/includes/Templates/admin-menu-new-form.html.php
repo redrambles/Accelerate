@@ -140,14 +140,14 @@
 
 <script id="nf-tmpl-main-content-field" type="text/template">
     <div id="<%= getFieldID() %>" class="<%= renderClasses() %>" data-id="<%= id %>"><%= renderIcon() %><span class="nf-field-label"><%= label %> <%= renderRequired() %></span>
-        <ul class="nf-item-controls"></ul>
+        <div class="nf-item-controls"></div>
     </div>
 </script>
 
 <script id="nf-tmpl-item-controls" type="text/template">
-    <li class="nf-item-edit"><a href="#" title="Edit"><span class="nf-edit-settings dashicons dashicons-admin-generic"></span><span class="nf-item-editing">Editing <%= objectType %></span></a></li>
-    <li class="nf-item-duplicate"><a href="#" title="Duplicate"><span class="nf-duplicate dashicons dashicons-admin-page"></span></a></li>
-    <li class="nf-item-delete"><a href="#" title="Delete"><span class="nf-delete dashicons dashicons-dismiss"></span></a></li>
+    <div class="nf-item-edit nf-item-control"><a href="#" title="Edit"><i class="nf-edit-settings fa fa-cog" aria-hidden="true"></i><!-- <span class="nf-item-editing">Editing <%= objectType %></span> --></a></div>
+    <div class="nf-item-duplicate nf-item-control"><a href="#" title="Duplicate (^ + C + click)"><i class="nf-duplicate fa fa-files-o" aria-hidden="true"></i></a></div>
+    <div class="nf-item-delete nf-item-control"><a href="#" title="Delete (^ + D + click)"><i class="nf-delete fa fa-trash" aria-hidden="true"></i></a></div>
 </script>
 
 <script id="nf-tmpl-action-table" type="text/template">
@@ -170,7 +170,7 @@
     <td><%= label %></td>
     <td><%= renderTypeNicename() %></td>
     <td>
-        <ul class="nf-item-controls"></ul>
+        <div class="nf-item-controls"></div>
     </td>
 </script>
 
@@ -199,9 +199,9 @@
 </script>
 
 <script id="nf-tmpl-drawer-content-add-field" type="text/template">
-    <section id="nf-drawer-staging" class="nf-settings nf-stage">
+    <div id="nf-drawer-staging" class="nf-settings nf-stage">
         <div class="nf-reservoir nf-drawer-staged-fields nf-field-type-droppable"></div>
-    </section>
+    </div>
     <span id="nf-drawer-primary"></span>
     <span id="nf-drawer-secondary"></span>
 </script>
@@ -365,9 +365,9 @@
 
 <script id="nf-tmpl-staged-fields-drag" type="text/template">
     <div class="nf-staged-fields-drag">
-        <div id="drag-item-1" class="nf-field-wrap"><%= num %> Fields</div>
-        <div id="drag-item-2" class="nf-field-wrap">&nbsp;</div>
-        <div id="drag-item-3" class="nf-field-wrap">&nbsp;</div>
+        <div id="drag-item-1" class="nf-staged-fields-drag-wrap"><%= num %> Fields</div>
+        <div id="drag-item-2" class="nf-staged-fields-drag-wrap">&nbsp;</div>
+        <div id="drag-item-3" class="nf-staged-fields-drag-wrap">&nbsp;</div>
     </div>
 </script>
 

@@ -14,7 +14,9 @@ class NF_Fields_Terms extends NF_Fields_ListCheckbox
 
     protected $_icon = 'tags';
 
-    protected $_settings = array( 'taxonomy' );
+    protected $_templates = array( 'terms', 'listcheckbox' );
+
+    protected $_settings = array( 'taxonomy', 'add_new_terms' );
 
     protected $_settings_exclude = array( 'required' );
 
@@ -28,12 +30,27 @@ class NF_Fields_Terms extends NF_Fields_ListCheckbox
 
         $this->_nicename = __( 'Terms List', 'ninja-forms' );
 
+        add_action( 'admin_init', array( $this, 'init_settings' ) );
+
+        add_filter( 'ninja_forms_display_field', array( $this, 'active_taxonomy_field_check' ) );
         add_filter( 'ninja_forms_localize_field_' . $this->_type, array( $this, 'add_term_options' ) );
         add_filter( 'ninja_forms_localize_field_' . $this->_type . '_preview', array( $this, 'add_term_options' ) );
 
+        $this->_settings[ 'options' ][ 'group' ] = '';
+    }
+
+    public function process( $field, $data )
+    {
+        return $data;
+    }
+
+    public function init_settings()
+    {
         $term_settings = array();
         $taxonomies = get_taxonomies( array( 'public' => true ), 'objects' );
         foreach( $taxonomies as $name => $taxonomy ){
+
+            $tax_term_settings = array();
 
             if( in_array( $name, $this->_excluded_taxonomies ) ) continue;
 
@@ -44,8 +61,23 @@ class NF_Fields_Terms extends NF_Fields_ListCheckbox
 
             $terms = get_terms( $name, array( 'hide_empty' => false ) );
 
-            if( ! $terms ){
-                $term_settings[] =  array(
+            foreach( $terms as $term ){
+
+                if( 1 == $term->term_id ) continue;
+
+                $tax_term_settings[] =  array(
+                    'name' => 'taxonomy_term_' . $term->term_id,
+                    'type' => 'toggle',
+                    'label' => $term->name . ' (' . $term->count .')',
+                    'width' => 'one-third',
+                    'deps' => array(
+                        'taxonomy' => $name
+                    ),
+                );
+            }
+
+            if( empty( $tax_term_settings ) ){
+                $tax_term_settings[] =  array(
                     'name' => $name . '_no_terms',
                     'type' => 'html',
                     'width' => 'full',
@@ -56,21 +88,19 @@ class NF_Fields_Terms extends NF_Fields_ListCheckbox
                 );
             }
 
-            foreach( $terms as $term ){
+            $term_settings = array_merge( $term_settings, $tax_term_settings );
 
-                if( 1 == $term->term_id ) continue;
-
-                $term_settings[] =  array(
-                    'name' => 'taxonomy_term_' . $term->term_id,
-                    'type' => 'toggle',
-                    'label' => $term->name . ' (' . $term->count .')',
-                    'width' => 'one-third',
-                    'deps' => array(
-                        'taxonomy' => $name
-                    )
-                );
-            }
         }
+
+        $term_settings[] =  array(
+            'name' => '_no_taxonomy',
+            'type' => 'html',
+            'width' => 'full',
+            'value' => __( 'No taxonomy selected.', 'ninja-forms' ),
+            'deps' => array(
+                'taxonomy' => ''
+            )
+        );
 
         $this->_settings[ 'taxonomy_terms' ] = array(
             'name' => 'taxonomy_terms',
@@ -80,35 +110,44 @@ class NF_Fields_Terms extends NF_Fields_ListCheckbox
             'group' => 'primary',
             'settings' => $term_settings
         );
-
-        $this->_settings[ 'options' ][ 'group' ] = '';
     }
 
-    public function process( $field, $data )
+    public function active_taxonomy_field_check( $field )
     {
-        return $data;
+        if( $this->_type != $field->get_setting( 'type' ) ) return $field;
+
+        $taxonomy = $field->get_setting( 'taxonomy' );
+
+        if( ! taxonomy_exists( $taxonomy ) ) return FALSE;
+
+        return $field;
     }
 
     public function add_term_options( $field )
     {
         $settings = ( is_object( $field ) ) ? $field->get_settings() : $field[ 'settings' ];
-        if( ! isset( $settings[ 'taxonomy' ] ) ) return $field;
 
-        $terms = get_terms( $settings[ 'taxonomy' ], array( 'hide_empty' => false ) );
+        $settings[ 'options' ] = array();
 
-        $settings['options'] = array();
-        foreach( $terms as $term ) {
+        if( isset( $settings[ 'taxonomy' ] ) && $settings[ 'taxonomy' ] ){
 
-            if( ! isset( $settings[ 'taxonomy_term_' . $term->term_id ] ) ) continue;
-            if( ! $settings[ 'taxonomy_term_' . $term->term_id ] ) continue;
+            $terms = get_terms( $settings[ 'taxonomy' ], array( 'hide_empty' => false ) );
 
-            $settings['options'][] = array(
-                'label' => $term->name,
-                'value' => $term->term_id,
-                'calc' => '',
-                'selected' => 0,
-                'order' => 0
-            );
+            if( ! is_wp_error( $terms ) ){
+                foreach( $terms as $term ) {
+
+                    if( ! isset( $settings[ 'taxonomy_term_' . $term->term_id ] ) ) continue;
+                    if( ! $settings[ 'taxonomy_term_' . $term->term_id ] ) continue;
+
+                    $settings['options'][] = array(
+                        'label' => $term->name,
+                        'value' => $term->term_id,
+                        'calc' => '',
+                        'selected' => 0,
+                        'order' => 0
+                    );
+                }
+            }
         }
 
         if( is_object( $field ) ) {
@@ -118,5 +157,10 @@ class NF_Fields_Terms extends NF_Fields_ListCheckbox
         }
 
         return $field;
+    }
+
+    public function get_parent_type()
+    {
+        return 'listcheckbox';
     }
 }

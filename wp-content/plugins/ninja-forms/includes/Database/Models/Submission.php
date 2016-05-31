@@ -274,6 +274,8 @@ final class NF_Database_Models_Submission
             $this->_seq_num = NF_Database_Models_Form::get_next_sub_seq( $this->_form_id );
         }
 
+        $this->_save_extra_values();
+
         return $this->_save_field_values();
     }
 
@@ -397,19 +399,25 @@ final class NF_Database_Models_Submission
             $this->_save_field_value( $field_id, $value );
         }
 
-        foreach( $this->_extra_values as $key => $value )
-        {
-            if( property_exists( $this, $key ) ) continue;
-
-            update_post_meta( $this->_id, $key, $value );
-        }
-
         update_post_meta( $this->_id, '_form_id', $this->_form_id );
 
         update_post_meta( $this->_id, '_seq_num', $this->_seq_num );
 
         return $this;
     }
+
+    protected function _save_extra_values()
+    {
+        if( ! $this->_extra_values ) return FALSE;
+
+        foreach( $this->_extra_values as $key => $value )
+        {
+            if( property_exists( $this, $key ) ) continue;
+
+            update_post_meta( $this->_id, $key, $value );
+        }
+    }
+
 
     /*
      * UTILITIES

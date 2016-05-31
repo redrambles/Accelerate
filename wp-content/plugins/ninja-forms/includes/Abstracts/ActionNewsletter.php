@@ -39,6 +39,10 @@ abstract class NF_Abstracts_ActionNewsletter extends NF_Abstracts_Action
     {
         parent::__construct();
 
+        if( ! $this->_transient ){
+            $this->_transient = $this->get_name() . '_newsletter_lists';
+        }
+
         add_action( 'wp_ajax_nf_' . $this->_name . '_get_lists', array( $this, '_get_lists' ) );
 
         $this->get_list_settings();
