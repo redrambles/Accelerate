@@ -27,7 +27,7 @@ get_header(); ?>
 				// Start the Loop.
 				while ( have_posts() ) : the_post(); ?>
 				
-					<article class="post-entry">
+				<article id="post-<?php the_ID(); ?>" <?php post_class('post-entry'); ?>>
 					<div class="entry-wrap">
 						<header class="entry-header">
 							<div class="entry-meta"> <!-- Modified the time -->
