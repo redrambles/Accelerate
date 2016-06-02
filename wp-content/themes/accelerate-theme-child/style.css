@@ -47,6 +47,10 @@ img {
     text-shadow: none;
 }
 
+.header-main {
+  overflow: hidden;
+}
+
 .site-content {
     width: 100%;
     max-width: 960px;

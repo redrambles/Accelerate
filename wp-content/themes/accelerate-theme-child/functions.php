@@ -163,6 +163,14 @@ if( function_exists('acf_add_options_page') ) {
 
 }
 
+// Refresh those permalinks message
+add_action('admin_notices', 'admin_notice_refresh_permalinks' );
+function admin_notice_refresh_permalinks() {
+  echo '<div class="error">
+          <p>Do not forget to refresh those permalinks! :)</p>
+        </div>';
+}
+
 // Displaying a Quick Performance Report for Admins in the source code
 
 // add_action( 'wp_footer', 'wp_footer_example' );
