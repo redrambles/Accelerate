@@ -130,6 +130,9 @@ function accelerate_child_scripts() {
 
 	//Scripts
 	wp_enqueue_script('faqs', get_stylesheet_directory_uri() . '/js/faqs.js', array('jquery'), '20160105', false );
+	if ( is_404() ) {
+		wp_enqueue_script('404', get_stylesheet_directory_uri() . '/js/test-404.js', array('jquery'), '20160603', false );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 
