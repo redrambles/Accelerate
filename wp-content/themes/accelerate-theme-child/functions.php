@@ -167,12 +167,28 @@ if( function_exists('acf_add_options_page') ) {
 }
 
 // Refresh those permalinks message
-add_action('admin_notices', 'admin_notice_refresh_permalinks' );
-function admin_notice_refresh_permalinks() {
-  echo '<div class="error">
-          <p>Do not forget to refresh those permalinks! :)</p>
-        </div>';
+// add_action('admin_notices', 'admin_notice_refresh_permalinks' );
+// function admin_notice_refresh_permalinks() {
+//   echo '<div class="error">
+//           <p>Do not forget to refresh those permalinks! :)</p>
+//         </div>';
+// }
+// Refresh those permalinks message on main Dashboard page only
+add_action( 'current_screen', 'this_screen' );
+function this_screen() {
+
+    $current_screen = get_current_screen();
+    if( $current_screen ->id === "dashboard" ) {
+
+			add_action('admin_notices', 'admin_notice_refresh_permalinks' );
+			function admin_notice_refresh_permalinks() {
+			  echo '<div class="error">
+			          <p>Do not forget to refresh those permalinks! :)</p>
+			        </div>';
+				}
+    }
 }
+
 
 // Displaying a Quick Performance Report for Admins in the source code
 
