@@ -9,7 +9,8 @@ Text Domain: accelerate-theme-child
 
 /*@import url('../accelerate-theme/style.css');*/
 
-/* testing */
+/* Clearings */
+
 /*.clearfix:before,
 .clearfix:after {
     content: " ";
@@ -19,7 +20,6 @@ Text Domain: accelerate-theme-child
 .clearfix:after {
     clear: both;
 }*/
-/* end test */
 
 .site {
     width: 100%;
@@ -297,6 +297,10 @@ div.left {
 
 footer.navigation.container {
     border: none;
+}
+
+.entry-footer {
+  clear: both;
 }
 
 /* Alignments */
