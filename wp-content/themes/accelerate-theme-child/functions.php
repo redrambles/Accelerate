@@ -53,6 +53,20 @@ function accelerate_theme_support_stuff() {
 	}
 add_action( 'after_setup_theme', 'accelerate_theme_support_stuff' );
 
+// defines custom markup for post comments
+function accelerate_comments($comment, $args, $depth) {
+	$comment  = '<li class="comment">';
+	$comment .=	'<header class="comment-head">';
+	$comment .= '<span class="comment-author">' . get_comment_author() . '</span>';
+	$comment .= '<span class="comment-meta">' . get_comment_date('m/d/Y') . '&emsp;|&emsp;' . get_comment_reply_link(array('depth' => $depth, 'max_depth' => 5)) . '</span>';
+	$comment .= '</header>';
+	$comment .= '<div class="comment-body">';
+	$comment .= '<p>' . get_comment_text() . '</p>';
+	$comment .= '</div>';
+	$comment .= '</li>';
+ 
+	echo $comment;
+}
 
 // Testing the addition of excerpts for pages
 function accelerate_add_excerpt_for_pages() {

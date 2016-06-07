@@ -10,11 +10,6 @@
  * @since Accelerate 1.0
  */
 
-/*
- * If the current post is protected by a password and
- * the visitor has not yet entered the password we will
- * return early without loading the comments.
- */
 if ( post_password_required() ) {
 	return;
 }
@@ -25,21 +20,21 @@ if ( post_password_required() ) {
 	<?php if ( have_comments() ) : ?>
 		<h2 class="comments-title">
 			<?php
-				printf( _nx( 'One comment', '%1$s comments', get_comments_number(), 'accelerate' ));
+				printf( _n( 'One comment', '%1$s comments', get_comments_number(), 'accelerate' ),
+        number_format_i18n( get_comments_number() ), get_the_title() );
 			?>
 		</h2>
 
 		<ol class="comment-list">
 			<?php
 				wp_list_comments( array(
-					'style'       => 'ol',
-					'short_ping'  => true,
-					'avatar_size' => 56,
+          'style'      => 'ul',
+  				'short_ping' => true,
+  				'avatar_size'=> 0,
+					'callback' => 'accelerate_comments'
 				) );
 			?>
 		</ol><!-- .comment-list -->
-
-		<?php accelerate_theme_child_comment_nav(); ?>
 
 	<?php endif; // have_comments() ?>
 
