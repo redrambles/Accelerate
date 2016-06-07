@@ -1002,7 +1002,7 @@ aside.sidebar li a {
 @media screen and (max-width: 700px) {
     .individual-featured-work {
         width: 100%;
-        padding: 1rem 1rem;
+        padding: 1rem 0;
     }
 }
 
@@ -1010,9 +1010,9 @@ aside.sidebar li a {
 
 @media screen and (max-width: 980px) {
     .individual-featured-service {
-        width: 40%;
+        width: 46%;
         float: left;
-        padding: 1rem 1rem;
+        padding: 2% 2%;
     }
 }
 
