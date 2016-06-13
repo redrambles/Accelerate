@@ -5,8 +5,8 @@
  * Displays all of the <head> section and everything up till <div id="main">
  *
  * @package WordPress
- * @subpackage Twenty_Fourteen
- * @since Twenty Fourteen 1.0
+ * @subpackage Accelerate Marketing
+ * @since Accelerate Marketing 1.0
  */
 ?><!DOCTYPE html>
 <!--[if IE 7]>
@@ -20,20 +20,17 @@
 <!--<![endif]-->
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<!-- <meta name="viewport" content="width=device-width"> -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width">
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<!--[if lt IE 9]>
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
-	<!--Modernizr-->
-<//script src="<?php //echo get_template_directory_uri(); ?>/js/plugins/modernizr-2.6.1.min.js"><///script>
 
-<!-- <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> -->
-<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400' rel='stylesheet' type='text/css'> -->
-<!-- <link href="<?php //echo get_stylesheet_uri(); ?>" rel="stylesheet" type='text/css'> Loaded in functions.php instead -->
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400' rel='stylesheet' type='text/css'>
+<link href="<?php echo get_stylesheet_uri(); ?>" rel="stylesheet" type='text/css'>
 	<?php wp_head(); ?>
 </head>
 

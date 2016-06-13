@@ -25,43 +25,44 @@
  * @since Accelerate Marketing 1.0
  */
 
-// Theme support for menus - I wrapped this in a function and hooked it (otherwise it's pretty much the same as original code)
-function accelerate_setup() {
-
-	// Register Menus 
-	register_nav_menus ( array (
-		'top-nav' => __( 'Top Nav', 'accelerate' ),
-		'social-media' => __( 'Social Media Nav', 'accelerate' ),  
-	) );
-}
-
-add_action( 'after_setup_theme', 'accelerate_setup' );
-
-
- /*
- * Enqueue scripts and styles.
- * Tried loading here instead of the <head> of header.php because it would not load properly using functions.php from the child theme (some styling was overriden)
+/**
+ * Register menus.
  */
-function accelerate_scripts() {
-
-
-	// Load our main stylesheet.
-	wp_enqueue_style( 'accelerate-style', get_stylesheet_uri() );
+function accelerate_setup() {
+  register_nav_menus( array(
+    'top-nav' => __( 'Top Nav', 'accelerate' ),
+    'social-media'  => __( 'Social Media Nav', 'accelerate' ),
+  ) );
 }
-add_action( 'wp_enqueue_scripts', 'accelerate_scripts' );
+add_action( 'after_setup_theme', 'accelerate_setup' ); 
 
-
- //Register main widget area 
-function accelerate_widget_init() {
-	// Register first sidebar - main widget area
+/**
+ * Register widget area.
+ */
+function accelerate_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Main sidebar', 'accelerate' ),
+		'name'          => __( 'Widget Area', 'accelerate' ),
 		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'accelerate' ),
+		'description'   => __( 'Add widgets here to appear in your blog sidebar.', 'accelerate' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
 }
-add_action( 'widgets_init', 'accelerate_widget_init' );
+add_action( 'widgets_init', 'accelerate_widgets_init' );
+
+// defines custom markup for post comments
+function accelerate_comments($comment, $args, $depth) {
+	$comment  = '<li class="comment">';
+	$comment .=	'<header class="comment-head">';
+	$comment .= '<span class="comment-author">' . get_comment_author() . '</span>';
+	$comment .= '<span class="comment-meta">' . get_comment_date('m/d/Y') . '&emsp;|&emsp;' . get_comment_reply_link(array('depth' => $depth, 'max_depth' => 5)) . '</span>';
+	$comment .= '</header>';
+	$comment .= '<div class="comment-body">';
+	$comment .= '<p>' . get_comment_text() . '</p>';
+	$comment .= '</div>';
+	$comment .= '</li>';
+ 
+	echo $comment;
+}
