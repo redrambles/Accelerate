@@ -152,7 +152,7 @@ final class NF_Database_Models_Submission
      */
     public function update_field_value( $field_ref, $value )
     {
-        $field_id = ( is_int( $field_ref ) ) ? $field_ref : $this->get_field_id_by_key( $field_ref );
+        $field_id = ( is_numeric( $field_ref ) ) ? $field_ref : $this->get_field_id_by_key( $field_ref );
 
         $this->_field_values[ $field_id ] = WPN_Helper::kses_post( $value );
 

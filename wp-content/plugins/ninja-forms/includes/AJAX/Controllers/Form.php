@@ -126,6 +126,8 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
 
         delete_user_option( get_current_user_id(), 'nf_form_preview_' . $form_data['id'] );
 
+        do_action( 'ninja_forms_save_form', $form->get_id() );
+
         $this->_respond();
     }
 

@@ -265,7 +265,7 @@ class Ninja_Forms {
 
         // Plugin version
         if ( ! defined( 'NF_PLUGIN_VERSION' ) )
-            define( 'NF_PLUGIN_VERSION', '2.9.47' );
+            define( 'NF_PLUGIN_VERSION', '2.9.48' );
 
         // Plugin Folder Path
         if ( ! defined( 'NF_PLUGIN_DIR' ) )
@@ -617,7 +617,7 @@ class Ninja_Forms {
         load_textdomain( $textdomain, $wp_lang_dir );
 
         /** Translations: Secondly, look in plugin's "lang" folder = default */
-        $plugin_dir = basename( dirname( __FILE__ ) );
+        $plugin_dir = trailingslashit( basename( dirname( dirname( __FILE__ ) ) ) ) . basename( dirname( __FILE__ ) );
         $lang_dir = apply_filters( 'ninja_forms_lang_dir', $plugin_dir . '/lang/' );
         load_plugin_textdomain( $textdomain, FALSE, $lang_dir );
     }

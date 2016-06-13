@@ -480,6 +480,18 @@
 
 </script>
 
+<script id="nf-tmpl-edit-setting-color" type="text/template">
+
+    <label for="<%= name %>" class="<%= renderLabelClasses() %>"><%= label %> <%= renderTooltip() %></label>
+
+    <input type="text" id="<%= name %>" value="<%= value %>" class="setting" data-default-color="#F9F9F9" />
+
+    <div class="nf-colorpicker">
+
+    </div>
+
+</script>
+
 <script id="nf-tmpl-edit-setting-fieldset" type="text/template">
     <fieldset>
         <legend><%= label %></legend>

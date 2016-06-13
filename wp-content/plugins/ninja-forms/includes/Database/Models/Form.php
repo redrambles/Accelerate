@@ -493,7 +493,28 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
             }
         }
 
-        return $field;
+        if( 'number' == $field[ 'type' ] ){
+
+            if( ! isset( $field[ 'number_min' ] ) || ! $field[ 'number_min' ] ){
+                $field[ 'num_min' ] = '';
+            } else {
+                $field[ 'num_min' ] = $field[ 'number_min' ];
+            }
+
+            if( ! isset( $field[ 'number_max' ] ) || ! $field[ 'number_max' ] ){
+                $field[ 'num_max' ] = '';
+            } else {
+                $field[ 'num_max' ] = $field[ 'number_max' ];
+            }
+
+            if( ! isset( $field[ 'number_step' ] ) || ! $field[ 'number_step' ] ){
+                $field[ 'num_step' ] = 1;
+            } else {
+                $field[ 'num_step' ] = $field[ 'number_step' ];
+            }
+        }
+
+        return apply_filters( 'ninja_forms_upgrade_field', $field );
     }
 
 } // End NF_Database_Models_Form
