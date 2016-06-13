@@ -139,7 +139,7 @@ add_action( 'init', 'create_custom_post_types' );
 //Enqueue scripts and styles.
 function accelerate_child_scripts() {
 	wp_enqueue_style( 'parent-theme-css', get_template_directory_uri() . '/style.css' );
-	wp_enqueue_style( 'child-style',get_stylesheet_directory_uri() . '/style.css', array( 'parent-theme-css' ));
+	wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'parent-theme-css' ));
 	// The above would not be necessary if the parent theme were using functions.php to enqueue its style.css file. (It is in the header) This won't be an issue for anyone using @import in the child theme style.css.
 	wp_enqueue_style('accelerate-child-google-fonts', 'https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300italic,400italic,600italic,400,600,700,300');
 	wp_enqueue_style('accelerate-child-font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
