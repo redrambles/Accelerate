@@ -5,8 +5,8 @@
  * Displays all of the <head> section and everything up till <div id="main">
  *
  * @package WordPress
- * @subpackage Twenty_Fourteen
- * @since Twenty Fourteen 1.0
+ * @subpackage Accelerate Marketing
+ * @since Accelerate Marketing 1.0
  */
 ?><!DOCTYPE html>
 <!--[if IE 7]>
@@ -29,9 +29,6 @@
 	<!--[if lt IE 9]>
 	<script src="<?php //echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
-	<!--Modernizr-->
-<//script src="<?php //echo get_template_directory_uri(); ?>/js/plugins/modernizr-2.6.1.min.js"><//script>
-
 <?php wp_head(); ?>
 </head>
 

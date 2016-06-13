@@ -8,8 +8,8 @@
  * differenat template.
  *
  * @package WordPress
- * @subpackage Accelerate Theme
- * @since Accelerate Theme 1.1
+ * @subpackage Accelerate Marketing
+ * @since Accelerate Marketing 1.0
  */
 
 get_header(); ?>

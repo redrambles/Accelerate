@@ -1,6 +1,9 @@
 <?php 
 /* Added this to the theme once I tried to include the search widget in the blog sidebar
 *
+* @package WordPress
+* @subpackage Accelerate Marketing
+* @since Accelerate Marketing 1.0
 */
 ?>
 

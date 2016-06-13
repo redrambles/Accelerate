@@ -53,20 +53,20 @@ function accelerate_theme_support_stuff() {
 	}
 add_action( 'after_setup_theme', 'accelerate_theme_support_stuff' );
 
-// defines custom markup for post comments
-function accelerate_comments($comment, $args, $depth) {
-	$comment  = '<li class="comment">';
-	$comment .=	'<header class="comment-head">';
-	$comment .= '<span class="comment-author">' . get_comment_author() . '</span>';
-	$comment .= '<span class="comment-meta">' . get_comment_date('m/d/Y') . '&emsp;|&emsp;' . get_comment_reply_link(array('depth' => $depth, 'max_depth' => 5)) . '</span>';
-	$comment .= '</header>';
-	$comment .= '<div class="comment-body">';
-	$comment .= '<p>' . get_comment_text() . '</p>';
-	$comment .= '</div>';
-	$comment .= '</li>';
- 
-	echo $comment;
-}
+// // defines custom markup for post comments
+// function accelerate_comments($comment, $args, $depth) {
+// 	$comment  = '<li class="comment">';
+// 	$comment .=	'<header class="comment-head">';
+// 	$comment .= '<span class="comment-author">' . get_comment_author() . '</span>';
+// 	$comment .= '<span class="comment-meta">' . get_comment_date('m/d/Y') . '&emsp;|&emsp;' . get_comment_reply_link(array('depth' => $depth, 'max_depth' => 5)) . '</span>';
+// 	$comment .= '</header>';
+// 	$comment .= '<div class="comment-body">';
+// 	$comment .= '<p>' . get_comment_text() . '</p>';
+// 	$comment .= '</div>';
+// 	$comment .= '</li>';
+//  
+// 	echo $comment;
+// }
 
 // Testing the addition of excerpts for pages
 function accelerate_add_excerpt_for_pages() {
@@ -139,6 +139,8 @@ add_action( 'init', 'create_custom_post_types' );
 //Enqueue scripts and styles.
 function accelerate_child_scripts() {
 	wp_enqueue_style( 'parent-theme-css', get_template_directory_uri() . '/style.css' );
+	wp_enqueue_style( 'child-style',get_stylesheet_directory_uri() . '/style.css', array( 'parent-theme-css' ));
+	// The above would not be necessary if the parent theme were using functions.php to enqueue its style.css file. (It is in the header) This won't be an issue for anyone using @import in the child theme style.css.
 	wp_enqueue_style('accelerate-child-google-fonts', 'https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300italic,400italic,600italic,400,600,700,300');
 	wp_enqueue_style('accelerate-child-font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 
@@ -180,6 +182,18 @@ if( function_exists('acf_add_options_page') ) {
 
 }
 
+// Remove 'Accelerate' in the description in the footer page ONLY
+function green_accelerate_footer(){
+	
+	add_filter( 'option_blogdescription', 'accelerate_change_description_footer', 10, 2 );
+	function accelerate_change_description_footer( $description )
+	{
+			$description = str_replace('Accelerate', '', $description);
+			return $description;
+	} 
+
+};
+	
 // Refresh those permalinks message on main Dashboard page only
 add_action( 'current_screen', 'message_dashboard_screen' );
 function message_dashboard_screen() {

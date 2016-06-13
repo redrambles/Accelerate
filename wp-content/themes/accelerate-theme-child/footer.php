@@ -5,21 +5,14 @@
  * Contains footer content and the closing of the #main and #page div elements.
  *
  * @package WordPress
- * @subpackage Twenty_Fourteen
- * @since Twenty Fourteen 1.0
+ * @subpackage Accelerate Marketing
+ * @since Accelerate Marketing 1.0
  */
 ?>
 
 		</div><!-- #main -->
 
-		<?php // Remove 'Accelerate' in the description in the footer page ONLY
-			add_filter( 'option_blogdescription', 'accelerate_change_description_footer', 10, 2 );
-			function accelerate_change_description_footer( $description )
-			{
-					$description = str_replace('Accelerate', '', $description);
-			    return $description;
-			} 
-		?>
+		<?php green_accelerate_footer(); ?>
 		
 		<footer id="colophon" class="site-footer" role="contentinfo">
 			<div class="site-info">

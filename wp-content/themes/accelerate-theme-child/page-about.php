@@ -6,6 +6,9 @@
  * 
  * It pulls in several fields defined in the Advanced Custom Fields Plug-in
  *
+ * @package WordPress
+ * @subpackage Accelerate Marketing
+ * @since Accelerate Marketing 1.0
  */
 
 get_header(); ?>
