@@ -571,6 +571,7 @@ aside.sidebar li a {
 .hero-about {
     background: url("img/taxi-photo-about.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
     height: 360px;
+    padding-top: 1px;
 }
 .hero-text h3 {
     padding-top: 3em;

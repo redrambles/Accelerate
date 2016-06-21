@@ -315,7 +315,7 @@
 </script>
 
 <script id="nf-tmpl-drawer-action-type-button" type="text/template">
-    <div class="nf-one-third" data-type="<%= id %>">
+    <div class="nf-one-third nf-action-type-draggable" data-type="<%= id %>">
         <div class="<%= renderClasses() %>" <%= renderStyle() %>><%= nicename %></div>
     </div>
 </script>

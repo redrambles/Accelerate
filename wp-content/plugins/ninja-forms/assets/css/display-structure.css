@@ -12,6 +12,7 @@ Normalize Ninja Forms fields with default structure
 
 .nf-field-container,
 #ninja_forms_required_items {
+  clear: both;
   position: relative;
   margin-bottom: 25px; }
   .nf-field-container::after,
@@ -65,7 +66,7 @@ Normalize Ninja Forms fields with default structure
 .nf-static {
   padding: 0 10px; }
 
-.nf-error-msg {
+.nf-after-field .nf-error-msg {
   margin-right: 10px;
   text-align: right; }
 
@@ -167,6 +168,9 @@ HELPER CLASSES
 .four-col-list ul li {
   float: left;
   width: 25%; }
+
+body .pika-label {
+  background: transparent; }
 
 .note-popover {
   display: none !important; }

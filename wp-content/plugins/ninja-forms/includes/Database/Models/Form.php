@@ -235,6 +235,14 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
         foreach( $import[ 'fields' ] as $key => $field ){
             // TODO: Split Credit Card field into multiple fields.
             $field = $this->import_field_backwards_compatibility( $field );
+
+            if( isset( $field[ 'new_fields' ] ) ){
+                foreach( $field[ 'new_fields' ] as $new_field ){
+                    $import[ 'fields' ][] = $new_field;
+                }
+                unset( $field[ 'new_fields' ] );
+            }
+
             $import[ 'fields' ][ $key ] = $field;
         }
 
@@ -256,7 +264,7 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
 
         $import = $this->import_merge_tags_backwards_compatibility( $import );
 
-        return $import;
+        return apply_filters( 'ninja_forms_after_upgrade_settings', $import );
     }
 
     public function import_merge_tags_backwards_compatibility( $import )
@@ -512,6 +520,22 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
             } else {
                 $field[ 'num_step' ] = $field[ 'number_step' ];
             }
+        }
+
+        if( 'profile_pass' == $field[ 'type' ] ){
+            $field[ 'type' ] = 'password';
+
+            $passwordconfirm = array_merge( $field, array(
+                'id' => '',
+                'type' => 'passwordconfirm',
+                'label' => $field[ 'label' ] . ' ' . __( 'Confirm' ),
+                'confirm_field' => 'password_' . $field[ 'id' ]
+            ));
+            $field[ 'new_fields' ][] = $passwordconfirm;
+        }
+
+        if( 'desc' == $field[ 'type' ] ){
+            $field[ 'type' ] = 'html';
         }
 
         return apply_filters( 'ninja_forms_upgrade_field', $field );

@@ -757,6 +757,14 @@ return apply_filters( 'ninja_forms_field_settings', array(
         'settings' => array(),
     ),
 
+    'confirm_field' => array(
+        'name' => 'confirm_field',
+        'type' => 'field-select',
+        'label' => __( 'Confirm', 'ninja-forms' ),
+        'width' => 'full',
+        'group' => 'advanced'
+    ),
+
     /*
     |--------------------------------------------------------------------------
     | Textarea Settings
