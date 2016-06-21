@@ -93,7 +93,10 @@ function create_custom_post_types() {
 			// 'supports' => $supports,
 			'labels' => array(
 				'name' => __( 'Case Studies' ),
-				'singular_name' => __( 'Case Study' )
+				'singular_name' => __( 'Case Study' ),
+				'add_new_item'  => __( 'Add New Case Study'),
+				//'new_item'      => __( 'New Case Study' ),
+				'search_items'  => __( 'Search Case Studies')
 				),
 			'public' => true,
 			'has_archive' => true,

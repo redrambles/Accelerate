@@ -2482,7 +2482,18 @@ acf_update_setting('php_to_js_date_formats', array(
 	'd'	=> 'dd',	// Numeric, with leading zeros						01–31
 	'j'	=> 'd',		// Numeric, without leading zeros 					1–31
 	'S'	=> '',		// The English suffix for the day of the month  	st, nd or th in the 1st, 2nd or 15th. 
-
+	
+	
+	// Time
+	'a' => 'tt',	// Lowercase Ante meridiem and Post meridiem 		am or pm
+	'A' => 'TT',	// Uppercase Ante meridiem and Post meridiem 		AM or PM
+	'h' => 'hh',	// 12-hour format of an hour with leading zeros 	01 through 12
+	'g' => 'h',		// 12-hour format of an hour without leading zeros 	1 through 12
+	'H' => 'HH',	// 24-hour format of an hour with leading zeros 	00 through 23
+	'G' => 'H',		// 24-hour format of an hour without leading zeros 	0 through 23
+	'i' => 'mm',	// Minutes with leading zeros 						00 to 59
+	's' => 'ss',	// Seconds, with leading zeros 						00 through 59
+	
 ));
 
 function acf_convert_date_to_php( $date ) {
@@ -3971,17 +3982,115 @@ function acf_get_post_thumbnail( $post = null, $size = 'thumbnail' ) {
 
 
 /*
-*  Hacks
+*  acf_get_browser
 *
-*  description
+*  This functino will return the browser string for major browsers
 *
 *  @type	function
 *  @date	17/01/2014
 *  @since	5.0.0
 *
-*  @param	$post_id (int)
-*  @return	$post_id (int)
+*  @param	n/a
+*  @return	(string)
 */
+
+function acf_get_browser() {
+	
+	// vars
+	$agent = $_SERVER['HTTP_USER_AGENT'];
+	
+	
+	// browsers
+	$browsers = array(
+		'Firefox'	=> 'firefox',
+		'Trident'	=> 'msie',
+		'MSIE'		=> 'msie',
+		'Edge'		=> 'edge',
+		'Chrome'	=> 'chrome',
+		'Safari'	=> 'safari',
+	);
+	
+	
+	// loop
+	foreach( $browsers as $k => $v ) {
+		
+		if( strpos($agent, $k) !== false ) return $v;
+		
+	}
+	
+	
+	// return
+	return '';
+	
+}
+
+
+/*
+*  acf_is_ajax
+*
+*  This function will reutrn true if performing a wp ajax call
+*
+*  @type	function
+*  @date	7/06/2016
+*  @since	5.3.8
+*
+*  @param	n/a
+*  @return	(boolean)
+*/
+
+function acf_is_ajax() {
+	
+	return ( defined('DOING_AJAX') && DOING_AJAX );
+		
+}
+
+
+
+
+/*
+*  acf_format_date
+*
+*  This function will accept a date value and return it in a formatted string
+*
+*  @type	function
+*  @date	16/06/2016
+*  @since	5.3.8
+*
+*  @param	$value (string)
+*  @return	$format (string)
+*/
+
+function acf_format_date( $value, $format ) {
+
+	// bail early if no value
+	if( empty($value) ) return $value;
+	
+	
+	// attempt strtotime for standard date value
+	$unixtimestamp = strtotime($value);
+	
+	
+	// allow for timestamp value
+	if( !$unixtimestamp && is_numeric($value) ) {
+		
+		$unixtimestamp = $value;
+			
+	}
+	
+	
+	// bail early if timestamp error
+	if( !$unixtimestamp ) return $value;
+	
+	
+	// translate
+	$value = date_i18n($format, $unixtimestamp);
+	
+	
+	// return
+	return $value;
+	
+}
+
 
 add_filter("acf/settings/slug", '_acf_settings_slug');
 
