@@ -17,16 +17,6 @@ get_header(); ?>
 <div id="primary" class="site-content">
 	<div id="content" role="main">
 
-		<figure class="pic_404">
-			<?php //Pull in the 404 MAP pic from the media uploads using its attachment ID
-
-			//$image_src = wp_get_attachment_image(47459, 'full');
-
-			//if($image_src) {
-				//echo $image_src;
-		 	//} ?>
-		</figure>
-
 		<div class="text_404">
 			<h2>That page!</h2>
 			<h4>She is nowhere to be found.</h4>
