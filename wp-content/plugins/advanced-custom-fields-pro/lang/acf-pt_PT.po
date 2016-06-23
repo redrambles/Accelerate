@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Advanced Custom Fields PRO 5.3.7\n"
+"Project-Id-Version: Advanced Custom Fields PRO 5.4.0\n"
 "Report-Msgid-Bugs-To: http://support.advancedcustomfields.com\n"
-"POT-Creation-Date: 2016-06-14 09:28+0100\n"
-"PO-Revision-Date: 2016-06-14 09:29+0100\n"
+"POT-Creation-Date: 2016-06-18 14:59+0100\n"
+"PO-Revision-Date: 2016-06-18 14:59+0100\n"
 "Last-Translator: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language: pt_PT\n"
@@ -28,91 +28,91 @@ msgstr ""
 msgid "Advanced Custom Fields"
 msgstr "Advanced Custom Fields"
 
-#: acf.php:267 admin/admin.php:61
+#: acf.php:268 admin/admin.php:61
 msgid "Field Groups"
 msgstr "Grupos de campos"
 
-#: acf.php:268
+#: acf.php:269
 msgid "Field Group"
 msgstr "Grupo de campos"
 
-#: acf.php:269 acf.php:301 admin/admin.php:62
+#: acf.php:270 acf.php:302 admin/admin.php:62
 #: pro/fields/flexible-content.php:496
 msgid "Add New"
 msgstr "Adicionar novo"
 
-#: acf.php:270
+#: acf.php:271
 msgid "Add New Field Group"
 msgstr "Adicionar novo grupo de campos"
 
-#: acf.php:271
+#: acf.php:272
 msgid "Edit Field Group"
 msgstr "Editar grupo de campos"
 
-#: acf.php:272
+#: acf.php:273
 msgid "New Field Group"
 msgstr "Novo grupo de campos"
 
-#: acf.php:273
+#: acf.php:274
 msgid "View Field Group"
 msgstr "Ver grupo de campos"
 
-#: acf.php:274
+#: acf.php:275
 msgid "Search Field Groups"
 msgstr "Pesquisar grupos de campos"
 
-#: acf.php:275
+#: acf.php:276
 msgid "No Field Groups found"
 msgstr "Nenhum grupo de campos encontrado"
 
-#: acf.php:276
+#: acf.php:277
 msgid "No Field Groups found in Trash"
 msgstr "Nenhum grupo de campos encontrado no lixo"
 
-#: acf.php:299 admin/field-group.php:182 admin/field-group.php:280
+#: acf.php:300 admin/field-group.php:182 admin/field-group.php:280
 #: admin/field-groups.php:528
 msgid "Fields"
 msgstr "Campos"
 
-#: acf.php:300
+#: acf.php:301
 msgid "Field"
 msgstr "Campo"
 
-#: acf.php:302
+#: acf.php:303
 msgid "Add New Field"
 msgstr "Adicionar novo campo"
 
-#: acf.php:303
+#: acf.php:304
 msgid "Edit Field"
 msgstr "Editar campo"
 
-#: acf.php:304 admin/views/field-group-fields.php:18
+#: acf.php:305 admin/views/field-group-fields.php:18
 #: admin/views/settings-info.php:111
 msgid "New Field"
 msgstr "Novo campo"
 
-#: acf.php:305
+#: acf.php:306
 msgid "View Field"
 msgstr "Ver campo"
 
-#: acf.php:306
+#: acf.php:307
 msgid "Search Fields"
 msgstr "Pesquisar campos"
 
-#: acf.php:307
+#: acf.php:308
 msgid "No Fields found"
 msgstr "Nenhum campo encontrado"
 
-#: acf.php:308
+#: acf.php:309
 msgid "No Fields found in Trash"
 msgstr "Nenhum campo encontrado no Lixo"
 
-#: acf.php:347 admin/field-group.php:395 admin/field-groups.php:586
+#: acf.php:348 admin/field-group.php:395 admin/field-groups.php:585
 #: admin/views/field-group-options.php:13
 msgid "Disabled"
 msgstr "Desactivado"
 
-#: acf.php:352
+#: acf.php:353
 #, php-format
 msgid "Disabled <span class=\"count\">(%s)</span>"
 msgid_plural "Disabled <span class=\"count\">(%s)</span>"
@@ -333,7 +333,7 @@ msgid_plural "%s field groups synchronised."
 msgstr[0] "%s grupo de campos sincronizado."
 msgstr[1] "%s grupos de campos sincronizados."
 
-#: admin/field-groups.php:412 admin/field-groups.php:576
+#: admin/field-groups.php:412 admin/field-groups.php:575
 msgid "Sync available"
 msgstr "Sincronização disponível"
 
@@ -352,80 +352,80 @@ msgstr "Descrição"
 msgid "Status"
 msgstr "Estado"
 
-#: admin/field-groups.php:624 admin/settings-info.php:76
+#: admin/field-groups.php:623 admin/settings-info.php:76
 #: pro/admin/views/settings-updates.php:111
 msgid "Changelog"
 msgstr "Registo de alterações"
 
-#: admin/field-groups.php:625
+#: admin/field-groups.php:624
 #, php-format
 msgid "See what's new in <a href=\"%s\">version %s</a>."
 msgstr "Veja o que há de novo na <a href=\"%s\">versão %s</a>."
 
-#: admin/field-groups.php:627
+#: admin/field-groups.php:626
 msgid "Resources"
 msgstr "Recursos"
 
-#: admin/field-groups.php:629
+#: admin/field-groups.php:628
 msgid "Getting Started"
 msgstr "Primeiros passos"
 
-#: admin/field-groups.php:630 pro/admin/settings-updates.php:61
+#: admin/field-groups.php:629 pro/admin/settings-updates.php:61
 #: pro/admin/views/settings-updates.php:17
 msgid "Updates"
 msgstr "Actualizações"
 
-#: admin/field-groups.php:631
+#: admin/field-groups.php:630
 msgid "Field Types"
 msgstr "Tipos de campos"
 
-#: admin/field-groups.php:632
+#: admin/field-groups.php:631
 msgid "Functions"
 msgstr "Funções"
 
-#: admin/field-groups.php:633
+#: admin/field-groups.php:632
 msgid "Actions"
 msgstr "Acções"
 
-#: admin/field-groups.php:634 fields/relationship.php:720
+#: admin/field-groups.php:633 fields/relationship.php:720
 msgid "Filters"
 msgstr "Filtros"
 
-#: admin/field-groups.php:635
+#: admin/field-groups.php:634
 msgid "'How to' guides"
 msgstr "Guias práticos"
 
-#: admin/field-groups.php:636
+#: admin/field-groups.php:635
 msgid "Tutorials"
 msgstr "Tutoriais"
 
-#: admin/field-groups.php:637
+#: admin/field-groups.php:636
 msgid "FAQ"
 msgstr "Perguntas frequentes"
 
-#: admin/field-groups.php:642
+#: admin/field-groups.php:641
 msgid "Created by"
 msgstr "Criado por"
 
-#: admin/field-groups.php:685
+#: admin/field-groups.php:684
 msgid "Duplicate this item"
 msgstr "Duplicar este item"
 
-#: admin/field-groups.php:685 admin/field-groups.php:701
+#: admin/field-groups.php:684 admin/field-groups.php:700
 #: admin/views/field-group-field.php:58 pro/fields/flexible-content.php:495
 msgid "Duplicate"
 msgstr "Duplicar"
 
-#: admin/field-groups.php:747
+#: admin/field-groups.php:751
 #, php-format
 msgid "Select %s"
 msgstr "Seleccionar %s"
 
-#: admin/field-groups.php:755
+#: admin/field-groups.php:759
 msgid "Synchronise field group"
 msgstr "Sincronizar grupo de campos"
 
-#: admin/field-groups.php:755 admin/field-groups.php:772
+#: admin/field-groups.php:759 admin/field-groups.php:776
 msgid "Sync"
 msgstr "Sincronizar"
 
@@ -505,8 +505,8 @@ msgstr "Lógica condicional"
 #: admin/views/field-group-field.php:140 fields/checkbox.php:243
 #: fields/message.php:144 fields/page_link.php:539 fields/page_link.php:553
 #: fields/post_object.php:403 fields/post_object.php:417 fields/radio.php:254
-#: fields/select.php:440 fields/select.php:454 fields/select.php:468
-#: fields/select.php:482 fields/tab.php:130 fields/taxonomy.php:772
+#: fields/select.php:448 fields/select.php:462 fields/select.php:476
+#: fields/select.php:490 fields/tab.php:130 fields/taxonomy.php:772
 #: fields/taxonomy.php:786 fields/taxonomy.php:800 fields/taxonomy.php:814
 #: fields/user.php:416 fields/user.php:430 fields/wysiwyg.php:418
 #: pro/admin/views/settings-updates.php:93
@@ -517,8 +517,8 @@ msgstr "Sim"
 #: admin/views/field-group-field.php:141 fields/checkbox.php:244
 #: fields/message.php:145 fields/page_link.php:540 fields/page_link.php:554
 #: fields/post_object.php:404 fields/post_object.php:418 fields/radio.php:255
-#: fields/select.php:441 fields/select.php:455 fields/select.php:469
-#: fields/select.php:483 fields/tab.php:131 fields/taxonomy.php:687
+#: fields/select.php:449 fields/select.php:463 fields/select.php:477
+#: fields/select.php:491 fields/tab.php:131 fields/taxonomy.php:687
 #: fields/taxonomy.php:773 fields/taxonomy.php:787 fields/taxonomy.php:801
 #: fields/taxonomy.php:815 fields/user.php:417 fields/user.php:431
 #: fields/wysiwyg.php:419 pro/admin/views/settings-updates.php:103
@@ -1356,7 +1356,7 @@ msgstr "Grande"
 msgid "Full Size"
 msgstr "Tamanho original"
 
-#: api/api-helpers.php:1196 api/api-helpers.php:1759
+#: api/api-helpers.php:1196 api/api-helpers.php:1759 fields/clone.php:298
 msgid "(no title)"
 msgstr "(sem título)"
 
@@ -1490,31 +1490,31 @@ msgstr "Caixa de selecção"
 msgid "Toggle All"
 msgstr "Seleccionar tudo"
 
-#: fields/checkbox.php:205 fields/radio.php:240 fields/select.php:417
+#: fields/checkbox.php:205 fields/radio.php:240 fields/select.php:425
 msgid "Choices"
 msgstr "Opções"
 
-#: fields/checkbox.php:206 fields/radio.php:241 fields/select.php:418
+#: fields/checkbox.php:206 fields/radio.php:241 fields/select.php:426
 msgid "Enter each choice on a new line."
 msgstr "Introduza cada opção numa linha separada."
 
-#: fields/checkbox.php:206 fields/radio.php:241 fields/select.php:418
+#: fields/checkbox.php:206 fields/radio.php:241 fields/select.php:426
 msgid "For more control, you may specify both a value and label like this:"
 msgstr ""
 "Para maior controlo, pode especificar tanto os valores como as legendas:"
 
-#: fields/checkbox.php:206 fields/radio.php:241 fields/select.php:418
+#: fields/checkbox.php:206 fields/radio.php:241 fields/select.php:426
 msgid "red : Red"
 msgstr "vermelho : Vermelho"
 
 #: fields/checkbox.php:214 fields/color_picker.php:147 fields/email.php:124
-#: fields/number.php:150 fields/radio.php:283 fields/select.php:426
+#: fields/number.php:150 fields/radio.php:283 fields/select.php:434
 #: fields/text.php:148 fields/textarea.php:145 fields/true_false.php:115
 #: fields/url.php:117 fields/wysiwyg.php:379
 msgid "Default Value"
 msgstr "Valor por omissão"
 
-#: fields/checkbox.php:215 fields/select.php:427
+#: fields/checkbox.php:215 fields/select.php:435
 msgid "Enter each default value on a new line"
 msgstr "Introduza cada valor por omissão numa linha separada"
 
@@ -1534,6 +1534,25 @@ msgstr "Selecção"
 msgid "Prepend an extra checkbox to toggle all choices"
 msgstr ""
 "Preceder com caixa de selecção adicional para seleccionar todas as opções"
+
+#: fields/clone.php:36
+msgctxt "Field label"
+msgid "Clone"
+msgstr "Clone"
+
+#: fields/clone.php:199
+msgctxt "Field instruction"
+msgid "Clone"
+msgstr "Clonar"
+
+#: fields/clone.php:200
+msgid "Select one or more fields you wish to clone"
+msgstr "Seleccione um ou mais campos que deseja clonar"
+
+#: fields/clone.php:288
+#, php-format
+msgid "All fields from %s field group"
+msgstr "Todos os campos do grupo de campos %s"
 
 #: fields/color_picker.php:36
 msgid "Color Picker"
@@ -1584,28 +1603,28 @@ msgctxt "Date Picker JS weekHeader"
 msgid "Wk"
 msgstr "Sem"
 
-#: fields/date_picker.php:201 fields/date_time_picker.php:245
-#: fields/time_picker.php:131
+#: fields/date_picker.php:195 fields/date_time_picker.php:240
+#: fields/time_picker.php:126
 msgid "Display Format"
 msgstr "Formato de apresentação"
 
-#: fields/date_picker.php:202 fields/date_time_picker.php:246
-#: fields/time_picker.php:132
+#: fields/date_picker.php:196 fields/date_time_picker.php:241
+#: fields/time_picker.php:127
 msgid "The format displayed when editing a post"
 msgstr "O formato apresentado ao editar um conteúdo"
 
-#: fields/date_picker.php:216 fields/date_time_picker.php:261
+#: fields/date_picker.php:210 fields/date_time_picker.php:256
 #: fields/post_object.php:426 fields/relationship.php:766
-#: fields/time_picker.php:145
+#: fields/time_picker.php:140
 msgid "Return Format"
 msgstr "Formato a mostrar"
 
-#: fields/date_picker.php:217 fields/date_time_picker.php:262
-#: fields/time_picker.php:146
+#: fields/date_picker.php:211 fields/date_time_picker.php:257
+#: fields/time_picker.php:141
 msgid "The format returned via template functions"
 msgstr "O formato mostrado através das <em>template functions</em>"
 
-#: fields/date_picker.php:232 fields/date_time_picker.php:277
+#: fields/date_picker.php:226 fields/date_time_picker.php:272
 msgid "Week Starts On"
 msgstr "Semana começa em"
 
@@ -2021,11 +2040,11 @@ msgid "All taxonomies"
 msgstr "Todas as taxonomias"
 
 #: fields/page_link.php:534 fields/post_object.php:398 fields/radio.php:249
-#: fields/select.php:435 fields/taxonomy.php:767 fields/user.php:411
+#: fields/select.php:443 fields/taxonomy.php:767 fields/user.php:411
 msgid "Allow Null?"
 msgstr "Permitir nulo?"
 
-#: fields/page_link.php:548 fields/post_object.php:412 fields/select.php:449
+#: fields/page_link.php:548 fields/post_object.php:412 fields/select.php:457
 #: fields/user.php:425
 msgid "Select multiple values?"
 msgstr "Seleccionar valores múltiplos?"
@@ -2188,11 +2207,11 @@ msgctxt "Select2 JS load_fail"
 msgid "Loading failed"
 msgstr "Falhou ao carregar"
 
-#: fields/select.php:463
+#: fields/select.php:471
 msgid "Stylised UI"
 msgstr "Interface estilizado"
 
-#: fields/select.php:477
+#: fields/select.php:485
 msgid "Use AJAX to lazy load choices?"
 msgstr "Utilizar AJAX para carregar opções?"
 

@@ -97,7 +97,6 @@ class acf_field_select extends acf_field {
 		$min = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 		
 		
-		
 		// script
 		wp_enqueue_script('select2', acf_get_dir("assets/inc/select2/select2{$min}.js"), array('jquery'), $version );
 		
@@ -106,18 +105,9 @@ class acf_field_select extends acf_field {
 		wp_enqueue_style('select2', acf_get_dir('assets/inc/select2/select2.css'), '', $version );
 
 
-
-
-		//$lang = 'fr';
-		
-		
 		// v4
-/*
-		wp_enqueue_script('select2', acf_get_dir("assets/inc/select2/dist/js/select2.full.js"), array('jquery'), '4.0', true );
-		wp_enqueue_style('select2', acf_get_dir("assets/inc/select2/dist/css/select2{$min}.css"), '', '4.0' );
-		return;
-*/
-		
+		//wp_enqueue_script('select2', acf_get_dir("assets/inc/select2/dist/js/select2.full.js"), array('jquery'), '4.0', true );
+		//wp_enqueue_style('select2', acf_get_dir("assets/inc/select2/dist/css/select2{$min}.css"), '', '4.0' );
 				
 	}
 	
@@ -276,6 +266,14 @@ class acf_field_select extends acf_field {
 		foreach( array( 'readonly', 'disabled' ) as $k ) {
 		
 			if( !empty($field[ $k ]) ) $atts[ $k ] = $k;
+			
+		}
+		
+		
+		// custom  ajax action
+		if( !empty($field['ajax_action']) ) {
+			
+			$atts['data-ajax_action'] = $field['ajax_action'];
 			
 		}
 		

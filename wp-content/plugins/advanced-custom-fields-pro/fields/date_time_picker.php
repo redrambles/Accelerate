@@ -187,7 +187,7 @@ class acf_field_date_and_time_picker extends acf_field {
 		$div = array(
 			'class'					=> 'acf-date-time-picker acf-input-wrap',
 			'data-date_format'		=> acf_convert_date_to_js($formats['date']),
-			'data-time_format'		=> acf_convert_date_to_js($formats['time']),
+			'data-time_format'		=> acf_convert_time_to_js($formats['time']),
 			'data-first_day'		=> $field['first_day'],
 		);
 		$hidden = array(

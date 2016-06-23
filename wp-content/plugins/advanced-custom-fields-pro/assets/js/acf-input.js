@@ -7857,23 +7857,73 @@ var acf;
 	/*
 	*  acf.select2
 	*
-	*  description
+	*  all logic to create select2 instances
 	*
 	*  @type	function
 	*  @date	16/12/2015
 	*  @since	5.3.2
 	*
-	*  @param	$post_id (int)
-	*  @return	$post_id (int)
+	*  @param	n/a
+	*  @return	n/a
 	*/
 	
 	acf.select2 = acf.model.extend({
 		
+		// vars
+		version: 0,
+		
+		
+		// actions
 		actions: {
 			'ready 1': 'ready',
 		},
 		
+		
+		/*
+		*  ready
+		*
+		*  This function will setup vars
+		*
+		*  @type	function
+		*  @date	21/06/2016
+		*  @since	5.3.8
+		*
+		*  @param	n/a
+		*  @return	n/a
+		*/
+		
 		ready: function(){
+			
+			// determine Select2 version
+			if( acf.maybe_get(window, 'Select2') ) {
+				
+				this.version = 3;
+				
+				this.l10n_v3();
+				
+			} else if( acf.maybe_get(window, 'jQuery.fn.select2.amd') ) {
+				
+				this.version = 4;
+				
+			}
+			
+		},
+		
+		
+		/*
+		*  l10n_v3
+		*
+		*  This function will set l10n for Select2 v3
+		*
+		*  @type	function
+		*  @date	21/06/2016
+		*  @since	5.3.8
+		*
+		*  @param	n/a
+		*  @return	n/a
+		*/
+		
+		l10n_v3: function(){
 			
 			// vars
 			var locale = acf.get('locale'),
@@ -7881,7 +7931,7 @@ var acf;
 				l10n = acf._e('select');
 			
 			
-			// bail ealry if no l10n (fiedl groups admin page)
+			// bail ealry if no l10n
 			if( !l10n ) return;
 			
 			
@@ -7935,6 +7985,11 @@ var acf;
 		    };
 			
 			
+			// ensure locales exists
+			// older versions of Select2 did not have a locale storage
+			$.fn.select2.locales = acf.maybe_get(window, 'jQuery.fn.select2.locales', {});
+			
+			
 			// append
 			$.fn.select2.locales[ locale ] = l10n_functions;
 			$.extend($.fn.select2.defaults, l10n_functions);
@@ -7942,14 +7997,24 @@ var acf;
 		},
 		
 		
+		/*
+		*  init
+		*
+		*  This function will initialize a Select2 instance
+		*
+		*  @type	function
+		*  @date	21/06/2016
+		*  @since	5.3.8
+		*
+		*  @param	$select (jQuery object)
+		*  @param	args (object)
+		*  @return	(mixed)
+		*/
+		
 		init: function( $select, args ){
 			
-			// vars
-			var version = this.version();
-			
-			
 			// bail early if no version found
-			if( !version ) return;
+			if( !this.version ) return;
 			
 			
 			// defaults
@@ -7958,51 +8023,27 @@ var acf;
 				placeholder:	'',
 				multiple:		false,
 				ajax:			false,
-				action:			'',
+				ajax_action:	'',
 				pagination:		false
 			}, args);
 			
 			
 			// v3
-			if( version == 3 ) {
+			if( this.version == 3 ) {
 				
 				return this.init_v3( $select, args );
+			
+			// v4
+			} else if( this.version == 4 ) {
+				
+				return this.init_v4( $select, args );
 				
 			}
 			
 			
-			// v4
-			return this.init_v4( $select, args );
-						
-		},
-		
-		
-		/*
-		*  version
-		*
-		*  This function will return the Select2 version number
-		*
-		*  @type	function
-		*  @date	24/12/2015
-		*  @since	5.3.2
-		*
-		*  @param	n/a
-		*  @return	(int)
-		*/
-		
-		version: function(){
-			
-			// v3
-			if( acf.maybe_get(window, 'Select2') ) return 3;
-			
-			
-			// v4
-			if( acf.maybe_get(window, 'jQuery.fn.select2.amd') ) return 4;
-			
-			
 			// return
-			return 0;
-			
+			return false;
+					
 		},
 		
 		
@@ -8307,7 +8348,7 @@ var acf;
 						
 						// vars
 						var data = acf.prepare_for_ajax({
-							action: 	args.action,
+							action: 	args.ajax_action,
 							field_key: 	args.key,
 							post_id: 	acf.get('post_id'),
 							s: 			term,
@@ -8532,7 +8573,7 @@ var acf;
 						
 						// vars
 						var data = acf.prepare_for_ajax({
-							action: 	args.action,
+							action: 	args.ajax_action,
 							field_key: 	args.key,
 							post_id: 	acf.get('post_id'),
 							s: 			params.term,
@@ -8730,11 +8771,7 @@ var acf;
 			
 			
 			// bail early if no select field
-			if( !this.$select.exists() ) {
-				
-				return;
-				
-			}
+			if( !this.$select.exists() ) return;
 			
 			
 			// get options
@@ -8742,9 +8779,11 @@ var acf;
 			
 			
 			// customize o
-			this.o.pagination = this.pagination;
-			this.o.key = this.$field.data('key');	
-			this.o.action = 'acf/fields/' + this.type + '/query';
+			this.o = acf.parse_args(this.o, {
+				'pagination':	this.pagination,
+				'ajax_action':	'acf/fields/'+this.type+'/query',
+				'key':			this.$field.data('key')
+			});
 			
 		},
 		
@@ -9369,13 +9408,8 @@ var acf;
 			var $select = this.$field.find('select');
 			
 			
-			// bail early if no select
-			if( !$select.exists() ) {
-				
-				return false;
-				
-			}
-			
+			// bail early if no select field
+			if( !$select.exists() ) return;
 			
 			
 			// select2 options
@@ -9383,10 +9417,12 @@ var acf;
 			
 			
 			// customize args
-			args.pagination = true;
-			args.key = this.o.key;	
-			args.action = 'acf/fields/taxonomy/query';
-			
+			args = acf.parse_args(args, {
+				'pagination':	true,
+				'ajax_action':	'acf/fields/taxonomy/query',
+				'key':			this.o.key
+			});
+						
 			
 			// add select2
 			acf.select2.init( $select, args );
@@ -9400,11 +9436,7 @@ var acf;
 			
 			
 			// validate ui
-			if( !$select.exists() ) {
-				
-				return false;
-				
-			}
+			if( !$select.exists() ) return false;
 			
 			
 			// remove select2
