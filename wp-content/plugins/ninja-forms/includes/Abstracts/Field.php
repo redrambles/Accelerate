@@ -114,9 +114,6 @@ abstract class NF_Abstracts_Field
      */
     public function __construct()
     {
-        // Translate the nicename property.
-        $this->_nicename = __( $this->_nicename, 'ninja-forms' );
-
         if( ! empty( $this->_settings_only ) ){
 
             $this->_settings = array_merge( $this->_settings, $this->_settings_only );

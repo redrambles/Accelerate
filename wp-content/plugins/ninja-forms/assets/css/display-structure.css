@@ -76,30 +76,30 @@ CHECKBOX FIELD
 /* ---------------------------------
 RADIO & CHECKBOX LISTS
 ----------------------------------*/
-.list-radio-wrap ul, .list-radio-wrap li,
-.list-checkbox-wrap ul,
-.list-checkbox-wrap li {
+.list-radio-wrap .nf-field-element ul, .list-radio-wrap .nf-field-element li,
+.list-checkbox-wrap .nf-field-element ul,
+.list-checkbox-wrap .nf-field-element li {
   list-style: none !important;
   margin: 0 !important;
   padding: 0 !important; }
-  .list-radio-wrap ul input, .list-radio-wrap li input,
-  .list-checkbox-wrap ul input,
-  .list-checkbox-wrap li input {
+  .list-radio-wrap .nf-field-element ul input, .list-radio-wrap .nf-field-element li input,
+  .list-checkbox-wrap .nf-field-element ul input,
+  .list-checkbox-wrap .nf-field-element li input {
     margin-right: 5px; }
 
-.list-radio-wrap li,
-.list-checkbox-wrap li {
+.list-radio-wrap .nf-field-element li,
+.list-checkbox-wrap .nf-field-element li {
   padding-left: 10px;
   margin: 0 0 5px !important;
   text-indent: initial !important; }
-  .list-radio-wrap li label,
-  .list-checkbox-wrap li label {
+  .list-radio-wrap .nf-field-element li label,
+  .list-checkbox-wrap .nf-field-element li label {
     display: inline-block;
     float: initial;
     margin: 0;
     width: auto; }
-  .list-radio-wrap li input,
-  .list-checkbox-wrap li input {
+  .list-radio-wrap .nf-field-element li input,
+  .list-checkbox-wrap .nf-field-element li input {
     width: auto !important; }
 
 /* ---------------------------------
@@ -171,6 +171,79 @@ HELPER CLASSES
 
 body .pika-label {
   background: transparent; }
+
+/* Column Classes
+    Link: http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css
+--------------------------------------------- */
+.five-sixths,
+.four-sixths,
+.one-fourth,
+.one-half,
+.one-sixth,
+.one-third,
+.three-fourths,
+.three-sixths,
+.two-fourths,
+.two-sixths,
+.two-thirds {
+  clear: initial;
+  float: left;
+  margin-left: 2.564102564102564%; }
+  .five-sixths .inside,
+  .four-sixths .inside,
+  .one-fourth .inside,
+  .one-half .inside,
+  .one-sixth .inside,
+  .one-third .inside,
+  .three-fourths .inside,
+  .three-sixths .inside,
+  .two-fourths .inside,
+  .two-sixths .inside,
+  .two-thirds .inside {
+    padding: 20px; }
+  .five-sixths::after,
+  .four-sixths::after,
+  .one-fourth::after,
+  .one-half::after,
+  .one-sixth::after,
+  .one-third::after,
+  .three-fourths::after,
+  .three-sixths::after,
+  .two-fourths::after,
+  .two-sixths::after,
+  .two-thirds::after {
+    clear: both;
+    content: "";
+    display: block; }
+
+.one-half,
+.three-sixths,
+.two-fourths {
+  width: 48.717948717948715%; }
+
+.one-third,
+.two-sixths {
+  width: 31.623931623931625%; }
+
+.four-sixths,
+.two-thirds {
+  width: 65.81196581196582%; }
+
+.one-fourth {
+  width: 23.076923076923077%; }
+
+.three-fourths {
+  width: 74.35897435897436%; }
+
+.one-sixth {
+  width: 14.52991452991453%; }
+
+.five-sixths {
+  width: 82.90598290598291%; }
+
+.first {
+  clear: both;
+  margin-left: 0; }
 
 .note-popover {
   display: none !important; }
