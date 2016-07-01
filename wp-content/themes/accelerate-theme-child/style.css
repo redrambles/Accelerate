@@ -51,7 +51,8 @@ img {
   overflow: hidden;
 }
 
-.site-content {
+.site-content, 
+.site-footer {
     width: 100%;
     max-width: 960px;
     /*overflow: hidden; */
@@ -281,12 +282,24 @@ ul.tweets li{
 /* Social icons homepage */
 
 ul.social-media-menu {
-    list-style: none
+    list-style: none;
+    clear: both;
 }
 
 .social-media-menu li{
     display: inline-block;
-    padding-right: 15px;
+    background: rgba(0,0,0,0.8);
+    margin: 0px 3px;
+    width: 40px;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.6em;
+    border-radius: 100%; 
+    -webkit-border-radius: 100%; 
+    -moz-border-radius: 100%;
+}
+.social-media-menu li a{
+  color: white;
 }
 
 /* Single Blog Page */
@@ -959,6 +972,11 @@ aside.sidebar li a {
     .homepage-hero h3 {
         padding: 10px 20px;
     }
+    
+    .site-info, .site-content {
+      overflow: hidden;
+      padding: 0 2%;
+    }
 
     .social-media-navigation {
         float: left;
@@ -968,9 +986,15 @@ aside.sidebar li a {
 
 @media screen and (max-width: 800px) {
 
+
     .social-media-navigation {
         float: none;
         padding: 15px 0 0 0;
+    }
+    
+    .social-media-menu {
+      margin-left: 0;
+      width: 100%;
     }
 
 }
@@ -984,10 +1008,23 @@ aside.sidebar li a {
         font-size: 1.3rem;
     }
     li.individual-featured-work {
-    padding: 0;
+      padding: 0;
     }
-    p.footer-desc {
-        width: 80%;
+    .social-media-navigation {
+      width: 100%;
+    }
+    .site-footer .site-description {
+      width: 100%;
+    }
+    p.footer-desc,
+    p.footer-copy {
+        width: 90%;
+        margin: 0 auto 20px;
+    }
+    .social-media-menu {
+      margin-top: 50px;
+      width: 100%;
+      text-align: center;
     }
 
 }
@@ -1028,9 +1065,13 @@ aside.sidebar li a {
 /* This is a WORK IN PROGRESS */
 @media screen and (max-width: 850px) {
     .blog-post, .tweet-module {
-        width: 90%;
+        width: 100%;
+        max-width: 100%;
         float: left;
         /*padding: 1rem 1rem;*/
+    }
+    .blog-post {
+      padding: 0 10px;
     }
     #secondary {
         padding-left: 1em;
