@@ -261,14 +261,18 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
     protected function sort_form_actions( $a, $b )
     {
         if( is_object( $a ) ) {
+            if( ! isset( Ninja_Forms()->actions[ $a->get_setting( 'type' ) ] ) ) return -1;
             $a = Ninja_Forms()->actions[ $a->get_setting( 'type' ) ];
         } else {
+            if( ! isset( Ninja_Forms()->actions[ $a[ 'settings' ][ 'type' ] ] ) ) return -1;
             $a = Ninja_Forms()->actions[ $a[ 'settings' ][ 'type' ] ];
         }
 
         if( is_object( $b ) ) {
+            if( ! isset( Ninja_Forms()->actions[ $b->get_setting( 'type' ) ] ) ) return 1;
             $b = Ninja_Forms()->actions[ $b->get_setting( 'type' ) ];
         } else {
+            if( ! isset( Ninja_Forms()->actions[ $b[ 'settings' ][ 'type' ] ] ) ) return 1;
             $b = Ninja_Forms()->actions[ $b[ 'settings' ][ 'type' ] ];
         }
 
