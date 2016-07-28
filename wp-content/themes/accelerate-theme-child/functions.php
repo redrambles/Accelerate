@@ -26,8 +26,35 @@
  */
 
 
- //Register Main Sidebar widget area - AND homepage sidebar area (Added the main to override hard-coded stuff in sidebar.php)
+// Media - set default image link location to 'None' 
+ update_option('image_default_link_type','none');
 
+// Always Show Kitchen Sink in WYSIWYG Editor
+
+ function reveal_kitchensink( $args ) {
+ 	$args['wordpress_adv_hidden'] = false;
+ 	return $args;
+ }
+
+ add_filter( 'tiny_mce_before_init', 'reveal_kitchensink' );
+
+ //add_filter( 'wp_title', 'red_wp_title_for_home' );
+  
+ /**
+  * Customize the title for the home page, if one is not set.
+  *
+  * @param string $title The original title.
+  * @return string The title to use.
+  */
+ // function red_wp_title_for_home( $title )
+ // {
+ //   if ( empty( $title ) && ( is_home() || is_front_page() ) ) {
+ //     $title = __( 'Home', 'textdomain' ) . ' | ' . get_bloginfo( 'description' );
+ //   }
+ //   return $title;
+ // }
+
+ // Register homepage sidebar area 
 function accelerate_theme_child_widget_init() {
 	register_sidebar( array(
 	    'name' =>__( 'Homepage sidebar', 'accelerate-theme-child'),
@@ -80,7 +107,7 @@ function create_custom_post_types() {
 				'name' => __( 'Case Studies' ),
 				'singular_name' => __( 'Case Study' ),
 				'add_new_item'  => __( 'Add New Case Study'),
-				//'new_item'      => __( 'New Case Study' ),
+				'new_item'      => __( 'New Case Study' ),
 				'search_items'  => __( 'Search Case Studies')
 				),
 			'public' => true,
@@ -140,17 +167,17 @@ function accelerate_child_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 
-// Testing a function to ppull in 3 latest blog posts (in page.php) - July 2015
+// Testing a function to pull in 3 latest blog posts
 function red_get_me_some_posts() {
 			global $post;
 
 			$args = array( 'posts_per_page' => 3 );
 			$lastposts = get_posts( $args );
 			foreach ( $lastposts as $post ) :
-		   	setup_postdata( $post ); ?>
+		   	setup_postdata( $post );
 
-			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-			<?php the_excerpt();
+			echo '<h2><a href="'. get_permalink() .'">'. get_the_title() .'</a></h2>'; 
+			the_excerpt();
 
 		endforeach;
 		wp_reset_postdata();
