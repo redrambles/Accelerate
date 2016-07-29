@@ -2,8 +2,8 @@
 Contributors: wpninjasllc, kstover, jameslaws, wpnzach, kbjohnson90, aman086, daveshine, mordauk, bftrick, helgatheviking
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.3
-Tested up to: 4.5.2
-Stable tag: 2.9.52
+Tested up to: 4.5.3
+Stable tag: 2.9.54
 License: GPLv2 or later
 
 Create forms and manage submissions easily with a simple drag and drop interface. Contact forms, subscription forms, or any other form for WordPress.
@@ -97,23 +97,31 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 2.9.52 (18 July 2016) =
-
-*Security:*
-
-* Fixed a security vulnerability that could allow Cross-Site scripting if the attacker was logged-in as an admin.
+= 2.9.54 (27 July 2016) =
 
 *Bugs:*
 
-* Fixed a bug that caused the Ninja Forms cookie to be set on every page load rather than when a form was submitted.
+* Fixed a bug with a broken php tag.
 
 == Changelog ==
+
+= 2.9.54 (27 July 2016) =
+
+*Bugs:*
+
+* Fixed a bug with a broken php tag.
+
+= 2.9.53 (26 July 2016) =
+
+*Bugs:*
+
+* Fixed a bug with decimal points with localized languages.
 
 = 2.9.52 (18 July 2016) =
 
 *Security:*
 
-* Fixed a security vulnerability that could allow Cross-Site scripting if the attacker was logged-in as an admin.
+* Fixed a security vulnerability that could allow Cross-Site scripting if the attacker was logged-in as an admin. (reported by Sumofpwn.nl)
 
 *Bugs:*
 

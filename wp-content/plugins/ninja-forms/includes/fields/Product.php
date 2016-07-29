@@ -70,10 +70,10 @@ class NF_Fields_Product extends NF_Abstracts_Input
 
     public function merge_tag_value( $value, $field )
     {
-        if( isset( $field[ 'product_price' ] ) ){
-            $value = $field[ 'product_price' ];
-        }
+        $product_price = ( isset( $field[ 'product_price' ] ) ) ? str_replace( '$', '', $field[ 'product_price' ] ) : 0;
+        $product_quantity = ( isset( $field[ 'product_use_quantity' ] ) && 1 == $field[ 'product_use_quantity' ] ) ? $value : 1;
 
-        return $value;
+        // TODO: Extract a higher level currency formatting based on settings.
+        return '$' . number_format( $product_price * $product_quantity, 2 );
     }
 }

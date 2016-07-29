@@ -310,6 +310,7 @@ function init_all_the_ninja_things() {
 					if ( ( ( calc_method == 'fields' || calc_method == 'eq' ) && change ) || calc_method == 'auto' ) {
 
 						if ( calc_method == 'auto' || calc_method == 'fields' ) { // Method: auto or fields
+
 							// Loop through our calc fields and check to see if they are set to auto. If they are, perform the auto totalling actions.
 							var key = jQuery(this).val();
 							var new_value = '';
@@ -500,6 +501,16 @@ function init_all_the_ninja_things() {
 								var current_value = jQuery("#ninja_forms_field_" + calc_id).html();
 							}
 
+							// Strip the Thousands Separator
+							current_value = current_value.replace( /thousandsSeparator/g, "" );
+
+							// If the Decimal Point is not `.`
+							if ( '.' != decimalPoint ) {
+
+								// Replace the Decimal Point
+								current_value = current_value.replace( decimalPoint, "." );
+							}
+
 							// Make sure that our current total is made up of numbers.
 							if ( typeof ninja_forms_settings.currency_symbol !== 'undefined' && typeof current_value != 'undefined' ) {
 
@@ -565,6 +576,7 @@ function init_all_the_ninja_things() {
 								var calc_value = current_value;
 							}
 						} else if ( calc_method == 'eq' ) { // Method: eq.
+
 							var tmp_eq = calc_settings.calc_fields[calc_id]['eq'];
 
 							// Loop through our fields getting their values and replacing their placeholders in the equation.
@@ -702,6 +714,14 @@ function init_all_the_ninja_things() {
 							}
 
 							calc_value = calc_value.toFixed(calc_places);
+
+							// If the Decimal Point is not `.`
+							if ( '.' != decimalPoint ) {
+
+								// Replace the Decimal Point
+								calc_value = calc_value.toString().replace( ".", decimalPoint );
+							}
+
 							// Set the value of our calculation field.
 							if(jQuery("#ninja_forms_field_" + calc_id).attr("type") == 'text' ){
 								jQuery("#ninja_forms_field_" + calc_id).val(calc_value);
