@@ -345,3 +345,8 @@ function color_my_world() {
  * @since Accelerate Theme Child 1.0
  */
 require get_stylesheet_directory() . '/inc/extras.php';
+
+/** 
+* Customizer functions 
+**/
+include( get_stylesheet_directory() . '/inc/customizer.php' );
