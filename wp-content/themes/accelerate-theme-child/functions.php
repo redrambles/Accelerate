@@ -72,10 +72,7 @@ add_action( 'widgets_init', 'accelerate_theme_child_widget_init' );
 function accelerate_theme_support_stuff() {
 
 	add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
-
-	//add_theme_support( 'post-thumbnails', array( 'test_posts' ) );
-
-	// since WordPress 4.2
+  
 	add_theme_support( 'title-tag');
 	}
 add_action( 'after_setup_theme', 'accelerate_theme_support_stuff' );
@@ -98,7 +95,7 @@ function reverse_archive_order( $query ){
 add_action( 'pre_get_posts', 'reverse_archive_order' );
 
 // Custom Post Type Function
-function create_custom_post_types() {
+function accelerate_create_custom_post_types() {
 
 	register_post_type('case_studies',
 		array(
@@ -149,7 +146,7 @@ function create_custom_post_types() {
 
 }
 // Hook this custom post type function into the theme
-add_action( 'init', 'create_custom_post_types' );
+add_action( 'init', 'accelerate_create_custom_post_types' );
 
 //Enqueue scripts and styles.
 function accelerate_child_scripts() {
@@ -201,8 +198,7 @@ if( function_exists('acf_add_options_page') ) {
 function green_accelerate_footer(){
 	
 	add_filter( 'option_blogdescription', 'accelerate_change_description_footer', 10, 2 );
-	function accelerate_change_description_footer( $description )
-	{
+	function accelerate_change_description_footer( $description ) {
 			$description = str_replace('Accelerate', '', $description);
 			return $description;
 	} 
@@ -225,23 +221,6 @@ function message_dashboard_screen() {
     }
 }
 
-// Displaying a Quick Performance Report for Admins in the source code
-
-// add_action( 'wp_footer', 'wp_footer_example' );
-
-// function wp_footer_example() {
-//     $stat = sprintf( '%d queries in %.3f seconds, using %.2fMB memory',
-//         get_num_queries(),
-//         timer_stop( 0, 3 ),
-//         memory_get_peak_usage() / 1024 / 1024
-//     );
-//     if( current_user_can( 'manage_options' ) ) {
-//         echo "<!-- {$stat} -->";
-//     }
-// }
-
-// Example Source: http://wordpress.stackexchange.com/a/1866
-
 
 // Warning Logged-in Users About Website Maintenance (using 'error' class) or Success message (using 'updated' class)
 // add_action( 'admin_notices', 'admin_message' );
@@ -251,10 +230,6 @@ function message_dashboard_screen() {
 //             <p>Do not change themes or everything will go to hell and you will cry bitter, bitter tears. Thank you.</p>
 //           </div>';
 // }
-
-// Example Source: http://wpsnippy.com/show-notification-message-wordpress-admin-pages/
-
-// Make it hard to folks to find out the authors of the site by appending ?author=1 at the end of the url (author 1 is also the admin in most cases)
 
 // Change Accelerate using a filter for about page
 add_filter( 'the_content', 'about_Accelerate_green' );
@@ -290,8 +265,7 @@ function color_my_world() {
     .status-private, .striped>tbody>:nth-child(odd).status-private { background-color: #F2D46F; }
     </style>';
 }
-
-
+  
 // // customize admin footer text
 // add_filter('admin_footer_text', 'accelerate_footer');
 
@@ -301,9 +275,6 @@ function color_my_world() {
 // 	echo $footer_text;
 // }
 
-// // Add post meta - format: add_post_meta($post_id, $meta_key, $meta_value, $unique);
-// add_post_meta(47372, 'mood', 'adventurous', true);
-// add_post_meta(47333, 'sanity', 'good', true);
 
 // In lieu of a 'maintenance mode plugin' - if in a hurry - will shut down the site to everyone but admins
 
@@ -345,8 +316,4 @@ function color_my_world() {
  * @since Accelerate Theme Child 1.0
  */
 require get_stylesheet_directory() . '/inc/extras.php';
-
-/** 
-* Customizer functions 
-**/
-include( get_stylesheet_directory() . '/inc/customizer.php' );
+require get_stylesheet_directory() . '/inc/customizer.php';
