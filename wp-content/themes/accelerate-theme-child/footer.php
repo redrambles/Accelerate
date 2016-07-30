@@ -19,7 +19,12 @@
 
 				<div class="site-description">
 					<!-- To make link <a href="<?php //echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php //bloginfo( 'name' ); ?></a> -->
-					<p class="footer-desc"><span class="main-color"><?php bloginfo( 'name' ); ?></span> <?php bloginfo('description'); ?></p>
+					<!-- Testing customizer function -->
+					<?php if (!empty(get_theme_mod('accelerate_footer_message'))){ 
+						do_action('accelerate_footer'); 
+					} else { ?>
+						<p class="footer-desc"><span class="main-color"><?php bloginfo( 'name' ); ?></span> <?php bloginfo('description'); ?></p>
+					<?php } ?>
 					<p class="footer-copy">&copy; <?php echo date("Y"); ?> <?php bloginfo('title'); ?>, LLC </p>
 				</div>
 				<?php if ( has_nav_menu ( 'social-media' ) ) { ?>

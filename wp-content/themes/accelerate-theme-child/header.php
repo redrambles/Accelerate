@@ -43,6 +43,8 @@
 				<?php wp_nav_menu( array( 'theme_location' => 'top-nav', 'menu_class' => 'nav-menu' ) ); ?>
 			</nav>
 			<div class="clearfix"></div>
+			<!-- //add condtional check here -->
+			<?php do_action('accelerate_in_header'); ?>
 		</div>
 
 	</header><!-- #masthead -->

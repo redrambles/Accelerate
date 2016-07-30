@@ -13,6 +13,12 @@ function accelerate_customize_register( $wp_customize ) {
 		'title' => __( 'Contact Details', 'accelerate-theme-child')
 	) );
 	
+	// contact details section
+	$wp_customize->add_section( 'accelerate_footer' , array(
+		'title' => __( 'Footer Details', 'accelerate-theme-child')
+	) );
+	
+	
 	/********************
 	Define generic controls
 	*********************/
@@ -76,6 +82,23 @@ function accelerate_customize_register( $wp_customize ) {
 			'settings' => 'accelerate_email_setting'
 	)));
 	
+	/*******************************************
+	Contact details in footer
+	********************************************/
+
+	// footer message
+	$wp_customize->add_setting( 'accelerate_footer_message', array (
+		'default' => __( 'Your footer message', 'accelerate-theme-child' )
+	) );
+	$wp_customize->add_control( new accelerate_Customize_Textarea_Control(
+		$wp_customize,
+		'accelerate_footer_message',
+		array( 
+			'label' => __( 'Footer Message', 'accelerate-theme-child' ),
+			'section' => 'accelerate_footer',
+			'settings' => 'accelerate_footer_message'
+	)));
+	
 }
 add_action( 'customize_register', 'accelerate_customize_register' );
 /**********************************************************************
@@ -104,3 +127,12 @@ function accelerate_display_contact_details_in_header() { ?>
 	
 <?php }
 add_action( 'accelerate_in_header', 'accelerate_display_contact_details_in_header' );
+
+function accelerate_display_footer_details() { ?>
+	
+	<p>
+			<?php echo get_theme_mod( 'accelerate_footer_message', 'Your footer message' ); ?>	
+	</p>
+	
+<?php }
+add_action( 'accelerate_footer', 'accelerate_display_footer_details' );
