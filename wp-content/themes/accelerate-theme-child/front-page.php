@@ -24,7 +24,7 @@ get_header(); ?>
 					<a class="button" href="<?php echo home_url(); ?>/case-studies">View Our Work</a>			
 				</div>
 			<?php endwhile; // end of the loop. ?>
-		<!-- </div -->><!-- .site-content -->
+		<!-- </div --><!-- .site-content -->
 </section><!-- .home-page -->
 
 <section class="featured-work">

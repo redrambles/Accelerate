@@ -42,7 +42,6 @@ get_header(); ?>
 	</section>
 
 	<div class="site-content">
-		<?php //the_meta(); ?>
 
 		<section class="about-intro">
 			<h5><?php echo $services_intro_title; ?></h5>

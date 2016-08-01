@@ -43,8 +43,10 @@
 				<?php wp_nav_menu( array( 'theme_location' => 'top-nav', 'menu_class' => 'nav-menu' ) ); ?>
 			</nav>
 			<div class="clearfix"></div>
-			<!-- //add condtional check here -->
-			<?php do_action('accelerate_in_header'); ?>
+			<!-- check to see if any of the three contact info fields have been filled in the customizer -->	
+			<?php if (!empty(get_theme_mod('accelerate_address_setting')) || !empty(get_theme_mod('accelerate_telephone_setting')) || !empty(get_theme_mod('accelerate_email_setting'))) { 
+		 		do_action('accelerate_in_header'); 
+	 		} ?>
 		</div>
 
 	</header><!-- #masthead -->

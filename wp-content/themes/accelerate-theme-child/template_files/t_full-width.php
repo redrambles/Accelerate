@@ -14,7 +14,6 @@ get_header(); ?>
 		<div class="page-content">
 
 			<?php while ( have_posts() ) : the_post(); ?>
-				<?php the_meta(); ?>
 				<h2><?php the_title(); ?></h2>
 				<?php the_content(); ?>
 			<?php endwhile; // end of the loop. ?>

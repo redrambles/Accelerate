@@ -128,6 +128,7 @@ function accelerate_display_contact_details_in_header() { ?>
 <?php }
 add_action( 'accelerate_in_header', 'accelerate_display_contact_details_in_header' );
 
+// Give option to display custom footer details - called in footer.php
 function accelerate_display_footer_details() { ?>
 	
 	<p>
