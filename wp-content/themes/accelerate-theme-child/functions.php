@@ -194,7 +194,7 @@ if( function_exists('acf_add_options_page') ) {
 
 }
 
-// Remove 'Accelerate' in the description in the footer page ONLY
+// Remove 'Accelerate' in the description - call in footer.php ONLY
 function green_accelerate_footer(){
 	
 	add_filter( 'option_blogdescription', 'accelerate_change_description_footer', 10, 2 );
@@ -220,6 +220,17 @@ function message_dashboard_screen() {
 				}
     }
 }
+
+// Add a body class if on contact page so can narrow width of page in combination with other page class
+// add_filter( 'body_class','accelerate_body_classes' );
+// function accelerate_body_classes( $classes ) {
+//  
+//   if (is_page('contact') ) {
+//     $classes[] = 'contact-form-narrow';
+//   }
+//     return $classes;
+//      
+// }
 
 
 // Warning Logged-in Users About Website Maintenance (using 'error' class) or Success message (using 'updated' class)
