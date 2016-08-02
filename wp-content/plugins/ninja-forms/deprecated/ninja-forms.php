@@ -265,7 +265,7 @@ class Ninja_Forms {
 
         // Plugin version
         if ( ! defined( 'NF_PLUGIN_VERSION' ) )
-            define( 'NF_PLUGIN_VERSION', '2.9.54' );
+            define( 'NF_PLUGIN_VERSION', '2.9.55.1' );
 
         // Plugin Folder Path
         if ( ! defined( 'NF_PLUGIN_DIR' ) )
@@ -936,15 +936,7 @@ function ninja_forms_three_addons_check(){
 |--------------------------------------------------------------------------
 */
 
-if ( nf_is_freemius_on() ) {
-    // Override plugin's version, should be executed before Freemius init.
-    nf_override_plugin_version();
-    // Init Freemius.
-    nf_fs();
-    nf_fs()->add_action( 'after_uninstall', 'ninja_forms_uninstall' );
-} else {
-    register_uninstall_hook( __FILE__, 'ninja_forms_uninstall' );
-}
+register_uninstall_hook( __FILE__, 'ninja_forms_uninstall' );
 
 function ninja_forms_uninstall(){
     global $wpdb;

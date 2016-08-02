@@ -141,7 +141,12 @@ abstract class NF_Abstracts_Field
     {
         $errors = array();
         // Required check.
-        if( isset( $field['required'] ) && $field['required'] && ! trim( $field['value'] ) ){
+
+        if( is_array( $field[ 'value' ] ) ){
+            $field[ 'value' ] = implode( '', $field[ 'value' ] );
+        }
+
+        if( isset( $field['required'] ) && 1 == $field['required'] && ! trim( $field['value'] ) ){
             $errors[] = 'Field is required.';
         }
         return $errors;

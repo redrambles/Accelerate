@@ -94,26 +94,6 @@ return apply_filters( 'ninja_forms_form_display_settings', array(
     ),
 
     /*
-     * Currency
-     */
-
-    'currency' => array(
-        'name' => 'currency',
-        'type' => 'select',
-        'label' => __( 'Currency', 'ninja-forms' ),
-        'group' => 'advanced',
-        'width' => 'full',
-        'options' => array(
-            array(
-                'label' => __( 'USD - $', 'ninja-forms' ),
-                'value' => 'usd'
-            ),
-        ),
-        'value' => 'usd',
-        'use_merge_tags' => FALSE
-    ),
-
-    /*
      * Classes
      */
 
