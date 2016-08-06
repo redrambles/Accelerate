@@ -40,7 +40,7 @@ get_header(); ?>
 			</div>
 			<?php endwhile; // end of the loop. ?>
 	</section>
-
+SFASFAS
 	<div class="site-content">
 
 		<section class="about-intro">
@@ -49,9 +49,9 @@ get_header(); ?>
 		</section>
 
 		<section class="about-section">
-			<div class="service-image align-left">
+			<figure class="service-image align-left">
 				<?php echo wp_get_attachment_image( $service_1_image, $size ); ?>
-			</div>
+			</figure>
 			<div class="service-description">
 					<h2><?php echo $service_1_title; ?></h2>
 					<p><?php echo $service_1_description; ?></p>
@@ -59,9 +59,9 @@ get_header(); ?>
 		</section>
 
 		<section class="about-section">
-			<div class="service-image align-right">
+			<figure class="service-image align-right">
 				<?php echo wp_get_attachment_image( $service_2_image, $size ); ?>
-			</div>
+			</figure>
 			<div class="service-description">
 					<h2><?php echo $service_2_title; ?></h2>
 					<p><?php echo $service_2_description; ?></p>
@@ -70,9 +70,9 @@ get_header(); ?>
 		</section>
 
 		<section class="about-section">
-			<div class="service-image align-left">
+			<figure class="service-image align-left">
 				<?php echo wp_get_attachment_image( $service_3_image, $size ); ?>
-			</div>
+			</figure>
 			<div class="service-description">
 					<h2><?php echo $service_3_title; ?></h2>
 					<p><?php echo $service_3_description; ?></p>
@@ -80,9 +80,9 @@ get_header(); ?>
 		</section>
 
 		<section class="about-section">
-			<div class="service-image align-right">
+			<figure class="service-image align-right">
 				<?php echo wp_get_attachment_image( $service_4_image, $size ); ?>
-			</div>
+			</figure>
 			<div class="service-description">
 				<h2><?php echo $service_4_title; ?></h2>
 				<p><?php echo $service_4_description; ?></p>
