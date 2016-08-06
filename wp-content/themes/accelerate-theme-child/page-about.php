@@ -40,7 +40,7 @@ get_header(); ?>
 			</div>
 			<?php endwhile; // end of the loop. ?>
 	</section>
-SFASFAS
+
 	<div class="site-content">
 
 		<section class="about-intro">
@@ -66,7 +66,6 @@ SFASFAS
 					<h2><?php echo $service_2_title; ?></h2>
 					<p><?php echo $service_2_description; ?></p>
 			</div>
-
 		</section>
 
 		<section class="about-section">
