@@ -1065,15 +1065,9 @@ aside.sidebar li a {
 @media screen and (max-width: 850px) {
     .blog-post, .tweet-module {
         width: 100%;
-        max-width: 100%;
+        max-width: 95%;
+        padding: 0 3.5%;
         float: left;
-        /*padding: 1rem 1rem;*/
-    }
-    .blog-post {
-      padding: 0 10px;
-    }
-    #secondary {
-        padding-left: 1em;
     }
     aside#pi_simpletwittertweets-2 {
         padding: 0;
