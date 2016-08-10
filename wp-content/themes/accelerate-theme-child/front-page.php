@@ -24,7 +24,7 @@ get_header(); ?>
 					<a class="button" href="<?php echo home_url(); ?>/case-studies">View Our Work</a>			
 				</div>
 			<?php endwhile; // end of the loop. ?>
-		<!-- </div --><!-- .site-content -->
+		<!-- </div -->><!-- .site-content -->
 </section><!-- .home-page -->
 
 <section class="featured-work">
@@ -99,7 +99,7 @@ get_header(); ?>
 			<?php while ( $blog->have_posts() ) : $blog->the_post(); ?>
 			   <h2><?php the_title(); ?></h2>
                 <?php the_excerpt(); ?>
-                <a href="<?php the_permalink(); ?>" class="read-more-link">Read More <span>&rsaquo;</span></a>
+                <a class="read-more-link" href="<?php the_permalink(); ?>">Read More <span>&rsaquo;</span></a>
 			<?php endwhile; //end the while loop
 			wp_reset_postdata(); ?>
 		</div><!-- .blog-post -->
