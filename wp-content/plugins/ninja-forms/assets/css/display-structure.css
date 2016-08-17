@@ -67,8 +67,7 @@ Normalize Ninja Forms fields with default structure
   padding: 0 10px; }
 
 .nf-after-field .nf-error-msg {
-  margin-right: 10px;
-  text-align: right; }
+  margin-right: 10px; }
 
 /* ---------------------------------
 CHECKBOX FIELD

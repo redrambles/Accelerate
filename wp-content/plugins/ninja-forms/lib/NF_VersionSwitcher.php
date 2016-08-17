@@ -67,7 +67,7 @@ final class NF_VersionSwitcher
     {
         $args = array(
             'id'    => 'nf',
-            'title' => 'Ninja Forms Dev',
+            'title' => __( 'Ninja Forms Dev', 'ninja-forms' ),
             'href'  => '#',
         );
         $wp_admin_bar->add_node( $args );
@@ -77,10 +77,10 @@ final class NF_VersionSwitcher
             'parent' => 'nf'
         );
         if( ! get_option( 'ninja_forms_load_deprecated' ) ) {
-            $args[ 'title' ] = 'DEBUG: Switch to 2.9.x';
+            $args[ 'title' ] = __( 'DEBUG: Switch to 2.9.x', 'ninja-forms' );
             $args[ 'href' ] .= '?nf-switcher=rollback';
         } else {
-            $args[ 'title' ] = 'DEBUG: Switch to 3.0.x';
+            $args[ 'title' ] = __( 'DEBUG: Switch to 3.0.x', 'ninja-forms' );
             $args[ 'href' ] .= '?nf-switcher=upgrade';
         }
         $wp_admin_bar->add_node($args);

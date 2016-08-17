@@ -26,7 +26,7 @@ final class NF_Admin_Menus_SystemStatus extends NF_Abstracts_Submenu
         if ( is_multisite() ) {
             $multisite = __( 'Yes', 'ninja-forms' );
         } else {
-            $multisite =  __( 'No', 'ninja-forms' );
+            $multisite = __( 'No', 'ninja-forms' );
          }
 
          //TODO: Possible refactor

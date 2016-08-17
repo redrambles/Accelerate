@@ -681,7 +681,7 @@ All styles used within the drawer
 .ninja-forms-app textarea {
   background: #f9f9f9;
   border: 0;
-  margin-top: 5px;
+  margin-top: 7px;
   padding: 12px 15px;
   width: 100%;
   height: 41px;
@@ -822,7 +822,7 @@ All styles used within the drawer
   content: "";
   display: block; }
 
-.nf-reservoir.nf-droppable-active {
+.nf-reservoir.nf-droppable-active, .nf-reservoir.nf-staged-fields-active {
   background: #F8F8F9;
   border: 4px solid #F8F8F9;
   border-radius: 4px;
@@ -1092,7 +1092,7 @@ input[type=checkbox].nf-toggle {
     background: #f9f9f9;
     height: 41px;
     position: absolute;
-    bottom: 2px;
+    bottom: 1px;
     width: 100%;
     z-index: 1; }
   .ninja-forms-app .nf-select div::after {

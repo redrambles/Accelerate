@@ -5,6 +5,7 @@
 </script>
 
 <script id='nf-tmpl-field-listcheckbox-option' type='text/template'>
+    <% if ( ! visible ) { return '' } %>   
     <li>
         <input type="checkbox" id="nf-field-<%= fieldID %>-<%= index %>" name="nf-field-<%= fieldID %>" class="<%= classes %> nf-element<%= ( isSelected ) ? ' nf-checked' : '' %>" value="<%= value %>" <%= ( isSelected ) ? 'checked="checked"' : '' %>>
         <label for="nf-field-<%= fieldID %>-<%= index %>" class="<%= ( isSelected ) ? 'nf-checked-label' : '' %>"><%= label %></label>
@@ -12,8 +13,8 @@
 </script>
 
 <script id='nf-tmpl-field-listcheckbox-other' type='text/template'>
-    <li>
-            <input type="checkbox" name="nf-field-<%= fieldID %>" class="<%= classes %> nf-element" value="nf-other" <%= ( ! valueFound ) ? 'checked="checked"' : '' %>>
+    <li <%= ( ! visible ) ? 'style="display:none"' : '' %>>
+        <input type="checkbox" name="nf-field-<%= fieldID %>" class="<%= classes %> nf-element" value="nf-other" <%= ( ! valueFound ) ? 'checked="checked"' : '' %>>
          <label>Other
             <%= renderOtherText() %>
         </label>

@@ -52,6 +52,12 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
         if( isset( $this->_form_data[ 'settings' ][ 'is_preview' ] ) && $this->_form_data[ 'settings' ][ 'is_preview' ] ){
             $this->_preview_data = get_user_option( 'nf_form_preview_' . $this->_form_id );
 
+            // Add preview field keys to form data.
+            foreach( $this->_form_data[ 'fields' ] as $key => $field ){
+                $field_id = $field[ 'id' ];
+                $this->_form_data[ 'fields' ][ $key ][ 'key' ] = $this->_preview_data[ 'fields' ][ $field_id ][ 'settings' ][ 'key' ];
+            }
+
             if( ! $this->_preview_data ){
                 $this->_errors[ 'preview' ] = __( 'Preview does not exist.', 'ninja-forms' );
                 $this->_respond();
@@ -63,6 +69,8 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
         $this->_data['extra'] = $this->_form_data['extra'];
 
         $this->_data['fields'] = $this->_form_data['fields'];
+
+        $this->_data = apply_filters( 'ninja_forms_submit_data', $this->_data );
 
         $this->validate_fields();
 
@@ -155,7 +163,7 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
             $settings = $field_model->get_settings();
         }
 
-        $field = array_merge($field, $settings );
+        $field = apply_filters( 'ninja_forms_pre_validate_field_settings', array_merge($field, $settings ) );
 
         $field_class = Ninja_Forms()->fields[ $field['type'] ];
 
@@ -196,6 +204,8 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
     {
         $actions = Ninja_Forms()->form( $this->_form_id )->get_actions();
 
+        $actions = apply_filters( 'ninja_forms_submission_actions', $actions, $this->_form_data );
+
         usort($actions, array($this, 'sort_form_actions'));
 
         if( ! isset( $this->_data[ 'processed_actions' ] ) ) $this->_data[ 'processed_actions' ] = array();
@@ -228,6 +238,15 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
         $form = get_user_option( 'nf_form_preview_' . $this->_form_id );
 
         if( ! isset( $form[ 'actions' ] ) || empty( $form[ 'actions' ] ) ) return;
+
+        foreach( $this->_form_data[ 'fields' ] as $key => $field ){
+            if( ! isset( $form[ 'fields' ] ) ) continue;
+            $field_tmp_id = $field[ 'id' ];
+            $field_key = $form[ 'fields' ][ $field_tmp_id ][ 'settings' ][ 'key' ];
+            $this->_form_data[ 'fields' ][ $key ][ 'key' ] = $field_key;
+        }
+
+        $form[ 'actions' ] = apply_filters( 'ninja_forms_submission_actions_preview', $form[ 'actions' ], array_merge( $form, $this->_form_data ) );
 
         usort( $form[ 'actions' ], array( $this, 'sort_form_actions' ) );
 

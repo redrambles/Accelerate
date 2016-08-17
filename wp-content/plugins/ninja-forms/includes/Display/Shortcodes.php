@@ -40,7 +40,7 @@ final class NF_Display_Shortcodes
 
         // TODO: Log error for support reference.
         // TODO: Maybe display notice if not logged in.
-        trigger_error( 'Ninja Forms shortcode used without specifying a form.' );
+        trigger_error( __( 'Ninja Forms shortcode used without specifying a form.', 'ninja-forms' ) );
 
         return "<div style='border: 3px solid red; padding: 1em; margin: 1em auto;'>$output</div>";
     }

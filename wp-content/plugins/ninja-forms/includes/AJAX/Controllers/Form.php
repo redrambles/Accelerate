@@ -13,7 +13,7 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
         check_ajax_referer( 'ninja_forms_builder_nonce', 'security' );
 
         if( ! isset( $_POST[ 'form' ] ) ){
-            $this->_errors[] = 'Form Not Found';
+            $this->_errors[] = __( 'Form Not Found', 'ninja-forms' );
             $this->_respond();
         }
 

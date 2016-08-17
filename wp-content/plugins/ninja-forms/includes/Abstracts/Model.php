@@ -220,7 +220,11 @@ class NF_Abstracts_Model
      */
     public function get_setting( $setting, $default = FALSE )
     {
-        $return = $this->get_settings( $setting );
+        if( isset( $this->_settings[ $setting ] )){
+            $return =  $this->_settings[ $setting ];
+        } else {
+            $return = $this->get_settings($setting);
+        }
 
         return ( $return ) ? $return : $default;
     }

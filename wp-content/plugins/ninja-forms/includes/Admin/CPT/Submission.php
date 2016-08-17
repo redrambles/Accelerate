@@ -162,8 +162,6 @@ class NF_Admin_CPT_Submission
         }
 
         $sub->save();
-
-        set_transient( 'nf_sub_edit_ref', esc_url_raw( $_REQUEST['ref'] ) );
     }
 
     /**

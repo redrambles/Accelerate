@@ -65,6 +65,8 @@ abstract class NF_Abstracts_Action
      */
     public function __construct()
     {
+        $this->_settings_all = apply_filters( 'ninja_forms_actions_settings_all', $this->_settings_all );
+
         if( ! empty( $this->_settings_only ) ){
 
             $this->_settings = array_merge( $this->_settings, $this->_settings_only );
