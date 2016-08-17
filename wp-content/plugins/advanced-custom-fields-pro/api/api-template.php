@@ -1009,12 +1009,16 @@ add_shortcode( 'acf', 'acf_shortcode' );
 
 function acf_form_head() {
 	
+	// register local fields
+	_acf_form_register_fields();
+	
+	
 	// verify nonce
 	if( acf_verify_nonce('acf_form') ) {
 		
 		// add actions
-		add_action('acf/validate_save_post', '_validate_save_post');
-		add_filter('acf/pre_save_post', '_acf_pre_save_post', 5, 2);
+		add_action('acf/validate_save_post', '_acf_form_validate_save_post');
+		add_filter('acf/pre_save_post', '_acf_form_pre_save_post', 5, 2);
 		
 		
 		// validate data
@@ -1071,9 +1075,56 @@ function acf_form_head() {
 
 
 /*
+*  _acf_form_register_fields
+*
+*  This function will register some local fields used by the acf_form function
+*
+*  @type	function
+*  @date	15/08/2016
+*  @since	5.4.0
+*
+*  @param	n/a
+*  @return	n/a
+*/
+
+function _acf_form_register_fields() {
+	
+	acf_add_local_field(array(
+		'prefix'	=> 'acf',
+		'name'		=> '_post_title',
+		'key'		=> '_post_title',
+		'label'		=> __('Title', 'acf'),
+		'type'		=> 'text',
+		'required'	=> true,
+	));
+	
+	acf_add_local_field(array(
+		'prefix'	=> 'acf',
+		'name'		=> '_post_content',
+		'key'		=> '_post_content',
+		'label'		=> __('Content', 'acf'),
+		'type'		=> 'wysiwyg',
+	));
+	
+	acf_add_local_field(array(
+		'prefix'	=> 'acf',
+		'name'		=> '_validate_email',
+		'key'		=> '_validate_email',
+		'label'		=> __('Validate Email', 'acf'),
+		'type'		=> 'text',
+		'value'		=> '',
+		'wrapper'	=> array(
+			'style'	=> 'display:none !important;'
+		)
+	));
+	
+}
+
+
+/*
 *  _validate_save_post
 *
-*  description
+*  This function will perfrom extra validation for acf_form
 *
 *  @type	function
 *  @date	16/06/2014
@@ -1083,25 +1134,7 @@ function acf_form_head() {
 *  @return	$post_id (int)
 */
 
-function _validate_save_post() {
-	
-	// save post_title
-	if( isset($_POST['acf']['_post_title']) ) {
-		
-		// get field
-		$field = acf_get_valid_field(array(
-			'name'		=> '_post_title',
-			'label'		=> __('Title', 'acf'),
-			'type'		=> 'text',
-			'required'	=> true
-		));
-		
-		
-		// validate
-		acf_validate_value( $_POST['acf']['_post_title'], $field, "acf[_post_title]" );
-	
-	}
-	
+function _acf_form_validate_save_post() {
 	
 	// honeypot
 	if( !empty($_POST['acf']['_validate_email']) ) {
@@ -1114,7 +1147,7 @@ function _validate_save_post() {
 
 
 /*
-*  _acf_pre_save_post
+*  _acf_form_pre_save_post
 *
 *  This filter will save post data for the acf_form function
 *
@@ -1126,7 +1159,7 @@ function _validate_save_post() {
 *  @return	$post_id (int)
 */
 
-function _acf_pre_save_post( $post_id, $form ) {
+function _acf_form_pre_save_post( $post_id, $form ) {
 	
 	// vars
 	$save = array(
@@ -1302,13 +1335,13 @@ function acf_form( $args = array() ) {
 	// post_title
 	if( $args['post_title'] ) {
 		
-		$fields[] = acf_get_valid_field(array(
-			'name'		=> '_post_title',
-			'label'		=> __('Title', 'acf'),
-			'type'		=> 'text',
-			'value'		=> $post_id ? get_post_field('post_title', $post_id) : '',
-			'required'	=> true
-		));
+		// load local field
+		$_post_title = acf_get_field('_post_title');
+		$_post_title['value'] = $post_id ? get_post_field('post_title', $post_id) : '';
+		
+		
+		// append
+		$fields[] = $_post_title;
 		
 	}
 	
@@ -1316,13 +1349,14 @@ function acf_form( $args = array() ) {
 	// post_content
 	if( $args['post_content'] ) {
 		
-		$fields[] = acf_get_valid_field(array(
-			'name'		=> '_post_content',
-			'label'		=> __('Content', 'acf'),
-			'type'		=> 'wysiwyg',
-			'value'		=> $post_id ? get_post_field('post_content', $post_id) : ''
-		));
+		// load local field
+		$_post_content = acf_get_field('_post_content');
+		$_post_content['value'] = $post_id ? get_post_field('post_content', $post_id) : '';
 		
+		
+		// append
+		$fields[] = $_post_content;
+				
 	}
 	
 	
@@ -1381,15 +1415,7 @@ function acf_form( $args = array() ) {
 	// honeypot
 	if( $args['honeypot'] ) {
 		
-		$fields[] = acf_get_valid_field(array(
-			'name'		=> '_validate_email',
-			'label'		=> __('Validate Email', 'acf'),
-			'type'		=> 'text',
-			'value'		=> '',
-			'wrapper'	=> array(
-				'style'	=> 'display:none;'
-			)
-		));
+		$fields[] = acf_get_field('_validate_email');
 		
 	}
 	

@@ -106,6 +106,9 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 5.4.2 =
+* API: Fixed bug preventing post_title and post_content values saving in `acf_form()`
+
 = 5.4.1 =
 * API: Fixed bug causing `get_fields('options')` to return false
 * Core: Fixed bug causing `get_current_screen()` to throw PHP error
