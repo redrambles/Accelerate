@@ -72,13 +72,13 @@ img {
 }
 
 /* THIS is the style that so many students are looking for to make their menu inline */
-.menu-top-nav-container ul li{
+#primary-navigation ul li{
   text-transform: uppercase;
 	display: inline-block;
 	margin-left: 35px;
   position: relative; /* for the border-bottom effect for the link */
 }
-.menu-top-nav-container ul li:first-of-type{
+#primary-navigation ul li:first-of-type{
 	margin-left: 0;
 }
 
@@ -1204,3 +1204,4 @@ aside.sidebar li a {
     text-align: center;
     color: tomato;
 }
+
