@@ -22,7 +22,7 @@ Text Domain: accelerate-theme-child
 }*/
 
 .site {
-    width: 100%;
+    max-width: 100%;
     min-width: 320px;
     margin: 0 auto;
     overflow: hidden;
@@ -966,7 +966,15 @@ aside.sidebar li a {
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 1000px) {
-
+    .site-main {
+      padding: 1em;
+    }
+    /* Don't apply padding to the pages with hero-images */
+    .home .site-main,
+    .about-page .site-main {
+      padding: 0;
+    }
+  
     .homepage-hero h1,
     .homepage-hero h3 {
         padding: 10px 20px;

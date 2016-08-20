@@ -232,6 +232,17 @@ function message_dashboard_screen() {
 //      
 // }
 
+// Add a body class for about page so that the padding on '.site-main won't mess up the hero-image at @media max-width 1000px
+add_filter( 'body_class','accelerate_body_classes' );
+function accelerate_body_classes( $classes ) {
+ 
+  if (is_page('about') ) {
+    $classes[] = 'about-page';
+  }
+    return $classes;
+     
+}
+
 
 // Warning Logged-in Users About Website Maintenance (using 'error' class) or Success message (using 'updated' class)
 // add_action( 'admin_notices', 'admin_message' );
