@@ -592,7 +592,7 @@ aside.sidebar li a {
     line-height: 1.5em;
     letter-spacing: 0.75px;
     color: white;
-    font-family: "open sans";
+    font-family: "open sans", sans-serif;
     font-size: 24px;
     font-weight: normal;
     margin: 6px 0 2em;
