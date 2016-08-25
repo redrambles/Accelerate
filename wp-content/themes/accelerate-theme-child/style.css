@@ -629,16 +629,17 @@ aside.sidebar li a {
 /* Testing for the CPT - CPT-About Template page version of the About page */
 .service-section:nth-child(odd) .service-image {
     float: left;
+    margin-right: 3%;
 }
 
 .service-section:nth-child(even) .service-image {
     float: right;
+    margin-left: 3%;
 }
-
 .service-description {
     margin-top: 60px;
     float: left;
-    padding: .5em;
+    /*padding: .5em;*/
     width: 67%;
 }
 
