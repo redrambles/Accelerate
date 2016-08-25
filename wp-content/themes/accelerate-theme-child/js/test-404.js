@@ -2,5 +2,11 @@
 jQuery(document).ready(function($) {
 
   $('body').css("background-color","lemonchiffon");
-
+  
+    if (Modernizr.geolocation) {
+    console.log("404-yay!");
+    } else {
+    console.log("404-boo!")
+    }
+  
 });
