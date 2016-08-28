@@ -537,12 +537,12 @@ aside.sidebar li a {
     margin-bottom: 4%;
 }
 
-#ninja_forms_field_1, #ninja_forms_field_2 {
-    height: 40px;
-}
-
 #ninja_forms_field_2_div_wrap {
     margin-left: 4%;
+}
+
+#ninja_forms_field_1, #ninja_forms_field_2 {
+    height: 40px;
 }
 
 #ninja_forms_field_5 {

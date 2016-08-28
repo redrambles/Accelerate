@@ -24,7 +24,7 @@ function accelerate_customize_register( $wp_customize ) {
 	*********************/
 	
 	// create class to define textarea controls in Customizer
-	class accelerate_Customize_Textarea_Control extends WP_Customize_Control {
+	class accelerate_Customize_Textarea_Control_Address extends WP_Customize_Control {
 		
 		public $type = 'textarea';
 		public function render_content() {
@@ -39,6 +39,22 @@ function accelerate_customize_register( $wp_customize ) {
 		}
 	}	
 	
+	class accelerate_Customize_Textarea_Control_Footer extends WP_Customize_Control {
+		
+		public $type = 'textarea';
+		public function render_content() {
+			
+			echo '<label>';
+				echo '<span class="customize-control-title">' . esc_html( $this-> label ) . '</span>';
+				echo '<textarea rows="6" style ="width: 100%;"';
+				$this->link();
+				echo '>' . esc_textarea( $this->value() ) . '</textarea>';
+			echo '</label>';
+			
+		}
+	}	
+	
+	
 	/*******************************************
 	Contact details in header
 	********************************************/
@@ -47,7 +63,7 @@ function accelerate_customize_register( $wp_customize ) {
 	$wp_customize->add_setting( 'accelerate_address_setting', array (
 		'default' => __( 'Your address', 'accelerate-theme-child' )
 	) );
-	$wp_customize->add_control( new accelerate_Customize_Textarea_Control(
+	$wp_customize->add_control( new accelerate_Customize_Textarea_Control_Address(
 		$wp_customize,
 		'accelerate_address_setting',
 		array( 
@@ -60,7 +76,7 @@ function accelerate_customize_register( $wp_customize ) {
 	$wp_customize->add_setting( 'accelerate_telephone_setting', array (
 		'default' => __( 'Your phone number', 'accelerate-theme-child' )
 	) );
-	$wp_customize->add_control( new accelerate_Customize_Textarea_Control(
+	$wp_customize->add_control( new accelerate_Customize_Textarea_Control_Address(
 		$wp_customize,
 		'accelerate_telephone_setting',
 		array( 
@@ -73,7 +89,7 @@ function accelerate_customize_register( $wp_customize ) {
 	$wp_customize->add_setting( 'accelerate_email_setting', array (
 		'default' => __( 'Your email address', 'accelerate-theme-child' )
 	) );
-	$wp_customize->add_control( new accelerate_Customize_Textarea_Control(
+	$wp_customize->add_control( new accelerate_Customize_Textarea_Control_Address(
 		$wp_customize,
 		'accelerate_email_setting',
 		array( 
@@ -90,7 +106,7 @@ function accelerate_customize_register( $wp_customize ) {
 	$wp_customize->add_setting( 'accelerate_footer_message', array (
 		'default' => __( 'Your footer message', 'accelerate-theme-child' )
 	) );
-	$wp_customize->add_control( new accelerate_Customize_Textarea_Control(
+	$wp_customize->add_control( new accelerate_Customize_Textarea_Control_Footer(
 		$wp_customize,
 		'accelerate_footer_message',
 		array( 
