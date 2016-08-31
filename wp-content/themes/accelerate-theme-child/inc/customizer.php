@@ -13,7 +13,7 @@ function accelerate_customize_register( $wp_customize ) {
 		'title' => __( 'Contact Details', 'accelerate-theme-child')
 	) );
 	
-	// contact details section
+	// footer details section
 	$wp_customize->add_section( 'accelerate_footer' , array(
 		'title' => __( 'Footer Details', 'accelerate-theme-child')
 	) );
