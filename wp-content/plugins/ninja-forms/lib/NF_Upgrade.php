@@ -13,7 +13,9 @@ function ninja_forms_ajax_migrate_database(){
 add_action( 'wp_ajax_ninja_forms_ajax_import_form', 'ninja_forms_ajax_import_form' );
 function ninja_forms_ajax_import_form(){
     if( ! current_user_can( apply_filters( 'ninja_forms_admin_upgrade_import_form_capabilities', 'manage_options' ) ) ) return;
-    $import = stripslashes( $_POST[ 'import' ] ); // TODO: How to sanitize serialized string?
+
+    $import = stripslashes( $_POST[ 'import' ] );
+
     $form_id = ( isset( $_POST[ 'formID' ] ) ) ? absint( $_POST[ 'formID' ] ) : '';
 
     Ninja_Forms()->form()->import_form( $import, $form_id, TRUE );

@@ -92,9 +92,14 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
         if( ! $form ) die( 'Template not found' );
 
-        $form = base64_decode( $form );
+        $form = json_decode( html_entity_decode( $form ), true );
 
         $form_id = Ninja_Forms()->form()->import_form( $form );
+
+        if( ! $form_id ){
+            $error_message = ( function_exists( 'json_last_error_msg' ) && json_last_error_msg() ) ? json_last_error_msg() : __( 'Form Template Import Error.', 'ninja-forms' );
+            wp_die( $error_message );
+        }
 
         header( "Location: " . admin_url( "admin.php?page=ninja-forms&form_id=$form_id" ) );
         exit();
@@ -290,7 +295,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
         ?>
         <script>
-            var fieldTypeData     = <?php echo wp_json_encode( $field_type_settings ); ?>;
+            var fieldTypeData     = <?php echo wp_json_encode( array_values( $field_type_settings ) ); ?>;
             var fieldSettings     = <?php echo wp_json_encode( array_values( $master_settings ) ); ?>;
             var fieldTypeSections = <?php echo wp_json_encode( $field_type_sections ); ?>;
             // console.log( fieldTypeData );
@@ -360,7 +365,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
         ?>
         <script>
-            var actionTypeData = <?php echo wp_json_encode( $action_type_settings ); ?>;
+            var actionTypeData = <?php echo wp_json_encode( array_values( $action_type_settings ) ); ?>;
             var actionSettings = <?php echo wp_json_encode( array_values( $master_settings_list ) ); ?>;
             // console.log( actionTypeData );
         </script>
@@ -397,7 +402,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         }
         ?>
         <script>
-        var formSettingTypeData = <?php echo wp_json_encode( $form_settings_types )?>;
+        var formSettingTypeData = <?php echo wp_json_encode( array_values( $form_settings_types ) )?>;
         var formSettings = <?php echo wp_json_encode( array_values( $master_settings ) )?>;
         </script>
         <?php

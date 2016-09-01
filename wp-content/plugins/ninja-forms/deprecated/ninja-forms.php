@@ -265,7 +265,7 @@ class Ninja_Forms {
 
         // Plugin version
         if ( ! defined( 'NF_PLUGIN_VERSION' ) )
-            define( 'NF_PLUGIN_VERSION', '2.9.56.2' );
+            define( 'NF_PLUGIN_VERSION', '2.9.58' );
 
         // Plugin Folder Path
         if ( ! defined( 'NF_PLUGIN_DIR' ) )
@@ -860,11 +860,7 @@ function ninja_forms_konami(){
 
 function ninja_forms_three_calc_check()
 {
-    global $wpdb;
-
-    $rows = $wpdb->get_results( "SELECT * FROM " . NINJA_FORMS_FIELDS_TABLE_NAME . " WHERE type = '_calc' OR type = '_country'" );
-
-    return ( $rows ) ? FALSE : TRUE ;
+    return true;
 }
 
 function ninja_forms_three_addons_version_check(){

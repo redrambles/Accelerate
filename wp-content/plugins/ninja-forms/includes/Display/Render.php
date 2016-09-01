@@ -38,11 +38,6 @@ final class NF_Display_Render
         }
         $form = Ninja_Forms()->form( $form_id )->get();
 
-        if( $form->get_setting( 'lock' ) ){
-            echo __( 'This form is not available.', 'ninja-forms' );
-            return;
-        }
-
         if( $form->get_setting( 'logged_in' ) && ! is_user_logged_in() ){
             echo $form->get_setting( 'not_logged_in_msg' );
             return;
@@ -371,52 +366,60 @@ final class NF_Display_Render
 
     public static function enqueue_scripts( $form_id )
     {
+        $form = Ninja_Forms()->form( $form_id )->get();
+        $is_preview = ( $form->get_tmp_id() );
+
+        $js_dir  = Ninja_Forms::$url . 'assets/js/min/';
+        $css_dir = Ninja_Forms::$url . 'assets/css/';
+
         wp_enqueue_media();
-        wp_enqueue_style( 'jBox', Ninja_Forms::$url . 'assets/css/jBox.css' );
-        wp_enqueue_style( 'summernote', Ninja_Forms::$url . 'assets/css/summernote.css' );
-        wp_enqueue_style( 'codemirror', Ninja_Forms::$url . 'assets/css/codemirror.css' );
-        wp_enqueue_style( 'codemirror-monokai', Ninja_Forms::$url . 'assets/css/monokai-theme.css' );
-        wp_enqueue_style( 'rating', Ninja_Forms::$url . 'assets/css/rating.css' );
+        wp_enqueue_style( 'jBox',               $css_dir . 'jBox.css'          );
+        wp_enqueue_style( 'summernote',         $css_dir . 'summernote.css'    );
+        wp_enqueue_style( 'codemirror',         $css_dir . 'codemirror.css'    );
+        wp_enqueue_style( 'codemirror-monokai', $css_dir . 'monokai-theme.css' );
+        wp_enqueue_style( 'rating',             $css_dir . 'rating.css'        );
+        wp_enqueue_style( 'pikaday-responsive', $css_dir . 'pikaday-package.css' );
 
-
-        if( Ninja_Forms()->get_setting( 'opinionated_styles' ) ) {
-
-            if( 'light' == Ninja_Forms()->get_setting( 'opinionated_styles' ) ){
-                wp_enqueue_style('nf-display', Ninja_Forms::$url . 'assets/css/display-opinions-light.css');
-                wp_enqueue_style( 'nf-font-awesome', Ninja_Forms::$url . 'assets/css/font-awesome.min.css' );
-            }
-
-            if( 'dark' == Ninja_Forms()->get_setting( 'opinionated_styles' ) ){
-                wp_enqueue_style('nf-display', Ninja_Forms::$url . 'assets/css/display-opinions-dark.css');
-                wp_enqueue_style( 'nf-font-awesome', Ninja_Forms::$url . 'assets/css/font-awesome.min.css' );
-            }
-        } else {
-            wp_enqueue_style( 'nf-display', Ninja_Forms::$url . 'assets/css/display-structure.css' );
+        switch( Ninja_Forms()->get_setting( 'opinionated_styles' ) ) {
+            case 'light':
+                wp_enqueue_style( 'nf-display',      $css_dir . 'display-opinions-light.css' );
+                wp_enqueue_style( 'nf-font-awesome', $css_dir . 'font-awesome.min.css'       );
+                break;
+            case 'dark':
+                wp_enqueue_style( 'nf-display',      $css_dir . 'display-opinions-dark.css' );
+                wp_enqueue_style( 'nf-font-awesome', $css_dir . 'font-awesome.min.css'      );
+                break;
+            default:
+                wp_enqueue_style( 'nf-display',      $css_dir . 'display-structure.css'     );
         }
 
-        wp_enqueue_style( 'pikaday-responsive', Ninja_Forms::$url . 'assets/css/pikaday-package.css' );
+        if( $is_preview || self::form_uses_recaptcha( $form_id ) ) {
+            $recaptcha_lang = Ninja_Forms()->get_setting('recaptcha_lang');
+            wp_enqueue_script('google-recaptcha', 'https://www.google.com/recaptcha/api.js?hl=' . $recaptcha_lang, array('jquery'));
+        }
 
-        wp_enqueue_script( 'backbone-marionette', Ninja_Forms::$url . 'assets/js/lib/backbone.marionette.min.js', array( 'jquery', 'backbone' ) );
-        wp_enqueue_script( 'backbone-radio', Ninja_Forms::$url . 'assets/js/lib/backbone.radio.min.js', array( 'jquery', 'backbone' ) );
-        wp_enqueue_script( 'math', Ninja_Forms::$url . 'assets/js/lib/math.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'modernizr', Ninja_Forms::$url . 'assets/js/lib/modernizr.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'moment', Ninja_Forms::$url . 'assets/js/lib/moment-with-locales.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'pikaday', Ninja_Forms::$url . 'assets/js/lib/pikaday.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'pikaday-responsive', Ninja_Forms::$url . 'assets/js/lib/pikaday-responsive.min.js', array( 'jquery' ) );
-        $recaptcha_lang = Ninja_Forms()->get_setting( 'recaptcha_lang' );
-        wp_enqueue_script( 'google-recaptcha', 'https://www.google.com/recaptcha/api.js?hl=' . $recaptcha_lang, array( 'jquery' ) );
-        wp_enqueue_script( 'masked-input', Ninja_Forms::$url . 'assets/js/lib/jquery.maskedinput.min.js', array( 'jquery' ) );
+        if( $is_preview || self::form_uses_datepicker( $form_id ) ) {
+            wp_enqueue_script('nf-front-end--datepicker', $js_dir . 'front-end--datepicker.min.js', array('jquery'));
+        }
 
-        wp_enqueue_script( 'bootstrap', Ninja_Forms::$url . 'assets/js/lib/bootstrap.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'codemirror', Ninja_Forms::$url . 'assets/js/lib/codemirror.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'codemirror-xml', Ninja_Forms::$url . 'assets/js/lib/codemirror-xml.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'codemirror-formatting', Ninja_Forms::$url . 'assets/js/lib/codemirror-formatting.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'summernote', Ninja_Forms::$url . 'assets/js/lib/summernote.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'jBox', Ninja_Forms::$url . 'assets/js/lib/jBox.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'starrating', Ninja_Forms::$url . 'assets/js/lib/rating.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'nf-global', Ninja_Forms::$url . 'assets/js/min/global.js', array( 'jquery' ) );
+        if( $is_preview || self::form_uses_inputmask( $form_id ) ) {
+            wp_enqueue_script('nf-front-end--inputmask', $js_dir . 'front-end--inputmask.min.js', array('jquery'));
+        }
 
-        wp_enqueue_script( 'nf-front-end', Ninja_Forms::$url . 'assets/js/min/front-end.js', array( 'jquery', 'backbone', 'backbone-radio', 'backbone-marionette', 'math' ) );
+//        if( $is_preview || self::form_uses_rte( $form_id ) ) {
+            wp_enqueue_script('nf-front-end--rte', $js_dir . 'front-end--rte.min.js', array('jquery'));
+//        }
+
+        if( $is_preview || self::form_uses_helptext( $form_id ) ) {
+            wp_enqueue_script('nf-front-end--helptext', $js_dir . 'front-end--helptext.min.js', array('jquery'));
+        }
+
+        if( $is_preview || self::form_uses_starrating( $form_id ) ) {
+            wp_enqueue_script('nf-front-end--starrating', $js_dir . 'front-end--starrating.min.js', array('jquery'));
+        }
+
+        wp_enqueue_script( 'nf-front-end',             $js_dir . 'front-end.min.js',             array( 'jquery', 'backbone' ) );
+
         wp_localize_script( 'nf-front-end', 'nfi18n', Ninja_Forms::config( 'i18nFrontEnd' ) );
 
         $data = apply_filters( 'ninja_forms_render_localize_script_data', array(
@@ -437,17 +440,6 @@ final class NF_Display_Render
 
         do_action( 'ninja_forms_enqueue_scripts', array( 'form_id' => $form_id ) );
 
-        /*
-        ?>
-        <script type="text/javascript">
-            function nf_recaptcha_set_field_value( inpval ) {
-                console.log( inpval );
-                jQuery( "#nf-field-<%= id %>" ).val( inpval );
-            }
-
-        </script>
-        <?php
-        */
         do_action( 'nf_display_enqueue_scripts' );
     }
 
@@ -500,6 +492,54 @@ final class NF_Display_Render
     protected static function is_template_loaded( $template_name )
     {
         return ( in_array( $template_name, self::$loaded_templates ) ) ? TRUE : FALSE ;
+    }
+
+    protected static function form_uses_recaptcha( $form_id )
+    {
+        foreach( Ninja_Forms()->form( $form_id )->get_fields() as $field ){
+            if( 'recaptcha' == $field->get_setting( 'type' ) ) return true;
+        }
+        return false;
+    }
+
+    protected static function form_uses_datepicker( $form_id )
+    {
+        foreach( Ninja_Forms()->form( $form_id )->get_fields() as $field ){
+            if( 'date' == $field->get_setting( 'type' ) ) return true;
+        }
+        return false;
+    }
+
+    protected static function form_uses_inputmask( $form_id )
+    {
+        foreach( Ninja_Forms()->form( $form_id )->get_fields() as $field ){
+            if( $field->get_setting( 'mask' ) ) return true;
+        }
+        return false;
+    }
+
+    protected static function form_uses_rte( $form_id )
+    {
+        foreach( Ninja_Forms()->form( $form_id )->get_fields() as $field ){
+            if( $field->get_setting( 'textarea_rte' ) ) return true;
+        }
+        return false;
+    }
+
+    protected static function form_uses_helptext( $form_id )
+    {
+        foreach( Ninja_Forms()->form( $form_id )->get_fields() as $field ){
+            if( strip_tags( $field->get_setting( 'help_text' ) ) ) return true;
+        }
+        return false;
+    }
+
+    protected static function form_uses_starrating( $form_id )
+    {
+        foreach( Ninja_Forms()->form( $form_id )->get_fields() as $field ){
+            if( 'starrating' == $field->get_setting( 'type' ) ) return true;
+        }
+        return false;
     }
 
 } // End Class NF_Display_Render

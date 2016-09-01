@@ -189,7 +189,7 @@ class NF_Admin_AllFormsTable extends WP_List_Table
         $delete_url = add_query_arg( array( 'action' => 'delete', 'id' => $item[ 'id' ], '_wpnonce' => wp_create_nonce( 'nf_delete_form' )));
         $duplicate_url = add_query_arg( array( 'action' => 'duplicate', 'id' => $item[ 'id' ], '_wpnonce' => wp_create_nonce( 'nf_duplicate_form' )));
         $preview_url = add_query_arg( 'nf_preview_form', $item[ 'id' ], site_url() );
-        $submissions_url = add_query_arg( 'form_id', $item[ 'id' ], admin_url( 'edit.php?post_type=nf_sub') );
+        $submissions_url = add_query_arg( 'form_id', $item[ 'id' ], admin_url( 'edit.php?post_status=all&post_type=nf_sub') );
 
         $form = Ninja_Forms()->form( $item[ 'id' ] )->get();
         $locked = $form->get_setting( 'lock' );
@@ -200,13 +200,7 @@ class NF_Admin_AllFormsTable extends WP_List_Table
     public function single_row( $item )
     {
         $form = Ninja_Forms()->form( $item[ 'id' ] )->get();
-        $locked = $form->get_setting( 'lock' );
-
-        if( $locked ) {
-            echo '<tr class="flagged">';
-        } else {
-            echo '<tr>';
-        }
+        echo '<tr>';
         $this->single_row_columns( $item );
         echo '</tr>';
     }

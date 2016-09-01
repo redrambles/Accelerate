@@ -835,63 +835,63 @@ FIELD DESCRIPTION POSITIONS
 .nf-field-description {
   font-size: 14px; }
 
-.nf-fields {
+.nf-form-content {
   padding: 5px;
   max-width: 1000px;
   margin: 0 auto; }
-  .nf-fields label {
+  .nf-form-content label {
     font-size: 18px;
     line-height: 20px; }
-  .nf-fields .ninja-forms-field,
-  .nf-fields .listselect-wrap .nf-field-element div {
+  .nf-form-content .ninja-forms-field,
+  .nf-form-content .listselect-wrap .nf-field-element div {
     font-size: 16px;
     margin: 0;
     padding: 12px; }
-  .nf-fields input.ninja-forms-field,
-  .nf-fields select.ninja-forms-field,
-  .nf-fields .listselect-wrap .nf-field-element div {
+  .nf-form-content input.ninja-forms-field,
+  .nf-form-content select.ninja-forms-field,
+  .nf-form-content .listselect-wrap .nf-field-element div {
     height: 50px; }
-  .nf-fields textarea.ninja-forms-field {
+  .nf-form-content textarea.ninja-forms-field {
     height: 200px; }
-  .nf-fields hr.ninja-forms-field {
+  .nf-form-content hr.ninja-forms-field {
     padding: 0; }
-  .nf-fields input[type="radio"].ninja-forms-field,
-  .nf-fields input[type="checkbox"].ninja-forms-field {
+  .nf-form-content input[type="radio"].ninja-forms-field,
+  .nf-form-content input[type="checkbox"].ninja-forms-field {
     height: auto; }
-  .nf-fields .listradio-wrap li,
-  .nf-fields .listcheckbox-wrap li {
+  .nf-form-content .listradio-wrap li,
+  .nf-form-content .listcheckbox-wrap li {
     margin-bottom: 12px !important;
     line-height: 0; }
-  .nf-fields .nf-product-field span {
+  .nf-form-content .nf-product-field span {
     padding-right: 16px; }
-  .nf-fields .nf-product-field .nf-field-qty {
+  .nf-form-content .nf-product-field .nf-field-qty {
     font-size: 16px;
     padding: 5px;
     width: 80px !important; }
-  .nf-fields .nf-static {
+  .nf-form-content .nf-static {
     background: transparent;
     border: 0;
     font-weight: bold;
     padding: 0; }
-  .nf-fields .label-above .nf-field-label,
-  .nf-fields .label-below .nf-field-label,
-  .nf-fields .label-hidden .nf-field-label {
+  .nf-form-content .label-above .nf-field-label,
+  .nf-form-content .label-below .nf-field-label,
+  .nf-form-content .label-hidden .nf-field-label {
     margin-bottom: 10px;
     padding: 0; }
-  .nf-fields .label-below .nf-field-label {
+  .nf-form-content .label-below .nf-field-label {
     margin-bottom: 0;
     margin-top: 10px; }
-  .nf-fields .label-right .nf-field-label {
+  .nf-form-content .label-right .nf-field-label {
     margin: 0; }
-  .nf-fields .label-right > input[type=radio],
-  .nf-fields .label-right input[type=checkbox] {
+  .nf-form-content .label-right > input[type=radio],
+  .nf-form-content .label-right input[type=checkbox] {
     margin-right: 1%; }
-  .nf-fields .label-right ul {
+  .nf-form-content .label-right ul {
     margin-right: 1%; }
 
-.nf-fields .list-select-wrap > div {
+.nf-form-content .list-select-wrap > div {
   position: relative; }
-  .nf-fields .list-select-wrap > div div {
+  .nf-form-content .list-select-wrap > div div {
     display: block;
     position: absolute;
     font-size: 16px;
@@ -903,7 +903,7 @@ FIELD DESCRIPTION POSITIONS
     right: 0;
     left: 0;
     z-index: 1; }
-    .nf-fields .list-select-wrap > div div::after {
+    .nf-form-content .list-select-wrap > div div::after {
       content: "\f078";
       font-family: FontAwesome;
       font-size: 20px;
@@ -912,16 +912,16 @@ FIELD DESCRIPTION POSITIONS
       bottom: 0;
       height: 50px;
       line-height: 50px; }
-  .nf-fields .list-select-wrap > div.label-right div {
+  .nf-form-content .list-select-wrap > div.label-right div {
     width: 59%; }
-  .nf-fields .list-select-wrap > div.label-below div {
+  .nf-form-content .list-select-wrap > div.label-below div {
     top: 0;
     bottom: auto; }
-  .nf-fields .list-select-wrap > div.label-left div {
+  .nf-form-content .list-select-wrap > div.label-left div {
     width: 59%;
     left: 40.5%;
     right: 40px; }
-  .nf-fields .list-select-wrap > div select {
+  .nf-form-content .list-select-wrap > div select {
     background: transparent;
     border: 0;
     -webkit-appearance: none;
@@ -930,7 +930,7 @@ FIELD DESCRIPTION POSITIONS
     position: relative;
     z-index: 2; }
 
-.nf-fields .listmultiselect-wrap select {
+.nf-form-content .listmultiselect-wrap select {
   -webkit-appearance: normal;
      -moz-appearance: normal;
           appearance: normal; }
@@ -1023,6 +1023,9 @@ FIELD DESCRIPTION POSITIONS
 .checkbox-container.label-right label {
   margin: 0 0 0 30px;
   display: block; }
+  .checkbox-container.label-right label::before {
+    left: -30px;
+    bottom: 0; }
   .checkbox-container.label-right label::after {
     left: -28px;
     bottom: 0; }
@@ -1071,7 +1074,7 @@ FIELD DESCRIPTION POSITIONS
 
 .listradio-wrap .nf-field-element label {
   position: relative;
-  margin-left: 30px; }
+  margin-left: 30px !important; }
   .listradio-wrap .nf-field-element label::after {
     border-radius: 50%;
     content: "";
@@ -1229,41 +1232,41 @@ input[type=checkbox].nf-toggle {
 /* ---------------------------------
 DEFAULT DARK COLORS
 ----------------------------------*/
-.nf-fields input:not([type='button']),
-.nf-fields textarea,
-.nf-fields .list-select-wrap .nf-field-element > div {
+.nf-form-content input:not([type='button']),
+.nf-form-content textarea,
+.nf-form-content .list-select-wrap .nf-field-element > div {
   background: #222;
   border: 1px solid #3c3c3c;
   border-radius: 0;
   box-shadow: none;
   color: #888888;
   transition: all .5s; }
-  .nf-fields input:not([type='button']):focus,
-  .nf-fields textarea:focus,
-  .nf-fields .list-select-wrap .nf-field-element > div:focus {
+  .nf-form-content input:not([type='button']):focus,
+  .nf-form-content textarea:focus,
+  .nf-form-content .list-select-wrap .nf-field-element > div:focus {
     background: #3c3c3c;
     border-color: #555555;
     color: #a2a2a2;
     outline: none;
     transition: all .5s; }
 
-.nf-fields input[type="submit"],
-.nf-fields input[type="button"],
-.nf-fields button {
+.nf-form-content input[type="submit"],
+.nf-form-content input[type="button"],
+.nf-form-content button {
   background: #fff;
   border: 0;
   color: #222;
   transition: all .5s; }
-  .nf-fields input[type="submit"]:hover,
-  .nf-fields input[type="button"]:hover,
-  .nf-fields button:hover {
+  .nf-form-content input[type="submit"]:hover,
+  .nf-form-content input[type="button"]:hover,
+  .nf-form-content button:hover {
     background: #3c3c3c;
     color: #888888;
     transition: all .5s; }
 
-.nf-fields select.ninja-forms-field {
+.nf-form-content select.ninja-forms-field {
   color: #888888; }
-  .nf-fields select.ninja-forms-field:focus {
+  .nf-form-content select.ninja-forms-field:focus {
     background: transparent;
     border: 0;
     box-shadow: none;
@@ -1398,41 +1401,41 @@ DEFAULT DARK COLORS
 /* ---------------------------------
 DARK COLORS - nf-brown
 ----------------------------------*/
-.nf-brown .nf-fields input:not([type='button']),
-.nf-brown .nf-fields textarea,
-.nf-brown .nf-fields .list-select-wrap .nf-field-element > div {
+.nf-brown .nf-form-content input:not([type='button']),
+.nf-brown .nf-form-content textarea,
+.nf-brown .nf-form-content .list-select-wrap .nf-field-element > div {
   background: #3e2b13;
   border: 1px solid #65461f;
   border-radius: 0;
   box-shadow: none;
   color: #ca9553;
   transition: all .5s; }
-  .nf-brown .nf-fields input:not([type='button']):focus,
-  .nf-brown .nf-fields textarea:focus,
-  .nf-brown .nf-fields .list-select-wrap .nf-field-element > div:focus {
+  .nf-brown .nf-form-content input:not([type='button']):focus,
+  .nf-brown .nf-form-content textarea:focus,
+  .nf-brown .nf-form-content .list-select-wrap .nf-field-element > div:focus {
     background: #65461f;
     border-color: #8c612b;
     color: #d6ad7a;
     outline: none;
     transition: all .5s; }
 
-.nf-brown .nf-fields input[type="submit"],
-.nf-brown .nf-fields input[type="button"],
-.nf-brown .nf-fields button {
+.nf-brown .nf-form-content input[type="submit"],
+.nf-brown .nf-form-content input[type="button"],
+.nf-brown .nf-form-content button {
   background: #ea981b;
   border: 0;
   color: #3e2b13;
   transition: all .5s; }
-  .nf-brown .nf-fields input[type="submit"]:hover,
-  .nf-brown .nf-fields input[type="button"]:hover,
-  .nf-brown .nf-fields button:hover {
+  .nf-brown .nf-form-content input[type="submit"]:hover,
+  .nf-brown .nf-form-content input[type="button"]:hover,
+  .nf-brown .nf-form-content button:hover {
     background: #65461f;
     color: #ca9553;
     transition: all .5s; }
 
-.nf-brown .nf-fields select.ninja-forms-field {
+.nf-brown .nf-form-content select.ninja-forms-field {
   color: #ca9553; }
-  .nf-brown .nf-fields select.ninja-forms-field:focus {
+  .nf-brown .nf-form-content select.ninja-forms-field:focus {
     background: transparent;
     border: 0;
     box-shadow: none;
@@ -1566,41 +1569,41 @@ DARK COLORS - nf-brown
 /* ---------------------------------
 DARK COLORS - nf-red
 ----------------------------------*/
-.nf-red .nf-fields input:not([type='button']),
-.nf-red .nf-fields textarea,
-.nf-red .nf-fields .list-select-wrap .nf-field-element > div {
+.nf-red .nf-form-content input:not([type='button']),
+.nf-red .nf-form-content textarea,
+.nf-red .nf-form-content .list-select-wrap .nf-field-element > div {
   background: #350000;
   border: 1px solid #680000;
   border-radius: 0;
   box-shadow: none;
   color: #ff0202;
   transition: all .5s; }
-  .nf-red .nf-fields input:not([type='button']):focus,
-  .nf-red .nf-fields textarea:focus,
-  .nf-red .nf-fields .list-select-wrap .nf-field-element > div:focus {
+  .nf-red .nf-form-content input:not([type='button']):focus,
+  .nf-red .nf-form-content textarea:focus,
+  .nf-red .nf-form-content .list-select-wrap .nf-field-element > div:focus {
     background: #680000;
     border-color: #9b0000;
     color: #ff3535;
     outline: none;
     transition: all .5s; }
 
-.nf-red .nf-fields input[type="submit"],
-.nf-red .nf-fields input[type="button"],
-.nf-red .nf-fields button {
+.nf-red .nf-form-content input[type="submit"],
+.nf-red .nf-form-content input[type="button"],
+.nf-red .nf-form-content button {
   background: red;
   border: 0;
   color: #350000;
   transition: all .5s; }
-  .nf-red .nf-fields input[type="submit"]:hover,
-  .nf-red .nf-fields input[type="button"]:hover,
-  .nf-red .nf-fields button:hover {
+  .nf-red .nf-form-content input[type="submit"]:hover,
+  .nf-red .nf-form-content input[type="button"]:hover,
+  .nf-red .nf-form-content button:hover {
     background: #680000;
     color: #ff0202;
     transition: all .5s; }
 
-.nf-red .nf-fields select.ninja-forms-field {
+.nf-red .nf-form-content select.ninja-forms-field {
   color: #ff0202; }
-  .nf-red .nf-fields select.ninja-forms-field:focus {
+  .nf-red .nf-form-content select.ninja-forms-field:focus {
     background: transparent;
     border: 0;
     box-shadow: none;
@@ -1734,41 +1737,41 @@ DARK COLORS - nf-red
 /* ---------------------------------
 DARK COLORS - nf-blue
 ----------------------------------*/
-.nf-blue .nf-fields input:not([type='button']),
-.nf-blue .nf-fields textarea,
-.nf-blue .nf-fields .list-select-wrap .nf-field-element > div {
+.nf-blue .nf-form-content input:not([type='button']),
+.nf-blue .nf-form-content textarea,
+.nf-blue .nf-form-content .list-select-wrap .nf-field-element > div {
   background: #001C33;
   border: 1px solid #003866;
   border-radius: 0;
   box-shadow: none;
   color: #008cff;
   transition: all .5s; }
-  .nf-blue .nf-fields input:not([type='button']):focus,
-  .nf-blue .nf-fields textarea:focus,
-  .nf-blue .nf-fields .list-select-wrap .nf-field-element > div:focus {
+  .nf-blue .nf-form-content input:not([type='button']):focus,
+  .nf-blue .nf-form-content textarea:focus,
+  .nf-blue .nf-form-content .list-select-wrap .nf-field-element > div:focus {
     background: #003866;
     border-color: #005499;
     color: #33a3ff;
     outline: none;
     transition: all .5s; }
 
-.nf-blue .nf-fields input[type="submit"],
-.nf-blue .nf-fields input[type="button"],
-.nf-blue .nf-fields button {
+.nf-blue .nf-form-content input[type="submit"],
+.nf-blue .nf-form-content input[type="button"],
+.nf-blue .nf-form-content button {
   background: #00AEFF;
   border: 0;
   color: #001C33;
   transition: all .5s; }
-  .nf-blue .nf-fields input[type="submit"]:hover,
-  .nf-blue .nf-fields input[type="button"]:hover,
-  .nf-blue .nf-fields button:hover {
+  .nf-blue .nf-form-content input[type="submit"]:hover,
+  .nf-blue .nf-form-content input[type="button"]:hover,
+  .nf-blue .nf-form-content button:hover {
     background: #003866;
     color: #008cff;
     transition: all .5s; }
 
-.nf-blue .nf-fields select.ninja-forms-field {
+.nf-blue .nf-form-content select.ninja-forms-field {
   color: #008cff; }
-  .nf-blue .nf-fields select.ninja-forms-field:focus {
+  .nf-blue .nf-form-content select.ninja-forms-field:focus {
     background: transparent;
     border: 0;
     box-shadow: none;

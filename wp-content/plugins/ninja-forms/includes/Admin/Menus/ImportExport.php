@@ -27,15 +27,17 @@ final class NF_Admin_Menus_ImportExport extends NF_Abstracts_Submenu
 
         $this->upload_error_check( $_FILES[ 'nf_import_form' ] );
 
-        $import = file_get_contents( $_FILES[ 'nf_import_form' ][ 'tmp_name' ] );
+        $data = file_get_contents( $_FILES[ 'nf_import_form' ][ 'tmp_name' ] );
 
-        $data = unserialize( base64_decode( $import ) );
+        $import = Ninja_Forms()->form()->import_form( $data );
 
-        if( ! $data ) {
-            $data = unserialize( $import );
+        if( ! $import ){
+
+            wp_die(
+                __( 'There uploaded file is not a valid format.', 'ninja-forms' ) . ' ' . ( function_exists( 'json_last_error' ) ) ? json_last_error_msg() : '',
+                __( 'Invalid Form Upload.', 'ninja-forms' )
+            );
         }
-
-        Ninja_Forms()->form()->import_form( $data );
     }
 
     public function export_form_listener()

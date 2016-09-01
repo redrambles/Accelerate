@@ -874,7 +874,7 @@ return apply_filters( 'ninja_forms_field_settings', array(
         'label' => __( 'Price', 'ninja-forms' ),
         'width' => 'one-half',
         'group' => 'primary',
-        'value' => '0.00',
+        'value' => '1.00',
         'mask' => array(
             'type' => 'currency', // 'numeric', 'currency', 'custom'
             'options' => array()

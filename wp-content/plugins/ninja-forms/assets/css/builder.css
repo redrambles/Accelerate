@@ -145,11 +145,13 @@ Header and Nav for Ninja Forms App
 #nf-main-content,
 #nf-main-header {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 860px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
-          user-select: none; }
+          user-select: none;
+  padding: 0 80px;
+  position: relative; }
 
 #nf-main-header .nf-button {
   float: right; }
@@ -164,6 +166,40 @@ Header and Nav for Ninja Forms App
 
 #the-list tr.flagged th:first-child {
   border-left: 5px solid yellow; }
+
+#nf-main-gutter-left,
+#nf-main-gutter-right {
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 450px; }
+  #nf-main-gutter-left .fa-chevron-circle-left,
+  #nf-main-gutter-left .fa-chevron-circle-right,
+  #nf-main-gutter-left .fa-plus-circle,
+  #nf-main-gutter-right .fa-chevron-circle-left,
+  #nf-main-gutter-right .fa-chevron-circle-right,
+  #nf-main-gutter-right .fa-plus-circle {
+    color: #eee;
+    font-size: 86px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); }
+    #nf-main-gutter-left .fa-chevron-circle-left:hover,
+    #nf-main-gutter-left .fa-chevron-circle-right:hover,
+    #nf-main-gutter-left .fa-plus-circle:hover,
+    #nf-main-gutter-right .fa-chevron-circle-left:hover,
+    #nf-main-gutter-right .fa-chevron-circle-right:hover,
+    #nf-main-gutter-right .fa-plus-circle:hover {
+      color: #1EA9EA;
+      cursor: pointer; }
+
+#nf-main-gutter-left {
+  left: 0;
+  padding-left: 6px; }
+
+#nf-main-gutter-right {
+  right: 0;
+  padding-right: 6px; }
 
 .nf-fields-empty {
   padding: 0 40px; }

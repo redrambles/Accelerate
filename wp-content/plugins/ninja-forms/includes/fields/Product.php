@@ -23,7 +23,7 @@ class NF_Fields_Product extends NF_Abstracts_Input
 
     protected $_settings = array( 'product_use_quantity', 'product_price', 'product_type', 'product_type' );
 
-    protected $_settings_exclude = array( 'input_limit_set' );
+    protected $_settings_exclude = array( 'input_limit_set', 'disable_input', 'required' );
 
     public function __construct()
     {
@@ -32,7 +32,6 @@ class NF_Fields_Product extends NF_Abstracts_Input
         $this->_nicename = __( 'Product', 'ninja-forms' );
 
         $this->_settings[ 'product_price' ][ 'width' ] = 'full';
-        $this->_settings[ 'required' ][ 'deps' ][ 'product_use_quantity' ] = 1;
 
         add_filter( 'ninja_forms_merge_tag_value_product', array( $this, 'merge_tag_value' ), 10, 2 );
 

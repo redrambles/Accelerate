@@ -309,7 +309,7 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
 
             unlink($file_path);
 
-            $form_name = Ninja_Forms()->form(absint($_REQUEST['form_id']))->get_setting('title');
+            $form_name = Ninja_Forms()->form(absint($_REQUEST['form_id']))->get()->get_setting('title');
             $form_name = sanitize_title($form_name);
 
             $today = date('Y-m-d', current_time('timestamp'));
@@ -417,5 +417,7 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
 
         return $vars;
     }
+
+
 
 }
