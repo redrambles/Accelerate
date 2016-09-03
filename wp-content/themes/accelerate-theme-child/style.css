@@ -378,14 +378,14 @@ aside.case-study-sidebar{
 aside.case-study-sidebar h2,
 aside.case-study-sidebar h2 a{
     margin-top: 20px;
-    font-family: 'OpenSans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: #444;
     font-size: 26px;
     font-weight: 600;
 }
 
 aside.case-study-sidebar h6{
-    font-family: 'OpenSans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: #878787;
     font-weight: 400;
     font-size: 14px;
@@ -592,7 +592,7 @@ aside.sidebar li a {
     line-height: 1.5em;
     letter-spacing: 0.75px;
     color: white;
-    font-family: "open sans", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 24px;
     font-weight: normal;
     margin: 6px 0 2em;
@@ -781,7 +781,7 @@ aside.sidebar li a {
     border: solid #bfbfbf;
     border-width: 1px 0;
     clear: both;
-    font: 0.8em/4.08 'OpenSans', Arial, sans-serif;
+    font: 0.8em/4.08 'Open Sans', Arial, sans-serif;
     overflow: hidden;
     position: relative;
     z-index: 1;
@@ -831,7 +831,7 @@ aside.sidebar li a {
     border: solid #bfbfbf;
     border-width: 1px 0;
     color: #150300;
-    font: 600 0.8em/49px 'OpenSans', Arial, sans-serif;
+    font: 600 0.8em/49px 'Open Sans', Arial, sans-serif;
     height: 49px;
     text-transform: uppercase;
     margin: 15px 0;
@@ -843,7 +843,7 @@ aside.sidebar li a {
     margin: 25px 0 10px;
 }
 .comment-list .comment {
-    font: 0.8em/2.08em 'OpenSans', Arial, sans-serif;
+    font: 0.8em/2.08em 'Open Sans', Arial, sans-serif;
     border-bottom: 1px solid #BFBFBF;
     padding-bottom: 23px;
 }
@@ -862,7 +862,7 @@ aside.sidebar li a {
 }
 .comments-area .comment-reply-title {
     color: #45ac9d;
-    font: bold 1.176em 'Montserrat', 'OpenSans', Arial, sans-serif;
+    font: bold 1.176em 'Montserrat', 'Open Sans', Arial, sans-serif;
     text-transform: uppercase;
     margin: 2em 0 1em;
 }
@@ -873,7 +873,7 @@ aside.sidebar li a {
     text-decoration: underline;
 }
 .comments-area .comment-form p {
-    font: 0.8em/2.08em 'OpenSans', Arial, sans-serif;
+    font: 0.8em/2.08em 'Open Sans', Arial, sans-serif;
     padding-bottom: 23px;
 }
 .comments-area .comment-form p a {
@@ -884,21 +884,21 @@ aside.sidebar li a {
 }
 .comments-area .comment-form label {
     display: block;
-    font: 600 1em 'OpenSans', Arial, sans-serif;
+    font: 600 1em 'Open Sans', Arial, sans-serif;
     margin: 10px 0;
 }
 .comments-area .comment-form textarea {
     height: 180px;
     width: 100%;
     resize: none;
-    font: 16px 'OpenSans', Arial, sans-serif;
+    font: 16px 'Open Sans', Arial, sans-serif;
     padding: 5px 10px;
 }
 .comments-area .comment-form input[type="submit"] {
     background: #45ac9d;
     width: 206px;
     height: 55px;
-    font: bold 1.3em/45px 'Montserrat', 'OpenSans', Arial, sans-serif;
+    font: bold 1.3em/45px 'Montserrat', 'Open Sans', Arial, sans-serif;
     color: #fff;
     margin: 24px 0;
     float: right;
