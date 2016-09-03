@@ -106,6 +106,9 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 5.4.4 =
+* WYSIWYG field: Fixed JS error when 'Disable the visual editor when writing' is checked
+
 = 5.4.3 =
 * WYSIWYG field: Fixed JS bug (since WP 4.6) causing conflicts with editor plugins
 * Google Maps field: Fixed JS error conflict with Divi theme
