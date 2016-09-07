@@ -94,7 +94,7 @@ class MC4WP_MailChimp {
 		} catch( MC4WP_API_Exception $e ) {
             // other errors.
             $this->error_code = $e->getCode();
-            $this->error_message = $e->getMessage();
+            $this->error_message = $e;
 			return null;
 		}
 
@@ -102,7 +102,7 @@ class MC4WP_MailChimp {
 			$data = $this->api->add_list_member( $list_id, $args );
 		} catch ( MC4WP_API_Exception $e ) {
 			$this->error_code = $e->getCode();
-			$this->error_message = $e->getMessage();
+			$this->error_message = $e;
 			return null;
 		}
 
@@ -128,7 +128,7 @@ class MC4WP_MailChimp {
 		    return true;
         } catch( MC4WP_API_Exception $e ) {
 			$this->error_code = $e->getCode();
-			$this->error_message = $e->getMessage();
+			$this->error_message = $e;
 			return false;
 		}
 
@@ -181,12 +181,11 @@ class MC4WP_MailChimp {
 
 		// TODO: Move this to the background via a queue.
 
-
 		// try to increase time limit as this can take a while
-		@set_time_limit(300);
+		@set_time_limit(600);
 
 		try{
-			$lists_data = $this->api->get_lists( array( 'count' => 100, 'fields' => 'lists.id' ) );
+			$lists_data = $this->api->get_lists( array( 'count' => 500, 'fields' => 'lists.id' ) );
         } catch( MC4WP_API_Exception $e ) {
             return array();
         }
