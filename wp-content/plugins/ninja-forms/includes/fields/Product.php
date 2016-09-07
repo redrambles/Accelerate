@@ -45,7 +45,8 @@ class NF_Fields_Product extends NF_Abstracts_Input
 
         foreach( $data[ 'fields' ] as $key => $field ){
 
-            if( ! in_array( $field[ 'type' ], $this->processing_fields ) ) continue;
+
+            if( ! isset ( $field[ 'type' ] ) || ! in_array( $field[ 'type' ], $this->processing_fields ) ) continue;
 
             $type = $field[ 'type' ];
 

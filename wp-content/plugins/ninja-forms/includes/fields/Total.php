@@ -34,7 +34,7 @@ class NF_Fields_Total extends NF_Abstracts_Input
 
         foreach( $data[ 'fields' ] as $key => $field ){
 
-            if( 'shipping' == $field[ 'type' ] ){
+            if( isset ( $field[ 'type' ] ) && 'shipping' == $field[ 'type' ] ){
                 $subtotal += $field[ 'shipping_cost' ];
             }
         }

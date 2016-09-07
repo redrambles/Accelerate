@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 2.9.58
+Version: 3.0
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -23,15 +23,12 @@ function ninja_forms_three_table_exists(){
     return ( $wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name );
 }
 
-if( version_compare( get_option( 'ninja_forms_version', '0.0.0' ), '3', '<' ) || ! ninja_forms_three_table_exists() ) {
-    update_option( 'ninja_forms_load_deprecated', TRUE );
-}
-
 if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf2to3' ] ) && ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) ){
 
     include 'deprecated/ninja-forms.php';
 
     register_activation_hook( __FILE__, 'ninja_forms_activation_deprecated' );
+
     function ninja_forms_activation_deprecated( $network_wide ){
         include_once 'deprecated/includes/activation.php';
 
@@ -54,7 +51,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         /**
          * @since 3.0
          */
-        const VERSION = '3.0';
+        const VERSION = '3.0.0';
 
         /**
          * @var Ninja_Forms
@@ -166,7 +163,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 // Define old constants for backwards compatibility.
                 if( ! defined( 'NF_PLUGIN_DIR' ) ){
                     define( 'NF_PLUGIN_DIR', self::$dir );
-                    define( 'NINJA_FORMS_DIR', self::$dir );
+                    define( 'NINJA_FORMS_DIR', self::$dir . 'deprecated' );
                 }
 
                 self::$url = plugin_dir_url( __FILE__ );
@@ -290,7 +287,18 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 
             add_action( 'plugins_loaded', array( self::$instance, 'plugins_loaded' ) );
 
+            add_action( 'ninja_forms_available_actions', array( self::$instance, 'scrub_available_actions' ) );
+
             return self::$instance;
+        }
+
+        public function scrub_available_actions( $actions )
+        {
+            foreach( $actions as $key => $action ){
+                if ( ! is_plugin_active( $action[ 'plugin_path' ] ) )  continue;
+                unset( $actions[ $key ] );
+            }
+            return $actions;
         }
 
         public function admin_notices()
@@ -302,10 +310,21 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 
         public function plugins_loaded()
         {
+            load_plugin_textdomain( 'ninja-forms', false, basename( dirname( __FILE__ ) ) . '/lang' );
+
             /*
              * Field Class Registration
              */
             self::$instance->fields = apply_filters( 'ninja_forms_register_fields', self::load_classes( 'Fields' ) );
+
+            if( ! apply_filters( 'ninja_forms_enable_credit_card_fields', false ) ){
+                unset( self::$instance->fields[ 'creditcard' ] );
+                unset( self::$instance->fields[ 'creditcardcvc' ] );
+                unset( self::$instance->fields[ 'creditcardexpiration' ] );
+                unset( self::$instance->fields[ 'creditcardfullname' ] );
+                unset( self::$instance->fields[ 'creditcardnumber' ] );
+                unset( self::$instance->fields[ 'creditcardzip' ] );
+            }
 
             /*
              * Form Action Registration
@@ -553,6 +572,11 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         public function activation() {
             $migrations = new NF_Database_Migrations();
             $migrations->migrate();
+
+            if( Ninja_Forms()->form()->get_forms() ) return;
+
+            $form = Ninja_Forms::template( 'formtemplate-contactform.nff', array(), TRUE );
+            Ninja_Forms()->form()->import_form( $form );
         }
 
     } // End Class Ninja_Forms
@@ -594,5 +618,4 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             $migrations->nuke(TRUE, TRUE);
         }
     }
-
 }

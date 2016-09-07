@@ -38,6 +38,9 @@ get_header(); ?>
 						<div class="entry-summary">
 							<?php the_excerpt(); ?>
 						</div>
+						<?php if ( is_home() ) {
+							echo do_shortcode('[ssba]'); 
+						} ?>
 						
 						<?php accelerate_theme_child_footer_meta(); ?>
 						

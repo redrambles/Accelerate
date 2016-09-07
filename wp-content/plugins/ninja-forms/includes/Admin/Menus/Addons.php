@@ -4,13 +4,18 @@ final class NF_Admin_Menus_Addons extends NF_Abstracts_Submenu
 {
     public $parent_slug = 'ninja-forms';
 
-    public $page_title = 'Add-Ons';
+    public $menu_slug = 'addons';
 
     public $priority = 13;
 
     public function __construct()
     {
         parent::__construct();
+    }
+
+    public function get_page_title()
+    {
+        return __( 'Add-Ons', 'ninja-forms' );
     }
 
     public function display()

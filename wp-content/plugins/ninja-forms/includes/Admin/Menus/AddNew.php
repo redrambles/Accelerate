@@ -15,6 +15,11 @@ final class NF_Admin_Menus_AddNew extends NF_Abstracts_Submenu
         parent::__construct();
     }
 
+    public function get_page_title()
+    {
+        return __( 'Add New', 'ninja-forms' );
+    }
+
     public function display()
     {
         // This section intentionally left blank.

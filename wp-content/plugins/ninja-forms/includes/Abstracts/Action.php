@@ -105,7 +105,7 @@ abstract class NF_Abstracts_Action
      */
     public function get_timing()
     {
-        $timing = array( 'early' => 1, 'normal' => 0, 'late' => -1 );
+        $timing = array( 'early' => -1, 'normal' => 0, 'late' => 1 );
 
         return intval( $timing[ $this->_timing ] );
     }

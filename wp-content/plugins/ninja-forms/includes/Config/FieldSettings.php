@@ -323,7 +323,7 @@ return apply_filters( 'ninja_forms_field_settings', array(
 
      'default' => array(
          'name' => 'default',
-         'label' => __( 'Default Value' ),
+         'label' => __( 'Default Value', 'ninja-forms' ),
          'type' => 'textbox',
          'width' => 'full',
          'value' => '',

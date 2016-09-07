@@ -782,7 +782,7 @@ function nfThreeUpgrade_GetSerializedFields(){
     wp_die();
 }
 
-add_action( 'init', 'ninja_forms_three_submenu' );
+add_action( 'init', 'ninja_forms_three_submenu', 9 ); // Register before general settings.
 function ninja_forms_three_submenu(){
     include plugin_dir_path( __FILE__ ) . 'upgrade/class-submenu.php';
 }

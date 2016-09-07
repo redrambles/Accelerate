@@ -15,6 +15,11 @@ final class NF_Admin_Menus_AllForms extends NF_Abstracts_Submenu
         parent::__construct();
     }
 
+    public function get_page_title()
+    {
+        return __( 'All Forms', 'ninja-forms' );
+    }
+
     public function display()
     {
         // This section intentionally left blank.

@@ -34,11 +34,13 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
         if( isset( $form_data[ 'fields' ] ) ) {
             foreach ($form_data['fields'] as $field_data) {
 
+                if( 'unknown' == $field_data[ 'settings' ][ 'type' ] ) continue;
+
                 $id = $field_data['id'];
 
                 $field = Ninja_Forms()->form( $form_data[ 'id' ] )->get_field($id);
 
-                $field->update_settings($field_data['settings'])->save();
+                $field->update_settings( $field_data['settings'] )->save();
 
                 if ($field->get_tmp_id()) {
 

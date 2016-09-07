@@ -32,6 +32,10 @@ class NF_Fields_HTML extends NF_Abstracts_Input
             'include' => array(
                 'calcs'
             ),
+            'exclude' => array(
+                'form',
+                'fields'
+            ),
         );
 
         $this->_nicename = __( 'HTML', 'ninja-forms' );

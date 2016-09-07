@@ -219,6 +219,11 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
             unset( $import[ 'settings' ][ 'form_title' ] );
         }
 
+        // Convert `last_sub` to `_seq_num`
+        if( isset( $import[ 'settings' ][ 'last_sub' ] ) ) {
+            $import[ 'settings' ][ '_seq_num' ] = $import[ 'settings' ][ 'last_sub' ] + 1;
+        }
+
         // Make sure
         if( ! isset( $import[ 'fields' ] ) ){
             $import[ 'fields' ] = array();

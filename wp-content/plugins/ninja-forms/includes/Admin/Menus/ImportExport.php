@@ -4,7 +4,7 @@ final class NF_Admin_Menus_ImportExport extends NF_Abstracts_Submenu
 {
     public $parent_slug = 'ninja-forms';
 
-    public $page_title = 'Import / Export';
+    public $menu_slug = 'import-export';
 
     public function __construct()
     {
@@ -17,6 +17,11 @@ final class NF_Admin_Menus_ImportExport extends NF_Abstracts_Submenu
         add_filter( 'ninja_forms_before_import_fields', array( $this, 'import_fields_backwards_compatibility' ) );
 
         parent::__construct();
+    }
+
+    public function get_page_title()
+    {
+        return __( 'Import / Export', 'ninja-forms' );
     }
 
     public function import_form_listener()

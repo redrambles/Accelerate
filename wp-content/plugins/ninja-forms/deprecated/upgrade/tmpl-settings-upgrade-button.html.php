@@ -1,0 +1,1 @@
+<a href="<?php menu_page_url( 'ninja-forms-three' ); ?>" class="button">Update & Convert Forms</a>

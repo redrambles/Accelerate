@@ -53,6 +53,11 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
         add_action('admin_head', array( $this, 'hide_page_title_action' ) );
     }
 
+    public function get_page_title()
+    {
+        return __( 'Submissions', 'ninja-forms' );
+    }
+
     /**
      * Display
      */

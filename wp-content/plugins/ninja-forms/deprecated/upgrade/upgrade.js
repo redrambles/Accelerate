@@ -24,7 +24,7 @@ jQuery(document).ready(function($) {
 
             var data = {
                 title: '',
-                headers: [ 'Status', 'Title' ],
+                headers: [ 'Title', 'Status' ],
                 rows: this.forms,
                 step: this.step,
                 showSupportLink: 0,
@@ -32,7 +32,7 @@ jQuery(document).ready(function($) {
 
             if( 'checking' == this.step ) {
 
-                data.title = 'Form Upgrade Compatibility';
+                data.title = 'Form Upgrade List';
 
                 data.legend = this.tmpl.legend( {
                     no_issues_detected: 'No Issues Detected',

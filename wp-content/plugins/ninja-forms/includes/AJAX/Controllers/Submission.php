@@ -271,6 +271,10 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
 
     protected function maybe_halt( $action_id )
     {
+        if( isset( $this->_data[ 'errors' ] ) && $this->_data[ 'errors' ] ){
+            $this->_respond();
+        }
+
         if( isset( $this->_data[ 'halt' ] ) && $this->_data[ 'halt' ] ){
 
             Ninja_Forms()->session()->set( 'nf_processing_data', $this->_data );
