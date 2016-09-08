@@ -24,6 +24,11 @@ final class NF_Admin_Menus_Settings extends NF_Abstracts_Submenu
         return __( 'Settings', 'ninja-forms' );
     }
 
+    public function get_capability()
+    {
+        return apply_filters( 'ninja_forms_admin_settings_capabilities', $this->capability );
+    }
+
     public function display()
     {
         $tabs = apply_filters( 'ninja_forms_settings_tabs', array(

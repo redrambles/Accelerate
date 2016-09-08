@@ -1,23 +1,20 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the ninja-forms package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Ninja Forms 3.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-29 10:00-0500\n"
-"PO-Revision-Date: 2016-08-29 10:00-0500\n"
+"POT-Creation-Date: 2016-08-29 09:53-0500\n"
+"PO-Revision-Date: 2016-08-29 08:57-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: tl\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 1.8.8\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e;_x;_ex\n"
+"X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: ninja-forms.php:463
 msgid "Notice: JavaScript is required for this content."
@@ -132,8 +129,8 @@ msgid ""
 "to complete their submission later.<p>The Save Progress extension for Ninja "
 "Forms makes this quick and easy.</p>"
 msgstr ""
-"Users are more likely to complete long forms when they can save and return "
-"to complete their submission later.<p>The Save Progress extension for Ninja "
+"Users are more likely to complete long forms when they can save and return to "
+"complete their submission later.<p>The Save Progress extension for Ninja "
 "Forms makes this quick and easy.</p>"
 
 #: deprecated/classes/notices-save-progress.php:64
@@ -583,14 +580,13 @@ msgid ""
 "%1$s scheduled for: <strong>%2$s</strong>. <a href=\"%3$s\" target=\"_blank"
 "\">Preview %4$s</a>"
 msgstr ""
-"%1$s scheduled for: <strong>%2$s</strong>. <a href=\"%3$s\" target=\"_blank"
-"\">Preview %4$s</a>"
+"%1$s scheduled for: <strong>%2$s</strong>. <a href=\"%3$s\" "
+"target=\"_blank\">Preview %4$s</a>"
 
 #: deprecated/classes/subs-cpt.php:656
 #, php-format
 msgid "%1$s draft updated. <a href=\"%2$s\" target=\"_blank\">Preview %3$s</a>"
-msgstr ""
-"%1$s draft updated. <a href=\"%2$s\" target=\"_blank\">Preview %3$s</a>"
+msgstr "%1$s draft updated. <a href=\"%2$s\" target=\"_blank\">Preview %3$s</a>"
 
 #: deprecated/classes/subs-cpt.php:709 includes/Admin/Menus/Submissions.php:252
 msgid "Download All Submissions"
@@ -694,8 +690,8 @@ msgid ""
 "There is a new version of %1$s available. <a target=\"_blank\" class="
 "\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
 msgstr ""
-"There is a new version of %1$s available. <a target=\"_blank\" class="
-"\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
+"There is a new version of %1$s available. <a target=\"_blank\" "
+"class=\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
 
 #: deprecated/includes/EDD_SL_Plugin_Updater.php:184
 #: includes/Integrations/EDD/EDD_SL_Plugin_Updater.php:184
@@ -705,9 +701,9 @@ msgid ""
 "\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s"
 "\">update now</a>."
 msgstr ""
-"There is a new version of %1$s available. <a target=\"_blank\" class="
-"\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s"
-"\">update now</a>."
+"There is a new version of %1$s available. <a target=\"_blank\" "
+"class=\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a "
+"href=\"%4$s\">update now</a>."
 
 #: deprecated/includes/EDD_SL_Plugin_Updater.php:324
 #: includes/Integrations/EDD/EDD_SL_Plugin_Updater.php:324
@@ -993,8 +989,7 @@ msgid ""
 "Thank you for updating! Ninja Forms %s makes form building easier than ever "
 "before!"
 msgstr ""
-"Thank you for updating! Ninja Forms %s makes form building easier than ever "
-"before!"
+"Thank you for updating! Ninja Forms %s makes form building easier than ever before!"
 
 #: deprecated/includes/admin/welcome.php:57
 #: deprecated/includes/admin/welcome.php:58
@@ -1049,8 +1044,7 @@ msgid ""
 "When creating and editing forms, go directly to the section that matters "
 "most."
 msgstr ""
-"When creating and editing forms, go directly to the section that matters "
-"most."
+"When creating and editing forms, go directly to the section that matters most."
 
 #: deprecated/includes/admin/welcome.php:210
 msgid "Better Organized Field Settings"
@@ -1099,8 +1093,8 @@ msgid ""
 "Deactivate Ninja Forms extension licenses individually or as a group from "
 "the settings tab."
 msgstr ""
-"Deactivate Ninja Forms extension licenses individually or as a group from "
-"the settings tab."
+"Deactivate Ninja Forms extension licenses individually or as a group from the "
+"settings tab."
 
 #: deprecated/includes/admin/welcome.php:245
 msgid "More to come"
@@ -1169,9 +1163,9 @@ msgid ""
 "already created your first %scontact form%s so that you have an example. You "
 "can also create your own by clicking %sAdd New%s."
 msgstr ""
-"The Forms menu is your access point for all things Ninja Forms. We've "
-"already created your first %scontact form%s so that you have an example. You "
-"can also create your own by clicking %sAdd New%s."
+"The Forms menu is your access point for all things Ninja Forms. We've already "
+"created your first %scontact form%s so that you have an example. You can also "
+"create your own by clicking %sAdd New%s."
 
 #: deprecated/includes/admin/welcome.php:329
 #: deprecated/includes/admin/pages/ninja-forms/tabs/field-settings/field-settings.php:11
@@ -1211,8 +1205,7 @@ msgid ""
 "completed."
 msgstr ""
 "This tab hold general form settings, such as title and submission method, as "
-"well as display settings like hiding a form when it is successfully "
-"completed."
+"well as display settings like hiding a form when it is successfully completed."
 
 #: deprecated/includes/admin/welcome.php:345
 msgid "Displaying Your Form"
@@ -1230,9 +1223,8 @@ msgid ""
 "in its sidebar."
 msgstr ""
 "Under Basic Form Behavior in the Form Settings you can easily select a page "
-"that you would like the form automatically appended to the end of that "
-"page's content. A similiar option is avaiable in every content edit screen "
-"in its sidebar."
+"that you would like the form automatically appended to the end of that page's "
+"content. A similiar option is avaiable in every content edit screen in its sidebar."
 
 #: deprecated/includes/admin/welcome.php:355
 #: deprecated/includes/admin/pages/ninja-forms/tabs/form-list/form-list.php:158
@@ -1257,8 +1249,7 @@ msgid ""
 "space."
 msgstr ""
 "Ninja Forms provides a widget that you can place in any widgetized area of "
-"your site and select exactly which form you would like displayed in that "
-"space."
+"your site and select exactly which form you would like displayed in that space."
 
 #: deprecated/includes/admin/welcome.php:369
 #: deprecated/includes/admin/pages/ninja-forms/tabs/form-list/form-list.php:159
@@ -1304,8 +1295,7 @@ msgid ""
 "%s."
 msgstr ""
 "We do all we can to provide every Ninja Forms user with the best support "
-"possible. If you encounter a problem or have a question, %splease contact us"
-"%s."
+"possible. If you encounter a problem or have a question, %splease contact us%s."
 
 #: deprecated/includes/admin/welcome.php:413
 #, php-format
@@ -1543,8 +1533,7 @@ msgid ""
 "If this box is checked, this column in the submissions table will sort by "
 "number."
 msgstr ""
-"If this box is checked, this column in the submissions table will sort by "
-"number."
+"If this box is checked, this column in the submissions table will sort by number."
 
 #: deprecated/includes/admin/edit-field/sub-settings.php:68
 #: includes/Config/FieldSettings.php:461
@@ -1783,8 +1772,8 @@ msgid ""
 "wp_remote_post() failed. PayPal IPN won't work with your server. Contact "
 "your hosting provider. Error:"
 msgstr ""
-"wp_remote_post() failed. PayPal IPN won't work with your server. Contact "
-"your hosting provider. Error:"
+"wp_remote_post() failed. PayPal IPN won't work with your server. Contact your "
+"hosting provider. Error:"
 
 #: deprecated/includes/admin/pages/system-status-html.php:171
 msgid "wp_remote_post() failed. PayPal IPN may not work with your server."
@@ -1836,8 +1825,7 @@ msgid ""
 "be removeable"
 msgstr ""
 "Any character you place in the \"custom mask\" box that is not in the list "
-"below will be automatically entered for the user as they type and will not "
-"be removeable"
+"below will be automatically entered for the user as they type and will not be removeable"
 
 #: deprecated/includes/admin/pages/ninja-forms/tabs/field-settings/help.php:16
 msgid "These are the predefined masking characters"
@@ -1848,8 +1836,7 @@ msgid ""
 "a - Represents an alpha character (A-Z,a-z) - Only allows letters to be "
 "entered"
 msgstr ""
-"a - Represents an alpha character (A-Z,a-z) - Only allows letters to be "
-"entered"
+"a - Represents an alpha character (A-Z,a-z) - Only allows letters to be entered"
 
 #: deprecated/includes/admin/pages/ninja-forms/tabs/field-settings/help.php:19
 msgid ""
@@ -1881,8 +1868,7 @@ msgstr ""
 
 #: deprecated/includes/admin/pages/ninja-forms/tabs/field-settings/help.php:24
 msgid "This would prevent the user from putting in anything other than numbers"
-msgstr ""
-"This would prevent the user from putting in anything other than numbers"
+msgstr "This would prevent the user from putting in anything other than numbers"
 
 #: deprecated/includes/admin/pages/ninja-forms/tabs/field-settings/help.php:27
 msgid "You can also combine these for specific applications"
@@ -1894,9 +1880,9 @@ msgid ""
 "B.43C, you could mask it with: a9a99.999.a.99a, which would force all the "
 "a's to be letters and the 9s to be numbers"
 msgstr ""
-"For instance, if you had a product key that was in the form of A4B51.989."
-"B.43C, you could mask it with: a9a99.999.a.99a, which would force all the "
-"a's to be letters and the 9s to be numbers"
+"For instance, if you had a product key that was in the form of "
+"A4B51.989.B.43C, you could mask it with: a9a99.999.a.99a, which would force "
+"all the a's to be letters and the 9s to be numbers"
 
 #: deprecated/includes/admin/pages/ninja-forms/tabs/field-settings/sidebars/def-fields.php:6
 msgid "Defined Fields"
@@ -2082,8 +2068,8 @@ msgid ""
 "Please enter a message that you want displayed when this form has reached "
 "its submission limit and will not accept new submissions."
 msgstr ""
-"Please enter a message that you want displayed when this form has reached "
-"its submission limit and will not accept new submissions."
+"Please enter a message that you want displayed when this form has reached its "
+"submission limit and will not accept new submissions."
 
 #: deprecated/includes/admin/pages/ninja-forms/tabs/form-settings/form-settings.php:160
 msgid "Form Settings Saved"
@@ -2309,8 +2295,7 @@ msgid ""
 "%s"
 msgstr ""
 "If this box is checked, ALL Ninja Forms data will be removed from the "
-"database upon deletion. %sAll form and submission data will be unrecoverable."
-"%s"
+"database upon deletion. %sAll form and submission data will be unrecoverable.%s"
 
 #: deprecated/includes/admin/pages/ninja-forms-settings/tabs/general-settings/general-settings.php:104
 #: includes/Config/PluginSettingsAdvanced.php:42
@@ -2452,9 +2437,9 @@ msgid ""
 "attempt to reconvert your old forms to show them in 2.9.  All current forms "
 "will remain in the \"All Forms\" table."
 msgstr ""
-"If your forms are \"missing\" after updating to 2.9, this button will "
-"attempt to reconvert your old forms to show them in 2.9.  All current forms "
-"will remain in the \"All Forms\" table."
+"If your forms are \"missing\" after updating to 2.9, this button will attempt "
+"to reconvert your old forms to show them in 2.9.  All current forms will "
+"remain in the \"All Forms\" table."
 
 #: deprecated/includes/admin/upgrades/convert-forms-reset.php:65
 msgid ""
@@ -2480,8 +2465,8 @@ msgid ""
 "Ninja Forms needs to upgrade your form notifications, click %shere%s to "
 "start the upgrade."
 msgstr ""
-"Ninja Forms needs to upgrade your form notifications, click %shere%s to "
-"start the upgrade."
+"Ninja Forms needs to upgrade your form notifications, click %shere%s to start "
+"the upgrade."
 
 #: deprecated/includes/admin/upgrades/upgrade-functions.php:40
 #, php-format
@@ -2489,8 +2474,7 @@ msgid ""
 "Ninja Forms needs to update your email settings, click %shere%s to start the "
 "upgrade."
 msgstr ""
-"Ninja Forms needs to update your email settings, click %shere%s to start the "
-"upgrade."
+"Ninja Forms needs to update your email settings, click %shere%s to start the upgrade."
 
 #: deprecated/includes/admin/upgrades/upgrade-functions.php:55
 #, php-format
@@ -2506,8 +2490,8 @@ msgid ""
 "Thank you for updating to version 2.7 of Ninja Forms. Please update any "
 "Ninja Forms extensions from "
 msgstr ""
-"Thank you for updating to version 2.7 of Ninja Forms. Please update any "
-"Ninja Forms extensions from "
+"Thank you for updating to version 2.7 of Ninja Forms. Please update any Ninja "
+"Forms extensions from "
 
 #: deprecated/includes/admin/upgrades/upgrade-functions.php:70
 msgid ""
@@ -2525,9 +2509,9 @@ msgid ""
 "with version 2.7 of Ninja Forms. It needs to be at least version 1.1.3. "
 "Please update this extension at "
 msgstr ""
-"Your version of the Ninja Forms Save Progress extension isn't compatible "
-"with version 2.7 of Ninja Forms. It needs to be at least version 1.1.3. "
-"Please update this extension at "
+"Your version of the Ninja Forms Save Progress extension isn't compatible with "
+"version 2.7 of Ninja Forms. It needs to be at least version 1.1.3. Please "
+"update this extension at "
 
 #: deprecated/includes/admin/upgrades/upgrade-functions.php:80
 msgid "Updating Form Database"
@@ -2539,8 +2523,7 @@ msgid ""
 "Ninja Forms needs to upgrade your form settings, click %shere%s to start the "
 "upgrade."
 msgstr ""
-"Ninja Forms needs to upgrade your form settings, click %shere%s to start the "
-"upgrade."
+"Ninja Forms needs to upgrade your form settings, click %shere%s to start the upgrade."
 
 #: deprecated/includes/admin/upgrades/upgrade-handler-page.html.php:3
 msgid "Ninja Forms Upgrade Processing"
@@ -2605,7 +2588,7 @@ msgstr "Mahina"
 
 #: deprecated/includes/display/scripts.php:278
 msgid "Medium"
-msgstr ""
+msgstr "Medium"
 
 #: deprecated/includes/display/scripts.php:279
 msgid "Strong"
@@ -2689,8 +2672,7 @@ msgid ""
 "Use the following shortcode to insert the final calculation: "
 "[ninja_forms_calc]"
 msgstr ""
-"Use the following shortcode to insert the final calculation: "
-"[ninja_forms_calc]"
+"Use the following shortcode to insert the final calculation: [ninja_forms_calc]"
 
 #: deprecated/includes/fields/calc.php:188
 #, php-format
@@ -4360,8 +4342,7 @@ msgstr "Card Expiry Month Description"
 #: deprecated/includes/fields/credit-card.php:92
 #: deprecated/includes/fields/credit-card.php:155
 msgid "The month your credit card expires, typically on the front of the card."
-msgstr ""
-"The month your credit card expires, typically on the front of the card."
+msgstr "The month your credit card expires, typically on the front of the card."
 
 #: deprecated/includes/fields/credit-card.php:99
 msgid "Card Expiry Year Label"
@@ -4464,8 +4445,7 @@ msgid ""
 "If this box is checked, Ninja Forms will validate this input as an email "
 "address."
 msgstr ""
-"If this box is checked, Ninja Forms will validate this input as an email "
-"address."
+"If this box is checked, Ninja Forms will validate this input as an email address."
 
 #: deprecated/includes/fields/hidden.php:109
 msgid "Send a copy of the form to this address?"
@@ -4565,7 +4545,7 @@ msgstr "The format should look like the following:"
 
 #: deprecated/includes/fields/list.php:181
 msgid "Label,Value,Calc"
-msgstr ""
+msgstr "Label,Value,Calc"
 
 #: deprecated/includes/fields/list.php:190
 msgid ""
@@ -4611,8 +4591,7 @@ msgid ""
 "If this box is checked, both password and re-password textboxes will be "
 "output."
 msgstr ""
-"If this box is checked, both password and re-password textboxes will be "
-"output."
+"If this box is checked, both password and re-password textboxes will be output."
 
 #: deprecated/includes/fields/password.php:36
 msgid "Re-enter Password Label"
@@ -4633,8 +4612,8 @@ msgid ""
 "$ % ^ &amp; )."
 msgstr ""
 "Hint: The password should be at least seven characters long. To make it "
-"stronger, use upper and lower case letters, numbers and symbols like ! \" ? "
-"$ % ^ &amp; )."
+"stronger, use upper and lower case letters, numbers and symbols like ! \" ? $ "
+"% ^ &amp; )."
 
 #: deprecated/includes/fields/password.php:147
 #: includes/Fields/PasswordConfirm.php:72
@@ -4799,11 +4778,11 @@ msgstr ""
 
 #: includes/Abstracts/ActionNewsletter.php:113
 msgid "js-newsletter-list-update extra"
-msgstr ""
+msgstr "js-newsletter-list-update extra"
 
 #: includes/Abstracts/ActionNewsletter.php:113
 msgid "dashicons dashicons-update"
-msgstr ""
+msgstr "dashicons dashicons-update"
 
 #: includes/Abstracts/ActionNewsletter.php:142
 msgid "List Field Mapping"
@@ -4851,20 +4830,20 @@ msgstr "No forms found."
 
 #: includes/Admin/AllFormsTable.php:70
 msgid "Date Created"
-msgstr ""
+msgstr "Pesta ng Pagkakagawa"
 
 #: includes/Admin/AllFormsTable.php:94
 msgid "title"
-msgstr ""
+msgstr "title"
 
 #: includes/Admin/AllFormsTable.php:95
 msgid "updated"
-msgstr ""
+msgstr "updated"
 
 #: includes/Admin/AllFormsTable.php:232 includes/Admin/AllFormsTable.php:248
 #: includes/Admin/AllFormsTable.php:267
 msgid "Go get a life, script kiddies"
-msgstr ""
+msgstr "Go get a life, script kiddies"
 
 #: includes/Admin/CPT/Submission.php:44
 msgid "Parent Item:"
@@ -4916,7 +4895,7 @@ msgstr "Add New Form"
 
 #: includes/Admin/Menus/Forms.php:100
 msgid "Form Template Import Error."
-msgstr ""
+msgstr "Form Template Import Error."
 
 #: includes/Admin/Menus/Forms.php:416 includes/MergeTags/Fields.php:13
 msgid "Fields"
@@ -4924,11 +4903,11 @@ msgstr "Fields"
 
 #: includes/Admin/Menus/ImportExport.php:37
 msgid "There uploaded file is not a valid format."
-msgstr ""
+msgstr "There uploaded file is not a valid format."
 
 #: includes/Admin/Menus/ImportExport.php:38
 msgid "Invalid Form Upload."
-msgstr ""
+msgstr "Invalid Form Upload."
 
 #: includes/Admin/Menus/ImportExport.php:125
 msgid "Import Forms"
@@ -4952,8 +4931,7 @@ msgstr "Auto-Total Fields"
 
 #: includes/Admin/Menus/ImportExport.php:340
 msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini."
-msgstr ""
-"The uploaded file exceeds the upload_max_filesize directive in php.ini."
+msgstr "The uploaded file exceeds the upload_max_filesize directive in php.ini."
 
 #: includes/Admin/Menus/ImportExport.php:343
 msgid ""
@@ -4997,11 +4975,11 @@ msgstr "Add-On Licenses"
 
 #: includes/Admin/Menus/MockData.php:33
 msgid "Migrations and Mock Data complete. "
-msgstr ""
+msgstr "Migrations and Mock Data complete. "
 
 #: includes/Admin/Menus/MockData.php:34
 msgid "View Forms"
-msgstr ""
+msgstr "View Forms"
 
 #: includes/Admin/Menus/Settings.php:39
 msgid "Save Settings"
@@ -5009,7 +4987,7 @@ msgstr "I-save ang Mga Setting"
 
 #: includes/Admin/Menus/Submissions.php:252
 msgid "button-secondary nf-download-all"
-msgstr ""
+msgstr "button-secondary nf-download-all"
 
 #: includes/Admin/Menus/SystemStatus.php:131
 msgid "Server IP Address"
@@ -5029,13 +5007,13 @@ msgstr "Append a Ninja Forms"
 
 #: includes/AJAX/Controllers/Form.php:16
 msgid "Form Not Found"
-msgstr ""
+msgstr "Form Not Found"
 
 #: includes/AJAX/Controllers/SavedFields.php:17
 #: includes/AJAX/Controllers/SavedFields.php:38
 #: includes/AJAX/Controllers/SavedFields.php:50
 msgid "Field Not Found"
-msgstr ""
+msgstr "Field Not Found"
 
 #: includes/AJAX/Controllers/Submission.php:44
 msgid "An unexpected error occurred."
@@ -5075,7 +5053,7 @@ msgstr "URL"
 
 #: includes/Config/AdminNotices.php:16
 msgid "one_week_support"
-msgstr ""
+msgstr "one_week_support"
 
 #: includes/Config/Example.php:21
 msgid "Label Here"
@@ -5090,8 +5068,7 @@ msgid ""
 "Enter the label of the form field. This is how users will identify "
 "individual fields."
 msgstr ""
-"Enter the label of the form field. This is how users will identify "
-"individual fields."
+"Enter the label of the form field. This is how users will identify individual fields."
 
 #: includes/Config/FieldSettings.php:38
 msgid "Form Default"
@@ -5106,8 +5083,7 @@ msgstr "Hidden"
 
 #: includes/Config/FieldSettings.php:65
 msgid "Select the position of your label relative to the field element itself."
-msgstr ""
-"Select the position of your label relative to the field element itself."
+msgstr "Select the position of your label relative to the field element itself."
 
 #: includes/Config/FieldSettings.php:76
 msgid "Required Field"
@@ -5142,29 +5118,29 @@ msgstr "Mga Opsyon"
 #: includes/Config/FieldSettings.php:158 includes/Config/FieldSettings.php:954
 #: includes/Database/MockData.php:127
 msgid "One"
-msgstr ""
+msgstr "Isa"
 
 #: includes/Config/FieldSettings.php:158
 msgid "one"
-msgstr ""
+msgstr "one"
 
 #: includes/Config/FieldSettings.php:159 includes/Config/FieldSettings.php:955
 #: includes/Database/MockData.php:134
 msgid "Two"
-msgstr ""
+msgstr "Dalawa"
 
 #: includes/Config/FieldSettings.php:159
 msgid "two"
-msgstr ""
+msgstr "two"
 
 #: includes/Config/FieldSettings.php:160 includes/Config/FieldSettings.php:956
 #: includes/Database/MockData.php:141
 msgid "Three"
-msgstr ""
+msgstr "Tatlo"
 
 #: includes/Config/FieldSettings.php:160
 msgid "three"
-msgstr ""
+msgstr "three"
 
 #: includes/Config/FieldSettings.php:173
 msgid "Calc Value"
@@ -5184,7 +5160,7 @@ msgstr "US Phone"
 
 #: includes/Config/FieldSettings.php:219
 msgid "custom"
-msgstr ""
+msgstr "custom"
 
 #: includes/Config/FieldSettings.php:231
 msgid "Custom Mask"
@@ -5202,15 +5178,13 @@ msgid ""
 "                            letters to be entered.</li>\n"
 "                        </ul>"
 msgstr ""
-"<ul>\n"
-"                            <li>a - Represents an alpha character (A-Z,a-z) "
-"- Only allows letters to be entered. </li>\n"
-"                            <li>9 - Represents a numeric character (0-9) - "
-"Only allows numbers to be entered.</li>\n"
-"                            <li>* - Represents an alphanumeric character (A-"
-"Z,a-z,0-9) - This allows both numbers and\n"
-"                            letters to be entered.</li>\n"
-"                        </ul>"
+"<ul>\n                            <li>a - Represents an alpha character "
+"(A-Z,a-z) - Only allows letters to be entered. "
+"</li>\n                            <li>9 - Represents a numeric character "
+"(0-9) - Only allows numbers to be entered.</li>\n                            "
+"<li>* - Represents an alphanumeric character (A-Z,a-z,0-9) - This allows both "
+"numbers and\n                            letters to be "
+"entered.</li>\n                        </ul>"
 
 #: includes/Config/FieldSettings.php:255
 msgid "Limit Input to this Number"
@@ -5237,8 +5211,7 @@ msgid ""
 "Enter text you would like displayed in the field before a user enters any "
 "data."
 msgstr ""
-"Enter text you would like displayed in the field before a user enters any "
-"data."
+"Enter text you would like displayed in the field before a user enters any data."
 
 #: includes/Config/FieldSettings.php:344
 #: includes/Config/FormDisplaySettings.php:103
@@ -5264,31 +5237,31 @@ msgstr "Adds an extra class to your field element."
 
 #: includes/Config/FieldSettings.php:383
 msgid "DD/MM/YYYY"
-msgstr ""
+msgstr "DD/MM/YYYY"
 
 #: includes/Config/FieldSettings.php:387
 msgid "DD-MM-YYYY"
-msgstr ""
+msgstr "DD-MM-YYYY"
 
 #: includes/Config/FieldSettings.php:391
 msgid "MM/DD/YYYY"
-msgstr ""
+msgstr "MM/DD/YYYY"
 
 #: includes/Config/FieldSettings.php:395
 msgid "MM-DD-YYYY"
-msgstr ""
+msgstr "MM-DD-YYYY"
 
 #: includes/Config/FieldSettings.php:399
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "YYYY-MM-DD"
 
 #: includes/Config/FieldSettings.php:403
 msgid "YYYY/MM/DD"
-msgstr ""
+msgstr "YYYY/MM/DD"
 
 #: includes/Config/FieldSettings.php:407
 msgid "Friday, November 18, 2019"
-msgstr ""
+msgstr "Friday, November 18, 2019"
 
 #: includes/Config/FieldSettings.php:421
 msgid "Default To Current Date"
@@ -5307,8 +5280,7 @@ msgid ""
 "Creates a unique key to identify and target your field for custom "
 "development."
 msgstr ""
-"Creates a unique key to identify and target your field for custom "
-"development."
+"Creates a unique key to identify and target your field for custom development."
 
 #: includes/Config/FieldSettings.php:465
 msgid "Label used when viewing and exporting submissions."
@@ -5339,8 +5311,8 @@ msgid ""
 "Use this as a reistration password field. If this box is check, both\n"
 "                        password and re-password textboxes will be output"
 msgstr ""
-"Use this as a reistration password field. If this box is check, both\n"
-"                        password and re-password textboxes will be output"
+"Use this as a reistration password field. If this box is check, "
+"both\n                        password and re-password textboxes will be output"
 
 #: includes/Config/FieldSettings.php:763 includes/Database/Models/Form.php:505
 msgid "Confirm"
@@ -5494,15 +5466,15 @@ msgstr "Miscellaneous Fields"
 
 #: includes/Config/FormActionDefaults.php:9
 msgid "Your form has been successfully submitted."
-msgstr ""
+msgstr "Matagumpay nang naisumite ang iyong form."
 
 #: includes/Config/FormActionDefaults.php:19
 msgid "Ninja Forms Submission"
-msgstr ""
+msgstr "Ninja Forms Submission"
 
 #: includes/Config/FormActionDefaults.php:27
 msgid "Save Submission"
-msgstr ""
+msgstr "I-save ang Submission"
 
 #: includes/Config/FormCalculationSettings.php:18
 msgid "Variable Name"
@@ -5566,76 +5538,76 @@ msgstr "Calculations"
 
 #: includes/Config/i18nBuilder.php:5 includes/Config/i18nFrontEnd.php:5
 msgid "Ninja Forms"
-msgstr ""
+msgstr "Ninja Forms"
 
 #: includes/Config/i18nBuilder.php:6
 msgid "Price:"
-msgstr ""
+msgstr "Presyo:"
 
 #: includes/Config/i18nBuilder.php:7
 msgid "Quantity:"
-msgstr ""
+msgstr "Dami:"
 
 #: includes/Config/i18nBuilder.php:8
 #: includes/Templates/admin-menu-new-form.html.php:263
 msgid "Add"
-msgstr ""
+msgstr "Magdagdag"
 
 #: includes/Config/i18nBuilder.php:9
 msgid "Open in new window"
-msgstr ""
+msgstr "Open in new window"
 
 #: includes/Config/i18nBuilder.php:10
 msgid "If you are a human seeing this field, please leave it empty."
-msgstr ""
+msgstr "If you are a human seeing this field, please leave it empty."
 
 #: includes/Config/i18nBuilder.php:11
 msgid "Available"
-msgstr ""
+msgstr "Available"
 
 #: includes/Config/i18nFrontEnd.php:6
 msgid "Please enter a valid email address!"
-msgstr ""
+msgstr "Please enter a valid email address!"
 
 #: includes/Config/i18nFrontEnd.php:7
 msgid "These fields must match!"
-msgstr ""
+msgstr "These fields must match!"
 
 #: includes/Config/i18nFrontEnd.php:8
 msgid "Number Min Error"
-msgstr ""
+msgstr "Number Min Error"
 
 #: includes/Config/i18nFrontEnd.php:9
 msgid "Number Max Error"
-msgstr ""
+msgstr "Number Max Error"
 
 #: includes/Config/i18nFrontEnd.php:10
 msgid "Please increment by "
-msgstr ""
+msgstr "Please increment by "
 
 #: includes/Config/i18nFrontEnd.php:11
 msgid "Insert Link"
-msgstr ""
+msgstr "Insert Link"
 
 #: includes/Config/i18nFrontEnd.php:12
 msgid "Insert Media"
-msgstr ""
+msgstr "Insert Media"
 
 #: includes/Config/i18nFrontEnd.php:14
 msgid "Please correct errors before submitting this form."
-msgstr ""
+msgstr "Please correct errors before submitting this form."
 
 #: includes/Config/i18nFrontEnd.php:16
 msgid "Honeypot Error"
-msgstr ""
+msgstr "Honeypot Error"
 
 #: includes/Config/i18nFrontEnd.php:17
 msgid "File Upload in Progress."
-msgstr ""
+msgstr "File Upload in Progress."
 
 #: includes/Config/i18nFrontEnd.php:18
 msgid "FILE UPLOAD"
-msgstr ""
+msgstr "FILE UPLOAD"
 
 #: includes/Config/MergeTagsFields.php:14
 msgid "All Fields"
@@ -5643,7 +5615,7 @@ msgstr "All Fields"
 
 #: includes/Config/MergeTagsForm.php:14
 msgid "Sub Sequence"
-msgstr ""
+msgstr "Sub Sequence"
 
 #: includes/Config/MergeTagsPost.php:14
 msgid "Post ID"
@@ -5712,7 +5684,7 @@ msgstr "Rollback to the most recent 2.9.x release."
 #: includes/Config/PluginSettingsDefaults.php:5 includes/Fields/Date.php:51
 #: includes/Fields/Date.php:53
 msgid "m/d/Y"
-msgstr ""
+msgstr "m/d/Y"
 
 #: includes/Config/PluginSettingsGroups.php:12
 msgid "reCaptcha Settings"
@@ -5736,89 +5708,89 @@ msgstr "Administration"
 
 #: includes/Database/MockData.php:14
 msgid "Foo"
-msgstr ""
+msgstr "Foo"
 
 #: includes/Database/MockData.php:21
 msgid "Bar"
-msgstr ""
+msgstr "Bar"
 
 #: includes/Database/MockData.php:28
 msgid "Baz"
-msgstr ""
+msgstr "Baz"
 
 #: includes/Database/MockData.php:42
 msgid "Blank Forms"
-msgstr ""
+msgstr "Blank Forms"
 
 #: includes/Database/MockData.php:54
 msgid "Contact Me"
-msgstr ""
+msgstr "Makipag-ugnayan sa akin"
 
 #: includes/Database/MockData.php:176
 msgid "Mock Success Message Action"
-msgstr ""
+msgstr "Mock Success Message Action"
 
 #: includes/Database/MockData.php:178
 msgid "Thank you {field:name} for filling out my form!"
-msgstr ""
+msgstr "Thank you {field:name} for filling out my form!"
 
 #: includes/Database/MockData.php:190
 msgid "Mock Email Action"
-msgstr ""
+msgstr "Mock Email Action"
 
 #: includes/Database/MockData.php:193
 msgid "This is an email action."
-msgstr ""
+msgstr "This is an email action."
 
 #: includes/Database/MockData.php:194
 msgid "Hello, Ninja Forms!"
-msgstr ""
+msgstr "Hello, Ninja Forms!"
 
 #: includes/Database/MockData.php:206 includes/Database/MockData.php:332
 #: includes/Database/MockData.php:490 includes/Database/MockData.php:810
 msgid "Mock Save Action"
-msgstr ""
+msgstr "Mock Save Action"
 
 #: includes/Database/MockData.php:216 includes/Database/MockData.php:220
 msgid "Foo Bar"
-msgstr ""
+msgstr "Foo Bar"
 
 #: includes/Database/MockData.php:217
 msgid "foo@wpninjas.com"
-msgstr ""
+msgstr "foo@wpninjas.com"
 
 #: includes/Database/MockData.php:218
 msgid "This is a test"
-msgstr ""
+msgstr "This is a test"
 
 #: includes/Database/MockData.php:227 includes/Database/MockData.php:231
 msgid "John Doe"
-msgstr ""
+msgstr "John Doe"
 
 #: includes/Database/MockData.php:228
 msgid "user@gmail.com"
-msgstr ""
+msgstr "user@gmail.com"
 
 #: includes/Database/MockData.php:229
 msgid "This is another test."
-msgstr ""
+msgstr "This is another test."
 
 #: includes/Database/MockData.php:242
 #: includes/Templates/admin-menu-system-status.html.php:3
 msgid "Get Help"
-msgstr "Get Help"
+msgstr "Humingi ng Tulong"
 
 #: includes/Database/MockData.php:269
 msgid "What Can We Help You With?"
-msgstr ""
+msgstr "What Can We Help You With?"
 
 #: includes/Database/MockData.php:276
 msgid "Agree?"
-msgstr ""
+msgstr "Agree?"
 
 #: includes/Database/MockData.php:283
 msgid "Best Contact Method?"
-msgstr ""
+msgstr "Best Contact Method?"
 
 #: includes/Database/MockData.php:287 includes/Database/MockData.php:668
 #: includes/Fields/Phone.php:24
@@ -5827,37 +5799,37 @@ msgstr "Telepono"
 
 #: includes/Database/MockData.php:301
 msgid "Snail Mail"
-msgstr ""
+msgstr "Snail Mail"
 
 #: includes/Database/MockData.php:315
 msgid "Send"
-msgstr ""
+msgstr "Ipadala"
 
 #: includes/Database/MockData.php:343
 msgid "Kitchen Sink"
-msgstr ""
+msgstr "Kitchen Sink"
 
 #: includes/Database/MockData.php:387 includes/Database/MockData.php:536
 msgid "Select List"
-msgstr ""
+msgstr "Select List"
 
 #: includes/Database/MockData.php:390 includes/Database/MockData.php:418
 #: includes/Database/MockData.php:539 includes/Database/MockData.php:567
 #: includes/Database/MockData.php:595
 msgid "Option One"
-msgstr ""
+msgstr "Option One"
 
 #: includes/Database/MockData.php:397 includes/Database/MockData.php:425
 #: includes/Database/MockData.php:546 includes/Database/MockData.php:574
 #: includes/Database/MockData.php:602
 msgid "Option Two"
-msgstr ""
+msgstr "Option Two"
 
 #: includes/Database/MockData.php:404 includes/Database/MockData.php:432
 #: includes/Database/MockData.php:553 includes/Database/MockData.php:581
 #: includes/Database/MockData.php:609
 msgid "Option Three"
-msgstr ""
+msgstr "Option Three"
 
 #: includes/Database/MockData.php:415 includes/Database/MockData.php:564
 #: includes/Fields/ListRadio.php:24
@@ -5871,7 +5843,7 @@ msgstr "Radio List"
 
 #: includes/Database/MockData.php:501
 msgid "Bathroom Sink"
-msgstr ""
+msgstr "Bathroom Sink"
 
 #: includes/Database/MockData.php:592 includes/Fields/ListCheckbox.php:26
 msgid "Checkbox List"
@@ -5879,7 +5851,7 @@ msgstr "Checkbox List"
 
 #: includes/Database/MockData.php:649
 msgid "These are all the fields in the User Information section."
-msgstr ""
+msgstr "These are all the fields in the User Information section."
 
 #: includes/Database/MockData.php:673 includes/Fields/Address.php:25
 msgid "Address"
@@ -5891,19 +5863,19 @@ msgstr "Lungsod"
 
 #: includes/Database/MockData.php:688
 msgid "Zip Code"
-msgstr ""
+msgstr "Zip Code"
 
 #: includes/Database/MockData.php:697
 msgid "These are all the fields in the Pricing section."
-msgstr ""
+msgstr "These are all the fields in the Pricing section."
 
 #: includes/Database/MockData.php:701
 msgid "Product (quanitity included)"
-msgstr ""
+msgstr "Product (quanitity included)"
 
 #: includes/Database/MockData.php:708
 msgid "Product (seperate quantity)"
-msgstr ""
+msgstr "Product (seperate quantity)"
 
 #: includes/Database/MockData.php:715 includes/Database/MockData.php:910
 #: includes/Fields/Quantity.php:30
@@ -5926,7 +5898,7 @@ msgstr "Credit Card Number"
 
 #: includes/Database/MockData.php:745
 msgid "Credit Card CVV"
-msgstr ""
+msgstr "Credit Card CVV"
 
 #: includes/Database/MockData.php:750
 #: includes/Fields/CreditCardExpiration.php:26
@@ -5935,123 +5907,124 @@ msgstr "Credit Card Expiration"
 
 #: includes/Database/MockData.php:755
 msgid "Credit Card Zip Code"
-msgstr ""
+msgstr "Credit Card Zip Code"
 
 #: includes/Database/MockData.php:764
 msgid "These are various special fields."
-msgstr ""
+msgstr "These are various special fields."
 
 #: includes/Database/MockData.php:774
 msgid "Anti-Spam Question (Answer = answer)"
-msgstr ""
+msgstr "Anti-Spam Question (Answer = answer)"
 
 #: includes/Database/MockData.php:776
 msgid "answer"
-msgstr ""
+msgstr "answer"
 
 #: includes/Database/MockData.php:805
 msgid "processing"
-msgstr ""
+msgstr "processing"
 
 #: includes/Database/MockData.php:822
 msgid "Long Form - "
-msgstr ""
+msgstr "Long Form - "
 
 #: includes/Database/MockData.php:822
 #: includes/Templates/admin-menu-new-form.html.php:364
 msgid " Fields"
-msgstr ""
+msgstr " Fields"
 
 #: includes/Database/MockData.php:835
 msgid "Field #"
-msgstr ""
+msgstr "Field #"
 
 #: includes/Database/MockData.php:851
 msgid "Email Subscription Form"
-msgstr ""
+msgstr "Email Subscription Form"
 
 #: includes/Database/MockData.php:863
 msgid "Email Address"
-msgstr ""
+msgstr "Email Address"
 
 #: includes/Database/MockData.php:867
 msgid "Enter your email address"
-msgstr ""
+msgstr "Ipasok ang iyong email address"
 
 #: includes/Database/MockData.php:876
 msgid "Subscribe"
-msgstr ""
+msgstr "Mag-subscribe"
 
 #: includes/Database/MockData.php:888
 msgid "Product Form (with Quantity Field)"
-msgstr ""
+msgstr "Product Form (with Quantity Field)"
 
 #: includes/Database/MockData.php:943 includes/Database/MockData.php:1004
 #: includes/Database/MockData.php:1107 includes/Database/MockData.php:1150
 msgid "Purchase"
-msgstr ""
+msgstr "Bilhin"
 
 #: includes/Database/MockData.php:955 includes/Database/MockData.php:1016
 #: includes/Database/MockData.php:1119
 msgid "You purchased "
-msgstr ""
+msgstr "You purchased "
 
 #: includes/Database/MockData.php:956
 msgid "product(s) for "
-msgstr ""
+msgstr "product(s) for "
 
 #: includes/Database/MockData.php:964
 msgid "Product Form (Inline Quantity)"
-msgstr ""
+msgstr "Product Form (Inline Quantity)"
 
 #: includes/Database/MockData.php:1017
 msgid " product(s) for "
-msgstr ""
+msgstr " product(s) for "
 
 #: includes/Database/MockData.php:1025
 msgid "Product Form (Multiple Products)"
-msgstr ""
+msgstr "Product Form (Multiple Products)"
 
 #: includes/Database/MockData.php:1035
 msgid "Product A"
-msgstr ""
+msgstr "Product A"
 
 #: includes/Database/MockData.php:1047
 msgid "Quantity for Product A"
-msgstr ""
+msgstr "Quantity for Product A"
 
 #: includes/Database/MockData.php:1062
 msgid "Product B"
-msgstr ""
+msgstr "Product B"
 
 #: includes/Database/MockData.php:1074
 msgid "Quantity for Product B"
-msgstr ""
+msgstr "Quantity for Product B"
 
 #: includes/Database/MockData.php:1120
 msgid "of Product A and "
-msgstr ""
+msgstr "of Product A and "
 
 #: includes/Database/MockData.php:1121
 msgid "of Product B for $"
-msgstr ""
+msgstr "of Product B for $"
 
 #: includes/Database/MockData.php:1132
 msgid "Form with Calculations"
-msgstr ""
+msgstr "Form with Calculations"
 
 #: includes/Database/MockData.php:1136
 msgid "My First Calculation"
-msgstr ""
+msgstr "My First Calculation"
 
 #: includes/Database/MockData.php:1140
 msgid "My Second Calculation"
-msgstr ""
+msgstr "My Second Calculation"
 
 #: includes/Database/MockData.php:1158
 msgid ""
 "Calculations are returned with the AJAX response ( response -> data -> calcs"
 msgstr ""
+"Calculations are returned with the AJAX response ( response -> data -> calcs"
 
 #: includes/Database/Models/Form.php:117
 msgid "copy"
@@ -6059,7 +6032,7 @@ msgstr "copy"
 
 #: includes/Database/Models/Form.php:267
 msgid "Save Form"
-msgstr ""
+msgstr "I-save ang Form"
 
 #: includes/Database/Models/Form.php:529 includes/Fields/CreditCardZip.php:23
 msgid "Credit Card Zip"
@@ -6079,7 +6052,7 @@ msgstr "Notice: Ninja Forms shortcode used without specifying a form."
 
 #: includes/Display/Shortcodes.php:43
 msgid "Ninja Forms shortcode used without specifying a form."
-msgstr ""
+msgstr "Ninja Forms shortcode used without specifying a form."
 
 #: includes/Fields/Address2.php:23
 msgid "Address 2"
@@ -6112,23 +6085,23 @@ msgstr "Credit Card CVC"
 
 #: includes/Fields/Date.php:52
 msgid "d-m-Y"
-msgstr ""
+msgstr "d-m-Y"
 
 #: includes/Fields/Date.php:54
 msgid "m-d-Y"
-msgstr ""
+msgstr "m-d-Y"
 
 #: includes/Fields/Date.php:55
 msgid "Y-m-d"
-msgstr ""
+msgstr "Y-m-d"
 
 #: includes/Fields/Date.php:56
 msgid "Y/m/d"
-msgstr ""
+msgstr "Y/m/d"
 
 #: includes/Fields/Date.php:57
 msgid "l, F d Y"
-msgstr ""
+msgstr "l, F d Y"
 
 #: includes/Fields/hr.php:28
 msgid "Divider"
@@ -6156,7 +6129,7 @@ msgstr "Password Confirm"
 
 #: includes/Fields/PasswordConfirm.php:26
 msgid "password"
-msgstr ""
+msgstr "password"
 
 #: includes/Fields/Recaptcha.php:24
 msgid "Recaptcha"
@@ -6237,43 +6210,43 @@ msgstr "User"
 
 #: includes/Templates/admin-menu-addons.html.php:9
 msgid " requires an update. You have version "
-msgstr ""
+msgstr " requires an update. You have version "
 
 #: includes/Templates/admin-menu-addons.html.php:9
 msgid " installed. The current version is "
-msgstr ""
+msgstr " installed. The current version is "
 
 #: includes/Templates/admin-menu-forms.html.php:17
 msgid "Editing Field"
-msgstr ""
+msgstr "Editing Field"
 
 #: includes/Templates/admin-menu-forms.html.php:21
 msgid "Label Name"
-msgstr ""
+msgstr "Label Name"
 
 #: includes/Templates/admin-menu-forms.html.php:27
 msgid "Above Field"
-msgstr ""
+msgstr "Above Field"
 
 #: includes/Templates/admin-menu-forms.html.php:28
 msgid "Below Field"
-msgstr ""
+msgstr "Below Field"
 
 #: includes/Templates/admin-menu-forms.html.php:29
 msgid "Left of Field"
-msgstr ""
+msgstr "Left of Field"
 
 #: includes/Templates/admin-menu-forms.html.php:30
 msgid "Right of Field"
-msgstr ""
+msgstr "Right of Field"
 
 #: includes/Templates/admin-menu-forms.html.php:31
 msgid "Hide Label"
-msgstr ""
+msgstr "Hide Label"
 
 #: includes/Templates/admin-menu-forms.html.php:35
 msgid "Class Name"
-msgstr ""
+msgstr "Class Name"
 
 #: includes/Templates/admin-menu-forms.html.php:55
 #: includes/Templates/admin-menu-forms.html.php:83
@@ -6281,7 +6254,7 @@ msgstr ""
 #: includes/Templates/admin-menu-forms.html.php:139
 #: includes/Templates/admin-menu-forms.html.php:167
 msgid "Basic Fields"
-msgstr ""
+msgstr "Basic Fields"
 
 #: includes/Templates/admin-menu-forms.html.php:70
 #: includes/Templates/admin-menu-forms.html.php:98
@@ -6289,65 +6262,65 @@ msgstr ""
 #: includes/Templates/admin-menu-forms.html.php:154
 #: includes/Templates/admin-menu-forms.html.php:182
 msgid "Mult-Select"
-msgstr ""
+msgstr "Mult-Select"
 
 #: includes/Templates/admin-menu-new-form.html.php:30
 #: includes/Templates/admin-menu-new-form.html.php:32
 #: includes/Templates/ui-nf-header.html.php:17
 msgid "Add new field"
-msgstr ""
+msgstr "Add new field"
 
 #: includes/Templates/admin-menu-new-form.html.php:37
 #: includes/Templates/admin-menu-new-form.html.php:39
 msgid "Add new action"
-msgstr ""
+msgstr "Add new action"
 
 #: includes/Templates/admin-menu-new-form.html.php:60
 msgid "Expand Menu"
-msgstr ""
+msgstr "Expand Menu"
 
 #: includes/Templates/admin-menu-new-form.html.php:64
 #: includes/Templates/admin-menu-new-form.html.php:179
 #: includes/Templates/admin-menu-new-form.html.php:355
 #: includes/Templates/ui-nf-menu-drawer.html.php:3
 msgid "Publish"
-msgstr ""
+msgstr "I-publish"
 
 #: includes/Templates/admin-menu-new-form.html.php:64
 msgid "PUBLISH"
-msgstr ""
+msgstr "ILATHALA"
 
 #: includes/Templates/admin-menu-new-form.html.php:68
 msgid "Loading"
-msgstr ""
+msgstr "Naglo-load"
 
 #: includes/Templates/admin-menu-new-form.html.php:80
 msgid "View Changes"
-msgstr ""
+msgstr "View Changes"
 
 #: includes/Templates/admin-menu-new-form.html.php:97
 msgid "Add form fields"
-msgstr ""
+msgstr "Add form fields"
 
 #: includes/Templates/admin-menu-new-form.html.php:98
 msgid "Get started by adding your first form field."
-msgstr ""
+msgstr "Get started by adding your first form field."
 
 #: includes/Templates/admin-menu-new-form.html.php:98
 msgid "Add New Field"
-msgstr ""
+msgstr "Add New Field"
 
 #: includes/Templates/admin-menu-new-form.html.php:98
 msgid "Just click here and select the fields you want."
-msgstr ""
+msgstr "Just click here and select the fields you want."
 
 #: includes/Templates/admin-menu-new-form.html.php:98
 msgid "It's that easy. Or..."
-msgstr ""
+msgstr "It's that easy. Or..."
 
 #: includes/Templates/admin-menu-new-form.html.php:99
 msgid "Start from a template"
-msgstr ""
+msgstr "Start from a template"
 
 #: includes/Templates/admin-menu-new-form.html.php:102
 msgid "Contact Us"
@@ -6358,54 +6331,64 @@ msgid ""
 "Allow your users to contact you with this simple contact form. You can add "
 "and remove fields as needed."
 msgstr ""
+"Allow your users to contact you with this simple contact form. You can add "
+"and remove fields as needed."
 
 #: includes/Templates/admin-menu-new-form.html.php:109
 msgid "Quote Request"
-msgstr ""
+msgstr "Quote Request"
 
 #: includes/Templates/admin-menu-new-form.html.php:110
 msgid ""
 "Manage quote requests from your website easily with this remplate. You can "
 "add and remove fields as needed."
 msgstr ""
+"Manage quote requests from your website easily with this remplate. You can "
+"add and remove fields as needed."
 
 #: includes/Templates/admin-menu-new-form.html.php:115
 msgid "Event Registration"
-msgstr ""
+msgstr "Event Registration"
 
 #: includes/Templates/admin-menu-new-form.html.php:116
 msgid ""
 "Allow user to register for your next event this easy to complete form. You "
 "can add and remove fields as needed."
 msgstr ""
+"Allow user to register for your next event this easy to complete form. You "
+"can add and remove fields as needed."
 
 #: includes/Templates/admin-menu-new-form.html.php:121
 msgid "Newsletter Sign Up Form"
-msgstr ""
+msgstr "Newsletter Sign Up Form"
 
 #: includes/Templates/admin-menu-new-form.html.php:122
 msgid ""
 "Add subscribers and grow your email list with this newsletter signup form. "
 "You can add and remove fields as needed."
 msgstr ""
+"Add subscribers and grow your email list with this newsletter signup form. "
+"You can add and remove fields as needed."
 
 #: includes/Templates/admin-menu-new-form.html.php:131
 msgid "Add form actions"
-msgstr ""
+msgstr "Add form actions"
 
 #: includes/Templates/admin-menu-new-form.html.php:132
 msgid ""
 "Get started by adding your first form field. Just click the plus and select "
 "the actions you want. It's that easy."
 msgstr ""
+"Get started by adding your first form field. Just click the plus and select "
+"the actions you want. It's that easy."
 
 #: includes/Templates/admin-menu-new-form.html.php:145
 msgid "Duplicate (^ + C + click)"
-msgstr ""
+msgstr "Duplicate (^ + C + click)"
 
 #: includes/Templates/admin-menu-new-form.html.php:146
 msgid "Delete (^ + D + click)"
-msgstr ""
+msgstr "Delete (^ + D + click)"
 
 #: includes/Templates/admin-menu-new-form.html.php:156
 msgid "Actions"
@@ -6413,47 +6396,47 @@ msgstr "Mga Pagkilos"
 
 #: includes/Templates/admin-menu-new-form.html.php:191
 msgid "Toggle Drawer"
-msgstr ""
+msgstr "Toggle Drawer"
 
 #: includes/Templates/admin-menu-new-form.html.php:192
 #: includes/Templates/ui-nf-toggle-drawer.html.php:2
 msgid "Full screen"
-msgstr ""
+msgstr "Full screen"
 
 #: includes/Templates/admin-menu-new-form.html.php:192
 #: includes/Templates/ui-nf-toggle-drawer.html.php:2
 msgid "Half screen"
-msgstr ""
+msgstr "Half screen"
 
 #: includes/Templates/admin-menu-new-form.html.php:231
 msgid "Undo"
-msgstr ""
+msgstr "I-undo"
 
 #: includes/Templates/admin-menu-new-form.html.php:324
 #: includes/Templates/admin-menu-new-form.html.php:330
 #: includes/Templates/admin-menu-new-form.html.php:339
 msgid "Done"
-msgstr ""
+msgstr "Tapos na"
 
 #: includes/Templates/admin-menu-new-form.html.php:337
 msgid "Undo All"
-msgstr ""
+msgstr "Undo All"
 
 #: includes/Templates/admin-menu-new-form.html.php:337
 msgid " Undo All"
-msgstr ""
+msgstr " Undo All"
 
 #: includes/Templates/admin-menu-new-form.html.php:345
 msgid "Almost there..."
-msgstr ""
+msgstr "Malapit na..."
 
 #: includes/Templates/admin-menu-new-form.html.php:353
 msgid "Not Yet"
-msgstr ""
+msgstr "Not Yet"
 
 #: includes/Templates/admin-menu-new-form.html.php:626
 msgid " Open in new window"
-msgstr ""
+msgstr " Open in new window"
 
 #: includes/Templates/admin-menu-settings-licenses.html.php:29
 msgid "De-activate"
@@ -6473,19 +6456,19 @@ msgstr "Being Date"
 
 #: includes/Templates/admin-menu-system-status.html.php:4
 msgid "Before requesting help from our support team please review:"
-msgstr ""
+msgstr "Before requesting help from our support team please review:"
 
 #: includes/Templates/admin-menu-system-status.html.php:6
 msgid "Ninja Forms THREE documentation"
-msgstr ""
+msgstr "Ninja Forms THREE documentation"
 
 #: includes/Templates/admin-menu-system-status.html.php:7
 msgid "What to try before contacting support"
-msgstr ""
+msgstr "What to try before contacting support"
 
 #: includes/Templates/admin-menu-system-status.html.php:8
 msgid "Our Scope of Support"
-msgstr ""
+msgstr "Our Scope of Support"
 
 #: includes/Templates/admin-metabox-import-export-favorite-fields-import.html.php:17
 #: includes/Templates/admin-metabox-import-export-favorite-fields-import.html.php:20
@@ -6494,23 +6477,23 @@ msgstr "Import Fields"
 
 #: includes/Templates/admin-metabox-sub-info.html.php:17
 msgid "Updated on: "
-msgstr ""
+msgstr "Updated on: "
 
 #: includes/Templates/admin-metabox-sub-info.html.php:18
 msgid "Submitted on: "
-msgstr ""
+msgstr "Submitted on: "
 
 #: includes/Templates/admin-metabox-sub-info.html.php:20
 msgid "Submitted by: "
-msgstr ""
+msgstr "Submitted by: "
 
 #: includes/Templates/admin-metabox-submission-example.php:1
 msgid "Submission Data"
-msgstr ""
+msgstr "Submission Data"
 
 #: includes/Templates/admin-notice-form-import.html.php:4
 msgid "View"
-msgstr ""
+msgstr "Tingnan"
 
 #: includes/Templates/admin-wp-die.html.php:7
 msgid "Show More"
@@ -6518,20 +6501,20 @@ msgstr "Ipakita ang Iba Pa"
 
 #: includes/Templates/ui-item-controls.html.php:4
 msgid "Editing field"
-msgstr ""
+msgstr "Editing field"
 
 #: includes/Templates/ui-nf-header.html.php:5
 #: includes/Templates/ui-nf-menu-drawer.html.php:6
 msgid "Form Fields"
-msgstr ""
+msgstr "Form Fields"
 
 #: includes/Templates/ui-nf-header.html.php:8
 msgid "Preview Changes"
-msgstr ""
+msgstr "Preview Changes"
 
 #: includes/Templates/ui-nf-header.html.php:18
 msgid "Contact Form"
-msgstr ""
+msgstr "Contact Form"
 
 #: lib/NF_AddonChecker.php:42
 #, php-format
@@ -6539,8 +6522,7 @@ msgid ""
 "Oops! That addon is not yet compatible with Ninja Forms THREE. %sLearn More"
 "%s."
 msgstr ""
-"Oops! That addon is not yet compatible with Ninja Forms THREE. %sLearn More"
-"%s."
+"Oops! That addon is not yet compatible with Ninja Forms THREE. %sLearn More%s."
 
 #: lib/NF_AddonChecker.php:43
 #, php-format
@@ -6549,27 +6531,29 @@ msgstr "%s was deactivated."
 
 #: lib/NF_Tracking.php:78
 msgid "Please help us improve Ninja Forms!"
-msgstr ""
+msgstr "Please help us improve Ninja Forms!"
 
 #: lib/NF_Tracking.php:80
 msgid ""
 "If you opt-in, some data about your installation of Ninja Forms will be sent "
 "to NinjaForms.com (this does NOT include your submissions)."
 msgstr ""
+"If you opt-in, some data about your installation of Ninja Forms will be sent "
+"to NinjaForms.com (this does NOT include your submissions)."
 
 #: lib/NF_Tracking.php:81
 msgid "If you skip this, that's okay! Ninja Forms will still work just fine."
-msgstr ""
+msgstr "If you skip this, that's okay! Ninja Forms will still work just fine."
 
 #: lib/NF_Tracking.php:84
 #, php-format
 msgid "%sAllow%s"
-msgstr ""
+msgstr "%sAllow%s"
 
 #: lib/NF_Tracking.php:85
 #, php-format
 msgid "%sDo not allow%s"
-msgstr ""
+msgstr "%sDo not allow%s"
 
 #: lib/NF_VersionSwitcher.php:24 lib/NF_VersionSwitcher.php:40
 msgid "You do not have permission."
@@ -6581,1243 +6565,12 @@ msgstr "Permission Denied"
 
 #: lib/NF_VersionSwitcher.php:70
 msgid "Ninja Forms Dev"
-msgstr ""
+msgstr "Ninja Forms Dev"
 
 #: lib/NF_VersionSwitcher.php:80
 msgid "DEBUG: Switch to 2.9.x"
-msgstr ""
+msgstr "DEBUG: Switch to 2.9.x"
 
 #: lib/NF_VersionSwitcher.php:83
 msgid "DEBUG: Switch to 3.0.x"
-msgstr ""
-
-#~ msgctxt "post type general name"
-#~ msgid "Submissions"
-#~ msgstr "Submissions"
-
-#~ msgctxt "post type singular name"
-#~ msgid "Submission"
-#~ msgstr "Submission"
-
-#~ msgctxt "nf_sub"
-#~ msgid "Add New"
-#~ msgstr "Magdagdag ng Bago"
-
-#~ msgid "%s submission updated."
-#~ msgid_plural "%s submissions updated."
-#~ msgstr[0] "%s submission updated."
-#~ msgstr[1] "%s submissions updated."
-
-#~ msgid "%s submission not updated, somebody is editing it."
-#~ msgid_plural "%s submissions not updated, somebody is editing them."
-#~ msgstr[0] "%s submission not updated, somebody is editing it."
-#~ msgstr[1] "%s submissions not updated, somebody is editing them."
-
-#~ msgid "%s submission permanently deleted."
-#~ msgid_plural "%s submissions permanently deleted."
-#~ msgstr[0] "%s submission permanently deleted."
-#~ msgstr[1] "%s submissions permanently deleted."
-
-#~ msgid "%s submission moved to the Trash."
-#~ msgid_plural "%s submissions moved to the Trash."
-#~ msgstr[0] "%s submission moved to the Trash."
-#~ msgstr[1] "%s submissions moved to the Trash."
-
-#~ msgid "%s submission restored from the Trash."
-#~ msgid_plural "%s submissions restored from the Trash."
-#~ msgstr[0] "%s submission restored from the Trash."
-#~ msgstr[1] "%s submissions restored from the Trash."
-
-#~ msgctxt "password strength"
-#~ msgid "Medium"
-#~ msgstr "Medium"
-
-#~ msgctxt "Example for list importing. Leave puncation in place."
-#~ msgid "Label,Value,Calc"
-#~ msgstr "Label,Value,Calc"
-
-#~ msgctxt "Short for calculation"
-#~ msgid "Calc"
-#~ msgstr "Calc"
-
-#~ msgctxt "Post Type General Name"
-#~ msgid "Submissions"
-#~ msgstr "Submissions"
-
-#~ msgctxt "Post Type Singular Name"
-#~ msgid "Submission"
-#~ msgstr "Submission"
-
-#~ msgid "USD - $"
-#~ msgstr "USD - $"
-
-#~ msgid "This form is not available."
-#~ msgstr "This form is not available."
-
-#~ msgid "Install Now"
-#~ msgstr "I-install Ngayon"
-
-#~ msgid "Install Update Now"
-#~ msgstr "Install Update Now"
-
-#~ msgid "Newer Version (%s) Installed"
-#~ msgstr "Newer Version (%s) Installed"
-
-#~ msgid "Latest Version Installed"
-#~ msgstr "Latest Version Installed"
-
-#~ msgctxt "Plugin installer section title"
-#~ msgid "Description"
-#~ msgstr "Paglalarawan"
-
-#~ msgctxt "Plugin installer section title"
-#~ msgid "Installation"
-#~ msgstr "Installation"
-
-#~ msgctxt "Plugin installer section title"
-#~ msgid "FAQ"
-#~ msgstr "FAQ"
-
-#~ msgctxt "Plugin installer section title"
-#~ msgid "Screenshots"
-#~ msgstr "Screenshots"
-
-#~ msgctxt "Plugin installer section title"
-#~ msgid "Changelog"
-#~ msgstr "Changelog"
-
-#~ msgctxt "Plugin installer section title"
-#~ msgid "Reviews"
-#~ msgstr "Mga Review"
-
-#~ msgctxt "Plugin installer section title"
-#~ msgid "Other Notes"
-#~ msgstr "Other Notes"
-
-#~ msgid "Plugin Install"
-#~ msgstr "Plugin Install"
-
-#~ msgid "Version:"
-#~ msgstr "Bersyon:"
-
-#~ msgid "Author:"
-#~ msgstr "Author:"
-
-#~ msgid "Last Updated:"
-#~ msgstr "Last Updated:"
-
-#~ msgid "Requires WordPress Version:"
-#~ msgstr "Requires WordPress Version:"
-
-#~ msgid "%s or higher"
-#~ msgstr "%s or higher"
-
-#~ msgid "Compatible up to:"
-#~ msgstr "Compatible up to:"
-
-#~ msgid "Downloaded:"
-#~ msgstr "Downloaded:"
-
-#~ msgid "%s time"
-#~ msgid_plural "%s times"
-#~ msgstr[0] "%s time"
-#~ msgstr[1] "%s times"
-
-#~ msgid "WordPress.org Plugin Page &#187;"
-#~ msgstr "WordPress.org Plugin Page &#187;"
-
-#~ msgid "Plugin Homepage &#187;"
-#~ msgstr "Plugin Homepage &#187;"
-
-#~ msgid "Donate to this plugin &#187;"
-#~ msgstr "Donate to this plugin &#187;"
-
-#~ msgid "Average Rating"
-#~ msgstr "Average Rating"
-
-#~ msgid "(based on %s rating)"
-#~ msgid_plural "(based on %s ratings)"
-#~ msgstr[0] "(based on %s rating)"
-#~ msgstr[1] "(based on %s ratings)"
-
-#~ msgid "Click to see reviews that provided a rating of %d star"
-#~ msgid_plural "Click to see reviews that provided a rating of %d stars"
-#~ msgstr[0] "Click to see reviews that provided a rating of %d star"
-#~ msgstr[1] "Click to see reviews that provided a rating of %d stars"
-
-#~ msgid "%d star"
-#~ msgid_plural "%d stars"
-#~ msgstr[0] "%d star"
-#~ msgstr[1] "%d stars"
-
-#~ msgid "Contributors"
-#~ msgstr "Contributors"
-
-#~ msgid "Warning:"
-#~ msgstr "Babala:"
-
-#~ msgid ""
-#~ "This plugin has not been tested with your current version of WordPress."
-#~ msgstr ""
-#~ "This plugin has not been tested with your current version of WordPress."
-
-#~ msgid ""
-#~ "This plugin has not been marked as compatible with your version of "
-#~ "WordPress."
-#~ msgstr ""
-#~ "This plugin has not been marked as compatible with your version of "
-#~ "WordPress."
-
-#~ msgid "Account"
-#~ msgstr "Account"
-
-#~ msgid "Add On"
-#~ msgstr "Add On"
-
-#~ msgid "Change Ownership"
-#~ msgstr "Change Ownership"
-
-#~ msgid "Support"
-#~ msgstr "Suporta"
-
-#~ msgid "Support Forum"
-#~ msgstr "Support Forum"
-
-#~ msgid "Add Ons"
-#~ msgstr "Add Ons"
-
-#~ msgctxt "verb"
-#~ msgid "Upgrade"
-#~ msgstr "Mag-upgrade"
-
-#~ msgid "Awesome"
-#~ msgstr "Awesome"
-
-#~ msgctxt "noun"
-#~ msgid "Pricing"
-#~ msgstr "Pagpepresyo"
-
-#~ msgctxt "noun"
-#~ msgid "Price"
-#~ msgstr "Presyo"
-
-#~ msgid "Unlimited Updates"
-#~ msgstr "Unlimited Updates"
-
-#~ msgctxt "verb"
-#~ msgid "Downgrade"
-#~ msgstr "Mag-downgrade"
-
-#~ msgid "Cancel Trial"
-#~ msgstr "Cancel Trial"
-
-#~ msgid "Free Trial"
-#~ msgstr "Libreng Trial"
-
-#~ msgid "Start my free %s"
-#~ msgstr "Start my free %s"
-
-#~ msgid "No commitment for %s - cancel anytime"
-#~ msgstr "No commitment for %s - cancel anytime"
-
-#~ msgid "After your free %s, pay as little as %s"
-#~ msgstr "After your free %s, pay as little as %s"
-
-#~ msgid "Details"
-#~ msgstr "Mga Detalye"
-
-#~ msgid "Account Details"
-#~ msgstr "Mga Detalye ng Account"
-
-#~ msgctxt "verb"
-#~ msgid "Delete"
-#~ msgstr "Alisin"
-
-#~ msgid "Delete Account"
-#~ msgstr "I-delete ang Account"
-
-#~ msgctxt "as close a window"
-#~ msgid "Dismiss"
-#~ msgstr "I-dismiss"
-
-#~ msgctxt "as product pricing plan"
-#~ msgid "Plan"
-#~ msgstr "Plan"
-
-#~ msgid "Change Plan"
-#~ msgstr "Magbago ng Plano"
-
-#~ msgctxt "as download professional version"
-#~ msgid "Download %s Version"
-#~ msgstr "Download %s Version"
-
-#~ msgctxt "as download professional version now"
-#~ msgid "Download %s version now"
-#~ msgstr "Download %s version now"
-
-#~ msgctxt "as download latest version"
-#~ msgid "Download Latest"
-#~ msgstr "Download Latest"
-
-#~ msgctxt "E.g. you have a professional license."
-#~ msgid "You have a %s license."
-#~ msgstr "You have a %s license."
-
-#~ msgid "New"
-#~ msgstr "Bago"
-
-#~ msgid "Free"
-#~ msgstr "Libre"
-
-#~ msgctxt "as trial plan"
-#~ msgid "Trial"
-#~ msgstr "Trial"
-
-#~ msgctxt "verb"
-#~ msgid "Purchase"
-#~ msgstr "Bilhin"
-
-#~ msgid "Purchase License"
-#~ msgstr "Purchase License"
-
-#~ msgctxt "verb"
-#~ msgid "Buy"
-#~ msgstr "Bumili"
-
-#~ msgid "Buy License"
-#~ msgstr "Buy License"
-
-#~ msgid "Single Site License"
-#~ msgstr "Single Site License"
-
-#~ msgid "Unlimited Licenses"
-#~ msgstr "Unlimited Licenses"
-
-#~ msgid "Up to %s Sites"
-#~ msgstr "Up to %s Sites"
-
-#~ msgid ""
-#~ "%sRenew your license now%s to access version %s features and support."
-#~ msgstr ""
-#~ "%sRenew your license now%s to access version %s features and support."
-
-#~ msgctxt "e.g. Professional Plan"
-#~ msgid "%s Plan"
-#~ msgstr "%s Plan"
-
-#~ msgid "You are just one step away - %s"
-#~ msgstr "You are just one step away - %s"
-
-#~ msgctxt "%s - plugin name. As complete \"Jetpack\" activation now"
-#~ msgid "Complete \"%s\" Activation Now"
-#~ msgstr "Complete \"%s\" Activation Now"
-
-#~ msgid "We made a few tweaks to the plugin, %s"
-#~ msgstr "We made a few tweaks to the plugin, %s"
-
-#~ msgid "Opt-in to make \"%s\" Better!"
-#~ msgstr "Opt-in to make \"%s\" Better!"
-
-#~ msgid ""
-#~ "Freemius SDK couldn't find the plugin's main file. Please contact "
-#~ "sdk@freemius.com with the current error."
-#~ msgstr ""
-#~ "Freemius SDK couldn't find the plugin's main file. Please contact "
-#~ "sdk@freemius.com with the current error."
-
-#~ msgctxt "as expiration date"
-#~ msgid "Expiration"
-#~ msgstr "Expiration"
-
-#~ msgctxt "as software license"
-#~ msgid "License"
-#~ msgstr "License"
-
-#~ msgid "not verified"
-#~ msgstr "not verified"
-
-#~ msgid "Verify Email"
-#~ msgstr "Verify Email"
-
-#~ msgctxt "e.g. expires in 2 months"
-#~ msgid "Expires in %s"
-#~ msgstr "Expires in %s"
-
-#~ msgctxt "e.g. auto renews in 2 months"
-#~ msgid "Auto renews in %s"
-#~ msgstr "Auto renews in %s"
-
-#~ msgid "No expiration"
-#~ msgstr "No expiration"
-
-#~ msgid "Expired"
-#~ msgstr "Nag-expire na"
-
-#~ msgid "Cancelled"
-#~ msgstr "Kinansela"
-
-#~ msgctxt "e.g. In 2 hours"
-#~ msgid "In %s"
-#~ msgstr "In %s"
-
-#~ msgctxt "e.g. 2 min ago"
-#~ msgid "%s ago"
-#~ msgstr "%s ago"
-
-#~ msgctxt "as plugin version"
-#~ msgid "Version"
-#~ msgstr "Bersyon"
-
-#~ msgid "Verified"
-#~ msgstr "Na-verify"
-
-#~ msgid "Plugin"
-#~ msgstr "Plugin"
-
-#~ msgctxt "as file/folder path"
-#~ msgid "Path"
-#~ msgstr "Path"
-
-#~ msgid "Title"
-#~ msgstr "Titulo"
-
-#~ msgid "Free version"
-#~ msgstr "Free version"
-
-#~ msgid "Premium version"
-#~ msgstr "Premium version"
-
-#~ msgctxt "as WP plugin slug"
-#~ msgid "Slug"
-#~ msgstr "Slug"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Users"
-#~ msgstr "Mga User"
-
-#~ msgid "Plugin Installs"
-#~ msgstr "Plugin Installs"
-
-#~ msgctxt "like websites"
-#~ msgid "Sites"
-#~ msgstr "Mga Site"
-
-#~ msgid "Site ID"
-#~ msgstr "Site ID"
-
-#~ msgid "Public Key"
-#~ msgstr "Pampublikong Key"
-
-#~ msgid "Secret Key"
-#~ msgstr "Secret Key"
-
-#~ msgctxt "as secret encryption key missing"
-#~ msgid "No Secret"
-#~ msgstr "No Secret"
-
-#~ msgid "No ID"
-#~ msgstr "No ID"
-
-#~ msgctxt "as synchronize license"
-#~ msgid "Sync License"
-#~ msgstr "Sync License"
-
-#~ msgctxt "as synchronize"
-#~ msgid "Sync"
-#~ msgstr "Sync"
-
-#~ msgctxt "active mode"
-#~ msgid "Active"
-#~ msgstr "Aktibo"
-
-#~ msgctxt "is active mode?"
-#~ msgid "Is Active"
-#~ msgstr "Is Active"
-
-#~ msgid "More information about %s"
-#~ msgstr "Higit pang impormasyon tungkol sa %s"
-
-#~ msgid "Localhost"
-#~ msgstr "Localhost"
-
-#~ msgctxt "as activate Professional plan"
-#~ msgid "Activate %s Plan"
-#~ msgstr "Activate %s Plan"
-
-#~ msgid "What is your %s?"
-#~ msgstr "What is your %s?"
-
-#~ msgid "Activate this add-on"
-#~ msgstr "Activate this add-on"
-
-#~ msgid ""
-#~ "Deactivating your license will block all premium features, but will "
-#~ "enable you to activate the license on another site. Are you sure you want "
-#~ "to proceed?"
-#~ msgstr ""
-#~ "Deactivating your license will block all premium features, but will "
-#~ "enable you to activate the license on another site. Are you sure you want "
-#~ "to proceed?"
-
-#~ msgid ""
-#~ "Deleting the account will automatically deactivate your %s plan license "
-#~ "so you can use it on other sites. If you want to terminate the recurring "
-#~ "payments as well, click the \"Cancel\" button, and first \"Downgrade\" "
-#~ "your account. Are you sure you would like to continue with the deletion?"
-#~ msgstr ""
-#~ "Deleting the account will automatically deactivate your %s plan license "
-#~ "so you can use it on other sites. If you want to terminate the recurring "
-#~ "payments as well, click the \"Cancel\" button, and first \"Downgrade\" "
-#~ "your account. Are you sure you would like to continue with the deletion?"
-
-#~ msgid ""
-#~ "Deletion is not temporary. Only delete if you no longer want to use this "
-#~ "plugin anymore. Are you sure you would like to continue with the deletion?"
-#~ msgstr ""
-#~ "Deletion is not temporary. Only delete if you no longer want to use this "
-#~ "plugin anymore. Are you sure you would like to continue with the deletion?"
-
-#~ msgid ""
-#~ "Downgrading your plan will immediately stop all future recurring payments "
-#~ "and your %s plan license will expire in %s."
-#~ msgstr ""
-#~ "Downgrading your plan will immediately stop all future recurring payments "
-#~ "and your %s plan license will expire in %s."
-
-#~ msgid ""
-#~ "Cancelling the trial will immediately block access to all premium "
-#~ "features. Are you sure?"
-#~ msgstr ""
-#~ "Cancelling the trial will immediately block access to all premium "
-#~ "features. Are you sure?"
-
-#~ msgid ""
-#~ "You can still enjoy all %s features but you will not have access to "
-#~ "plugin updates and support."
-#~ msgstr ""
-#~ "You can still enjoy all %s features but you will not have access to "
-#~ "plugin updates and support."
-
-#~ msgid ""
-#~ "Once your license expire you can still use the Free version but you will "
-#~ "NOT have access to the %s features."
-#~ msgstr ""
-#~ "Once your license expire you can still use the Free version but you will "
-#~ "NOT have access to the %s features."
-
-#~ msgid "Are you sure you want to proceed?"
-#~ msgstr "Are you sure you want to proceed?"
-
-#~ msgid "Add Ons for %s"
-#~ msgstr "Add Ons for %s"
-
-#~ msgid ""
-#~ "We could'nt load the add-ons list. It's probably an issue on our side, "
-#~ "please try to come back in few minutes."
-#~ msgstr ""
-#~ "We could'nt load the add-ons list. It's probably an issue on our side, "
-#~ "please try to come back in few minutes."
-
-#~ msgid "If you have a moment, please let us know why you are deactivating"
-#~ msgstr "If you have a moment, please let us know why you are deactivating"
-
-#~ msgid "Yes - Deactivate"
-#~ msgstr "Yes - Deactivate"
-
-#~ msgid "Submit & Deactivate"
-#~ msgstr "Submit & Deactivate"
-
-#~ msgctxt ""
-#~ "the text of the cancel button of the plugin deactivation dialog box."
-#~ msgid "Cancel"
-#~ msgstr "Kanselahin"
-
-#~ msgid "I no longer need the plugin"
-#~ msgstr "I no longer need the plugin"
-
-#~ msgid "I found a better plugin"
-#~ msgstr "I found a better plugin"
-
-#~ msgid "I only needed the plugin for a short period"
-#~ msgstr "I only needed the plugin for a short period"
-
-#~ msgid "The plugin broke my site"
-#~ msgstr "The plugin broke my site"
-
-#~ msgid "The plugin suddenly stopped working"
-#~ msgstr "The plugin suddenly stopped working"
-
-#~ msgid "I can't pay for it anymore"
-#~ msgstr "I can't pay for it anymore"
-
-#~ msgctxt ""
-#~ "the text of the \"other\" reason for deactivating the plugin that is "
-#~ "shown in the modal box."
-#~ msgid "Other"
-#~ msgstr "Iba pa"
-
-#~ msgid "What's the plugin's name?"
-#~ msgstr "What's the plugin's name?"
-
-#~ msgid "What price would you feel comfortable paying?"
-#~ msgstr "What price would you feel comfortable paying?"
-
-#~ msgid "I couldn't understand how to make it work"
-#~ msgstr "I couldn't understand how to make it work"
-
-#~ msgid ""
-#~ "The plugin is great, but I need specific feature that you don't support"
-#~ msgstr ""
-#~ "The plugin is great, but I need specific feature that you don't support"
-
-#~ msgid "The plugin is not working"
-#~ msgstr "The plugin is not working"
-
-#~ msgid "It's not what I was looking for"
-#~ msgstr "It's not what I was looking for"
-
-#~ msgid "The plugin didn't work as expected"
-#~ msgstr "The plugin didn't work as expected"
-
-#~ msgid "What feature?"
-#~ msgstr "What feature?"
-
-#~ msgid "Kindly share what didn't work so we can fix it for future users..."
-#~ msgstr "Kindly share what didn't work so we can fix it for future users..."
-
-#~ msgid "What you've been looking for?"
-#~ msgstr "What you've been looking for?"
-
-#~ msgid "What did you expect?"
-#~ msgstr "What did you expect?"
-
-#~ msgid "The plugin didn't work"
-#~ msgstr "The plugin didn't work"
-
-#~ msgid "I don't like to share my information with you"
-#~ msgstr "I don't like to share my information with you"
-
-#~ msgctxt "greeting"
-#~ msgid "Hey %s,"
-#~ msgstr "Hey %s,"
-
-#~ msgctxt "a greeting. E.g. Thanks John!"
-#~ msgid "Thanks %s!"
-#~ msgstr "Thanks %s!"
-
-#~ msgid ""
-#~ "In order to enjoy all our features and functionality, %s needs to connect "
-#~ "your user, %s at %s, to %s"
-#~ msgstr ""
-#~ "In order to enjoy all our features and functionality, %s needs to connect "
-#~ "your user, %s at %s, to %s"
-
-#~ msgid ""
-#~ "Please help us improve %2$s! If you opt-in, some data about your usage of "
-#~ "%2$s will be sent to %5$s. If you skip this, that's okay! %2$s will still "
-#~ "work just fine."
-#~ msgstr ""
-#~ "Please help us improve %2$s! If you opt-in, some data about your usage of "
-#~ "%2$s will be sent to %5$s. If you skip this, that's okay! %2$s will still "
-#~ "work just fine."
-
-#~ msgid ""
-#~ "You should receive an activation email for %s to your mailbox at %s. "
-#~ "Please make sure you click the activation button in that email to "
-#~ "complete the install."
-#~ msgstr ""
-#~ "You should receive an activation email for %s to your mailbox at %s. "
-#~ "Please make sure you click the activation button in that email to "
-#~ "complete the install."
-
-#~ msgid "What permissions are being granted?"
-#~ msgstr "What permissions are being granted?"
-
-#~ msgid "Your Profile Overview"
-#~ msgstr "Your Profile Overview"
-
-#~ msgid "Name and email address"
-#~ msgstr "Name and email address"
-
-#~ msgid "Your Site Overview"
-#~ msgstr "Your Site Overview"
-
-#~ msgid "Site address, WordPress version, PHP Version"
-#~ msgstr "Site address, WordPress version, PHP Version"
-
-#~ msgid "Plugin Events"
-#~ msgstr "Plugin Events"
-
-#~ msgid "Activation, deactivation and uninstall"
-#~ msgstr "Activation, deactivation and uninstall"
-
-#~ msgid "Newsletter"
-#~ msgstr "Newsletter"
-
-#~ msgid "Updates, announcements, marketing, no spam"
-#~ msgstr "Updates, announcements, marketing, no spam"
-
-#~ msgid "Privacy Policy"
-#~ msgstr "Patakaran sa Privacy"
-
-#~ msgid "Terms of Service"
-#~ msgstr "Mga Tuntunin ng Serbisyo"
-
-#~ msgctxt "as activating plugin"
-#~ msgid "Activating"
-#~ msgstr "Activating"
-
-#~ msgctxt "as in the process of sending an email"
-#~ msgid "Sending email"
-#~ msgstr "Sending email"
-
-#~ msgctxt "button label"
-#~ msgid "Allow & Continue"
-#~ msgstr "Allow & Continue"
-
-#~ msgctxt "verb"
-#~ msgid "Skip"
-#~ msgstr "Laktawan"
-
-#~ msgid "Re-send activation email"
-#~ msgstr "Re-send activation email"
-
-#~ msgid "Screenshots"
-#~ msgstr "Screenshots"
-
-#~ msgid "Click to view full-size screenshot %d"
-#~ msgstr "Click to view full-size screenshot %d"
-
-#~ msgid "Freemius Debug"
-#~ msgstr "Freemius Debug"
-
-#~ msgctxt "as turned on"
-#~ msgid "On"
-#~ msgstr "On"
-
-#~ msgctxt "as turned off"
-#~ msgid "Off"
-#~ msgstr "Off"
-
-#~ msgctxt "as code debugging"
-#~ msgid "Debugging"
-#~ msgstr "Dine-debug"
-
-#~ msgid "Freemius State"
-#~ msgstr "Freemius State"
-
-#~ msgctxt "as connection was successful"
-#~ msgid "Connected"
-#~ msgstr "Nakakonekta"
-
-#~ msgctxt "as connection blocked"
-#~ msgid "Blocked"
-#~ msgstr "Naka-block"
-
-#~ msgctxt "as application program interface"
-#~ msgid "API"
-#~ msgstr "API"
-
-#~ msgctxt "as software development kit versions"
-#~ msgid "SDK"
-#~ msgstr "SDK"
-
-#~ msgctxt "as software development kit versions"
-#~ msgid "SDK Versions"
-#~ msgstr "SDK Versions"
-
-#~ msgctxt "as plugin folder path"
-#~ msgid "Plugin Path"
-#~ msgstr "Plugin Path"
-
-#~ msgctxt "as sdk path"
-#~ msgid "SDK Path"
-#~ msgstr "SDK Path"
-
-#~ msgid "Add Ons of Plugin %s"
-#~ msgstr "Add Ons of Plugin %s"
-
-#~ msgid "Are you sure you want to delete all Freemius data?"
-#~ msgstr "Are you sure you want to delete all Freemius data?"
-
-#~ msgid "Delete All Accounts"
-#~ msgstr "Delete All Accounts"
-
-#~ msgid "Start Fresh"
-#~ msgstr "Start Fresh"
-
-#~ msgid "Clear API Cache"
-#~ msgstr "Clear API Cache"
-
-#~ msgid "Sync Data From Server"
-#~ msgstr "Sync Data From Server"
-
-#~ msgid "Scheduled Crons"
-#~ msgstr "Scheduled Crons"
-
-#~ msgctxt "as congratulations"
-#~ msgid "Congrats"
-#~ msgstr "Congrats"
-
-#~ msgctxt "exclamation"
-#~ msgid "Oops"
-#~ msgstr "Oops"
-
-#~ msgctxt "interjection expressing joy or exuberance"
-#~ msgid "Yee-haw"
-#~ msgstr "Yee-haw"
-
-#~ msgctxt ""
-#~ "(especially in electronic communication) used to express elation, "
-#~ "enthusiasm, or triumph."
-#~ msgid "W00t"
-#~ msgstr "W00t"
-
-#~ msgctxt "a positive response"
-#~ msgid "Right on"
-#~ msgstr "Right on"
-
-#~ msgctxt ""
-#~ "something somebody says when they are thinking about what you have just "
-#~ "said. "
-#~ msgid "Hmm"
-#~ msgstr "Hmm"
-
-#~ msgid "O.K"
-#~ msgstr "O.K"
-
-#~ msgctxt "exclamation"
-#~ msgid "Hey"
-#~ msgstr "Hey"
-
-#~ msgctxt "advance notice of something that will need attention."
-#~ msgid "Heads up"
-#~ msgstr "Heads up"
-
-#~ msgid "Seems like you got the latest release."
-#~ msgstr "Seems like you got the latest release."
-
-#~ msgid "You are all good!"
-#~ msgstr "You are all good!"
-
-#~ msgid ""
-#~ "Sorry, we could not complete the email update. Another user with the same "
-#~ "email is already registered."
-#~ msgstr ""
-#~ "Sorry, we could not complete the email update. Another user with the same "
-#~ "email is already registered."
-
-#~ msgid ""
-#~ "If you would like to give up the ownership of the plugin's account to %s "
-#~ "click the Change Ownership button."
-#~ msgstr ""
-#~ "If you would like to give up the ownership of the plugin's account to %s "
-#~ "click the Change Ownership button."
-
-#~ msgid ""
-#~ "Your email was successfully updated. You should receive an email with "
-#~ "confirmation instructions in few moments."
-#~ msgstr ""
-#~ "Your email was successfully updated. You should receive an email with "
-#~ "confirmation instructions in few moments."
-
-#~ msgid "Your name was successfully updated."
-#~ msgstr "Your name was successfully updated."
-
-#~ msgid "You have successfully updated your %s."
-#~ msgstr "You have successfully updated your %s."
-
-#~ msgid "Please provide your full name."
-#~ msgstr "Please provide your full name."
-
-#~ msgid ""
-#~ "Verification mail was just sent to %s. If you can't find it after 5 min, "
-#~ "please check your spam box."
-#~ msgstr ""
-#~ "Verification mail was just sent to %s. If you can't find it after 5 min, "
-#~ "please check your spam box."
-
-#~ msgid ""
-#~ "Just letting you know that the add-ons information of %s is being pulled "
-#~ "from external server."
-#~ msgstr ""
-#~ "Just letting you know that the add-ons information of %s is being pulled "
-#~ "from external server."
-
-#~ msgid "No credit card required"
-#~ msgstr "No credit card required"
-
-#~ msgid "Premium plugin version was successfully activated."
-#~ msgstr "Premium plugin version was successfully activated."
-
-#~ msgid "The upgrade of %s was successfully completed."
-#~ msgstr "The upgrade of %s was successfully completed."
-
-#~ msgid "Your account was successfully activated with the %s plan."
-#~ msgstr "Your account was successfully activated with the %s plan."
-
-#~ msgid "Download the latest %s version now"
-#~ msgstr "Download the latest %s version now"
-
-#~ msgid "Download the latest version now"
-#~ msgstr "Download the latest version now"
-
-#~ msgctxt "%s - product name, e.g. Facebook add-on was successfully..."
-#~ msgid "%s Add-on was successfully purchased."
-#~ msgstr "%s Add-on was successfully purchased."
-
-#~ msgid "Your %s Add-on plan was successfully upgraded."
-#~ msgstr "Your %s Add-on plan was successfully upgraded."
-
-#~ msgid "Your email has been successfully verified - you are AWESOME!"
-#~ msgstr "Your email has been successfully verified - you are AWESOME!"
-
-#~ msgid "Your plan was successfully upgraded."
-#~ msgstr "Your plan was successfully upgraded."
-
-#~ msgid "Your plan was successfully changed to %s."
-#~ msgstr "Your plan was successfully changed to %s."
-
-#~ msgid ""
-#~ "Your license has expired. You can still continue using the free plugin "
-#~ "forever."
-#~ msgstr ""
-#~ "Your license has expired. You can still continue using the free plugin "
-#~ "forever."
-
-#~ msgid "Your trial has been successfully started."
-#~ msgstr "Your trial has been successfully started."
-
-#~ msgid "Your license was successfully activated."
-#~ msgstr "Your license was successfully activated."
-
-#~ msgid "It looks like your site currently don't have an active license."
-#~ msgstr "It looks like your site currently don't have an active license."
-
-#~ msgid ""
-#~ "Your license was successfully deactivated, you are back to the %s plan."
-#~ msgstr ""
-#~ "Your license was successfully deactivated, you are back to the %s plan."
-
-#~ msgid "It looks like the license deactivation failed."
-#~ msgstr "It looks like the license deactivation failed."
-
-#~ msgid "It looks like the license could not be activated."
-#~ msgstr "It looks like the license could not be activated."
-
-#~ msgid "Error received from the server:"
-#~ msgstr "Error received from the server:"
-
-#~ msgid ""
-#~ "Your trial has expired. You can still continue using all our free "
-#~ "features."
-#~ msgstr ""
-#~ "Your trial has expired. You can still continue using all our free "
-#~ "features."
-
-#~ msgid ""
-#~ "Your plan was successfully downgraded. Your %s plan license will expire "
-#~ "in %s."
-#~ msgstr ""
-#~ "Your plan was successfully downgraded. Your %s plan license will expire "
-#~ "in %s."
-
-#~ msgid ""
-#~ "Seems like we are having some temporary issue with your plan downgrade. "
-#~ "Please try again in few minutes."
-#~ msgstr ""
-#~ "Seems like we are having some temporary issue with your plan downgrade. "
-#~ "Please try again in few minutes."
-
-#~ msgid ""
-#~ "It looks like you are not in trial mode anymore so there's nothing to "
-#~ "cancel :)"
-#~ msgstr ""
-#~ "It looks like you are not in trial mode anymore so there's nothing to "
-#~ "cancel :)"
-
-#~ msgid "Your %s free trial was successfully cancelled."
-#~ msgstr "Your %s free trial was successfully cancelled."
-
-#~ msgctxt "%s - numeric version number"
-#~ msgid "Version %s was released."
-#~ msgstr "Version %s was released."
-
-#~ msgid "Please download %s."
-#~ msgstr "Please download %s."
-
-#~ msgctxt "%s - plan name, as the latest professional version here"
-#~ msgid "the latest %s version here"
-#~ msgstr "the latest %s version here"
-
-#~ msgid ""
-#~ "How do you like %s so far? Test all our %s premium features with a %d-day "
-#~ "free trial."
-#~ msgstr ""
-#~ "How do you like %s so far? Test all our %s premium features with a %d-day "
-#~ "free trial."
-
-#~ msgctxt "call to action"
-#~ msgid "Start free trial"
-#~ msgstr "Simulan ang libreng pagsubok"
-
-#~ msgid ""
-#~ "Seems like we are having some temporary issue with your trial "
-#~ "cancellation. Please try again in few minutes."
-#~ msgstr ""
-#~ "Seems like we are having some temporary issue with your trial "
-#~ "cancellation. Please try again in few minutes."
-
-#~ msgid "No commitment for %s days - cancel anytime!"
-#~ msgstr "No commitment for %s days - cancel anytime!"
-
-#~ msgid ""
-#~ "Your license has expired. You can still continue using all the %s "
-#~ "features, but you'll need to renew your license to continue getting "
-#~ "updates and support."
-#~ msgstr ""
-#~ "Your license has expired. You can still continue using all the %s "
-#~ "features, but you'll need to renew your license to continue getting "
-#~ "updates and support."
-
-#~ msgid "Couldn't activate %s."
-#~ msgstr "Couldn't activate %s."
-
-#~ msgid "Please contact us with the following message:"
-#~ msgstr "Please contact us with the following message:"
-
-#~ msgid ""
-#~ "It looks like you are still on the %s plan. If you did upgrade or change "
-#~ "your plan, it's probably an issue on our side - sorry."
-#~ msgstr ""
-#~ "It looks like you are still on the %s plan. If you did upgrade or change "
-#~ "your plan, it's probably an issue on our side - sorry."
-
-#~ msgid "Please contact us here"
-#~ msgstr "Please contact us here"
-
-#~ msgid ""
-#~ "I have upgraded my account but when I try to Sync the License, the plan "
-#~ "remains %s."
-#~ msgstr ""
-#~ "I have upgraded my account but when I try to Sync the License, the plan "
-#~ "remains %s."
-
-#~ msgid "From unknown reason, the API connectivity test fails."
-#~ msgstr "From unknown reason, the API connectivity test fails."
-
-#~ msgid ""
-#~ "We use PHP cURL library for the API calls, which is a very common library "
-#~ "and usually installed out of the box. Unfortunately, cURL is not "
-#~ "installed on your server."
-#~ msgstr ""
-#~ "We use PHP cURL library for the API calls, which is a very common library "
-#~ "and usually installed out of the box. Unfortunately, cURL is not "
-#~ "installed on your server."
-
-#~ msgid ""
-#~ "From unknown reason, CloudFlare, the firewall we use, blocks the "
-#~ "connection."
-#~ msgstr ""
-#~ "From unknown reason, CloudFlare, the firewall we use, blocks the "
-#~ "connection."
-
-#~ msgctxt "as pluginX requires an access to our API"
-#~ msgid "%s requires an access to our API."
-#~ msgstr "%s requires an access to our API."
-
-#~ msgid ""
-#~ "It looks like your server is using Squid ACL (access control lists), "
-#~ "which blocks the connection."
-#~ msgstr ""
-#~ "It looks like your server is using Squid ACL (access control lists), "
-#~ "which blocks the connection."
-
-#~ msgid "I don't know what is Squid or ACL, help me!"
-#~ msgstr "I don't know what is Squid or ACL, help me!"
-
-#~ msgid ""
-#~ "We'll make sure to contact your hosting company and resolve the issue. "
-#~ "You will get a follow-up email to %s once we have an update."
-#~ msgstr ""
-#~ "We'll make sure to contact your hosting company and resolve the issue. "
-#~ "You will get a follow-up email to %s once we have an update."
-
-#~ msgid "I'm a system administrator"
-#~ msgstr "I'm a system administrator"
-
-#~ msgid ""
-#~ "Great, please whitelist the following domains: %s. Once you done, "
-#~ "deactivate the plugin and activate it again."
-#~ msgstr ""
-#~ "Great, please whitelist the following domains: %s. Once you done, "
-#~ "deactivate the plugin and activate it again."
-
-#~ msgid "I don't know what is cURL or how to install it, help me!"
-#~ msgstr "I don't know what is cURL or how to install it, help me!"
-
-#~ msgid ""
-#~ "Great, please install cURL and enable it in your php.ini file. To make "
-#~ "sure it was successfully activated, use 'phpinfo()'. Once activated, "
-#~ "deactivate the plugin and reactivate it back again."
-#~ msgstr ""
-#~ "Great, please install cURL and enable it in your php.ini file. To make "
-#~ "sure it was successfully activated, use 'phpinfo()'. Once activated, "
-#~ "deactivate the plugin and reactivate it back again."
-
-#~ msgid ""
-#~ "We are sure it's an issue on our side and more than happy to resolve it "
-#~ "for you ASAP if you give us a chance."
-#~ msgstr ""
-#~ "We are sure it's an issue on our side and more than happy to resolve it "
-#~ "for you ASAP if you give us a chance."
-
-#~ msgid "Yes - I'm giving you a chance to fix it"
-#~ msgstr "Yes - I'm giving you a chance to fix it"
-
-#~ msgid ""
-#~ "We will do our best to whitelist your server and resolve this issue ASAP. "
-#~ "You will get a follow-up email to %s once we have an update."
-#~ msgstr ""
-#~ "We will do our best to whitelist your server and resolve this issue ASAP. "
-#~ "You will get a follow-up email to %s once we have an update."
-
-#~ msgid "Let's try your previous version"
-#~ msgstr "Let's try your previous version"
-
-#~ msgid "Uninstall this version and install the previous one."
-#~ msgstr "Uninstall this version and install the previous one."
-
-#~ msgid "That's exhausting, please deactivate"
-#~ msgstr "That's exhausting, please deactivate"
-
-#~ msgid ""
-#~ "We feel your frustration and sincerely apologize for the inconvenience. "
-#~ "Hope to see you again in the future."
-#~ msgstr ""
-#~ "We feel your frustration and sincerely apologize for the inconvenience. "
-#~ "Hope to see you again in the future."
-
-#~ msgid ""
-#~ "Thank for giving us the chance to fix it! A message was just sent to our "
-#~ "technical staff. We will get back to you as soon as we have an update to "
-#~ "%s. Appreciate your patience."
-#~ msgstr ""
-#~ "Thank for giving us the chance to fix it! A message was just sent to our "
-#~ "technical staff. We will get back to you as soon as we have an update to "
-#~ "%s. Appreciate your patience."
-
-#~ msgctxt "%1s - plugin title, %2s - API domain"
-#~ msgid ""
-#~ "Your server is blocking the access to Freemius' API, which is crucial for "
-#~ "%1s synchronization. Please contact your host to whitelist %2s"
-#~ msgstr ""
-#~ "Your server is blocking the access to Freemius' API, which is crucial for "
-#~ "%1s synchronization. Please contact your host to whitelist %2s"
-
-#~ msgid ""
-#~ "It seems like one of the authentication parameters is wrong. Update your "
-#~ "Public Key, Secret Key & User ID, and try again."
-#~ msgstr ""
-#~ "It seems like one of the authentication parameters is wrong. Update your "
-#~ "Public Key, Secret Key & User ID, and try again."
-
-#~ msgid ""
-#~ "Please check your mailbox, you should receive an email via %s to confirm "
-#~ "the ownership change. From security reasons, you must confirm the change "
-#~ "within the next 15 min. If you cannot find the email, please check your "
-#~ "spam folder."
-#~ msgstr ""
-#~ "Please check your mailbox, you should receive an email via %s to confirm "
-#~ "the ownership change. From security reasons, you must confirm the change "
-#~ "within the next 15 min. If you cannot find the email, please check your "
-#~ "spam folder."
-
-#~ msgid ""
-#~ "Thanks for confirming the ownership change. An email was just sent to %s "
-#~ "for final approval."
-#~ msgstr ""
-#~ "Thanks for confirming the ownership change. An email was just sent to %s "
-#~ "for final approval."
-
-#~ msgid "%s is the new owner of the account."
-#~ msgstr "%s is the new owner of the account."
-
-#~ msgctxt "addonX cannot run without pluginY"
-#~ msgid "%s cannot run without %s."
-#~ msgstr "%s cannot run without %s."
-
-#~ msgctxt "addonX cannot run..."
-#~ msgid "%s cannot run without the plugin."
-#~ msgstr "%s cannot run without the plugin."
-
-#~ msgctxt "pluginX activation was successfully..."
-#~ msgid "%s activation was successfully completed."
-#~ msgstr "%s activation was successfully completed."
-
-#~ msgctxt "Plugin installer section title"
-#~ msgid "Features & Pricing"
-#~ msgstr "Features & Pricing"
-
-#~ msgid "Add-on must be deployed to WordPress.org or Freemius."
-#~ msgstr "Add-on must be deployed to WordPress.org or Freemius."
-
-#~ msgid "Paid add-on must be deployed to Freemius."
-#~ msgstr "Paid add-on must be deployed to Freemius."
-
-#~ msgid ""
-#~ "%s is a premium only add-on. You have to purchase a license first before "
-#~ "activating the plugin."
-#~ msgstr ""
-#~ "%s is a premium only add-on. You have to purchase a license first before "
-#~ "activating the plugin."
-
-#~ msgid ""
-#~ "%s free trial was successfully cancelled. Since the add-on is premium "
-#~ "only it was automatically deactivated. If you like to use it in the "
-#~ "future, you'll have to purchase a license."
-#~ msgstr ""
-#~ "%s free trial was successfully cancelled. Since the add-on is premium "
-#~ "only it was automatically deactivated. If you like to use it in the "
-#~ "future, you'll have to purchase a license."
-
-#~ msgctxt "verb"
-#~ msgid "Edit"
-#~ msgstr "I-edit"
-
-#~ msgid "Skip & Deactivate"
-#~ msgstr "Skip & Deactivate"
-
-#~ msgid ""
-#~ "If you have a moment, please let us know why you are deactivating "
-#~ "(optional)"
-#~ msgstr ""
-#~ "If you have a moment, please let us know why you are deactivating "
-#~ "(optional)"
-
-#~ msgid ""
-#~ "Please help us improve %2$s! If you opt-in, some data about your "
-#~ "installation of %2$s will be sent to %5$s (this does NOT include your "
-#~ "submissions). If you skip this, that's okay! %2$s will still work just "
-#~ "fine."
-#~ msgstr ""
-#~ "Please help us improve %2$s! If you opt-in, some data about your "
-#~ "installation of %2$s will be sent to %5$s (this does NOT include your "
-#~ "submissions). If you skip this, that's okay! %2$s will still work just "
-#~ "fine."
-
-#~ msgid "I'm a translatable string."
-#~ msgstr "I'm a translatable string."
-
-#~ msgid "Me too"
-#~ msgstr "Me too"
-
-#~ msgid "I have %d apple"
-#~ msgid_plural "I have %d apples"
-#~ msgstr[0] "I have %d apple"
-#~ msgstr[1] "I have %d apples"
-
-#~ msgid "yyyy-mm-dd"
-#~ msgstr "yyyy-mm-dd"
+msgstr "DEBUG: Switch to 3.0.x"

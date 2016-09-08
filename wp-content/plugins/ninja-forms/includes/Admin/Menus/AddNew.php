@@ -20,6 +20,11 @@ final class NF_Admin_Menus_AddNew extends NF_Abstracts_Submenu
         return __( 'Add New', 'ninja-forms' );
     }
 
+    public function get_capability()
+    {
+        return apply_filters( 'ninja_forms_admin_add_new_capabilities', $this->capability );
+    }
+
     public function display()
     {
         // This section intentionally left blank.

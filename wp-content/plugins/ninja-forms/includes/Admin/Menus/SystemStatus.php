@@ -18,6 +18,11 @@ final class NF_Admin_Menus_SystemStatus extends NF_Abstracts_Submenu
         return __( 'Get Help', 'ninja-forms' );
     }
 
+    public function get_capability()
+    {
+        return apply_filters( 'ninja_forms_admin_status_capabilities', $this->capability );
+    }
+
     public function display()
     {
         /** @global wpdb $wpdb */

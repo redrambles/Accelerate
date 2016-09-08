@@ -265,7 +265,7 @@ class Ninja_Forms {
 
         // Plugin version
         if ( ! defined( 'NF_PLUGIN_VERSION' ) )
-            define( 'NF_PLUGIN_VERSION', '2.9.58' );
+            define( 'NF_PLUGIN_VERSION', '3.0.1' );
 
         // Plugin Folder Path
         if ( ! defined( 'NF_PLUGIN_DIR' ) )
@@ -803,10 +803,10 @@ function ninja_forms_three_admin_notice(){
             <div class="nf-notice-logo"></div>
             <p class="nf-notice-title">Achievement Unlocked</p>
             <p class="nf-notice-body">
-                Cowabunga! You just unlocked the Ninja Forms THREE release candidate.
+                Cowabunga! You just unlocked Ninja Forms THREE.
             </p>
             <ul class="nf-notice-body nf-red">
-                <li><span class="dashicons dashicons-awards"></span><a href="<?php echo admin_url( 'admin.php?page=ninja-forms-three' ); ?>">Upgrade to the Release Candidate</a></li>
+                <li><span class="dashicons dashicons-awards"></span><a href="<?php echo admin_url( 'admin.php?page=ninja-forms-three' ); ?>">Upgrade to THREE</a></li>
             </ul>
         </div>
         <?php
@@ -892,37 +892,24 @@ function ninja_forms_three_addons_version_check(){
 }
 
 function ninja_forms_three_addons_check(){
-    $items = array();
-//    if( ! get_transient( 'ninja_forms_addons_check_items' ) ) {
-//        $items = wp_remote_get('https://ninjaforms.com/?extend_feed=jlhrbgf89734go7387o4g3h');
-//        $items = wp_remote_retrieve_body($items);
-        $items = file_get_contents( dirname( __FILE__ ) . '/addons-feed.json' );
-        $items = json_decode($items, true);
-//        set_transient( 'ninja_forms_addons_check_items', $items, 60 * 60 * 24 );
-//    }
+    $items = file_get_contents( dirname( __FILE__ ) . '/addons-feed.json' );
+    $items = json_decode($items, true);
 
     $has_addons = FALSE;
     if( is_array( $items ) ) {
         foreach ($items as $item) {
-
             if (empty($item['plugin'])) continue;
             if (!file_exists(WP_PLUGIN_DIR . '/' . $item['plugin'])) continue;
-
             $has_addons = TRUE;
-
             $plugin_data = get_plugin_data(WP_PLUGIN_DIR . '/' . $item['plugin'], false, true);
-
             if (!$plugin_data['Version']) continue;
             if (version_compare($plugin_data['Version'], '3', '>=')) continue;
-
             /*
              * There are non-compatible add-ons installed.
              */
-
             return FALSE;
         }
     }
-
     return $has_addons;
 }
 

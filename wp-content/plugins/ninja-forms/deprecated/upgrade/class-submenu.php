@@ -140,12 +140,12 @@ class NF_THREE_Submenu
 
     public function settings_upgrade_button( $settings )
     {
-        $settings[ 'update_to_three' ] = array(
-            'name'     => 'update_to_three',
-            'type'     => '',
-            'label'     => __( 'Ninja Forms THREE', 'ninja-forms' ),
-            'display_function' => array( $this, 'settings_upgrade_button_display' ),
-            'desc'     => __( 'You are eligible to upgrade to the Ninja Forms THREE.', 'ninja-forms' )
+        $settings['update_to_three'] = array(
+            'name' => 'update_to_three',
+            'type' => '',
+            'label' => __('Ninja Forms THREE', 'ninja-forms'),
+            'display_function' => array($this, 'settings_upgrade_button_display'),
+            'desc' => __('Upgrade to the Ninja Forms THREE.', 'ninja-forms')
         );
 
         return $settings;

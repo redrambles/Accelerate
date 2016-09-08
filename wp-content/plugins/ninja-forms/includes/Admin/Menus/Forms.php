@@ -527,5 +527,9 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         return $priority[ 0 ] - $priority[ 1 ];
     }
 
+    public function get_capability()
+    {
+        return apply_filters( 'ninja_forms_admin_parent_menu_capabilities', $this->capability );
+    }
 
 }

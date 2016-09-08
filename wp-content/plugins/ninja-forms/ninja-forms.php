@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 3.0
+Version: 3.0.1
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -40,7 +40,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
     include_once 'lib/NF_Upgrade.php';
     include_once 'lib/NF_AddonChecker.php';
 
-    require_once 'includes/deprecated.php';
+    include_once plugin_dir_path( __FILE__ ) . 'includes/deprecated.php';
 
     /**
      * Class Ninja_Forms
@@ -51,7 +51,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         /**
          * @since 3.0
          */
-        const VERSION = '3.0.0';
+        const VERSION = '3.0.1';
 
         /**
          * @var Ninja_Forms
@@ -256,7 +256,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 /*
                  * Plugin Settings
                  */
-                self::$instance->settings = get_option( 'ninja_forms_settings' );
+                self::$instance->settings = apply_filters( 'ninja_forms_settings', get_option( 'ninja_forms_settings' ) );
 
                 /*
                  * Admin Notices System
@@ -289,7 +289,20 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 
             add_action( 'ninja_forms_available_actions', array( self::$instance, 'scrub_available_actions' ) );
 
+            add_action( 'init', array( self::$instance, 'init' ), 5 );
+            add_action( 'admin_init', array( self::$instance, 'admin_init' ), 5 );
+
             return self::$instance;
+        }
+
+        public function init()
+        {
+            do_action( 'nf_init', self::$instance );
+        }
+
+        public function admin_init()
+        {
+            do_action( 'nf_admin_init', self::$instance );
         }
 
         public function scrub_available_actions( $actions )
@@ -577,6 +590,36 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 
             $form = Ninja_Forms::template( 'formtemplate-contactform.nff', array(), TRUE );
             Ninja_Forms()->form()->import_form( $form );
+        }
+
+        /**
+         * Deprecated Notice
+         *
+         * Example: Ninja_Forms::deprecated_hook( 'ninja_forms_old', '3.0', 'ninja_forms_new', debug_backtrace() );
+         *
+         * @param $deprecated
+         * @param $version
+         * @param null $replacement
+         * @param null $backtrace
+         */
+        public static function deprecated_notice( $deprecated, $version, $replacement = null, $backtrace = null )
+        {
+            do_action( 'ninja_forms_deprecated_call', $deprecated, $replacement, $version );
+
+            $show_errors = current_user_can( 'manage_options' );
+
+            // Allow plugin to filter the output error trigger
+            if ( WP_DEBUG && apply_filters( 'ninja_forms_deprecated_function_trigger_error', $show_errors ) ) {
+                if ( ! is_null( $replacement ) ) {
+                    trigger_error( sprintf( __( '%1$s is <strong>deprecated</strong> since Ninja Forms version %2$s! Use %3$s instead.', 'ninja-forms' ), $deprecated, $version, $replacement ) );
+                    // trigger_error(  print_r( $backtrace, 1 ) ); // Limited to previous 1028 characters, but since we only need to move back 1 in stack that should be fine.
+                    // Alternatively we could dump this to a file.
+                } else {
+                    trigger_error( sprintf( __( '%1$s is <strong>deprecated</strong> since Ninja Forms version %2$s.', 'ninja-forms' ), $deprecated, $version ) );
+                    // trigger_error( print_r( $backtrace, 1 ) );// Limited to previous 1028 characters, but since we only need to move back 1 in stack that should be fine.
+                    // Alternatively we could dump this to a file.
+                }
+            }
         }
 
     } // End Class Ninja_Forms

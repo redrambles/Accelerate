@@ -56,10 +56,13 @@ final class NF_Display_Render
             }
 
             if( $count >= $form->get_setting( 'sub_limit_number' ) ) {
-                echo $form->get_setting( 'sub_limit_msg' );
+                echo apply_filters( 'nf_sub_limit_reached_msg', $form->get_setting( 'sub_limit_msg' ), $form_id );
                 return;
             }
         }
+
+        $title = apply_filters( 'ninja_forms_form_title', $form->get_setting( 'title' ), $form_id );
+        $form->update_setting( 'title', $title );
 
         $before_form = apply_filters( 'ninja_forms_display_before_form', '', $form_id );
         $form->update_setting( 'beforeForm', $before_form );

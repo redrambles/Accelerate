@@ -103,7 +103,7 @@
 <script id="tmpl-nf-main-content-fields-empty" type="text/template">
     <div class="nf-fields-empty">
         <h3><?php _e( 'Add form fields', 'ninja-forms' ); ?></h3>
-        <p><?php _e( 'Get started by adding your first form field.', 'ninja-forms' ); ?> <a class="nf-open-drawer" title="<?php _e( 'Add New Field', 'ninja-forms' ); ?>" href="#" data-drawerid="addField"><?php _e( 'Just click here and select the fields you want.', 'ninja-forms' ); ?></a><?php _e( "It's that easy. Or...", 'ninja-forms' ); ?>
+        <p><?php _e( 'Get started by adding your first form field.', 'ninja-forms' ); ?> <a class="nf-open-drawer" title="<?php _e( 'Add New Field', 'ninja-forms' ); ?>" href="#" data-drawerid="addField"><?php _e( 'Just click here and select the fields you want.', 'ninja-forms' ); ?> </a><?php _e( "It's that easy. Or...", 'ninja-forms' ); ?>
         <h3><?php _e( 'Start from a template', 'ninja-forms' ); ?></h3>
         <a href="?page=ninja-forms&form_id=formtemplate-contactform" class="nf-one-third template-box">
             <div class="template-box-inside">
@@ -223,7 +223,7 @@
     <# } #>
 
         <td>
-            <span class="dashicons dashicons-{{{ data.label.dashicon }}}"></span> <span class="nf-changes-item <# ( data.disabled ) ? 'disabled' : '' #>"></span>
+            <span class="dashicons dashicons-{{{ data.label.dashicon }}}"></span> <span class="nf-changes-item {{{ ( data.disabled ) ? 'disabled' : '' }}}"></span>
         </td>
         <td>
             {{{ data.label.object }}}

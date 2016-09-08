@@ -18,6 +18,11 @@ final class NF_Admin_Menus_Addons extends NF_Abstracts_Submenu
         return __( 'Add-Ons', 'ninja-forms' );
     }
 
+    public function get_capability()
+    {
+        return apply_filters( 'ninja_forms_admin_extend_capabilities', $this->capability );
+    }
+
     public function display()
     {
         wp_enqueue_style( 'nf-admin-addons', Ninja_Forms::$url . 'assets/css/admin-addons.css' );

@@ -112,7 +112,7 @@ class NF_Admin_AllFormsTable extends WP_List_Table
              $data[] = array(
                  'id'        => $form->get_id(),
                  'title'     => $form->get_setting( 'title' ),
-                 'shortcode' => '[ninja_form id=' . $form->get_id() . ']',
+                 'shortcode' => apply_filters ( 'ninja_forms_form_list_shortcode','[ninja_form id=' . $form->get_id() . ']', $form->get_id() ),
                  'date'      => $form->get_setting( 'created_at' )
              );
         }

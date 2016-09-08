@@ -20,6 +20,11 @@ final class NF_Admin_Menus_AllForms extends NF_Abstracts_Submenu
         return __( 'All Forms', 'ninja-forms' );
     }
 
+    public function get_capability()
+    {
+        return apply_filters( 'ninja_forms_admin_all_forms_capabilities', $this->capability );
+    }
+
     public function display()
     {
         // This section intentionally left blank.

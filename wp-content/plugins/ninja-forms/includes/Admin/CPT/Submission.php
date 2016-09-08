@@ -118,7 +118,7 @@ class NF_Admin_CPT_Submission
         $sub = Ninja_Forms()->form()->get_sub( $sub_id );
 
         if( 'id' == $column ) {
-            echo $sub->get_seq_num();
+            echo apply_filters( 'nf_sub_table_seq_num', $sub->get_seq_num(), $sub_id, $column );
         }
 
         if( is_numeric( $column ) ){
@@ -219,13 +219,13 @@ class NF_Admin_CPT_Submission
 
         $status = ucwords( $sub->get_status() );
 
-        $user = $sub->get_user()->data->user_nicename;
+        $user = apply_filters( 'nf_edit_sub_username', $sub->get_user()->data->user_nicename, $post->post_author );
 
         $form_title = $sub->get_form_title();
 
-        $sub_date = $sub->get_sub_date( 'm/d/Y H:i' );
+        $sub_date = apply_filters( 'nf_edit_sub_date_submitted', $sub->get_sub_date( 'm/d/Y H:i' ), $post->ID );
 
-        $mod_date = $sub->get_mod_date( 'm/d/Y H:i' );
+        $mod_date = apply_filters( 'nf_edit_sub_date_modified', $sub->get_mod_date( 'm/d/Y H:i' ), $post->ID );
 
         Ninja_Forms::template( 'admin-metabox-sub-info.html.php', compact( 'seq_num', 'status', 'user', 'form_title', 'sub_date', 'mod_date' ) );
     }

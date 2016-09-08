@@ -7,5 +7,5 @@
 
 <script id="tmpl-nf-field-listselect-option" type="text/template">
 	<# if ( ! data.visible ) { return ''; } #>
-	<option value="{{{ data.value }}}" <# ( 1 == data.selected ) ? 'selected="selected"' : '' #> >{{{ data.label }}}</option>
+	<option value="{{{ data.value }}}" {{{ ( 1 == data.selected ) ? 'selected="selected"' : '' }}} >{{{ data.label }}}</option>
 </script>

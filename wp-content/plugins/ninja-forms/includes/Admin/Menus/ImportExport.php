@@ -375,4 +375,9 @@ final class NF_Admin_Menus_ImportExport extends NF_Abstracts_Submenu
         $message = Ninja_Forms()->template( 'admin-wp-die.html.php', $args );
         wp_die( $message, $args[ 'title' ], array( 'back_link' => TRUE ) );
     }
+
+    public function get_capability()
+    {
+        return apply_filters( 'ninja_forms_admin_import_export_capabilities', $this->capability );
+    }
 }

@@ -79,6 +79,6 @@ get_header(); ?>
 			</div>
 		</section>
 
-	</div>
+	</div><!-- .site-content -->
 
 	<?php get_footer(); ?>
