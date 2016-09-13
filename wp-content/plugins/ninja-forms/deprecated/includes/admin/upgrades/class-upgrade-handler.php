@@ -29,7 +29,9 @@ class NF_UpgradeHandler
     public function __construct()
     {
 
-        ignore_user_abort( true );
+        if ( function_exists( 'ignore_user_abort' ) && ! nf_is_func_disabled( 'ignore_user_abort' ) ) {
+            ignore_user_abort( true );
+        }
 
         $this->register_upgrades();
 

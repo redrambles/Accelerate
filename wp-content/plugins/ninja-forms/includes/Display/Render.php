@@ -377,14 +377,6 @@ final class NF_Display_Render
         $js_dir  = Ninja_Forms::$url . 'assets/js/min/';
         $css_dir = Ninja_Forms::$url . 'assets/css/';
 
-        wp_enqueue_media();
-        wp_enqueue_style( 'jBox',               $css_dir . 'jBox.css'          );
-        wp_enqueue_style( 'summernote',         $css_dir . 'summernote.css'    );
-        wp_enqueue_style( 'codemirror',         $css_dir . 'codemirror.css'    );
-        wp_enqueue_style( 'codemirror-monokai', $css_dir . 'monokai-theme.css' );
-        wp_enqueue_style( 'rating',             $css_dir . 'rating.css'        );
-        wp_enqueue_style( 'pikaday-responsive', $css_dir . 'pikaday-package.css' );
-
         switch( Ninja_Forms()->get_setting( 'opinionated_styles' ) ) {
             case 'light':
                 wp_enqueue_style( 'nf-display',      $css_dir . 'display-opinions-light.css' );
@@ -404,6 +396,7 @@ final class NF_Display_Render
         }
 
         if( $is_preview || self::form_uses_datepicker( $form_id ) ) {
+            wp_enqueue_style( 'pikaday-responsive', $css_dir . 'pikaday-package.css' );
             wp_enqueue_script('nf-front-end--datepicker', $js_dir . 'front-end--datepicker.min.js', array('jquery'));
         }
 
@@ -411,20 +404,29 @@ final class NF_Display_Render
             wp_enqueue_script('nf-front-end--inputmask', $js_dir . 'front-end--inputmask.min.js', array('jquery'));
         }
 
-        // if( $is_preview || self::form_uses_rte( $form_id ) ) {
+         if( $is_preview || self::form_uses_rte( $form_id ) ) {
+             if( $is_preview || self::form_uses_textarea_media( $form_id ) ) {
+                wp_enqueue_media();
+             }
+
+            wp_enqueue_style( 'summernote',         $css_dir . 'summernote.css'    );
+            wp_enqueue_style( 'codemirror',         $css_dir . 'codemirror.css'    );
+            wp_enqueue_style( 'codemirror-monokai', $css_dir . 'monokai-theme.css' );
             wp_enqueue_script('nf-front-end--rte', $js_dir . 'front-end--rte.min.js', array('jquery'));
-        // }
+         }
 
         if( $is_preview || self::form_uses_helptext( $form_id ) ) {
+            wp_enqueue_style( 'jBox', $css_dir . 'jBox.css' );
             wp_enqueue_script('nf-front-end--helptext', $js_dir . 'front-end--helptext.min.js', array('jquery'));
         }
 
         if( $is_preview || self::form_uses_starrating( $form_id ) ) {
+            wp_enqueue_style( 'rating', $css_dir . 'rating.css' );
             wp_enqueue_script('nf-front-end--starrating', $js_dir . 'front-end--starrating.min.js', array('jquery'));
         }
 
-        wp_enqueue_script( 'nf-front-end-deps',        $js_dir . 'front-end-deps.js',             array( 'jquery', 'backbone' ) );
-        wp_enqueue_script( 'nf-front-end',             $js_dir . 'front-end.js',                  array( 'nf-front-end-deps'  ) );
+        wp_enqueue_script( 'nf-front-end-deps', $js_dir . 'front-end-deps.js', array( 'jquery', 'backbone' ) );
+        wp_enqueue_script( 'nf-front-end',      $js_dir . 'front-end.js',      array( 'nf-front-end-deps'  ) );
 
         wp_localize_script( 'nf-front-end', 'nfi18n', Ninja_Forms::config( 'i18nFrontEnd' ) );
 
@@ -528,6 +530,14 @@ final class NF_Display_Render
     {
         foreach( Ninja_Forms()->form( $form_id )->get_fields() as $field ){
             if( $field->get_setting( 'textarea_rte' ) ) return true;
+        }
+        return false;
+    }
+
+    protected static function form_uses_textarea_media( $form_id )
+    {
+        foreach( Ninja_Forms()->form( $form_id )->get_fields() as $field ){
+            if( $field->get_setting( 'textarea_media' ) ) return true;
         }
         return false;
     }

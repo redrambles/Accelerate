@@ -11,12 +11,44 @@ function ninja_forms_display_form( $form_id = '' ){
     Ninja_Forms()->display( $form_id );
 }
 
+function ninja_forms_get_fields_by_form_id($form_id, $orderby = 'ORDER BY `order` ASC'){
+
+    $fields = Ninja_Forms()->form( $form_id )->get_fields();
+
+    $field_results = array();
+    foreach( $fields as $field ){
+        $field_results[] = array(
+            'id'      => $field->get_id(),
+            'form_id' => $form_id,
+            'type'    => $field->get_setting( 'type' ),
+            'order'   => $field->get_setting( 'order' ),
+            'data'    => $field->get_settings(),
+            'fav_id'  => null,
+            'def_id'  => null,
+        );
+    }
+    return $field_results;
+}
+
 /**
  * Included for backwards compatibility with Visual Composer.
  */
 function ninja_forms_get_all_forms(){
-    Ninja_Forms::deprecated_notice( 'ninja_forms_get_all_forms', '3.0', 'Ninja_Forms()->form()->get_forms()', debug_backtrace() );
-    return array();
+//    Ninja_Forms::deprecated_notice( 'ninja_forms_get_all_forms', '3.0', 'Ninja_Forms()->form()->get_forms()', debug_backtrace() );
+    $forms = array();
+    foreach( Ninja_Forms()->form()->get_forms() as $form ){
+        $forms[] = array(
+            'id' => $form->get_id(),
+            'data' => $form->get_settings(),
+            'name' => $form->get_setting( 'title' )
+        );
+    }
+    return $forms;
+}
+
+function nf_is_func_disabled( $function ){
+    Ninja_Forms::deprecated_notice( 'nf_is_func_disabled', '3.0', 'WPN_Helper::is_func_disabled()', debug_backtrace() );
+    return WPN_Helper::is_func_disabled( $function );
 }
 
 /*

@@ -208,4 +208,11 @@ final class WPN_Helper
         return $plugins[ $plugin ][ 'Version' ];
     }
 
+    public static function is_func_disabled( $function )
+    {
+        if( ! function_exists( $function ) ) return true;
+        $disabled = explode( ',',  ini_get( 'disable_functions' ) );
+        return in_array( $function, $disabled );
+    }
+
 } // End Class WPN_Helper

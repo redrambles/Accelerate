@@ -4,7 +4,7 @@ final class NF_Admin_Menus_ImportExport extends NF_Abstracts_Submenu
 {
     public $parent_slug = 'ninja-forms';
 
-    public $menu_slug = 'import-export';
+    public $menu_slug = 'nf-import-export';
 
     public function __construct()
     {

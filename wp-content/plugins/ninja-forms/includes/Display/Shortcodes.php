@@ -7,6 +7,7 @@ final class NF_Display_Shortcodes
         add_shortcode( 'nf_preview',  array( $this, 'display_form_preview' ) );
         add_shortcode( 'ninja_form',  array( $this, 'display_form_front_end' ) );
         add_shortcode( 'ninja_forms', array( $this, 'display_form_front_end' ) );
+        add_shortcode( 'ninja_forms_display_form', array( $this, 'display_form_front_end' ) );
     }
 
     public function display_form_preview( $atts = array() )

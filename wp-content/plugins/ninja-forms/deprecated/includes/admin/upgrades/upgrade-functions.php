@@ -121,7 +121,9 @@ function nf_v27_upgrade_subs_to_cpt() {
 			return false;
 	}
 
-	ignore_user_abort( true );
+	if ( function_exists( 'ignore_user_abort' ) && ! nf_is_func_disabled( 'ignore_user_abort' ) ) {
+		ignore_user_abort( true );
+	}
 
 	if ( ! nf_is_func_disabled( 'set_time_limit' ) && ! ini_get( 'safe_mode' ) ) {
 		//set_time_limit( 0 );
