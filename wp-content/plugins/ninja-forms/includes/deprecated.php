@@ -39,7 +39,7 @@ function _nf_post_actions() {
     }
 }
 
-add_action( 'shutdown', '_nf_removed_hooks' );
+// add_action( 'shutdown', '_nf_removed_hooks' );
 function _nf_removed_hooks() {
     global $wp_filter;
 
