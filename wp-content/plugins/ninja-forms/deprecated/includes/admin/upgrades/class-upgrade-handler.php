@@ -1,5 +1,14 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit;
 
+if( ! function_exists( 'nf_is_func_disabled' ) ) {
+    function nf_is_func_disabled($function)
+    {
+        $disabled = explode(',', ini_get('disable_functions'));
+
+        return in_array($function, $disabled);
+    }
+}
+
 require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/database-migrations.php' );
 require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/convert-forms.php' );
 require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/convert-notifications.php' );

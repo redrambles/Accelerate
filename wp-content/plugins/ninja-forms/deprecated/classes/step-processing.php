@@ -1,4 +1,14 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit;
+
+if( ! function_exists( 'nf_is_func_disabled' ) ) {
+    function nf_is_func_disabled($function)
+    {
+        $disabled = explode(',', ini_get('disable_functions'));
+
+        return in_array($function, $disabled);
+    }
+}
+
 /**
  * Class for performing actions incrementally. Internally used for converting submissions, exporting submissions, etc.
  * Very useful when interacting with large amounts of data.

@@ -1,4 +1,14 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit;
+
+if( ! function_exists( 'nf_is_func_disabled' ) ) {
+	function nf_is_func_disabled($function)
+	{
+		$disabled = explode(',', ini_get('disable_functions'));
+
+		return in_array($function, $disabled);
+	}
+}
+
 /**
  * Upgrade Functions
  *

@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, wpnzach,
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.4
 Tested up to: 4.6.1
-Stable tag: 3.0.3
+Stable tag: 3.0.5
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -102,21 +102,25 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.0.3 (13 September 2016) =
+= 3.0.5 (13 September 2016) =
 
 *Bugs:*
 
-* Added isInteger polyfill for IE11.
-* Added deprecated functions to prevent PHP errors.
-* Required fields message should now not show when the form is hidden.
-* Field-specific scripts should only load when that field is present.
-* Updating translatable text.
-* Radio lists should no longer select an option by default.
-* Conversions should be more stable.
-* Text to HTML field conversion should now happen correctly.
-* Fixed a conflict with Visual Composer.
+* Fixed a bug with checking for a disabled PHP functions that might cause a fatal error.
 
 == Changelog ==
+
+= 3.0.5 (13 September 2016) =
+
+*Bugs:*
+
+* Fixed a bug with checking for a disabled PHP functions that might cause a fatal error.
+
+= 3.0.4 (13 September 2016) =
+
+*Bugs:*
+
+* Fixed a bug with aggressive CDN caching.
 
 = 3.0.3 (13 September 2016) =
 
