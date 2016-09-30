@@ -88,16 +88,18 @@ final class NF_Conversion_Calculations implements NF_Conversion
     private function reduce_auto_total( $eq, $field )
     {
         if( ! isset( $field[ 'calc_auto_include' ] ) || 1 != $field[ 'calc_auto_include' ] ) return $eq;
-        return $eq . '+ {field:' . $field[ 'key' ] . '} ';
+        return $eq . '+ {field:' . $field[ 'key' ] . ':calc} ';
     }
 
     private function merge_tag( $field )
     {
         $tag = $field[ 'key' ];
-        $type = ( 'calc' == $field[ 'type' ] ) ? 'calc' : 'field';
-        return '{' . $type . ':' . $tag . '}';
+        if( 'calc' == $field[ 'type' ] ){
+            return '{calc:' . $tag . '}';
+        } else {
+            return '{field:' . $tag . ':calc}';
+        }
     }
-
 }
 
 add_filter( 'ninja_forms_after_upgrade_settings', 'ninja_forms_conversion_calculations' );

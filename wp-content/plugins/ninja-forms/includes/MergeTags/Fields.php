@@ -22,7 +22,11 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
     public function all_fields()
     {
         $return = '<table>';
+        $hidden_field_types = array( 'html' );
         foreach( $this->merge_tags[ 'all_fields' ][ 'fields' ] as $field ){
+
+            if( in_array( $field[ 'type' ], array_values( $hidden_field_types ) ) ) continue;
+
             $field[ 'value' ] = apply_filters( 'ninja_forms_merge_tag_value_' . $field[ 'type' ], $field[ 'value' ], $field );
 
             if( is_array( $field[ 'value' ] ) ) $field[ 'value' ] = implode( ', ', $field[ 'value' ] );
@@ -64,15 +68,23 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
             'field_value' => apply_filters( 'ninja_forms_merge_tag_value_' . $field[ 'type' ], $field[ 'value' ], $field )
         );
 
-        if( ! isset( $field[ 'key' ] ) ) return;
+        if( isset( $field[ 'key' ] ) ) {
+            $callback = 'field_' . $field['key'];
+            $this->merge_tags[$callback] = array(
+                'id' => $field['key'],
+                'tag' => '{field:' . $field['key'] . '}',
+                'callback' => $callback,
+                'field_value' => apply_filters('ninja_forms_merge_tag_value_' . $field['type'], $field['value'], $field)
+            );
+        }
 
-        $callback = 'field_' . $field[ 'key' ];
-
-        $this->merge_tags[ $callback ] = array(
-            'id' => $field[ 'key' ],
-            'tag' => '{field:' . $field[ 'key' ] . '}',
+        $callback = 'field_' . $field[ 'key' ] . '_calc';
+        $calc_value = apply_filters( 'ninja_forms_merge_tag_calc_value_' . $field[ 'type' ], $field['value'], $field );
+        $this->merge_tags[$callback] = array(
+            'id' => $field['key'],
+            'tag' => '{field:' . $field['key'] . ':calc}',
             'callback' => $callback,
-            'field_value' => apply_filters( 'ninja_forms_merge_tag_value_' . $field[ 'type' ], $field[ 'value' ], $field )
+            'field_value' => $calc_value
         );
     }
 

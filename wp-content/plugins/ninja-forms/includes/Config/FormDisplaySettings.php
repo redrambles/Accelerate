@@ -153,6 +153,18 @@ return apply_filters( 'ninja_forms_form_display_settings', array(
         'help' => __( 'We\'ve noticed that don\'t have a submit button on your form. We can add one for your automatically.', 'ninja-forms' ),
     ),
 
+    /*
+     * CURRENCY
+     */
 
+    'currency' => array(
+        'name'      => 'currency',
+        'type'    => 'select',
+        'options' => array_merge( array( array( 'label' => __( 'Plugin Default', 'ninja-forms' ), 'value' => '' ) ), Ninja_Forms::config( 'Currency' ) ),
+        'label'   => __( 'Currency', 'ninja-forms' ),
+        'width' => 'full',
+        'group' => 'advanced',
+        'value'   => ''
+    ),
 
 ));

@@ -2,18 +2,27 @@
 defined('ABSPATH') or die('No direct access permitted');
 
 // if the sharethis terms have not yet been accepted
-if ($arrSettings['accepted_sharethis_terms'] != 'Y') {
+if (
+    'Y' !== $arrSettings['accepted_sharethis_terms'] &&
+    true !== $arrSettings['hide_sharethis_terms']
+) {
     function sharethis_terms_notice()
     {
         ?>
-        <div id="sharethis_terms_notice" class="update-nag notice">
+        <div id="sharethis_terms_notice" class="update-nag notice is-dismissible">
             <p>There are some <strong>great new features</strong> available with Simple Share Buttons Adder 6.2, such as an improved mobile Facebook sharing experience and Facebook analytics.
             We've updated our <a href="http://simplesharebuttons.com/privacy" target="_blank">privacy policy and terms of use</a> with important changes you should review. To take advantage of the new features, please review and accept the new <a href="http://simplesharebuttons.com/privacy" target="_blank">terms and privacy policy</a>.
             <a href="options-general.php?page=simple-share-buttons-adder&accept-terms=Y"><span class="button button-primary">I accept</span></a></p>
         </div>
+        <script type="text/javascript">
+        jQuery( '#sharethis_terms_notice' ).on( 'click', '.notice-dismiss', function( event ) {
+            jQuery.post( ajaxurl, { action: 'ssba_hide_terms' } );
+        });
+        </script>
         <?php
     }
     add_action( 'admin_notices', 'sharethis_terms_notice' );
+    add_action( 'wp_ajax_ssba_hide_terms', 'ssba_admin_hide_callback' );
 }
 // add settings link on plugin page
 function ssba_settings_link($links) {
@@ -23,6 +32,12 @@ function ssba_settings_link($links) {
 
 	// return all links
 	return $links;
+}
+
+// Hides the terms agreement at user's request.
+function ssba_admin_hide_callback() {
+    ssba_update_options( array( 'hide_sharethis_terms' => true ) );
+    wp_die();
 }
 
 // include js files and upload script

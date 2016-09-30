@@ -167,6 +167,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             'wp_locale'         => $wp_locale->number_format,
             'editFormText'      => __( 'Edit Form', 'ninja-forms' ),
             'mobile'            => ( wp_is_mobile() ) ? 1: 0,
+            'currencySymbols'   => array_merge( array( '' => Ninja_Forms()->get_setting( 'currency_symbol' ) ), Ninja_Forms::config( 'CurrencySymbol' ) ),
             'dateFormat'        => Ninja_Forms()->get_setting( 'date_format' )
         ));
 

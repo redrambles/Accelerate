@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, wpnzach,
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.4
 Tested up to: 4.6.1
-Stable tag: 3.0.5
+Stable tag: 3.0.6
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -102,13 +102,49 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.0.5 (13 September 2016) =
+= 3.0.6 (27 September 2016) =
+
+*Changes:*
+
+* Added the $post variable to the submission info metabox.
+* Suppressed HTML fields from submission data.
+* Suppressed HTML fields from all fields merge tags
+* Added description text to the Rollback Setting (Advanced).
+* Disabled the "Edit" page link when previewing a form.
+* Added a plugin wide currency setting in place of the static currency symbol setting.
 
 *Bugs:*
 
-* Fixed a bug with checking for a disabled PHP functions that might cause a fatal error.
+* Fixed a bug with validating email addresses (ie properly evaluate "+"s).
+* Fixed a bug with browser compatibility.
+* Fixed a bug with displaying column content on other post types.
+* Fixed a bug with updating form submission error messages.
+* Fixed a bug with creating empty settings on activation.
+* Fixed a bug with column class collisions in CSS.
+* Fixed a bug with field help text not displaying on the form.
 
 == Changelog ==
+
+= 3.0.6 (27 September 2016) =
+
+*Changes:*
+
+* Added the $post variable to the submission info metabox.
+* Suppressed HTML fields from submission data.
+* Suppressed HTML fields from all fields merge tags
+* Added description text to the Rollback Setting (Advanced).
+* Disabled the "Edit" page link when previewing a form.
+* Added a plugin wide currency setting in place of the static currency symbol setting.
+
+*Bugs:*
+
+* Fixed a bug with validating email addresses (ie properly evaluate "+"s).
+* Fixed a bug with browser compatibility.
+* Fixed a bug with displaying column content on other post types.
+* Fixed a bug with updating form submission error messages.
+* Fixed a bug with creating empty settings on activation.
+* Fixed a bug with column class collisions in CSS.
+* Fixed a bug with field help text not displaying on the form.
 
 = 3.0.5 (13 September 2016) =
 

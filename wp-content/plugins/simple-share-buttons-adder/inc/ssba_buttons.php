@@ -304,6 +304,20 @@ function ssba_facebook_save($arrSettings, $urlCurrentPage, $strPageTitle, $booSh
 // get facebook share count
 function getFacebookShareCount($urlCurrentPage, $arrSettings)
 {
+    $cache_key = sprintf(
+        'facebook_sharecount_%s',
+        wp_hash( $urlCurrentPage )
+    );
+    if ( $cachedCount = wp_cache_get( $cache_key, 'ssba' ) ) {
+        return ssba_format_number( $cachedCount );
+    }
+
+    // Get the longer cached value from the Transient API.
+    $longCachedCount = get_transient( "ssba_{$cache_key}" );
+    if ( false === $longCachedCount ) {
+        $longCachedCount = 0;
+    }
+
     // if sharedcount.com is enabled
     if ($arrSettings['sharedcount_enabled']) {
         // request from sharedcount.com
@@ -311,26 +325,36 @@ function getFacebookShareCount($urlCurrentPage, $arrSettings)
 
         // if no error
         if (is_wp_error($sharedcount)) {
-            return 0;
+            return ssba_format_number( $longCachedCount );
         }
 
         // decode and return count
-        $sharedcount = json_decode($sharedcount['body'], true);
-        $sharedcount =  (isset($sharedcount['Facebook']['share_count']) ? $sharedcount['Facebook']['share_count'] : 0);
-        return ($sharedcount) ? ssba_format_number($sharedcount) : '0';
+        $shared_resp = json_decode( $sharedcount['body'], true );
+        $sharedcount = $longCachedCount;
+        if ( isset( $shared_resp['Facebook']['share_count'] ) ) {
+            $sharedcount = (int) $shared_resp['Facebook']['share_count'];
+            wp_cache_set( $cache_key, $sharedcount, 'ssba', MINUTE_IN_SECONDS * 2 );
+            set_transient( "ssba_{$cache_key}", $sharedcount, DAY_IN_SECONDS );
+        }
+        return ssba_format_number( $sharedcount );
     } else {
         // get results from facebook
         $htmlFacebookShareDetails = wp_remote_get('http://graph.facebook.com/'.$urlCurrentPage, array('timeout' => 6));
 
         // if no error
         if (is_wp_error($htmlFacebookShareDetails)) {
-            return 0;
+            return ssba_format_number( $longCachedCount );
         }
 
         // decode and return count
         $arrFacebookShareDetails = json_decode($htmlFacebookShareDetails['body'], true);
-        $intFacebookShareCount =  (isset($arrFacebookShareDetails['shares']) ? $arrFacebookShareDetails['shares'] : 0);
-        return ($intFacebookShareCount) ? ssba_format_number($intFacebookShareCount) : '0';
+        $intFacebookShareCount = $longCachedCount;
+        if ( isset( $arrFacebookShareDetails['share']['share_count'] ) ) {
+            $intFacebookShareCount = (int) $arrFacebookShareDetails['share']['share_count'];
+            wp_cache_set( $cache_key, $intFacebookShareCount, 'ssba', MINUTE_IN_SECONDS * 2 );
+            set_transient( "ssba_{$cache_key}", $intFacebookShareCount, DAY_IN_SECONDS );
+        }
+        return ssba_format_number( $intFacebookShareCount );
     }
 }
 

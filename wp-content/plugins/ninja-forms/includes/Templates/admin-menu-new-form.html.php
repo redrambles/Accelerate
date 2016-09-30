@@ -613,7 +613,7 @@
 </script>
 
 <script id="tmpl-nf-rte-merge-tags-button" type="text/template">
-    <span class="dashicons dashicons-list-view merge-tags"></span>
+    <span class="dashicons dashicons-list-view"></span>
 </script>
 
 <script id="tmpl-nf-rte-link-button" type="text/template">

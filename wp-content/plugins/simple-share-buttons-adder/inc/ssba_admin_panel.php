@@ -163,7 +163,7 @@ function ssba_admin_panel($arrSettings)
 		</div>';
 	} elseif ($arrSettings['accepted_sharethis_terms'] != 'Y') {
         $htmlShareButtonsForm.= '<div class="alert alert-warning text-center">
-			<p>The Facebook save button requires acceptance of the terms before it can be used.</p>
+			<p>The Facebook save button requires acceptance of the terms before it can be used. <a href="options-general.php?page=simple-share-buttons-adder&accept-terms=Y"><span class="button button-secondary">I accept</span></a></p>
 		</div>';
     }
 

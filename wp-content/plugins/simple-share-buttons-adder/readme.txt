@@ -2,8 +2,8 @@
 Contributors: DavidoffNeal
 Tags: share buttons, facebook, twitter, google+, share, share links, stumble upon, linkedin, pinterest, yummly, vk
 Requires at least: 3.9
-Tested up to: 4.5.3
-Stable tag: 6.2.4
+Tested up to: 4.6.1
+Stable tag: 6.3.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,14 +63,21 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 
 == Changelog ==
 
+= 6.3.1 =
+* Added a caching layer on top of Facebook's API to ensure fallback share counts.
+
+= 6.3 =
+* Facebook share counts are back! We implemented a solution to Facebook’s deprecated API.
+* Added the ability to close the update notice when updating from old plugin versions. You will still need to accept the new terms to receive the new features, however you can now more easily choose to continue using the old version.
+
 = 6.2.4 =
-Fixes the Facebook page widget style bug.
+* Fixes the Facebook page widget style bug.
 
 = 6.2.3 =
-Fixes an issue with the Facebook like widget.
+* Fixes an issue with the Facebook like widget.
 
 = 6.2.2 =
-Improves performance over previous two plugin updates.
+* Improves performance over previous two plugin updates.
 
 = 6.2.1 =
 * Fix bug affecting older versions of PHP that didn’t allow people to close the notice.
