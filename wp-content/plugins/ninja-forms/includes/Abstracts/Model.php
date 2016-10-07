@@ -152,33 +152,13 @@ class NF_Abstracts_Model
         if( is_numeric( $id ) ) {
             $this->_id = absint( $id );
         } elseif( $id ) {
-
-            $field = $this->_db->get_row( $this->_db->prepare(
-                "
-                SELECT `id`
-                FROM   `$this->_table_name`
-                WHERE  `key` = %s
-                "
-                , $id )
-            );
-
-            if( $field ){
-                $this->_id = $field->id;
-            } else {
-                $this->_tmp_id = $id;
-            }
+            $this->_tmp_id = $id;
         }
 
         /*
          * Set the Parent ID for context
          */
         $this->_parent_id = $parent_id;
-
-        /*
-         * With the ID set, query settings from the database
-         */
-        $this->_settings = $this->get_settings();
-
     }
 
     /**
@@ -239,6 +219,23 @@ class NF_Abstracts_Model
     {
         // If the ID is not set, then we cannot pull settings from the Database.
         if( ! $this->_id ) return $this->_settings;
+
+        $form_cache = get_option( 'nf_form_' . $this->_parent_id );
+        if( $form_cache ){
+
+            if( 'field'== $this->_type ) {
+
+                if (isset($form_cache[ 'fields' ])) {
+
+                    foreach ($form_cache[ 'fields' ] as $object_id => $object) {
+                        if ($this->_id != $object_id) continue;
+
+                        $this->update_settings($object['settings']);
+                        break;
+                    }
+                }
+            }
+        }
 
         // Only query if settings haven't been already queried or cache is FALSE.
         if( ! $this->_settings || ! $this->_cache ) {

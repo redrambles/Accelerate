@@ -2,10 +2,19 @@
 
 class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
 {
+    private $publish_processing;
+
     public function __construct()
     {
+        add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
+
         add_action( 'wp_ajax_nf_save_form',   array( $this, 'save' )   );
         add_action( 'wp_ajax_nf_delete_form', array( $this, 'delete' ) );
+    }
+
+    public function plugins_loaded()
+    {
+        $this->publish_processing = new NF_Database_PublishProcessing();
     }
 
     public function save()
@@ -32,6 +41,7 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
         $form->update_settings( $form_data[ 'settings' ] )->save();
 
         if( isset( $form_data[ 'fields' ] ) ) {
+
             foreach ($form_data['fields'] as $field_data) {
 
                 if( 'unknown' == $field_data[ 'settings' ][ 'type' ] ) continue;
@@ -40,16 +50,23 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
 
                 $field = Ninja_Forms()->form( $form_data[ 'id' ] )->get_field($id);
 
-                $field->update_settings( $field_data['settings'] )->save();
-
                 if ($field->get_tmp_id()) {
 
+                    $field->save();
                     $tmp_id = $field->get_tmp_id();
                     $this->_data['new_ids']['fields'][$tmp_id] = $field->get_id();
                 }
 
+                $this->publish_processing->push_to_queue( array(
+                    'id' => $field->get_id(),
+                    'type' => 'field',
+                    'settings' => $field_data[ 'settings' ]
+                ));
+
                 $this->_data[ 'fields' ][ $id ] = $field->get_settings();
             }
+
+            $this->publish_processing->save()->dispatch();
         }
 
         if( isset( $form_data[ 'deleted_fields' ] ) ){
@@ -127,6 +144,7 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
         }
 
         delete_user_option( get_current_user_id(), 'nf_form_preview_' . $form_data['id'] );
+        update_option( 'nf_form_' . $form_data[ 'id' ], $form_data );
 
         do_action( 'ninja_forms_save_form', $form->get_id() );
 
