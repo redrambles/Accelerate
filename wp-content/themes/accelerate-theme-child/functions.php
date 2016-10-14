@@ -161,6 +161,9 @@ function accelerate_child_scripts() {
 	if ( is_404() ) {
 		wp_enqueue_script('404', get_stylesheet_directory_uri() . '/js/test-404.js', array('jquery'), '20160603', false );
 	}
+  if ( is_page( 'about' ) ){
+    wp_enqueue_script('h2_parser', get_stylesheet_directory_uri() . '/js/h2_parser.js', array('jquery'), '20161014', false );
+  }
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 
@@ -261,6 +264,57 @@ function about_Accelerate_green( $content ) {
     	}
    	return $content;
 }
+
+
+// Testing
+// add_filter( 'the_content', 'h2_filter' );
+// function h2_filter( $content ) {
+// 	    if ( is_page('about') ) {
+// 
+//         $html = preg_replace_callback("/<h2>(.+?)<\/h2>/", function($matches) {
+//             /* Convert content of <h2> tags to HTML entities. */
+//             $altered =  htmlspecialchars($matches[1], ENT_QUOTES);
+// 
+//             /* Put the converted content back inside <h2> tag and return it. */
+//             return str_replace($matches[1], $altered, $matches[0]);
+//         }, $html);
+// 
+//         $html = preg_replace_callback("/<p>(.+?)<\/p>/", function($matches) {
+//             /* Make match bold. */
+//             $altered = "<b>" . $matches[1] . "</b>";
+// 
+//             /* Put the converted content back inside <p> tag and return it. */
+//             return str_replace($matches[1], $altered, $matches[0]);
+//         }, $html);
+// 
+//         return $html + $content;
+//   }
+// 
+// function die_dumb_editor_die( $content ) {
+//   if ( is_page('about') ) {
+//     $dom = new domDocument('1.0', 'utf-8');
+//     $dom->loadHTML($content);
+//     var_dump($dom[childNodes]); die;
+//     var_dump($dom); die;
+//     // $dom->preserveWhiteSpace = false;
+//     $hTwo= $dom->getElementsByTagName('h2');
+//     var_dump(count($hTwo)); die;
+//     $headings = array();
+//     $i = 0;
+//     foreach($hTwo as $subheading) {
+//       array_push( $subheading->nodeValue );
+//       $subheading->setAttribute( 'name', 'subhd-' . $i );
+//     }
+//     var_dump($subheading);
+//     return $dom->saveHTML();
+//   }
+//   return $content;
+// }
+// add_filter( 'the_content', 'die_dumb_editor_die' );
+
+
+
+
 
 // Provide a quick link for your clients to reach you in the admin toolbar
 add_action( 'wp_before_admin_bar_render', 'your_awesome_admin_contact_info_of_wow' );
