@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
 
   $( $h2 ).each(function() {
     var $headerText = $(this).text();
-    $( $ul ).append( $('<a href="#'+$(this).attr('id')+'" class="header-link" >' + $headerText +'</a>' ) );
+    $( $ul ).append( $('<li><a href="#'+$(this).attr('id')+'" class="header-link" >' + $headerText +'</a></li>' ) );
   });
 
   $( $intro ).append($ul);
