@@ -585,7 +585,9 @@ aside.sidebar li a {
     padding-top: 1px;
 }
 .hero-text h3 {
-    padding-top: 3em;
+    max-width: 550px;
+    margin: 0 auto;
+    padding-top: 3.5em;
     text-align: center;
     line-height: 1.5em;
     letter-spacing: 0.75px;
@@ -593,7 +595,6 @@ aside.sidebar li a {
     font-family: "Open Sans", sans-serif;
     font-size: 24px;
     font-weight: normal;
-    margin: 6px 0 2em;
 }
 
 .main-color {
