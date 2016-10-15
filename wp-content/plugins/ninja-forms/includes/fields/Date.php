@@ -32,26 +32,16 @@ class NF_Fields_Date extends NF_Fields_Textbox
 
     public function process( $field, $data )
     {
-
-        foreach( $data[ 'fields' ] as $key => $field ){
-
-            if( 'date' != $field[ 'type' ] ) continue;
-            if( ! isset( $field[ 'date_format' ] ) || ! $field[ 'date_format' ] ) continue;
-
-            $format = $this->get_format( $field[ 'date_format' ] );
-            $data[ 'fields' ][ $key ][ 'value' ] = date( $format, strtotime( $field[ 'value' ] ) );
-        }
-
         return $data;
     }
 
     private function get_format( $format )
     {
         $lookup = array(
-            'DD/MM/YYYY' => __( 'm/d/Y', 'ninja-forms' ),
-            'DD-MM-YYYY' => __( 'd-m-Y', 'ninja-forms' ),
             'MM/DD/YYYY' => __( 'm/d/Y', 'ninja-forms' ),
             'MM-DD-YYYY' => __( 'm-d-Y', 'ninja-forms' ),
+            'DD/MM/YYYY' => __( 'm/d/Y', 'ninja-forms' ),
+            'DD-MM-YYYY' => __( 'd-m-Y', 'ninja-forms' ),
             'YYYY-MM-DD' => __( 'Y-m-d', 'ninja-forms' ),
             'YYYY/MM/DD' => __( 'Y/m/d', 'ninja-forms' ),
             'dddd, MMMM D YYYY' => __( 'l, F d Y', 'ninja-forms' )

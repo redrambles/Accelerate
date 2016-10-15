@@ -158,8 +158,8 @@ final class NF_Display_Render
                         do_shortcode( $settings['value'] );
                         $ob = ob_get_clean();
 
-                        if( $ob ){
-                            $settings['value'] = $ob;
+                        if( ! $ob ) {
+                            $settings['value'] = do_shortcode( $settings['value'] );
                         }
                     }
                 }
@@ -184,6 +184,8 @@ final class NF_Display_Render
                 $fields[] = apply_filters( 'ninja_forms_localize_field_settings_' . $field_type, $settings, $form );
             }
         }
+
+        $fields = apply_filters( 'ninja_forms_display_fields', $fields );
 
         // Output Form Container
         do_action( 'ninja_forms_before_container', $form_id, $form->get_settings(), $form_fields );
@@ -321,8 +323,8 @@ final class NF_Display_Render
                         do_shortcode( $field['settings']['value'] );
                         $ob = ob_get_clean();
 
-                        if( $ob ){
-                            $field['settings']['value'] = $ob;
+                        if( ! $ob ) {
+                            $field['settings']['value'] = do_shortcode( $field['settings']['value'] );
                         }
                     }
                 }

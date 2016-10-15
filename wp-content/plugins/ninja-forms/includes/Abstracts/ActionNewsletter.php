@@ -110,7 +110,7 @@ abstract class NF_Abstracts_ActionNewsletter extends NF_Abstracts_Action
         $this->_settings[ $prefix . 'newsletter_list' ] = array(
             'name' => 'newsletter_list',
             'type' => 'select',
-            'label' => $labels[ 'list' ] . ' <a class=' . __( "js-newsletter-list-update extra", 'ninja-forms' ) . '><span class=' . __( "dashicons dashicons-update", 'ninja-forms' ) . '></span></a>',
+            'label' => $labels[ 'list' ] . ' <a class="js-newsletter-list-update extra"><span class="dashicons dashicons-update"></span></a>',
             'width' => 'full',
             'group' => 'primary',
             'value' => '0',

@@ -9,16 +9,20 @@ function ssba_page_scripts() {
     // get settings
 	$arrSettings = get_ssba_settings();
 
-	// if the sharethis terms have been accepted
-	if ($arrSettings['accepted_sharethis_terms'] == 'Y') {
-		if (is_ssl()) {
-			// include https sharethis tracking js
-			wp_enqueue_script('ssba-sharethis', 'https://ws.sharethis.com/button/st_insights.js', null, null, true);
-		} else {
-            // include http sharethis tracking js
-            wp_enqueue_script('ssba-sharethis', 'http://w.sharethis.com/button/st_insights.js', null, null, true);
-		}
-	}
+    // add call to st_insights.js with params
+    $url = add_query_arg( array(
+        'publisher' => '4d48b7c5-0ae3-43d4-bfbe-3ff8c17a8ae6',
+        'product'   => 'simpleshare',
+    ), 'https://ws.sharethis.com/button/st_insights.js' );
+    if ( 'Y' === $arrSettings['accepted_sharethis_terms'] ) {
+        wp_enqueue_script( 'ssba-sharethis', $url, null, null );
+        add_filter( 'script_loader_tag', function( $tag, $handle ) {
+            if ( 'ssba-sharethis' === $handle ) {
+                return str_replace( '>', ' id=\'st_insights_js\'>', $tag );
+            }
+            return $tag;
+        }, 10, 2 );
+    }
 
     // ssba.min.js
     wp_enqueue_script('ssba', plugins_url('js/ssba.min.js', SSBA_FILE), array('jquery'), false, true);
