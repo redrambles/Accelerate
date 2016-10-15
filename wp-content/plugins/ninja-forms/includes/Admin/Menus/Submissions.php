@@ -255,7 +255,7 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
                     $url = esc_url( $url );
                     ?>
                     var button = '<a href="<?php echo $url; ?>" class=<?php __( "button-secondary nf-download-all", 'ninja-forms' ) ;?> . '>' . <?php echo __( 'Download All Submissions', 'ninja-forms' ); ?></a>';
-                    jQuery( '#doaction2' ).after( button );
+//                    jQuery( '#doaction2' ).after( button );
                     <?php
                 }
 
