@@ -989,6 +989,23 @@ aside.sidebar li a {
         float: left;
         padding-left: 50px;
     }
+    .main-content, aside.sidebar {
+      width: 100%;
+      max-width: 100%;
+      border-left: 0;
+    }
+    .sidebar {
+      text-align: center;
+    }
+    .sidebar .widget_search{
+      border-bottom: 0;
+    }
+    .sidebar .search-form {
+      padding: 0;
+    }
+    .sidebar .widget_search input[type="text"] {
+      width: 90%;
+    }
 }
 
 @media screen and (max-width: 800px) {
