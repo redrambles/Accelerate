@@ -34,6 +34,8 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
     {
         check_ajax_referer( 'ninja_forms_display_nonce', 'security' );
 
+        register_shutdown_function( array( $this, 'shutdown' ) );
+
         if( ! $this->_form_data ) {
 
             if( function_exists( 'json_last_error' ) // Function not supported in php5.2
@@ -99,7 +101,7 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
                 if( ! isset( $this->_preview_data[ 'fields' ][ $field[ 'id' ] ][ 'settings' ] ) ) return;
                 $settings = $this->_preview_data[ 'fields' ][ $field[ 'id' ] ][ 'settings' ];
             } else {
-                $field_model = Ninja_Forms()->form()->field($field['id'])->get();
+                $field_model = Ninja_Forms()->form( $this->_form_id )->field($field['id'])->get();
                 $settings = $field_model->get_settings();
             }
             $this->_data[ 'fields' ][ $field_id ] = array_merge( $this->_data[ 'fields' ][ $field_id ], $settings );
@@ -159,7 +161,7 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
             if( ! isset( $this->_preview_data[ 'fields' ][ $field[ 'id' ] ][ 'settings' ] ) ) return;
             $settings = $this->_preview_data[ 'fields' ][ $field[ 'id' ] ][ 'settings' ];
         } else {
-            $field_model = Ninja_Forms()->form()->field($field['id'])->get();
+            $field_model = Ninja_Forms()->form( $this->_form_id )->field($field['id'])->get();
             $settings = $field_model->get_settings();
         }
 
@@ -167,7 +169,11 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
 
         $field_class = Ninja_Forms()->fields[ $field['type'] ];
 
-        return $errors = $field_class->validate( $field, $data );
+        if( method_exists( $field_class, 'validate' ) ) {
+            return $errors = $field_class->validate($field, $data);
+        } else {
+            return array();
+        }
     }
 
     protected function process_fields()
@@ -188,7 +194,7 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
             if( ! isset( $this->_preview_data[ 'fields' ][ $field[ 'id' ] ][ 'settings' ] ) ) return;
             $settings = $this->_preview_data[ 'fields' ][ $field[ 'id' ] ][ 'settings' ];
         } else {
-            $field_model = Ninja_Forms()->form()->field($field['id'])->get();
+            $field_model = Ninja_Forms()->form( $this->_form_id )->field($field['id'])->get();
             $settings = $field_model->get_settings();
         }
 
@@ -315,5 +321,15 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
         }
 
         return ( $a->get_timing() < $b->get_timing() ) ? -1 : 1;
+    }
+
+    public function shutdown()
+    {
+        $error = error_get_last();
+        if( $error !== NULL && in_array( $error[ 'type' ], array( E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR ) ) ) {
+            $this->_errors[ 'form' ][ 'last' ] = __( 'The server encountered an error during processing.', 'ninja-forms' );
+            $this->_errors[ 'last' ] = $error;
+            $this->_respond();
+        }
     }
 }

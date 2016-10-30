@@ -42,6 +42,11 @@ class NF_Fields_Unknown extends NF_Fields_Hidden
         add_filter( 'nf_sub_hidden_field_types', array( $this, 'hide_field_type' ) );
     }
 
+    public function validate( $field, $data )
+    {
+        return array(); // Return empty array with no errors.
+    }
+
     function hide_field_type( $field_types )
     {
         $field_types[] = $this->_name;

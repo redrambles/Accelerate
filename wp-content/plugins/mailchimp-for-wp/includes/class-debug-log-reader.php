@@ -50,6 +50,14 @@ class MC4WP_Debug_Log_Reader {
 			}
 
 			$this->handle = fopen( $this->file, 'r' );
+
+            // unable to read?
+            if( ! is_resource( $this->handle ) ) {
+                return '';
+            }
+
+            // skip first line (PHP exit header)
+            fgets( $this->handle );
 		}
 
 		// read line, up to 8kb

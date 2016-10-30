@@ -34,9 +34,8 @@ class NF_Fields_ListCountry extends NF_Abstracts_List
             'value' => 'US',
         );
 
-        add_filter( 'ninja_forms_custom_columns',                              array( $this, 'custom_columns'         ), 10, 2 );
-        add_filter( 'ninja_forms_localize_field_' . $this->_name,              array( $this, 'filter_options'         ), 10, 1 );
-        add_filter( 'ninja_forms_localize_field_' . $this->_name . '_preview', array( $this, 'filter_options_preview' ), 10, 1 );
+        add_filter( 'ninja_forms_custom_columns',                 array( $this, 'custom_columns' ), 10, 2 );
+        add_filter( 'ninja_forms_render_options_' . $this->_name, array( $this, 'filter_options' ), 10, 2 );
     }
 
     public function custom_columns( $value, $field )
@@ -50,20 +49,17 @@ class NF_Fields_ListCountry extends NF_Abstracts_List
         return $value;
     }
 
-    public function filter_options( $field )
+    public function filter_options( $options, $settings )
     {
-        $options = $this->get_options();
+        $default_value = ( isset( $settings[ 'default' ] ) ) ? $settings[ 'default' ] : '';
 
-        $default_value = $field->get_setting( 'default' );
-
+        $options = $this->get_options(); // Overwrite the default list options.
         foreach( $options as $key => $option ){
             if( $default_value != $option[ 'value' ] ) continue;
             $options[ $key ][ 'selected' ] = 1;
         }
 
-        $field->update_setting( 'options', $options );
-
-        return $field;
+        return $options;
     }
 
     public function filter_options_preview( $field_settings )

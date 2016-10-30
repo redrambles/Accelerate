@@ -194,11 +194,47 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         // die();
 
         if( ! empty( $fields ) ) {
+
+            // TODO: Replace unique field key checks with a refactored model/factory.
+            $unique_field_keys = array();
+            $form_cache = get_option( 'nf_form_' . $form_id, false );
+            $cache_updated = false;
+
             foreach ($fields as $field) {
 
-                $type = $field->get_setting( 'type' );
-
                 $field_id = $field->get_id();
+
+                /*
+                 * Duplicate field check.
+                 * TODO: Replace unique field key checks with a refactored model/factory.
+                 */
+                $field_key = $field->get_setting( 'key' );
+                if( in_array( $field_key, $unique_field_keys ) || '' == $field_key ){
+
+                    // Delete the field.
+                    Ninja_Forms()->request( 'delete-field' )->data( array( 'field_id' => $field_id ) )->dispatch();
+
+                    // Remove the field from cache.
+                    if( $form_cache ) {
+                        if( isset( $form_cache[ 'fields' ] ) ){
+                            foreach( $form_cache[ 'fields' ] as $cached_field_key => $cached_field ){
+                                if( ! isset( $cached_field[ 'id' ] ) ) continue;
+                                if( $field_id != $cached_field[ 'id' ] ) continue;
+
+                                // Flag cache to update.
+                                $cache_updated = true;
+
+                                unset( $form_cache[ 'fields' ][ $cached_field_key ] ); // Remove the field.
+                            }
+                        }
+                    }
+
+                    continue; // Skip the duplicate field.
+                }
+                array_push( $unique_field_keys, $field_key ); // Log unique key.
+                /* END Duplicate field check. */
+
+                $type = $field->get_setting( 'type' );
 
                 if( ! isset( Ninja_Forms()->fields[ $type ] ) ){
                     $field = NF_Fields_Unknown::create( $field );
@@ -213,6 +249,10 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
                 }
 
                 $fields_settings[] = $settings;
+            }
+
+            if( $cache_updated ) {
+                update_option('nf_form_' . $form_id, $form_cache); // Update form cache without duplicate fields.
             }
         }
 
@@ -239,7 +279,15 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
         $form_data = array();
         $form_data['id'] = $form_id;
-        $form_data['settings'] = $form->get_settings();
+
+        // Use form cache for form settings.
+        // TODO: Defer to refactor of factory/model.
+        if( isset( $form_cache[ 'settings' ] ) ) {
+            $form_data['settings'] = $form_cache[ 'settings' ];
+        } else {
+            $form_data['settings'] = $form->get_settings();
+        }
+
         $form_data['fields'] = $fields_settings;
         $form_data['actions'] = $actions_settings;
 

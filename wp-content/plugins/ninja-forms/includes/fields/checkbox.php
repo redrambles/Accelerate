@@ -54,12 +54,20 @@ class NF_Fields_Checkbox extends NF_Abstracts_Input
 
     public function filter_merge_tag_value( $value, $field )
     {
-        if( $value && isset( $field[ 'checked_calc_value' ] ) ){
-            return $field[ 'checked_calc_value' ];
+        if( $value ){
+            if( isset( $field[ 'checked_calc_value' ] ) && '' != $field[ 'checked_calc_value' ] ) {
+                return $field['checked_calc_value'];
+            } else {
+                return __( 'checked', 'ninja-forms' );
+            }
         }
 
-        if( ! $value && isset( $field[ 'unchecked_calc_value' ] ) ){
-            return $field[ 'unchecked_calc_value' ];
+        if( ! $value ){
+            if( isset( $field[ 'unchecked_calc_value' ] ) && '' != $field[ 'unchecked_calc_value' ] ) {
+                return $field['unchecked_calc_value'];
+            } else {
+                return __( 'unchecked', 'ninja-forms' );
+            }
         }
 
         return $value;
@@ -67,6 +75,6 @@ class NF_Fields_Checkbox extends NF_Abstracts_Input
 
     public function filter_merge_tag_value_calc( $value, $field )
     {
-        return ( 1 == $field ) ? $field[ 'checked_calc_value' ] : $field[ 'unchecked_calc_value' ];
+        return ( 1 == $value ) ? $field[ 'checked_calc_value' ] : $field[ 'unchecked_calc_value' ];
     }
 }

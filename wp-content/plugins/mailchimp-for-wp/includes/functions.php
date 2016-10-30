@@ -98,8 +98,8 @@ function mc4wp_get_api() {
 function mc4wp_get_debug_log() {
 
 	// get default log file location
-	$upload_dir = wp_upload_dir();
-	$file = trailingslashit( $upload_dir['basedir'] ) . 'mc4wp-debug.log';
+	$upload_dir = wp_upload_dir( null, false );
+	$file = trailingslashit( $upload_dir['basedir'] ) . 'mc4wp-debug-log.php';
 
 	/**
 	 * Filters the log file to write to.
@@ -344,12 +344,31 @@ function _mc4wp_use_sslverify() {
  * @return string
  */
 function mc4wp_obfuscate_string( $string ) {
-
 	$length = strlen( $string );
 	$obfuscated_length = ceil( $length / 2 );
-
 	$string = str_repeat( '*', $obfuscated_length ) . substr( $string, $obfuscated_length );
 	return $string;
+}
+
+/**
+ * @internal
+ * @ignore
+ */
+function _mc4wp_obfuscate_email_addresses_callback( $m ) {
+    $one = $m[1] . str_repeat( '*', strlen( $m[2] ) );
+    $two = $m[3] . str_repeat( '*', strlen( $m[4] ) );
+    $three = $m[5];
+    return sprintf( '%s@%s.%s', $one, $two, $three );
+}
+
+/**
+ * Obfuscates email addresses in a string.
+ *
+ * @param $string String possibly containing email address
+ * @return string
+ */
+function mc4wp_obfuscate_email_addresses( $string ) {
+    return preg_replace_callback( '/([\w\.]{1,4})([\w\.]*)\@(\w{1,2})(\w*)\.(\w+)/', '_mc4wp_obfuscate_email_addresses_callback', $string );
 }
 
 /**

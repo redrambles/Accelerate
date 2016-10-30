@@ -26,6 +26,7 @@ function ninja_forms_ajax_import_form(){
         $form->save();
     }
 
+    delete_option( 'nf_form_' . $form_id );
 
     echo json_encode( array( 'export' => $_POST[ 'import' ], 'import' => $import ) );
     wp_die();
