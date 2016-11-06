@@ -287,6 +287,20 @@ function color_my_world() {
     .status-private, .striped>tbody>:nth-child(odd).status-private { background-color: #F2D46F; }
     </style>';
 }
+
+// Test in order to see if we can run raw JS from inside a posts
+add_filter( 'the_content', 'accelerate_no_wpautop_front_page', 9 );
+
+function accelerate_no_wpautop_front_page( $content ) {
+
+    if ( is_single('test-post') ) {
+        remove_filter( 'the_content', 'wpautop' );
+        //$content = str_replace('mandolin', '<span class="blue">spicy dogs</span>', $content);
+        return $content;
+    } else {
+        return $content;
+    }
+}
   
 // // customize admin footer text
 // add_filter('admin_footer_text', 'accelerate_footer');

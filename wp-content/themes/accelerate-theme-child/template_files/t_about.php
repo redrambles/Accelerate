@@ -13,7 +13,8 @@ get_header(); ?>
 	$cpt_services_intro_title = get_field('cpt_services_intro_title'); //in CPT ABOUT field group - available to this page
 	$cpt_services_intro_text = get_field('cpt_services_intro_text'); // in CPT ABOUT field group - available to this page
 	$about_contact_title = get_field('about_contact_title', 47331); // Pulled this value and the next from the original about page
-	$contact_button_text = get_field('contact_button_text', 47331); ?>
+	$contact_button_text = get_field('contact_button_text', 47331); 
+	?>
 	
 	<section class="hero-about">
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -50,12 +51,15 @@ get_header(); ?>
 				$cpt_service_description = get_field('cpt_service_description'); // in CPT SERVICES field group
 				$cpt_service_image = get_field('cpt_service_image'); // in CPT SERVICES field group
 				$size = "small";
+				$alignment = " ";
+				$align_radio_button = get_field('alignment');
+				$align_radio_button == "Left" ? $alignment = "alignleft" : $alignment = "alignright";
 				//$entry++;
 				//$align = ($entry % 2 == 0) ? 'align-right' : 'align-left';
 			?>
 
 				<section class="service-section">
-					<figure class="service-image <?php //echo $align ?>">
+					<figure class="service-image <?php echo $alignment; ?>">
 						<?php echo wp_get_attachment_image( $cpt_service_image, $size ); ?>
 					</figure>
 					<div class="service-description">

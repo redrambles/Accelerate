@@ -625,15 +625,22 @@ aside.sidebar li a {
     padding-bottom: 15px;
 }
 
-/* Testing for the CPT - CPT-About Template page version of the About page */
-.service-section:nth-child(odd) .service-image {
+/* CSS solution to alternate images */
+/*.service-section:nth-child(odd) .service-image {
     float: left;
     margin-right: 3%;
 }
-
 .service-section:nth-child(even) .service-image {
     float: right;
     margin-left: 3%;
+}*/
+
+/* Radio Button Approach - Fine control by client */
+.service-image.alignleft {
+  margin-right: 3%;
+}
+.service-image.alignright {
+  margin-left: 3%;
 }
 .service-description {
     margin-top: 60px;
