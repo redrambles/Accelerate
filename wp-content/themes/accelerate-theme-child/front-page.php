@@ -37,7 +37,8 @@ get_header(); ?>
 			<?php $args = array (
 					'posts_per_page' => 3,
 					'post_type' => 'case_studies',
-					'order' => 'ASC'
+					'order' => 'ASC',
+					'status' => 'publish'
 				);
 
 			$featured = new WP_Query($args);?>
@@ -66,7 +67,8 @@ get_header(); ?>
 		<?php $args = array (
 			'post_type' => 'services',
 			'posts_per_page' => 4,
-			'order' => "ASC"
+			'order' => 'ASC',
+			'status' => 'publish'
 				);
 			$services = new WP_Query($args);?>
 
