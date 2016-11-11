@@ -48,12 +48,12 @@ get_header(); ?>
 
 			<?php while ($services_query-> have_posts() ) : $services_query->the_post();
 				// Variables from our 'services' CPT 
-				$cpt_service_description = get_field('cpt_service_description'); // in CPT SERVICES field group
-				$cpt_service_image = get_field('cpt_service_image'); // in CPT SERVICES field group
-				$size = "small";
+				$cpt_service_description = get_field('cpt_service_description'); 
+				$cpt_service_image = get_field('cpt_service_image'); 
 				$alignment = " ";
 				$align_radio_button = get_field('alignment');
 				$align_radio_button == "Left" ? $alignment = "alignleft" : $alignment = "alignright";
+				$size = "full";
 				//$entry++;
 				//$align = ($entry % 2 == 0) ? 'align-right' : 'align-left';
 			?>
