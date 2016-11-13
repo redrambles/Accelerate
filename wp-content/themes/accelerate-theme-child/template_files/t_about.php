@@ -50,16 +50,14 @@ get_header(); ?>
 				// Variables from our 'services' CPT 
 				$cpt_service_description = get_field('cpt_service_description'); 
 				$cpt_service_image = get_field('cpt_service_image'); 
-				$alignment = " ";
-				$align_radio_button = get_field('alignment');
-				$align_radio_button == "Left" ? $alignment = "alignleft" : $alignment = "alignright";
+				$alignment = get_field('alignment');
 				$size = "full";
 				//$entry++;
-				//$align = ($entry % 2 == 0) ? 'align-right' : 'align-left';
+				//$align = ($entry % 2 == 0) ? 'alignright' : 'alignleft';
 			?>
 
 				<section class="service-section">
-					<figure class="service-image <?php echo $alignment; ?>">
+					<figure class="service-image align<?php echo $alignment; ?>">
 						<?php echo wp_get_attachment_image( $cpt_service_image, $size ); ?>
 					</figure>
 					<div class="service-description">
