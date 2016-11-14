@@ -5,7 +5,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Check if single or multiple values can be stored
-// NOTE: Value is a string
+// NOTE Value is a string
 $multiple_values = isset( $this->settings['multiple'] ) ? $this->settings['multiple'] : '';
 
 // If single

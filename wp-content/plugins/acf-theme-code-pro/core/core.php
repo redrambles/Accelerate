@@ -2,12 +2,10 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class ACFTC_Core {
+class ACFTCP_Core {
 
 	public static $plugin_path = '';
 	public static $plugin_url = '';
-	public static $plugin_basename = '';
-
 	public static $db_table = '';
 	public static $indent_repeater = 2;
 	public static $indent_flexible_content = 3;
@@ -42,47 +40,20 @@ class ACFTC_Core {
 	);
 
 	/**
-	 * ACFTC_Core constructor
+	 * ACFTCP_Core constructor
 	 */
-	public function __construct( $plugin_path, $plugin_url, $plugin_basename ) {
+	public function __construct( $plugin_path, $plugin_url ) {
 
 		// Paths and URLs
 		self::$plugin_path = $plugin_path;
 		self::$plugin_url = $plugin_url;
-		self::$plugin_basename = $plugin_basename;
 
 		// Hooks
-		add_action( 'admin_init', array($this, 'acf_theme_code_pro_check') );
 		add_action( 'admin_init', array($this, 'set_db_table') );
 		add_action( 'add_meta_boxes', array($this, 'register_meta_boxes') );
 		add_action( 'admin_enqueue_scripts', array($this, 'enqueue') );
 
 	}
-
-	/**
-	 * Check if ACF Theme Code Pro is activated
-	 */
-	public function acf_theme_code_pro_check() {
-
-		// If Theme Code Pro is activated, disable Theme Code (free) and display notice
-		if ( is_plugin_active( 'acf-theme-code-pro/acf_theme_code_pro.php' ) ) {
-			deactivate_plugins( self::$plugin_basename );
-			add_action( 'admin_notices', array( $this, 'disabled_notice' ) );
-			if ( isset( $_GET['activate'] ) ) {
-				unset( $_GET['activate'] );
-			}
-		}
-
-	}
-
-	/**
-	 * ACF Theme Code (free) disabled notice
-	 */
-	public function disabled_notice() {
-		echo '<div class="notice notice-success is-dismissible">';
-    		echo '<p>Plugin <strong>Advanced Custom Fields: Theme Code Pro</strong> is activated so plugin <strong>Advanced Custom Fields: Theme Code</strong> has been disabled.</p>';
-		echo '</div>';
-    }
 
 
 	/**
@@ -111,8 +82,8 @@ class ACFTC_Core {
 		if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) || // ACF Pro
 			 is_plugin_active( 'advanced-custom-fields-pro-beta/acf.php') || // ACF Pro Beta
 			 is_plugin_active( 'acf-pro-master/acf.php' ) ) { // ACF Pro Beta alt
- 			self::$db_table = 'posts';
-		} elseif  ( is_plugin_active('advanced-custom-fields/acf.php' ) ) {
+			self::$db_table = 'posts';
+		} elseif  ( is_plugin_active('advanced-custom-fields/acf.php' ) ) { // ACF
 			self::$db_table = 'postmeta';
 		}
 
@@ -126,7 +97,7 @@ class ACFTC_Core {
 
 		add_meta_box(
 			'acftc-meta-box',
-			__( 'Theme Code', 'textdomain' ),
+			__( 'Theme Code', 'acf_theme_code_pro' ),
 			array( $this, 'display_callback'),
 			array( 'acf', 'acf-field-group' ) // same meta box used for ACF and ACF PRO
 		);
@@ -143,21 +114,18 @@ class ACFTC_Core {
 
 		if ( self::$db_table == 'postmeta') {
 
-			$parent_field_group = new ACFTC_Group( $post->ID );
+			$parent_field_group = new ACFTCP_Group( $post->ID );
 
 		} elseif ( self::$db_table == 'posts') {
 
 			$field_group_location = $this->get_field_group_locations( $post );
-			$parent_field_group = new ACFTC_Group( $post->ID, 0 , 0 , $field_group_location);
+			$parent_field_group = new ACFTCP_Group( $post->ID, 0 , 0 , $field_group_location);
 
 		}
 
 		if ( !empty( $parent_field_group->fields ) ) {
 
 			$parent_field_group->render_field_group();
-
-			// Upgrade to TC Pro notice
-			echo '<div class="acftc-pro-notice"><a class="acftc-pro-notice__link" href="https://hookturn.io/downloads/acf-theme-code-pro/?utm_source=acftcfree" target="_blank">Upgrade to <strong>ACF Theme Code Pro</strong>.</a></div>';
 
 		} else {
 

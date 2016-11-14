@@ -6,8 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 $return_format = isset( $this->settings['return_format'] ) ? $this->settings['return_format'] : '';
 
-// echo htmlspecialchars('<h3>'.$return_format.'</h3>')."\n";
-
 // if return format is value or label (single array)
 if($return_format == 'value' || $return_format == 'label') {
 

@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Class for field functionality
  */
-class ACFTC_Field {
+class ACFTCP_Field {
 
 	private $render_partial;
 
@@ -70,9 +70,9 @@ class ACFTC_Field {
 
 		}
 
-		if ( "postmeta" == ACFTC_Core::$db_table ) {
+		if ( "postmeta" == ACFTCP_Core::$db_table ) {
 			$this->construct_from_postmeta_table( $field_data_obj );
-		} elseif ( "posts" == ACFTC_Core::$db_table ) {
+		} elseif ( "posts" == ACFTCP_Core::$db_table ) {
 			$this->construct_from_posts_table( $field_data_obj );
 		}
 
@@ -152,13 +152,18 @@ class ACFTC_Field {
 
 		if ( !empty( $this->type ) ) {
 
-			// Basic types
-			if ( in_array( $this->type, ACFTC_Core::$basic_types ) ) {
-				$render_partial = ACFTC_Core::$plugin_path . 'render/basic.php';
+			// Field types only supported in TC Pro
+			if ( file_exists( ACFTCP_Core::$plugin_path . 'pro' ) &&
+				 in_array( $this->type, ACFTCP_Core::$tc_pro_field_types ) ) {
+				$render_partial = ACFTCP_Core::$plugin_path . 'pro/render/' . $this->type . '.php';
+			}
+			// Basic field types with a shared partial
+			elseif ( in_array( $this->type, ACFTCP_Core::$basic_types ) ) {
+				$render_partial = ACFTCP_Core::$plugin_path . 'render/basic.php';
 			}
 			// Field types with their own partial
 			else {
-				$render_partial = ACFTC_Core::$plugin_path . 'render/' . $this->type . '.php';
+				$render_partial = ACFTCP_Core::$plugin_path . 'render/' . $this->type . '.php';
 			}
 
 			return $render_partial;
@@ -174,7 +179,7 @@ class ACFTC_Field {
 		if ( !empty($this->type) ) {
 
 			// if the field is a tab or a message, bail early
-			if ( $this->type == 'tab' || $this->type == 'message' ) {
+			if($this->type == 'tab' || $this->type == 'message' || $this->type == 'accordion' || $this->type == 'enhanced_message' || $this->type == 'row') {
 				return;
 			}
 
@@ -187,7 +192,7 @@ class ACFTC_Field {
 				//echo htmlspecialchars('<h2>'. $this->label .'</h2>');
 
 				// dev - debug field partial
-				//echo htmlspecialchars('<h2>'. $this->render_partial .'</h2>');
+				//echo htmlspecialchars('<h2>'. $this->label .'</h2>');
 
 				// code block title - simple version
 				echo '<span class="acftc-field-meta__title" data-pseudo-content="'. $this->label .'"></span>';
@@ -197,8 +202,7 @@ class ACFTC_Field {
 
 				// open div for field code wrapper (used for the button etc)
 				echo '<div class="acftc-field-code" id="acftc-' . $this->quick_link_id . '">';
-
-
+				
 				// copy button
 				echo '<a href="#" class="acftc-field__copy" title="Copy to Clipboard"></a>';
 
@@ -207,14 +211,9 @@ class ACFTC_Field {
 
 			}
 
-			// Field supported by TC (free)
+			// Include field type partial
 			if ( file_exists( $this->render_partial ) ) {
 				include( $this->render_partial );
-			}
-			// Field supported by TC Pro only
-			elseif ( in_array( $this->type, ACFTC_Core::$tc_pro_field_types ) ) {
-				echo $this->indent . htmlspecialchars( "<?php // Upgrade to ACF Theme Code Pro for " . $this->type . " field support. ?>" ) . "\n";
-				echo $this->indent . htmlspecialchars( "<?php // Visit http://www.hookturn.io for more information. ?>" ) . "\n";
 			}
 			// Field not supported at all (yet)
 			else {

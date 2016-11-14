@@ -4,14 +4,11 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Check if single or multiple values can be stored
-// NOTE: value is a string
+// NOTE: Value is a string
 $multiple_values = isset( $this->settings['multiple'] ) ? $this->settings['multiple'] : '';
 
 // Check for return format ACF 5.4 feature
 $return_format = isset( $this->settings['return_format'] ) ? $this->settings['return_format'] : '';
-
-// Dev - uncomment to debug this field
-//echo htmlspecialchars('<h3>'.$multiple_values.$return_format.'</h3>')."\n";
 
 // If single
 if($multiple_values == '0') {
@@ -36,7 +33,7 @@ if($multiple_values == '0') {
 }
 
 // If multiple
-if($multiple_values == '1' ) {
+if($multiple_values == '1') {
 
 	if($return_format == 'array') {
 

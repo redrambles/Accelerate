@@ -4,9 +4,9 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( "postmeta" == ACFTC_Core::$db_table ) { // ACF
+if ( "postmeta" == ACFTCP_Core::$db_table ) { // ACF
 	$return_format = isset( $this->settings['save_format'] ) ? $this->settings['save_format'] : '';
-} elseif ( "posts" == ACFTC_Core::$db_table ) { // ACF PRO
+} elseif ( "posts" == ACFTCP_Core::$db_table ) { // ACF PRO
 	$return_format = isset( $this->settings['return_format'] ) ? $this->settings['return_format'] : '';
 }
 
@@ -25,7 +25,6 @@ if ( $return_format == 'object') {
 	echo $this->indent . htmlspecialchars("	<a href=\"<?php echo \$".$this->name."['url']; ?>\" /><?php echo\$".$this->name."['title']; ?></a>"."\n");
 	echo $this->indent . htmlspecialchars("<?php } ?>"."\n");
 }
-
 
 // If file is returned as a ID
 if ( $return_format == 'id' ) {

@@ -10,11 +10,16 @@
 
 get_header(); ?>
 
-<?php 
+<?php
 // Testing displaying option field
 // $twitter = the_field('twitter', 'option'); 
 // echo $twitter;
-?>
+// 
+// // TO-DO: map the href attribute to fontawesome icon - this is a TEST 
+// if ( have_rows( 'social-icon', 'option' ) ) : 
+//while ( have_rows( 'social-icon', 'option' ) ) : the_row(); ?>
+<!-- <a href="<?php //the_sub_field( 'social-media-address', 'option' ); ?>"><?php //the_sub_field( 'social-media-address', 'option' ); ?></a> -->
+<?php //endwhile; ?>
 
 <section class="home-page">
 		<!-- <div class="site-content"> -->

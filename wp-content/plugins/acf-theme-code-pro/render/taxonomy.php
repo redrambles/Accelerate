@@ -16,7 +16,6 @@ if ( $return_format == 'object' ) {
 		echo $this->indent . htmlspecialchars("<?php if ( \$".$this->name."_term ): ?>")."\n";
 		echo $this->indent . htmlspecialchars("	<?php echo \$".$this->name."_term->name; ?>")."\n";
 		echo $this->indent . htmlspecialchars("<?php endif; ?>")."\n";
-
 	}
 
 	// If field type is a multiple type
@@ -29,7 +28,6 @@ if ( $return_format == 'object' ) {
 		echo $this->indent . htmlspecialchars("<?php endif; ?>")."\n";
 	}
 }
-
 
 // if return format is an array of ids
 if ( $return_format == 'id' ) {

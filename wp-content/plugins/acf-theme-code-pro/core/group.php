@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Class for field group functionality
  */
-class ACFTC_Group {
+class ACFTCP_Group {
 
 	// field group id
 	private $id;
@@ -64,9 +64,9 @@ class ACFTC_Group {
 	*/
 	private function get_fields() {
 
-		if ( 'postmeta' == ACFTC_Core::$db_table ) { // ACF
+		if ( 'postmeta' == ACFTCP_Core::$db_table ) { // ACF
 			return $this->get_fields_from_postmeta_table();
-		 } elseif ( 'posts' == ACFTC_Core::$db_table ) { // ACF PRO
+		 } elseif ( 'posts' == ACFTCP_Core::$db_table ) { // ACF PRO
 			return $this->get_fields_from_posts_table();
 		}
 
@@ -122,14 +122,14 @@ class ACFTC_Group {
 	public function render_field_group() {
 
 		// ACF - create, sort and render fields
-		if ( 'postmeta' == ACFTC_Core::$db_table ) {
+		if ( 'postmeta' == ACFTCP_Core::$db_table ) {
 
-			// create an array of ACFTC_Field objects
+			// create an array of ACFTCP_Field objects
 			$acftc_fields = array();
 
 			foreach ( $this->fields as $field ) {
 
-				$acftc_field = new ACFTC_Field(	$this->nesting_level,
+				$acftc_field = new ACFTCP_Field(	$this->nesting_level,
 												$this->indent_count,
 												$this->location,
 												$field
@@ -150,12 +150,12 @@ class ACFTC_Group {
 		 }
 
 		// ACF PRO - create and render fields (no sorting required)
-		elseif ( 'posts' == ACFTC_Core::$db_table ) {
+		elseif ( 'posts' == ACFTCP_Core::$db_table ) {
 
-			// create and render ACFTC_Field objects
+			// create and render ACFTCP_Field objects
 			foreach ( $this->fields as $field ) {
 
-				$acftc_field = new ACFTC_Field(	$this->nesting_level,
+				$acftc_field = new ACFTCP_Field(	$this->nesting_level,
 												$this->indent_count,
 												$this->location,
 												$field
