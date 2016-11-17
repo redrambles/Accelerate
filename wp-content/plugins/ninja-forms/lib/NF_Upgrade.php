@@ -18,6 +18,8 @@ function ninja_forms_ajax_import_form(){
 
     $form_id = ( isset( $_POST[ 'formID' ] ) ) ? absint( $_POST[ 'formID' ] ) : '';
 
+    delete_option( 'nf_form_' . $form_id ); // Bust the cache.
+
     Ninja_Forms()->form()->import_form( $import, $form_id, TRUE );
 
     if( isset( $_POST[ 'flagged' ] ) && $_POST[ 'flagged' ] ){
@@ -25,8 +27,6 @@ function ninja_forms_ajax_import_form(){
         $form->update_setting( 'lock', TRUE );
         $form->save();
     }
-
-    delete_option( 'nf_form_' . $form_id );
 
     echo json_encode( array( 'export' => $_POST[ 'import' ], 'import' => $import ) );
     wp_die();

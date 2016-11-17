@@ -289,3 +289,7 @@ function _nf_removed_hooks() {
     }
 }
 
+function ninja_forms_get_form_by_id( $form_id ) {
+    Ninja_Forms::deprecated_notice( $hook, '3.0', null );
+    return array();
+}

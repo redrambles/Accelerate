@@ -94,7 +94,7 @@ class NF_Admin_CPT_Submission
 
         wp_enqueue_script( 'subs-cpt',
             Ninja_Forms::$url . 'deprecated/assets/js/min/subs-cpt.min.js',
-            array( 'jquery' ) );
+            array( 'jquery', 'jquery-ui-datepicker' ) );
 
         wp_localize_script( 'subs-cpt', 'nf_sub', array( 'form_id' => $form_id ) );
     }
@@ -119,18 +119,26 @@ class NF_Admin_CPT_Submission
             'id' => __( '#', 'ninja-forms' ),
         );
 
-        $fields = Ninja_Forms()->form( $form_id )->get_fields();
+        $form_cache = get_option( 'nf_form_' . $form_id );
 
-        foreach( $fields as $field ) {
+        $form_fields = $form_cache[ 'fields' ];
+        if( empty( $form_fields ) ) $form_fields = Ninja_Forms()->form( $form_id )->get_fields();
+
+        foreach( $form_fields as $field ) {
+
+            if( is_object( $field ) ) {
+                $field = array(
+                    'id' => $field->get_id(),
+                    'settings' => $field->get_settings()
+                );
+            }
 
             $hidden_field_types = apply_filters( 'nf_sub_hidden_field_types', array() );
-            if( in_array( $field->get_setting( 'type' ), array_values( $hidden_field_types ) ) ) continue;
+            if( in_array( $field[ 'settings' ][ 'type' ], array_values( $hidden_field_types ) ) ) continue;
 
-            $id = $field->get_id();
-            $label = $field->get_setting( 'label' );
-            $admin_label = $field->get_setting( 'admin_label' );
-
-            $columns[ $id ] = ( $admin_label ) ? $admin_label : $label;
+            $id = $field[ 'id' ];
+            $label = $field[ 'settings' ][ 'label' ];
+            $columns[ $id ] = ( isset( $field[ 'settings' ][ 'admin_label' ] ) && $field[ 'settings' ][ 'admin_label' ] ) ? $field[ 'settings' ][ 'admin_label' ] : $label;
         }
 
         $columns['sub_date'] = __( 'Date', 'ninja-forms' );

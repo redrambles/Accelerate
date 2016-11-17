@@ -216,7 +216,7 @@ return apply_filters( 'ninja_forms_field_settings', array(
             ),
             array(
                 'label' => __( 'Custom', 'ninja-forms' ),
-                'value' => __( 'custom', 'ninja-forms' ),
+                'value' => 'custom',
             ),
         ),
         'value' => '',
