@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 3.0.11
+Version: 3.0.15
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -51,7 +51,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         /**
          * @since 3.0
          */
-        const VERSION = '3.0.11';
+        const VERSION = '3.0.15';
 
         /**
          * @var Ninja_Forms
@@ -144,6 +144,8 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 
         protected $requests = array();
 
+        protected $processes = array();
+
         /**
          * Main Ninja_Forms Instance
          *
@@ -208,6 +210,12 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                  */
                 require_once Ninja_Forms::$dir . 'includes/Libraries/BackgroundProcessing/classes/wp-async-request.php';
                 self::$instance->requests[ 'delete-field' ] = new NF_AJAX_Requests_DeleteField();
+
+                /*
+                 * Background Processes
+                 */
+                require_once Ninja_Forms::$dir . 'includes/Libraries/BackgroundProcessing/wp-background-processing.php';
+                self::$instance->requests[ 'update-fields' ] = new NF_AJAX_Processes_UpdateFields();
 
                 /*
                  * WP-CLI Commands
@@ -440,6 +448,13 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         public function request( $action )
         {
             if( ! isset( $this->requests[ $action ] ) ) return new NF_AJAX_Requests_NullRequest();
+
+            return $this->requests[ $action ];
+        }
+
+        public function background_process( $action )
+        {
+            if( ! isset( $this->requests[ $action ] ) ) return new NF_AJAX_Processes_NullProcess();
 
             return $this->requests[ $action ];
         }

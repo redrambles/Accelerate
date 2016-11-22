@@ -50,4 +50,4 @@ add_action( 'customize_register', 'accelerate_customize_register' );
 function accelerate_display_footer_details() { 
 	echo "<p>" .get_theme_mod( 'accelerate_footer_message', 'Your footer message' ) . "</p>";
 }
-add_action( 'accelerate_footer', 'accelerate_display_footer_details' );
+add_action( 'accelerate_footer_customizer', 'accelerate_display_footer_details' );

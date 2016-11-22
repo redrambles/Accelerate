@@ -204,6 +204,7 @@ function green_accelerate_footer(){
 	} 
 
 };
+add_action('modified_footer', 'green_accelerate_footer');
 	
 // Refresh those permalinks message on main Dashboard page only
 add_action( 'current_screen', 'message_dashboard_screen' );

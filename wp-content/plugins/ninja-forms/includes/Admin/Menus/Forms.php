@@ -179,7 +179,12 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         $form = Ninja_Forms()->form( $form_id )->get();
 
         if( ! $form->get_tmp_id() ) {
-            $fields = ($form_id) ? Ninja_Forms()->form($form_id)->get_fields() : array();
+
+            if( $form_cache = get_option( 'nf_form_' . $form_id, false ) ) {
+                $fields = $form_cache[ 'fields' ];
+            } else {
+                $fields = ($form_id) ? Ninja_Forms()->form($form_id)->get_fields() : array();
+            }
             $actions = ($form_id) ? Ninja_Forms()->form($form_id)->get_actions() : array();
         } else {
             $fields = array();
@@ -196,64 +201,64 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         if( ! empty( $fields ) ) {
 
             // TODO: Replace unique field key checks with a refactored model/factory.
-            $unique_field_keys = array();
-            $form_cache = get_option( 'nf_form_' . $form_id, false );
-            $cache_updated = false;
+//            $unique_field_keys = array();
+//            $form_cache = get_option( 'nf_form_' . $form_id, false );
+//            $cache_updated = false;
 
             foreach ($fields as $field) {
 
-                $field_id = $field->get_id();
+                $field_id = ( is_object( $field ) ) ? $field->get_id() : $field[ 'id' ];
 
                 /*
                  * Duplicate field check.
                  * TODO: Replace unique field key checks with a refactored model/factory.
                  */
-                $field_key = $field->get_setting( 'key' );
-                if( in_array( $field_key, $unique_field_keys ) || '' == $field_key ){
-
-                    // Delete the field.
-                    Ninja_Forms()->request( 'delete-field' )->data( array( 'field_id' => $field_id ) )->dispatch();
-
-                    // Remove the field from cache.
-                    if( $form_cache ) {
-                        if( isset( $form_cache[ 'fields' ] ) ){
-                            foreach( $form_cache[ 'fields' ] as $cached_field_key => $cached_field ){
-                                if( ! isset( $cached_field[ 'id' ] ) ) continue;
-                                if( $field_id != $cached_field[ 'id' ] ) continue;
-
-                                // Flag cache to update.
-                                $cache_updated = true;
-
-                                unset( $form_cache[ 'fields' ][ $cached_field_key ] ); // Remove the field.
-                            }
-                        }
-                    }
-
-                    continue; // Skip the duplicate field.
-                }
-                array_push( $unique_field_keys, $field_key ); // Log unique key.
+//                $field_key = $field->get_setting( 'key' );
+//                if( in_array( $field_key, $unique_field_keys ) || '' == $field_key ){
+//
+//                    // Delete the field.
+//                    Ninja_Forms()->request( 'delete-field' )->data( array( 'field_id' => $field_id ) )->dispatch();
+//
+//                    // Remove the field from cache.
+//                    if( $form_cache ) {
+//                        if( isset( $form_cache[ 'fields' ] ) ){
+//                            foreach( $form_cache[ 'fields' ] as $cached_field_key => $cached_field ){
+//                                if( ! isset( $cached_field[ 'id' ] ) ) continue;
+//                                if( $field_id != $cached_field[ 'id' ] ) continue;
+//
+//                                // Flag cache to update.
+//                                $cache_updated = true;
+//
+//                                unset( $form_cache[ 'fields' ][ $cached_field_key ] ); // Remove the field.
+//                            }
+//                        }
+//                    }
+//
+//                    continue; // Skip the duplicate field.
+//                }
+//                array_push( $unique_field_keys, $field_key ); // Log unique key.
                 /* END Duplicate field check. */
 
-                $type = $field->get_setting( 'type' );
+                $type = ( is_object( $field ) ) ? $field->get_setting( 'type' ) : $field[ 'settings' ][ 'type' ];
 
                 if( ! isset( Ninja_Forms()->fields[ $type ] ) ){
                     $field = NF_Fields_Unknown::create( $field );
                 }
 
-                $settings = $field->get_settings();
+                $settings = ( is_object( $field ) ) ? $field->get_settings() : $field[ 'settings' ];
                 $settings[ 'id' ] =  $field_id;
 
 
-                foreach ($settings as $key => $setting) {
-                    if (is_numeric($setting)) $settings[$key] = floatval($setting);
-                }
+//                foreach ($settings as $key => $setting) {
+//                    if (is_numeric($setting)) $settings[$key] = floatval($setting);
+//                }
 
                 $fields_settings[] = $settings;
             }
 
-            if( $cache_updated ) {
-                update_option('nf_form_' . $form_id, $form_cache); // Update form cache without duplicate fields.
-            }
+//            if( $cache_updated ) {
+//                update_option('nf_form_' . $form_id, $form_cache); // Update form cache without duplicate fields.
+//            }
         }
 
         $actions_settings = array();

@@ -111,14 +111,14 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
                     $action_data[ 'id' ] = $action->get_id();
                 }
 
-                $this->_data[ 'actions' ][ $id ] = $action->get_settings();
+                $this->_data[ 'actions' ][ $action->get_id() ] = $action->get_settings();
             }
         }
 
         /*
          * Loop Actions and fire Publish() hooks.
          */
-        foreach ($form_data['actions'] as $action_data) {
+        foreach ($form_data['actions'] as &$action_data) {
 
             $action = Ninja_Forms()->form( $form_data[ 'id' ] )->get_action( $action_data['id'] );
 

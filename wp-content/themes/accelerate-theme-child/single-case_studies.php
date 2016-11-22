@@ -42,17 +42,25 @@ get_header(); ?>
 			</aside>
 
 			<div class="case-study-images">
-				<?php if($image_1) { 
-					echo wp_get_attachment_image( $image_1, $size );
-				} ?>
-
-				<?php if($image_2) { 
-					echo wp_get_attachment_image( $image_2, $size );
-				} ?>
-
-				<?php if($image_3) { 
-					echo wp_get_attachment_image( $image_3, $size );
-				} ?>
+				<?php $image_array = array( $image_1, $image_2, $image_3 );
+					foreach ( $image_array as $image ){
+						if( $image ){
+							echo wp_get_attachment_image( $image, $size );
+						}
+					}
+					?>
+				
+				<?php 
+				// if($image_1) { 
+				// 	echo wp_get_attachment_image( $image_1, $size );
+				// } 
+				// 
+				// if($image_2) { 
+				// 	echo wp_get_attachment_image( $image_2, $size );
+				// } 
+				// if($image_3) { 
+				// 	echo wp_get_attachment_image( $image_3, $size );
+				// } ?>
 			</div>
 		</article>
 		
