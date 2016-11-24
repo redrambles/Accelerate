@@ -22,6 +22,7 @@ Text Domain: accelerate-theme-child
 }*/
 
 .site {
+    width: 100%;
     max-width: 100%;
     min-width: 320px;
     margin: 0 auto;
@@ -60,6 +61,9 @@ img {
 
 .header-main {
   overflow: hidden;
+  width: 100%;
+  max-width: 960px;
+  padding: 0 1em;
 }
 
 .site-content, 
@@ -433,9 +437,8 @@ article.case-study {
 
 aside.case-study-sidebar{
     float: left;
-    width: 33%; /* testing this out
-    /*width: 314px; */
-    margin: 60px 40px 0 0;
+    width: 33%; 
+    margin: 60px 5% 0 0;
 }
 
 aside.case-study-sidebar h2,
@@ -1182,7 +1185,7 @@ aside.sidebar li a {
   }
 
 /* Case Studies Rather pitiful attempt at responsiveness */
-@media screen and (max-width:  1056px) {
+@media screen and (max-width:  950px) {
 
     article.case-study {
         padding: 20px;
@@ -1199,6 +1202,7 @@ aside.sidebar li a {
 
     div.case-study-images {
         max-width: 100%;
+        width: 100%;
     }
 }
 
