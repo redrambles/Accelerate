@@ -328,6 +328,8 @@ final class NF_Database_Models_Submission
                 if( ! is_int( $field_id ) ) continue;
 
                 $field_value = $sub->get_field_value( $field_id );
+                $field_value = apply_filters( 'nf_subs_export_pre_value', $field_value, $field_id );
+                $field_value = apply_filters( 'ninja_forms_subs_export_pre_value', $field_value, $field_id, $form_id );
 
                 if( is_array( $field_value ) ){
                     $field_value = implode( ' | ', $field_value );

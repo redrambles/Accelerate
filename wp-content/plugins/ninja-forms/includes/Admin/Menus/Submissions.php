@@ -423,6 +423,9 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
         return $vars;
     }
 
-
+    public function get_capability()
+    {
+        return apply_filters( 'ninja_forms_admin_submissions_capabilities', $this->capability );
+    }
 
 }

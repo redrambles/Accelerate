@@ -19,7 +19,7 @@ class NF_Fields_Date extends NF_Fields_Textbox
 
     protected $_test_value = '12/12/2022';
 
-    protected $_settings = array( 'date_default', 'date_format' );
+    protected $_settings = array( 'date_default', 'date_format', 'year_range' );
 
     protected $_settings_exclude = array( 'default', 'placeholder', 'input_limit_set', 'disable_input' );
 

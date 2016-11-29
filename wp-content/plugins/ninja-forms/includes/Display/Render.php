@@ -84,7 +84,7 @@ final class NF_Display_Render
             // TODO: Optimize Query
             global $wpdb;
             $count = 0;
-            $subs = $wpdb->get_results( "SELECT post_id FROM wp_postmeta WHERE `meta_key` = '_form_id' AND `meta_value` = $form_id" );
+            $subs = $wpdb->get_results( "SELECT post_id FROM " . $wpdb->postmeta . " WHERE `meta_key` = '_form_id' AND `meta_value` = $form_id" );
             foreach( $subs as $sub ){
                 if( 'publish' == get_post_status( $sub->post_id ) ) $count++;
             }
@@ -175,7 +175,11 @@ final class NF_Display_Render
                 if( ! is_string( $field_type ) ) continue;
 
                 if( ! isset( Ninja_Forms()->fields[ $field_type ] ) ) {
-                    $field = NF_Fields_Unknown::create( $field );
+                    $unknown_field = NF_Fields_Unknown::create( $field );
+                    $field = array(
+                        'settings' => $unknown_field->get_settings(),
+                        'id' => $unknown_field->get_id()
+                    );
                     $field_type = $field[ 'settings' ][ 'type' ];
                 }
 
@@ -286,7 +290,7 @@ final class NF_Display_Render
                     array_push( self::$form_uses_textarea_media, $form_id );
                 }
                 if( isset( $field[ 'settings' ][ 'help_text' ] ) && strip_tags( $field[ 'settings' ][ 'help_text' ] ) ){
-                    array_push( self::$form_uses_textarea_media, $form_id );
+                    array_push( self::$form_uses_helptext, $form_id );
                 }
             }
 
@@ -514,7 +518,7 @@ final class NF_Display_Render
 
         if( $is_preview || in_array( $form_id, self::$form_uses_recaptcha ) ) {
             $recaptcha_lang = Ninja_Forms()->get_setting('recaptcha_lang');
-            wp_enqueue_script('google-recaptcha', 'https://www.google.com/recaptcha/api.js?hl=' . $recaptcha_lang, array( 'jquery' ), $ver );
+            wp_enqueue_script('google-recaptcha', 'https://www.google.com/recaptcha/api.js?hl=' . $recaptcha_lang . '&onload=nfRenderRecaptcha&render=explicit', array( 'jquery', 'nf-front-end-deps' ), $ver, TRUE );
         }
 
         if( $is_preview || in_array( $form_id, self::$form_uses_datepicker ) ) {
@@ -527,7 +531,7 @@ final class NF_Display_Render
         }
 
          if( $is_preview || in_array( $form_id, self::$form_uses_rte ) ) {
-             if( $is_preview || self::form_uses_textarea_media( $form_id ) ) {
+             if( $is_preview || in_array( $form_id, self::$form_uses_textarea_media ) ) {
                 wp_enqueue_media();
              }
 

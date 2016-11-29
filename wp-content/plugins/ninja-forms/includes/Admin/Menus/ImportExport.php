@@ -26,7 +26,9 @@ final class NF_Admin_Menus_ImportExport extends NF_Abstracts_Submenu
 
     public function import_form_listener()
     {
-        if( ! current_user_can( apply_filters( 'ninja_forms_admin_import_form_capabilities', 'manage_options' ) ) ) return;
+        $capability = apply_filters( 'ninja_forms_admin_import_export_capabilities', 'manage_options' );
+        $capability = apply_filters( 'ninja_forms_admin_import_form_capabilities',   $capability      );
+        if( ! current_user_can( $capability ) ) return;
 
         if( ! isset( $_FILES[ 'nf_import_form' ] ) || ! $_FILES[ 'nf_import_form' ] ) return;
 
@@ -47,7 +49,9 @@ final class NF_Admin_Menus_ImportExport extends NF_Abstracts_Submenu
 
     public function export_form_listener()
     {
-        if( ! current_user_can( apply_filters( 'ninja_forms_admin_export_form_capabilities', 'manage_options' ) ) ) return;
+        $capability = apply_filters( 'ninja_forms_admin_import_export_capabilities', 'manage_options' );
+        $capability = apply_filters( 'ninja_forms_admin_export_form_capabilities',   $capability      );
+        if( ! current_user_can( $capability ) ) return;
 
         if( isset( $_REQUEST[ 'nf_export_form' ] ) && $_REQUEST[ 'nf_export_form' ] ){
             $form_id = $_REQUEST[ 'nf_export_form' ];

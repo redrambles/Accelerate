@@ -36,6 +36,8 @@ class NF_Fields_Recaptcha extends NF_Abstracts_Field
         );
 
         add_filter( 'nf_sub_hidden_field_types', array( $this, 'hide_field_type' ) );
+
+        // add_filter( 'script_loader_tag', array( $this, 'add_script_attributes' ), 10, 2);
     }
 
     public function localize_settings( $settings, $form ) {
@@ -72,5 +74,11 @@ class NF_Fields_Recaptcha extends NF_Abstracts_Field
     {
         $field_types[] = $this->_name;
         return $field_types;
+    }
+
+    function add_script_attributes( $tag, $handle )
+    {
+        if ( 'google-recaptcha' !== $handle ) return $tag;
+        return str_replace( ' src', ' async="async" defer="defer" src', $tag );
     }
 }
