@@ -72,8 +72,12 @@ add_action( 'widgets_init', 'accelerate_theme_child_widget_init' );
 function accelerate_theme_support_stuff() {
 
 	add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
-  
 	add_theme_support( 'title-tag');
+  
+  // Post thumbnails support
+  add_theme_support('post-thumbnails');
+  add_image_size('archive-case-studies', 514, 379, array( 'left', 'top' ) ); 
+  
 	}
 add_action( 'after_setup_theme', 'accelerate_theme_support_stuff' );
 
@@ -237,9 +241,10 @@ function message_dashboard_screen() {
 add_filter( 'body_class','accelerate_body_classes' );
 function accelerate_body_classes( $classes ) {
  
-  if (is_page('about') ) {
+  if ( is_page( 'about' ) ) {
     $classes[] = 'about-page';
   }
+    
     return $classes;
      
 }
@@ -316,14 +321,38 @@ function accelerate_no_wpautop_front_page( $content ) {
 // In lieu of a 'maintenance mode plugin' - if in a hurry - will shut down the site to everyone but admins
 
 // add_action( 'get_header', 'emergency_repair' );
-
+// 
 // function emergency_repair() {
-
+// 
 //     if ( ! current_user_can( 'activate_plugins' ) ) {
 //         wp_die( '<h3>Emergency repair underway. The website will be back soon.</h3></br>
 //         	<p>In the meantime, how about <a href="http://explosm.net/">something funny</a>?</p>' );
 //     }
+// 
+// }
 
+// Full control over a 'coming soon' or custom maintenance page
+// add_filter( 'template_include', 'accelerate_maintenance_template', 99 );
+// 
+// function accelerate_maintenance_template( $template ) {
+// 
+// 	if ( ! current_user_can( 'activate_plugins' ) ) {
+// 		$new_template = locate_template( array( 'template_files/accelerate-maintenance.php' ) );
+//     
+// 		if ( '' != $new_template ) {
+//         
+//         add_filter( 'body_class','maintenance_body_class' );
+//         function maintenance_body_class( $classes ) {
+//          
+//             $classes[] = 'custom-maintenance';  
+//             return $classes;
+//           } 
+//       }
+//       
+// 		return $new_template ;
+// 	}
+//   
+// 	return $template;
 // }
 
 // shortcode for user access content. Format = [user_access cap="read" deny="Log in to view content"] text [/user_access]

@@ -472,14 +472,14 @@ aside.visit_link {
 div.case-study-images{
     margin-top: 60px;
     float: left;
-    width: 62%; /* testing this out */
+    width: 62%; 
     /*width: 606px;*/
 }
 
 div.case-study-images img{
     display: block;
-    max-width: 100%; /* testing this out */
-    margin-bottom: 50px;
+    max-width: 100%;
+    margin: 0 auto 50px;
     border: 1px solid #dddddd;
 }
 
@@ -1028,6 +1028,12 @@ aside.sidebar li a {
 .post-entry .faq-right {
     text-align: right;
     padding-right: 20px;
+}
+
+/* Custom Maintenance and/or 'coming-soon' page */
+
+.custom-maintenance .site-header {
+  display: none;
 }
 
 
