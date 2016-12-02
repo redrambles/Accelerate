@@ -8,15 +8,20 @@ get_header(); ?>
 
 <div id="primary" class="site-content">
 	<div id="content" role="main">
-
+		<?php 	
+		$title = get_field('title', 'option');
+		$content = get_field('body', 'option');
+		?>
+		
 		<div class="text_404">
-			<h2>So Sorry!</h2>
-			<h4>We are performing some emergency maintenance.</h4>
-			<p class="forgive">Come back soon!</p>
+			<h2><?php echo $title; ?></h2>
+			<?php echo $content; ?>
+			<?php if ( is_active_sidebar( 'sidebar-3' ) ) : ?>
+				<div class="maintenance-widget" role="complementary">
+					<?php dynamic_sidebar( 'sidebar-3' ); ?></a>
+				</div>
+			<?php endif; ?>
 		</div>
-
-	 <figure class="image_404">
-		</figure>
   </div>
 </div>
 

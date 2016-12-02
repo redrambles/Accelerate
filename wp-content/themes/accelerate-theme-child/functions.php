@@ -65,6 +65,16 @@ function accelerate_theme_child_widget_init() {
 	    'before_title' => '<h3 class="widget-title">',
 	    'after_title' => '</h3>',
 	) );
+  register_sidebar( array(
+      'name' =>__( 'Coming Soon Widget', 'accelerate-theme-child'),
+      'id' => 'sidebar-3',
+      'description' => __( 'Appears on the Maintenance / Coming Soon page', 'accelerate-theme-child' ),
+      'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+      'after_widget' => '</aside>',
+      'before_title' => '<h3 class="widget-title">',
+      'after_title' => '</h3>',
+  ) );
+  
 }
 add_action( 'widgets_init', 'accelerate_theme_child_widget_init' );
 
@@ -184,20 +194,6 @@ function red_get_me_some_posts() {
 		wp_reset_postdata();
 }
 
-// Use ACF Pro to Generate an Options page
-
-if( function_exists('acf_add_options_page') ) {
-
-	acf_add_options_page(array(
-		'page_title' => 'Social Media Profiles',
-		'menu_title' => 'Social Media',
-		'menu_slug' => 'social-media-profiles',
-		'capability' => 'edit_posts',
-		'redirect' => false
-	));
-
-}
-
 // Remove 'Accelerate' in the description - call in footer.php ONLY
 function green_accelerate_footer(){
 	
@@ -211,20 +207,20 @@ function green_accelerate_footer(){
 add_action('modified_footer', 'green_accelerate_footer');
 	
 // Refresh those permalinks message on main Dashboard page only
-add_action( 'current_screen', 'message_dashboard_screen' );
-function message_dashboard_screen() {
-
-    $current_screen = get_current_screen();
-    if( $current_screen ->id === "dashboard" ) {
-
-			add_action('admin_notices', 'admin_notice_refresh_permalinks' );
-			function admin_notice_refresh_permalinks() {
-			  echo '<div class="error">
-			          <p>Do not forget to refresh those permalinks! :)</p>
-			        </div>';
-				}
-    }
-}
+// add_action( 'current_screen', 'message_dashboard_screen' );
+// function message_dashboard_screen() {
+// 
+//     $current_screen = get_current_screen();
+//     if( $current_screen ->id === "dashboard" ) {
+// 
+// 			add_action('admin_notices', 'admin_notice_refresh_permalinks' );
+// 			function admin_notice_refresh_permalinks() {
+// 			  echo '<div class="error">
+// 			          <p>Do not forget to refresh those permalinks! :)</p>
+// 			        </div>';
+// 				}
+//     }
+// }
 
 // Add a body class if on contact page so can narrow width of page in combination with other page class
 // add_filter( 'body_class','accelerate_body_classes' );
@@ -331,29 +327,31 @@ function accelerate_no_wpautop_front_page( $content ) {
 // 
 // }
 
-// Full control over a 'coming soon' or custom maintenance page
-// add_filter( 'template_include', 'accelerate_maintenance_template', 99 );
-// 
-// function accelerate_maintenance_template( $template ) {
-// 
-// 	if ( ! current_user_can( 'activate_plugins' ) ) {
-// 		$new_template = locate_template( array( 'template_files/accelerate-maintenance.php' ) );
-//     
-// 		if ( '' != $new_template ) {
-//         
-//         add_filter( 'body_class','maintenance_body_class' );
-//         function maintenance_body_class( $classes ) {
-//          
-//             $classes[] = 'custom-maintenance';  
-//             return $classes;
-//           } 
-//       }
-//       
-// 		return $new_template ;
-// 	}
-//   
-// 	return $template;
-// }
+// Use ACF Pro to Generate an Options page
+
+if( function_exists('acf_add_options_page') ) {
+
+	acf_add_options_page(array(
+		'page_title' => 'Options',
+		'menu_title' => 'Options',
+		'menu_slug' => 'accelerate-theme-child-options',
+		'capability' => 'edit_posts',
+		'redirect' => false
+	));
+  
+  acf_add_options_sub_page(array(
+    'page_title' => 'Social Media Profiles',
+    'menu_title' => 'Social Media',
+    'parent_slug'	=> 'accelerate-theme-child-options',
+  ));
+	
+	acf_add_options_sub_page(array(
+	'page_title' 	=> 'Maintenance',
+	'menu_title'	=> 'Maintenance',
+	'parent_slug'	=> 'accelerate-theme-child-options',
+));
+
+}
 
 // shortcode for user access content. Format = [user_access cap="read" deny="Log in to view content"] text [/user_access]
 // function user_access($attr, $content = null) {
