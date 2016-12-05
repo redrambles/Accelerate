@@ -48,7 +48,7 @@ function ssba_page_scripts() {
  */
 function ssba_script_tags( $tag, $handle ) {
 	if ( 'ssba-sharethis' === $handle ) {
-		return str_replace( '<script ', '<script id=\'st_insights_js\'', $tag );
+		return str_replace( '<script ', '<script id=\'st_insights_js\' ', $tag );
 	}
 	return $tag;
 }
