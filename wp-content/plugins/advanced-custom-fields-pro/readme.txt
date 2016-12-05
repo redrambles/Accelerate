@@ -106,6 +106,13 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 5.5.1 =
+* Select field: Fixed bug preventing some field settings from being selected
+* Date picker field: Improved compatibility with customised values
+* Core: Added new 'enqueue_datepicker' setting which can be used to prevent the library from being enqueued
+* Core: Added new 'enqueue_datetimepicker' setting which can be used to prevent the library from being enqueued
+* Core: Minor fixes and improvements
+
 = 5.5.0 =
 * True False field: Added new 'ui' setting which renders as a toggle switch
 * WYSIWYG field: Added new 'delay' setting which delays tinymce initialization until the field is clicked
