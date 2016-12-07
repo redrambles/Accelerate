@@ -8,11 +8,11 @@ final class NF_Admin_Menus_ImportExport extends NF_Abstracts_Submenu
 
     public function __construct()
     {
-        add_action( 'plugins_loaded', array( $this, 'import_form_listener' ) );
-        add_action( 'plugins_loaded', array( $this, 'export_form_listener' ) );
+        add_action( 'init', array( $this, 'import_form_listener' ), 0 );
+        add_action( 'init', array( $this, 'export_form_listener' ), 0 );
 
-        add_action( 'plugins_loaded', array( $this, 'import_fields_listener' ) );
-        add_action( 'plugins_loaded', array( $this, 'export_fields_listener' ) );
+        add_action( 'init', array( $this, 'import_fields_listener' ), 0 );
+        add_action( 'init', array( $this, 'export_fields_listener' ), 0 );
 
         add_filter( 'ninja_forms_before_import_fields', array( $this, 'import_fields_backwards_compatibility' ) );
 

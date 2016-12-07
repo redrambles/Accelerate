@@ -298,6 +298,8 @@ final class NF_Database_Models_Submission
 
         $fields = Ninja_Forms()->form( $form_id )->get_fields();
 
+        usort( $fields, array( self, sort_fields ) );
+
         $hidden_field_types = apply_filters( 'nf_sub_hidden_field_types', array() );
 
         foreach( $fields as $field ){
@@ -471,6 +473,14 @@ final class NF_Database_Models_Submission
         $field_id = $wpdb->get_var( "SELECT id FROM {$wpdb->prefix}nf3_fields WHERE `key` = '{$field_key}' AND `parent_id` = {$this->_form_id}" );
 
         return $field_id;
+    }
+
+    public static function sort_fields( $a, $b )
+    {
+        if ( $a->get_setting( 'order' ) == $b->get_setting( 'order' ) ) {
+            return 0;
+        }
+        return ( $a->get_setting( 'order' ) < $b->get_setting( 'order' ) ) ? -1 : 1;
     }
 
 

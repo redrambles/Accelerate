@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, wpnzach,
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.4
 Tested up to: 4.6.1
-Stable tag: 3.0.16
+Stable tag: 3.0.18
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -102,31 +102,64 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.0.16 (21 November 2016) =
+= 3.0.18 (06 December 2016) =
 
 *Bugs:*
 
-* Fixed a bug with export values and the Country Field to show full labels as opposed to abbreviations.
-* Fixed a bug with duplicate field keys when duplicating a field.
-* Fixed a bug with merge tags not being replaced in actions.
-* Fixed a bug with unknown field types.
-* Fixed a bug with capabilities and granting access to forms and submissions.
-* Fixed a bug with restricting decimal steps in the number fields ( i.e. set increments by .01 ).
-* Fixed a bug with reCaptcha validation not halting the form submission.
-* Fixed a bug with displaying help text on the form display.
-* Fixed a bug with enqueueing the media library scripts for the rich text editor.
-* Fixed a bug with the submitting button text disappearing when a form was cleared after submission.
-* Fixed a bug with converting email actions with multiple emails addresses in a single setting.
-* Fixed a bug with prefixing the postmeta database table with custom prefixes.
-* Fixed a bug with reCaptcha not showing due to a script loading race condition.
+* Fixed a bug with the deprecated code base and version 3.0.17.
+* When using the RTE setting on the textarea field, the media button should show on all themes.
+* The Modernizr library should only be loaded if you are using the RTE on the front-end.
+* System date merge tag should respect the date format plugin setting.
+* Exported submissions should always have correct order.
+* Fixed a bug with list fields that caused the wrong one to be selected if calc values are used.
+* HTML entered into field and list option labels should be rendered properly.
+* Fixed a bug that caused the date picker to fail on the front-end.
+* Filtering field values before display should now work properly in all instances.
+* Help text should always render properly on the front-end.
+* Fixed a bug with rendering the ReCaptcha field in the 2.9.x codebase.
+* Error messages should work properly when displaying multiple forms on the same page.
 
 *Changes:*
 
-* Added an additional parameter for calculations to force 2 decimal rounding.
-* Added a year range setting for the date field's datepicker.
-* Added a filter to email action settings before the email is sent.
+* The browser should scroll to the success message after a form is submitted.
+* Added a label to the ReCaptcha field.
+* Added decimal date seperators (MM.DD.YYYY, YYYY.MM.DD, etc.) to the date field setting.
+* Sending initial data to api.ninjaforms.com for users who have opted in.
+* Added the $sub_id data to the ninja_forms_custom_columns filter.
+* Field selectors in the builder should always show the "nicename" of the field rather than the programmatic name.
 
 == Changelog ==
+
+= 3.0.18 (06 December 2016) =
+
+*Bugs:*
+
+* Fixed a bug with 3.0.17 and the deprecated code base.
+
+= 3.0.17 (06 December 2016) =
+
+*Bugs:*
+
+* When using the RTE setting on the textarea field, the media button should show on all themes.
+* The Modernizr library should only be loaded if you are using the RTE on the front-end.
+* System date merge tag should respect the date format plugin setting.
+* Exported submissions should always have correct order.
+* Fixed a bug with list fields that caused the wrong one to be selected if calc values are used.
+* HTML entered into field and list option labels should be rendered properly.
+* Fixed a bug that caused the date picker to fail on the front-end.
+* Filtering field values before display should now work properly in all instances.
+* Help text should always render properly on the front-end.
+* Fixed a bug with rendering the ReCaptcha field in the 2.9.x codebase.
+* Error messages should work properly when displaying multiple forms on the same page.
+
+*Changes:*
+
+* The browser should scroll to the success message after a form is submitted.
+* Added a label to the ReCaptcha field.
+* Added decimal date seperators (MM.DD.YYYY, YYYY.MM.DD, etc.) to the date field setting.
+* Sending initial data to api.ninjaforms.com for users who have opted in.
+* Added the $sub_id data to the ninja_forms_custom_columns filter.
+* Field selectors in the builder should always show the "nicename" of the field rather than the programmatic name.
 
 = 3.0.16 (21 November 2016) =
 

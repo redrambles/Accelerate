@@ -40,11 +40,18 @@ class NF_Fields_Date extends NF_Fields_Textbox
         $lookup = array(
             'MM/DD/YYYY' => __( 'm/d/Y', 'ninja-forms' ),
             'MM-DD-YYYY' => __( 'm-d-Y', 'ninja-forms' ),
+            'MM.DD.YYYY' => __( 'm.d.Y', 'ninja-forms' ),
             'DD/MM/YYYY' => __( 'm/d/Y', 'ninja-forms' ),
             'DD-MM-YYYY' => __( 'd-m-Y', 'ninja-forms' ),
+            'DD.MM.YYYY' => __( 'd.m.Y', 'ninja-forms' ),
             'YYYY-MM-DD' => __( 'Y-m-d', 'ninja-forms' ),
             'YYYY/MM/DD' => __( 'Y/m/d', 'ninja-forms' ),
-            'dddd, MMMM D YYYY' => __( 'l, F d Y', 'ninja-forms' )
+            'YYYY.MM.DD' => __( 'Y.m.d', 'ninja-forms' ),
+            'dddd, MMMM D YYYY' => __( 'l, F d Y', 'ninja-forms' ),
+            
+            
+            
+            
         );
 
         return ( isset( $lookup[ $format ] ) ) ? $lookup[ $format ] : $format;

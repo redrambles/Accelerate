@@ -234,8 +234,9 @@ final class NF_Display_Render
                     $settings[ 'options' ] = apply_filters( 'ninja_forms_render_options_' . $field_type, $settings[ 'options' ], $settings );
                 }
 
-                if (isset($settings['default'])) {
-                    $default_value = apply_filters('ninja_forms_render_default_value', $settings['default'], $field_type, $settings);
+                $default_value = ( isset( $settings[ 'default' ] ) ) ? $settings[ 'default' ] : null;
+                $default_value = apply_filters('ninja_forms_render_default_value', $default_value, $field_type, $settings);
+                if ( $default_value ) {
 
                     $default_value = preg_replace( '/{.*}/', '', $default_value );
 
@@ -428,8 +429,9 @@ final class NF_Display_Render
                     $field['settings'][ 'options' ] = apply_filters( 'ninja_forms_render_options_' . $field['settings'][ 'type' ], $field['settings'][ 'options' ], $field['settings'] );
                 }
 
-                if (isset($field['settings']['default'])) {
-                    $default_value = apply_filters('ninja_forms_render_default_value', $field['settings']['default'], $field_type, $field['settings']);
+                $default_value = ( isset( $field[ 'settings' ][ 'default' ] ) ) ? $field[ 'settings' ][ 'default' ] : null;
+                $default_value = apply_filters( 'ninja_forms_render_default_value', $default_value, $field_type, $field[ 'settings' ]);
+                if( $default_value ){
 
                     $default_value = preg_replace( '/{.*}/', '', $default_value );
 
