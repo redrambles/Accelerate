@@ -1,0 +1,81 @@
+{
+    "key": "group_5840946d6bcd8",
+    "title": "Maintenance \/ Coming Soon",
+    "fields": [
+        {
+            "default_value": 0,
+            "message": "Check to activate Coming Soon page",
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "key": "field_584097af25730",
+            "label": "Activate Page",
+            "name": "activate",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Coming Soon! \/ Doing Some Light Maintenance!",
+            "prepend": "",
+            "append": "",
+            "key": "field_5840947b5b86f",
+            "label": "title",
+            "name": "title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "default_value": "",
+            "delay": 0,
+            "key": "field_584094a25b870",
+            "label": "body",
+            "name": "body",
+            "type": "wysiwyg",
+            "instructions": "Tell folks a little more about your Coming Soon \/ Maintenance page",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-maintenance"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1481165430
+}

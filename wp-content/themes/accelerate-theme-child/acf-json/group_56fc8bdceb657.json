@@ -1,0 +1,85 @@
+{
+    "key": "group_56fc8bdceb657",
+    "title": "Social Media Links",
+    "fields": [
+        {
+            "default_value": "kittens",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_56fc8bf8a0a5b",
+            "label": "Twitter",
+            "name": "twitter",
+            "type": "text",
+            "instructions": "Enter your twitter handle without the '@' symbol. If your twitter handle is '@kittens', enter 'kittens'.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "key": "field_5829e693a9c91",
+                    "label": "social-media-address",
+                    "name": "social-media-address",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Social Media Icon",
+            "collapsed": "",
+            "key": "field_5829e593a8885",
+            "label": "Social-icon",
+            "name": "social-icon",
+            "type": "repeater",
+            "instructions": "Please enter social media address here",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "option-social-icon",
+                "id": ""
+            }
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-social-media"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1481165460
+}

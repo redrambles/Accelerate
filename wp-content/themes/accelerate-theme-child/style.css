@@ -435,7 +435,7 @@ img.aligncenter {
 
 article.case-study {
     width: 100%; /* testing this out */
-    overflow: hidden;
+    overflow: auto;
 }
 
 aside.case-study-sidebar{
