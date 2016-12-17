@@ -29,6 +29,10 @@ Text Domain: accelerate-theme-child
     overflow: hidden;
 }
 
+.main-content {
+  padding: 55px 4% 0 0;
+}
+
 img {
     border: 0;
     height: auto;
@@ -809,8 +813,6 @@ aside.sidebar li a {
 
 
 /* Sidebar Experiment - BLOG PAGE */
-/* Added styles from skillcrushstarter but used the class sidebar instead of the id  - and moved the white arrow image over */
-/* ALSO - WILL NEED TO MOVE SEARCHFORM OVER if we want the search to DO something. Needed to do this in order to get the 'Search' bit out of the clickable area that should only have the arrow - must investigate */
 
 .sidebar .widget_search {
     border-bottom: 1px solid #BFBFBF;
@@ -842,8 +844,6 @@ aside.sidebar li a {
     margin-left: -5px;
     vertical-align: middle;
 }
-
-
 
 /* Next / Prev - BLOG PAGE - From Skillcrushstarter */
 #navigation {
