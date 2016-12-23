@@ -16,11 +16,9 @@ get_header(); ?>
 		<div class="text_404">
 			<h2><?php echo $title; ?></h2>
 			<?php echo $content; ?>
-			<?php if ( is_active_sidebar( 'sidebar-3' ) ) : ?>
-				<div class="maintenance-widget" role="complementary">
-					<?php dynamic_sidebar( 'sidebar-3' ); ?></a>
-				</div>
-			<?php endif; ?>
+			<?php 
+			//Mailchimp 'Coming Soon' form - would like to add a conditional to check if it exists - TODO
+			echo do_shortcode	('[mc4wp_form id="47681"]'); ?>
 		</div>
   </div>
 </div>
