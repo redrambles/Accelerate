@@ -135,7 +135,12 @@ final class NF_Actions_Email extends NF_Abstracts_Action
 
                 if( ! $email ) continue;
 
-                $headers[] = $this->_format_recipient($type, $email);
+                $matches = array();
+                if (preg_match('/^"?(?<name>[^<"]+)"? <(?<email>[^>]+)>$/', $email, $matches)) {
+                    $headers[] = $this->_format_recipient($type, $matches['email'], $matches['name']);
+                } else {
+                    $headers[] = $this->_format_recipient($type, $email);
+                }
             }
         }
 

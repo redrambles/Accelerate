@@ -298,15 +298,19 @@ final class NF_Database_Models_Submission
 
         $fields = Ninja_Forms()->form( $form_id )->get_fields();
 
-        usort( $fields, array( self, sort_fields ) );
+        usort( $fields, array( 'NF_Database_Models_Submission', 'sort_fields' ) );
 
         $hidden_field_types = apply_filters( 'nf_sub_hidden_field_types', array() );
 
         foreach( $fields as $field ){
 
             if( in_array( $field->get_setting( 'type' ), $hidden_field_types ) ) continue;
-
-            $field_labels[ $field->get_id() ] = $field->get_setting( 'label' );
+            if ( $field->get_setting( 'admin_label' ) ) {
+                $field_labels[ $field->get_id() ] = $field->get_setting( 'admin_label' );
+            } else {
+                $field_labels[ $field->get_id() ] = $field->get_setting( 'label' );
+            }
+            
         }
 
 

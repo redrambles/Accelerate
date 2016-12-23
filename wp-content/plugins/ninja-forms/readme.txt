@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, wpnzach,
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.5
 Tested up to: 4.7
-Stable tag: 3.0.19
+Stable tag: 3.0.20
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -102,14 +102,43 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.0.19 (07 December 2016) =
+= 3.0.20 (21 December 2016) =
+
+*Changes:*
+
+* Added a prompt before deleting forms on the all-forms table.
+* Added the ability to use: {field:name} <{field:email}> to get Name - Address formatting in email actions CC, BCC, Reply-To Field.
+* Updated the third-party EDD library.
+* Removed references to the modernizer library from the builder.
+* Added Twilio and Videomail to the list of available actions.
 
 *Bugs:*
 
-* Product, Shipping, and Total fields should now work in all locales.
-* Fixed a major bug preventing forms with date fields from showing in some instances.
+* Fixed a bug that caused fields to be out of order when exporting or editing submissions.
+* Product fields should now respect locale-specific number formating.
+* Fixed a bug with restarting form submit. This caused issues with PayPal Express and other add-ons.
+* When adding new list options, the 'value' should auto-populate from 'label' setting.
+* The tab order for list options should now work properly.
 
 == Changelog ==
+
+= 3.0.20 (21 December 2016) =
+
+*Changes:*
+
+* Added a prompt before deleting forms on the all-forms table.
+* Added the ability to use: {field:name} <{field:email}> to get Name - Address formatting in email actions CC, BCC, Reply-To Field.
+* Updated the third-party EDD library.
+* Removed references to the modernizer library from the builder.
+* Added Twilio and Videomail to the list of available actions.
+
+*Bugs:*
+
+* Fixed a bug that caused fields to be out of order when exporting or editing submissions.
+* Product fields should now respect locale-specific number formating.
+* Fixed a bug with restarting form submit. This caused issues with PayPal Express and other add-ons.
+* When adding new list options, the 'value' should auto-populate from 'label' setting.
+* The tab order for list options should now work properly.
 
 = 3.0.19 (07 December 2016) =
 
