@@ -50,7 +50,7 @@ get_header(); ?>
 				// Variables from our 'services' CPT 
 				$cpt_service_description = get_field('cpt_service_description'); 
 				$cpt_service_image = get_field('cpt_service_image'); 
-				$alignment = get_field('alignment');
+				$alignment = get_field('alignment'); /* This is the value of the image alignment radio button */
 				$size = "full";
 				//$entry++;
 				//$align = ($entry % 2 == 0) ? 'alignright' : 'alignleft';
