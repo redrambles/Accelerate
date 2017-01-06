@@ -39,7 +39,8 @@ get_header(); ?>
 			// Pull in our Services CPT
 			$args = array (
 					'post_type' => 'services',
-					'order' => 'ASC'
+					'order' => 'ASC',
+					// 'orderby' => 'menu_order'
 				);
 
 			$services_query = new WP_Query($args);

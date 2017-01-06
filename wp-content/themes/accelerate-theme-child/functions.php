@@ -116,19 +116,19 @@ function accelerate_create_custom_post_types() {
 			'rewrite' => array(
 				'slug' => 'case-studies'
 				),
+      'supports' => array('title', 'editor', 'page-attributes') // So it's possible to sort by menu order
 			)
 	 );
 	// Testing a CPT approach for the About page
 	register_post_type('services',
 		array(
-			// 'supports' => $supports,
 			'labels' => array(
 				'name' => __( 'Services' ),
 				'singular_name' => __( 'Service' )
 				),
-			'supports' => array( 'title', 'thumbnail', 'excerpt', 'page-attributes'),
 			'public' => true,
-			'has_archive' => false
+			'has_archive' => false,
+      'supports' => array('title', 'editor', 'page-attributes') // So it's possible to sort by menu order
 			)
 	 );
 
