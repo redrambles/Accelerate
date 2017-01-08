@@ -343,6 +343,28 @@ if( function_exists('acf_add_options_page') ) {
 
 }
 
+// Remove WP version from the source code
+
+// remove version from head
+remove_action('wp_head', 'wp_generator');
+
+// remove version from rss
+add_filter('the_generator', '__return_empty_string');
+
+// Remove WP Version From Styles	
+add_filter( 'style_loader_src', 'red_remove_ver_css_js', 9999 );
+// Remove WP Version From Scripts
+add_filter( 'script_loader_src', 'red_remove_ver_css_js', 9999 );
+
+// Function to remove version numbers
+function red_remove_ver_css_js( $src ) {
+	if ( strpos( $src, 'ver=' ) ) {
+		$src = remove_query_arg( 'ver', $src );
+  }
+	return $src;
+}
+
+
 // shortcode for user access content. Format = [user_access cap="read" deny="Log in to view content"] text [/user_access]
 // function user_access($attr, $content = null) {
 // 	extract(shortcode_atts(array(
