@@ -145,14 +145,16 @@ section.home-page {
 .featured-work{
     margin-bottom: 20px;
 }
-
+.featured-work-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
 .homepage-featured-work {
     list-style: none;
     overflow: hidden;
     margin: 0;
     padding-bottom: 10%;
 }
-
 .individual-featured-work {
     display: inline-block;
     width: 31%;

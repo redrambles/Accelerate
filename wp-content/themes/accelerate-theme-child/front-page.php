@@ -51,7 +51,7 @@ get_header(); ?>
 			<?php while ($featured-> have_posts() ) : $featured->the_post();
 				//$image_1 = get_field("image_1");
 				$image_1  = get_post_meta(get_the_id(), "image_1", true);
-				$size = "medium";
+				$size = "front-page-featured-work";
 			 ?>
 			 	<li class="individual-featured-work">	
 				 	<figure>

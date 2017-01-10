@@ -74,6 +74,9 @@ function accelerate_theme_support_stuff() {
 	add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
 	add_theme_support( 'title-tag');
   
+  // images
+  add_image_size('front-page-featured-work', 300, 200, true);
+  
   // Post thumbnails support
   add_theme_support('post-thumbnails');
   add_image_size('archive-case-studies', 514, 379, array( 'left', 'top' ) ); 
