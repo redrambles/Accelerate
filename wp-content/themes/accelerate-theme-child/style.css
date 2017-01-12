@@ -65,8 +65,8 @@ img {
 
 .header-main {
   overflow: hidden;
-  width: 100%;
-  max-width: 960px;
+  width: 960px;
+  max-width: 95%;
   padding: 0 1em;
 }
 
@@ -77,6 +77,9 @@ img {
     /*overflow: hidden; */
 }
 
+.site-footer .site-info {
+  overflow: auto;
+}
 .blog-page {
     padding: 0;
     margin: 0;
@@ -305,9 +308,12 @@ ul.tweets li{
 
 /* Social icons homepage - modifying display using Menu Social Icons Plugin */
 
-ul.social-media-menu {
+/*ul.social-media-menu {
     list-style: none;
     clear: both;
+}*/
+.social-media-navigation ul {
+  list-style: none;
 }
 
 .social-media-menu li{
