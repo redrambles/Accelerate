@@ -346,7 +346,7 @@ class EDD_SL_Plugin_Updater {
 			$request->banners = maybe_unserialize( $request->banners );
 		}
 
-		if( ! empty( $request ) ) {
+		if( ! empty( $request ) && is_array( $request->sections ) ) {
 			foreach( $request->sections as $key => $section ) {
 				$request->$key = (array) $section;
 			}

@@ -5,6 +5,7 @@ wp-config.php
 wp-content/uploads/
 phpinfo.php
 debug.sql
+accel_database.sql
 
 # build stuff
 npm-debug.log

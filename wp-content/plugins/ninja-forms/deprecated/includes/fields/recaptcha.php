@@ -54,7 +54,7 @@ function ninja_forms_field_recaptcha_display( $field_id, $data, $form_id = '' ) 
 	wp_enqueue_script(
 		'g-recaptcha',
 		'https://www.google.com/recaptcha/api.js?onload=ninja_forms_grecaptcha_explicit_render&render=explicit&hl='.$lang,
-		['ninja-forms-display'] );
+		array( 'ninja-forms-display' ) );
 	if ( !empty( $siteKey ) ) { ?>
 		<input id="ninja_forms_field_<?php echo $rand;?>" name="ninja_forms_field_<?php echo
 		$field_id;?>" type="hidden" class="<?php echo $field_class;?>" value="" rel="<?php echo $field_id;?>"
