@@ -236,6 +236,21 @@ class NF_Abstracts_Model
                 $key = $result[ 'key' ];
                 $this->_settings[ $key ] = $result[ 'value' ];
             }
+
+            $field = $wpdb->get_row(
+                "
+                SELECT `label`, `key`, `type`
+                FROM $this->_table_name
+                WHERE `id` = '$this->_id'
+                ",
+                ARRAY_A
+            );
+
+            if( ! is_wp_error( $field ) ){
+                $this->_settings[ 'label' ] = $field[ 'label' ];
+                $this->_settings[ 'key' ] = $field[ 'key' ];
+                $this->_settings[ 'type' ] = $field[ 'type' ];
+            }
         }
 
         if( ! $this->_settings ) {
@@ -508,7 +523,7 @@ class NF_Abstracts_Model
 
     /**
      * Cache Flag
-     * 
+     *
      * @param string $cache
      * @return $this
      */

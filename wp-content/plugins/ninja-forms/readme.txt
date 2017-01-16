@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, wpnzach,
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.5
 Tested up to: 4.7
-Stable tag: 3.0.22
+Stable tag: 3.0.23
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -102,23 +102,19 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.0.22 (11 January 2017) =
-
-*Changes:*
-
-* Added an import for list options.
-* Refactored form submissions so that they are more responsive for longer forms with more submissions.
-* Moved the 'reply_to' setting to the primary section in email actions.
-* Added error handling for invalid "TO" email addresses.
+= 3.0.23 (12 January 2017) =
 
 *Bugs:*
 
-* Fixed a bug that caused installations to crash on older, unsecure versions of PHP.
-* Fixed a bug with calculations that caused brackets to appear in calculation fields.
-* On/off settings should now save properly in all situations.
-* Dragging a field should now properly scroll the screen.
+* Fixed a bug with form duplication.
 
 == Changelog ==
+
+= 3.0.23 (12 January 2017) =
+
+*Bugs:*
+
+* Fixed a bug with form duplication.
 
 = 3.0.22 (11 January 2017) =
 

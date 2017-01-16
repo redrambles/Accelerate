@@ -3,7 +3,7 @@
 /**
  * Displays the main Better Search Replace page under Tools -> Better Search Replace.
  *
- * @link       http://expandedfronts.com/better-search-replace/
+ * @link       https://bettersearchreplace.com
  * @since      1.0.0
  *
  * @package    Better_Search_Replace
@@ -15,6 +15,11 @@ if ( ! defined( 'BSR_PATH' ) ) exit;
 
 // Determines which tab to display.
 $active_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'bsr_search_replace';
+
+// Bail if not on a BSR page
+if ( ! in_array( $active_tab, array( 'bsr_search_replace', 'bsr_backup_import', 'bsr_settings', 'bsr_help' ) ) ) {
+	wp_die( 'The requested tab was not found.', 'better-search-replace' );
+}
 
 if ( 'bsr_settings' === $active_tab ) {
 	$action = get_admin_url() . 'options.php';

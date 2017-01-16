@@ -266,7 +266,7 @@ function your_awesome_admin_contact_info_of_wow() {
     $wp_admin_bar->add_node( array(
         'id'    => 'contact-developer',
         'title' => 'Contact Developer',
-        'href'  => 'http://redrambles.com/contact/',
+        'href'  => 'http://redrambles.com/#call-to-action',
         'meta'  => array( 'target' => '_blank' )
     ) );
 }

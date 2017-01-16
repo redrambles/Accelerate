@@ -3,11 +3,11 @@
  *
  * Custom CSS for the Better Search Replace administration page.
  */
-
 #bsr-results-table th { font-weight: bold; }
 #bsr-results-table tbody tr:nth-child(odd) { background-color: #F9F9F9; }
 .bsr-second, .bsr-third, .bsr-fourth { text-align: center !important; }
-#bsr-details-view { table-layout: fixed; }
+#bsr-details-view-wrap { margin: 0 10px; }
+#bsr-details-view { table-layout: fixed; padding-top: 40px; }
 .bsr-old-val { background-color: #fdd; }
 .bsr-new-val { background-color: #cfc; }
 .bsr-change { width: 400px !important; }
@@ -24,3 +24,4 @@
 #bsr-license-active { background: green; }
 #bsr-license-inactive { background: gray; }
 .bsr-no-profiles { vertical-align: middle; }
+#bsr-back-to-overview { width: 100%; position: fixed; margin-top: 0; background: #f8f8f8; border-bottom: 1px solid #ddd; padding: 8px 10px; }

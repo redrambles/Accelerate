@@ -2,7 +2,7 @@
 /**
  * Displays the "System Info" tab.
  *
- * @link       http://expandedfronts.com/better-search-replace/
+ * @link       https://bettersearchreplace.com
  * @since      1.1
  *
  * @package    Better_Search_Replace
@@ -12,11 +12,28 @@
 // Prevent direct access.
 if ( ! defined( 'BSR_PATH' ) ) exit;
 
+$bsr_docs_url		= 'http://docs.expandedfronts.com/collection/47-better-search-replace-pro';
+$bsr_support_url	= 'https://expandedfronts.com/plugin-support/?plugin=Better%20Search%20Replace%20Pro';
+$bsr_license_key	= get_option( 'bsr_license_key' );
+
+if ( false !== $bsr_license_key ) {
+	$bsr_support_url .= '&key=' . esc_attr( $bsr_license_key );
+}
+
 ?>
 
 <h3><?php _e( 'Help & Troubleshooting', 'better-search-replace' ); ?></h3>
 
-<p><?php printf( __( 'Found a bug or have a feature request? Please submit an issue on <a href="%s">GitHub</a>!', 'better-search-replace' ), 'https://github.com/expandedfronts/better-search-replace' ); ?></p>
+<p><?php _e( 'Need some help, found a bug, or just have some feedback?', 'better-search-replace' ); ?></p>
+
+<p>
+<?php
+	printf( wp_kses( __( 'Check out the <a href="%s" target="_blank">documentation</a> or <a href="%s" target="_blank">open a support ticket</a>.', 'better-search-replace' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		esc_url( $bsr_docs_url ),
+		esc_url( $bsr_support_url )
+	);
+?>
+</p>
 
 <textarea readonly="readonly" onclick="this.focus(); this.select()" style="width:750px;height:500px;font-family:Menlo,Monaco,monospace; margin-top: 15px;" name='bsr-sysinfo'><?php echo BSR_Compatibility::get_sysinfo(); ?></textarea>
 

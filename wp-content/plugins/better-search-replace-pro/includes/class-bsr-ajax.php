@@ -3,7 +3,7 @@
 /**
  * AJAX-specific functionality for the plugin.
  *
- * @link       http://expandedfronts.com/better-search-replace
+ * @link       https://bettersearchreplace.com
  * @since      1.2
  *
  * @package    Better_Search_Replace
