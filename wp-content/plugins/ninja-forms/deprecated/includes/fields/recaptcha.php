@@ -17,6 +17,7 @@ function ninja_forms_register_field_recaptcha() {
 		'edit_custom_class' => false,
 		'edit_help' => false,
 		'edit_meta' => false,
+		'sidebar' => 'template_fields',
 		'edit_conditional' => true,
 		'conditional' => array(
 			'action' => array(
@@ -50,22 +51,15 @@ function ninja_forms_field_recaptcha_display( $field_id, $data, $form_id = '' ) 
 	$lang = $settings['recaptcha_lang'];
 	$siteKey = $settings['recaptcha_site_key'];
 	$field_class = ninja_forms_get_field_class( $field_id, $form_id );
-	$rand = wp_rand(0, 99999);
-	wp_enqueue_script(
-		'g-recaptcha',
-		'https://www.google.com/recaptcha/api.js?onload=ninja_forms_grecaptcha_explicit_render&render=explicit&hl='.$lang,
-		array( 'ninja-forms-display' ) );
 	if ( !empty( $siteKey ) ) { ?>
-		<input id="ninja_forms_field_<?php echo $rand;?>" name="ninja_forms_field_<?php echo
-		$field_id;?>" type="hidden" class="<?php echo $field_class;?>" value="" rel="<?php echo $field_id;?>"
-		/>
-		<div class="g-recaptcha" data-callback="nf_recaptcha_set_field_value"
-		     data-sitekey="<?php echo $siteKey; ?>"></div>
+		<input id="ninja_forms_field_<?php echo $field_id;?>" name="ninja_forms_field_<?php echo $field_id;?>" type="hidden" class="<?php echo $field_class;?>" value="" rel="<?php echo $field_id;?>" />
+		<div class="g-recaptcha" data-callback="nf_recaptcha_set_field_value" data-sitekey="<?php echo $siteKey; ?>"></div>
+        <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>"> </script>
 		<script type="text/javascript">
-			function nf_recaptcha_set_field_value(inpval){
-				jQuery("#ninja_forms_field_<?php echo $rand;?>").val(inpval);
-			}
-		</script>
+            function nf_recaptcha_set_field_value(inpval){
+            	jQuery("#ninja_forms_field_<?php echo $field_id;?>").val(inpval)
+            }
+            </script>
 		<?php
 	}
 }

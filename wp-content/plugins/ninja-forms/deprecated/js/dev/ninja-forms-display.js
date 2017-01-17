@@ -999,11 +999,3 @@ function ninja_forms_var_operator(op) {
         }
     }
 }
-
-function ninja_forms_grecaptcha_explicit_render(){
-	jQuery('.g-recaptcha').each(function(){
-		grecaptcha.render(this, {
-			'sitekey':jQuery(this).data('sitekey')
-		});
-	});
-}

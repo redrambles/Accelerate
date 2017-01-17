@@ -2,8 +2,8 @@
 Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, wpnzach, aman086, daveshine, mordauk, bftrick, helgatheviking
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.5
-Tested up to: 4.7
-Stable tag: 3.0.23
+Tested up to: 4.7.1
+Stable tag: 3.0.24
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -102,13 +102,19 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.0.23 (12 January 2017) =
+= 3.0.24 (15 January 2017) =
 
 *Bugs:*
 
-* Fixed a bug with form duplication.
+* Fixed a bug with Google reCaptcha and the deprecated, 2.9.x codebase.
 
 == Changelog ==
+
+= 3.0.24 (15 January 2017) =
+
+*Bugs:*
+
+* Fixed a bug with Google reCaptcha and the deprecated, 2.9.x codebase.
 
 = 3.0.23 (12 January 2017) =
 

@@ -81,6 +81,9 @@ function accelerate_theme_support_stuff() {
   add_theme_support('post-thumbnails');
   add_image_size('archive-case-studies', 514, 379, array( 'left', 'top' ) ); 
   
+  //title
+  add_theme_support( 'title-tag' );
+  
 	}
 add_action( 'after_setup_theme', 'accelerate_theme_support_stuff' );
 
