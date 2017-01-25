@@ -14,9 +14,11 @@
 		
 		<footer id="colophon" class="site-footer" role="contentinfo">
 			<div class="site-info">
-
+				
 				<div class="site-description">
-					<?php if (!empty(get_theme_mod('accelerate_footer_message'))){ 
+					<?php 
+					$footer_message = get_theme_mod('accelerate_footer_message');
+					if (!empty($footer_message)){ 
 								do_action('accelerate_footer_customizer'); 
 					  } else {
 								do_action('modified_footer'); ?>

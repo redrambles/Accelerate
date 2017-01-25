@@ -45,7 +45,11 @@
 				</nav>
 				<div class="clearfix"></div>
 				<!-- check to see if any of the three contact info fields have been filled in the customizer -->	
-				<?php if (!empty(get_theme_mod('accelerate_address_setting')) || !empty(get_theme_mod('accelerate_telephone_setting')) || !empty(get_theme_mod('accelerate_email_setting'))) { 
+				<?php 
+				$address = get_theme_mod('accelerate_address_setting');
+				$email = get_theme_mod('accelerate_email_setting');
+				$telephone = get_theme_mod('accelerate_telephone_setting');
+				if (!empty($address) || !empty($email) || !empty($telephone)) { 
 			 		do_action('accelerate_in_header'); 
 		 		} ?>
 			</div>

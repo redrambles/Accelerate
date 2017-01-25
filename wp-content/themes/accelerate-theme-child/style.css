@@ -656,10 +656,11 @@ aside.sidebar li a {
 /* About Page */
 
 .hero-about {
-    background: url("img/taxi-photo-about.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
+    background: url("img/taxi-photo-about.jpg") no-repeat scroll right bottom / cover rgba(0, 0, 0, 0);
     height: 360px;
     padding-top: 1px;
 }
+    
 .hero-text h3 {
     max-width: 550px;
     margin: 0 auto;
