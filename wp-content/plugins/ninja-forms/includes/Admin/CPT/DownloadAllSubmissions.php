@@ -17,6 +17,7 @@ class NF_Admin_CPT_DownloadAllSubmissions extends NF_Step_Processing {
     }
 
     public function loading() {
+        $subs_per_step = apply_filters( 'ninja_forms_export_subs_per_step', 10 );
         $form_id  = isset( $this->args['form_id'] ) ? absint( $this->args['form_id'] ) : 0;
 
         if ( empty( $form_id ) ) {
@@ -27,7 +28,7 @@ class NF_Admin_CPT_DownloadAllSubmissions extends NF_Step_Processing {
         $sub_count = $this->get_sub_count( $form_id );
 
         if( empty( $this->total_steps ) || $this->total_steps <= 1 ) {
-            $this->total_steps = round( ( $sub_count / 250 ), 0 ) + 2;
+            $this->total_steps = round( ( $sub_count / $subs_per_step ), 0 ) + 2;
         }
 
         $args = array(
@@ -47,6 +48,8 @@ class NF_Admin_CPT_DownloadAllSubmissions extends NF_Step_Processing {
             wp_die( __( 'Invalid form id', 'ninja-forms' ) );
         }
 
+        $subs_per_step = apply_filters( 'ninja_forms_export_subs_per_step', 10 );
+
         $this->args[ 'filename' ] = wp_kses_post( $this->args[ 'filename' ] );
 
         $exported_subs = get_user_option( get_current_user_id(), 'nf_download_all_subs_ids' );
@@ -60,7 +63,7 @@ class NF_Admin_CPT_DownloadAllSubmissions extends NF_Step_Processing {
         }
 
         $args = array(
-            'posts_per_page' => 250,
+            'posts_per_page' => $subs_per_step,
             'paged' => $this->step,
             'post_type' => 'nf_sub',
             'meta_query' => array(

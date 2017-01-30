@@ -217,8 +217,9 @@ final class NF_Database_Models_Submission
      * @param array $where
      * @return array
      */
-    public function find( $form_id, array $where = array() )
+    public function find( $form_id, array $where = array(), array $ids = array() )
     {
+
         $this->_form_id = $form_id;
 
         $args = array(
@@ -226,6 +227,10 @@ final class NF_Database_Models_Submission
             'posts_per_page' => -1,
             'meta_query' => $this->format_meta_query( $where )
         );
+
+        if ( ! empty ( $ids ) ) {
+            $args[ 'post__in' ] = $ids;
+        }
 
         $subs = get_posts( $args );
 
@@ -283,7 +288,6 @@ final class NF_Database_Models_Submission
     {
         $date_format = Ninja_Forms()->get_setting( 'date_format' );
 
-
         /*
          * Labels
          */
@@ -298,7 +302,14 @@ final class NF_Database_Models_Submission
 
         $fields = Ninja_Forms()->form( $form_id )->get_fields();
 
-        usort( $fields, array( 'NF_Database_Models_Submission', 'sort_fields' ) );
+        /*
+         * If we are using an add-on that filters our field order, we don't want to call sort again.
+         *
+         * TODO: This is probably not the most effecient way to handle this. It should be re-thought.
+         */
+        if ( ! has_filter( 'ninja_forms_get_fields_sorted' ) ) {
+            usort( $fields, array( 'NF_Database_Models_Submission', 'sort_fields' ) );
+        }
 
         $hidden_field_types = apply_filters( 'nf_sub_hidden_field_types', array() );
 
@@ -313,8 +324,7 @@ final class NF_Database_Models_Submission
             } else {
                 $field_labels[ $field->get_id() ] = $field->get_setting( 'label' );
             }
-            $fields_order_by[] = "'_field_{$field->get_id()}'";
-
+            $fields_order_by[] = $field->get_id();
             if( has_filter( 'ninja_forms_subs_export_field_value_' . $field->get_setting( 'type' ) ) ){
                 // $i represents the relative field order for later reference when running filters on a specific value.
                 $field_type_filters[ $i ] = $field->get_setting( 'type' );
@@ -326,13 +336,9 @@ final class NF_Database_Models_Submission
          * Submissions
          */
 
-        $value_array = array();
-
-        $subs = Ninja_Forms()->form( $form_id )->get_subs();
+        $subs = Ninja_Forms()->form( $form_id )->get_subs( array(), FALSE, $sub_ids );
 
         foreach( $subs as $sub ){
-
-            if( ! in_array( $sub->get_id(), $sub_ids ) ) continue;
 
             $value[ '_seq_num' ] = $sub->get_seq_num();
             $value[ '_date_submitted' ] = $sub->get_sub_date( $date_format );
@@ -355,7 +361,7 @@ final class NF_Database_Models_Submission
                         $field_value = implode(' | ', $field_value);
                     }
 
-                    $value[$field_id] = $field_value;
+                    $value[$field_id] = maybe_unserialize( $field_value );
                 }
 
                 $value_array[] = $value;
@@ -366,15 +372,17 @@ final class NF_Database_Models_Submission
                  */
 
                 global $wpdb;
-                $field_values = $wpdb->get_col( $wpdb->prepare("
-                    SELECT `meta_value`
-                    FROM `" . $wpdb->postmeta . "`
-                    WHERE post_id = %d
-                    ORDER BY FIELD( meta_key, " . implode( ',', $fields_order_by ) . " )
-                ", $sub->get_id() ) );
-
-                array_shift( $field_values ); // Remove form ID value from array.
-                array_shift( $field_values ); // Remove duplicate sequence number value from array.
+                $field_values = $wpdb->get_col( "
+                    SELECT IFNULL( meta_value, '' )
+                    FROM ". $wpdb->postmeta . " as postmeta
+                    RIGHT JOIN (
+                        SELECT id FROM wp_nf3_fields
+                        WHERE id IN ( " . implode( ',', $fields_order_by ) . " ) 
+                        ORDER BY FIELD( id, " . implode( ',', $fields_order_by ) . " )
+                    ) as fields
+                    ON postmeta.meta_key LIKE CONCAT( '%', fields.id, '%' )
+                        AND postmeta.post_id = " . $sub->get_id()
+                );
 
                 if( is_array( $field_type_filters ) && ! empty( $field_type_filters ) ){
                     foreach( $field_type_filters as $i => $type ){

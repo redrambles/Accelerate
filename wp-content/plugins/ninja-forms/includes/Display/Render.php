@@ -118,9 +118,7 @@ final class NF_Display_Render
         $after_form = apply_filters( 'ninja_forms_display_after_form', '', $form_id );
         $form->update_setting( 'afterForm', $after_form );
 
-        $form_cache = get_option( 'nf_form_' . $form_id, false );
-        $form_fields = $form_cache[ 'fields' ];
-        if( empty( $form_fields ) ) $form_fields = Ninja_Forms()->form( $form_id )->get_fields();
+        $form_fields = Ninja_Forms()->form( $form_id )->get_fields();
         $fields = array();
 
         if( empty( $form_fields ) ){
@@ -259,12 +257,12 @@ final class NF_Display_Render
 
                 $thousands_sep = $wp_locale->number_format[ 'thousands_sep'];
                 $decimal_point = $wp_locale->number_format[ 'decimal_point' ];
-                   
+
                 // TODO: Find a better way to do this.
                 if ('shipping' == $settings['type']) {
                     $settings[ 'shipping_cost' ] = preg_replace ('/[^\d,\.]/', '', $settings[ 'shipping_cost' ] );
                     $settings[ 'shipping_cost' ] = str_replace( Ninja_Forms()->get_setting( 'currency_symbol' ), '', $settings[ 'shipping_cost' ] );
-                    
+
                     $settings[ 'shipping_cost' ] = str_replace( $decimal_point, '||', $settings[ 'shipping_cost' ] );
                     $settings[ 'shipping_cost' ] = str_replace( $thousands_sep, '', $settings[ 'shipping_cost' ] );
                     $settings[ 'shipping_cost' ] = str_replace( '||', '.', $settings[ 'shipping_cost' ] );
@@ -325,17 +323,17 @@ final class NF_Display_Render
         <script>
             var formDisplay = 1;
 
-            // Maybe initialize nfForms object
+            /* Maybe initialize nfForms object */
             var nfForms = nfForms || [];
 
-            // Build Form Data
+            /* Build Form Data */
             var form = [];
             form.id = '<?php echo $form_id; ?>';
             form.settings = <?php echo wp_json_encode( $form->get_settings() ); ?>;
 
             form.fields = <?php echo wp_json_encode( $fields ); ?>;
 
-            // Add Form Data to nfForms object
+            /* Add Form Data to nfForms object */
             nfForms.push( form );
         </script>
 

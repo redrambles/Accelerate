@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, wpnzach,
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.5
 Tested up to: 4.7.1
-Stable tag: 3.0.24
+Stable tag: 3.0.25
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -102,13 +102,37 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.0.24 (15 January 2017) =
+= 3.0.25 (26 January 2017) =
+
+*Changes:*
+
+* Increasing the performance of submissions and form builder loading.
+* Improved compatibility with popular caching plugins.
 
 *Bugs:*
 
-* Fixed a bug with Google reCaptcha and the deprecated, 2.9.x codebase.
+* Field tags should now properly populate in calculation merge tags.
+* Submission exports should now always order properly.
+* Fixed a bug with submissions exporting non-Ninja Forms data.
+* Importing forms with non-UTF8 characters should now import properly.
+* Fixed a bug with converting froms from 2.9.x to 3.0.
 
 == Changelog ==
+
+= 3.0.25 (26 January 2017) =
+
+*Changes:*
+
+* Increasing the performance of submissions and form builder loading.
+* Improved compatibility with popular caching plugins.
+
+*Bugs:*
+
+* Field tags should now properly populate in calculation merge tags.
+* Submission exports should now always order properly.
+* Fixed a bug with submissions exporting non-Ninja Forms data.
+* Importing forms with non-UTF8 characters should now import properly.
+* Fixed a bug with converting froms from 2.9.x to 3.0.
 
 = 3.0.24 (15 January 2017) =
 

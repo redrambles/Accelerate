@@ -23,6 +23,7 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
     {
         $return = '<table>';
         $hidden_field_types = array( 'html' );
+        ksort( $this->merge_tags[ 'all_fields' ][ 'fields' ] );
         foreach( $this->merge_tags[ 'all_fields' ][ 'fields' ] as $field ){
 
             if( in_array( $field[ 'type' ], array_values( $hidden_field_types ) ) ) continue;
@@ -57,7 +58,8 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
 
         $callback = 'field_' . $field[ 'id' ];
 
-        $this->merge_tags[ 'all_fields' ][ 'fields' ][ $callback ] = $field;
+        $order = absint( $field[ 'order' ] );
+        $this->merge_tags[ 'all_fields' ][ 'fields' ][ $order ] = $field;
 
         if( is_array( $field[ 'value' ] ) ) $field[ 'value' ] = implode( ',', $field[ 'value' ] );
 

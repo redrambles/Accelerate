@@ -142,8 +142,7 @@ class NF_Admin_CPT_Submission
 
         $form_cache = get_option( 'nf_form_' . $form_id );
 
-        $form_fields = $form_cache[ 'fields' ];
-        if( empty( $form_fields ) ) $form_fields = Ninja_Forms()->form( $form_id )->get_fields();
+        $form_fields = Ninja_Forms()->form( $form_id )->get_fields();
 
         foreach( $form_fields as $field ) {
 
@@ -263,8 +262,6 @@ class NF_Admin_CPT_Submission
         $sub = Ninja_Forms()->form()->get_sub( $post->ID );
 
         $fields = Ninja_Forms()->form( $form_id )->get_fields();
-
-        usort( $fields, array( $this, 'sort_fields' ) );
 
         $hidden_field_types = apply_filters( 'nf_sub_hidden_field_types', array() );
 
