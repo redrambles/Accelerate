@@ -21,6 +21,17 @@ Text Domain: accelerate-theme-child
     clear: both;
 }*/
 
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  }
+
 .site {
     width: 100%;
     max-width: 100%;
@@ -61,6 +72,10 @@ img {
 	width: 1px;
 	/* many screen reader and browser combinations announce broken words as they would appear visually */
 	word-wrap: normal !important;
+}
+header#masthead {
+  /*height: 50px;*/
+  box-sizing: content-box;
 }
 
 .header-main {
@@ -140,6 +155,7 @@ background-color: tomato;
 
 section.home-page {
     background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
+    box-sizing: content-box; /* To overwrite the 'box-sizing: border-box' property in this specific instance */
 }
 
 
@@ -196,12 +212,16 @@ section.home-page {
     list-style: none;
     margin: 0;
     padding-bottom: 10%;
+    overflow: auto;
 }
 
 .individual-featured-service {
-    display: inline-block;
-    width: 21%;
-    padding-right: 3%;
+    float: left;
+    width: 23%;
+    margin-right: 2%;
+}
+.individual-featured-service:last-of-type {
+  margin-right: 0;
 }
 .individual-featured-service figure{
     text-align: center;
@@ -224,11 +244,10 @@ section.home-page {
 /* Home Page Blog Post */
 
 .blog-post {
-/*    clear: both;*/
-    width: 48%;
-    float: left;
-    padding: 0 0 1em 1em;
-    word-wrap: break-word;
+  width: 48%;
+  float: left;
+  padding: 0 0 1em 1em;
+  word-wrap: break-word;
 }
 
 .blog-post h4, .PI_SimpleTwitterTweets h3 {
