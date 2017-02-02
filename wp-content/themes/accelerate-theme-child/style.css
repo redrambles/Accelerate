@@ -109,16 +109,16 @@ header#masthead {
 }
 
 /* THIS is the style that so many students are looking for to make their menu inline */
-#primary-navigation ul {
+.menu-top-nav-container ul {
   overflow: auto;
 }
-#primary-navigation ul li{
+.menu-top-nav-container ul li{
   text-transform: uppercase;
 	float: left; /* Makes it easier to add sub-menu items */
 	margin-left: 35px;
   position: relative; /* for the border-bottom effect for the link */
 }
-#primary-navigation ul li:first-of-type{
+.menu-top-nav-container ul li:first-of-type{
 	margin-left: 0;
 }
 
