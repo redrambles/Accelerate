@@ -44,7 +44,6 @@ get_header(); ?>
 				);
 
 			$services_query = new WP_Query($args);
-			//$entry = 0;
 			?>
 
 			<?php while ($services_query-> have_posts() ) : $services_query->the_post();
@@ -53,8 +52,7 @@ get_header(); ?>
 				$cpt_service_image = get_field('cpt_service_image'); 
 				$alignment = get_field('alignment'); /* This is the value of the image alignment radio button */
 				$size = "full";
-				//$entry++;
-				//$align = ($entry % 2 == 0) ? 'alignright' : 'alignleft';
+				//$align = ($services_query->current_post % 2 == 0)? 'alignright' : 'alignleft';
 			?>
 
 				<section class="service-section">
