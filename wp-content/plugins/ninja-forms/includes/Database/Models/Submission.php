@@ -308,7 +308,7 @@ final class NF_Database_Models_Submission
          * TODO: This is probably not the most effecient way to handle this. It should be re-thought.
          */
         if ( ! has_filter( 'ninja_forms_get_fields_sorted' ) ) {
-            usort( $fields, array( 'NF_Database_Models_Submission', 'sort_fields' ) );
+            uasort( $fields, array( 'NF_Database_Models_Submission', 'sort_fields' ) );
         }
 
         $hidden_field_types = apply_filters( 'nf_sub_hidden_field_types', array() );
@@ -326,7 +326,7 @@ final class NF_Database_Models_Submission
 
             foreach ($fields as $field_id => $field) {
 
-                if (!is_int($field_id)) continue;
+              if (!is_int($field_id)) continue;
                 if( in_array( $field->get_setting( 'type' ), $hidden_field_types ) ) continue;
 
                 if ( $field->get_setting( 'admin_label' ) ) {
