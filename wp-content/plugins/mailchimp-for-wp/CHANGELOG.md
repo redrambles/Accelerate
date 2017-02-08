@@ -1,6 +1,15 @@
 Changelog
 =========
 
+#### 4.0.13 - February 8, 2017
+
+**Improvements**
+
+- Ensure fields are HTML decoded before sending to MailChimp.
+- Better OptimizePress compatibility.
+- Show all address-type fields as required when form contains 1 or more fields of the same address group.
+
+
 #### 4.0.12 - January 16, 2017
 
 **Fixes**
