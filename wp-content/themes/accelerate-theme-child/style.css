@@ -781,7 +781,7 @@ aside.sidebar li a {
 
 .image_404 {
     height: 500px;
-    background: url("img/sad-cat.jpg")no-repeat scroll left center/ cover rgba(0, 0, 0, 0);
+    background: url("img/sad-cat.jpg")no-repeat center/ cover rgba(0, 0, 0, 0);
     border: 3px solid #45AC9D;
 }
 
