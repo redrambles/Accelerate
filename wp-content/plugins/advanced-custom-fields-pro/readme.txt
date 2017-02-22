@@ -106,6 +106,14 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 5.5.8 =
+* Flexible Content: Added logic to better 'clean up' data when re-ordering layouts
+* oEmbed field: Fixed bug causing incorrect width and height settings in embed HTML
+* Core: Fixed bug causing incorrect Select2 CSS version loading for WooCommerce 2.7
+* Core: Fixed bug preventing 'min-height' style being applied to floating width fields
+* Core: Added new JS 'init' actions for wysiwyg, date, datetime, time and select2 fields
+* Core: Minor fixes and improvements
+
 = 5.5.7 =
 * Core: Fixed bug causing `get_field()` to return incorrect data for sub fields registered via PHP code.
 

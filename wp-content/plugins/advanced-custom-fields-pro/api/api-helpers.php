@@ -4143,7 +4143,8 @@ function acf_translate( $string ) {
 function acf_maybe_add_action( $tag, $function_to_add, $priority = 10, $accepted_args = 1 ) {
 	
 	// if action has already run, execute it
-	if( did_action($tag) ) {
+	// - if currently doing action, allow $tag to be added as per usual to allow $priority ordering needed for 3rd party asset compatibility
+	if( did_action($tag) && !doing_action($tag) ) {
 			
 		call_user_func( $function_to_add );
 	

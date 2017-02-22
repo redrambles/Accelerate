@@ -2071,12 +2071,6 @@ function delete_sub_row( $selector, $i = 1, $post_id = false ) {
 *  @return	n/a
 */
 
-function register_field_group( $field_group ) {
-	
-	acf_add_local_field_group( $field_group );
-	
-}
-
 function create_field( $field ) {
 
 	acf_render_field( $field );

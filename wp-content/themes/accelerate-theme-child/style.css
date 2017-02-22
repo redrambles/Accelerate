@@ -308,7 +308,7 @@ ul.tweets li{
     text-transform: uppercase;
     padding-left: 40px;
 }
-.stt-em a{
+.tweets li a[href*="status"] {
   display: none;
 }
 
