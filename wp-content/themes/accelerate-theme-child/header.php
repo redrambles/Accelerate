@@ -43,6 +43,9 @@
 	<!-- 				<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><i class="fa fa-bars"><?php //_e( 'Menu', 'accelerate-theme-child' ); ?></i></button> -->
 					<?php wp_nav_menu( array( 'theme_location' => 'top-nav', 'menu_class' => 'nav-menu' ) ); ?>
 				</nav>
+				<div class="mobile-menu">
+					Menu
+				</div>
 				<div class="clearfix"></div>
 				<!-- check to see if any of the three contact info fields have been filled in the customizer -->	
 				<?php 

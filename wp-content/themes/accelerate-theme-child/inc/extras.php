@@ -45,8 +45,6 @@ function accelerate_theme_child_footer_meta() { ?>
   </footer>
 <?php }  
 
-
-
 // Maintenance Page Function
 function launch_maintenance_page() {
 	
@@ -100,4 +98,14 @@ function launch_maintenance_page() {
 }
 
 launch_maintenance_page();
+
+// Hook into Simple Twitter Tweets widget on Front page and dynamically add handle after title-tag
+function add_twitter_handle( $title ) {
+		// Fetch handle that is stored in options table but not output by STT widget
+    	$stt_options = get_option( 'widget_pi_simpletwittertweets', true ); 
+    	$title .= '<div class="twitterhandle">@'. $stt_options[2]['name'] . '</div>';
+    	return $title; 
+    }
+add_filter('widget_title', 'add_twitter_handle'); 
+
 ?>

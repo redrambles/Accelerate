@@ -121,7 +121,15 @@ header#masthead {
 .menu-top-nav-container ul li:first-of-type{
 	margin-left: 0;
 }
-
+.mobile-menu {
+  display: none;
+}
+#masthead nav.menu-toggle {
+  display: block;
+  float: none;
+  width: 100%;
+  clear: left;
+}
 /* This will make the current menu item bold in top navigation bar */
 .nav-menu .current-menu-item > a,
 .nav-menu .current_page_item > a {
@@ -313,7 +321,7 @@ ul.tweets li{
 }
 
 /* To add the '@Accelerate' */
-#pi_simpletwittertweets-2 h3::after {
+/* #pi_simpletwittertweets-2 h3::after {
     content: "@Accelerate";
     display: block;
     color: #3b3b3b;
@@ -323,7 +331,18 @@ ul.tweets li{
     font-family: 'Montserrat';
     font-weight: bold;
     margin-bottom: 25px;
+} */
+
+.twitterhandle {
+  /*display: none;*/
+  margin-top: 30px;
+  font-size: 1.4em;
+  color: #3b3b3b;
+  text-transform: none;
 }
+.twitterhandle::first-letter {
+  text-transform: uppercase;
+}  
 
 /* Social icons homepage - modifying display using Menu Social Icons Plugin */
 
@@ -1139,7 +1158,39 @@ aside.sidebar li a {
 }
 
 @media screen and (max-width: 800px) {
-
+    
+    div.main {
+      clear: both;
+    }
+    
+    .header-main {
+      overflow: visible;
+    }
+    .site-title {
+      padding-bottom: 10px;
+    }
+    .site-navigation {
+      display: none;
+    }
+    
+    .mobile-menu {
+      display: block;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+    #masthead {
+      height: auto;
+      position: relative;
+    }
+    .menu-top-nav-container {
+      /*background: red;*/
+    }
+    .menu-top-nav-container .nav-menu li {
+      display: block;
+      float: none;
+      margin: 0 0 5px;
+    }
 
     .social-media-navigation {
         float: none;
@@ -1360,7 +1411,6 @@ aside.sidebar li a {
     text-align: center;
     color: tomato;
 }*/
-
 
 
 

@@ -8,3 +8,13 @@ jQuery(document).ready(function($) {
 	});
 
 });
+
+jQuery(document).ready(function($) {
+
+  //$(".mobile-menu").hide();
+	$(".mobile-menu").on('click', function(){
+		$(this).prev().toggleClass("menu-toggle");
+		// $(this).addClass("menu-toggle");
+	});
+
+});
