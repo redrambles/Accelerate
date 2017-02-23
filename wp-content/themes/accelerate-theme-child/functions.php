@@ -171,6 +171,10 @@ function accelerate_child_scripts() {
 	if ( is_404() ) {
 		wp_enqueue_script('404', get_stylesheet_directory_uri() . '/js/test-404.js', array('jquery'), '20160603', false );
 	}
+  // for dynamically outputting the twitter handle in the correct spot inside the twitter widget - used filter instead
+  // if ( is_front_page() ) {
+  //   wp_enqueue_script('front-page-twitter', get_stylesheet_directory_uri() . '/js/front-page-twitter.js', array('jquery'), '20170222', true );
+  // }
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 
