@@ -1294,7 +1294,7 @@ aside.sidebar li a {
     .blog-post, .tweet-module {
         width: 100%;
         max-width: 95%;
-        padding: 0 3.5%;
+        padding: 0 3.5% 0 4.5%;
         float: left;
     }
     aside#pi_simpletwittertweets-2 {
