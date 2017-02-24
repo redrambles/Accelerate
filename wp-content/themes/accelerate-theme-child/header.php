@@ -38,14 +38,14 @@
 		<header id="masthead" class="site-header" role="banner">
 			<div class="header-main">
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-
+				
+				<div class="mobile-menu">
+					Menu
+				</div>
 				<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
 	<!-- 				<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><i class="fa fa-bars"><?php //_e( 'Menu', 'accelerate-theme-child' ); ?></i></button> -->
 					<?php wp_nav_menu( array( 'theme_location' => 'top-nav', 'menu_class' => 'nav-menu' ) ); ?>
 				</nav>
-				<div class="mobile-menu">
-					Menu
-				</div>
 				<div class="clearfix"></div>
 				<!-- check to see if any of the three contact info fields have been filled in the customizer -->	
 				<?php 

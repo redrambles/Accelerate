@@ -123,13 +123,21 @@ header#masthead {
 }
 .mobile-menu {
   display: none;
+  padding: 3px 5px;
 }
-#masthead nav.menu-toggle {
-  display: block;
-  float: none;
-  width: 100%;
-  clear: left;
+
+/* This isn't working - TO-DO */
+.mobile-menu:hover,
+.mobile-menu:active {
+  cursor: pointer;
+  background: #2e6d64;
+  -webkit-transition: all 800ms ease;
+  -moz-transition: all 800ms ease;
+  -ms-transition: all 800ms ease;
+  -o-transition: all 800ms ease;
+  transition: all 800ms ease; 
 }
+
 /* This will make the current menu item bold in top navigation bar */
 .nav-menu .current-menu-item > a,
 .nav-menu .current_page_item > a {
@@ -333,6 +341,10 @@ ul.tweets li{
     margin-bottom: 25px;
 } */
 
+/* Make sure the handle doesn't appear anywhere other than on the front page */
+body:not(.home) .twitterhandle {
+  display: none;
+}
 .twitterhandle {
   /*display: none;*/
   margin-top: 30px;
@@ -1172,7 +1184,12 @@ aside.sidebar li a {
     .site-navigation {
       display: none;
     }
-    
+    .site-navigation.menu-toggle {
+      display: block;
+      float: none;
+      width: 100%;
+      clear: left;
+    }
     .mobile-menu {
       display: block;
       position: absolute;
@@ -1182,6 +1199,11 @@ aside.sidebar li a {
     #masthead {
       height: auto;
       position: relative;
+    }
+    .menu-top-nav-container ul li:hover a::after,
+    .menu-top-nav-container ul li:active a::after {
+      width: 75%;
+      opacity: 1;
     }
     .menu-top-nav-container {
       /*background: red;*/

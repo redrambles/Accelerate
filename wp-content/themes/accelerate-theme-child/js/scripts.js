@@ -1,3 +1,4 @@
+// FAQ page
 jQuery(document).ready(function($) {
 // This solution is compliant with progressive enhancement principles - as the content will still show if JS is disabled.
 	$(".faq-answer").hide();
@@ -9,12 +10,16 @@ jQuery(document).ready(function($) {
 
 });
 
+// Mobile menu
 jQuery(document).ready(function($) {
-
-  //$(".mobile-menu").hide();
+	
 	$(".mobile-menu").on('click', function(){
-		$(this).prev().toggleClass("menu-toggle");
-		// $(this).addClass("menu-toggle");
+		$(this).next().toggleClass("menu-toggle");
+		$( window ).resize(function() {
+			var width = $(window).width();
+			if ( width > 800 ){
+				$('.site-navigation').removeClass('menu-toggle');
+			 }
+		});
 	});
-
 });
