@@ -106,6 +106,9 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 5.5.9 =
+* Core: Fixed bug causing ACF4 PHP field groups to be ignored if missing ‘key’ setting
+
 = 5.5.8 =
 * Flexible Content: Added logic to better 'clean up' data when re-ordering layouts
 * oEmbed field: Fixed bug causing incorrect width and height settings in embed HTML

@@ -432,11 +432,12 @@ class acf_local {
 	
 	function add_field_group( $field_group ) {
 		
-		// defaults
-		$field_group = wp_parse_args($field_group, array(
-			'key'		=> '',
-			'fields'	=> array()
-		));
+		// vars
+		$fields = acf_extract_var($field_group, 'fields');
+		
+		
+		// validate
+		$field_group = acf_get_valid_field_group($field_group);
 		
 		
 		// don't allow overrides
@@ -447,16 +448,16 @@ class acf_local {
 		if( empty($field_group['local']) ) $field_group['local'] = 'php';
 		
 		
-		// remove fields
-		$fields = acf_extract_var($field_group, 'fields');
+		// add field group
+		$this->groups[ $field_group['key'] ] = $field_group;
+		
+		
+		// bail ealry if no fields
+		if( !$fields ) return;
 		
 		
 		// format fields
 		$fields = acf_prepare_fields_for_import( $fields );
-		
-		
-		// add field group
-		$this->groups[ $field_group['key'] ] = $field_group;
 		
 		
 		// add fields
