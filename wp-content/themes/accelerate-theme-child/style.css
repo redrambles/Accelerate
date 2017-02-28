@@ -585,6 +585,13 @@ p.footer-copy {
     margin: 0 auto;
 }
 
+.success-form-message .site-content {
+  text-align: center;
+  padding: 5em 0;
+}
+.success-form-message h2 {
+  color: #45AC9D;
+}
 /* Sidebar */
 
 

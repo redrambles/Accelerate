@@ -222,16 +222,6 @@ add_action('modified_footer', 'green_accelerate_footer');
 //     }
 // }
 
-// Add a body class if on contact page so can narrow width of page in combination with other page class
-// add_filter( 'body_class','accelerate_body_classes' );
-// function accelerate_body_classes( $classes ) {
-//  
-//   if (is_page('contact') ) {
-//     $classes[] = 'contact-form-narrow';
-//   }
-//     return $classes;
-//      
-// }
 
 // Add a body class for about page so that the padding on '.site-main won't mess up the hero-image at @media max-width 1000px
 add_filter( 'body_class','accelerate_body_classes' );
@@ -239,6 +229,9 @@ function accelerate_body_classes( $classes ) {
  
   if ( is_page( 'about' ) ) {
     $classes[] = 'about-page';
+  }
+  if (is_page('success') ) {
+    $classes[] = 'success-form-message';
   }
     
     return $classes;
