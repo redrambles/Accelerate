@@ -342,11 +342,8 @@ ul.tweets li{
 } */
 
 /* Make sure the handle doesn't appear anywhere other than on the front page */
-body:not(.home) .twitterhandle {
-  display: none;
-}
+
 .twitterhandle {
-  /*display: none;*/
   margin-top: 30px;
   font-size: 1.4em;
   color: #3b3b3b;
