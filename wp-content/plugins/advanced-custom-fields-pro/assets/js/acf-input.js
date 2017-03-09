@@ -3499,6 +3499,28 @@ var acf;
 		
 	}, 999);
 */
+
+
+	/*
+	*  indexOf
+	*
+	*  This function will provide compatibility for ie8
+	*
+	*  @type	function
+	*  @date	5/3/17
+	*  @since	5.5.10
+	*
+	*  @param	n/a
+	*  @return	n/a
+	*/
+	
+	if( !Array.prototype.indexOf ) {
+		
+	    Array.prototype.indexOf = function(val) {
+	        return $.inArray(val, this);
+	    };
+	    
+	}
 	
 })(jQuery);
 
@@ -4298,13 +4320,13 @@ var acf;
 			
 			
 			// calculate visibility
-			for( var i in groups ) {
+			for( var i = 0; i < groups.length; i++ ) {
 				
 				// vars
 				var group = groups[i],
 					match_group	= true;
 				
-				for( var k in group ) {
+				for( var k = 0; k < group.length; k++ ) {
 					
 					// vars
 					var rule = group[k];

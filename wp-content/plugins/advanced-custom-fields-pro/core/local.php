@@ -34,8 +34,7 @@ class acf_local {
 		
 		
 		// actions
-		add_action('acf/delete_field',		array($this, 'acf_delete_field'), 20, 1);
-		add_action('acf/include_fields', 	array($this, 'acf_include_fields'), 10, 4);
+		add_action('acf/include_fields', 	array($this, 'acf_include_fields'), 5, 0);
 		
 		
 		// filters
@@ -807,26 +806,6 @@ class acf_local {
 		
 		// return
 		return $field_groups;
-		
-	}
-	
-	
-	/*
-	*  acf_delete_field
-	*
-	*  description
-	*
-	*  @type	function
-	*  @date	10/12/2014
-	*  @since	5.1.5
-	*
-	*  @param	$post_id (int)
-	*  @return	$post_id (int)
-	*/
-	
-	function acf_delete_field( $field ) {
-		
-		$this->remove_field( $field['key'] );
 		
 	}
 	

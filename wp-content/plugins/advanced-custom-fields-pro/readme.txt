@@ -106,6 +106,21 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 5.5.10 =
+* API: Added new functionality to the `acf_form()` function:
+* - added new 'html_updated_message' setting
+* - added new 'html_submit_button' setting
+* - added new 'html_submit_spinner' setting
+* - added new 'acf/pre_submit_form' filter run when form is successfully submit (before saving $_POST)
+* - added new 'acf/submit_form' action run when form is successfully submit (after saving $_POST)
+* - added new '%post_id%' replace string to the 'return' setting
+* - added new encryption logic to prevent $_POST exploits
+* - added new `acf_register_form()` function
+* Core: Fixed bug preventing values being loaded on a new post/page preview
+* Core: Fixed missing 'Bulk Actions' dropdown on sync screen when no field groups exist
+* Core: Fixed bug ignoring PHP field groups if exists in JSON
+* Core: Minor fixes and improvements
+
 = 5.5.9 =
 * Core: Fixed bug causing ACF4 PHP field groups to be ignored if missing ‘key’ setting
 

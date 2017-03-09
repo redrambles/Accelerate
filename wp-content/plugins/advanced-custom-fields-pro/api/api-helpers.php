@@ -3020,40 +3020,6 @@ function acf_get_valid_post_id( $post_id = 0 ) {
 	}
 	
 	
-	/*
-	*  Override for preview
-	*  
-	*  If the $_GET['preview_id'] is set, then the user wants to see the preview data.
-	*  There is also the case of previewing a page with post_id = 1, but using get_field
-	*  to load data from another post_id.
-	*  In this case, we need to make sure that the autosave revision is actually related
-	*  to the $post_id variable. If they match, then the autosave data will be used, otherwise, 
-	*  the user wants to load data from a completely different post_id
-	*/
-	
-	if( isset($_GET['preview_id']) ) {
-	
-		$autosave = wp_get_post_autosave( $_GET['preview_id'] );
-		
-		if( $autosave && $autosave->post_parent == $post_id ) {
-		
-			$post_id = (int) $autosave->ID;
-			
-		}
-		
-	} elseif( isset($_GET['p']) && isset($_GET['preview']) ) {
-		
-		$revision = acf_get_post_latest_revision( $_GET['p'] );
-		
-		// save
-		if( $revision && $revision->post_parent == $post_id) {
-			
-			$post_id = (int) $revision->ID;
-			
-		}
-		
-	}
-	
 	
 	// filter for 3rd party
 	$post_id = apply_filters('acf/validate_post_id', $post_id, $_post_id);
@@ -5128,5 +5094,79 @@ function acf_connect_attachment_to_post( $attachment_id = 0, $post_id = 0 ) {
 	return true;
 
 }
+
+
+/*
+*  acf_encrypt
+*
+*  This function will encrypt a string using PHP
+*  https://bhoover.com/using-php-openssl_encrypt-openssl_decrypt-encrypt-decrypt-data/
+*
+*  @type	function
+*  @date	27/2/17
+*  @since	5.5.8
+*
+*  @param	$data (string)
+*  @return	(string)
+*/
+
+
+function acf_encrypt( $data = '' ) {
+	
+	// bail ealry if no encrypt function
+	if( !function_exists('openssl_encrypt') ) return base64_encode($data);
+	
+	
+	// generate a key
+	$key = wp_hash('acf_encrypt');
+	
+	
+    // Generate an initialization vector
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+    
+    
+    // Encrypt the data using AES 256 encryption in CBC mode using our encryption key and initialization vector.
+    $encrypted_data = openssl_encrypt($data, 'aes-256-cbc', $key, 0, $iv);
+    
+    
+    // The $iv is just as important as the key for decrypting, so save it with our encrypted data using a unique separator (::)
+    return base64_encode($encrypted_data . '::' . $iv);
+	
+}
+
+
+/*
+*  acf_decrypt
+*
+*  This function will decrypt an encrypted string using PHP
+*  https://bhoover.com/using-php-openssl_encrypt-openssl_decrypt-encrypt-decrypt-data/
+*
+*  @type	function
+*  @date	27/2/17
+*  @since	5.5.8
+*
+*  @param	$data (string)
+*  @return	(string)
+*/
+
+function acf_decrypt( $data = '' ) {
+	
+	// bail ealry if no decrypt function
+	if( !function_exists('openssl_decrypt') ) return base64_decode($data);
+	
+	
+	// generate a key
+	$key = wp_hash('acf_encrypt');
+	
+	
+    // To decrypt, split the encrypted data from our IV - our unique separator used was "::"
+    list($encrypted_data, $iv) = explode('::', base64_decode($data), 2);
+    
+    
+    // decrypt
+    return openssl_decrypt($encrypted_data, 'aes-256-cbc', $key, 0, $iv);
+	
+}
+
 
 ?>
