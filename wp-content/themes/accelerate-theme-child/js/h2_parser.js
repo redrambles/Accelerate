@@ -1,21 +1,38 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function($){
+
+/* Dynamically create link listand append to #float-menu div */
+var $ul = document.createElement('ul');
+var $h2 = ('.container h2:not(.widget-title)');
+var $intro = $('#float-menu'); // I want to put the list right after this element
+
+if($intro.length !== 0) {
+  $intro.show();
+}
   
-  var $ul = document.createElement('ul'),
-  $h2 = ('h2'),
-  $intro = $('.about-intro'); // This is where the list will be appended to - change accordingly
-  $i = 0;
+$i = 0;
+$($ul).addClass("list-unstyled");
+$( $h2 ).each(function(){
+  $(this).attr('id', 'subheading-'+$i);
+  $i++
+});
 
-  $($ul).addClass("link-list");
+$( $h2 ).each(function(){
+  var $headerText = $(this).text();
+  $( $ul ).append( $('<li><a href="#' + $(this).attr('id')+ '"class="header-link" >' + $headerText + '</a></li>' ) );
+});
+$($intro).append.($ul);
 
-  $( $h2 ).each(function(){
-    // Grab h2 text
-    var $headerText = $(this).text();
-    // Give each h2 a 'subheading-' id followed by a unique number
-    $(this).attr('id', 'subheading-'+$i);
-    $i++;
-    //populate our ul with links that point to their corresponding header
-    $( $ul ).append( $('<li><a href="#'+$(this).attr('id')+'" class="header-link" >' + $headerText +'</a></li>' ) );
-  });
+});
 
-  $( $intro ).append($ul); // dance 
-})
+/* Smooth Scroll */
+$('a[href^="#"]').on('click', function(event) {
+  var target = $(this.getAttribute('href'));
+  if(target.length) {
+    event.preventDefault();
+    $('html, body').stop().animate({
+      scrollTop: (target.offset().top - 50)
+    }, 1000);
+   }
+ });
+
+});
