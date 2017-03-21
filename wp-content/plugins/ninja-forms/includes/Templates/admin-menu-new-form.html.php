@@ -3,7 +3,29 @@
 <div id="nf-builder" class="grey"></div>
 
 <script id="tmpl-nf-builder" type="text/template">
-    <div id="nf-app-admin-header"><div id="nf-logo"></div><a href="admin.php?page=ninja-forms" class="fa fa-times"></a></div>
+    <div id="nf-app-admin-header">
+        <div id="nf-logo"></div>
+        <?php
+        /*
+         * TODO: Make this much more dynamic.
+         */
+        $nf_settings = get_option( 'ninja_forms_settings' );
+        $disable_admin_notices = ( isset ( $nf_settings[ 'disable_admin_notices' ] ) ) ? $nf_settings[ 'disable_admin_notices' ] : false;
+
+        if( ! function_exists( 'NF_Layouts' ) && ! $disable_admin_notices ) {
+            $u_id = get_option( 'nf_aff', false );
+            if ( !$u_id ) $u_id = apply_filters( 'ninja_forms_affiliate_id', false );
+            $link = 'https://ninjaforms.com/extensions/layout-styles/?utm_medium=plugin&utm_source=plugin-builder&utm_campaign=Ninja+Forms+Builder&utm_content=Layout+and+Styles';
+            if ( $u_id ) {
+                $link = 'http://www.shareasale.com/r.cfm?u=' . $u_id . '&b=812237&m=63061&afftrack=&urllink=' . $link;
+            }
+        ?>
+            <a href="<?php echo $link; ?>" target="_blank" class="nf-cta-bubble"><?php printf( __( "Create multi-column form layouts with Layout & Styles...%slearn more now!%s", 'ninja-forms' ), '<span>', '</span>' ); ?></a>
+        <?php
+        }
+        ?>
+
+        <a href="admin.php?page=ninja-forms" class="fa fa-times"></a></div>
     <div id="nf-overlay"></div>
     <div id="nf-header"></div>
     <div id="nf-main" class="nf-app-main"></div>
@@ -105,31 +127,8 @@
         <h3><?php _e( 'Add form fields', 'ninja-forms' ); ?></h3>
         <p><?php _e( 'Get started by adding your first form field.', 'ninja-forms' ); ?> <a class="nf-open-drawer" title="<?php _e( 'Add New Field', 'ninja-forms' ); ?>" href="#" data-drawerid="addField"><?php _e( 'Just click here and select the fields you want.', 'ninja-forms' ); ?> </a><?php _e( "It's that easy. Or...", 'ninja-forms' ); ?>
         <h3><?php _e( 'Start from a template', 'ninja-forms' ); ?></h3>
-        <a href="?page=ninja-forms&form_id=formtemplate-contactform" class="nf-one-third template-box">
-            <div class="template-box-inside">
-                <h4><?php _e( 'Contact Us', 'ninja-forms' ); ?></h4>
-                <p class="template-desc"><?php _e( 'Allow your users to contact you with this simple contact form. You can add and remove fields as needed.', 'ninja-forms' ); ?></p>
-            </div>
-        </a>
+        <?php Ninja_Forms::template( 'NewFormTemplates.html.php' ); ?>
 
-        <a href="?page=ninja-forms&form_id=formtemplate-quoterequest" class="nf-one-third template-box">
-            <div class="template-box-inside">
-                <h4><?php _e( 'Quote Request', 'ninja-forms' ); ?></h4>
-                <p class="template-desc"><?php _e( 'Manage quote requests from your website easily with this template. You can add and remove fields as needed.', 'ninja-forms' ); ?></p>
-            </div>
-        </a>
-        <a href="?page=ninja-forms&form_id=formtemplate-eventregistration" class="nf-one-third template-box">
-            <div class="template-box-inside">
-                <h4><?php _e( 'Event Registration', 'ninja-forms' ); ?></h4>
-                <p class="template-desc"><?php _e( 'Allow user to register for your next event this easy to complete form. You can add and remove fields as needed.', 'ninja-forms' ); ?></p>
-            </div>
-        </a>
-        <!--<a href="#" class="nf-one-third template-box">
-            <div class="template-box-inside">
-                <h4><?php _e( 'Newsletter Sign Up Form', 'ninja-forms' ); ?></h4>
-                <p class="template-desc"><?php _e( 'Add subscribers and grow your email list with this newsletter signup form. You can add and remove fields as needed.', 'ninja-forms' ); ?></p>
-            </div>
-        </a> -->
     </div>
 </script>
 
@@ -143,7 +142,7 @@
 </script>
 
 <script id="tmpl-nf-main-content-field" type="text/template">
-    <div id="{{{ data.getFieldID() }}}" class="{{{ data.renderClasses() }}}" data-id="{{{ data.id }}}">{{{ data.renderIcon() }}}<span class="nf-field-label">{{{ data.label }}} {{{ data.renderRequired() }}}</span>
+    <div id="{{{ data.getFieldID() }}}" class="{{{ data.renderClasses() }}}" data-id="{{{ data.id }}}">{{{ data.renderIcon() }}}<span class="nf-field-label">{{{ _.escape( data.label ) }}} {{{ data.renderRequired() }}}</span>
         <div class="nf-item-controls"></div>
     </div>
 </script>
@@ -389,7 +388,7 @@
 </script>
 
 <script id="tmpl-nf-merge-tags-item" type="text/template">
-    <a href="#" title="{{{ data.label }}}" tabindex="1" class="{{{ data.renderClasses() }}}">{{{ data.label }}}</a>
+    <a href="#" title="{{{ data.label }}}" tabindex="1" class="{{{ data.renderClasses() }}}">{{{ _.escape( data.label ) }}}</a>
 </script>
 
 <!-- Field Settings Templates -->
@@ -401,6 +400,31 @@
     </div>
 </script>
 
+<script id="tmpl-nf-edit-setting-option-repeater-wrap" type="text/template">
+    <div class="{{{ data.renderClasses() }}}" {{{ data.renderVisible() }}}>
+        {{{ data.renderSetting() }}}
+        <span class="nf-setting-error"></span>
+        <span class="nf-import-options" style="display:none">
+            <?php _e( 'Please use the following format', 'ninja-forms' ); ?>:
+            <br>
+            <br>
+            <strong><?php _e( 'Label, Value, Calc Value', 'ninja-forms' ); ?></strong>
+            <br>
+            <br>
+            <em>
+            Example:
+            </em>
+            <pre>
+Label One, value-one, 1
+Label Two, value-two, 2
+Label Three, value-three, 3
+            </pre>
+            <textarea></textarea>
+            <a href="#" class="nf-button primary nf-import extra"><?php _e( 'Import', 'ninja-forms' ); ?></a>
+        </span>
+    </div>
+</script>
+
 <script id="tmpl-nf-edit-setting-error" type="text/template">
     <div>{{{ data.error }}}</div>
 </script>
@@ -409,6 +433,13 @@
     <label for="{{{ data.name }}}" class="{{{ data.renderLabelClasses() }}}">{{{ data.label }}} {{{ data.renderTooltip() }}}
         <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" {{{ data.renderPlaceholder() }}} />
         {{{ data.renderMergeTags() }}}
+    </label>
+</script>
+
+<script id="tmpl-nf-edit-setting-media" type="text/template">
+    <label for="{{{ data.name }}}" class="{{{ data.renderLabelClasses() }}} has-merge-tags">{{{ data.label }}} {{{ data.renderTooltip() }}}
+        <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" {{{ data.renderPlaceholder() }}} />
+        <span class="extra open-media-manager dashicons dashicons-admin-media merge-tags"></span>
     </label>
 </script>
 
@@ -486,7 +517,7 @@
 <script id="tmpl-nf-edit-setting-toggle" type="text/template">
 
     <span class="nf-setting-label">{{{ data.label }}}{{{ data.renderTooltip() }}}</span>
-    <input type="checkbox" id="{{{ data.name }}}" class="nf-toggle setting" {{{ ( 1 == data.value ) ? 'checked' : '' }}} />
+    <input type="checkbox" data-setting="{{{ data.settingName }}}" id="{{{ data.name }}}" class="nf-toggle setting" {{{ ( 1 == data.value ) ? 'checked' : '' }}} />
     <label for="{{{ data.name }}}">{{{ data.label }}}</label>
 
 </script>
@@ -530,7 +561,7 @@
 </script>
 
 <script id="tmpl-nf-edit-setting-option-repeater-error" type="text/template">
-    {{{ data.errors[ Object.keys( errors )[0] ] }}}
+    {{{ data.renderErrors() }}}
 </script>
 
 <script id="tmpl-nf-edit-setting-option-repeater-default-row" type="text/template">

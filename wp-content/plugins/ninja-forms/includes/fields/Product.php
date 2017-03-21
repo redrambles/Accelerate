@@ -36,7 +36,7 @@ class NF_Fields_Product extends NF_Abstracts_Input
         add_filter( 'ninja_forms_merge_tag_value_product', array( $this, 'merge_tag_value' ), 10, 2 );
 
         add_filter( 'ninja_forms_localize_field_' . $this->_name, array( $this, 'filter_required_setting' ) );
-        add_filter( 'ninja_forms_localize_field_' . $this->_name . '_preview', array( $this, 'filter_required_setting_preview' ) );
+        add_filter( 'ninja_forms_localize_field_' . $this->_name . '_preview', array( $this, 'filter_required_setting' ) );
     }
 
     public function process( $product, $data )
@@ -97,14 +97,6 @@ class NF_Fields_Product extends NF_Abstracts_Input
     }
 
     public function filter_required_setting( $field )
-    {
-        if( 0 == $field->get_setting( 'product_use_quantity', 0 ) ) {
-            $field->update_setting('required', 0);
-        }
-        return $field;
-    }
-
-    public function filter_required_setting_preview( $field )
     {
         if( ! isset( $field[ 'settings' ][ 'product_use_quantity' ] ) || 1 != $field[ 'settings' ][ 'product_use_quantity' ] ) {
             $field[ 'settings' ][ 'required' ] = 0;

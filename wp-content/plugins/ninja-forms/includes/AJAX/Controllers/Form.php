@@ -41,32 +41,10 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
         $form->update_settings( $form_data[ 'settings' ] )->save();
 
         if( isset( $form_data[ 'fields' ] ) ) {
-
-            foreach ($form_data['fields'] as $field_data) {
-
-                if( 'unknown' == $field_data[ 'settings' ][ 'type' ] ) continue;
-
-                $id = $field_data['id'];
-
-                $field = Ninja_Forms()->form( $form_data[ 'id' ] )->get_field($id);
-
-                if ($field->get_tmp_id()) {
-
-                    $field->save();
-                    $tmp_id = $field->get_tmp_id();
-                    $this->_data['new_ids']['fields'][$tmp_id] = $field->get_id();
-                }
-
-                $this->publish_processing->push_to_queue( array(
-                    'id' => $field->get_id(),
-                    'type' => 'field',
-                    'settings' => $field_data[ 'settings' ]
-                ));
-
-                $this->_data[ 'fields' ][ $id ] = $field->get_settings();
-            }
-
-            $this->publish_processing->save()->dispatch();
+            $db_fields_controller = new NF_Database_FieldsController( $form_data[ 'id' ], $form_data[ 'fields' ] );
+            $db_fields_controller->run();
+            $form_data[ 'fields' ] = $db_fields_controller->get_updated_fields_data();
+            $this->_data['new_ids']['fields'] = $db_fields_controller->get_new_field_ids();
         }
 
         if( isset( $form_data[ 'deleted_fields' ] ) ){
@@ -83,7 +61,7 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
             /*
              * Loop Actions and fire Save() hooks.
              */
-            foreach ($form_data['actions'] as $action_data) {
+            foreach ($form_data['actions'] as &$action_data) {
 
                 $id = $action_data['id'];
 
@@ -107,16 +85,17 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
 
                     $tmp_id = $action->get_tmp_id();
                     $this->_data['new_ids']['actions'][$tmp_id] = $action->get_id();
+                    $action_data[ 'id' ] = $action->get_id();
                 }
 
-                $this->_data[ 'actions' ][ $id ] = $action->get_settings();
+                $this->_data[ 'actions' ][ $action->get_id() ] = $action->get_settings();
             }
         }
 
         /*
          * Loop Actions and fire Publish() hooks.
          */
-        foreach ($form_data['actions'] as $action_data) {
+        foreach ($form_data['actions'] as &$action_data) {
 
             $action = Ninja_Forms()->form( $form_data[ 'id' ] )->get_action( $action_data['id'] );
 

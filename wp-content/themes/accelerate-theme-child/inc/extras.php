@@ -43,4 +43,70 @@ function accelerate_theme_child_footer_meta() { ?>
 			} ?></span>
 		<span class="entry-terms comments"><?php comments_number( 'No comments yet!', '1 comment', '% comments' ); ?></span>
   </footer>
-<?php } ?>
+<?php }  
+
+// Maintenance Page Function
+function launch_maintenance_page() {
+	
+	// Make sure ACF is active and we have something to show
+	if ( !function_exists('get_field')) {
+		return false;
+	}  
+	
+	// ACF is active!
+	// Verify that the check box to launch the maintenance page is indeed checked!
+	$activate = get_field('activate', 'option');
+
+	if ( !$activate ) { 
+		return false;
+	}
+	// The client has activated the maintenance page. Let's do this!
+
+	add_filter( 'template_include', 'accelerate_maintenance_template', 99 ); 
+	 
+	function accelerate_maintenance_template( $template ) {
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			$new_template = locate_template( array( 'template_files/accelerate-maintenance.php' ) );
+	  
+			if ( '' != $new_template ) {      
+	        add_filter( 'body_class','maintenance_body_class' );
+	        function maintenance_body_class( $classes ) {
+	            $classes[] = 'custom-maintenance';  
+	            return $classes;
+	          } 
+	      }      
+			return $new_template ;
+		}
+		return $template;
+	}
+	
+	// Remind Admins that the maintenance page is active!
+	add_action( 'current_screen', 'maintenance_page_active_reminder' );
+	function maintenance_page_active_reminder() {
+
+	    $current_screen = get_current_screen();
+	    if( $current_screen ->id === "dashboard" ) {
+
+				add_action('admin_notices', 'maintenance_page_active_notice' );
+				function maintenance_page_active_notice() {
+				  echo '<div class="error">
+				          <p>The Maintenance Page is Active!!!</p>
+				        </div>';
+				}
+	    }
+		}	
+}
+
+launch_maintenance_page();
+
+// Hook into Simple Twitter Tweets widget on Front page and dynamically add handle after title-tag
+function add_twitter_handle( $title ) {
+		// Fetch handle that is stored in options table but not output by STT widget
+    	$stt_options = get_option( 'widget_pi_simpletwittertweets' );
+			$twitter_handle = $stt_options[2]['name'];
+			if ( !is_front_page() ) {
+				return $title;
+			}
+    	return $title .= '<div class="twitterhandle">@'. $twitter_handle . '</div>';
+		}
+add_filter('widget_title', 'add_twitter_handle'); 

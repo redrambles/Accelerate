@@ -2,8 +2,32 @@
 
 class MC4WP_Admin_Tools {
 
-    public function __construct()
-    {
+     /**
+     * @return string
+     */
+    public function get_plugin_page() {
+        if( empty( $_GET['page'] ) ) {
+            return '';
+        }
+
+        $prefix = 'mailchimp-for-wp';
+        $page = ltrim( substr( $_GET['page'], strlen( $prefix ) ), '-' );
+        return $page;
+    }
+
+    /**
+     * @param string $page
+     *
+     * @return bool
+     */
+    public function on_plugin_page( $page = null ) {
+        // any settings page
+        if( is_null( $page ) ) {
+            return isset( $_GET['page'] ) && strpos( $_GET['page'], 'mailchimp-for-wp' ) === 0;
+        }
+
+        // specific page
+        return $this->get_plugin_page() === $page;
     }
 
     /**

@@ -1,8 +1,8 @@
 === Better Search Replace Pro ===
-Contributors: ExpandedFronts, mattshaw
+Contributors: deliciousbrains, mattshaw
 Tags: search replace, search and replace, update urls, database, search replace database, update database urls, update live url, better search replace, search&replace
 Requires at least: 3.0.1
-Tested up to: 4.4
+Tested up to: 4.6.1
 Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -30,7 +30,7 @@ The search/replace functionality is heavily based on interconnect/it's great and
 
 **Want to contribute?**
 
-Feel free to open an issue or submit a pull request on [GitHub](https://github.com/ExpandedFronts/Better-Search-Replace).
+Feel free to open an issue or submit a pull request on [GitHub](https://github.com/deliciousbrains/better-search-replace/).
 
 == Installation ==
 
@@ -88,6 +88,19 @@ This is likely an issue with your PHP memory limit. Try temporarily increasing i
 2. After running a search/replace dry-run.
 
 == Changelog ==
+
+= 1.3.3 - November 10, 2016 =
+* Fix: Outdated links to old website
+* Fix: Prevent requests to invalid tabs
+
+= 1.3.2 - June 2, 2016 =
+* Fix: CSS not loaded on details page
+
+= 1.3.1 - December 8, 2015 =
+* Added: Link to pro support and documentation in help tab
+* Tweak: "Back to Overview" link now fixed to top of "View Details" box
+* Fix: Bug with case-insensitive searches in serialized objects
+* Fix: Bug with early skip due to lack of primary key
 
 = 1.3 - November 24, 2015 =
 * Added Gzip support for backups and imports

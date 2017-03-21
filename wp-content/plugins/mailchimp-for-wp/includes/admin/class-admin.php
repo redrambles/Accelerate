@@ -46,6 +46,7 @@ class MC4WP_Admin {
 		$this->messages = $messages;
 		$this->plugin_file = plugin_basename( MC4WP_PLUGIN_FILE );
 		$this->ads = new MC4WP_Admin_Ads();
+        $this->review_notice = new MC4WP_Admin_Review_Notice( $tools );
 		$this->load_translations();
 	}
 
@@ -69,6 +70,7 @@ class MC4WP_Admin {
 
 		$this->ads->add_hooks();
 		$this->messages->add_hooks();
+        $this->review_notice->add_hooks();
 	}
 
 	/**
@@ -270,16 +272,13 @@ class MC4WP_Admin {
 
 		global $wp_scripts;
 
-		$prefix = 'mailchimp-for-wp';
 
-		// only load asset files on the MailChimp for WordPress settings pages
-		if( empty( $_GET['page'] ) || strpos( $_GET['page'], $prefix ) !== 0 ) {
-			return false;
-		}
+        if( ! $this->tools->on_plugin_page() ) {
+            return false;
+        }
 
 		$opts = mc4wp_get_options();
-
-		$page = ltrim( substr( $_GET['page'], strlen( $prefix ) ), '-' );
+        $page = $this->tools->get_plugin_page();
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 		// css
@@ -464,10 +463,10 @@ class MC4WP_Admin {
 	 */
 	public function show_api_key_notice() {
 
-		// don't show if on settings page already
-		if( isset( $_GET['page'] ) && $_GET['page'] === 'mailchimp-for-wp' ) {
-			return;
-		}
+        // don't show if on settings page already
+	    if( $this->tools->on_plugin_page( '' ) ) {
+	        return;
+        }
 
 		// only show to user with proper permissions
 		if( ! $this->tools->is_user_authorized() ) {
@@ -485,7 +484,7 @@ class MC4WP_Admin {
 			return;
 		}
 
-		echo '<div class="notice notice-warning" style="position: relative; padding-right: 36px;">';
+		echo '<div class="notice notice-warning mc4wp-is-dismissible">';
 		echo '<p>' . sprintf( __( 'To get started with MailChimp for WordPress, please <a href="%s">enter your MailChimp API key on the settings page of the plugin</a>.', 'mailchimp-for-wp' ), admin_url( 'admin.php?page=mailchimp-for-wp' ) ) . '</p>';
 		echo '<form method="post"><input type="hidden" name="_mc4wp_action" value="dismiss_api_key_notice" /><button type="submit" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></form>';
 		echo '</div>';

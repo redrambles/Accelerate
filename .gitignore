@@ -4,3 +4,11 @@
 wp-config.php
 wp-content/uploads/
 phpinfo.php
+debug.sql
+accel_database.sql
+
+# build stuff
+npm-debug.log
+wp-content/themes/accelerate-theme-child/node_modules
+wp-content/themes/accelerate-theme-child/gulpfile.js
+wp-content/themes/accelerate-theme-child/img/source

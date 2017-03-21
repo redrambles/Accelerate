@@ -6,7 +6,7 @@
  * Registers styles and scripts, adds the custom administration page,
  * and processes user input on the "search/replace" form.
  *
- * @link       http://expandedfronts.com/better-search-replace
+ * @link       https://bettersearchreplace.com
  * @since      1.0.0
  *
  * @package    Better_Search_Replace
@@ -227,24 +227,22 @@ class BSR_Admin {
 
 		if ( get_transient( 'bsr_results' ) ) {
 
-			$results 		= get_transient( 'bsr_results' );
-			$styles_url 	= get_admin_url() . "load-styles.php?c=0&dir=ltr&load=dashicons,admin-bar,wp-admin,buttons,wp-auth-check";
-			$bsr_styles 	= BSR_URL . 'assets/css/better-search-replace.css?v=' . BSR_VERSION;
-			$table 			= isset( $_GET['table'] ) ? esc_attr( $_GET['table'] ) : '';
+			$results	    = get_transient( 'bsr_results' );
+			$min 			= ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) ? '' : '.min';
+			$bsr_styles	    = BSR_URL . 'assets/css/better-search-replace.css?v=' . BSR_VERSION;
+			$table		    = isset( $_GET['table'] ) ? esc_attr( $_GET['table'] ) : '';
 
 			?>
-			<link href="<?php echo esc_url( $styles_url ); ?>" rel="stylesheet" type="text/css">
+			<link href="<?php echo esc_url( get_admin_url( null, '/css/common' . $min . '.css' ) ); ?>" rel="stylesheet" type="text/css" />
 			<link href="<?php echo esc_url( $bsr_styles ); ?>" rel="stylesheet" type="text/css">
-
-			<div class="container" style="padding:10px;">
 
 			<?php
 
 				if ( isset( $_GET['changes'] ) && isset( $results['table_reports'][$table]['changes'] ) ) {
 
-					printf( '<p style="margin-top:0;"><strong><a href="%s">%s</a></strong></p>', get_admin_url() . 'admin-post.php?action=bsr_view_details', __( '<-- Back to overview', 'better-search-replace' ) );
+					printf( '<p id="bsr-back-to-overview"><strong><a href="%s">%s</a></strong></p>', get_admin_url() . 'admin-post.php?action=bsr_view_details', __( '<-- Back to overview', 'better-search-replace' ) );
 
-					echo '<table id="bsr-details-view" class="widefat">';
+					echo '<div id="bsr-details-view-wrap"><table id="bsr-details-view" class="widefat">';
 
 					$search_for 	= str_replace( '#BSR_BACKSLASH#', '\\', $results['search_for'] );
 					$replace_with 	= str_replace( '#BSR_BACKSLASH#', '\\', $results['replace_with'] );
@@ -266,45 +264,46 @@ class BSR_Admin {
 						echo '<tr class="bsr-row-desc"><td><strong>' . sprintf( __( 'Row %d, Column \'%s\'', 'better-search-replace' ), $change['row'], $change['column'] ) . '</strong></td></tr>';
 						echo '<tr><td class="bsr-change">' . $from_str . '</td><td class="bsr-change">' . $to_str . '</td></tr>';
 					}
-					echo '</table>';
+					echo '</table></div>';
 				} else {
 					?>
-						<table id="bsr-results-table" class="widefat">
-							<thead>
-								<tr><th class="bsr-first"><?php _e( 'Table', 'better-search-replace' ); ?></th><th class="bsr-second"><?php _e( 'Changes Found', 'better-search-replace' ); ?></th><th class="bsr-third"><?php _e( 'Rows Updated', 'better-search-replace' ); ?></th><th class="bsr-fourth"><?php _e( 'Time', 'better-search-replace' ); ?></th></tr>
-							</thead>
-							<tbody>
-							<?php
-								foreach ( $results['table_reports'] as $table_name => $report ) {
-									$time = $report['end'] - $report['start'];
+						<div style="padding:10px;">
+							<table id="bsr-results-table" class="widefat">
+								<thead>
+									<tr><th class="bsr-first"><?php _e( 'Table', 'better-search-replace' ); ?></th><th class="bsr-second"><?php _e( 'Changes Found', 'better-search-replace' ); ?></th><th class="bsr-third"><?php _e( 'Rows Updated', 'better-search-replace' ); ?></th><th class="bsr-fourth"><?php _e( 'Time', 'better-search-replace' ); ?></th></tr>
+								</thead>
+								<tbody>
+								<?php
+									foreach ( $results['table_reports'] as $table_name => $report ) {
+										$time = $report['end'] - $report['start'];
 
-									if ( $report['change'] != 0 ) {
-										$report['change'] = '<strong>' . $report['change'] . '</strong>';
+										if ( $report['change'] != 0 ) {
+											$report['change'] = '<strong>' . $report['change'] . '</strong>';
 
-										if ( is_array( $report['changes'] ) ) {
-											$report['change'] .= ' <a href="?action=bsr_view_details&changes=true&table=' . $table_name . '">[' . __( 'View', 'better-search-replace' ) . ']</a>';
+											if ( is_array( $report['changes'] ) ) {
+												$report['change'] .= ' <a href="?action=bsr_view_details&changes=true&table=' . $table_name . '">[' . __( 'View', 'better-search-replace' ) . ']</a>';
+											}
+
 										}
 
-									}
+										if ( $report['updates'] != 0 ) {
+											$report['updates'] = '<strong>' . $report['updates'] . '</strong>';
+										}
 
-									if ( $report['updates'] != 0 ) {
-										$report['updates'] = '<strong>' . $report['updates'] . '</strong>';
-									}
+										if ( 'bsrtmp_' === substr( $table_name, 0, 7 ) ) {
+											$table_name = substr( $table_name, 7 );
+										}
 
-									if ( 'bsrtmp_' === substr( $table_name, 0, 7 ) ) {
-										$table_name = substr( $table_name, 7 );
+										echo '<tr><td class="bsr-first">' . $table_name . '</td><td class="bsr-second">' . $report['change'] . '</td><td class="bsr-third">' . $report['updates'] . '</td><td class="bsr-fourth">' . round( $time, 3 ) . __( ' seconds', 'better-search-replace' ) . '</td></tr>';
 									}
-
-									echo '<tr><td class="bsr-first">' . $table_name . '</td><td class="bsr-second">' . $report['change'] . '</td><td class="bsr-third">' . $report['updates'] . '</td><td class="bsr-fourth">' . round( $time, 3 ) . __( ' seconds', 'better-search-replace' ) . '</td></tr>';
-								}
-							?>
-							</tbody>
-						</table>
+								?>
+								</tbody>
+							</table>
+						</div>
 
 					<?php
 				}
 
-				echo '</div>';
 		}
 	}
 

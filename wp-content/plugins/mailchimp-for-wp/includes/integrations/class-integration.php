@@ -220,7 +220,7 @@ abstract class MC4WP_Integration {
 	 * Outputs a checkbox
 	 */
 	public function output_checkbox() {
-		echo $this->get_checkbox_html();
+        echo $this->get_checkbox_html();
 	}
 
 	/**
@@ -229,6 +229,21 @@ abstract class MC4WP_Integration {
 	 * @return string
 	 */
 	public function get_checkbox_html() {
+
+        $show_checkbox = empty( $this->options['implicit'] );
+        $integration_slug = $this->slug;
+
+        /**
+         * Filters whether to show the sign-up checkbox for this integration.
+         *
+         * @param bool $show_checkbox
+         * @param string $integration_slug
+         */
+        $show_checkbox = (bool) apply_filters( 'mc4wp_integration_show_checkbox', $show_checkbox, $integration_slug );
+
+        if( ! $show_checkbox ) {
+            return '';
+        }
 
 		ob_start();
 
@@ -240,15 +255,17 @@ abstract class MC4WP_Integration {
         /** @ignore */
 		do_action( 'mc4wp_integration_'. $this->slug .'_before_checkbox_wrapper', $this );
 
+        $wrapper_tag = $this->options['wrap_p'] ? 'p' : 'span';
+
         // Hidden field to make sure "0" is sent to server
         echo sprintf( '<input type="hidden" name="%s" value="0" />', esc_attr( $this->checkbox_name ) );
 
-        echo sprintf( '<p class="mc4wp-checkbox mc4wp-checkbox-%s">', esc_attr( $this->slug ) );
+        echo sprintf( '<%s class="mc4wp-checkbox mc4wp-checkbox-%s">', $wrapper_tag, esc_attr( $this->slug ) );
         echo '<label>';
 		echo sprintf( '<input type="checkbox" name="%s" value="1" %s />', esc_attr( $this->checkbox_name ), $this->get_checkbox_attributes() );
         echo sprintf( '<span>%s</span>', $this->get_label_text() );
 		echo '</label>';
-        echo '</p>';
+        echo sprintf( '</%s>', $wrapper_tag );
 
         /** @ignore */
 		do_action( 'mc4wp_integration_after_checkbox_wrapper', $this );
@@ -425,7 +442,7 @@ abstract class MC4WP_Integration {
 
 			// log error
 			if( $mailchimp->get_error_code() == 214 ) {
-				$log->warning( sprintf( "%s > %s is already subscribed to the selected list(s)", $this->name, mc4wp_obfuscate_string( $subscriber->email_address ) ) );
+				$log->warning( sprintf( "%s > %s is already subscribed to the selected list(s)", $this->name, $subscriber->email_address ) );
 			} else {
 				$log->error( sprintf( '%s > MailChimp API Error: %s', $this->name, $mailchimp->get_error_message() ) );
 			}

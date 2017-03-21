@@ -21,11 +21,27 @@ Text Domain: accelerate-theme-child
     clear: both;
 }*/
 
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  }
+
 .site {
+    width: 100%;
     max-width: 100%;
     min-width: 320px;
     margin: 0 auto;
     overflow: hidden;
+}
+
+.main-content {
+  padding: 55px 4% 0 0;
 }
 
 img {
@@ -47,8 +63,26 @@ img {
     text-shadow: none;
 }
 
+/* Hide content visually but make available to screen readers */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	position: absolute !important;
+	width: 1px;
+	/* many screen reader and browser combinations announce broken words as they would appear visually */
+	word-wrap: normal !important;
+}
+header#masthead {
+  /*height: 50px;*/
+  box-sizing: content-box;
+}
+
 .header-main {
   overflow: hidden;
+  width: 960px;
+  max-width: 95%;
+  padding: 0 1em;
 }
 
 .site-content, 
@@ -58,6 +92,9 @@ img {
     /*overflow: hidden; */
 }
 
+.site-footer .site-info {
+  overflow: auto;
+}
 .blog-page {
     padding: 0;
     margin: 0;
@@ -72,14 +109,33 @@ img {
 }
 
 /* THIS is the style that so many students are looking for to make their menu inline */
-#primary-navigation ul li{
+.menu-top-nav-container ul {
+  overflow: auto;
+}
+.menu-top-nav-container ul li{
   text-transform: uppercase;
-	display: inline-block;
+	float: left; /* Makes it easier to add sub-menu items */
 	margin-left: 35px;
   position: relative; /* for the border-bottom effect for the link */
 }
-#primary-navigation ul li:first-of-type{
+.menu-top-nav-container ul li:first-of-type{
 	margin-left: 0;
+}
+.mobile-menu {
+  display: none;
+  padding: 3px 5px;
+}
+
+/* This isn't working - TO-DO */
+.mobile-menu:hover,
+.mobile-menu:active {
+  cursor: pointer;
+  background: #2e6d64;
+  -webkit-transition: all 800ms ease;
+  -moz-transition: all 800ms ease;
+  -ms-transition: all 800ms ease;
+  -o-transition: all 800ms ease;
+  transition: all 800ms ease; 
 }
 
 /* This will make the current menu item bold in top navigation bar */
@@ -115,6 +171,7 @@ background-color: tomato;
 
 section.home-page {
     background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
+    box-sizing: content-box; /* To overwrite the 'box-sizing: border-box' property in this specific instance */
 }
 
 
@@ -123,14 +180,16 @@ section.home-page {
 .featured-work{
     margin-bottom: 20px;
 }
-
+.featured-work-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
 .homepage-featured-work {
     list-style: none;
     overflow: hidden;
     margin: 0;
     padding-bottom: 10%;
 }
-
 .individual-featured-work {
     display: inline-block;
     width: 31%;
@@ -169,12 +228,16 @@ section.home-page {
     list-style: none;
     margin: 0;
     padding-bottom: 10%;
+    overflow: auto;
 }
 
 .individual-featured-service {
-    display: inline-block;
-    width: 21%;
-    padding-right: 3%;
+    float: left;
+    width: 23%;
+    margin-right: 2%;
+}
+.individual-featured-service:last-of-type {
+  margin-right: 0;
 }
 .individual-featured-service figure{
     text-align: center;
@@ -197,11 +260,10 @@ section.home-page {
 /* Home Page Blog Post */
 
 .blog-post {
-/*    clear: both;*/
-    width: 48%;
-    float: left;
-    padding: 0 0 1em 1em;
-    word-wrap: break-word;
+  width: 48%;
+  float: left;
+  padding: 0 0 1em 1em;
+  word-wrap: break-word;
 }
 
 .blog-post h4, .PI_SimpleTwitterTweets h3 {
@@ -262,12 +324,12 @@ ul.tweets li{
     text-transform: uppercase;
     padding-left: 40px;
 }
-.stt-em a{
+.tweets li a[href*="status"] {
   display: none;
 }
 
 /* To add the '@Accelerate' */
-#pi_simpletwittertweets-2 h3::after {
+/* #pi_simpletwittertweets-2 h3::after {
     content: "@Accelerate";
     display: block;
     color: #3b3b3b;
@@ -277,13 +339,28 @@ ul.tweets li{
     font-family: 'Montserrat';
     font-weight: bold;
     margin-bottom: 25px;
+} */
+
+/* Make sure the handle doesn't appear anywhere other than on the front page */
+
+.twitterhandle {
+  margin-top: 30px;
+  font-size: 1.4em;
+  color: #3b3b3b;
+  text-transform: none;
 }
+.twitterhandle::first-letter {
+  text-transform: uppercase;
+}  
 
-/* Social icons homepage */
+/* Social icons homepage - modifying display using Menu Social Icons Plugin */
 
-ul.social-media-menu {
+/*ul.social-media-menu {
     list-style: none;
     clear: both;
+}*/
+.social-media-navigation ul {
+  list-style: none;
 }
 
 .social-media-menu li{
@@ -301,6 +378,53 @@ ul.social-media-menu {
 .social-media-menu li a{
   color: white;
 }
+
+/* Social Icons without plugin - manual approach. Must uncomment the span tags in menu in footer.php */
+
+/*.social-media-navigation ul {
+    float: right;
+    text-align: center;
+    list-style: none;    
+}
+
+.social-media-navigation ul li {
+    position: relative;
+    display:  inline-block;
+    background: rgba(0,0,0,0.8);
+    margin: 0px 3px;
+    width: 40px;
+    text-align: center;
+    padding: 7px 0;
+    font-size: 0.6em;
+    border-radius: 100%; 
+    -webkit-border-radius: 100%; 
+    -moz-border-radius: 100%;    
+}
+
+.social-media-navigation li a:before {
+    display: inline-block;
+    padding: 0 7px;
+    vertical-align: top;
+    font-family: 'Fontawesome';
+    font-size: 20px;
+    -webkit-font-smoothing: antialiased;
+    color: #fff;
+    content: '\f0c0';
+}
+
+.social-media-navigation li a[href*="facebook.com"]::before { content: '\f09a'; }
+.social-media-navigation li a[href*="twitter.com"]::before { content: '\f099'; }
+.social-media-navigation li a[href*="dribbble.com"]::before { content: '\f17d'; }
+.social-media-navigation li a[href*="plus.google.com"]::before { content: '\f0d5'; }
+.social-media-navigation li a[href*="pinterest.com"]::before { content: '\f0d2'; }
+.social-media-navigation li a[href*="github.com"]::before { content: '\f09b'; }
+.social-media-navigation li a[href*="tumblr.com"]::before { content: '\f173'; }
+.social-media-navigation li a[href*="youtube.com"]::before { content: '\f167'; }
+.social-media-navigationli a[href*="flickr.com"]::before { content: '\f16e'; }
+.social-media-navigation li a[href*="vimeo.com"]::before { content: '\f194'; }
+.social-media-navigation li a[href*="instagram.com"]::before { content: '\f16d'; }
+.social-media-navigation li a[href*="linkedin.com"]::before { content: '\f0e1'; }*/
+
 
 /* Social Sharing Icons */
 .ssba {
@@ -370,14 +494,13 @@ img.aligncenter {
 
 article.case-study {
     width: 100%; /* testing this out */
-    overflow: hidden;
+    overflow: auto;
 }
 
 aside.case-study-sidebar{
     float: left;
-    width: 33%; /* testing this out
-    /*width: 314px; */
-    margin: 60px 40px 0 0;
+    width: 33%; 
+    margin: 60px 5% 0 0;
 }
 
 aside.case-study-sidebar h2,
@@ -411,14 +534,14 @@ aside.visit_link {
 div.case-study-images{
     margin-top: 60px;
     float: left;
-    width: 62%; /* testing this out */
+    width: 62%; 
     /*width: 606px;*/
 }
 
 div.case-study-images img{
     display: block;
-    max-width: 100%; /* testing this out */
-    margin-bottom: 50px;
+    max-width: 100%;
+    margin: 0 auto 50px;
     border: 1px solid #dddddd;
 }
 
@@ -459,6 +582,13 @@ p.footer-copy {
     margin: 0 auto;
 }
 
+.success-form-message .site-content {
+  text-align: center;
+  padding: 5em 0;
+}
+.success-form-message h2 {
+  color: #45AC9D;
+}
 /* Sidebar */
 
 
@@ -580,12 +710,15 @@ aside.sidebar li a {
 /* About Page */
 
 .hero-about {
-    background: url("img/taxi-photo-about.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
+    background: url("img/taxi-photo-about.jpg") no-repeat scroll right bottom / cover rgba(0, 0, 0, 0);
     height: 360px;
     padding-top: 1px;
 }
+    
 .hero-text h3 {
-    padding-top: 3em;
+    max-width: 550px;
+    margin: 0 auto;
+    padding-top: 3.5em;
     text-align: center;
     line-height: 1.5em;
     letter-spacing: 0.75px;
@@ -593,7 +726,6 @@ aside.sidebar li a {
     font-family: "Open Sans", sans-serif;
     font-size: 24px;
     font-weight: normal;
-    margin: 6px 0 2em;
 }
 
 .main-color {
@@ -624,15 +756,22 @@ aside.sidebar li a {
     padding-bottom: 15px;
 }
 
-/* Testing for the CPT - CPT-About Template page version of the About page */
-.service-section:nth-child(odd) .service-image {
+/* CSS solution to alternate images */
+/*.service-section:nth-child(odd) .service-image {
     float: left;
     margin-right: 3%;
 }
-
 .service-section:nth-child(even) .service-image {
     float: right;
     margin-left: 3%;
+}*/
+
+/* Radio Button Approach - Fine control by client */
+.service-image.alignleft {
+  margin-right: 3%;
+}
+.service-image.alignright {
+  margin-left: 3%;
 }
 .service-description {
     margin-top: 60px;
@@ -677,7 +816,7 @@ aside.sidebar li a {
 
 .image_404 {
     height: 500px;
-    background: url("img/sad-cat.jpg")no-repeat scroll left center/ cover rgba(0, 0, 0, 0);
+    background: url("img/sad-cat.jpg")no-repeat center/ cover rgba(0, 0, 0, 0);
     border: 3px solid #45AC9D;
 }
 
@@ -737,8 +876,6 @@ aside.sidebar li a {
 
 
 /* Sidebar Experiment - BLOG PAGE */
-/* Added styles from skillcrushstarter but used the class sidebar instead of the id  - and moved the white arrow image over */
-/* ALSO - WILL NEED TO MOVE SEARCHFORM OVER if we want the search to DO something. Needed to do this in order to get the 'Search' bit out of the clickable area that should only have the arrow - must investigate */
 
 .sidebar .widget_search {
     border-bottom: 1px solid #BFBFBF;
@@ -770,8 +907,6 @@ aside.sidebar li a {
     margin-left: -5px;
     vertical-align: middle;
 }
-
-
 
 /* Next / Prev - BLOG PAGE - From Skillcrushstarter */
 #navigation {
@@ -961,6 +1096,37 @@ aside.sidebar li a {
     padding-right: 20px;
 }
 
+/* Custom Maintenance and/or 'coming-soon' page */
+
+.custom-maintenance .site-header {
+  display: none;
+}
+
+.custom-maintenance .maintenance-widget {
+  margin-top: 60px;
+}
+.custom-maintenance h2 {
+  margin-bottom: 30px;
+}
+.custom-maintenance h2, 
+.custom-maintenance p {
+  color: #A6A6A6;
+}
+.custom-maintenance .maintenance-widget h3 {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+}
+
+.custom-maintenance .mc4wp-form,
+.custom-maintenance .mc4wp-form input[type=email] {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.custom-maintenance .mc4wp-form label {
+  display: none;
+}
 
 /* MEDIA QUERIES */
 
@@ -988,10 +1154,69 @@ aside.sidebar li a {
         float: left;
         padding-left: 50px;
     }
+    .main-content, aside.sidebar {
+      width: 100%;
+      max-width: 100%;
+      border-left: 0;
+    }
+    .sidebar {
+      text-align: center;
+    }
+    .sidebar .widget_search{
+      border-bottom: 0;
+    }
+    .sidebar .search-form {
+      padding: 0;
+    }
+    .sidebar .widget_search input[type="text"] {
+      width: 90%;
+    }
 }
 
 @media screen and (max-width: 800px) {
-
+    
+    div.main {
+      clear: both;
+    }
+    
+    .header-main {
+      overflow: visible;
+    }
+    .site-title {
+      padding-bottom: 10px;
+    }
+    .site-navigation {
+      display: none;
+    }
+    .site-navigation.menu-toggle {
+      display: block;
+      float: none;
+      width: 100%;
+      clear: left;
+    }
+    .mobile-menu {
+      display: block;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+    #masthead {
+      height: auto;
+      position: relative;
+    }
+    .menu-top-nav-container ul li:hover a::after,
+    .menu-top-nav-container ul li:active a::after {
+      width: 75%;
+      opacity: 1;
+    }
+    .menu-top-nav-container {
+      /*background: red;*/
+    }
+    .menu-top-nav-container .nav-menu li {
+      display: block;
+      float: none;
+      margin: 0 0 5px;
+    }
 
     .social-media-navigation {
         float: none;
@@ -1073,7 +1298,7 @@ aside.sidebar li a {
     .blog-post, .tweet-module {
         width: 100%;
         max-width: 95%;
-        padding: 0 3.5%;
+        padding: 0 3.5% 0 4.5%;
         float: left;
     }
     aside#pi_simpletwittertweets-2 {
@@ -1099,7 +1324,7 @@ aside.sidebar li a {
   }
 
 /* Case Studies Rather pitiful attempt at responsiveness */
-@media screen and (max-width:  1056px) {
+@media screen and (max-width:  950px) {
 
     article.case-study {
         padding: 20px;
@@ -1116,6 +1341,7 @@ aside.sidebar li a {
 
     div.case-study-images {
         max-width: 100%;
+        width: 100%;
     }
 }
 
@@ -1211,3 +1437,7 @@ aside.sidebar li a {
     text-align: center;
     color: tomato;
 }*/
+
+
+
+

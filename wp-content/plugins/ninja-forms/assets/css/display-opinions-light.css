@@ -168,6 +168,14 @@ HELPER CLASSES
   float: left;
   width: 25%; }
 
+.five-col-list ul li {
+  float: left;
+  width: 20%; }
+
+.six-col-list ul li {
+  float: left;
+  width: 16.66%; }
+
 body .pika-label {
   background: transparent; }
 
@@ -291,6 +299,7 @@ body .pika-label {
     height: auto; }
   .nf-form-wrap .note-editor .dropdown-toggle {
     position: relative;
+    display: inline-block;
     top: 0; }
     .nf-form-wrap .note-editor .dropdown-toggle::after {
       content: "";

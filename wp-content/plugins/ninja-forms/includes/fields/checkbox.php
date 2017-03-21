@@ -35,6 +35,7 @@ class NF_Fields_Checkbox extends NF_Abstracts_Input
 
         add_filter( 'ninja_forms_merge_tag_value_' . $this->_name, array( $this, 'filter_merge_tag_value' ), 10, 2 );
         add_filter( 'ninja_forms_merge_tag_calc_value_' . $this->_name, array( $this, 'filter_merge_tag_value_calc' ), 10, 2 );
+        add_filter( 'ninja_forms_subs_export_field_value_' . $this->_type, array( $this, 'export_value' ), 10 );
     }
 
     public function admin_form_element( $id, $value )
@@ -54,12 +55,20 @@ class NF_Fields_Checkbox extends NF_Abstracts_Input
 
     public function filter_merge_tag_value( $value, $field )
     {
-        if( $value && isset( $field[ 'checked_calc_value' ] ) ){
-            return $field[ 'checked_calc_value' ];
+        if( $value ){
+            if( isset( $field[ 'checked_calc_value' ] ) && '' != $field[ 'checked_calc_value' ] ) {
+                return $field['checked_calc_value'];
+            } else {
+                return __( 'checked', 'ninja-forms' );
+            }
         }
 
-        if( ! $value && isset( $field[ 'unchecked_calc_value' ] ) ){
-            return $field[ 'unchecked_calc_value' ];
+        if( ! $value ){
+            if( isset( $field[ 'unchecked_calc_value' ] ) && '' != $field[ 'unchecked_calc_value' ] ) {
+                return $field['unchecked_calc_value'];
+            } else {
+                return __( 'unchecked', 'ninja-forms' );
+            }
         }
 
         return $value;
@@ -67,6 +76,14 @@ class NF_Fields_Checkbox extends NF_Abstracts_Input
 
     public function filter_merge_tag_value_calc( $value, $field )
     {
-        return ( 1 == $field ) ? $field[ 'checked_calc_value' ] : $field[ 'unchecked_calc_value' ];
+        return ( 1 == $value ) ? $field[ 'checked_calc_value' ] : $field[ 'unchecked_calc_value' ];
+    }
+
+    public function export_value( $value ) {
+        if ( 1 == $value ) {
+            return __( 'checked', 'ninja-forms' );
+        } else {
+            return __( 'unchecked', 'ninja-forms' );
+        }
     }
 }

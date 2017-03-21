@@ -15,8 +15,8 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         parent::__construct();
 
         if( ! defined( 'DOING_AJAX' ) ) {
-            add_action('admin_init', array($this, 'admin_init'));
-            add_action( 'admin_init', array( 'NF_Admin_AllFormsTable', 'process_bulk_action' ) );
+            add_action('current_screen', array($this, 'admin_init'));
+            add_action( 'current_screen', array( 'NF_Admin_AllFormsTable', 'process_bulk_action' ) );
         }
     }
 
@@ -27,6 +27,13 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
     public function admin_init()
     {
+        /*
+         * If we aren't on the Ninja Forms menu page, don't admin_init.
+         */
+        if ( empty( $_GET[ 'page' ] ) || 'ninja-forms' !== $_GET[ 'page' ] ) {
+            return false;
+        }
+
         if( isset( $_GET[ 'form_id' ] ) && ! is_numeric( $_GET[ 'form_id' ] ) && 'new' != $_GET[ 'form_id' ] ) {
             if( current_user_can( apply_filters( 'ninja_forms_admin_import_template_capabilities', 'manage_options' ) ) ) {
                 $this->import_from_template();
@@ -93,7 +100,13 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
     {
         $template = sanitize_title( $_GET['form_id'] );
 
-        $form = Ninja_Forms::template( $template . '.nff', array(), TRUE );
+        $templates = Ninja_Forms::config( 'NewFormTemplates' );
+
+        if( isset( $templates[ $template ] ) && ! empty( $templates[ $template ][ 'form' ] ) ) {
+            $form = $templates[ $template ][ 'form' ];
+        } else {
+            $form = Ninja_Forms::template( $template . '.nff', array(), TRUE );
+        }
 
         if( ! $form ) die( 'Template not found' );
 
@@ -146,7 +159,6 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         wp_enqueue_script( 'jquery-ui-touch-punch', Ninja_Forms::$url . 'assets/js/lib/jquery.ui.touch-punch.min.js', array( 'jquery' ) );
         wp_enqueue_script( 'jquery-classy-wiggle', Ninja_Forms::$url . 'assets/js/lib/jquery.classywiggle.min.js', array( 'jquery' ) );
         wp_enqueue_script( 'moment-with-locale', Ninja_Forms::$url . 'assets/js/lib/moment-with-locales.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'modernizr', Ninja_Forms::$url . 'assets/js/lib/modernizr.min.js', array( 'jquery' ) );
         wp_enqueue_script( 'pikaday', Ninja_Forms::$url . 'assets/js/lib/pikaday.min.js', array( 'moment-with-locale' ) );
         wp_enqueue_script( 'pikaday-responsive', Ninja_Forms::$url . 'assets/js/lib/pikaday-responsive.min.js', array( 'pikaday', 'modernizr' ) );
 
@@ -179,7 +191,12 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         $form = Ninja_Forms()->form( $form_id )->get();
 
         if( ! $form->get_tmp_id() ) {
-            $fields = ($form_id) ? Ninja_Forms()->form($form_id)->get_fields() : array();
+
+            if( $form_cache = get_option( 'nf_form_' . $form_id, false ) ) {
+                $fields = $form_cache[ 'fields' ];
+            } else {
+                $fields = ($form_id) ? Ninja_Forms()->form($form_id)->get_fields() : array();
+            }
             $actions = ($form_id) ? Ninja_Forms()->form($form_id)->get_actions() : array();
         } else {
             $fields = array();
@@ -194,26 +211,66 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         // die();
 
         if( ! empty( $fields ) ) {
+
+            // TODO: Replace unique field key checks with a refactored model/factory.
+//            $unique_field_keys = array();
+//            $form_cache = get_option( 'nf_form_' . $form_id, false );
+//            $cache_updated = false;
+
             foreach ($fields as $field) {
 
-                $type = $field->get_setting( 'type' );
+                $field_id = ( is_object( $field ) ) ? $field->get_id() : $field[ 'id' ];
 
-                $field_id = $field->get_id();
+                /*
+                 * Duplicate field check.
+                 * TODO: Replace unique field key checks with a refactored model/factory.
+                 */
+//                $field_key = $field->get_setting( 'key' );
+//                if( in_array( $field_key, $unique_field_keys ) || '' == $field_key ){
+//
+//                    // Delete the field.
+//                    Ninja_Forms()->request( 'delete-field' )->data( array( 'field_id' => $field_id ) )->dispatch();
+//
+//                    // Remove the field from cache.
+//                    if( $form_cache ) {
+//                        if( isset( $form_cache[ 'fields' ] ) ){
+//                            foreach( $form_cache[ 'fields' ] as $cached_field_key => $cached_field ){
+//                                if( ! isset( $cached_field[ 'id' ] ) ) continue;
+//                                if( $field_id != $cached_field[ 'id' ] ) continue;
+//
+//                                // Flag cache to update.
+//                                $cache_updated = true;
+//
+//                                unset( $form_cache[ 'fields' ][ $cached_field_key ] ); // Remove the field.
+//                            }
+//                        }
+//                    }
+//
+//                    continue; // Skip the duplicate field.
+//                }
+//                array_push( $unique_field_keys, $field_key ); // Log unique key.
+                /* END Duplicate field check. */
+
+                $type = ( is_object( $field ) ) ? $field->get_setting( 'type' ) : $field[ 'settings' ][ 'type' ];
 
                 if( ! isset( Ninja_Forms()->fields[ $type ] ) ){
                     $field = NF_Fields_Unknown::create( $field );
                 }
 
-                $settings = $field->get_settings();
+                $settings = ( is_object( $field ) ) ? $field->get_settings() : $field[ 'settings' ];
                 $settings[ 'id' ] =  $field_id;
 
 
-                foreach ($settings as $key => $setting) {
-                    if (is_numeric($setting)) $settings[$key] = floatval($setting);
-                }
+//                foreach ($settings as $key => $setting) {
+//                    if (is_numeric($setting)) $settings[$key] = floatval($setting);
+//                }
 
                 $fields_settings[] = $settings;
             }
+
+//            if( $cache_updated ) {
+//                update_option('nf_form_' . $form_id, $form_cache); // Update form cache without duplicate fields.
+//            }
         }
 
         $actions_settings = array();
@@ -239,7 +296,15 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
         $form_data = array();
         $form_data['id'] = $form_id;
-        $form_data['settings'] = $form->get_settings();
+
+        // Use form cache for form settings.
+        // TODO: Defer to refactor of factory/model.
+        if( isset( $form_cache[ 'settings' ] ) ) {
+            $form_data['settings'] = $form_cache[ 'settings' ];
+        } else {
+            $form_data['settings'] = $form->get_settings();
+        }
+
         $form_data['fields'] = $fields_settings;
         $form_data['actions'] = $actions_settings;
 

@@ -77,6 +77,10 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
 
         if( ! $form_id ) return array();
 
+        static $cols;
+
+        if( $cols ) return $cols;
+
         $cols = array(
             'cb'    => '<input type="checkbox" />',
             'seq_num' => __( '#', 'ninja-forms' ),
@@ -90,8 +94,12 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
 
             if( in_array( $field->get_setting( 'type' ), $hidden_field_types ) ) continue;
 
-            // TODO: Add support for 'Admin Labels'
-            $cols[ 'field_' . $field->get_id() ] = $field->get_setting( 'label' );
+            if ( $field->get_setting( 'admin_label' ) ) {
+                $cols[ 'field_' . $field->get_id() ] = $field->get_setting( 'admin_label' );
+            } else {
+                $cols[ 'field_' . $field->get_id() ] = $field->get_setting( 'label' );  
+            }
+            
         }
 
         $cols[ 'sub_date' ] = __( 'Date', 'ninja-forms' );
@@ -423,6 +431,9 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
         return $vars;
     }
 
-
+    public function get_capability()
+    {
+        return apply_filters( 'ninja_forms_admin_submissions_capabilities', $this->capability );
+    }
 
 }

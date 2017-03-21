@@ -1,0 +1,68 @@
+{
+    "key": "group_56fc896a58b0d",
+    "title": "Homepage Twitter Follow Us Link",
+    "fields": [
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "https:\/\/twitter.com\/redrambles",
+            "prepend": "",
+            "append": "",
+            "key": "field_55c9faeb140c5",
+            "label": "Twitter link",
+            "name": "twitter_link",
+            "type": "text",
+            "instructions": "Please enter the full link of the 'Follow-Us' button. Ex: https:\/\/twitter.com\/redrambles",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "formatting": "none",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "default_value": "Follow Us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_55c9fb66140c6",
+            "label": "Link name",
+            "name": "link_name",
+            "type": "text",
+            "instructions": "Please enter the text of the link. Ex: 'Follow Us'",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "formatting": "none",
+            "readonly": 0,
+            "disabled": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1481165417
+}

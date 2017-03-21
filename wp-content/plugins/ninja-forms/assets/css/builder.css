@@ -715,10 +715,12 @@ All styles used within the drawer
   display: block;
   margin-bottom: 20px; }
 
-.ninja-forms-app label::after {
-  clear: both;
-  content: "";
-  display: block; }
+.ninja-forms-app label {
+  position: relative; }
+  .ninja-forms-app label::after {
+    clear: both;
+    content: "";
+    display: block; }
 
 .ninja-forms-app legend {
   margin: 0 3px 10px;
@@ -729,6 +731,12 @@ All styles used within the drawer
   display: block;
   font-size: 13px;
   text-transform: uppercase; }
+  .ninja-forms-app .nf-setting-label .open-media-manager, .ninja-forms-app label .open-media-manager, .ninja-forms-app legend .open-media-manager {
+    position: absolute;
+    color: #ccc;
+    right: 15px;
+    top: 5px;
+    text-decoration: none; }
 
 .ninja-forms-app input[type=text],
 .ninja-forms-app input[type=number],
@@ -757,6 +765,12 @@ All styles used within the drawer
   .ninja-forms-app input[type=checkbox].nf-checkbox:checked::before {
     content: "\f147";
     font: 400 30px/1 dashicons; }
+
+.ninja-forms-app .jBox-wrapper.import-options {
+  padding: 12px 20px 0px !important; }
+
+.ninja-forms-app .jBox-wrapper.import-options.jBox-pointerPosition-top.jBox-closeButton-box:before {
+  right: 10px; }
 
 .ninja-forms-app .nf-list-options {
   padding-bottom: 20px; }
@@ -801,6 +815,18 @@ All styles used within the drawer
     .ninja-forms-app .nf-list-options.calculations .nf-div-table .nf-table-row div .dashicons {
       color: #999;
       margin-top: 10px; }
+
+.ninja-forms-app .options {
+  position: relative; }
+  .ninja-forms-app .options legend .nf-open-import-tooltip {
+    background: #EBEDEE;
+    color: #1EA9EA;
+    font-size: 16px;
+    padding: 6px 15px;
+    text-decoration: none;
+    position: absolute;
+    right: 15px;
+    top: 0; }
 
 .nf-drawer-buttons {
   display: none;
@@ -1131,7 +1157,6 @@ input[type=checkbox].nf-toggle {
   .ninja-forms-app .nf-select select {
     background: transparent;
     border: 0;
-    box-shadow: 0 0 0;
     margin-top: 7px;
     height: 41px !important;
     padding: 0 30px 0 15px;
@@ -2122,6 +2147,8 @@ WP Color Picker (Iris) Styles
     margin-left: 0; }
   #nf-builder {
     padding: 80px 20px 10px; }
+    #nf-builder .nf-cta-bubble {
+      display: none !important; }
   #nf-main {
     padding: 20px 0 80px; }
   #nf-drawer {
@@ -2176,6 +2203,33 @@ WP Color Picker (Iris) Styles
     opacity: 1.0;
     filter: alpha(opacity=100);
     transition: all 1.0s ease; }
+  #nf-app-admin-header .nf-cta-bubble {
+    background: #1EA9EA;
+    border: 1px solid #1EA9EA;
+    border-radius: 6px;
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 14px;
+    margin: 6px 0 0 20px;
+    padding: 5px 10px;
+    position: relative;
+    text-decoration: none;
+    width: 360px; }
+    #nf-app-admin-header .nf-cta-bubble::after {
+      display: block;
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 10px solid #1EA9EA;
+      position: absolute;
+      left: -10px;
+      top: 13px; }
+    #nf-app-admin-header .nf-cta-bubble:hover {
+      background: #fff;
+      color: #1EA9EA; }
 
 .scrollWrap {
   overflow: hidden;

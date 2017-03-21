@@ -160,6 +160,10 @@
     background: #d9edf7;
     border: 1px solid #bce8f1;
     margin: 1em 0 !important; }
+  #mc4wp-admin .mc4wp-is-dismissible,
+  .mc4wp-admin .mc4wp-is-dismissible {
+    padding-right: 38px;
+    position: relative; }
   #mc4wp-admin .column-ID,
   .mc4wp-admin .column-ID {
     width: 10%; }
@@ -748,6 +752,35 @@
     .mc4wp-admin .sidebar > div:last-of-type {
       border-bottom: 0; }
 
+.mc4wp-log {
+  font-family: monaco, monospace, courier, 'courier new', 'Bitstream Vera Sans Mono';
+  font-size: 13px;
+  resize: vertical;
+  line-height: 140%;
+  height: 200px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  background: #262626;
+  color: white;
+  overflow-y: scroll; }
+
+.mc4wp-log .time {
+  color: #b58900; }
+
+.mc4wp-log .level {
+  color: #35AECD; }
+
+.mc4wp-log .debug-log-empty {
+  color: #ccc;
+  font-style: italic; }
+
+.mc4wp-log .hidden {
+  display: none; }
+
+.mc4wp-log a {
+  color: #ccc;
+  text-decoration: underline; }
+
 .overlay {
   position: fixed;
   left: 0;
@@ -798,3 +831,8 @@
 .rtl #mc4wp-admin .CodeMirror-vscrollbar {
   left: 0 !important;
   right: auto !important; }
+
+.rtl .mc4wp-is-dismissible {
+  padding-left: 38px;
+  padding-right: initial;
+  position: relative; }

@@ -11,31 +11,33 @@
 ?>
 
 		</div><!-- #main -->
-
-		<?php green_accelerate_footer(); ?>
 		
 		<footer id="colophon" class="site-footer" role="contentinfo">
 			<div class="site-info">
-
+				
 				<div class="site-description">
-					<!-- To make link <a href="<?php //echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php //bloginfo( 'name' ); ?></a> -->
-					<!-- Testing customizer function -->
-					<?php if (!empty(get_theme_mod('accelerate_footer_message'))){ 
-						do_action('accelerate_footer'); 
-					} else { ?>
-						<p class="footer-desc"><span class="main-color"><?php bloginfo( 'name' ); ?></span> <?php bloginfo('description'); ?></p>
+					<?php 
+					$footer_message = get_theme_mod('accelerate_footer_message');
+					if (!empty($footer_message)){ 
+								do_action('accelerate_footer_customizer'); 
+					  } else {
+								do_action('modified_footer'); ?>
+						<p class="footer-desc"><a href="<?php echo home_url(); ?>"><span class="main-color"><?php bloginfo( 'name' ); ?></span> <?php bloginfo('description'); ?></p></a></p>
 					<?php } ?>
 					<p class="footer-copy">&copy; <?php echo date("Y"); ?> <?php bloginfo('title'); ?>, LLC </p>
 				</div>
+				
 				<?php if ( has_nav_menu ( 'social-media' ) ) { ?>
 					<nav class="social-media-navigation" role="navigation">
-						<?php wp_nav_menu( array( 'theme_location' => 'social-media', 'menu_class' => 'social-media-menu' ) ); ?>
+						<?php wp_nav_menu( array( 'theme_location' => 'social-media', 'menu_class' => 'social-media-menu', //'link_before'     => '<span class="screen-reader-text">',
+						//'link_after'      => '</span>', 
+					) ); ?>
 					</nav>
 				<?php } ?>
 	
 			</div><!-- .site-info -->
 		</footer><!-- #colophon -->
-	</div><!-- #page -->
+	</div><!-- #page --> 
 
 	<?php wp_footer(); ?>
 </body>

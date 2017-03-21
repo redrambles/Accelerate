@@ -16,7 +16,7 @@ get_header(); ?>
 			// 'get_field' is a shortcut that is provided by ACF - using 'get_post_meta' uses a function inherent within WP and so if for some reason ACF breaks, you're not looking at a broken site.
 			//$image_1 = get_field('image_1');
 			$image_1  = get_post_meta($post->ID, "image_1", true);
-			$size = "full";
+			$size = "archive-case-studies";
 			//$services = get_field('services');
 			$services = get_post_meta($post->ID, "services", true); ?>
 

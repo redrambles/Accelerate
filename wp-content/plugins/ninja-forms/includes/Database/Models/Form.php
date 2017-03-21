@@ -46,11 +46,20 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
 
     public static function get_next_sub_seq( $form_id )
     {
-        $form = Ninja_Forms()->form( $form_id )->get();
+        global $wpdb;
 
-        $last_seq_num = $form->get_setting( '_seq_num', 1 );
+        // TODO: Leverage form cache.
 
-        $form->update_setting( '_seq_num', $last_seq_num + 1 )->save();
+        $last_seq_num = $wpdb->get_var( $wpdb->prepare(
+            'SELECT value FROM ' . $wpdb->prefix . 'nf3_form_meta WHERE `key` = "_seq_num" AND `parent_id` = %s'
+        , $form_id ) );
+
+        if( $last_seq_num ) {
+            $wpdb->update( $wpdb->prefix . 'nf3_form_meta', array( 'value' => $last_seq_num + 1 ), array( 'key' => '_seq_num', 'parent_id' => $form_id ) );
+        } else {
+            $last_seq_num = 1;
+            $wpdb->insert( $wpdb->prefix . 'nf3_form_meta', array( 'key' => '_seq_num', 'value' => $last_seq_num + 1, 'parent_id' => $form_id ) );
+        }
 
         return $last_seq_num;
     }
@@ -67,29 +76,50 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
         $form->save();
         $form_id = $form->get_id();
 
+        $form_cache = array(
+            'id' => $form_id,
+            'fields' => array(),
+            'actions' => array(),
+            'settings' => $form->get_settings()
+        );
+        $update_process = Ninja_Forms()->background_process( 'update-fields' );
         foreach( $import[ 'fields' ] as $settings ){
-
             if( $is_conversion ) {
-
                 $field_id = $settings[ 'id' ];
-
                 $field = Ninja_Forms()->form($form_id)->field( $field_id )->get();
             } else {
                 unset( $settings[ 'id' ] );
                 $field = Ninja_Forms()->form($form_id)->field()->get();
+                $field->save();
             }
 
             $settings[ 'parent_id' ] = $form_id;
 
-            $field->update_settings( $settings )->save();
+            array_push( $form_cache[ 'fields' ], array(
+                'id' => $field->get_id(),
+                'settings' => $settings
+            ));
+
+            $update_process->push_to_queue(array(
+                'id' => $field->get_id(),
+                'settings' => $settings
+            ));
         }
+        $update_process->save()->dispatch();
 
         foreach( $import[ 'actions' ] as $settings ){
 
             $action = Ninja_Forms()->form($form_id)->action()->get();
 
             $action->update_settings( $settings )->save();
+
+            array_push( $form_cache[ 'actions' ], array(
+                'id' => $action->get_id(),
+                'settings' => $settings
+            ));
         }
+
+        update_option( 'nf_form_' . $form_id, WPN_Helper::utf8_encode( $form_cache ) );
 
         add_action( 'admin_notices', array( 'NF_Database_Models_Form', 'import_admin_notice' ) );
 
@@ -333,6 +363,10 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
             $action['type'] = str_replace('_', '', $action['type']);
         }
 
+        if( 'email' == $action[ 'type' ] ){
+            $action[ 'to' ] = str_replace( '`', ',', $action[ 'to' ] );
+        }
+
         // Convert `name` to `label`
         if( isset( $action[ 'name' ] ) ) {
             $action['label'] = $action['name'];
@@ -445,6 +479,11 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
             }
         }
 
+        if( 'country' == $field[ 'type' ] ){
+            $field[ 'type' ] = 'listcountry';
+            $field[ 'options' ] = array();
+        }
+
         // Convert `textbox` to other field types
         foreach( array( 'fist_name', 'last_name', 'user_zip', 'user_city', 'user_phone', 'user_email', 'user_address_1', 'user_address_2', 'datepicker' ) as $item ) {
             if ( isset( $field[ $item ] ) && $field[ $item ] ) {
@@ -546,6 +585,16 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
                     'desc_text' => ''
                 ));
             }
+        }
+
+        /*
+         * Convert inside label position over to placeholder
+         */
+        if ( isset ( $field[ 'label_pos' ] ) && 'inside' == $field[ 'label_pos' ] ) {
+            if ( ! isset ( $field[ 'placeholder' ] ) || empty ( $field[ 'placeholder' ] ) ) {
+                $field[ 'placeholder' ] = $field[ 'label' ];
+            }
+            $field[ 'label_pos' ] = 'hidden';
         }
 
         return apply_filters( 'ninja_forms_upgrade_field', $field );

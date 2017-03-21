@@ -8,7 +8,7 @@
 		<span class="prefix"><?php echo __( 'You are here: ', 'mailchimp-for-wp' ); ?></span>
 		<a href="<?php echo admin_url( 'admin.php?page=mailchimp-for-wp' ); ?>">MailChimp for WordPress</a> &rsaquo;
 		<a href="<?php echo admin_url( 'admin.php?page=mailchimp-for-wp-integrations' ); ?>"><?php _e( 'Integrations', 'mailchimp-for-wp' ); ?></a> &rsaquo;
-		<span class="current-crumb"><strong><?php echo $integration->name; ?></strong></span>
+		<span class="current-crumb"><strong><?php echo esc_html( $integration->name ); ?></strong></span>
 	</p>
 
 	<div class="main-content row">
@@ -17,7 +17,7 @@
 		<div class="main-content col col-4 col-sm-6">
 
 			<h1 class="page-title">
-				<?php printf( __( '%s integration', 'mailchimp-for-wp' ), $integration->name ); ?>
+				<?php printf( __( '%s integration', 'mailchimp-for-wp' ), esc_html( $integration->name ) ); ?>
 			</h1>
 
 			<h2 style="display: none;"></h2>
@@ -225,7 +225,7 @@
 				do_action( 'mc4wp_admin_after_' . $integration->slug . '_integration_settings', $integration, $opts );
 				?>
 
-				<?php submit_button(); ?>
+				<?php if( count( $integration->get_ui_elements() ) > 0 ) { submit_button(); } ?>
 
 			</form>
 

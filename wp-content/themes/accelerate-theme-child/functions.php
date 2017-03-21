@@ -72,8 +72,18 @@ add_action( 'widgets_init', 'accelerate_theme_child_widget_init' );
 function accelerate_theme_support_stuff() {
 
 	add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
-  
 	add_theme_support( 'title-tag');
+  
+  // images
+  add_image_size('front-page-featured-work', 300, 200, true);
+  
+  // Post thumbnails support
+  add_theme_support('post-thumbnails');
+  add_image_size('archive-case-studies', 514, 379, array( 'left', 'top' ) ); 
+  
+  //title
+  add_theme_support( 'title-tag' );
+  
 	}
 add_action( 'after_setup_theme', 'accelerate_theme_support_stuff' );
 
@@ -112,19 +122,19 @@ function accelerate_create_custom_post_types() {
 			'rewrite' => array(
 				'slug' => 'case-studies'
 				),
+      'supports' => array('title', 'editor', 'page-attributes') // So it's possible to sort by menu order
 			)
 	 );
 	// Testing a CPT approach for the About page
 	register_post_type('services',
 		array(
-			// 'supports' => $supports,
 			'labels' => array(
 				'name' => __( 'Services' ),
 				'singular_name' => __( 'Service' )
 				),
-			'supports' => array( 'title', 'thumbnail', 'excerpt', 'page-attributes'),
 			'public' => true,
-			'has_archive' => false
+			'has_archive' => false,
+      'supports' => array('title', 'editor', 'page-attributes') // So it's possible to sort by menu order
 			)
 	 );
 
@@ -157,13 +167,14 @@ function accelerate_child_scripts() {
 	wp_enqueue_style('accelerate-child-font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 
 	//Scripts
-	wp_enqueue_script('faqs', get_stylesheet_directory_uri() . '/js/faqs.js', array('jquery'), '20160105', false );
+	wp_enqueue_script('scripts', get_stylesheet_directory_uri() . '/js/scripts.js', array('jquery'), '20160105', false );
 	if ( is_404() ) {
 		wp_enqueue_script('404', get_stylesheet_directory_uri() . '/js/test-404.js', array('jquery'), '20160603', false );
 	}
-  if ( is_page( 'about' ) ){
-    wp_enqueue_script('h2_parser', get_stylesheet_directory_uri() . '/js/h2_parser.js', array('jquery'), '20161014', false );
-  }
+  // for dynamically outputting the twitter handle in the correct spot inside the twitter widget - used filter instead
+  // if ( is_front_page() ) {
+  //   wp_enqueue_script('front-page-twitter', get_stylesheet_directory_uri() . '/js/front-page-twitter.js', array('jquery'), '20170222', true );
+  // }
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 
@@ -183,20 +194,6 @@ function red_get_me_some_posts() {
 		wp_reset_postdata();
 }
 
-// Use ACF Pro to Generate an Options page
-
-if( function_exists('acf_add_options_page') ) {
-
-	acf_add_options_page(array(
-		'page_title' => 'Social Media Profiles',
-		'menu_title' => 'Social Media',
-		'menu_slug' => 'social-media-profiles',
-		'capability' => 'edit_posts',
-		'redirect' => false
-	));
-
-}
-
 // Remove 'Accelerate' in the description - call in footer.php ONLY
 function green_accelerate_footer(){
 	
@@ -207,41 +204,36 @@ function green_accelerate_footer(){
 	} 
 
 };
+add_action('modified_footer', 'green_accelerate_footer');
 	
 // Refresh those permalinks message on main Dashboard page only
-add_action( 'current_screen', 'message_dashboard_screen' );
-function message_dashboard_screen() {
-
-    $current_screen = get_current_screen();
-    if( $current_screen ->id === "dashboard" ) {
-
-			add_action('admin_notices', 'admin_notice_refresh_permalinks' );
-			function admin_notice_refresh_permalinks() {
-			  echo '<div class="error">
-			          <p>Do not forget to refresh those permalinks! :)</p>
-			        </div>';
-				}
-    }
-}
-
-// Add a body class if on contact page so can narrow width of page in combination with other page class
-// add_filter( 'body_class','accelerate_body_classes' );
-// function accelerate_body_classes( $classes ) {
-//  
-//   if (is_page('contact') ) {
-//     $classes[] = 'contact-form-narrow';
-//   }
-//     return $classes;
-//      
+// add_action( 'current_screen', 'message_dashboard_screen' );
+// function message_dashboard_screen() {
+// 
+//     $current_screen = get_current_screen();
+//     if( $current_screen ->id === "dashboard" ) {
+// 
+// 			add_action('admin_notices', 'admin_notice_refresh_permalinks' );
+// 			function admin_notice_refresh_permalinks() {
+// 			  echo '<div class="error">
+// 			          <p>Do not forget to refresh those permalinks! :)</p>
+// 			        </div>';
+// 				}
+//     }
 // }
+
 
 // Add a body class for about page so that the padding on '.site-main won't mess up the hero-image at @media max-width 1000px
 add_filter( 'body_class','accelerate_body_classes' );
 function accelerate_body_classes( $classes ) {
  
-  if (is_page('about') ) {
+  if ( is_page( 'about' ) ) {
     $classes[] = 'about-page';
   }
+  if (is_page('success') ) {
+    $classes[] = 'success-form-message';
+  }
+    
     return $classes;
      
 }
@@ -325,7 +317,7 @@ function your_awesome_admin_contact_info_of_wow() {
     $wp_admin_bar->add_node( array(
         'id'    => 'contact-developer',
         'title' => 'Contact Developer',
-        'href'  => 'http://redrambles.com/contact/',
+        'href'  => 'http://redrambles.com/#call-to-action',
         'meta'  => array( 'target' => '_blank' )
     ) );
 }
@@ -341,6 +333,20 @@ function color_my_world() {
     .status-private, .striped>tbody>:nth-child(odd).status-private { background-color: #F2D46F; }
     </style>';
 }
+
+// Test in order to see if we can run raw JS from inside a posts
+add_filter( 'the_content', 'accelerate_no_wpautop_front_page', 9 );
+
+function accelerate_no_wpautop_front_page( $content ) {
+
+    if ( is_single('test-post') ) {
+        remove_filter( 'the_content', 'wpautop' );
+        //$content = str_replace('mandolin', '<span class="blue">spicy dogs</span>', $content);
+        return $content;
+    } else {
+        return $content;
+    }
+}
   
 // // customize admin footer text
 // add_filter('admin_footer_text', 'accelerate_footer');
@@ -355,15 +361,63 @@ function color_my_world() {
 // In lieu of a 'maintenance mode plugin' - if in a hurry - will shut down the site to everyone but admins
 
 // add_action( 'get_header', 'emergency_repair' );
-
+// 
 // function emergency_repair() {
-
+// 
 //     if ( ! current_user_can( 'activate_plugins' ) ) {
 //         wp_die( '<h3>Emergency repair underway. The website will be back soon.</h3></br>
 //         	<p>In the meantime, how about <a href="http://explosm.net/">something funny</a>?</p>' );
 //     }
-
+// 
 // }
+
+// Use ACF Pro to Generate an Options page
+
+if( function_exists('acf_add_options_page') ) {
+
+	acf_add_options_page(array(
+		'page_title' => 'Options',
+		'menu_title' => 'Options',
+		'menu_slug' => 'accelerate-theme-child-options',
+		'capability' => 'edit_posts',
+		'redirect' => false
+	));
+  
+  acf_add_options_sub_page(array(
+    'page_title' => 'Social Media Profiles',
+    'menu_title' => 'Social Media',
+    'parent_slug'	=> 'accelerate-theme-child-options',
+  ));
+	
+	acf_add_options_sub_page(array(
+	'page_title' 	=> 'Maintenance',
+	'menu_title'	=> 'Maintenance',
+	'parent_slug'	=> 'accelerate-theme-child-options',
+));
+
+}
+/// Security measures
+// Remove WP version from the source code
+
+// remove version from head
+remove_action('wp_head', 'wp_generator');
+
+// remove version from rss
+add_filter('the_generator', '__return_empty_string');
+
+// Remove WP Version From Styles	
+add_filter( 'style_loader_src', 'red_remove_ver_css_js', 9999 );
+// Remove WP Version From Scripts
+add_filter( 'script_loader_src', 'red_remove_ver_css_js', 9999 );
+
+// Function to remove version numbers 
+function red_remove_ver_css_js( $src ) {
+	if ( strpos( $src, 'ver=' ) ) {
+		$src = remove_query_arg( 'ver', $src );
+  }
+	return $src;
+}
+/// end security measures
 
 // shortcode for user access content. Format = [user_access cap="read" deny="Log in to view content"] text [/user_access]
 // function user_access($attr, $content = null) {

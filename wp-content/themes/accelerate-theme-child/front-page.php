@@ -10,11 +10,16 @@
 
 get_header(); ?>
 
-<?php 
+<?php
 // Testing displaying option field
 // $twitter = the_field('twitter', 'option'); 
 // echo $twitter;
-?>
+// 
+// // TO-DO: map the href attribute to fontawesome icon - this is a TEST 
+// if ( have_rows( 'social-icon', 'option' ) ) : 
+//while ( have_rows( 'social-icon', 'option' ) ) : the_row(); ?>
+<!-- <a href="<?php //the_sub_field( 'social-media-address', 'option' ); ?>"><?php //the_sub_field( 'social-media-address', 'option' ); ?></a> -->
+<?php //endwhile; ?>
 
 <section class="home-page">
 		<!-- <div class="site-content"> -->
@@ -24,7 +29,7 @@ get_header(); ?>
 					<a class="button" href="<?php echo home_url(); ?>/case-studies">View Our Work</a>			
 				</div>
 			<?php endwhile; // end of the loop. ?>
-		<!-- </div -->><!-- .site-content -->
+		<!-- </div --><!-- .site-content -->
 </section><!-- .home-page -->
 
 <section class="featured-work">
@@ -37,7 +42,8 @@ get_header(); ?>
 			<?php $args = array (
 					'posts_per_page' => 3,
 					'post_type' => 'case_studies',
-					'order' => 'ASC'
+					'order' => 'ASC',
+					'status' => 'publish'
 				);
 
 			$featured = new WP_Query($args);?>
@@ -45,7 +51,7 @@ get_header(); ?>
 			<?php while ($featured-> have_posts() ) : $featured->the_post();
 				//$image_1 = get_field("image_1");
 				$image_1  = get_post_meta(get_the_id(), "image_1", true);
-				$size = "medium";
+				$size = "front-page-featured-work";
 			 ?>
 			 	<li class="individual-featured-work">	
 				 	<figure>
@@ -66,7 +72,8 @@ get_header(); ?>
 		<?php $args = array (
 			'post_type' => 'services',
 			'posts_per_page' => 4,
-			'order' => "ASC"
+			'order' => 'ASC',
+			'status' => 'publish'
 				);
 			$services = new WP_Query($args);?>
 

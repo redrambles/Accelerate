@@ -518,7 +518,7 @@ a:hover {
 
 .content h1,
 .content .title {
-	font: bold 2.12em/1.22 'Montserrat', 'OpenSans', Arial, sans-serif;
+	font: bold 2.12em/1.22 'Montserrat', 'Open Sans', Arial, sans-serif;
 	margin: 0.55em 0;
 	letter-spacing: -0.034em;
 }
@@ -562,7 +562,7 @@ aside.sidebar {
 }
 .top-logo .title {
 	color: #45ac9d;
-	font: bold 1.88em/1.3125 'Montserrat', 'OpenSans', Arial, sans-serif;
+	font: bold 1.88em/1.3125 'Montserrat', 'Open Sans', Arial, sans-serif;
 	letter-spacing: -0.034em;
 	display: block;
 	text-transform: uppercase;
@@ -635,7 +635,7 @@ aside.sidebar {
 	margin: 0 47px;
 	padding: 0 14px;
 	position: relative;
-	font: 1.6em/1.45 'Montserrat', 'OpenSans', sans-serif;
+	font: 1.6em/1.45 'Montserrat', 'Open Sans', sans-serif;
 	quotes: '“ ' ' ”' ;
 }
 .entry-summary blockquote p {
@@ -768,7 +768,7 @@ input {
 	background: #fff;
 	vertical-align: middle;
 	margin: 0;
-	font: 16px 'OpenSans', Arial, sans-serif;
+	font: 16px 'Open Sans', Arial, sans-serif;
 }
 .input-btn {
 	height: 37px;
@@ -803,7 +803,7 @@ input::-webkit-input-placeholder {
   border-top: dotted #bfbfbf;
   border-width: 1px 0;
   clear: both;
-  font: 0.8em/4.08 'OpenSans', Arial, sans-serif;
+  font: 0.8em/4.08 'Open Sans', Arial, sans-serif;
   overflow: hidden;
   position: relative;
   text-align: center;
@@ -849,13 +849,13 @@ input::-webkit-input-placeholder {
 	border: solid #bfbfbf;
 	border-width: 1px 0;
 	color: #150300;
-	font: 600 0.8em/49px 'OpenSans', Arial, sans-serif;
+	font: 600 0.8em/49px 'Open Sans', Arial, sans-serif;
 	height: 49px;
 	text-transform: uppercase;
 }
 .comments-area .comment-reply-title {
 	color: #45ac9d;
-	font: bold 1.176em 'Montserrat', 'OpenSans', Arial, sans-serif;
+	font: bold 1.176em 'Montserrat', 'Open Sans', Arial, sans-serif;
 	text-transform: uppercase;
 	margin: 2em 0 1em;
 }
@@ -864,7 +864,7 @@ input::-webkit-input-placeholder {
 }
 .comment-form  label {
 	display: block;
-	font: 600 0.8em 'OpenSans', Arial, sans-serif;
+	font: 600 0.8em 'Open Sans', Arial, sans-serif;
 	margin: 10px 0;
 }
 .comment-form-comment  input {
@@ -875,7 +875,7 @@ input::-webkit-input-placeholder {
 	height: 180px;
 	width: 100%;
 	resize: none;
-	font: 16px 'OpenSans', Arial, sans-serif;
+	font: 16px 'Open Sans', Arial, sans-serif;
 	padding: 5px 10px
 }
 .comment-form-author,
@@ -891,7 +891,7 @@ input::-webkit-input-placeholder {
 	background: #45ac9d;
 	width: 206px;
 	height: 55px;
-	font: bold 1.05em/45px 'Montserrat', 'OpenSans', Arial, sans-serif;
+	font: bold 1.05em/45px 'Montserrat', 'Open Sans', Arial, sans-serif;
 	color: #fff;
 	margin: 24px 0;
 	float: right;
@@ -901,7 +901,7 @@ input::-webkit-input-placeholder {
 	margin-bottom: 50px;
 }
 .comment-list .comment {
-	font: 0.8em/2.08em 'OpenSans', Arial, sans-serif;
+	font: 0.8em/2.08em 'Open Sans', Arial, sans-serif;
 	border-bottom: 1px solid #BFBFBF;
 	padding-bottom: 23px;
 }
