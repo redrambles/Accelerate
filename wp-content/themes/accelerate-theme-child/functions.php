@@ -69,23 +69,20 @@ function accelerate_theme_child_widget_init() {
 add_action( 'widgets_init', 'accelerate_theme_child_widget_init' );
 
 // Ann testing theme support stuff
-function accelerate_theme_support_stuff() {
-
+function accelerate_theme_support() {
+  // post formats
 	add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
-	add_theme_support( 'title-tag');
+	
+  // title
+  add_theme_support( 'title-tag');
   
-  // images
-  add_image_size('front-page-featured-work', 300, 200, true);
-  
-  // Post thumbnails support
+  // post thumbnails and images
   add_theme_support('post-thumbnails');
   add_image_size('archive-case-studies', 514, 379, array( 'left', 'top' ) ); 
-  
-  //title
-  add_theme_support( 'title-tag' );
+  add_image_size('front-page-featured-work', 300, 200, true);
   
 	}
-add_action( 'after_setup_theme', 'accelerate_theme_support_stuff' );
+add_action( 'after_setup_theme', 'accelerate_theme_support' );
 
 // Testing the addition of excerpts for pages
 function accelerate_add_excerpt_for_pages() {
