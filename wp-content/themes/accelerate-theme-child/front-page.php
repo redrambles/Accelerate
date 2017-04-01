@@ -118,6 +118,7 @@ get_header(); ?>
 		    $twitter_link = get_field('twitter_link');
 		    $link_name = get_field('link_name');
 		?>
+		<!-- The twitter handle is being fetched from the database and appended to the widget title using a filter - in inc/extras.php -->
 		<?php if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
 		<div id="secondary" class="widget-area tweet-module" role="complementary">
 		    <a href="<?php echo $twitter_link ?>"><?php dynamic_sidebar( 'sidebar-2' ); ?></a>
