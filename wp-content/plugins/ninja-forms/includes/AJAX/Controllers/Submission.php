@@ -167,6 +167,12 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
             }
             $field = array_merge( $field, $this->_form_data[ 'fields' ][ $field_id ] );
 
+	        // Check for field errors after processing.
+	        if ( isset( $this->_form_data['errors']['fields'][ $field_id ] ) ) {
+		        $this->_errors['fields'][ $field_id ] = $this->_form_data['errors']['fields'][ $field_id ];
+		        $this->_respond();
+	        }
+
             /** Populate Field Merge Tag */
             $field_merge_tags->add_field( $field );
 
