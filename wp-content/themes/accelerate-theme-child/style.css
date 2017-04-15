@@ -7,9 +7,12 @@ Version: 1.0.0
 Text Domain: accelerate-theme-child
 */
 
+
 /*@import url('../accelerate-theme/style.css');*/
 
+
 /* Clearings */
+
 
 /*.clearfix:before,
 .clearfix:after {
@@ -22,82 +25,93 @@ Text Domain: accelerate-theme-child
 }*/
 
 html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 *, *:before, *:after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
-  box-sizing: inherit;
-  }
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
 
 .site {
-    width: 100%;
-    max-width: 100%;
-    min-width: 320px;
-    margin: 0 auto;
     overflow: hidden;
+
+    width: 100%;
+    min-width: 320px;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 .main-content {
-  padding: 55px 4% 0 0;
+    padding: 55px 4% 0 0;
 }
 
 img {
-    border: 0;
-    height: auto;
     max-width: 100%;
+    height: auto;
+
     vertical-align: middle;
+
+    border: 0;
 }
 
 ::selection {
-    background: #45AC9D;
     color: #fff;
+    background: #45AC9D;
     text-shadow: none;
 }
 
 ::-moz-selection {
-    background: #45AC9D;
     color: #fff;
+    background: #45AC9D;
     text-shadow: none;
 }
 
+
 /* Hide content visually but make available to screen readers */
+
 .screen-reader-text {
-	clip: rect(1px, 1px, 1px, 1px);
-	height: 1px;
-	overflow: hidden;
-	position: absolute !important;
-	width: 1px;
-	/* many screen reader and browser combinations announce broken words as they would appear visually */
-	word-wrap: normal !important;
+    position: absolute !important;
+
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+
+    width: 1px;
+    height: 1px;
+    /* many screen reader and browser combinations announce broken words as they would appear visually */
+
+    word-wrap: normal !important;
 }
+
 header#masthead {
-  /*height: 50px;*/
-  box-sizing: content-box;
+    /*height: 50px;*/
+    box-sizing: content-box;
 }
 
 .header-main {
-  overflow: hidden;
-  width: 960px;
-  max-width: 95%;
-  padding: 0 1em;
+    overflow: hidden;
+
+    width: 960px;
+    max-width: 95%;
+    padding: 0 1em;
 }
 
-.site-content, 
-.site-footer {
+.site-content, .site-footer {
     width: 100%;
     max-width: 960px;
     /*overflow: hidden; */
 }
 
 .site-footer .site-info {
-  overflow: auto;
+    overflow: auto;
 }
+
 .blog-page {
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
 #masthead {
@@ -108,227 +122,290 @@ header#masthead {
     background: none repeat scroll 0 0 #45ac9d;
 }
 
+
 /* THIS is the style that so many students are looking for to make their menu inline */
+
 .menu-top-nav-container ul {
-  overflow: auto;
+    overflow: auto;
 }
-.menu-top-nav-container ul li{
-  text-transform: uppercase;
-	float: left; /* Makes it easier to add sub-menu items */
-	margin-left: 35px;
-  position: relative; /* for the border-bottom effect for the link */
+
+.menu-top-nav-container ul li {
+    position: relative;
+    /* for the border-bottom effect for the link */
+
+    float: left;
+    /* Makes it easier to add sub-menu items */
+
+    margin-left: 35px;
+
+    text-transform: uppercase;
 }
-.menu-top-nav-container ul li:first-of-type{
-	margin-left: 0;
+
+.menu-top-nav-container ul li:first-of-type {
+    margin-left: 0;
 }
+
 .mobile-menu {
-  display: none;
-  padding: 3px 5px;
+    display: none;
+
+    padding: 3px 5px;
 }
+
 
 /* This isn't working - TO-DO */
-.mobile-menu:hover,
-.mobile-menu:active {
-  cursor: pointer;
-  background: #2e6d64;
-  -webkit-transition: all 800ms ease;
-  -moz-transition: all 800ms ease;
-  -ms-transition: all 800ms ease;
-  -o-transition: all 800ms ease;
-  transition: all 800ms ease; 
+
+.mobile-menu:hover, .mobile-menu:active {
+    cursor: pointer;
+    -webkit-transition: all 800ms ease;
+    -moz-transition: all 800ms ease;
+    -ms-transition: all 800ms ease;
+    -o-transition: all 800ms ease;
+    transition: all 800ms ease;
+
+    background: #2e6d64;
 }
 
+
 /* This will make the current menu item bold in top navigation bar */
-.nav-menu .current-menu-item > a,
-.nav-menu .current_page_item > a {
-font-weight: bold;
+
+.nav-menu .current-menu-item>a, .nav-menu .current_page_item>a {
+    font-weight: bold;
 }
 
 .menu-top-nav-container ul li a::after {
-  border-bottom: 2px solid #fff;
-  opacity: 0;
-  position: absolute;
-  content: '';
-  bottom:-2.5px;
-  left: 0;
-  width: 0;
-  transform-origin:left;
-  transition:width 0.45s ease;
+    position: absolute;
+    bottom: -2.5px;
+    left: 0;
+
+    width: 0;
+
+    content: '';
+    transition: width 0.45s ease;
+    transform-origin: left;
+
+    opacity: 0;
+    border-bottom: 2px solid #fff;
 }
+
+
 /* Underline hover effect */
-.menu-top-nav-container ul li:hover a::after,
-.menu-top-nav-container ul li:active a::after {
-  width: 100%;
-  opacity: 1;
+
+.menu-top-nav-container ul li:hover a::after, .menu-top-nav-container ul li:active a::after {
+    width: 100%;
+
+    opacity: 1;
 }
 
 
 /* Test - if I wanted to make the current menu item have a background-color of tomato but ONLY if it is the blog-menu item - first add the CSS class to the menu item in the Dashboard (blog-menu) */
+
+
 /*.current-menu-item.blog-menu {
 background-color: tomato;
 }*/
 
-
 section.home-page {
+    box-sizing: content-box;
+    /* To overwrite the 'box-sizing: border-box' property in this specific instance */
+
     background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
-    box-sizing: content-box; /* To overwrite the 'box-sizing: border-box' property in this specific instance */
 }
 
 
 /* Home Page Featured Work */
 
-.featured-work{
+.featured-work {
     margin-bottom: 20px;
 }
+
 .featured-work-title {
-  text-align: center;
-  padding-bottom: 30px;
+    padding-bottom: 30px;
+
+    text-align: center;
 }
+
 .homepage-featured-work {
-    list-style: none;
     overflow: hidden;
+
     margin: 0;
     padding-bottom: 10%;
+
+    list-style: none;
 }
+
 .individual-featured-work {
     display: inline-block;
+
     width: 31%;
     margin-right: 3%;
 }
-.individual-featured-work:nth-child(3n){
+
+.individual-featured-work:nth-child(3n) {
     margin-right: 0;
 }
-.individual-featured-work figure{
+
+.individual-featured-work figure {
     text-align: center;
 }
 
 .individual-featured-work h5 {
-    text-align: center;
-    font-weight: 400;
     margin-top: 20px;
+
+    text-align: center;
+
+    font-weight: 400;
 }
 
 .site-content>h4 {
-    text-align: center;
     padding-bottom: 3%;
-    font-size: 16px;
-    font-family: 'Montserrat';
-    color: #444;
+
+    text-align: center;
     text-transform: uppercase;
+
+    color: #444;
+
+    font-family: 'Montserrat';
+    font-size: 16px;
 }
 
 
 /* Home Page Services */
 
-.featured-services{
+.featured-services {
     margin-bottom: 20px;
 }
 
 .homepage-featured-services {
-    list-style: none;
+    overflow: auto;
+
     margin: 0;
     padding-bottom: 10%;
-    overflow: auto;
+
+    list-style: none;
 }
 
 .individual-featured-service {
     float: left;
+
     width: 23%;
     margin-right: 2%;
 }
+
 .individual-featured-service:last-of-type {
-  margin-right: 0;
+    margin-right: 0;
 }
-.individual-featured-service figure{
+
+.individual-featured-service figure {
     text-align: center;
 }
 
 .individual-featured-service h5 {
-    text-align: center;
-    font-weight: 400;
     margin-top: 20px;
+
+    text-align: center;
+
+    font-weight: 400;
 }
 
 
 /* Home Page Recent Posts Section */
 
-.recent-posts{
+.recent-posts {
     clear: both;
     overflow: hidden;
 }
 
+
 /* Home Page Blog Post */
 
 .blog-post {
-  width: 48%;
-  float: left;
-  padding: 0 0 1em 1em;
-  word-wrap: break-word;
+    float: left;
+
+    width: 48%;
+    padding: 0 0 1em 1em;
+
+    word-wrap: break-word;
 }
 
 .blog-post h4, .PI_SimpleTwitterTweets h3 {
-    font-size: 16px;
-    font-family: 'Montserrat';
-    color: #a6a6a6;
     text-transform: uppercase;
+
+    color: #a6a6a6;
+
+    font-family: 'Montserrat';
+    font-size: 16px;
 }
 
 .blog-post h2 {
     padding-bottom: 20px;
-    font-size: 24px;
+
     font-family: 'Montserrat';
+    font-size: 24px;
     font-weight: bold;
 }
 
 .blog-post p {
-    font-size: 16.5px;
     color: #818181;
+
+    font-size: 16.5px;
 }
 
 .blog-post .read-more-link {
-    font-size: 15px;
-    font-family: 'Montserrat';
-    font-weight: bold;
-    color: #45ac9d;
     text-transform: uppercase;
+
+    color: #45ac9d;
+
+    font-family: 'Montserrat';
+    font-size: 15px;
+    font-weight: bold;
 }
 
 
 /* Home Page Tweet Sidebar */
 
 .tweet-module {
-    padding: 2% 0 0 5%;
-    width: 45%;
     float: right;
+
+    width: 45%;
+    padding: 2% 0 0 5%;
 }
 
 .tweets {
-    list-style: none;
     padding-top: 30px;
+
+    list-style: none;
 }
 
-ul.tweets li{
+ul.tweets li {
     color: #818181;
+
     font-style: normal;
 }
 
-.tweets li em{
+.tweets li em {
     display: none;
 }
 
- a.follow-us-link {
-    font-size: 15px;
-    font-family: 'Montserrat';
-    font-weight: bold;
-    color: #45ac9d;
-    text-transform: uppercase;
+a.follow-us-link {
     padding-left: 40px;
-}
-.tweets li a[href*="status"] {
-  display: none;
+
+    text-transform: uppercase;
+
+    color: #45ac9d;
+
+    font-family: 'Montserrat';
+    font-size: 15px;
+    font-weight: bold;
 }
 
+.tweets li a[href*="status"] {
+    display: none;
+}
+
+
 /* To add the '@Accelerate' */
+
+
 /* #pi_simpletwittertweets-2 h3::after {
     content: "@Accelerate";
     display: block;
@@ -341,44 +418,57 @@ ul.tweets li{
     margin-bottom: 25px;
 } */
 
-
 .twitterhandle {
-  margin-top: 30px;
-  font-size: 1.4em;
-  color: #3b3b3b;
-  text-transform: none;
+    margin-top: 30px;
+
+    text-transform: none;
+
+    color: #3b3b3b;
+
+    font-size: 1.4em;
 }
+
 .twitterhandle::first-letter {
-  text-transform: uppercase;
-}  
+    text-transform: uppercase;
+}
+
 
 /* Social icons homepage - modifying display using Menu Social Icons Plugin */
+
 
 /*ul.social-media-menu {
     list-style: none;
     clear: both;
 }*/
+
 .social-media-navigation ul {
-  list-style: none;
+    list-style: none;
 }
 
-.social-media-menu li{
+.social-media-menu li {
     display: inline-block;
-    background: rgba(0,0,0,0.8);
-    margin: 0px 3px;
+
     width: 40px;
-    text-align: center;
+    margin: 0px 3px;
     padding: 10px 0;
-    font-size: 0.6em;
-    border-radius: 100%; 
-    -webkit-border-radius: 100%; 
+
+    text-align: center;
+
+    -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
+    border-radius: 100%;
+    background: rgba(0, 0, 0, 0.8);
+
+    font-size: 0.6em;
 }
-.social-media-menu li a{
-  color: white;
+
+.social-media-menu li a {
+    color: white;
 }
+
 
 /* Social Icons without plugin - manual approach. Must uncomment the span tags in menu in footer.php */
+
 
 /*.social-media-navigation ul {
     float: right;
@@ -426,9 +516,11 @@ ul.tweets li{
 
 
 /* Social Sharing Icons */
+
 .ssba {
-  padding-top: 10px;
+    padding-top: 10px;
 }
+
 
 /* Single Blog Page */
 
@@ -441,106 +533,112 @@ footer.navigation.container {
 }
 
 .entry-footer {
-  clear: both;
+    clear: both;
 }
+
 
 /* Alignments */
 
-
 .alignleft {
-	display: inline;
-	float: left;
+    display: inline;
+    float: left;
 }
 
 .alignright {
-	display: inline;
-	float: right;
+    display: inline;
+    float: right;
 }
 
 .aligncenter {
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
+    display: block;
+
+    margin-right: auto;
+    margin-left: auto;
 }
 
-blockquote.alignleft,
-.wp-caption.alignleft,
-img.alignleft {
-	margin: 0.4em 1.6em 1.6em 0;
+blockquote.alignleft, .wp-caption.alignleft, img.alignleft {
+    margin: 0.4em 1.6em 1.6em 0;
 }
 
-blockquote.alignright,
-.wp-caption.alignright,
-img.alignright {
-	margin: 0.4em 0 1.6em 1.6em;
+blockquote.alignright, .wp-caption.alignright, img.alignright {
+    margin: 0.4em 0 1.6em 1.6em;
 }
 
-blockquote.aligncenter,
-.wp-caption.aligncenter,
-img.aligncenter {
-	clear: both;
-	margin-top: 0.4em;
-	margin-bottom: 1.6em;
+blockquote.aligncenter, .wp-caption.aligncenter, img.aligncenter {
+    clear: both;
+
+    margin-top: 0.4em;
+    margin-bottom: 1.6em;
 }
 
-.wp-caption.alignleft,
-.wp-caption.alignright,
-.wp-caption.aligncenter {
-	margin-bottom: 1.2em;
+.wp-caption.alignleft, .wp-caption.alignright, .wp-caption.aligncenter {
+    margin-bottom: 1.2em;
 }
+
 
 /* Case Studies */
 
 article.case-study {
-    width: 100%; /* testing this out */
     overflow: auto;
+
+    width: 100%;
+    /* testing this out */
 }
 
-aside.case-study-sidebar{
+aside.case-study-sidebar {
     float: left;
-    width: 33%; 
+
+    width: 33%;
     margin: 60px 5% 0 0;
 }
 
-aside.case-study-sidebar h2,
-aside.case-study-sidebar h2 a{
+aside.case-study-sidebar h2, aside.case-study-sidebar h2 a {
     margin-top: 20px;
-    font-family: 'Open Sans', sans-serif;
+
     color: #444;
+
+    font-family: 'Open Sans', sans-serif;
     font-size: 26px;
     font-weight: 600;
 }
 
-aside.case-study-sidebar h6{
-    font-family: 'Open Sans', sans-serif;
-    color: #878787;
-    font-weight: 400;
-    font-size: 14px;
+aside.case-study-sidebar h6 {
     margin-top: 0;
+
+    color: #878787;
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
 }
 
-aside #client{
+aside #client {
+    margin: 0 0 40px 0;
+
     color: inherit;
+
     font-size: 15.5px;
     font-weight: 400;
-    margin: 0 0 40px 0;
 }
 
 aside.visit_link {
     font-weight: 700;
 }
 
-div.case-study-images{
-    margin-top: 60px;
+div.case-study-images {
     float: left;
-    width: 62%; 
+
+    width: 62%;
+    margin-top: 60px;
     /*width: 606px;*/
 }
 
-div.case-study-images img{
+div.case-study-images img {
     display: block;
+
     max-width: 100%;
     margin: 0 auto 50px;
+
     border: 1px solid #dddddd;
 }
 
@@ -548,17 +646,18 @@ div.case-study-images img{
 /* Footer */
 
 p.footer-desc {
-    font-weight: 300;
     letter-spacing: .65px;
+
+    font-weight: 300;
 }
 
-p.footer-desc span{
+p.footer-desc span {
     font-weight: normal;
 }
 
 p.footer-copy {
-    font-weight: 300;
     font-size: 0.8em;
+    font-weight: 300;
 }
 
 
@@ -569,6 +668,7 @@ p.footer-copy {
     font-weight: 700;
 }
 
+
 /* Pages */
 
 .entry-title {
@@ -576,20 +676,23 @@ p.footer-copy {
 }
 
 .narrow-contact {
-    padding-top: 55px;
     width: 75%;
     margin: 0 auto;
+    padding-top: 55px;
 }
 
 .success-form-message .site-content {
-  text-align: center;
-  padding: 5em 0;
-}
-.success-form-message h2 {
-  color: #45AC9D;
-}
-/* Sidebar */
+    padding: 5em 0;
 
+    text-align: center;
+}
+
+.success-form-message h2 {
+    color: #45AC9D;
+}
+
+
+/* Sidebar */
 
 .sidebar .widget ul {
     list-style-type: none;
@@ -599,41 +702,52 @@ aside.sidebar li {
     list-style-type: none;
     /*padding-left: 0;*/
 }
+
 aside.sidebar li a {
     padding-left: 0;
 }
 
 .widgettitle {
+    margin: 20px 0 5px;
+
     color: #45ac9d;
+
     font-size: 1em;
     font-weight: 600;
-    margin: 20px 0 5px;
 }
 
 .widget_search {
-    border-bottom: 1px solid #BFBFBF;
-    padding: 28px 31px;
     position: relative;
+
+    padding: 28px 31px;
+
+    border-bottom: 1px solid #BFBFBF;
 }
 
 .widget li {
-    color: #333;
     margin-left: -20px;
+
+    color: #333;
 }
 
+
 /* MailChimp Widget */
+
 #mc4wp_widget-2 {
     padding-top: 10px;
 }
 
 #mc4wp_form_widget-2 h2.widget-title {
-    font-size: 1.2em;
+    margin-bottom: 30px;
     padding: 15px;
     /*background-color: #fcfae8;*/
+
     text-align: center;
-    border-left: 3px solid #828080;
+
     border-right: 3px solid #828080;
-    margin-bottom: 30px;
+    border-left: 3px solid #828080;
+
+    font-size: 1.2em;
 }
 
 #mc4wp_widget-2 label {
@@ -641,33 +755,39 @@ aside.sidebar li a {
 }
 
 #mc4wp-form-1 p:nth-child(2) {
-  text-align: center;
+    text-align: center;
 }
 
-#mc4wp-form-1 input[type="submit"]{
-  width: 100%;
-  background-color: #45AC9D;
-  padding: 10px;
-  font-size: 0.9em;
-  color: white;
-  text-align: center;
-  text-transform: uppercase;
-  border: 1px solid #A8A6A6;
-}
-#mc4wp-form-1 input#mc4wp_email::-webkit-input-placeholder{
+#mc4wp-form-1 input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    color: white;
+    border: 1px solid #A8A6A6;
+    background-color: #45AC9D;
+
     font-size: 0.9em;
 }
+
+#mc4wp-form-1 input#mc4wp_email::-webkit-input-placeholder {
+    font-size: 0.9em;
+}
+
+
 /* Contact Us Page */
 
 #ninja_forms_form_1_all_fields_wrap label {
-    font-weight: normal;
     font-size: 0.8em;
+    font-weight: normal;
 }
 
-#ninja_forms_field_1_div_wrap,
-#ninja_forms_field_2_div_wrap {
-    width: 48%;
+#ninja_forms_field_1_div_wrap, #ninja_forms_field_2_div_wrap {
     float: left;
+
+    width: 48%;
     margin-bottom: 4%;
 }
 
@@ -681,12 +801,15 @@ aside.sidebar li a {
 
 #ninja_forms_field_5 {
     float: right;
-    color: #FFF;
-    font-family: 'Montserrat', serif;
-    font-weight: bold;
-    font-size: 18px;
-    background-color: #45AC9D;
+
     padding: 15px 80px;
+
+    color: #FFF;
+    background-color: #45AC9D;
+
+    font-family: 'Montserrat', serif;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .ninja-forms-required-items {
@@ -698,64 +821,78 @@ aside.sidebar li a {
 }
 
 .reply-contact {
-    text-align: center;
     padding-bottom: 20%;
+
+    text-align: center;
 }
 
 .reply-contact h2 {
     color: #45AC9D;
 }
 
+
 /* About Page */
 
 .hero-about {
-    background: url("img/taxi-photo-about.jpg") no-repeat scroll right bottom / cover rgba(0, 0, 0, 0);
     height: 360px;
     padding-top: 1px;
+
+    background: url("img/taxi-photo-about.jpg") no-repeat scroll right bottom / cover rgba(0, 0, 0, 0);
 }
-    
+
 .hero-text h3 {
     max-width: 550px;
     margin: 0 auto;
     padding-top: 3.5em;
+
     text-align: center;
-    line-height: 1.5em;
     letter-spacing: 0.75px;
+
     color: white;
+
     font-family: "Open Sans", sans-serif;
     font-size: 24px;
     font-weight: normal;
+    line-height: 1.5em;
 }
 
 .main-color {
     color: #45AC9D;
+
     font-weight: 600;
 }
 
 .about-intro {
-    text-align: center;
     padding: 40px 0 60px 0;
+
+    text-align: center;
 }
-.about-intro h5{
-    text-transform: uppercase;
+
+.about-intro h5 {
     padding-bottom: 10px;
+
+    text-transform: uppercase;
+
     color: #555;
+
     font-weight: 700;
 }
 
-.about-section,
-.service-section {
+.about-section, .service-section {
     clear: both;
     overflow: hidden;
 }
 
-.about-section h2,
-.service-section h2 {
-    font-weight: 600;
+.about-section h2, .service-section h2 {
     padding-bottom: 15px;
+
+    font-weight: 600;
 }
 
+
 /* CSS solution to alternate images */
+
+
 /*.service-section:nth-child(odd) .service-image {
     float: left;
     margin-right: 3%;
@@ -765,23 +902,29 @@ aside.sidebar li a {
     margin-left: 3%;
 }*/
 
+
 /* Radio Button Approach - Fine control by client */
+
 .service-image.alignleft {
-  margin-right: 3%;
-}
-.service-image.alignright {
-  margin-left: 3%;
-}
-.service-description {
-    margin-top: 60px;
-    float: left;
-    /*padding: .5em;*/
-    width: 67%;
+    margin-right: 3%;
 }
 
-.service-description p{
+.service-image.alignright {
+    margin-left: 3%;
+}
+
+.service-description {
+    float: left;
+    /*padding: .5em;*/
+
+    width: 67%;
+    margin-top: 60px;
+}
+
+.service-description p {
     color: #555;
 }
+
 .service-image {
     width: 29%;
     margin-top: 80px;
@@ -790,24 +933,29 @@ aside.sidebar li a {
 .align-left {
     float: left;
 }
+
 .align-right {
     float: right;
 }
 
 .about-contact {
     margin-top: 50px;
+
     text-align: center;
+
     border-top: 1px dotted #e3e1e1;
 }
 
 .contact-description {
-    margin-top: 30px;
     display: inline-block;
+
+    margin-top: 30px;
 }
 
 .contact-button {
-    margin-left: 10%;
     display: inline-block;
+
+    margin-left: 10%;
 }
 
 
@@ -815,21 +963,26 @@ aside.sidebar li a {
 
 .image_404 {
     height: 500px;
-    background: url("img/sad-cat.jpg")no-repeat center/ cover rgba(0, 0, 0, 0);
+
     border: 3px solid #45AC9D;
+    background: url("img/sad-cat.jpg")no-repeat center/ cover rgba(0, 0, 0, 0);
 }
 
 .text_404 {
     padding-top: 20px;
-    font-family: 'Montserrat';
-    color: #45AC9D;
+
     text-align: center;
+
+    color: #45AC9D;
+
+    font-family: 'Montserrat';
 }
 
-.text_404 h4{
-    font-weight: 400;
-    padding-top: 0;
+.text_404 h4 {
     margin-top: 20px;
+    padding-top: 0;
+
+    font-weight: 400;
 }
 
 .forgive {
@@ -838,39 +991,48 @@ aside.sidebar li a {
 }
 
 .recentposts_404 {
-    width: 48%;
-    padding-left: 0;
-    margin-top: 30px;
     /*display: inline-block;*/
     float: left;
+
+    width: 48%;
+    margin-top: 30px;
+    padding-left: 0;
+
     word-wrap: break-word;
 }
+
 .recentwork_404 {
-  width: 48%;
-  margin-left: 4%;
-  float: right;
-  margin-top: 30px;
+    float: right;
+
+    width: 48%;
+    margin-top: 30px;
+    margin-left: 4%;
 }
 
-.recentposts_404 h2,
-.recentwork_404 h2 {
-  border: 2px solid #45AC9D;
-  padding: 15px;
+.recentposts_404 h2, .recentwork_404 h2 {
+    padding: 15px;
+
+    border: 2px solid #45AC9D;
 }
-.recentposts_404 ul,
-.recentwork_404 ul {
-  list-style-type: none;
-  margin-left: 0f;
-  line-height: 2em;
+
+.recentposts_404 ul, .recentwork_404 ul {
+    margin-left: 0f;
+
+    list-style-type: none;
+
+    line-height: 2em;
 }
-.recentposts_404 ul li a,
-.recentwork_404 ul li a{
-  font-size: 0.9em;
+
+.recentposts_404 ul li a, .recentwork_404 ul li a {
+    font-size: 0.9em;
 }
+
 .search_404 {
-  clear: both;
-  text-align: center;
-  margin-top: 20px;
+    clear: both;
+
+    margin-top: 20px;
+
+    text-align: center;
 }
 
 
@@ -880,186 +1042,251 @@ aside.sidebar li a {
     border-bottom: 1px solid #BFBFBF;
 }
 
-.sidebar .widget_search .search-form { /* Added this to create a bit of space under the search box after making the text input box a bit smaller */
+.sidebar .widget_search .search-form {
+    /* Added this to create a bit of space under the search box after making the text input box a bit smaller */
     margin-bottom: 30px;
 }
 
 .sidebar .widget_search input[type="text"] {
-    border-top: 1px solid #a6a6a6;
-    border-bottom: 1px solid #a6a6a6;
-    border-left: 1px solid #a6a6a6;
-    border-right: none;
-    width: 181px; /* Was originally 200px */
+    width: 181px;
+    /* Was originally 200px */
     height: 36px;
     padding: 8px;
+
     vertical-align: middle;
-}
-.sidebar .widget_search input[type="submit"] {
+
     border-top: 1px solid #a6a6a6;
+    border-right: none;
     border-bottom: 1px solid #a6a6a6;
-    border-right: 1px solid #a6a6a6;
-    border-left: none;
-    width: 35px;
-    height: 36px;
-    background: url('img/white-arrow-right.png') no-repeat 13px 10px #45ac9d;
-    color: #ffffff;
-    margin-left: -5px;
-    vertical-align: middle;
+    border-left: 1px solid #a6a6a6;
 }
 
+.sidebar .widget_search input[type="submit"] {
+    width: 35px;
+    height: 36px;
+    margin-left: -5px;
+
+    vertical-align: middle;
+
+    color: #ffffff;
+    border-top: 1px solid #a6a6a6;
+    border-right: 1px solid #a6a6a6;
+    border-bottom: 1px solid #a6a6a6;
+    border-left: none;
+    background: url('img/white-arrow-right.png') no-repeat 13px 10px #45ac9d;
+}
+
+
 /* Next / Prev - BLOG PAGE - From Skillcrushstarter */
+
 #navigation {
-    background: #fff;
-    border: solid #bfbfbf;
-    border-width: 1px 0;
-    clear: both;
-    font: 0.8em/4.08 'Open Sans', Arial, sans-serif;
-    overflow: hidden;
     position: relative;
     z-index: 1;
+
+    clear: both;
+    overflow: hidden;
+
     margin-bottom: 40px;
+
     text-align: center;
+
+    border: solid #bfbfbf;
+    border-width: 1px 0;
+    background: #fff;
+
+    font: 0.8em/4.08 'Open Sans', Arial, sans-serif;
 }
+
 #navigation .left {
     float: left;
 }
+
 #navigation .right {
     float: right;
 }
-#navigation .left a,
-#navigation .right a {
-    color: #45ac9d;
+
+#navigation .left a, #navigation .right a {
     text-decoration: none;
-    font-weight: 600;
     text-transform: uppercase;
+
+    color: #45ac9d;
+
+    font-weight: 600;
 }
-#navigation .left a span,
-#navigation .right a span {
+
+#navigation .left a span, #navigation .right a span {
     color: #150300;
 }
+
 #navigation .left a span {
     padding-left: 8px;
 }
+
 #navigation .right a span {
     padding-right: 8px;
 }
-#navigation .left a:hover,
-#navigation .right a:hover {
+
+#navigation .left a:hover, #navigation .right a:hover {
     text-decoration: none;
 }
-#navigation .left a:hover span,
-#navigation .right a:hover span {
+
+#navigation .left a:hover span, #navigation .right a:hover span {
     text-decoration: underline;
 }
+
 
 /* COMMENTS */
 
 .comments-area {
-    margin-bottom: 80px;
     clear: both;
     overflow: hidden;
+
+    margin-bottom: 80px;
 }
+
 .comments-area .comments-title {
+    height: 49px;
+    margin: 15px 0;
+
+    text-transform: uppercase;
+
+    color: #150300;
     border: solid #bfbfbf;
     border-width: 1px 0;
-    color: #150300;
+
     font: 600 0.8em/49px 'Open Sans', Arial, sans-serif;
-    height: 49px;
-    text-transform: uppercase;
-    margin: 15px 0;
 }
+
 .comment-list {
     margin-bottom: 50px;
 }
+
 .comment-list .comment-head {
     margin: 25px 0 10px;
 }
+
 .comment-list .comment {
-    font: 0.8em/2.08em 'Open Sans', Arial, sans-serif;
-    border-bottom: 1px solid #BFBFBF;
     padding-bottom: 23px;
+
+    border-bottom: 1px solid #BFBFBF;
+
+    font: 0.8em/2.08em 'Open Sans', Arial, sans-serif;
 }
+
 .comment-list .comment .comment-meta {
     float: right;
 }
+
 .comment-list .comment a {
-    color: #45ac9d;
     text-decoration: none;
+
+    color: #45ac9d;
 }
+
 .comment-list .comment a:hover {
     text-decoration: underline;
 }
+
 .comment-list .comment .comment-author {
     font-weight: 600;
 }
+
 .comments-area .comment-reply-title {
-    color: #45ac9d;
-    font: bold 1.176em 'Montserrat', 'Open Sans', Arial, sans-serif;
-    text-transform: uppercase;
     margin: 2em 0 1em;
+
+    text-transform: uppercase;
+
+    color: #45ac9d;
+
+    font: bold 1.176em 'Montserrat', 'Open Sans', Arial, sans-serif;
 }
+
 .comments-area .comment-reply-title a {
     color: #45ac9d;
 }
+
 .comments-area .comment-reply-title a:hover {
     text-decoration: underline;
 }
+
 .comments-area .comment-form p {
-    font: 0.8em/2.08em 'Open Sans', Arial, sans-serif;
     padding-bottom: 23px;
+
+    font: 0.8em/2.08em 'Open Sans', Arial, sans-serif;
 }
+
 .comments-area .comment-form p a {
     color: #45ac9d;
 }
+
 .comments-area .comment-form p a:hover {
     text-decoration: underline;
 }
+
 .comments-area .comment-form label {
     display: block;
-    font: 600 1em 'Open Sans', Arial, sans-serif;
+
     margin: 10px 0;
+
+    font: 600 1em 'Open Sans', Arial, sans-serif;
 }
+
 .comments-area .comment-form textarea {
-    height: 180px;
     width: 100%;
-    resize: none;
-    font: 16px 'Open Sans', Arial, sans-serif;
+    height: 180px;
     padding: 5px 10px;
+
+    resize: none;
+
+    font: 16px 'Open Sans', Arial, sans-serif;
 }
+
 .comments-area .comment-form input[type="submit"] {
-    background: #45ac9d;
+    float: right;
+
     width: 206px;
     height: 55px;
-    font: bold 1.3em/45px 'Montserrat', 'Open Sans', Arial, sans-serif;
-    color: #fff;
     margin: 24px 0;
-    float: right;
-    border: 0;
+
     -webkit-transition: all 450ms linear;
     -moz-transition: all 450ms linear;
     -ms-transition: all 450ms linear;
     -o-transition: all 450ms linear;
     transition: all 450ms linear;
+
+    color: #fff;
+    border: 0;
+    background: #45ac9d;
+
+    font: bold 1.3em/45px 'Montserrat', 'Open Sans', Arial, sans-serif;
 }
+
 .comments-area .comment-form input[type="submit"]:hover {
-    background: #31756b;
     cursor: pointer;
+
+    background: #31756b;
 }
 
 .comments-area .comment-form div.form-email {
-  padding: 0;
+    padding: 0;
 }
 
+
 /* Adding this to hide the text for HTML allowed tags in comments box */
+
 .form-allowed-tags {
     display: none;
 }
+
+
 /***** FAQ *****/
 
 .faq-archive-title {
-    color: #3f3c3c;
-    text-align: center;
     margin: 50px 0px 60px 0px;
+
+    text-align: center;
+
+    color: #3f3c3c;
 }
 
 .faq .post-entry {
@@ -1069,10 +1296,12 @@ aside.sidebar li a {
 
 .faq .entry-wrap {
     padding: 0.5em;
+
     -webkit-transition: 800ms ease-in-out;
     -moz-transition: 800ms ease-in-out;
     -o-transition: 800ms ease-in-out;
     transition: 800ms ease-in-out;
+
     border: 1px solid lightgray;
 }
 
@@ -1081,156 +1310,159 @@ aside.sidebar li a {
 }
 
 .faq-selected {
-    background-color: #ffffe5;
     border: 0.7px solid lightgray;
+    background-color: #ffffe5;
 }
 
 .post-entry .faq-left {
-    text-align: left;
     padding-left: 20px;
+
+    text-align: left;
 }
 
 .post-entry .faq-right {
-    text-align: right;
     padding-right: 20px;
+
+    text-align: right;
 }
+
 
 /* Custom Maintenance and/or 'coming-soon' page */
 
 .custom-maintenance .site-header {
-  display: none;
+    display: none;
 }
 
 .custom-maintenance .maintenance-widget {
-  margin-top: 60px;
-}
-.custom-maintenance h2 {
-  margin-bottom: 30px;
-}
-.custom-maintenance h2, 
-.custom-maintenance p {
-  color: #A6A6A6;
-}
-.custom-maintenance .maintenance-widget h3 {
-  margin-bottom: 20px;
-  font-size: 1.2em;
+    margin-top: 60px;
 }
 
-.custom-maintenance .mc4wp-form,
-.custom-maintenance .mc4wp-form input[type=email] {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
+.custom-maintenance h2 {
+    margin-bottom: 30px;
+}
+
+.custom-maintenance h2, .custom-maintenance p {
+    color: #A6A6A6;
+}
+
+.custom-maintenance .maintenance-widget h3 {
+    margin-bottom: 20px;
+
+    font-size: 1.2em;
+}
+
+.custom-maintenance .mc4wp-form, .custom-maintenance .mc4wp-form input[type=email] {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .custom-maintenance .mc4wp-form label {
-  display: none;
+    display: none;
 }
+
 
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 1000px) {
     .site-main {
-      padding: 1em;
+        padding: 1em;
     }
     /* Don't apply padding to the pages with hero-images */
-    .home .site-main,
-    .about-page .site-main {
-      padding: 0;
+    .home .site-main, .about-page .site-main {
+        padding: 0;
     }
-  
-    .homepage-hero h1,
-    .homepage-hero h3 {
+    .homepage-hero h1, .homepage-hero h3 {
         padding: 10px 20px;
     }
-    
     .site-info, .site-content {
-      overflow: hidden;
-      padding: 0 2%;
-    }
+        overflow: hidden;
 
+        padding: 0 2%;
+    }
     .social-media-navigation {
         float: left;
+
         padding-left: 50px;
     }
     .main-content, aside.sidebar {
-      width: 100%;
-      max-width: 100%;
-      border-left: 0;
+        width: 100%;
+        max-width: 100%;
+
+        border-left: 0;
     }
     .sidebar {
-      text-align: center;
+        text-align: center;
     }
-    .sidebar .widget_search{
-      border-bottom: 0;
+    .sidebar .widget_search {
+        border-bottom: 0;
     }
     .sidebar .search-form {
-      padding: 0;
+        padding: 0;
     }
     .sidebar .widget_search input[type="text"] {
-      width: 90%;
+        width: 90%;
     }
 }
 
 @media screen and (max-width: 800px) {
-    
     div.main {
-      clear: both;
+        clear: both;
     }
-    
     .header-main {
-      overflow: visible;
+        overflow: visible;
     }
     .site-title {
-      padding-bottom: 10px;
+        padding-bottom: 10px;
     }
     .site-navigation {
-      display: none;
+        display: none;
     }
     .site-navigation.menu-toggle {
-      display: block;
-      float: none;
-      width: 100%;
-      clear: left;
+        display: block;
+        float: none;
+        clear: left;
+
+        width: 100%;
     }
     .mobile-menu {
-      display: block;
-      position: absolute;
-      right: 10px;
-      top: 10px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        display: block;
     }
     #masthead {
-      height: auto;
-      position: relative;
+        position: relative;
+
+        height: auto;
     }
-    .menu-top-nav-container ul li:hover a::after,
-    .menu-top-nav-container ul li:active a::after {
-      width: 75%;
-      opacity: 1;
+    .menu-top-nav-container ul li:hover a::after, .menu-top-nav-container ul li:active a::after {
+        width: 75%;
+
+        opacity: 1;
     }
     .menu-top-nav-container {
-      /*background: red;*/
+        /*background: red;*/
     }
     .menu-top-nav-container .nav-menu li {
-      display: block;
-      float: none;
-      margin: 0 0 5px;
-    }
+        display: block;
+        float: none;
 
+        margin: 0 0 5px;
+    }
     .social-media-navigation {
         float: none;
+
         padding: 15px 0 0 0;
     }
-    
     .social-media-menu {
-      margin-left: 0;
-      width: 100%;
+        width: 100%;
+        margin-left: 0;
     }
-
 }
 
 @media screen and (max-width: 550px) {
-
     .homepage-hero h1 {
         font-size: 2.5rem;
     }
@@ -1238,28 +1470,29 @@ aside.sidebar li a {
         font-size: 1.3rem;
     }
     li.individual-featured-work {
-      padding: 0;
+        padding: 0;
     }
     .social-media-navigation {
-      width: 100%;
+        width: 100%;
     }
     .site-footer .site-description {
-      width: 100%;
+        width: 100%;
     }
-    p.footer-desc,
-    p.footer-copy {
+    p.footer-desc, p.footer-copy {
         width: 90%;
         margin: 0 auto 20px;
     }
     .social-media-menu {
-      margin-top: 50px;
-      width: 100%;
-      text-align: center;
-    }
+        width: 100%;
+        margin-top: 50px;
 
+        text-align: center;
+    }
 }
 
+
 /* Home Page Featured Work Responsive */
+
 @media screen and (max-width: 980px) {
     .individual-featured-work {
         width: 40%;
@@ -1274,31 +1507,37 @@ aside.sidebar li a {
     }
 }
 
+
 /* Home Page Services Responsive */
 
 @media screen and (max-width: 980px) {
     .individual-featured-service {
-        width: 46%;
         float: left;
+
+        width: 46%;
         padding: 2% 2%;
     }
 }
 
 @media screen and (max-width: 560px) {
     .individual-featured-service {
-        width: 100%;
         float: left;
+
+        width: 100%;
         padding: 1rem 0;
     }
 }
 
+
 /* This is a WORK IN PROGRESS */
+
 @media screen and (max-width: 850px) {
     .blog-post, .tweet-module {
+        float: left;
+
         width: 100%;
         max-width: 95%;
         padding: 0 3.5% 0 4.5%;
-        float: left;
     }
     aside#pi_simpletwittertweets-2 {
         padding: 0;
@@ -1307,79 +1546,72 @@ aside.sidebar li a {
         padding: 0;
     }
 }
+
+
 /* 404 Responsiveness */
+
 @media screen and (max-width: 560px) {
-    .recentposts_404,
-    .recentwork_404 {
-      width: 90%;
-      float: none;
-      margin: 0 auto;
-      padding: 0;    
+    .recentposts_404, .recentwork_404 {
+        float: none;
+
+        width: 90%;
+        margin: 0 auto;
+        padding: 0;
     }
-    .recentposts_404 ul,
-    .recentwork_404 ul {
-      margin-left: .2em;;
+    .recentposts_404 ul, .recentwork_404 ul {
+        margin-left: .2em;
+        ;
     }
-  }
+}
+
 
 /* Case Studies Rather pitiful attempt at responsiveness */
-@media screen and (max-width:  950px) {
 
+@media screen and (max-width : 950px) {
     article.case-study {
-        padding: 20px;
         margin: 0 auto;
+        padding: 20px;
     }
     aside.case-study-sidebar {
         width: 95%;
     }
-
-    aside.case-study-sidebar,
-    div.case-study-images{
+    aside.case-study-sidebar, div.case-study-images {
         float: none;
     }
-
     div.case-study-images {
-        max-width: 100%;
         width: 100%;
+        max-width: 100%;
     }
 }
 
-@media screen and (max-width:  700px) {
-
+@media screen and (max-width : 700px) {
     div.case-study-images {
         width: 90%;
         max-width: 100%;
-        
     }
-
 }
+
 
 /*Contact Form Responsive*/
 
 @media screen and (max-width: 800px) {
-    #ninja_forms_field_1_div_wrap,
-    #ninja_forms_field_2_div_wrap {
+    #ninja_forms_field_1_div_wrap, #ninja_forms_field_2_div_wrap {
         float: none;
+
         width: 100%;
     }
-
     #ninja_forms_field_2_div_wrap {
         margin-left: 0;
     }
-
-    .contact-form p{
+    .contact-form p {
         font-size: 0.9rem;
     }
 }
 
-
-
 @media screen and (max-width: 950px) {
-
     .site-content {
         padding: 0;
     }
-
     .hero-text {
         padding: 1.5em;
     }
@@ -1387,33 +1619,30 @@ aside.sidebar li a {
         padding-top: 1.5em;
     }
     .hero-text p {
-        font-size: 0.8em;
         margin-bottom: 2em;
-    }
 
+        font-size: 0.8em;
+    }
     .about-intro {
         padding: 2em 2em 3em;
     }
-
     .about-section {
         text-align: center;
     }
-
     .align-right, .align-left {
         float: none;
     }
-
     .service-image {
         width: 100%;
         margin-top: 0;
     }
-
     .service-description {
-        margin-top: 60px;
-        padding: 20px;
-        width: 90%;
         /*text-align: center;*/
         clear: both;
+
+        width: 90%;
+        margin-top: 60px;
+        padding: 20px;
     }
     .about-contact {
         text-align: center;
@@ -1427,16 +1656,16 @@ aside.sidebar li a {
 
 /* TEST */
 
+
 /*body {
     background-color: tomato;
 }*/
 
+
 /* Playing around the the output of the Custom Fields */
+
+
 /*.sanity {
     text-align: center;
     color: tomato;
 }*/
-
-
-
-
