@@ -54,6 +54,7 @@ final class NF_Actions_Email extends NF_Abstracts_Action
         if ( has_filter( 'ninja_forms_get_fields_sorted' ) ) {
             $fields_by_key = array();
             foreach( $data[ 'fields' ] as $field ){
+                if( is_null( $field ) ) continue;
                 if( is_array( $field ) ){
                     if( ! isset( $field[ 'key' ] ) ) continue;
                     $key = $field[ 'key' ];
