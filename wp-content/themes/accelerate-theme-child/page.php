@@ -39,7 +39,7 @@ get_header(); ?>
 				<h2><?php the_title(); ?></h2>
 				<?php the_content(); ?>
 			<?php endwhile; ?>
-	</div> <!-- #content (if on conact page, also .narrow-contact. To target contact page only in CSS - use #content.narrow-contact) -->
+	</div> <!-- #content (if on contact page, also .narrow-contact. To target contact page only in CSS - use #content.narrow-contact) -->
 </div>
 
 <?php get_footer(); ?>
