@@ -360,7 +360,11 @@ a.follow-us-link {
     font-weight: bold;
 }
 
-.tweets li a[href*="status"] {
+/*.tweets li a[href*="status"] {
+    display: none;
+}*/
+
+span.stt-em {
     display: none;
 }
 
