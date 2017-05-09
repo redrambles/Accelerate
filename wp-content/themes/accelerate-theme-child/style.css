@@ -1254,7 +1254,8 @@ aside.sidebar li a {
     }
     /* Don't apply padding to the pages with hero-images */
     .home .site-main,
-    .about-page .site-main {
+    .about-page .site-main,
+    .page-template-t_about .site-main{
         padding: 0;
     }
     .homepage-hero h1,
@@ -1512,17 +1513,6 @@ aside.sidebar li a {
     .align-left {
         float: none;
     }
-    .service-image {
-        width: 100%;
-        margin-top: 0;
-    }
-    .service-description {
-        /*text-align: center;*/
-        clear: both;
-        width: 90%;
-        margin-top: 60px;
-        padding: 20px;
-    }
     .about-contact {
         text-align: center;
     }
@@ -1530,8 +1520,43 @@ aside.sidebar li a {
         margin-left: 0;
         padding: 2em;
     }
+    .all-services {
+        padding: 1em;
+    }
+}
+@media screen and (max-width: 720px) {
+
+    .service-description {
+        clear: both;
+        width: 90%;
+        /*padding: 20px;*/
+        margin-top: 1em;
+    }
+    .service-image {
+        width: 100%;
+        margin-top: 0;
+        text-align: center;
+        padding: 0;
+
+    }
 }
 
+@media screen and (max-width: 550px) {
+    
+    .all-services {
+        padding: 0;
+    }
+    .service-description {
+        width: 100%;
+        padding: 0 0.25em 0 0.75em;
+        /*text-align: justify;*/
+
+    }
+    .service-description h2 {
+        text-align: center;
+    }
+
+}
 
 /* TEST */
 
