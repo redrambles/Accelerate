@@ -144,6 +144,7 @@ function accelerate_create_custom_post_types() {
 				'singular_name' => __( 'FAQ' )
 				),
 			'public' => true,
+			'taxonomies' => array( 'category' ),
 			'has_archive' => true,
 			'rewrite' => array(
 				'slug' => 'faqs'
