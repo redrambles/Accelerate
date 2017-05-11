@@ -14,7 +14,7 @@ Text Domain: accelerate-theme-child
 /* Clearings */
 
 
-/*.clearfix:before,
+.clearfix:before,
 .clearfix:after {
     content: " ";
     display: table;
@@ -22,7 +22,7 @@ Text Domain: accelerate-theme-child
 
 .clearfix:after {
     clear: both;
-}*/
+}
 
 html {
     -webkit-box-sizing: border-box;
@@ -200,7 +200,9 @@ section.home-page {
     background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
 }
 
-
+.home .site-content {
+    overflow: auto;
+}
 /* Home Page Featured Work */
 
 .featured-work {
@@ -396,6 +398,15 @@ span.stt-em {
 }
 
 
+/* Homepage FAQ section */
+.site-content.faq-home-section {
+    padding: 1em;
+}
+
+.faq-term a {
+    padding: 0.75em;
+    border: 1px solid #3b3b3b;
+}
 /* Social icons homepage - modifying display using Menu Social Icons Plugin */
 
 

@@ -144,17 +144,33 @@ function accelerate_create_custom_post_types() {
 				'singular_name' => __( 'FAQ' )
 				),
 			'public' => true,
-			'taxonomies' => array( 'category' ),
 			'has_archive' => true,
 			'rewrite' => array(
 				'slug' => 'faqs'
 				),
+			'supports' => array('title', 'editor', 'thumbnail')
 			)
 	 );
 
 }
 // Hook this custom post type function into the theme
 add_action( 'init', 'accelerate_create_custom_post_types' );
+
+add_action( 'init', 'faq_taxonomy');
+function faq_taxonomy() {
+    register_taxonomy( 'faq_genre', 'faq', 
+	array( 
+		'labels' => array(
+			'name'	=> 'Genre',
+		),
+		'hierarchical' => true,  
+		'sort' => true,
+		'args' => array('orderby' => 'term_order'),
+		'show_admin_column' => true
+		)
+	);
+}
+
 
 //Enqueue scripts and styles.
 function accelerate_child_scripts() {
@@ -169,6 +185,12 @@ function accelerate_child_scripts() {
 	if ( is_404() ) {
 		wp_enqueue_script('404', get_stylesheet_directory_uri() . '/js/test-404.js', array('jquery'), '20160603', false );
 	}
+
+	// Slick Slider
+	wp_enqueue_script( 'slick-js', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', 'jquery', '1.3.1' );
+	wp_enqueue_script( 'slick-activate', trailingslashit( get_stylesheet_directory_uri() ) . 'js/slidorama.js', 'jquery', '20160121', true );
+	wp_enqueue_style( 'slick-css', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css', '', '1.6.0' );
+	wp_enqueue_style( 'slick-theme-css', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css', array( 'slick-css' ), '1.6.0' );
   // for dynamically outputting the twitter handle in the correct spot inside the twitter widget - used filter instead
   // if ( is_front_page() ) {
   //   wp_enqueue_script('front-page-twitter', get_stylesheet_directory_uri() . '/js/front-page-twitter.js', array('jquery'), '20170222', true );
