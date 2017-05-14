@@ -159,15 +159,15 @@ get_header(); ?>
 			//var_dump($faqs);
 						while ($faqs-> have_posts() ) : $faqs->the_post(); 
 						//$terms = wp_get_post_terms($post->ID, 'category', array("fields" => "all"));
-						?>
-
-						<li class="faq-list-item slide">
-							<h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-							<?php //foreach($terms as $term){
-							//echo'<h5>'. $term->name . '</h5>';
-							//} 
-							?>
-						</li>
+						
+						if (has_post_thumbnail()) { ?> 
+							<li class="faq-list-item slide">
+								<figure class="faq-post-thumbnail">
+									<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('front-page-faq-slider'); ?></a>
+								</figure>
+								<h5 class="faq-front-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+							</li>
+						<?php } ?>
 					<?php endwhile; //end the while loop
 					wp_reset_postdata(); ?>
 				</ul>

@@ -80,6 +80,7 @@ function accelerate_theme_support() {
   add_theme_support('post-thumbnails');
   add_image_size('archive-case-studies', 514, 379, array( 'left', 'top' ) ); 
   add_image_size('front-page-featured-work', 300, 200, true);
+  add_image_size('front-page-faq-slider', 300, 150, true);
   
 	}
 add_action( 'after_setup_theme', 'accelerate_theme_support' );
