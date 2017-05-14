@@ -128,54 +128,6 @@ get_header(); ?>
 		<?php endif; ?>
 
 	</div><!-- .site-content -->
-
-
-
-<!--Impromptu Slider based on custom taxonomy terms of custom post type (FAQ)-->
-<div class="site-content faq-home-section">
-	<?php $terms = get_terms("faq_genre"); 
-			$home = home_url('/');
-			foreach ( $terms as $term ) {
-				if ($term->count > 0){
-					//echo $term->count;
-					echo '<div class="faq-term clearfix"><a href="'.get_term_link($term->slug, 'faq_genre').'">'.$term->name.'</a></div>';
-				}
-			?>
-
-		<ul class="faq-list slick-slider">
-			<?php $args = array(
-					'post_type' => 'faq',
-					'tax_query' => array(
-						array(
-							'taxonomy' => 'faq_genre',
-							'field'    => 'slug', //needed this
-							'terms'    => $term->slug,
-						),
-					),
-				);
-
-
-			$faqs = new WP_Query($args);
-			//var_dump($faqs);
-						while ($faqs-> have_posts() ) : $faqs->the_post(); 
-						//$terms = wp_get_post_terms($post->ID, 'category', array("fields" => "all"));
-						
-						if (has_post_thumbnail()) { ?> 
-							<li class="faq-list-item slide">
-								<figure class="faq-post-thumbnail">
-									<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('front-page-faq-slider'); ?></a>
-								</figure>
-								<h5 class="faq-front-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-							</li>
-						<?php } ?>
-					<?php endwhile; //end the while loop
-					wp_reset_postdata(); ?>
-				</ul>
-			<?php } ?>
-
-
-
-	</div><!-- .site-content -->
 </section><!-- .recent-posts -->
 
 <?php get_footer(); ?>
