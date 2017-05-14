@@ -130,4 +130,24 @@ get_header(); ?>
 	</div><!-- .site-content -->
 </section><!-- .recent-posts -->
 
+<section class="form-submissions">
+	<div class="site-content">
+	<?php $args = array (
+					'post_type' => 'nf_sub',
+					// 'meta_key' => '_field3_'
+				);
+
+			$sub = new WP_Query($args); ?>
+			<ul>
+
+			<?php while ($sub-> have_posts() ) : $sub->the_post();
+
+				$test = get_post_meta( get_the_ID(), '_field_3', true); ?>
+				<li><?php echo $test; ?></li>
+				<?php endwhile; ?>
+			</ul>
+	</div>
+</section><!-- .form-submissions -->
+
+
 <?php get_footer(); ?>
