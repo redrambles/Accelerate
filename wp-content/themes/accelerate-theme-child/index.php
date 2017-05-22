@@ -44,22 +44,24 @@ get_header(); ?>
 						
 						<?php accelerate_theme_child_footer_meta(); ?>
 						
-					</div>
+					</div><!-- .entry-wrap -->
 				</article>
 			<?php endwhile; endif; ?>
 
-			</div>
+			</div><!-- .main-content -->
 			
 			<?php get_sidebar(); ?>
-
-			<div class="clearfix"></div>
 			
-				<div id="navigation" class="container"> 
-			        <div class="left"><?php next_posts_link('&larr; <span>Older Posts</span>'); ?></div>
-			        <div class="right"><?php previous_posts_link('<span>Newer Posts</span> &rarr;'); ?></div>
-			  </div>
-			
-		</div>
+			<div id="navigation" class="clearfix">
+				<div class="left"><?php next_posts_link('&larr; <span>Older Posts</span>'); ?></div>
+				<div class="pagination">
+					<?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+						echo 'Page '.$paged.' of '.$wp_query->max_num_pages;
+					?>
+				</div>
+				<div class="right"><?php previous_posts_link('<span>Newer Posts</span> &rarr;'); ?></div>
+			</div><!-- .clearfix-->
+		</div><!-- .site-content -->
 
 
 	</section>

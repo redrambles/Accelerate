@@ -44,7 +44,7 @@
 				</div>
 				<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
 	<!-- 				<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><i class="fa fa-bars"><?php //_e( 'Menu', 'accelerate-theme-child' ); ?></i></button> -->
-					<?php wp_nav_menu( array( 'theme_location' => 'top-nav', 'menu_class' => 'nav-menu' ) ); ?>
+					<?php wp_nav_menu( array( 'theme_location' => 'top-nav', 'menu_class' => 'nav-menu clearfix' ) ); ?>
 				</nav>
 				<div class="clearfix"></div>
 				<!-- check to see if any of the three contact info fields have been filled in the customizer -->	
