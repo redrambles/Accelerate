@@ -52,18 +52,17 @@ get_header(); ?>
 			
 			<?php get_sidebar(); ?>
 			
-			<div id="navigation" class="clearfix">
-				<div class="left"><?php next_posts_link('&larr; <span>Older Posts</span>'); ?></div>
-				<div class="pagination">
-					<?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-						echo 'Page '.$paged.' of '.$wp_query->max_num_pages;
-					?>
-				</div>
-				<div class="right"><?php previous_posts_link('<span>Newer Posts</span> &rarr;'); ?></div>
-			</div><!-- .clearfix-->
 		</div><!-- .site-content -->
 
-
+		<div id="navigation" class="clearfix">
+			<div class="left"><?php next_posts_link('&larr; <span>Older Posts</span>'); ?></div>
+			<div class="pagination">
+				<?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+					echo 'Page '.$paged.' of '.$wp_query->max_num_pages;
+				?>
+			</div>
+			<div class="right"><?php previous_posts_link('<span>Newer Posts</span> &rarr;'); ?></div>
+		</div><!-- .clearfix-->
 	</section>
 	<!-- END blog page -->
 <?php get_footer();

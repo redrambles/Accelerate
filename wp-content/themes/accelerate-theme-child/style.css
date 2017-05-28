@@ -1001,9 +1001,21 @@ aside.sidebar li a {
 }
 
 
-/* Next / Prev - BLOG PAGE - From Skillcrushstarter */
+/* Blog */
+
+.blog .blog-page .site-content {
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.blog .site-footer .site-info {
+    border-top: none;
+}
 
 #navigation {
+    max-width: 960px;
+    margin: 0 auto;
     position: relative;
     z-index: 1;
     clear: both;
