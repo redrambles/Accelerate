@@ -715,7 +715,7 @@ function is_admin() {
 }
 
 /**
- * Whether the current request is for a site's admininstrative interface.
+ * Whether the current request is for a site's administrative interface.
  *
  * e.g. `/wp-admin/`
  *

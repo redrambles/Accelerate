@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorho
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.5
 Tested up to: 4.7
-Stable tag: 3.1.2
+Stable tag: 3.1.3
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -114,21 +114,29 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.1.2 (16 May 2017) =
+= 3.1.3 (31 May 2017) =
 
 *Bugs:*
 
-* Fixed several possible PHP notices.
-* Fixed a possible conflict with the BBpress plugin.
-* Editing submissions with Checkbox List fields should work properly.
-* Product fields with costs over 1000 should now work properly.
-* Fixed a bug that caused duplicate submissions if a form wasn't hidden after submission.
+* Users should be able to re-submit forms that fail initial anti-spam checks.
+* Fixed some bugs related to calculations and submission.
 
 *Changes:*
 
-* Forms should be sorted by title in the dashboard and the submissions page.
+* Added sortable icons to the forms dashboard.
 
 == Changelog ==
+
+= 3.1.3 (31 May 2017) =
+
+*Bugs:*
+
+* Users should be able to re-submit forms that fail initial anti-spam checks.
+* Fixed some bugs related to calculations and submission.
+
+*Changes:*
+
+* Added sortable icons to the forms dashboard.
 
 = 3.1.2 (16 May 2017) =
 

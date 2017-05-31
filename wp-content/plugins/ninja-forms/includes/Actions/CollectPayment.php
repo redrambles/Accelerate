@@ -55,10 +55,6 @@ final class NF_Actions_CollectPayment extends NF_Abstracts_Action
 
     public function process( $action_settings, $form_id, $data )
     {
-        // Clear locale number formatting.
-        global $wp_locale;
-        $action_settings[ 'payment_total' ] = str_replace( $wp_locale->number_format['thousands_sep'], '', $action_settings[ 'payment_total' ] );
-        $action_settings[ 'payment_total' ] = str_replace( $wp_locale->number_format['decimal_point'], '.', $action_settings[ 'payment_total' ] );
         
         $payment_gateway = $action_settings[ 'payment_gateways' ];
 
