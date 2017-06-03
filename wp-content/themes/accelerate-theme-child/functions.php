@@ -188,7 +188,7 @@ function accelerate_child_scripts() {
 	}
 
 	// Slick Slider
-	wp_enqueue_script( 'slick-js', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', 'jquery', '1.3.1' );
+	wp_enqueue_script( 'slick-js', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', array('jquery'), '1.3.1' );
 	wp_enqueue_script( 'slick-activate', trailingslashit( get_stylesheet_directory_uri() ) . 'js/slidorama.js', 'jquery', '20160121', true );
 	wp_enqueue_style( 'slick-css', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css', '', '1.6.0' );
 	wp_enqueue_style( 'slick-theme-css', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css', array( 'slick-css' ), '1.6.0' );

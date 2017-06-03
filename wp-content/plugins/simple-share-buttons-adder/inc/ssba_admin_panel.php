@@ -21,38 +21,11 @@ function ssba_admin_header()
 					    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					      <ul class="nav navbar-nav navbar-right">
 					        <li><a href="https://simplesharebuttons.com/wordpress-faq/" target="_blank">FAQ</a></li>
-					        <li><a data-toggle="modal" data-target="#ssbaSupportModal" href="#">Support</a></li>
-					        <li><a class="btn btn-primary ssba-navlink-blue" href="https://simplesharebuttons.com/plus/?utm_source=adder&utm_medium=plugin_ad&utm_campaign=product&utm_content=navlink" target="_blank">Plus <i class="fa fa-plus"></i></a></li>
+					        <li><a href="https://wordpress.org/support/plugin/simple-share-buttons-adder" target="_blank">Support</a></li>
 					      </ul>
 					    </div>
 					  </div>
 					</nav>';
-
-		$htmlHeader.= '<div class="modal fade" id="ssbaSupportModal" tabindex="-1" role="dialog" aria-hidden="true">
-						  <div class="modal-dialog">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						        <h4 class="modal-title">Simple Share Buttons Support</h4>
-						      </div>
-						      <div class="modal-body">
-						        <p>Please note that the this plugin relies mostly on WordPress community support from other  users.</p>
-						        <p>If you wish to receive official support, please consider purchasing <a href="https://simplesharebuttons.com/plus/?utm_source=adder&utm_medium=plugin_ad&utm_campaign=product&utm_content=support_modal" target="_blank"><b>Simple Share Buttons Plus</b></a></p>
-						        <div class="row">
-    						        <div class="col-sm-6">
-    						            <a href="https://wordpress.org/support/plugin/simple-share-buttons-adder" target="_blank"><button class="btn btn-block btn-default">Community support</button></a>
-                                    </div>
-                                    <div class="col-sm-6">
-    						            <a href="https://simplesharebuttons.com/plus/?utm_source=adder&utm_medium=plugin_ad&utm_campaign=product&utm_content=support_modal" target="_blank"><button class="btn btn-block btn-primary">Check out Plus</button></a>
-    						        </div>
-                                </div>
-						      </div>
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						      </div>
-						    </div>
-						  </div>
-						</div>';
 
 		// open container - closed in footer
 		$htmlHeader .= '<div class="container">';
@@ -161,11 +134,7 @@ function ssba_admin_panel($arrSettings)
 		$htmlShareButtonsForm.= '<div class="alert alert-success text-center">
 			<p>Thanks for accepting the terms, you can now take advantage of the great new features!</p>
 		</div>';
-	} elseif ($arrSettings['accepted_sharethis_terms'] != 'Y') {
-        $htmlShareButtonsForm.= '<div class="alert alert-warning text-center">
-			<p>The Facebook save button requires acceptance of the terms before it can be used. <a href="options-general.php?page=simple-share-buttons-adder&accept-terms=Y"><span class="button button-secondary">I accept</span></a></p>
-		</div>';
-    }
+	}
 
 	// tabs
 	$htmlShareButtonsForm .= '<ul class="nav nav-tabs">
@@ -281,26 +250,7 @@ function ssba_admin_panel($arrSettings)
 					$htmlShareButtonsForm .= '</div>';
 					$htmlShareButtonsForm .= '<input type="hidden" name="ssba_selected_buttons" id="ssba_selected_buttons" value="'.$arrSettings['ssba_selected_buttons'].'"/>';
 
-                    // plus plug
-                    $htmlShareButtonsForm .= '<div class="well text-center">';
-                        $htmlShareButtonsForm .= '<h2>Simple Share Buttons Plus</h2>';
-                        $htmlShareButtonsForm .= '<h5 class="margin-bottom">Get <strong>Xing</strong> and <strong>WhatsApp</strong> buttons...</h5>';
-                        $htmlShareButtonsForm .= '<div class="ssbp-wrap ssbp--centred ssbp--theme-4">
-                                                    <div class="ssbp-container">
-                                                        <ul class="ssbp-list">
-                                                            <li class="ssbp-option-item ui-sortable-handle" id="buffer"><a href="javascript:;" class="ssbp-btn ssbp-whatsapp"></a></li>
-                                                            <li class="ssbp-option-item ui-sortable-handle" id="diggit"><a href="javascript:;" class="ssbp-btn ssbp-xing"></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>';
-
-                        $htmlShareButtonsForm .= '<a href="https://simplesharebuttons.com/plus/?utm_source=adder&utm_medium=plugin_ad&utm_campaign=product&utm_content=feature" target="_blank"><span class="btn btn-primary">Simple Share Buttons Plus</span></a>';
-                        $htmlShareButtonsForm .= '<div class="ssba-spacer"></div>';
-                        $htmlShareButtonsForm .= '<p>Extra buttons are just the tip of the iceberg... <strong>Simple Share Buttons Plus</strong> comes with a great deal of extra features, from <strong>GeoIP click tracking</strong> to <strong>mobile-responsive</strong> share bars. <a href="https://simplesharebuttons.com/plus/?utm_source=adder&utm_medium=plugin_ad&utm_campaign=product&utm_content=feature" target="_blank"><strong>Find out more here</strong></a></p>';
-                        $htmlShareButtonsForm .= '<div class="ssba-spacer"></div>';
-                    $htmlShareButtonsForm .= '</div>';
-
-				$htmlShareButtonsForm .= '</div>';
+			$htmlShareButtonsForm .= '</div>';
 
 			// close col
 			$htmlShareButtonsForm .= '</div>';
@@ -317,7 +267,7 @@ function ssba_admin_panel($arrSettings)
 			$htmlShareButtonsForm .= '<blockquote><p>Use the options below to choose your favourite button set and how it should appear. <strong>If you wish to upload your own custom images</strong> please select \'Custom\' from the Image Set dropdown.</p></blockquote>';
 
 			// COLUMN --------------------------------
-			$htmlShareButtonsForm .= '<div class="col-sm-7">';
+			$htmlShareButtonsForm .= '<div class="col-sm-12">';
 
 			    // IMAGES --------------------------------
                 $htmlShareButtonsForm .= '<div class="well">';
@@ -566,22 +516,6 @@ function ssba_admin_panel($arrSettings)
 			// close col
 			$htmlShareButtonsForm .= '</div>';
 
-			// COLUMN --------------------------------
-			$htmlShareButtonsForm .= '<div class="col-sm-5">';
-
-			    // plus plug
-			    $htmlShareButtonsForm .= '<div class="well">';
-    			    $htmlShareButtonsForm .= '<h2>Get responsive</h2>';
-    			    $htmlShareButtonsForm .= '<p class="lead">Looking for <strong>fixed</strong> and <strong>responsive</strong> share buttons?</p>';
-    			    $htmlShareButtonsForm .= '<p>With <strong>Simple Share Buttons Plus</strong> you can pick from 10 different styles, that are all <strong>mobile-responsive</strong>. You can also pick icon/button colours and their hover colours!</p>';
-    			    $htmlShareButtonsForm .= '<img class="ssba-responsive-img" src="' . plugins_url() . '/simple-share-buttons-adder/images/simple-share-buttons-mockups.png' . '" />';
-    			    $htmlShareButtonsForm .= '<div class="text-center ssba-spacer"><span class="text-20 label label-success">Only $10</span></div>';
-    			    $htmlShareButtonsForm .= '<a href="https://simplesharebuttons.com/plus/?utm_source=adder&utm_medium=plugin_ad&utm_campaign=product&utm_content=styling_tab" target="_blank"><span class="ssba-spacer btn btn-block btn-primary">Get Plus!</span></a>';
-    			    $htmlShareButtonsForm .= '<div class="ssba-spacer"></div>';
-			    $htmlShareButtonsForm .= '</div>';
-
-			// close col
-			$htmlShareButtonsForm .= '</div>';
 
 		// close share buttons tab
 		$htmlShareButtonsForm .= '</div>';
@@ -595,7 +529,7 @@ function ssba_admin_panel($arrSettings)
 			$htmlShareButtonsForm .= '<blockquote><p>You can tweak share counter settings to your liking here.</p></blockquote>';
 
 			// COLUMN --------------------------------
-			$htmlShareButtonsForm .= '<div class="col-sm-7">';
+			$htmlShareButtonsForm .= '<div class="col-sm-12">';
 
                 // share count
                 $opts = array(
@@ -705,23 +639,6 @@ function ssba_admin_panel($arrSettings)
 			// close col
 			$htmlShareButtonsForm .= '</div>';
 
-			// COLUMN --------------------------------
-			$htmlShareButtonsForm .= '<div class="col-sm-5">';
-
-			    // plus plug
-			    $htmlShareButtonsForm .= '<div class="well">';
-    			    $htmlShareButtonsForm .= '<h2>Get speed and accuracy</h2>';
-    			    $htmlShareButtonsForm .= '<p class="lead">Do you want <strong>fast</strong> and <strong>consistent share counts</strong>?</p>';
-    			    $htmlShareButtonsForm .= '<p>With <strong>Simple Share Buttons Plus</strong> share counts are saved for the length of time you set, drastically speeding up page load time. Plus also comes with use of the SSB API for <a href="https://simplesharebuttons.com/plus/features/api/"><strong>consistent Facebook share counts</strong></a></p>';
-    			    $htmlShareButtonsForm .= '<img class="ssba-responsive-img" src="' . plugins_url() . '/simple-share-buttons-adder/images/simple-share-buttons-mockups.png' . '" />';
-    			    $htmlShareButtonsForm .= '<div class="text-center ssba-spacer"><span class="text-20 label label-success">Only $10</span></div>';
-    			    $htmlShareButtonsForm .= '<a href="https://simplesharebuttons.com/plus/?utm_source=adder&utm_medium=plugin_ad&utm_campaign=product&utm_content=counters_tab" target="_blank"><span class="ssba-spacer btn btn-block btn-primary">Get Plus!</span></a>';
-    			    $htmlShareButtonsForm .= '<div class="ssba-spacer"></div>';
-			    $htmlShareButtonsForm .= '</div>';
-
-			// close col
-			$htmlShareButtonsForm .= '</div>';
-
 		// close share buttons tab
 		$htmlShareButtonsForm .= '</div>';
 
@@ -734,7 +651,7 @@ function ssba_admin_panel($arrSettings)
 			$htmlShareButtonsForm .= '<blockquote><p>You\'ll find a number of advanced and miscellaneous options below, to get your share buttons functioning how you would like.</p></blockquote>';
 
 			// COLUMN --------------------------------
-			$htmlShareButtonsForm .= '<div class="col-sm-7">';
+			$htmlShareButtonsForm .= '<div class="col-sm-12">';
 
 			    // link to ssb
                 $opts = array(
@@ -911,22 +828,19 @@ function ssba_admin_panel($arrSettings)
                 );
                 $htmlShareButtonsForm .= $ssbpForm->ssbp_input($opts);
 
-			// close col
-			$htmlShareButtonsForm .= '</div>';
+				$htmlShareButtonsForm .='<h4>Privacy Settings</h4>';
 
-			// COLUMN --------------------------------
-			$htmlShareButtonsForm .= '<div class="col-sm-5">';
+				$opts = array(
+					'form_group'    => false,
+					'type'          => 'checkbox',
+					'name'          => 'accepted_sharethis_terms',
+					'label'         => '<a target="_blank" href="https://simplesharebuttons.com/privacy/">Terms of Service</a>',
+					'tooltip'       => 'We \'ve updated our privacy policy and terms of use with important changes you should review.',
+					'value'         => 'Y',
+					'checked'       => ($arrSettings['accepted_sharethis_terms'] != 'N'  ? 'checked' : null),
+				);
 
-			    // plus plug
-			    $htmlShareButtonsForm .= '<div class="well">';
-    			    $htmlShareButtonsForm .= '<h2>Get even more</h2>';
-    			    $htmlShareButtonsForm .= '<p class="lead">Hoping for <strong>even more</strong> features?</p>';
-    			    $htmlShareButtonsForm .= '<p>With <strong>Simple Share Buttons Plus</strong> there is an ever-growing \'Advanced\' features section, including <strong>bit.ly</strong> URL shortening, <strong>Google Analytics Event Tracking</strong> and <strong>Share-Meta</strong> Functionality.</p>';
-    			    $htmlShareButtonsForm .= '<img class="ssba-responsive-img" src="' . plugins_url() . '/simple-share-buttons-adder/images/simple-share-buttons-mockups.png' . '" />';
-    			    $htmlShareButtonsForm .= '<div class="text-center ssba-spacer"><span class="text-20 label label-success">Only $10</span></div>';
-    			    $htmlShareButtonsForm .= '<a href="https://simplesharebuttons.com/plus/?utm_source=adder&utm_medium=plugin_ad&utm_campaign=product&utm_content=advanced_tab" target="_blank"><span class="ssba-spacer btn btn-block btn-primary">Get Plus!</span></a>';
-    			    $htmlShareButtonsForm .= '<div class="ssba-spacer"></div>';
-			    $htmlShareButtonsForm .= '</div>';
+				$htmlShareButtonsForm .= $ssbpForm->ssbp_input($opts);
 
 			// close col
 			$htmlShareButtonsForm .= '</div>';
