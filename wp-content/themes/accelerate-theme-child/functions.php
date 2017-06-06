@@ -85,6 +85,28 @@ function accelerate_theme_support() {
 	}
 add_action( 'after_setup_theme', 'accelerate_theme_support' );
 
+add_filter( 'document_title_separator', 'accelerate_title_separator' );
+function accelerate_title_separator( $sep ) {
+
+    $sep = " | ";
+	
+    return $sep;
+}
+
+add_filter( 'pre_get_document_title', 'case_studies_custom_title', 10 );
+/* Create a title tag for the case studies archive that says 'WORK' */
+function case_studies_custom_title($title) {
+
+	if ( is_post_type_archive( 'case_studies' ) ) {
+		$work_title = "WORK";
+		$site_title = get_bloginfo('name');
+		$sep = " | ";
+		$title = $work_title . $sep . $site_title;
+		return $title;  
+	}
+}
+
+
 // Testing the addition of excerpts for pages
 function accelerate_add_excerpt_for_pages() {
 	add_post_type_support( 'page', 'excerpt' );
