@@ -432,6 +432,31 @@ function red_remove_ver_css_js( $src ) {
 // }
 // add_filter('diy_user_access_filter', 'diy_modify_user_access');
 
+
+
+remove_filter('get_the_excerpt', 'wp_trim_excerpt'); 
+add_filter('get_the_excerpt', 'accelerate_link_excerpt');
+ 
+function accelerate_link_excerpt($text = '') { // Fakes an excerpt if needed
+    global $post;
+	$raw_excerpt = $text;
+    if ( '' == $text ) {
+        $text = get_the_content('');
+        $text = apply_filters('the_content', $text);
+        $text = str_replace('\]\]\>', ']]&gt;', $text);
+        $text = strip_tags($text,'<a>'); // list of tags to allow
+        $excerpt_length = 55; 
+        $words = explode(' ', $text, $excerpt_length + 1);
+        if (count($words)> $excerpt_length) {
+            array_pop($words);
+            array_push($words, '. . .<p><a href="' . get_permalink($post->ID) . '">Read More &raquo;</a></p>');
+            $text = implode(' ', $words);
+        }
+    }
+    return $text;
+}
+
+
 /**
  * Custom template tags for this theme.
  *
