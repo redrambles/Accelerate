@@ -75,7 +75,6 @@ function ssba_activate() {
         'ssba_custom_print' => '',
         'ssba_custom_vk' => '',
         'ssba_custom_yummly' => '',
-        'ssba_custom_facebook_save' => '',
 
         // sharedcount
         'sharedcount_enabled' => '',
@@ -88,7 +87,7 @@ function ssba_activate() {
         // new with sharethis
         'facebook_insights' => '',
         'facebook_app_id' => '',
-        'accepted_sharethis_terms' => 'N',
+        'accepted_sharethis_terms' => 'Y',
     );
 
     // json encode
@@ -115,8 +114,6 @@ function ssba_uninstall() {
     // delete options
     delete_option('ssba_settings');
     delete_option('ssba_version');
-	delete_option( 'ssba_buttons' );
-	delete_option( 'widget_ssba_widget' );
 }
 
 // the upgrade function
@@ -226,15 +223,11 @@ function upgrade_ssba($arrSettings, $version) {
         ssba_update_options($new);
     }
 
-	if ( $version < '6.3.5' ) {
-		ssba_update_options( array( 'ssba_custom_facebook_save' => '' ) );
-	}
-
 	// button helper array
 	ssba_button_helper_array();
 
     // Show the ST terms notice after upgrades if the user hasn't agreed.
-    ssba_update_options( array( 'accepted_sharethis_terms' => 'N', 'hide_sharethis_terms' => false ) );
+    ssba_update_options( array( 'hide_sharethis_terms' => false ) );
 
 	// update version number
 	update_option('ssba_version', SSBA_VERSION);

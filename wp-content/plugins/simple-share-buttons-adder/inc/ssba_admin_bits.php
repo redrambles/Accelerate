@@ -8,34 +8,28 @@ $arrSettings = wp_parse_args( $arrSettings, array(
 ) );
 
 // if the sharethis terms have not yet been accepted
-if ( isset( $_GET['page'] ) &&
-     $_GET['page'] == 'simple-share-buttons-adder' &&
-     'Y' !== $arrSettings['accepted_sharethis_terms'] &&
-     true !== $arrSettings['hide_sharethis_terms']
+if (
+    'Y' !== $arrSettings['accepted_sharethis_terms'] &&
+    true !== $arrSettings['hide_sharethis_terms']
 ) {
-	function sharethis_terms_notice() {
-		?>
-        <div id="sharethis_terms_notice" class="update-nag ssba-nag notice is-dismissible">
-            <p>We've updated our <a href="http://simplesharebuttons.com/privacy" target="_blank">privacy policy and
-                    terms of use</a> with important changes you should review. Please review and <a
-                        href="http://simplesharebuttons.com/privacy" target="_blank">accept the new terms and
-                    privacy
-                    policy</a>.
-                <a href="options-general.php?page=simple-share-buttons-adder&accept-terms=Y"><span
-                            class="button button-primary">I accept</span></a>
-            </p>
+    function sharethis_terms_notice()
+    {
+        ?>
+        <div id="sharethis_terms_notice" class="update-nag notice is-dismissible">
+            <p>There are some <strong>great new features</strong> available with Simple Share Buttons Adder 6.3, such as an improved mobile Facebook sharing experience and Facebook analytics.
+            We've updated our <a href="http://simplesharebuttons.com/privacy" target="_blank">privacy policy and terms of use</a> with important changes you should review. To take advantage of the new features, please review and accept the new <a href="http://simplesharebuttons.com/privacy" target="_blank">terms and privacy policy</a>.
+            <a href="options-general.php?page=simple-share-buttons-adder&accept-terms=Y"><span class="button button-primary">I accept</span></a></p>
         </div>
         <script type="text/javascript">
-            jQuery('#sharethis_terms_notice').on('click', '.notice-dismiss', function (event) {
-                jQuery.post(ajaxurl, {action: 'ssba_hide_terms'});
-            });
+        jQuery( '#sharethis_terms_notice' ).on( 'click', '.notice-dismiss', function( event ) {
+            jQuery.post( ajaxurl, { action: 'ssba_hide_terms' } );
+        });
         </script>
-		<?php
-	}
-
-	add_action( 'admin_notices', 'sharethis_terms_notice' );
+        <?php
+    }
+    add_action( 'admin_notices', 'sharethis_terms_notice' );
+    add_action( 'wp_ajax_ssba_hide_terms', 'ssba_admin_hide_callback' );
 }
-add_action( 'wp_ajax_ssba_hide_terms', 'ssba_admin_hide_callback' );
 // add settings link on plugin page
 function ssba_settings_link($links) {
 
@@ -177,7 +171,6 @@ function ssba_settings() {
     		'ssba_default_pinterest' => (isset($ssbaPost['ssba_default_pinterest']) ? $ssbaPost['ssba_default_pinterest'] : NULL),
     		'ssba_pinterest_featured' => (isset($ssbaPost['ssba_pinterest_featured']) ? $ssbaPost['ssba_pinterest_featured'] : NULL),
     		'ssba_content_priority'  => (isset($ssbaPost['ssba_content_priority']) ? $ssbaPost['ssba_content_priority'] : NULL),
-            'accepted_sharethis_terms' => ( isset( $ssbaPost['accepted_sharethis_terms'] ) ? $ssbaPost['accepted_sharethis_terms'] : 'N' ),
 
     		// share container
     		'ssba_div_padding' => $ssbaPost['ssba_div_padding'],

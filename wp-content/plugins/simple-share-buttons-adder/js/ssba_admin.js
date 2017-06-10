@@ -6,14 +6,6 @@
 		size:		'normal'
 	});
 
-    jQuery('input[name="accepted_sharethis_terms"]').on('switchChange.bootstrapSwitch', function(event, state) {
-		if (state == false){
-		    if (!confirm('This will decline ShareThis Terms of Service, please confirm.')) {
-                jQuery('input[name="accepted_sharethis_terms"]').bootstrapSwitch('toggleState', false, true);
-            }
-		}
-    });
-
 	// color picker
 	jQuery('.ssba-colorpicker').colpick({
 		layout:'hex',
