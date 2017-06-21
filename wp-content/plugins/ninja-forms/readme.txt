@@ -1,9 +1,9 @@
 === Ninja Forms - The Easy and Powerful Forms Builder ===
 Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorhouse, jmcelhaney, wpnzach
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
-Requires at least: 4.5
-Tested up to: 4.7
-Stable tag: 3.1.4
+Requires at least: 4.6
+Tested up to: 4.8
+Stable tag: 3.1.5
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -114,13 +114,37 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.1.4 (06 June 2017) =
+= 3.1.5 (21 June 2017) =
 
 *Bugs:*
 
-* Fixed a possible memory leak that could cause the builder to crash if the settings drawer was opened multiple times.
+* Empty Calculation rounding settings should now default to 2.
+* Using post meta merge tags should now work with other post merge tags.
+* Star Rating fields now have admin key settings.
+* Form cache should now be properly removed when a field is deleted.
+* The "New Form" button should now show when creating a new post or page.
+* HTML fields should now show properly in merge tags.
+* Fixed a bug with the LogLevel class.
+* Querystring merge tags should now be empty rather than showing {querystring:foo} when no querystring is present.
+* Date Created should now be more accurate in all contexts.
+* Fixed a bug that could cause forms to fail to render on the front-end when themes passed content through wpautop.
 
 == Changelog ==
+
+= 3.1.5 (21 June 2017) =
+
+*Bugs:*
+
+* Empty Calculation rounding settings should now default to 2.
+* Using post meta merge tags should now work with other post merge tags.
+* Star Rating fields now have admin key settings.
+* Form cache should now be properly removed when a field is deleted.
+* The "New Form" button should now show when creating a new post or page.
+* HTML fields should now show properly in merge tags.
+* Fixed a bug with the LogLevel class.
+* Querystring merge tags should now be empty rather than showing {querystring:foo} when no querystring is present.
+* Date Created should now be more accurate in all contexts.
+* Fixed a bug that could cause forms to fail to render on the front-end when themes passed content through wpautop.
 
 = 3.1.4 (06 June 2017) =
 
