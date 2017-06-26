@@ -175,6 +175,39 @@ function accelerate_create_custom_post_types() {
 			)
 	 );
 
+	 // private documentation post type
+	 $labels = array(
+		'name' => __( 'Documentation' ),
+		'singular_name' => __( 'Doc' )
+		);
+	 $args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'query_var' => true,
+		'rewrite' => true,
+		'capabilities' => array(
+			'publish_posts' => 'administrator',
+			'edit_posts' => 'administrator',
+			'edit_others_posts' => 'administrator',
+			'delete_posts' => 'administrator',
+			'delete_others_posts' => 'administrator',
+			'read_private_posts' => 'administrator',
+			'edit_post' => 'administrator',
+			'delete_post' => 'administrator',
+			'read_post' => 'administrator',
+		),
+		'hierarchical' => false,
+		'menu_position' => null,
+		'has_archive' => true,
+			'rewrite' => array(
+				'slug' => 'documentation'
+				),
+		'supports' => array('title','editor','thumbnail')
+	); 
+	register_post_type('documentation', $args);
+
 }
 // Hook this custom post type function into the theme
 add_action( 'init', 'accelerate_create_custom_post_types' );
