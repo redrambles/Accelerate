@@ -320,6 +320,8 @@ final class NF_Display_Render
         // Output Form Container
         do_action( 'ninja_forms_before_container', $form_id, $form->get_settings(), $form_fields );
         Ninja_Forms::template( 'display-form-container.html.php', compact( 'form_id' ) );
+        
+        $form_id = "$form_id";
 
         ?>
         <!-- TODO: Move to Template File. -->

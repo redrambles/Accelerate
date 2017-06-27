@@ -27,7 +27,9 @@ define( [], function() {
             }
 
             // Strip HTML tags from the form title.
-            this.set( 'title', this.get( 'title' ).replace(/<\/?[^>]+(>|$)/g, "") );
+            if ( this.get( 'title' ) ) {
+               this.set( 'title', this.get( 'title' ).replace(/<\/?[^>]+(>|$)/g, "") ); 
+            }
         },
         
         initShortcode: function( id ) {
