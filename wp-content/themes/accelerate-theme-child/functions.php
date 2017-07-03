@@ -306,6 +306,9 @@ function accelerate_body_classes( $classes ) {
   if ( is_page( 'about' ) ) {
     $classes[] = 'about-page';
   }
+  if ( is_page( 'about-flexible' ) ) {
+    $classes[] = 'about-flexible';
+  }
   if (is_page('success') ) {
     $classes[] = 'success-form-message';
   }
