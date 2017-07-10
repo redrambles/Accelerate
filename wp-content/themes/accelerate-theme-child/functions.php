@@ -423,6 +423,12 @@ if( function_exists('acf_add_options_page') ) {
 	'parent_slug'	=> 'accelerate-theme-child-options',
 ));
 
+acf_add_options_sub_page(array(
+	'page_title' 	=> 'Help',
+	'menu_title'	=> 'Help',
+	'parent_slug'	=> 'options-general.php',
+));
+
 }
 /// Security measures
 // Remove WP version from the source code
