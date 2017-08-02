@@ -123,12 +123,15 @@ final class NF_Admin_Menus_SystemStatus extends NF_Abstracts_Submenu
         $tls = WPN_Helper::get_tls();
         if ( ! $tls ) $tls = 'unknown';
 
+        $wp_version = get_bloginfo('version');
+        $wp_compatible = ( version_compare( $wp_version, Ninja_Forms::WP_MIN_VERSION ) >= 0 ) ? __( 'Supported', 'ninja-forms' ) : __( 'Not Supported', 'ninja-forms' );
+
         //Output array
         $environment = array(
             __( 'Home URL','ninja-forms' ) => home_url(),
             __( 'Site URL','ninja-forms' ) => site_url(),
             __( 'Ninja Forms Version','ninja-forms' ) => esc_html( Ninja_Forms::VERSION ),
-            __( 'WP Version','ninja-forms' ) => get_bloginfo('version'),
+            __( 'WP Version','ninja-forms' ) => $wp_version . ' - ' . $wp_compatible,
             __( 'WP Multisite Enabled','ninja-forms' ) => $multisite,
             __( 'Web Server Info','ninja-forms' ) => esc_html( $_SERVER['SERVER_SOFTWARE'] ),
             __( 'TLS Version','ninja-forms' ) => $tls,

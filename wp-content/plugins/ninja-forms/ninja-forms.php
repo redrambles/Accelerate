@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 3.1.6
+Version: 3.1.8
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -52,7 +52,9 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         /**
          * @since 3.0
          */
-        const VERSION = '3.1.6';
+        const VERSION = '3.1.8';
+
+        const WP_MIN_VERSION = '4.6';
 
         /**
          * @var Ninja_Forms
@@ -291,8 +293,6 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                  */
                 self::$instance->_eos[ 'parser' ] = require_once 'includes/Libraries/EOS/Parser.php';
 
-                self::$instance->session = new NF_Session();
-
                 /*
                  * Plugin Settings
                  */
@@ -479,11 +479,15 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 
         public function eos()
         {
-            return new Parser();
+            return new NF_EOS_Parser();
         }
 
         public function session()
         {
+            if( ! $this->session ){
+                $this->session = new NF_Session();
+                $this->session->init();
+            }
             return $this->session;
         }
 

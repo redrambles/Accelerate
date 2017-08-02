@@ -380,6 +380,10 @@ return apply_filters( 'ninja_forms_field_settings', array(
         'group'         => 'primary',
         'options'       => array(
             array(
+                'label' => __( 'Default', 'ninja-forms' ),
+                'value' => 'default',
+            ),
+            array(
                 'label' => __( 'DD/MM/YYYY', 'ninja-forms' ),
                 'value' => 'DD/MM/YYYY',
             ),
@@ -420,7 +424,7 @@ return apply_filters( 'ninja_forms_field_settings', array(
                 'value' => 'dddd, MMMM D YYYY',
             ),
         ),
-        'value'         => 'DD/MM/YYYY',
+        'value'         => '',
     ),
 
     /*

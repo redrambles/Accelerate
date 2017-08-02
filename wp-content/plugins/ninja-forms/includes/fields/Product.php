@@ -34,6 +34,7 @@ class NF_Fields_Product extends NF_Abstracts_Input
         $this->_settings[ 'product_price' ][ 'width' ] = 'full';
 
         add_filter( 'ninja_forms_merge_tag_value_product', array( $this, 'merge_tag_value' ), 10, 2 );
+        add_filter( 'ninja_forms_merge_tag_calc_value_product', array( $this, 'merge_tag_value' ), 10, 2 );
 
         add_filter( 'ninja_forms_localize_field_' . $this->_name, array( $this, 'filter_required_setting' ) );
         add_filter( 'ninja_forms_localize_field_' . $this->_name . '_preview', array( $this, 'filter_required_setting' ) );

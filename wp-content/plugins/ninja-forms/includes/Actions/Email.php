@@ -69,7 +69,7 @@ final class NF_Actions_Email extends NF_Abstracts_Action
         $attachments = $this->_get_attachments( $action_settings, $data );
 
         if( 'html' == $action_settings[ 'email_format' ] ) {
-            $message = $action_settings['email_message'];
+            $message = wpautop( $action_settings['email_message'] );
         } else {
             $message = $this->format_plain_text_message( $action_settings[ 'email_message_plain' ] );
         }
@@ -80,15 +80,19 @@ final class NF_Actions_Email extends NF_Abstracts_Action
             $sent = wp_mail($action_settings['to'], $action_settings['email_subject'], $message, $headers, $attachments);
         } catch ( Exception $e ){
             $sent = false;
-            $errors[ 'email_sent' ] = $e->getMessage();
+            $errors[ 'email_not_sent' ] = $e->getMessage();
         }
 
-        $data[ 'actions' ][ 'email' ][ 'to' ] = $action_settings['to'];
-        $data[ 'actions' ][ 'email' ][ 'sent' ] = $sent;
-        $data[ 'actions' ][ 'email' ][ 'headers' ] = $headers;
-        $data[ 'actions' ][ 'email' ][ 'attachments' ] = $attachments;
+        if( is_user_logged_in() && current_user_can( 'manage_options' ) ) {
+            $data[ 'actions' ][ 'email' ][ 'to' ] = $action_settings[ 'to' ];
+            $data[ 'actions' ][ 'email' ][ 'headers' ] = $headers;
+            $data[ 'actions' ][ 'email' ][ 'attachments' ] = $attachments;
+        }
 
-        if( $errors ){
+        $data[ 'actions' ][ 'email' ][ 'sent' ] = $sent;
+
+        // Only show errors to Administrators.
+        if( $errors && current_user_can( 'manage_options' ) ){
             $data[ 'errors' ][ 'form' ] = $errors;
         }
         
@@ -118,7 +122,7 @@ final class NF_Actions_Email extends NF_Abstracts_Action
                     $email = $email[ 1 ];
                 }
                 if( ! is_email( $email ) ) {
-                    $errors[ 'email_' . $email ] = sprintf( __( 'Your email action "%s" has an invalid value for the "%s" setting. Please check this setting and try again.', 'ninja-forms'), $action_settings[ 'label' ], $setting );
+                    $errors[ 'invalid_email' ] = sprintf( __( 'Your email action "%s" has an invalid value for the "%s" setting. Please check this setting and try again.', 'ninja-forms'), $action_settings[ 'label' ], $setting );
                 }
             }
         }
