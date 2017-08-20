@@ -311,7 +311,7 @@
 </script>
 
 <script id="tmpl-nf-drawer-staged-field" type="text/template">
-     <span class="nf-item-dock" id="{{{ data.id }}}" data-id="{{{ data.slug }}}"><span class="fa fa-{{{ data.icon }}}"></span>{{{ data.nicename }}}<span class="dashicons dashicons-dismiss"></span>
+     <span class="nf-item-dock" id="{{{ data.id }}}" data-id="{{{ data.slug }}}"><span class="fa fa-{{{ data.icon }}}" data-id="{{{ data.slug }}}"></span>{{{ data.nicename }}}<span class="dashicons dashicons-dismiss"></span>
 </script>
 
 <script id="tmpl-nf-drawer-field-type-section" type="text/template">
@@ -323,7 +323,7 @@
 
 <script id="tmpl-nf-drawer-field-type-button" type="text/template">
     <div class="nf-field-type-button nf-field-type-draggable {{{ data.savedField() }}}" data-id="{{{ data.id }}}">
-        <div class="nf-item" data-id="{{{ data.id }}}" tabindex="0"><span class="fa fa-{{{ data.icon }}}"></span>{{{ data.nicename }}}</div>
+        <div class="nf-item" data-id="{{{ data.id }}}" tabindex="0"><span class="fa fa-{{{ data.icon }}}" data-id="{{{ data.id }}}"></span>{{{ data.nicename }}}</div>
     </div>
 </script>
 

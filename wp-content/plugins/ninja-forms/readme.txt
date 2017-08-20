@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorho
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.6
 Tested up to: 4.8
-Stable tag: 3.1.8
+Stable tag: 3.1.9
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -114,41 +114,29 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.1.8 (01 August 2017) =
-
-*Features:*
-
-* You can now limit form submissions based upon unique fields.
-
-*Changes:*
-
-* Simplified the collect payment action by making it easier to set a paymen total.
-* Form titles should appear in form export filenames.
-* Added a filter to submissions table view labels.
-* Removed the wrapper class for the ReCaptcha field.
-* WordPress date settings are now the default for datepicker fields.
-* Condensed admin notices into an easier to dismiss format.
-* Links to media files entered into the RTE for actions should now use the title of that media item.
-* Added a confirm dialog to the rollback button.
-* Term merge tags should use the term label now, rather than the ID.
-* Added a minimum WordPress version check to the Get Help->System Status page.
+= 3.1.9 (04 August 2017) =
 
 *Bugs:*
 
-* Fixed a bug that could cause the dashboard to fail to display.
-* Updated form templates for consistency.
-* Email action errors should only show to admin users who are logged-in.
-* Translation of submission labels and text should work properly.
-* Password fields should not save in the database.
-* Empty h3 tags are no longer output when a form title is empty.
-* Merge tags should work more consistently in all contexts.
-* The delete animation on the dashboard should be clearer.
-* Fixed conflicts with other plugins using our EOS math library.
-* Created On dates for imported and duplicated forms should reflect the current date.
-* Fixed a bug with calculations that could cause a NaN error in JavaScript.
-* Merge tags should work properly when previewing a form with unpublished changes.
+* Fixed a bug that caused form submissions to fail with an NF_ESO_PARSER error.
+* The nf_sub_seq_num shortcode should now be properly converted when upgrading from 2.9.x to 3.0.
+* bcc and cc fields in email actions should convert properly when upgrading from 2.9.x to 3.0.
+* Clicking on icons and buttons in the builder should be much more consistent.
+* Scrolling in the drawer should work properly when viewing the form builder on a mobile device.
+* Fixed a bug that prevented the drawer from opening when editing a duplicated list field.
 
 == Changelog ==
+
+= 3.1.9 (04 August 2017) =
+
+*Bugs:*
+
+* Fixed a bug that caused form submissions to fail with an NF_ESO_PARSER error.
+* The nf_sub_seq_num shortcode should now be properly converted when upgrading from 2.9.x to 3.0.
+* bcc and cc fields in email actions should convert properly when upgrading from 2.9.x to 3.0.
+* Clicking on icons and buttons in the builder should be much more consistent.
+* Scrolling in the drawer should work properly when viewing the form builder on a mobile device.
+* Fixed a bug that prevented the drawer from opening when editing a duplicated list field.
 
 = 3.1.8 (01 August 2017) =
 

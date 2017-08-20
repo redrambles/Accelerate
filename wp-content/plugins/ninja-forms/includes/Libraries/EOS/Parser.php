@@ -148,7 +148,7 @@ class NF_EOS_Parser {
      */
     private function checkInfix($infix) {
         if(trim($infix) == "") {
-            throw new Exception("No Equation given", NF_ESO_Parser::E_NO_EQ);
+            throw new Exception("No Equation given", NF_EOS_Parser::E_NO_EQ);
         }
         //Make sure we have the same number of '(' as we do ')'
         // and the same # of '[' as we do ']'

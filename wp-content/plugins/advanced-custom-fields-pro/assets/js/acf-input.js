@@ -1746,7 +1746,7 @@ var acf;
 			$.each(args, function(k,v){
 				
 				// object
-				if( typeof v === 'object' ) {
+				if( $.isPlainObject(v) && !$.isEmptyObject(v) ) {
 					
 					// loop
 					$.each(v, function(k2,v2){
