@@ -110,3 +110,36 @@ function add_twitter_handle( $title ) {
     	return $title .= '<div class="twitterhandle">@'. $twitter_handle . '</div>';
 		}
 add_filter('widget_title', 'add_twitter_handle'); 
+
+// Feed me a sidebar
+// function red_random_sidebar() {
+
+// 	// Fetch ids of currently active widget areas
+// 	$active_sidebar_ids = [];
+// 	foreach($wp_registered_sidebars as $sidebar) {
+// 		$sidebar_id = $sidebar["id"];
+// 		if (is_active_sidebar($sidebar_id )){
+// 			array_push ($active_sidebar_ids, $sidebar_id);
+// 		}
+// 	} 
+// 	// Give me a random active sidebar
+// 	$random_sidebar_index = array_Rand($active_sidebar_ids);
+// 	return $sidebar_array[$random_sidebar_index];
+// }
+// add_action('sidebar_admin_page', 'red_random_sidebar');
+// foreach($wp_registered_sidebars as $sidebar) {
+// 	$sidebar_id = $sidebar["id"];
+// 	if (is_active_sidebar($sidebar_id )){
+// 		echo $sidebar_id;
+// 	}
+// }
+
+function red_random_sidebar() {
+	$sidebar = $GLOBALS['wp_registered_sidebars'];
+    $sidebar_array= ["sidebar-2", "sidebar-1"];
+	$random_sidebar_index = array_Rand($sidebar_array);
+	//return $sidebar_array[$random_sidebar_index];
+	echo "hi";
+	var_dump($sidebar);
+}
+add_action('wigets_init', 'red_random_sidebar');

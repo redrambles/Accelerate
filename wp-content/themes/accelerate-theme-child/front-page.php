@@ -96,6 +96,8 @@ get_header(); ?>
 	</div>
 </section>
 
+<?php red_random_sidebar(); ?>
+
 <section class="recent-posts">
 	<div class="site-content">
 		<div class="blog-post">
