@@ -119,11 +119,11 @@ get_header(); ?>
 		    $link_name = get_field('link_name');
 		?>
 		<!-- The twitter handle is being fetched from the database and appended to the widget title using a filter - in inc/extras.php -->
-		<?php 
-		$random_sidebar = red_random_sidebar();
-		if ( is_active_sidebar( $random_sidebar ) ) : ?>
+		<?php
+		// verify that the return value of the random_sidebar function isn't empty before outputting markup
+		if (red_random_sidebar() != "") : ?>
 		<div id="secondary" class="widget-area tweet-module" role="complementary">
-		    <a href="<?php echo $twitter_link ?>"><?php dynamic_sidebar( $random_sidebar ); ?></a>
+		    <a href="<?php echo $twitter_link ?>"><?php dynamic_sidebar( red_random_sidebar() ); ?></a>
 
 		    <a href="<?php echo $twitter_link ?>" class="follow-us-link"><?php echo $link_name; ?><span> &rsaquo;</span></a>
 		</div>
