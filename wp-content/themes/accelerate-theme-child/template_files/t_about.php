@@ -42,21 +42,20 @@ get_header(); ?>
 					'order' => 'ASC',
 					// 'orderby' => 'menu_order'
 				);
-
-			$services_query = new WP_Query($args);
 			?>
 
-			<?php while ($services_query-> have_posts() ) : $services_query->the_post();
+			<?php query_posts($args);
+				while ( have_posts() ) : the_post();
 				// Variables from our 'services' CPT 
 				$cpt_service_description = get_field('cpt_service_description'); 
 				$cpt_service_image = get_field('cpt_service_image'); 
-				$alignment = get_field('alignment'); /* This is the value of the image alignment radio button */
+				//$alignment = get_field('alignment'); /* This is the value of the image alignment radio button */
 				$size = "full";
-				//$align = ($services_query->current_post % 2 == 0)? 'alignright' : 'alignleft';
+				$align = ($wp_query->current_post % 2 == 0)? 'alignright' : 'alignleft';
 			?>
 
 				<section class="service-section">
-					<figure class="service-image align<?php echo $alignment; ?>">
+					<figure class="service-image <?php echo $align; ?>">
 						<?php echo wp_get_attachment_image( $cpt_service_image, $size ); ?>
 					</figure>
 					<div class="service-description">
@@ -66,7 +65,7 @@ get_header(); ?>
 				</section>
 				
 				<?php endwhile; //end the while loop
-					wp_reset_postdata(); ?>
+					wp_reset_query(); ?>
 				
 		</div><!-- .all-services -->
 		
