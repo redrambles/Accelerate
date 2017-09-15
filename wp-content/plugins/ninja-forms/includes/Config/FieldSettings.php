@@ -215,6 +215,10 @@ return apply_filters( 'ninja_forms_field_settings', array(
                 'value' => '99/99/9999',
             ),
             array(
+                'label' => __( 'Currency', 'ninja-forms' ),
+                'value' => 'currency',
+            ),
+            array(
                 'label' => __( 'Custom', 'ninja-forms' ),
                 'value' => 'custom',
             ),

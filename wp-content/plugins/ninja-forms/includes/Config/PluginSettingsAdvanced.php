@@ -44,6 +44,19 @@ return apply_filters( 'ninja_forms_plugin_settings_advanced', array(
     ),
 
     /*
+     |--------------------------------------------------------------------------
+     | Tracking Opt-in
+     |--------------------------------------------------------------------------
+     */
+
+    'allow_tracking' => array(
+        'id'    => 'allow_tracking',
+        'type'  => 'checkbox',
+        'label' => __( 'Allow Tracking', 'ninja-forms' ),
+        'desc'  => __( 'If you opt-in, some data about your installation of Ninja Forms will be sent to NinjaForms.com (this does NOT include your submissions).', 'ninja-forms' )
+    ),
+
+    /*
     |--------------------------------------------------------------------------
     | Opinionated Styles
     |--------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Class NF_Fields_CreditCard
+ * Class NF_Fields_Recaptcha
  */
 class NF_Fields_Recaptcha extends NF_Abstracts_Field
 {
@@ -24,6 +24,26 @@ class NF_Fields_Recaptcha extends NF_Abstracts_Field
         parent::__construct();
 
         $this->_nicename = __( 'Recaptcha', 'ninja-forms' );
+
+        $this->_settings[ 'size '] = array(
+            'name' => 'size',
+            'type' => 'select',
+            'label' => __( 'Visibility', 'ninja-forms' ),
+            'options' => array(
+                array(
+                    'label' => __( 'Visible', 'ninja-forms' ),
+                    'value' => 'visible'
+                ),
+                array(
+                    'label' => __( 'Invisible', 'ninja-forms' ),
+                    'value' => 'invisible'
+                ),
+            ),
+            'width' => 'one-half',
+            'group' => 'primary',
+            'value' => 'visible',
+            'help' => __( 'Select whether to display a "I\'m not a robot" field or to detect if the user is a robot in the background.', 'ninja-forms' ),
+        );
 
         add_filter( 'nf_sub_hidden_field_types', array( $this, 'hide_field_type' ) );
     }

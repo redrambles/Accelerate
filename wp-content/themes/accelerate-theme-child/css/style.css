@@ -1,0 +1,1601 @@
+/*
+Theme Name: Accelerate Marketing
+Author: Ann Cascarano (Redrambles)
+Author URI: http://redrambles.com
+Template: accelerate-theme
+Version: 1.0.0
+Text Domain: accelerate-theme-child
+*/
+
+
+/*@import url('../accelerate-theme/style.css');*/
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+.site {
+    overflow: hidden;
+    width: 100%;
+    min-width: 320px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.main-content {
+    padding: 55px 4% 0 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+}
+
+::-moz-selection {
+    color: #fff;
+    background: #45AC9D;
+    text-shadow: none;
+}
+
+::selection {
+    color: #fff;
+    background: #45AC9D;
+    text-shadow: none;
+}
+
+::-moz-selection {
+    color: #fff;
+    background: #45AC9D;
+    text-shadow: none;
+}
+
+
+/* Hide content visually but make available to screen readers */
+
+.screen-reader-text {
+    position: absolute !important;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    width: 1px;
+    height: 1px;
+    /* many screen reader and browser combinations announce broken words as they would appear visually */
+    word-wrap: normal !important;
+}
+
+header#masthead {
+    /*height: 50px;*/
+    box-sizing: content-box;
+}
+
+.header-main {
+    overflow: hidden;
+    width: 960px;
+    max-width: 95%;
+    padding: 0 1em;
+}
+
+.site-content,
+.site-footer {
+    width: 100%;
+    max-width: 960px;
+    /*overflow: hidden; */
+}
+
+.site-footer .site-info {
+    overflow: auto;
+}
+
+.blog-page {
+    margin: 0;
+    padding: 0;
+}
+
+#masthead {
+    background: none repeat scroll 0 0 #45ac9d;
+}
+
+.button {
+    background: none repeat scroll 0 0 #45ac9d;
+}
+
+
+/* THIS is the style that so many students are looking for to make their menu inline  - however - the parent theme has 'clearfix' styles so adding .clearfix class to the menu-class parameter in the menu function in header.php is a better solution than 'overflow: auto'. */
+
+.menu-top-nav-container ul {
+    /*overflow: auto;*/
+}
+
+.menu-top-nav-container ul li {
+    position: relative;
+    /* for the border-bottom effect for the link */
+    float: left;
+    /* Makes it easier to add sub-menu items */
+    margin-left: 35px;
+    text-transform: uppercase;
+}
+
+.menu-top-nav-container ul li:first-of-type {
+    margin-left: 0;
+}
+
+.mobile-menu {
+    display: none;
+    padding: 3px 5px;
+}
+
+
+/* This isn't working - TO-DO */
+
+.mobile-menu:hover,
+.mobile-menu:active {
+    cursor: pointer;
+    transition: all 800ms ease;
+    background: #2e6d64;
+}
+
+
+/* This will make the current menu item bold in top navigation bar */
+
+.nav-menu .current-menu-item>a,
+.nav-menu .current_page_item>a {
+    font-weight: bold;
+}
+
+.menu-top-nav-container ul li a::after {
+    position: absolute;
+    bottom: -2.5px;
+    left: 0;
+    width: 0;
+    content: '';
+    transition: width 0.45s ease;
+    -ms-transform-origin: left;
+    transform-origin: left;
+    opacity: 0;
+    border-bottom: 2px solid #fff;
+}
+
+
+/* Underline hover effect */
+
+.menu-top-nav-container ul li:hover a::after,
+.menu-top-nav-container ul li:active a::after {
+    width: 100%;
+    opacity: 1;
+}
+
+
+/* Test - if I wanted to make the current menu item have a background-color of tomato but ONLY if it is the blog-menu item - first add the CSS class to the menu item in the Dashboard (blog-menu) */
+
+
+/*.current-menu-item.blog-menu {
+background-color: tomato;
+}*/
+
+section.home-page {
+    box-sizing: content-box;
+    /* To overwrite the 'box-sizing: border-box' property in this specific instance */
+    background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
+}
+
+.home .site-content {
+    overflow: auto;
+}
+/* Home Page Featured Work */
+
+.featured-work {
+    margin-bottom: 20px;
+}
+
+.featured-work-title {
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.homepage-featured-work {
+    overflow: hidden;
+    margin: 0;
+    padding-bottom: 10%;
+    list-style: none;
+}
+
+.individual-featured-work {
+    display: inline-block;
+    width: 31%;
+    margin-right: 3%;
+}
+
+.individual-featured-work:nth-child(3n) {
+    margin-right: 0;
+}
+
+.individual-featured-work figure {
+    text-align: center;
+}
+
+.individual-featured-work h5 {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.site-content>h4 {
+    padding-bottom: 3%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #444;
+    font-family: 'Montserrat';
+    font-size: 16px;
+}
+
+
+/* Home Page Services */
+
+.featured-services {
+    margin-bottom: 20px;
+}
+
+.homepage-featured-services {
+    overflow: auto;
+    margin: 0;
+    padding-bottom: 10%;
+    list-style: none;
+}
+
+.individual-featured-service {
+    float: left;
+    width: 23%;
+    margin-right: 2%;
+}
+
+.individual-featured-service:last-of-type {
+    margin-right: 0;
+}
+
+.individual-featured-service figure {
+    text-align: center;
+}
+
+.individual-featured-service h5 {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 400;
+}
+
+
+/* Home Page Recent Posts Section */
+
+.recent-posts {
+    clear: both;
+    overflow: hidden;
+}
+
+
+/* Home Page Blog Post */
+
+.blog-post {
+    float: left;
+    width: 48%;
+    padding: 0 0 1em 1em;
+    word-wrap: break-word;
+}
+
+.blog-post h4,
+.PI_SimpleTwitterTweets h3 {
+    text-transform: uppercase;
+    color: #a6a6a6;
+    font-family: 'Montserrat';
+    font-size: 16px;
+}
+
+.blog-post h2 {
+    padding-bottom: 20px;
+    font-family: 'Montserrat';
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.blog-post p {
+    color: #818181;
+    font-size: 16.5px;
+}
+
+.blog-post .read-more-link {
+    text-transform: uppercase;
+    color: #45ac9d;
+    font-family: 'Montserrat';
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+/* Home Page Tweet Sidebar */
+
+.tweet-module {
+    float: right;
+    width: 45%;
+    padding: 2% 0 0 5%;
+}
+
+.tweets {
+    padding-top: 30px;
+    list-style: none;
+}
+
+ul.tweets li {
+    color: #818181;
+    font-style: normal;
+}
+
+.tweets li em {
+    display: none;
+}
+
+a.follow-us-link {
+    padding-left: 40px;
+    text-transform: uppercase;
+    color: #45ac9d;
+    font-family: 'Montserrat';
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/*.tweets li a[href*="status"] {
+    display: none;
+}*/
+
+span.stt-em {
+    display: none;
+}
+
+
+/* To add the '@Accelerate' */
+
+
+/* #pi_simpletwittertweets-2 h3::after {
+    content: "@Accelerate";
+    display: block;
+    color: #3b3b3b;
+    margin-top:36px;
+    text-transform: none;
+    font-size: 24px;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    margin-bottom: 25px;
+} */
+
+.twitterhandle {
+    margin-top: 30px;
+    text-transform: none;
+    color: #3b3b3b;
+    font-size: 1.4em;
+}
+
+.twitterhandle::first-letter {
+    text-transform: uppercase;
+}
+
+
+/* Homepage FAQ section */
+.site-content.faq-home-section {
+    padding: 1em;
+}
+ul.faq-list {
+    margin: 0;
+}
+.faq-term a {
+    display: block;
+    padding: 0.75em;
+    margin: 1.5em 0;
+    border: 1px solid #3b3b3b;
+    width: 150px;
+    text-align: center;
+}
+.faq-post-thumbnail {
+    margin: 0 .2em;
+}
+.faq-post-thumbnail img {
+    margin: 0 auto;
+}
+.faq-front-title {
+    text-align: center;
+}
+/* Social icons homepage - modifying display using Menu Social Icons Plugin */
+
+
+/*ul.social-media-menu {
+    list-style: none;
+    clear: both;
+}*/
+
+.social-media-navigation ul {
+    list-style: none;
+}
+
+.social-media-menu li {
+    display: inline-block;
+    width: 40px;
+    margin: 0px 3px;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    font-size: 0.6em;
+}
+
+.social-media-menu li a {
+    color: white;
+}
+
+
+/* Social Icons without plugin - manual approach. Must uncomment the span tags in menu in footer.php */
+
+
+/*.social-media-navigation ul {
+    float: right;
+    text-align: center;
+    list-style: none;    
+}
+
+.social-media-navigation ul li {
+    position: relative;
+    display:  inline-block;
+    background: rgba(0,0,0,0.8);
+    margin: 0px 3px;
+    width: 40px;
+    text-align: center;
+    padding: 7px 0;
+    font-size: 0.6em;
+    border-radius: 100%; 
+    -webkit-border-radius: 100%; 
+    -moz-border-radius: 100%;    
+}
+
+.social-media-navigation li a:before {
+    display: inline-block;
+    padding: 0 7px;
+    vertical-align: top;
+    font-family: 'Fontawesome';
+    font-size: 20px;
+    -webkit-font-smoothing: antialiased;
+    color: #fff;
+    content: '\f0c0';
+}
+
+.social-media-navigation li a[href*="facebook.com"]::before { content: '\f09a'; }
+.social-media-navigation li a[href*="twitter.com"]::before { content: '\f099'; }
+.social-media-navigation li a[href*="dribbble.com"]::before { content: '\f17d'; }
+.social-media-navigation li a[href*="plus.google.com"]::before { content: '\f0d5'; }
+.social-media-navigation li a[href*="pinterest.com"]::before { content: '\f0d2'; }
+.social-media-navigation li a[href*="github.com"]::before { content: '\f09b'; }
+.social-media-navigation li a[href*="tumblr.com"]::before { content: '\f173'; }
+.social-media-navigation li a[href*="youtube.com"]::before { content: '\f167'; }
+.social-media-navigationli a[href*="flickr.com"]::before { content: '\f16e'; }
+.social-media-navigation li a[href*="vimeo.com"]::before { content: '\f194'; }
+.social-media-navigation li a[href*="instagram.com"]::before { content: '\f16d'; }
+.social-media-navigation li a[href*="linkedin.com"]::before { content: '\f0e1'; }*/
+
+
+/* Social Sharing Icons */
+
+.ssba {
+    padding-top: 10px;
+}
+
+
+/* Single Blog Page */
+
+div.left {
+    padding-left: 2%;
+}
+
+footer.navigation.container {
+    border: none;
+}
+
+.entry-footer {
+    clear: both;
+}
+
+
+/* Alignments */
+
+.alignleft {
+    display: inline;
+    float: left;
+}
+
+.alignright {
+    display: inline;
+    float: right;
+}
+
+.aligncenter {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+blockquote.alignleft,
+.wp-caption.alignleft,
+img.alignleft {
+    margin: 0.4em 1.6em 1.6em 0;
+}
+
+blockquote.alignright,
+.wp-caption.alignright,
+img.alignright {
+    margin: 0.4em 0 1.6em 1.6em;
+}
+
+blockquote.aligncenter,
+.wp-caption.aligncenter,
+img.aligncenter {
+    clear: both;
+    margin-top: 0.4em;
+    margin-bottom: 1.6em;
+}
+
+.wp-caption.alignleft,
+.wp-caption.alignright,
+.wp-caption.aligncenter {
+    margin-bottom: 1.2em;
+}
+
+
+/* Case Studies */
+
+article.case-study {
+    overflow: auto;
+    width: 100%;
+    /* testing this out */
+}
+
+aside.case-study-sidebar {
+    float: left;
+    width: 33%;
+    margin: 60px 5% 0 0;
+}
+
+aside.case-study-sidebar h2,
+aside.case-study-sidebar h2 a {
+    margin-top: 20px;
+    color: #444;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+aside.case-study-sidebar h6 {
+    margin-top: 0;
+    color: #878787;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+aside #client {
+    margin: 0 0 40px 0;
+    color: inherit;
+    font-size: 15.5px;
+    font-weight: 400;
+}
+
+aside.visit_link {
+    font-weight: 700;
+}
+
+div.case-study-images {
+    float: left;
+    width: 62%;
+    margin-top: 60px;
+    /*width: 606px;*/
+}
+
+div.case-study-images img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto 50px;
+    border: 1px solid #dddddd;
+}
+
+
+/* Footer */
+
+p.footer-desc {
+    letter-spacing: .65px;
+    font-weight: 300;
+}
+
+p.footer-desc span {
+    font-weight: normal;
+}
+
+p.footer-copy {
+    font-size: 0.8em;
+    font-weight: 300;
+}
+
+
+/* Archive Case Study Page */
+
+.view-project {
+    font-size: .9em;
+    font-weight: 700;
+}
+
+
+/* Pages */
+
+.entry-title {
+    padding-bottom: 20px;
+}
+
+.narrow-contact {
+    width: 75%;
+    margin: 0 auto;
+    padding-top: 55px;
+}
+
+.success-form-message .site-content {
+    padding: 5em 0;
+    text-align: center;
+}
+
+.success-form-message h2 {
+    color: #45AC9D;
+}
+
+
+/* Sidebar */
+
+.sidebar .widget ul {
+    list-style-type: none;
+}
+
+aside.sidebar li {
+    list-style-type: none;
+    /*padding-left: 0;*/
+}
+
+aside.sidebar li a {
+    padding-left: 0;
+}
+
+.widgettitle {
+    margin: 20px 0 5px;
+    color: #45ac9d;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.widget_search {
+    position: relative;
+    padding: 28px 31px;
+    border-bottom: 1px solid #BFBFBF;
+}
+
+.widget li {
+    margin-left: -20px;
+    color: #333;
+}
+
+
+/* MailChimp Widget */
+
+#mc4wp_widget-2 {
+    padding-top: 10px;
+}
+
+#mc4wp_form_widget-2 h2.widget-title {
+    margin-bottom: 30px;
+    padding: 15px;
+    /*background-color: #fcfae8;*/
+    text-align: center;
+    border-right: 3px solid #828080;
+    border-left: 3px solid #828080;
+    font-size: 1.2em;
+}
+
+#mc4wp_widget-2 label {
+    display: none;
+}
+
+#mc4wp-form-1 p:nth-child(2) {
+    text-align: center;
+}
+
+#mc4wp-form-1 input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    border: 1px solid #A8A6A6;
+    background-color: #45AC9D;
+    font-size: 0.9em;
+}
+
+#mc4wp-form-1 input#mc4wp_email::-webkit-input-placeholder {
+    font-size: 0.9em;
+}
+
+
+/* Contact Us Page */
+
+#ninja_forms_form_1_all_fields_wrap label {
+    font-size: 0.8em;
+    font-weight: normal;
+}
+
+#ninja_forms_field_1_div_wrap,
+#ninja_forms_field_2_div_wrap {
+    float: left;
+    width: 48%;
+    margin-bottom: 4%;
+}
+
+#ninja_forms_field_2_div_wrap {
+    margin-left: 4%;
+}
+
+#ninja_forms_field_1,
+#ninja_forms_field_2 {
+    height: 40px;
+}
+
+#ninja_forms_field_5 {
+    float: right;
+    padding: 15px 80px;
+    color: #FFF;
+    background-color: #45AC9D;
+    font-family: 'Montserrat', serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.ninja-forms-required-items {
+    display: none;
+}
+
+.ninja-forms-req-symbol {
+    display: none;
+}
+
+.reply-contact {
+    padding-bottom: 20%;
+    text-align: center;
+}
+
+.reply-contact h2 {
+    color: #45AC9D;
+}
+
+
+/* About Page */
+
+.hero-about {
+    height: 360px;
+    padding-top: 1px;
+    background: url("img/taxi-photo-about.jpg") no-repeat scroll right bottom / cover rgba(0, 0, 0, 0);
+}
+
+.hero-text h3 {
+    max-width: 550px;
+    margin: 0 auto;
+    padding-top: 3.5em;
+    text-align: center;
+    letter-spacing: 0.75px;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 1.5em;
+}
+
+.main-color {
+    color: #45AC9D;
+    font-weight: 600;
+}
+
+.about-intro {
+    padding: 40px 0 60px 0;
+    text-align: center;
+}
+
+.about-intro h5 {
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    color: #555;
+    font-weight: 700;
+}
+
+.about-section,
+.service-section {
+    clear: both;
+    overflow: hidden;
+}
+
+.about-section h2,
+.service-section h2 {
+    padding-bottom: 15px;
+    font-weight: 600;
+}
+
+
+/* CSS solution to alternate images */
+
+
+/*.service-section:nth-child(odd) .service-image {
+    float: left;
+    margin-right: 3%;
+}
+.service-section:nth-child(even) .service-image {
+    float: right;
+    margin-left: 3%;
+}*/
+
+
+/* Radio Button Approach - Fine control by client */
+
+.service-image.alignleft {
+    margin-right: 3%;
+}
+
+.service-image.alignright {
+    margin-left: 3%;
+}
+
+.service-description {
+    float: left;
+    /*padding: .5em;*/
+    width: 67%;
+    margin-top: 60px;
+}
+
+.service-description p {
+    color: #555;
+}
+
+.service-image {
+    width: 29%;
+    margin-top: 80px;
+}
+
+.align-left {
+    float: left;
+}
+
+.align-right {
+    float: right;
+}
+
+.about-contact {
+    margin-top: 50px;
+    text-align: center;
+    border-top: 1px dotted #e3e1e1;
+}
+
+.contact-description {
+    display: inline-block;
+    margin-top: 30px;
+}
+
+.contact-button {
+    display: inline-block;
+    margin-left: 10%;
+}
+
+
+/* 404 page */
+
+.image_404 {
+    height: 500px;
+    border: 3px solid #45AC9D;
+    background: url("img/sad-cat.jpg")no-repeat center/ cover rgba(0, 0, 0, 0);
+}
+
+.text_404 {
+    padding-top: 20px;
+    text-align: center;
+    color: #45AC9D;
+    font-family: 'Montserrat';
+}
+
+.text_404 h4 {
+    margin-top: 20px;
+    padding-top: 0;
+    font-weight: 400;
+}
+
+.forgive {
+    font-size: 0.9em;
+    font-weight: 300;
+}
+
+.recentposts_404 {
+    /*display: inline-block;*/
+    float: left;
+    width: 48%;
+    margin-top: 30px;
+    padding-left: 0;
+    word-wrap: break-word;
+}
+
+.recentwork_404 {
+    float: right;
+    width: 48%;
+    margin-top: 30px;
+    margin-left: 4%;
+}
+
+.recentposts_404 h2,
+.recentwork_404 h2 {
+    padding: 15px;
+    border: 2px solid #45AC9D;
+}
+
+.recentposts_404 ul,
+.recentwork_404 ul {
+    margin-left: 0f;
+    list-style-type: none;
+    line-height: 2em;
+}
+
+.recentposts_404 ul li a,
+.recentwork_404 ul li a {
+    font-size: 0.9em;
+}
+
+.search_404 {
+    clear: both;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+/* Sidebar Experiment - BLOG PAGE */
+
+.sidebar .widget_search {
+    border-bottom: 1px solid #BFBFBF;
+}
+
+.sidebar .widget_search .search-form {
+    /* Added this to create a bit of space under the search box after making the text input box a bit smaller */
+    margin-bottom: 30px;
+}
+
+.sidebar .widget_search input[type="text"] {
+    width: 181px;
+    /* Was originally 200px */
+    height: 36px;
+    padding: 8px;
+    vertical-align: middle;
+    border-top: 1px solid #a6a6a6;
+    border-right: none;
+    border-bottom: 1px solid #a6a6a6;
+    border-left: 1px solid #a6a6a6;
+}
+
+.sidebar .widget_search input[type="submit"] {
+    width: 35px;
+    height: 36px;
+    margin-left: -5px;
+    vertical-align: middle;
+    color: #ffffff;
+    border-top: 1px solid #a6a6a6;
+    border-right: 1px solid #a6a6a6;
+    border-bottom: 1px solid #a6a6a6;
+    border-left: none;
+    background: url('img/white-arrow-right.png') no-repeat 13px 10px #45ac9d;
+}
+
+
+/* Blog */
+
+.blog .blog-page .site-content {
+    overflow: auto;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.blog .site-footer .site-info {
+    border-top: none;
+}
+
+#navigation {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    clear: both;
+    overflow: hidden;
+    margin-bottom: 40px;
+    text-align: center;
+    border: solid #bfbfbf;
+    border-width: 1px 0;
+    background: #fff;
+    font: 0.8em/4.08 'Open Sans', Arial, sans-serif;
+}
+
+#navigation .left {
+    float: left;
+}
+
+#navigation .right {
+    float: right;
+}
+
+#navigation .pagination {
+    display: inline;
+}
+
+#navigation .left a,
+#navigation .right a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #45ac9d;
+    font-weight: 600;
+}
+
+#navigation .left a span,
+#navigation .right a span {
+    color: #150300;
+}
+
+#navigation .left a span {
+    padding-left: 8px;
+}
+
+#navigation .right a span {
+    padding-right: 8px;
+}
+
+#navigation .left a:hover,
+#navigation .right a:hover {
+    text-decoration: none;
+}
+
+#navigation .left a:hover span,
+#navigation .right a:hover span {
+    text-decoration: underline;
+}
+
+
+/* COMMENTS */
+
+.comments-area {
+    clear: both;
+    overflow: hidden;
+    margin-bottom: 80px;
+}
+
+.comments-area .comments-title {
+    height: 49px;
+    margin: 15px 0;
+    text-transform: uppercase;
+    color: #150300;
+    border: solid #bfbfbf;
+    border-width: 1px 0;
+    font: 600 0.8em/49px 'Open Sans', Arial, sans-serif;
+}
+
+.comment-list {
+    margin-bottom: 50px;
+}
+
+.comment-list .comment-head {
+    margin: 25px 0 10px;
+}
+
+.comment-list .comment {
+    padding-bottom: 23px;
+    border-bottom: 1px solid #BFBFBF;
+    font: 0.8em/2.08em 'Open Sans', Arial, sans-serif;
+}
+
+.comment-list .comment .comment-meta {
+    float: right;
+}
+
+.comment-list .comment a {
+    text-decoration: none;
+    color: #45ac9d;
+}
+
+.comment-list .comment a:hover {
+    text-decoration: underline;
+}
+
+.comment-list .comment .comment-author {
+    font-weight: 600;
+}
+
+.comments-area .comment-reply-title {
+    margin: 2em 0 1em;
+    text-transform: uppercase;
+    color: #45ac9d;
+    font: bold 1.176em 'Montserrat', 'Open Sans', Arial, sans-serif;
+}
+
+.comments-area .comment-reply-title a {
+    color: #45ac9d;
+}
+
+.comments-area .comment-reply-title a:hover {
+    text-decoration: underline;
+}
+
+.comments-area .comment-form p {
+    padding-bottom: 23px;
+    font: 0.8em/2.08em 'Open Sans', Arial, sans-serif;
+}
+
+.comments-area .comment-form p a {
+    color: #45ac9d;
+}
+
+.comments-area .comment-form p a:hover {
+    text-decoration: underline;
+}
+
+.comments-area .comment-form label {
+    display: block;
+    margin: 10px 0;
+    font: 600 1em 'Open Sans', Arial, sans-serif;
+}
+
+.comments-area .comment-form textarea {
+    width: 100%;
+    height: 180px;
+    padding: 5px 10px;
+    resize: none;
+    font: 16px 'Open Sans', Arial, sans-serif;
+}
+
+.comments-area .comment-form input[type="submit"] {
+    float: right;
+    width: 206px;
+    height: 55px;
+    margin: 24px 0;
+    transition: all 450ms linear;
+    color: #fff;
+    border: 0;
+    background: #45ac9d;
+    font: bold 1.3em/45px 'Montserrat', 'Open Sans', Arial, sans-serif;
+}
+
+.comments-area .comment-form input[type="submit"]:hover {
+    cursor: pointer;
+    background: #31756b;
+}
+
+.comments-area .comment-form div.form-email {
+    padding: 0;
+}
+
+
+/* Adding this to hide the text for HTML allowed tags in comments box */
+
+.form-allowed-tags {
+    display: none;
+}
+
+
+/***** FAQ *****/
+
+.faq-archive-title {
+    margin: 50px 0px 60px 0px;
+    text-align: center;
+    color: #3f3c3c;
+}
+
+.faq .post-entry {
+    /*border-bottom: 1px dotted #bfbfbf;*/
+    border-bottom: none;
+}
+
+.faq .entry-wrap {
+    padding: 0.5em;
+    transition: 800ms ease-in-out;
+    border: 1px solid lightgray;
+}
+
+.faq-title:hover {
+    cursor: pointer;
+}
+
+.faq-selected {
+    border: 0.7px solid lightgray;
+    background-color: #ffffe5;
+}
+
+.post-entry .faq-left {
+    padding-left: 20px;
+    text-align: left;
+}
+
+.post-entry .faq-right {
+    padding-right: 20px;
+    text-align: right;
+}
+
+
+/* Custom Maintenance and/or 'coming-soon' page */
+
+.custom-maintenance .site-header {
+    display: none;
+}
+
+.custom-maintenance .maintenance-widget {
+    margin-top: 60px;
+}
+
+.custom-maintenance h2 {
+    margin-bottom: 30px;
+}
+
+.custom-maintenance h2,
+.custom-maintenance p {
+    color: #A6A6A6;
+}
+
+.custom-maintenance .maintenance-widget h3 {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.custom-maintenance .mc4wp-form,
+.custom-maintenance .mc4wp-form input[type=email] {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.custom-maintenance .mc4wp-form label {
+    display: none;
+}
+
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 1000px) {
+    .site-main {
+        padding: 1em;
+    }
+    /* Don't apply padding to the pages with hero-images */
+    .home .site-main,
+    .about-page .site-main,
+    .page-template-t_about .site-main,
+    .about-page-flexible, .site-main {
+        padding: 0;
+    }
+    .homepage-hero h1,
+    .homepage-hero h3 {
+        padding: 10px 20px;
+    }
+    .site-info,
+    .site-content {
+        overflow: hidden;
+        padding: 0 2%;
+    }
+    .social-media-navigation {
+        float: left;
+        padding-left: 50px;
+    }
+    .main-content,
+    aside.sidebar {
+        width: 100%;
+        max-width: 100%;
+        border-left: 0;
+    }
+    .sidebar {
+        text-align: center;
+    }
+    .sidebar .widget_search {
+        border-bottom: 0;
+    }
+    .sidebar .search-form {
+        padding: 0;
+    }
+    .sidebar .widget_search input[type="text"] {
+        width: 88%;
+        max-width: 88%;
+    }
+    .sidebar .widget_search input[type="submit"] {
+        width: 12%;
+        max-width: 12%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    div.main {
+        clear: both;
+    }
+    .header-main {
+        overflow: visible;
+    }
+    .site-title {
+        padding-bottom: 10px;
+    }
+    .site-navigation {
+        display: none;
+    }
+    .site-navigation.menu-toggle {
+        display: block;
+        float: none;
+        clear: left;
+        width: 100%;
+    }
+    .mobile-menu {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: block;
+    }
+    #masthead {
+        position: relative;
+        height: auto;
+    }
+    .menu-top-nav-container ul li:hover a::after,
+    .menu-top-nav-container ul li:active a::after {
+        width: 75%;
+        opacity: 1;
+    }
+    .menu-top-nav-container {
+        /*background: red;*/
+    }
+    .menu-top-nav-container .nav-menu li {
+        display: block;
+        float: none;
+        margin: 0 0 5px;
+    }
+    .social-media-navigation {
+        float: none;
+        padding: 15px 0 0 0;
+    }
+    .social-media-menu {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .homepage-hero h1 {
+        font-size: 2.5rem;
+    }
+    .homepage-hero h3 {
+        font-size: 1.3rem;
+    }
+    li.individual-featured-work {
+        padding: 0;
+    }
+    .social-media-navigation {
+        width: 100%;
+    }
+    .site-footer .site-description {
+        width: 100%;
+    }
+    p.footer-desc,
+    p.footer-copy {
+        width: 90%;
+        margin: 0 auto 20px;
+    }
+    .social-media-menu {
+        width: 100%;
+        margin-top: 50px;
+        text-align: center;
+    }
+}
+
+
+/* Home Page Featured Work Responsive */
+
+@media screen and (max-width: 980px) {
+    .individual-featured-work {
+        width: 40%;
+        padding: 1rem 1rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .individual-featured-work {
+        width: 100%;
+        padding: 1rem 0;
+    }
+}
+
+
+/* Home Page Services Responsive */
+
+@media screen and (max-width: 980px) {
+    .individual-featured-service {
+        float: left;
+        width: 46%;
+        padding: 2% 2%;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .individual-featured-service {
+        float: left;
+        width: 100%;
+        padding: 1rem 0;
+    }
+}
+
+
+/* This is a WORK IN PROGRESS */
+
+@media screen and (max-width: 850px) {
+    .blog-post,
+    .tweet-module {
+        float: left;
+        width: 100%;
+        max-width: 95%;
+        padding: 0 3.5% 0 4.5%;
+    }
+    aside#pi_simpletwittertweets-2 {
+        padding: 0;
+    }
+    a.follow-us-link {
+        padding: 0;
+    }
+}
+
+
+/* 404 Responsiveness */
+
+@media screen and (max-width: 560px) {
+    .recentposts_404,
+    .recentwork_404 {
+        float: none;
+        width: 90%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .recentposts_404 ul,
+    .recentwork_404 ul {
+        margin-left: .2em;
+        ;
+    }
+}
+
+
+/* Case Studies Rather pitiful attempt at responsiveness */
+
+@media screen and (max-width: 950px) {
+    article.case-study {
+        margin: 0 auto;
+        padding: 20px;
+    }
+    aside.case-study-sidebar {
+        width: 95%;
+    }
+    aside.case-study-sidebar,
+    div.case-study-images {
+        float: none;
+    }
+    div.case-study-images {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    div.case-study-images {
+        width: 90%;
+        max-width: 100%;
+    }
+}
+
+
+/*Contact Form Responsive*/
+
+@media screen and (max-width: 800px) {
+    #ninja_forms_field_1_div_wrap,
+    #ninja_forms_field_2_div_wrap {
+        float: none;
+        width: 100%;
+    }
+    #ninja_forms_field_2_div_wrap {
+        margin-left: 0;
+    }
+    .contact-form p {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .site-content {
+        padding: 0;
+    }
+    .hero-text {
+        padding: 1.5em;
+    }
+    .hero-text h3 {
+        padding-top: 1.5em;
+    }
+    .hero-text p {
+        margin-bottom: 2em;
+        font-size: 0.8em;
+    }
+    .about-intro {
+        padding: 2em 2em 3em;
+    }
+    .about-section {
+        text-align: center;
+    }
+    .align-right,
+    .align-left {
+        float: none;
+    }
+    .about-contact {
+        text-align: center;
+    }
+    .contact-button {
+        margin-left: 0;
+        padding: 2em;
+    }
+    .all-services {
+        padding: 1em;
+    }
+}
+@media screen and (max-width: 720px) {
+
+    .service-description {
+        clear: both;
+        width: 90%;
+        /*padding: 20px;*/
+        margin-top: 1em;
+    }
+    .service-image {
+        width: 100%;
+        margin-top: 0;
+        text-align: center;
+        padding: 0;
+
+    }
+}
+
+@media screen and (max-width: 550px) {
+    
+    .all-services {
+        padding: 0;
+    }
+    .service-description {
+        width: 100%;
+        padding: 0 0.25em 0 0.75em;
+        /*text-align: justify;*/
+
+    }
+    .service-description h2 {
+        text-align: center;
+    }
+
+}
+
+/* TEST */
+
+
+/*body {
+    background-color: tomato;
+}*/
+
+
+/* Playing around the the output of the Custom Fields */
+
+
+/*.sanity {
+    text-align: center;
+    color: tomato;
+}*/

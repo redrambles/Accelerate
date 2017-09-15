@@ -30,6 +30,10 @@ final class NF_Admin_Menus_SystemStatus extends NF_Abstracts_Submenu
 
         wp_enqueue_style( 'nf-admin-system-status', Ninja_Forms::$url . 'assets/css/admin-system-status.css' );
         wp_enqueue_script( 'nf-admin-system-status-script', Ninja_Forms::$url . 'assets/js/admin-system-status.js', array( 'jquery' ) );
+        wp_enqueue_script( 'jBox', Ninja_Forms::$url . 'assets/js/lib/jBox.min.js', array( 'jquery' ) );
+        wp_enqueue_style( 'jBox', Ninja_Forms::$url . 'assets/css/jBox.css' );
+        wp_enqueue_style( 'nf-font-awesome', Ninja_Forms::$url . 'assets/css/font-awesome.min.css' );
+        
         //PHP locale
         $locale = localeconv();
 
@@ -126,6 +130,25 @@ final class NF_Admin_Menus_SystemStatus extends NF_Abstracts_Submenu
         $wp_version = get_bloginfo('version');
         $wp_compatible = ( version_compare( $wp_version, Ninja_Forms::WP_MIN_VERSION ) >= 0 ) ? __( 'Supported', 'ninja-forms' ) : __( 'Not Supported', 'ninja-forms' );
 
+        /* 
+         * Error log
+         */
+        $error_log = array();
+
+        $log = $wpdb->get_results( 'SELECT * FROM `' . $wpdb->prefix . 'nf3_objects` WHERE type = "log" ORDER BY created_at DESC LIMIT 10', ARRAY_A );
+        
+        if ( is_array( $log ) && 0 < count( $log ) ) {
+            foreach ( $log as $error ) {
+                $error_object = Ninja_Forms()->form()->object( $error[ 'id' ] )->get();
+                // Make sure we don't have a duplicate message
+                if ( false === in_array( $error_object->get_setting( 'message' ) ,$error_log ) ) {
+                    $error_log[] = $error_object->get_setting( 'message' );
+                }
+            }
+        } else {
+            $error_log[] = __( 'None Logged', 'ninja-forms' );
+        }
+
         //Output array
         $environment = array(
             __( 'Home URL','ninja-forms' ) => home_url(),
@@ -156,6 +179,6 @@ final class NF_Admin_Menus_SystemStatus extends NF_Abstracts_Submenu
             __( 'Default Timezone','ninja-forms' ) => $default_timezone,
         );
 
-        Ninja_Forms::template( 'admin-menu-system-status.html.php', compact( 'environment', 'site_wide_plugins' ) );
+        Ninja_Forms::template( 'admin-menu-system-status.html.php', compact( 'environment', 'site_wide_plugins', 'error_log' ) );
     }
 } // End Class NF_Admin_SystemStatus
