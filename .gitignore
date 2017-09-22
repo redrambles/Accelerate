@@ -6,12 +6,17 @@ wp-content/uploads/
 phpinfo.php
 debug.sql
 accel_database.sql
+backup.sh
 
 # build stuff
 npm-debug.log
 wp-content/themes/accelerate-theme-child/node_modules
 #wp-content/themes/accelerate-theme-child/gulpfile.js
 wp-content/themes/accelerate-theme-child/img/source
+
+# debugging
+wp-content/plugins/query-monitor/
+wp-content/db.php
 
 # editor specific
 .vscode/

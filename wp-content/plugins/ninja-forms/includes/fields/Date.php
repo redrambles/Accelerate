@@ -48,10 +48,6 @@ class NF_Fields_Date extends NF_Fields_Textbox
             'YYYY/MM/DD' => __( 'Y/m/d', 'ninja-forms' ),
             'YYYY.MM.DD' => __( 'Y.m.d', 'ninja-forms' ),
             'dddd, MMMM D YYYY' => __( 'l, F d Y', 'ninja-forms' ),
-            
-            
-            
-            
         );
 
         return ( isset( $lookup[ $format ] ) ) ? $lookup[ $format ] : $format;

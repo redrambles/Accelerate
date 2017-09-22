@@ -16,7 +16,7 @@ get_header(); ?>
 
 
 <div id="primary" class="site-content">
-	<div id="content" role="main" class="<?php if (is_page('contact')) { echo 'narrow-contact'; } ?>">
+	<div id="content" role="main" class="content <?php if (is_page('contact')) { echo 'narrow-contact'; } ?>">
 
 		<!-- Testing the same function detailed below - put in functions.php and called here - WORKS! -->
 		<?php //red_get_me_some_posts(); ?>

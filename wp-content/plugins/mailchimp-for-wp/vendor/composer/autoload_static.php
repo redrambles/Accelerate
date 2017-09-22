@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc16a50fb3cb50a786a944e8e9cbf2f72
+class ComposerStaticInit53de4def9f9611d4493d50d1c639cfa8
 {
     public static $files = array (
         'fca581ae5268210490253d58378748c5' => __DIR__ . '/../..' . '/includes/functions.php',
@@ -13,6 +13,20 @@ class ComposerStaticInitc16a50fb3cb50a786a944e8e9cbf2f72
         '90c3516593b5de6b5d4528b70e2399dd' => __DIR__ . '/../..' . '/includes/integrations/functions.php',
         '1961896a7f482d8affe08226795bf674' => __DIR__ . '/../..' . '/includes/default-actions.php',
         'cb296d991e3145f10320ab99c1b9ed05' => __DIR__ . '/../..' . '/includes/default-filters.php',
+    );
+
+    public static $prefixLengthsPsr4 = array (
+        'C' => 
+        array (
+            'CodeClimate\\PhpTestReporter\\' => 28,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'CodeClimate\\PhpTestReporter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codeclimate/php-test-reporter/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -90,6 +104,8 @@ class ComposerStaticInitc16a50fb3cb50a786a944e8e9cbf2f72
         'MC4WP_Usage_Tracking' => __DIR__ . '/../..' . '/includes/admin/class-usage-tracking.php',
         'MC4WP_User_Integration' => __DIR__ . '/../..' . '/includes/integrations/class-user-integration.php',
         'MC4WP_Validator' => __DIR__ . '/../..' . '/includes/class-validator.php',
+        'MC4WP_WPForms_Field' => __DIR__ . '/../..' . '/integrations/wpforms/class-field.php',
+        'MC4WP_WPForms_Integration' => __DIR__ . '/../..' . '/integrations/wpforms/class-wpforms.php',
         'MC4WP_WooCommerce_Integration' => __DIR__ . '/../..' . '/integrations/woocommerce/class-woocommerce.php',
         'xrstf\\Composer52\\AutoloadGenerator' => __DIR__ . '/..' . '/xrstf/composer-php52/lib/xrstf/Composer52/AutoloadGenerator.php',
         'xrstf\\Composer52\\Generator' => __DIR__ . '/..' . '/xrstf/composer-php52/lib/xrstf/Composer52/Generator.php',
@@ -98,8 +114,10 @@ class ComposerStaticInitc16a50fb3cb50a786a944e8e9cbf2f72
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInitc16a50fb3cb50a786a944e8e9cbf2f72::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitc16a50fb3cb50a786a944e8e9cbf2f72::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit53de4def9f9611d4493d50d1c639cfa8::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit53de4def9f9611d4493d50d1c639cfa8::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit53de4def9f9611d4493d50d1c639cfa8::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit53de4def9f9611d4493d50d1c639cfa8::$classMap;
 
         }, null, ClassLoader::class);
     }

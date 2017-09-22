@@ -80,9 +80,32 @@ function accelerate_theme_support() {
   add_theme_support('post-thumbnails');
   add_image_size('archive-case-studies', 514, 379, array( 'left', 'top' ) ); 
   add_image_size('front-page-featured-work', 300, 200, true);
+  add_image_size('front-page-faq-slider', 300, 150, true);
   
 	}
 add_action( 'after_setup_theme', 'accelerate_theme_support' );
+
+add_filter( 'document_title_separator', 'accelerate_title_separator' );
+function accelerate_title_separator( $sep ) {
+
+    $sep = " | ";
+	
+    return $sep;
+}
+
+add_filter( 'pre_get_document_title', 'case_studies_custom_title', 10 );
+/* Create a title tag for the case studies archive that says 'WORK' */
+function case_studies_custom_title($title) {
+
+	if ( is_post_type_archive( 'case_studies' ) ) {
+		$work_title = "WORK";
+		$site_title = get_bloginfo('name');
+		$sep = " | ";
+		$title = $work_title . $sep . $site_title;
+		return $title;  
+	}
+}
+
 
 // Testing the addition of excerpts for pages
 function accelerate_add_excerpt_for_pages() {
@@ -144,17 +167,66 @@ function accelerate_create_custom_post_types() {
 				'singular_name' => __( 'FAQ' )
 				),
 			'public' => true,
-			'taxonomies' => array( 'category' ),
 			'has_archive' => true,
 			'rewrite' => array(
 				'slug' => 'faqs'
 				),
+			'supports' => array('title', 'editor', 'thumbnail')
 			)
 	 );
+
+	 // private documentation post type
+	 $labels = array(
+		'name' => __( 'Documentation' ),
+		'singular_name' => __( 'Doc' )
+		);
+	 $args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'query_var' => true,
+		'rewrite' => true,
+		'capabilities' => array(
+			'publish_posts' => 'administrator',
+			'edit_posts' => 'administrator',
+			'edit_others_posts' => 'administrator',
+			'delete_posts' => 'administrator',
+			'delete_others_posts' => 'administrator',
+			'read_private_posts' => 'administrator',
+			'edit_post' => 'administrator',
+			'delete_post' => 'administrator',
+			'read_post' => 'administrator',
+		),
+		'hierarchical' => false,
+		'menu_position' => null,
+		'has_archive' => true,
+			'rewrite' => array(
+				'slug' => 'documentation'
+				),
+		'supports' => array('title','editor','thumbnail')
+	); 
+	register_post_type('documentation', $args);
 
 }
 // Hook this custom post type function into the theme
 add_action( 'init', 'accelerate_create_custom_post_types' );
+
+add_action( 'init', 'faq_taxonomy');
+function faq_taxonomy() {
+    register_taxonomy( 'faq_genre', 'faq', 
+	array( 
+		'labels' => array(
+			'name'	=> 'Genre',
+		),
+		'hierarchical' => true,  
+		'sort' => true,
+		'args' => array('orderby' => 'term_order'),
+		'show_admin_column' => true
+		)
+	);
+}
+
 
 //Enqueue scripts and styles.
 function accelerate_child_scripts() {
@@ -169,6 +241,12 @@ function accelerate_child_scripts() {
 	if ( is_404() ) {
 		wp_enqueue_script('404', get_stylesheet_directory_uri() . '/js/test-404.js', array('jquery'), '20160603', false );
 	}
+
+	// Slick Slider
+	wp_enqueue_script( 'slick-js', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', array('jquery'), '1.3.1' );
+	wp_enqueue_script( 'slick-activate', trailingslashit( get_stylesheet_directory_uri() ) . 'js/slidorama.js', 'jquery', '20160121', true );
+	wp_enqueue_style( 'slick-css', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css', '', '1.6.0' );
+	wp_enqueue_style( 'slick-theme-css', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css', array( 'slick-css' ), '1.6.0' );
   // for dynamically outputting the twitter handle in the correct spot inside the twitter widget - used filter instead
   // if ( is_front_page() ) {
   //   wp_enqueue_script('front-page-twitter', get_stylesheet_directory_uri() . '/js/front-page-twitter.js', array('jquery'), '20170222', true );
@@ -227,6 +305,9 @@ function accelerate_body_classes( $classes ) {
  
   if ( is_page( 'about' ) ) {
     $classes[] = 'about-page';
+  }
+  if ( is_page( 'about-flexible' ) ) {
+    $classes[] = 'about-flexible';
   }
   if (is_page('success') ) {
     $classes[] = 'success-form-message';
@@ -342,6 +423,12 @@ if( function_exists('acf_add_options_page') ) {
 	'parent_slug'	=> 'accelerate-theme-child-options',
 ));
 
+acf_add_options_sub_page(array(
+	'page_title' 	=> 'Help',
+	'menu_title'	=> 'Help',
+	'parent_slug'	=> 'options-general.php',
+));
+
 }
 /// Security measures
 // Remove WP version from the source code
@@ -386,6 +473,31 @@ function red_remove_ver_css_js( $src ) {
 // 	return '<h5>'. $deny .'</h5>';
 // }
 // add_filter('diy_user_access_filter', 'diy_modify_user_access');
+
+
+
+remove_filter('get_the_excerpt', 'wp_trim_excerpt'); 
+add_filter('get_the_excerpt', 'accelerate_link_excerpt');
+ 
+function accelerate_link_excerpt($text = '') { // Fakes an excerpt if needed
+    global $post;
+	$raw_excerpt = $text;
+    if ( '' == $text ) {
+        $text = get_the_content('');
+        $text = apply_filters('the_content', $text);
+        $text = str_replace('\]\]\>', ']]&gt;', $text);
+        $text = strip_tags($text,'<a>'); // list of tags to allow
+        $excerpt_length = 55; 
+        $words = explode(' ', $text, $excerpt_length + 1);
+        if (count($words)> $excerpt_length) {
+            array_pop($words);
+            array_push($words, '. . .<p><a href="' . get_permalink($post->ID) . '">Read More &raquo;</a></p>');
+            $text = implode(' ', $words);
+        }
+    }
+    return $text;
+}
+
 
 /**
  * Custom template tags for this theme.

@@ -10,20 +10,6 @@ Text Domain: accelerate-theme-child
 
 /*@import url('../accelerate-theme/style.css');*/
 
-
-/* Clearings */
-
-
-/*.clearfix:before,
-.clearfix:after {
-    content: " ";
-    display: table;
-}
-
-.clearfix:after {
-    clear: both;
-}*/
-
 html {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -119,10 +105,10 @@ header#masthead {
 }
 
 
-/* THIS is the style that so many students are looking for to make their menu inline */
+/* THIS is the style that so many students are looking for to make their menu inline  - however - the parent theme has 'clearfix' styles so adding .clearfix class to the menu-class parameter in the menu function in header.php is a better solution than 'overflow: auto'. */
 
 .menu-top-nav-container ul {
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 .menu-top-nav-container ul li {
@@ -200,7 +186,9 @@ section.home-page {
     background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
 }
 
-
+.home .site-content {
+    overflow: auto;
+}
 /* Home Page Featured Work */
 
 .featured-work {
@@ -396,6 +384,30 @@ span.stt-em {
 }
 
 
+/* Homepage FAQ section */
+.site-content.faq-home-section {
+    padding: 1em;
+}
+ul.faq-list {
+    margin: 0;
+}
+.faq-term a {
+    display: block;
+    padding: 0.75em;
+    margin: 1.5em 0;
+    border: 1px solid #3b3b3b;
+    width: 150px;
+    text-align: center;
+}
+.faq-post-thumbnail {
+    margin: 0 .2em;
+}
+.faq-post-thumbnail img {
+    margin: 0 auto;
+}
+.faq-front-title {
+    text-align: center;
+}
 /* Social icons homepage - modifying display using Menu Social Icons Plugin */
 
 
@@ -989,9 +1001,21 @@ aside.sidebar li a {
 }
 
 
-/* Next / Prev - BLOG PAGE - From Skillcrushstarter */
+/* Blog */
+
+.blog .blog-page .site-content {
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.blog .site-footer .site-info {
+    border-top: none;
+}
 
 #navigation {
+    max-width: 960px;
+    margin: 0 auto;
     position: relative;
     z-index: 1;
     clear: both;
@@ -1010,6 +1034,10 @@ aside.sidebar li a {
 
 #navigation .right {
     float: right;
+}
+
+#navigation .pagination {
+    display: inline;
 }
 
 #navigation .left a,
@@ -1255,7 +1283,8 @@ aside.sidebar li a {
     /* Don't apply padding to the pages with hero-images */
     .home .site-main,
     .about-page .site-main,
-    .page-template-t_about .site-main{
+    .page-template-t_about .site-main,
+    .about-page-flexible, .site-main {
         padding: 0;
     }
     .homepage-hero h1,
@@ -1287,7 +1316,12 @@ aside.sidebar li a {
         padding: 0;
     }
     .sidebar .widget_search input[type="text"] {
-        width: 90%;
+        width: 88%;
+        max-width: 88%;
+    }
+    .sidebar .widget_search input[type="submit"] {
+        width: 12%;
+        max-width: 12%;
     }
 }
 

@@ -97,7 +97,8 @@ function launch_maintenance_page() {
 		}	
 }
 
-launch_maintenance_page();
+add_action('wp_loaded', 'launch_maintenance_page');
+//launch_maintenance_page();
 
 // Hook into Simple Twitter Tweets widget on Front page and dynamically add handle after title-tag
 function add_twitter_handle( $title ) {

@@ -30,6 +30,7 @@ final class NF_Display_Render
     protected static $form_uses_recaptcha      = array();
     protected static $form_uses_datepicker     = array();
     protected static $form_uses_inputmask      = array();
+    protected static $form_uses_currencymask   = array();
     protected static $form_uses_rte            = array();
     protected static $form_uses_textarea_media = array();
     protected static $form_uses_helptext       = array();
@@ -38,6 +39,7 @@ final class NF_Display_Render
     public static function localize( $form_id )
     {
         global $wp_locale;
+        $form_id = absint( $form_id );
 
         $capability = apply_filters( 'ninja_forms_display_test_values_capabilities', 'read' );
         if( isset( $_GET[ 'ninja_forms_test_values' ] ) && current_user_can( $capability ) ){
@@ -196,6 +198,11 @@ final class NF_Display_Render
                     $field[ 'value' ] = $field_class->get_test_value();
                 }
 
+                // Hide the label on invisible reCAPTCHA fields
+                if ( 'recaptcha' === $field[ 'settings' ][ 'type' ] && 'invisible' === $field[ 'settings' ][ 'size' ] ) {
+                    $field[ 'settings' ][ 'label_pos' ] = 'hidden';
+                }
+
                 // Copy field ID into the field settings array for use in localized data.
                 $field[ 'settings' ][ 'id' ] = $field[ 'id' ];
 
@@ -242,7 +249,7 @@ final class NF_Display_Render
                 $default_value = apply_filters('ninja_forms_render_default_value', $default_value, $field_type, $settings);
                 if ( $default_value ) {
 
-                    $default_value = preg_replace( '/{.*}/', '', $default_value );
+                    $default_value = preg_replace( '/{[^}]}/', '', $default_value );
 
                     if ($default_value) {
                         $settings['value'] = $default_value;
@@ -298,6 +305,9 @@ final class NF_Display_Render
                 if( isset( $field[ 'settings' ][ 'mask' ] ) && $field[ 'settings' ][ 'mask' ] ){
                     array_push( self::$form_uses_inputmask, $form_id );
                 }
+                if( isset( $field[ 'settings' ][ 'mask' ] ) && 'currency' == $field[ 'settings' ][ 'mask' ] ){
+                    array_push( self::$form_uses_currencymask, $form_id );
+                }
                 if( isset( $field[ 'settings' ][ 'textarea_rte' ] ) && $field[ 'settings' ][ 'textarea_rte' ] ){
                     array_push( self::$form_uses_rte, $form_id );
                 }
@@ -319,25 +329,12 @@ final class NF_Display_Render
         // Output Form Container
         do_action( 'ninja_forms_before_container', $form_id, $form->get_settings(), $form_fields );
         Ninja_Forms::template( 'display-form-container.html.php', compact( 'form_id' ) );
+        
+        $form_id = "$form_id";
 
         ?>
         <!-- TODO: Move to Template File. -->
-        <script>
-            var formDisplay = 1;
-
-            /* Maybe initialize nfForms object */
-            var nfForms = nfForms || [];
-
-            /* Build Form Data */
-            var form = [];
-            form.id = '<?php echo $form_id; ?>';
-            form.settings = <?php echo wp_json_encode( $form->get_settings() ); ?>;
-            form.fields = <?php echo wp_json_encode( $fields ); ?>;
-
-            /* Add Form Data to nfForms object */
-            nfForms.push( form );
-        </script>
-
+	<script>var formDisplay=1;var nfForms=nfForms||[];var form=[];form.id='<?php echo $form_id; ?>';form.settings=<?php echo wp_json_encode( $form->get_settings() ); ?>;form.fields=<?php echo wp_json_encode( $fields ); ?>;nfForms.push(form);</script>
         <?php
         self::enqueue_scripts( $form_id );
     }
@@ -534,6 +531,10 @@ final class NF_Display_Render
 
         if( $is_preview || in_array( $form_id, self::$form_uses_inputmask ) ) {
             wp_enqueue_script('nf-front-end--inputmask', $js_dir . 'front-end--inputmask.min.js', array( 'jquery' ), $ver );
+        }
+
+        if( $is_preview || in_array( $form_id, self::$form_uses_currencymask ) ) {
+            wp_enqueue_script('nf-front-end--currencymask', $js_dir . 'front-end--autonumeric.min.js', array( 'jquery' ), $ver );
         }
 
          if( $is_preview || in_array( $form_id, self::$form_uses_rte ) ) {
