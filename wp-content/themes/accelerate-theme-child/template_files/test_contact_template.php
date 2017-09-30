@@ -4,44 +4,47 @@
 *
 * This WORKS on a live site - but not locally. Tested on staging site on wpengine - redtesting.stating.wpengine.com
 */
+
 //get values possibly submitted by form
+// We are doing this before any headers are called with wp_head() called in the header.php template
+
 $email = sanitize_email( $_POST['email'] );
 $cname = sanitize_text_field( $_POST['cname'] );
 $phone = sanitize_text_field( $_POST['phone'] );
 $message = sanitize_text_field( $_POST['message'] );
 $sendemail = !empty( $_POST['sendemail'] );
 // form submitted?
-if ( !empty( $sendemail )
-&& !empty( $cname )
-&& !empty( $email )
-&& empty( $lname ) ) {
-$mailto = get_bloginfo( 'admin_email' );
-$mailsubj = "Contact Form Submission from " . get_bloginfo( 'name' );
-$mailhead = "From: " . $cname . " <" . $email . ">\n";
-$mailbody = "Name: " . $cname . "\n\n";
-$mailbody .= "Email: $email\n\n";
-$mailbody .= "Phone: $phone\n\n";
-$mailbody .= "Message:\n" . $message;
-// send email to us
-wp_mail( $mailto, $mailsubj, $mailbody );
-// set message for this page and clear vars
-$msg = "Your message has been sent.";
-$email = "";
-$cname = "";
-$phone = "";
-$message = "";
+if ( !empty( $sendemail ) && !empty( $cname ) && !empty( $email ) && empty( $lname ) ) {
+  $mailto = get_bloginfo( 'admin_email' );
+  $mailsubj = "Contact Form Submission from " . get_bloginfo( 'name' );
+  $mailhead = "From: " . $cname . " <" . $email . ">\n";
+  $mailbody = "Name: " . $cname . "\n\n";
+  $mailbody .= "Email: $email\n\n";
+  $mailbody .= "Phone: $phone\n\n";
+  $mailbody .= "Message:\n" . $message;
+  // send email to us
+  wp_mail( $mailto, $mailsubj, $mailbody );
+  // set message for this page and clear vars
+  $msg = "Your message has been sent.";
+  $email = "";
+  $cname = "";
+  $phone = "";
+  $message = "";
 }
-elseif ( !empty( $sendemail ) && !is_email( $email ) )
-$msg = "Please enter a valid email address.";
-elseif ( !empty( $lname ) )
-$msg = "Are you a spammer?";
-elseif ( !empty( $sendemail ) && empty( $cname ) )
-$msg = "Please enter your name.";
-elseif ( !empty( $sendemail ) && !empty( $cname ) && empty( $email ) )
-$msg = "Please enter your email address.";
+elseif ( !empty( $sendemail ) && !is_email( $email ) ) {
+  $msg = "Please enter a valid email address.";
+} elseif ( !empty( $lname ) ) {
+  $msg = "Are you a spammer?";
+} elseif ( !empty( $sendemail ) && empty( $cname ) ) {
+  $msg = "Please enter your name.";
+} elseif ( !empty( $sendemail ) && !empty( $cname ) && empty( $email ) ) {
+  $msg = "Please enter your email address.";
+}
+
 // get the header
 get_header();
 ?>
+
 <div id="primary" class="site-content">
   <div id="content" role="main">
     <div class="page-content">
