@@ -61,7 +61,7 @@ final class NF_Actions_CollectPayment extends NF_Abstracts_Action
         $payment_gateway_class = $this->payment_gateways[ $payment_gateway ];
 
         /*
-         * Get our payment total.
+         * Get our payment total if we have old data. (not used in current version)
          *
          * If we have selected "Calc" as our total type, then we want to use payment_total_calc
          *

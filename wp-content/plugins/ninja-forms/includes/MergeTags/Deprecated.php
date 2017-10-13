@@ -31,8 +31,12 @@ final class NF_MergeTags_Deprecated extends NF_Abstracts_MergeTags
 
         // If in the admin, only run on Ninja Forms pages.
         if( is_admin() && ( ! isset( $_GET[ 'page' ] ) || 'ninja-forms' !== $_GET[ 'page' ] ) ) return;
-
-        $this->setup_post_meta( $this->post_id() );
+        
+        $post_id = $this->post_id();
+        
+        if ( ! empty( $post_id ) ) {
+            $this->setup_post_meta( $this->post_id() );
+        }
     }
 
     protected function post_id()

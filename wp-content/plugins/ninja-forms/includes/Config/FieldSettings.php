@@ -612,6 +612,22 @@ return apply_filters( 'ninja_forms_field_settings', array(
     ),
 
     /*
+     |--------------------------------------------------------------------------
+     | Display Settings
+     |--------------------------------------------------------------------------
+     */
+
+    // Multi-Select List Only
+    'multi_size' => array(
+        'name' => 'multi_size',
+        'type' => 'number',
+        'label' => __( 'Multi-Select Box Size', 'ninja-forms'),
+        'width' => 'one-half',
+        'group' => 'primary',
+        'value' => 5,
+    ),
+
+    /*
     |--------------------------------------------------------------------------
     | Un-Grouped Settings
     |--------------------------------------------------------------------------

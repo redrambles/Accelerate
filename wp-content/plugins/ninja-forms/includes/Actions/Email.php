@@ -47,6 +47,8 @@ final class NF_Actions_Email extends NF_Abstracts_Action
 
     public function process( $action_settings, $form_id, $data )
     {
+        $action_settings = $this->sanitize_address_fields( $action_settings );
+
         $errors = $this->check_for_errors( $action_settings );
 
         $headers = $this->_get_headers( $action_settings );
@@ -103,6 +105,55 @@ final class NF_Actions_Email extends NF_Abstracts_Action
         return $data;
     }
 
+    /**
+     * Sanitizes email address settings
+     * @since 3.2.2
+     *
+     * @param  array $action_settings
+     * @return array
+     */
+    protected function sanitize_address_fields( $action_settings )
+    {
+        // Build a look array to compare our email address settings to.
+        $email_address_settings = array( 'to', 'from_address', 'reply_to', 'cc', 'bcc' );
+
+        // Loop over the look up values.
+        foreach( $email_address_settings as $setting ) {
+            // If the loop up values are not set in the action settings continue.
+            if ( ! isset( $action_settings[ $setting ] ) ) continue;
+
+            // If action settings do not match the look up values continue.
+            if ( ! $action_settings[ $setting ] ) continue;
+
+            // This is the array that will contain the sanitized email address values.
+            $sanitized_array = array();
+
+            /*
+             * Checks to see action settings is array,
+             * if not explodes to comma delimited array.
+             */
+            if( is_array( $action_settings[ $setting ] ) ) {
+                $email_addresses = $action_settings[ $setting ];
+            } else {
+                $email_addresses = explode( ',', $action_settings[ $setting ] );
+            }
+
+            // Loop over our email addresses.
+            foreach( $email_addresses as $email ) {
+
+                // Updated to trim values in case there is a value with spaces/tabs/etc to remove whitespace
+                $email = trim( $email );
+                if ( empty( $email ) ) continue;
+
+                // Build our array of the email addresses.
+                $sanitized_array[] = $email;
+            }
+            // Sanitized our array of settings.
+            $action_settings[ $setting ] = implode( ',' ,$sanitized_array );
+        }
+        return $action_settings;
+    }
+
     protected function check_for_errors( $action_settings )
     {
         $errors = array();
@@ -115,6 +166,7 @@ final class NF_Actions_Email extends NF_Abstracts_Action
 
 
             $email_addresses = is_array( $action_settings[ $setting ] ) ? $action_settings[ $setting ] : explode( ',', $action_settings[ $setting ] );
+
             foreach( (array) $email_addresses as $email ){
                 $email = trim( $email );
                 if ( false !== strpos( $email, '<' ) && false !== strpos( $email, '>' ) ) {

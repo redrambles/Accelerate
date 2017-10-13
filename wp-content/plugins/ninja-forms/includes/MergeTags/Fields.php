@@ -88,7 +88,7 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
             $return = '<table>';
         }
 
-        $hidden_field_types = array( 'html', 'submit', 'password', 'passwordconfirm' );
+        $hidden_field_types = array( 'html', 'submit', 'password', 'passwordconfirm', 'hidden' );
 
         foreach( $this->get_fields_sorted() as $field ){
 

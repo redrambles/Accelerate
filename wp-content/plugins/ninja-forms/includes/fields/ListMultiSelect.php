@@ -17,6 +17,8 @@ class NF_Fields_ListMultiselect extends NF_Abstracts_List
 
     protected $_old_classname = 'list-multiselect';
 
+    protected $_settings = array( 'multi_size' );
+
     public function __construct()
     {
         parent::__construct();
