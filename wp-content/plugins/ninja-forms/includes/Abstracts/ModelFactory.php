@@ -130,17 +130,10 @@ class NF_Abstracts_ModelFactory
         
         if( ! is_array( $import ) ){
 
-            /*
-             * Remove any unwated (corrupted?) characters from either side of our object.
-             */
-            $l_trim = strpos( $import, '{' );
-            $r_trim = strrpos( $import, '}' ) - $l_trim + 1;
-            $import = substr( $import, $l_trim, $r_trim );
-
-            $data = WPN_Helper::utf8_decode( json_decode( html_entity_decode( $import ), true ) );
+            $data = WPN_Helper::utf8_decode( json_decode( WPN_Helper::json_cleanup( html_entity_decode( $import ) ), true ) );
 
             if( ! is_array( $data ) ) {
-                $data = WPN_Helper::utf8_decode( json_decode(  $import , true ) );
+                $data = WPN_Helper::utf8_decode( json_decode( WPN_Helper::json_cleanup( $import ), true ) );
             }
 
             if( ! is_array( $data ) ){

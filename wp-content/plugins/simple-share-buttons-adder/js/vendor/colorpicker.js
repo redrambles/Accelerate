@@ -64,6 +64,7 @@ For usage and examples: colpick.com/plugin
 			//Called when the new color is changed
 			change = function (ev) {
 				var cal = $(this).parent().parent(), col;
+
 				if (this.parentNode.className.indexOf('_hex') > 0) {
 					cal.data('colpick').color = col = hexToHsb(fixHex(this.value));
 					fillRGBFields(col, cal.get(0));
@@ -85,6 +86,7 @@ For usage and examples: colpick.com/plugin
 					fillHexFields(col, cal.get(0));
 					fillHSBFields(col, cal.get(0));
 				}
+
 				setSelector(col, cal.get(0));
 				setHue(col, cal.get(0));
 				setNewColor(col, cal.get(0));
@@ -221,11 +223,77 @@ For usage and examples: colpick.com/plugin
 			},
 			//Submit button
 			clickSubmit = function (ev) {
-				var cal = $(this).parent();
-				var col = cal.data('colpick').color;
+				var cal = $(this).parent(),
+					col = cal.data('colpick').color,
+					submitButton = $( '.colpick_submit' ).attr( 'id' ),
+					bWidth = $( '#ssba_border_width' ).val() + 'px';
+
 				cal.data('colpick').origColor = col;
 				setCurrentColor(col, cal.get(0));
 				cal.data('colpick').onSubmit(col, hsbToHex(col), hsbToRgb(col), cal.data('colpick').el);
+
+				// Classic share text color.
+				if ( 'ssba_font_color' === submitButton ) {
+					$( '.ssba-share-text-prev' ).css( 'color', '#' + hsbToHex( col ) );
+				}
+
+				// Plus share text color.
+				if ( 'ssba_plus_font_color' === submitButton ) {
+					$( '#ssba-preview .ssba-share-text-prev' ).css( 'color', '#' + hsbToHex(col ) );
+				}
+
+				// Classic Container Border Color.
+				if ( 'ssba_div_border' === submitButton ) {
+					$( '#ssba-preview-1' ).css( 'border', bWidth + ' solid ' + '#' + hsbToHex( col ) );
+				}
+
+				// Classic Container Background Color.
+				if ( 'ssba_div_background' === submitButton ) {
+					$( '#ssba-preview-1' ).css( 'background', '#' + hsbToHex( col ) );
+				}
+
+				// Button color.
+				if ( 'ssba_plus_button_color' === submitButton ) {
+					$( '#ssba-preview .ssbp-list li' ).each( function() {
+						$( this ).find( 'a' ).css( 'background', '#' + hsbToHex( col ) );
+					} );
+				}
+
+				// Icon color.
+				if ( 'ssba_plus_icon_color' === submitButton ) {
+					var iconSize = $( '#ssba_plus_icon_size' ).val(),
+						iconLineHeight = $( '#ssba_plus_height' ).val(),
+						iconColor = '#' + hsbToHex( col ),
+						iconColorHover = $( '#ssba_plus_icon_hover_color' ).val(),
+						buttonColorHover = $( '#ssba_plus_button_hover_color' ).val(),
+						newStyle = '#ssba-preview .ssbp-btn:before{ font-size: ' + iconSize + 'px; line-height: ' + iconLineHeight + 'px; color: ' + iconColor + '; } #ssba-preview .ssbp-btn:hover::before { color: ' + iconColorHover + '; } #ssba-preview .ssbp-btn:hover { background: ' + buttonColorHover + '!important; }';
+
+					$( '#simple-share-buttons-adder-styles-inline-css' ).html( newStyle );
+				}
+
+				// Icon hover color
+				if ( 'ssba_plus_icon_hover_color' === submitButton ) {
+					var iconSize = $( '#ssba_plus_icon_size' ).val(),
+						iconLineHeight = $( '#ssba_plus_height' ).val(),
+						iconColor = $( '#ssba_plus_icon_color' ).val(),
+						iconColorHover = '#' + hsbToHex( col ),
+						buttonColorHover = $( '#ssba_plus_button_hover_color' ).val(),
+						newStyle = '#ssba-preview .ssbp-btn:before{ font-size: ' + iconSize + 'px; line-height: ' + iconLineHeight + 'px; color: ' + iconColor + '; } #ssba-preview .ssbp-btn:hover::before { color: ' + iconColorHover + '; } #ssba-preview .ssbp-btn:hover { background: ' + buttonColorHover + '!important; }';
+
+					$( '#simple-share-buttons-adder-styles-inline-css' ).html( newStyle );
+				}
+
+				// Button hover color
+				if ( 'ssba_plus_button_hover_color' === submitButton ) {
+					var iconSize = $( '#ssba_plus_icon_size' ).val(),
+						iconLineHeight = $( '#ssba_plus_height' ).val(),
+						iconColor = $( '#ssba_plus_icon_color' ).val(),
+						iconColorHover = $( '#ssba_plus_icon_hover_color' ).val(),
+						buttonColorHover = '#' + hsbToHex( col ),
+						newStyle = '#ssba-preview .ssbp-btn:before{ font-size: ' + iconSize + 'px; line-height: ' + iconLineHeight + 'px; color: ' + iconColor + '; } #ssba-preview .ssbp-btn:hover::before { color: ' + iconColorHover + '; } #ssba-preview .ssbp-btn:hover { background: ' + buttonColorHover + '!important; }';
+
+					$( '#simple-share-buttons-adder-styles-inline-css' ).html( newStyle );
+				}
 			},
 			//Show/hide the color picker
 			show = function (ev) {
