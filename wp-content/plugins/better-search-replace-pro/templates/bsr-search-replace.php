@@ -26,7 +26,7 @@ if ( ! defined( 'BSR_PATH' ) ) exit;
 				$profiles = get_option( 'bsr_profiles', true );
 				echo '<select name="bsr_profile">';
 				foreach( $profiles as $k => $v ) {
-					echo "<option name='$k'>$k</option>";
+					echo '<option name="' . esc_attr( $k ) . '">' . esc_html( $k ) . '</option>';
 				}
 				echo "<option name='create_new'>" . __( 'Create new profile', 'better-search-replace' ) . '</option>';
 				echo '</select>';

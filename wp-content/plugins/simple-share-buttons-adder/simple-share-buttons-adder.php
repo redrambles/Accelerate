@@ -3,7 +3,7 @@
  * Plugin Name: Simple Share Buttons Adder
  * Plugin URI: https://simplesharebuttons.com
  * Description: A simple plugin that enables you to add share buttons to all of your posts and/or pages.
- * Version: 7.3.7
+ * Version: 7.3.10
  * Author: Simple Share Buttons
  * Author URI: https://simplesharebuttons.com
  * License: GPLv2
@@ -48,9 +48,9 @@ function _simple_share_buttons_adder_php_version_text() {
 	return __( 'Simple Share Buttons Adder plugin error: Your version of PHP is too old to run this plugin. You must be running PHP 5.3 or higher.', 'simple-share-buttons-adder' );
 }
 
-add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'add_action_links' );
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), '_simple_share_buttons_adder_add_action_links' );
 
-function add_action_links( $links ) {
+function _simple_share_buttons_adder_add_action_links( $links ) {
 	$mylinks = array(
 		'<a href="' . admin_url( 'options-general.php?page=simple-share-buttons-adder' ) . '">Settings</a>',
 	);

@@ -265,11 +265,13 @@ class Styles {
 				// Add the additional CSS.
 				$html_ssba_style .= $arr_settings['ssba_additional_css'];
 			}
+
+			wp_add_inline_style( "{$this->plugin->assets_prefix}-ssba", $html_ssba_style ); // WPCS: XSS ok.
 		} else { // Else use set options.
 			// Use custom styles.
-			$html_ssba_style .= $arr_settings['ssba_custom_styles'];
-		} // End if().
+			$html_ssba_style = $arr_settings['ssba_custom_styles'];
 
-		wp_add_inline_style( "{$this->plugin->assets_prefix}-ssba", $html_ssba_style ); // WPCS: XSS ok.
+			wp_add_inline_style( "{$this->plugin->assets_prefix}-ssba", $html_ssba_style ); // WPCS: XSS ok.
+		} // End if().
 	}
 }

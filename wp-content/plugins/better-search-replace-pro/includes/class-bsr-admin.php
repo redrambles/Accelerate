@@ -143,8 +143,8 @@ class BSR_Admin {
 			$values = get_transient( 'bsr_results' );
 		} elseif ( get_option( 'bsr_profiles' ) && isset( $_GET['bsr_profile'] ) ) {
 
-			$profiles 	= get_option( 'bsr_profiles' );
-			$profile 	= $_GET['bsr_profile'];
+			$profile  = stripslashes( $_GET['bsr_profile'] );
+			$profiles = get_option( 'bsr_profiles' );
 
 			if ( isset( $profiles[$profile] ) ) {
 				$values = $profiles[$profile];
@@ -181,7 +181,7 @@ class BSR_Admin {
 		$sizes 		= BSR_DB::get_sizes();
 		$profiles 	= get_option( 'bsr_profiles' );
 
-		echo '<select id="select_tables" name="select_tables[]" multiple="multiple" style="width:25em;">';
+		echo '<select id="bsr-table-select" name="select_tables[]" multiple="multiple" style="">';
 
 		foreach ( $tables as $table ) {
 
@@ -198,9 +198,9 @@ class BSR_Admin {
 					echo "<option value='$table'>$table $table_size</option>";
 				}
 
-			} elseif ( isset( $_GET['bsr_profile'] ) ) {
+			} elseif ( isset( $_GET['bsr_profile'] ) && 'create_new' !== $_GET['bsr_profile'] ) {
 
-				$profile 		= $_GET['bsr_profile'];
+				$profile        = stripslashes( $_GET['bsr_profile'] );
 				$profile_tables = array_flip( $profiles[$profile]['select_tables'] );
 
 				if ( isset( $profile_tables[$table] ) ) {
@@ -312,9 +312,10 @@ class BSR_Admin {
 	 * @access public
 	 */
 	public function process_load_profile() {
-		$profiles 	= get_option( 'bsr_profiles' ) ? get_option( 'bsr_profiles' ) : array();
-		if ( isset( $profiles[ $_POST['bsr_profile'] ] ) ) {
-			$profile = $_POST['bsr_profile'];
+		$profiles = get_option( 'bsr_profiles' ) ? get_option( 'bsr_profiles' ) : array();
+		$profile  = stripslashes( $_POST['bsr_profile'] );
+
+		if ( isset( $profiles[ $profile ] ) ) {
 			$url = get_admin_url() . 'tools.php?page=better-search-replace&bsr_profile=' . rawurlencode( $profile );
 		} else {
 			$url = get_admin_url() . 'tools.php?page=better-search-replace&bsr_profile=create_new';
@@ -330,8 +331,10 @@ class BSR_Admin {
 	 */
 	public function process_delete_profile() {
 		$profiles = get_option( 'bsr_profiles' );
-		if ( isset( $profiles[ $_POST['bsr_profile'] ] ) ) {
-			unset( $profiles[ $_POST['bsr_profile'] ] );
+		$profile  = stripslashes( $_POST['bsr_profile'] );
+
+		if ( isset( $profiles[ $profile ] ) ) {
+			unset( $profiles[ $profile ] );
 		}
 		update_option( 'bsr_profiles', $profiles );
 

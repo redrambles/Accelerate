@@ -49,6 +49,13 @@
 				</div>
 			</div>
 
+			<?php if ( in_array( 'whatsapp', explode( ',', $arr_settings['ssba_selected_buttons'] ), true ) ) : ?>
+				<div class="ssbp--theme-4 whatsapp-message">
+					<span class="ssbp-btn ssbp-whatsapp"></span>
+					<?php echo esc_html__( 'The whatsapp button only appears on mobile devices. It is included in your desktop preview for reference only.', 'prodigy-commerce' ); ?>
+				</div>
+			<?php endif; ?>
+
 			<input type="hidden" name="ssba_selected_buttons" id="ssba_selected_buttons" value="<?php esc_attr( $arr_settings['ssba_selected_buttons'] ); ?>"/>
 		</div>
 		<?php

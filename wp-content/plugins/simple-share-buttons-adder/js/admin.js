@@ -64,6 +64,8 @@ var SimpleShareButtonsAdder = ( function( $, wp ) {
 
 			// SSBA admin form.
 			$( 'body' ).on( 'click', '#submit', function( event ) {
+				event.preventDefault();
+
 				self.adminForm( event, this );
 			} );
 
@@ -513,12 +515,12 @@ var SimpleShareButtonsAdder = ( function( $, wp ) {
 		 */
 		imageUploads: function( field ) {
 			var custom_uploader = wp.media.frames.file_frame = wp.media({
-				title: 'Add Image',
-				button: {
-					text: 'Add Image'
-				},
-				multiple: false
-			} ),
+					title: 'Add Image',
+					button: {
+						text: 'Add Image'
+					},
+					multiple: false
+				} ),
 				button,
 				buttonClass;
 
@@ -564,11 +566,12 @@ var SimpleShareButtonsAdder = ( function( $, wp ) {
 					$( ':input' ).prop( 'disabled', false );
 					$( '.ssba-admin-wrap input:checkbox' ).bootstrapSwitch( 'disabled', false );
 					$( 'button.ssba-btn-save' ).html( '<i class="fa fa-floppy-o"></i>' );
-
-					// Refresh page.
-					location.reload();
 				}
-			); // End post.
+			).always( function() {
+
+				// Refresh page.
+				location.reload();
+			} ); // End post.
 		},
 
 		/**

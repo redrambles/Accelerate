@@ -58,19 +58,19 @@ var Main = ( function( $, FB ) {
 		engageShareButton: function( event ) {
 
 			// If it's facebook mobile.
-			if ( 'mobile' === $( this ).data( 'facebook' ) ) {
+			if ( 'mobile' === $( event ).data( 'facebook' ) ) {
 				FB.ui( {
 					method: 'share',
 					mobile_iframe: true,
-					href: $( this ).data( 'href' )
+					href: $( event ).data( 'href' )
 				}, function( response ) {} );
 			} else {
 
 				// These share options don't need to have a popup.
-				if ( 'email' === $( this ).data( 'site' ) || 'print' === $( this ).data( 'site' ) || 'pinterest' === $( this ).data( 'site' ) ) {
+				if ( 'email' === $( event ).data( 'site' ) || 'print' === $( event ).data( 'site' ) || 'pinterest' === $( event ).data( 'site' ) ) {
 
 					// Just redirect.
-					window.location.href = $( this ).attr( 'href' );
+					window.location.href = $( event ).attr( 'href' );
 				} else {
 
 					// Prepare popup window.
@@ -79,10 +79,10 @@ var Main = ( function( $, FB ) {
 						left = ( $( window ).width() - width ) / 2,
 						top = ( $( window ).height() - height ) / 2,
 						opts = 'status=1' +
-								 ',width=' + width +
-								 ',height=' + height +
-								 ',top=' + top +
-								 ',left=' + left;
+						       ',width=' + width +
+						       ',height=' + height +
+						       ',top=' + top +
+						       ',left=' + left;
 
 					// Open the share url in a smaller window.
 					window.open( $( event ).attr( 'href' ), 'share', opts );

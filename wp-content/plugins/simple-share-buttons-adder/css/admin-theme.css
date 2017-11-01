@@ -577,3 +577,13 @@
 	padding: 1.1rem;
 	margin: -4px -6px 0;
 }
+
+.whatsapp-message .ssbp-whatsapp {
+	padding: 1rem;
+}
+
+.whatsapp-message {
+	background: #f7f7f7;
+	padding: 1rem;
+	text-align: center;
+}

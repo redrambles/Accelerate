@@ -598,7 +598,7 @@ class BSR_DB {
 	public function recursive_unserialize_replace( $from = '', $to = '', $data = '', $serialised = false, $case_insensitive = false ) {
 		try {
 
-			if ( is_string( $data ) && ( $unserialized = @unserialize( $data ) ) !== false ) {
+			if ( is_string( $data ) && ! is_serialized_string( $data ) && ( $unserialized = $this->unserialize( $data ) ) !== false ) {
 				$data = $this->recursive_unserialize_replace( $from, $to, $unserialized, true, $case_insensitive );
 			}
 
@@ -625,13 +625,16 @@ class BSR_DB {
 				unset( $_tmp );
 			}
 
+			elseif ( is_serialized_string( $data ) ) {
+				if ( $data = $this->unserialize( $data ) !== false ) {
+					$data = $this->str_replace( $from, $to, $data, $case_insensitive );
+					$data = serialize( $data );
+				}
+			}
+
 			else {
 				if ( is_string( $data ) ) {
-					if ( 'on' === $case_insensitive ) {
-						$data = str_ireplace( $from, $to, $data );
-					} else {
-						$data = str_replace( $from, $to, $data );
-					}
+					$data = $this->str_replace( $from, $to, $data, $case_insensitive );
 				}
 			}
 
@@ -682,6 +685,26 @@ class BSR_DB {
 	}
 
 	/**
+	 * Wrapper for str_replace
+	 *
+	 * @param string $from
+	 * @param string $to
+	 * @param string $data
+	 * @param string|bool $case_insensitive
+	 *
+	 * @return string
+	 */
+	public function str_replace( $from, $to, $data, $case_insensitive = false ) {
+		if ( 'on' === $case_insensitive ) {
+			$data = str_ireplace( $from, $to, $data );
+		} else {
+			$data = str_replace( $from, $to, $data );
+		}
+
+		return $data;
+	}
+
+	/**
 	 * Wrapper for replacing first instance of string.
 	 * @access public
 	 * @return string
@@ -692,6 +715,25 @@ class BSR_DB {
 		    $string = substr_replace( $string, $replace, $pos, strlen( $search ) );
 		}
 		return $string;
+	}
+
+	/**
+	 * Return unserialized object or array
+	 *
+	 * @param string $serialized_string Serialized string.
+	 * @param string $method            The name of the caller method.
+	 *
+	 * @return mixed, false on failure
+	 */
+	public static function unserialize( $serialized_string ) {
+		if ( ! is_serialized( $serialized_string ) ) {
+			return false;
+		}
+
+		$serialized_string   = trim( $serialized_string );
+		$unserialized_string = @unserialize( $serialized_string );
+
+		return $unserialized_string;
 	}
 
 }

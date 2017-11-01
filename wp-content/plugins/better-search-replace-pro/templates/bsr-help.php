@@ -12,12 +12,12 @@
 // Prevent direct access.
 if ( ! defined( 'BSR_PATH' ) ) exit;
 
-$bsr_docs_url		= 'http://docs.expandedfronts.com/collection/47-better-search-replace-pro';
-$bsr_support_url	= 'https://expandedfronts.com/plugin-support/?plugin=Better%20Search%20Replace%20Pro';
-$bsr_license_key	= get_option( 'bsr_license_key' );
+$bsr_docs_url    = 'https://bettersearchreplace.com/docs/';
+$bsr_support_url = 'https://bettersearchreplace.com/plugin-support/';
+$bsr_license_key = get_option( 'bsr_license_key' );
 
 if ( false !== $bsr_license_key ) {
-	$bsr_support_url .= '&key=' . esc_attr( $bsr_license_key );
+	$bsr_support_url .= '?key=' . esc_attr( $bsr_license_key );
 }
 
 ?>

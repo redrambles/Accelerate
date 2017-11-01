@@ -72,23 +72,23 @@ class Admin_Panel {
 		$locs = array(
 			'Homepage' => array(
 				'value'   => 'ssba_homepage',
-				'checked' => 'Y' === $arr_settings['ssba_homepage'] ? true : false,
+				'checked' => isset( $arr_settings['ssba_homepage'] ) && 'Y' === $arr_settings['ssba_homepage'] ? true : false,
 			),
 			'Pages' => array(
 				'value'   => 'ssba_pages',
-				'checked' => 'Y' === $arr_settings['ssba_pages'] ? true : false,
+				'checked' => isset( $arr_settings['ssba_pages'] ) && 'Y' === $arr_settings['ssba_pages'] ? true : false,
 			),
 			'Posts' => array(
 				'value'   => 'ssba_posts',
-				'checked' => 'Y' === $arr_settings['ssba_posts'] ? true : false,
+				'checked' => isset( $arr_settings['ssba_posts'] ) && 'Y' === $arr_settings['ssba_posts'] ? true : false,
 			),
 			'Excerpts' => array(
 				'value'   => 'ssba_excerpts',
-				'checked' => 'Y' === $arr_settings['ssba_excerpts'] ? true : false,
+				'checked' => isset( $arr_settings['ssba_excerpts'] ) && 'Y' === $arr_settings['ssba_excerpts'] ? true : false,
 			),
 			'Categories/Archives' => array(
 				'value'   => 'ssba_cats_archs',
-				'checked' => 'Y' === $arr_settings['ssba_cats_archs'] ? true : false,
+				'checked' => isset( $arr_settings['ssba_cats_archs'] ) && 'Y' === $arr_settings['ssba_cats_archs'] ? true : false,
 			),
 		);
 
@@ -116,23 +116,23 @@ class Admin_Panel {
 		$locs3 = array(
 			'Homepage' => array(
 				'value'   => 'ssba_plus_homepage',
-				'checked' => 'Y' === $arr_settings['ssba_plus_homepage'] ? true : false,
+				'checked' => isset( $arr_settings['ssba_plus_homepage'] ) && 'Y' === $arr_settings['ssba_plus_homepage'] ? true : false,
 			),
 			'Pages' => array(
 				'value'   => 'ssba_plus_pages',
-				'checked' => 'Y' === $arr_settings['ssba_plus_pages'] ? true : false,
+				'checked' => isset( $arr_settings['ssba_plus_pages'] ) && 'Y' === $arr_settings['ssba_plus_pages'] ? true : false,
 			),
 			'Posts' => array(
 				'value'   => 'ssba_plus_posts',
-				'checked' => 'Y' === $arr_settings['ssba_plus_posts'] ? true : false,
+				'checked' => isset( $arr_settings['ssba_plus_posts'] ) && 'Y' === $arr_settings['ssba_plus_posts'] ? true : false,
 			),
 			'Excerpts' => array(
 				'value'   => 'ssba_plus_excerpts',
-				'checked' => 'Y' === $arr_settings['ssba_plus_excerpts'] ? true : false,
+				'checked' => isset( $arr_settings['ssba_plus_excerpts'] ) && 'Y' === $arr_settings['ssba_plus_excerpts'] ? true : false,
 			),
 			'Categories/Archives' => array(
 				'value'   => 'ssba_plus_cats_archs',
-				'checked' => 'Y' === $arr_settings['ssba_plus_cats_archs'] ? true : false,
+				'checked' => isset( $arr_settings['ssba_plus_cats_archs'] ) && 'Y' === $arr_settings['ssba_plus_cats_archs'] ? true : false,
 			),
 		);
 
@@ -140,11 +140,11 @@ class Admin_Panel {
 		$display_loc = array(
 			'Desktop' => array(
 				'value'   => 'ssba_share_desktop',
-				'checked' => 'Y' === $arr_settings['ssba_share_desktop'] ? true : false,
+				'checked' => isset( $arr_settings['ssba_share_desktop'] ) && 'Y' === $arr_settings['ssba_share_desktop'] ? true : false,
 			),
 			'Mobile' => array(
 				'value'   => 'ssba_share_mobile',
-				'checked' => 'Y' === $arr_settings['ssba_share_mobile'] ? true : false,
+				'checked' => isset( $arr_settings['ssba_share_mobile'] ) && 'Y' === $arr_settings['ssba_share_mobile'] ? true : false,
 			),
 		);
 
@@ -167,7 +167,7 @@ class Admin_Panel {
 			'name'       => 'ssba_before_or_after',
 			'label'      => 'Placement',
 			'tooltip'    => 'Place share buttons before or after your content',
-			'selected'   => $arr_settings['ssba_before_or_after'],
+			'selected'   => isset( $arr_settings['ssba_before_or_after'] ) ? $arr_settings['ssba_before_or_after'] : '',
 			'options'    => array(
 				'After'  => 'after',
 				'Before' => 'before',
@@ -183,7 +183,7 @@ class Admin_Panel {
 			'name'        => 'ssba_share_text',
 			'label'       => 'Call To Action',
 			'tooltip'     => 'Add some custom text by your share buttons',
-			'value'       => $arr_settings['ssba_share_text'],
+			'value'       => isset( $arr_settings['ssba_share_text'] ) ? $arr_settings['ssba_share_text'] : '',
 		);
 
 		// Share text for plus.
@@ -194,7 +194,7 @@ class Admin_Panel {
 			'name'        => 'ssba_plus_share_text',
 			'label'       => 'Call To Action',
 			'tooltip'     => 'Add some custom text by your share buttons',
-			'value'       => $arr_settings['ssba_plus_share_text'],
+			'value'       => isset( $arr_settings['ssba_plus_share_text'] ) ? $arr_settings['ssba_plus_share_text'] : '',
 		);
 
 		// Placement.
@@ -204,7 +204,7 @@ class Admin_Panel {
 			'name'       => 'ssba_image_set',
 			'label'      => 'Theme',
 			'tooltip'    => 'Choose your favourite set of buttons, or set to custom to choose your own',
-			'selected'   => $arr_settings['ssba_image_set'],
+			'selected'   => isset( $arr_settings['ssba_image_set'] ) ? $arr_settings['ssba_image_set'] : '',
 			'options'    => array(
 				'Arbenta'  => 'arbenta',
 				'Custom'   => 'custom',
@@ -227,7 +227,7 @@ class Admin_Panel {
 			'name'        => 'ssba_size',
 			'label'       => 'Button Size',
 			'tooltip'     => 'Set the size of your buttons in pixels',
-			'value'       => $arr_settings['ssba_size'],
+			'value'       => isset( $arr_settings['ssba_size'] ) ? $arr_settings['ssba_size'] : '',
 		);
 
 		// Alignment.
@@ -237,7 +237,7 @@ class Admin_Panel {
 			'name'       => 'ssba_align',
 			'label'      => 'Alignment',
 			'tooltip'    => 'Align your buttons the way you wish',
-			'selected'   => $arr_settings['ssba_align'],
+			'selected'   => isset( $arr_settings['ssba_align'] ) ? $arr_settings['ssba_align'] : '',
 			'options'    => array(
 				'Left'   => 'left',
 				'Center' => 'center',
@@ -252,7 +252,7 @@ class Admin_Panel {
 			'name'       => 'ssba_plus_align',
 			'label'      => 'Alignment',
 			'tooltip'    => 'Align your plus buttons the way you wish',
-			'selected'   => $arr_settings['ssba_plus_align'],
+			'selected'   => isset( $arr_settings['ssba_plus_align'] ) ? $arr_settings['ssba_plus_align'] : '',
 			'options'    => array(
 				'Left'   => 'left',
 				'Center' => 'center',
@@ -269,7 +269,7 @@ class Admin_Panel {
 			'name'        => 'ssba_padding',
 			'label'       => 'Padding',
 			'tooltip'     => 'Apply some space around your images',
-			'value'       => $arr_settings['ssba_padding'],
+			'value'       => isset( $arr_settings['ssba_padding'] ) ? $arr_settings['ssba_padding'] : '',
 		);
 
 		// Font color.
@@ -279,7 +279,7 @@ class Admin_Panel {
 			'name'       => 'ssba_font_color',
 			'label'      => 'Font Color',
 			'tooltip'    => 'Choose the color of your share text',
-			'value'      => $arr_settings['ssba_font_color'],
+			'value'      => isset( $arr_settings['ssba_font_color'] ) ? $arr_settings['ssba_font_color'] : '',
 		);
 
 		// Font color for plus.
@@ -289,7 +289,7 @@ class Admin_Panel {
 			'name'       => 'ssba_plus_font_color',
 			'label'      => 'Font Color',
 			'tooltip'    => 'Choose the color of your share text',
-			'value'      => $arr_settings['ssba_plus_font_color'],
+			'value'      => isset( $arr_settings['ssba_plus_font_color'] ) ? $arr_settings['ssba_plus_font_color'] : '',
 		);
 
 		// Font family.
@@ -299,7 +299,7 @@ class Admin_Panel {
 			'name'       => 'ssba_font_family',
 			'label'      => 'Font Family',
 			'tooltip'    => 'Choose a font available or inherit the font from your website',
-			'selected'   => $arr_settings['ssba_font_family'],
+			'selected'   => isset( $arr_settings['ssba_font_family'] ) ? $arr_settings['ssba_font_family'] : '',
 			'options'    => array(
 				'Reenie Beanie'           => 'Reenie Beanie',
 				'Indie Flower'            => 'Indie Flower',
@@ -314,7 +314,7 @@ class Admin_Panel {
 			'name'       => 'ssba_plus_font_family',
 			'label'      => 'Font Family',
 			'tooltip'    => 'Choose a font available or inherit the font from your website',
-			'selected'   => $arr_settings['ssba_plus_font_family'],
+			'selected'   => isset( $arr_settings['ssba_plus_font_family'] ) ? $arr_settings['ssba_plus_font_family'] : '',
 			'options'    => array(
 				'Reenie Beanie'           => 'Reenie Beanie',
 				'Indie Flower'            => 'Indie Flower',
@@ -335,7 +335,7 @@ class Admin_Panel {
 			'name'        => 'ssba_font_size',
 			'label'       => 'Font Size',
 			'tooltip'     => 'Set the size of the share text in pixels',
-			'value'       => $arr_settings['ssba_font_size'],
+			'value'       => isset( $arr_settings['ssba_font_size'] ) ? $arr_settings['ssba_font_size'] : '',
 		);
 
 		// Font size for plus.
@@ -347,7 +347,7 @@ class Admin_Panel {
 			'name'        => 'ssba_plus_font_size',
 			'label'       => 'Font Size',
 			'tooltip'     => 'Set the size of the share text in pixels',
-			'value'       => $arr_settings['ssba_plus_font_size'],
+			'value'       => isset( $arr_settings['ssba_plus_font_size'] ) ? $arr_settings['ssba_plus_font_size'] : '',
 		);
 
 		// Font weight.
@@ -357,7 +357,7 @@ class Admin_Panel {
 			'name'       => 'ssba_font_weight',
 			'label'      => 'Font Weight',
 			'tooltip'    => 'Set the weight of the share text',
-			'selected'   => $arr_settings['ssba_font_weight'],
+			'selected'   => isset( $arr_settings['ssba_font_weight'] ) ? $arr_settings['ssba_font_weight'] : '',
 			'options'    => array(
 				'Normal' => 'normal',
 				'Bold'   => 'bold',
@@ -372,7 +372,7 @@ class Admin_Panel {
 			'name'       => 'ssba_plus_font_weight',
 			'label'      => 'Font Weight',
 			'tooltip'    => 'Set the weight of the share text',
-			'selected'   => $arr_settings['ssba_plus_font_weight'],
+			'selected'   => isset( $arr_settings['ssba_plus_font_weight'] ) ? $arr_settings['ssba_plus_font_weight'] : '',
 			'options'    => array(
 				'Normal' => 'normal',
 				'Bold'   => 'bold',
@@ -387,7 +387,7 @@ class Admin_Panel {
 			'name'       => 'ssba_text_placement',
 			'label'      => 'Text placement',
 			'tooltip'    => 'Choose where you want your text to be displayed, in relation to the buttons',
-			'selected'   => $arr_settings['ssba_text_placement'],
+			'selected'   => isset( $arr_settings['ssba_text_placement'] ) ? $arr_settings['ssba_text_placement'] : '',
 			'options'    => array(
 				'Above' => 'above',
 				'Left'  => 'left',
@@ -403,7 +403,7 @@ class Admin_Panel {
 			'name'       => 'ssba_plus_text_placement',
 			'label'      => 'Text placement',
 			'tooltip'    => 'Choose where you want your text to be displayed, in relation to the buttons',
-			'selected'   => $arr_settings['ssba_plus_text_placement'],
+			'selected'   => isset( $arr_settings['ssba_plus_text_placement'] ) ? $arr_settings['ssba_plus_text_placement'] : '',
 			'options'    => array(
 				'Above' => 'above',
 				'Left'  => 'left',
@@ -421,7 +421,7 @@ class Admin_Panel {
 			'name'        => 'ssba_div_padding',
 			'label'       => 'Container Padding',
 			'tooltip'     => 'Add some padding to your share container',
-			'value'       => $arr_settings['ssba_div_padding'],
+			'value'       => isset( $arr_settings['ssba_div_padding'] ) ? $arr_settings['ssba_div_padding'] : '',
 		);
 
 		// Div background color.
@@ -431,7 +431,7 @@ class Admin_Panel {
 			'name'       => 'ssba_div_background',
 			'label'      => 'Container Background Color',
 			'tooltip'    => 'Choose the color of your share container',
-			'value'      => $arr_settings['ssba_div_background'],
+			'value'      => isset( $arr_settings['ssba_div_background'] ) ? $arr_settings['ssba_div_background'] : '',
 		);
 
 		// Div border color.
@@ -441,7 +441,7 @@ class Admin_Panel {
 			'name'       => 'ssba_div_border',
 			'label'      => 'Container Border Color',
 			'tooltip'    => 'Choose the color of your share container border',
-			'value'      => $arr_settings['ssba_div_border'],
+			'value'      => isset( $arr_settings['ssba_div_border'] ) ? $arr_settings['ssba_div_border'] : '',
 		);
 
 		// Container border width.
@@ -453,7 +453,7 @@ class Admin_Panel {
 			'name'        => 'ssba_border_width',
 			'label'       => 'Container Border Width',
 			'tooltip'     => 'Set the width of the share container border',
-			'value'       => $arr_settings['ssba_border_width'],
+			'value'       => isset( $arr_settings['ssba_border_width'] ) ? $arr_settings['ssba_border_width'] : '',
 		);
 
 		// Rounded container corners.
@@ -464,7 +464,7 @@ class Admin_Panel {
 			'label'      => 'Rounded Container Corners',
 			'tooltip'    => 'Switch on to enable rounded corners for your share container',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_div_rounded_corners'] ? esc_attr( 'checked' ) : '',
+			'checked'    => isset( $arr_settings['ssba_div_rounded_corners'] ) && 'Y' === $arr_settings['ssba_div_rounded_corners'] ? esc_attr( 'checked' ) : '',
 		);
 
 		// Share count.
@@ -475,7 +475,7 @@ class Admin_Panel {
 			'label'      => 'Share Count',
 			'tooltip'    => 'Check the box if you wish to enable share counts. Enabling this option will slow down the loading of any pages that use share buttons',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_show_share_count'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_show_share_count'] ) && 'Y' === $arr_settings['ssba_show_share_count'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Share count for plus.
@@ -486,7 +486,7 @@ class Admin_Panel {
 			'label'      => 'Share Count',
 			'tooltip'    => 'Check the box if you wish to enable share counts. Enabling this option will slow down the loading of any pages that use share buttons',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_plus_show_share_count'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_plus_show_share_count'] ) && 'Y' === $arr_settings['ssba_plus_show_share_count'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Share count for share bar.
@@ -497,7 +497,7 @@ class Admin_Panel {
 			'label'      => 'Share Count',
 			'tooltip'    => 'Check the box if you wish to enable share counts. Enabling this option will slow down the loading of any pages that use share buttons',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_share_show_share_count'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_share_show_share_count'] ) && 'Y' === $arr_settings['ssba_share_show_share_count'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Show count once.
@@ -508,7 +508,7 @@ class Admin_Panel {
 			'label'      => 'Show Once',
 			'tooltip'    => 'This option is recommended, it deactivates share counts for categories and archives allowing them to load more quickly',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_share_count_once'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_share_count_once'] ) && 'Y' === $arr_settings['ssba_share_count_once'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Show count once for plus.
@@ -519,7 +519,7 @@ class Admin_Panel {
 			'label'      => 'Show Once',
 			'tooltip'    => 'This option is recommended, it deactivates share counts for categories and archives allowing them to load more quickly',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_plus_share_count_once'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_plus_share_count_once'] ) && 'Y' === $arr_settings['ssba_plus_share_count_once'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Show count once for share bar.
@@ -530,7 +530,7 @@ class Admin_Panel {
 			'label'      => 'Show Once',
 			'tooltip'    => 'This option is recommended, it deactivates share counts for categories and archives allowing them to load more quickly',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_share_share_count_once'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_share_share_count_once'] ) && 'Y' === $arr_settings['ssba_share_share_count_once'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Share counters style.
@@ -540,7 +540,7 @@ class Admin_Panel {
 			'name'       => 'ssba_share_count_style',
 			'label'      => 'Counters Style',
 			'tooltip'    => 'Pick a setting to style the share counters',
-			'selected'   => $arr_settings['ssba_share_count_style'],
+			'selected'   => isset( $arr_settings['ssba_share_count_style'] ) ? $arr_settings['ssba_share_count_style'] : '',
 			'options'    => array(
 				'Default' => 'default',
 				'White'   => 'white',
@@ -556,7 +556,7 @@ class Admin_Panel {
 			'label'      => '',
 			'tooltip'    => 'Switch on to enable the use of the newsharecounts.com API for Twitter share counts',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['twitter_newsharecounts'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['twitter_newsharecounts'] ) && 'Y' === $arr_settings['twitter_newsharecounts'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Sharedcount enable.
@@ -567,7 +567,7 @@ class Admin_Panel {
 			'label'      => 'Enable sharedcount.com API',
 			'tooltip'    => 'Enable if you wish to enable the use of the sharedcount.com API',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['sharedcount_enabled'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['sharedcount_enabled'] ) && 'Y' === $arr_settings['sharedcount_enabled'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Sharedcount plan.
@@ -577,7 +577,7 @@ class Admin_Panel {
 			'name'       => 'sharedcount_plan',
 			'label'      => 'sharedcount.com plan',
 			'tooltip'    => 'Select your sharedcount.com plan',
-			'selected'   => $arr_settings['sharedcount_plan'],
+			'selected'   => isset( $arr_settings['sharedcount_plan'] ) ? $arr_settings['sharedcount_plan'] : '',
 			'options'    => array(
 				'Free'     => 'free',
 				'Plus'     => 'plus',
@@ -593,7 +593,7 @@ class Admin_Panel {
 			'name'        => 'sharedcount_api_key',
 			'label'       => 'sharedcount.com API Key',
 			'tooltip'     => 'Add some text included in an email when people share that way',
-			'value'       => $arr_settings['sharedcount_api_key'],
+			'value'       => isset( $arr_settings['sharedcount_api_key'] ) ? $arr_settings['sharedcount_api_key'] : '',
 		);
 
 		// Link to ssb.
@@ -604,7 +604,7 @@ class Admin_Panel {
 			'label'      => 'Share Text Link',
 			'tooltip'    => 'Enabling this will set your share text as a link to simplesharebuttons.com to help others learn of the plugin',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_link_to_ssb'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_link_to_ssb'] ) && 'Y' === $arr_settings['ssba_link_to_ssb'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Link to ssb for plus.
@@ -615,7 +615,7 @@ class Admin_Panel {
 			'label'      => 'Share Text Link',
 			'tooltip'    => 'Enabling this will set your share text as a link to simplesharebuttons.com to help others learn of the plugin',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_plus_link_to_ssb'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_plus_link_to_ssb'] ) && 'Y' === $arr_settings['ssba_plus_link_to_ssb'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Link to ssb for plus.
@@ -626,7 +626,7 @@ class Admin_Panel {
 			'label'      => 'Share Text Link',
 			'tooltip'    => 'Enabling this will set your share text as a link to simplesharebuttons.com to help others learn of the plugin',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_share_link_to_ssb'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_share_link_to_ssb'] ) && 'Y' === $arr_settings['ssba_share_link_to_ssb'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Content priority.
@@ -637,7 +637,7 @@ class Admin_Panel {
 			'name'        => 'ssba_content_priority',
 			'label'       => 'Content Priority',
 			'tooltip'     => 'Set the priority for your share buttons within your content. 1-10, default is 10',
-			'value'       => $arr_settings['ssba_content_priority'],
+			'value'       => isset( $arr_settings['ssba_content_priority'] ) ? $arr_settings['ssba_content_priority'] : '',
 		);
 
 		// Share in new window.
@@ -648,7 +648,7 @@ class Admin_Panel {
 			'label'      => 'Open links in a new window',
 			'tooltip'    => 'Disabling this will make links open in the same window',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_share_new_window'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_share_new_window'] ) && 'Y' === $arr_settings['ssba_share_new_window'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Share in new window for plus.
@@ -659,7 +659,7 @@ class Admin_Panel {
 			'label'      => 'Open links in a new window',
 			'tooltip'    => 'Disabling this will make links open in the same window',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_plus_share_new_window'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_plus_share_new_window'] ) && 'Y' === $arr_settings['ssba_plus_share_new_window'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Share in new window for share bar.
@@ -670,7 +670,7 @@ class Admin_Panel {
 			'label'      => 'Open links in a new window',
 			'tooltip'    => 'Disabling this will make links open in the same window',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_share_share_new_window'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_share_share_new_window'] ) && 'Y' === $arr_settings['ssba_share_share_new_window'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Nofollow.
@@ -681,7 +681,7 @@ class Admin_Panel {
 			'label'      => 'Add rel="nofollow"',
 			'tooltip'    => 'Enable this to add nofollow to all share links',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_rel_nofollow'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_rel_nofollow'] ) && 'Y' === $arr_settings['ssba_rel_nofollow'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Nofollow for plus.
@@ -692,7 +692,7 @@ class Admin_Panel {
 			'label'      => 'Add rel="nofollow"',
 			'tooltip'    => 'Enable this to add nofollow to all share links',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_plus_rel_nofollow'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_plus_rel_nofollow'] ) && 'Y' === $arr_settings['ssba_plus_rel_nofollow'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Nofollow for share bar.
@@ -703,7 +703,7 @@ class Admin_Panel {
 			'label'      => 'Add rel="nofollow"',
 			'tooltip'    => 'Enable this to add nofollow to all share links',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_share_rel_nofollow'] ? esc_attr( 'checked' ) : null,
+			'checked'    => isset( $arr_settings['ssba_share_rel_nofollow'] ) && 'Y' === $arr_settings['ssba_share_rel_nofollow'] ? esc_attr( 'checked' ) : null,
 		);
 
 		// Widget share text.
@@ -714,7 +714,7 @@ class Admin_Panel {
 			'name'        => 'ssba_widget_text',
 			'label'       => 'Widget Share Text',
 			'tooltip'     => 'Add custom share text when used as a widget',
-			'value'       => $arr_settings['ssba_widget_text'],
+			'value'       => isset( $arr_settings['ssba_widget_text'] ) ? $arr_settings['ssba_widget_text'] : '',
 		);
 
 		// Widget share text for plus.
@@ -725,7 +725,7 @@ class Admin_Panel {
 			'name'        => 'ssba_plus_widget_text',
 			'label'       => 'Widget Share Text',
 			'tooltip'     => 'Add custom share text when used as a widget',
-			'value'       => $arr_settings['ssba_plus_widget_text'],
+			'value'       => isset( $arr_settings['ssba_plus_widget_text'] ) ? $arr_settings['ssba_plus_widget_text'] : '',
 		);
 
 		// Widget share text for share bar.
@@ -736,7 +736,7 @@ class Admin_Panel {
 			'name'        => 'ssba_share_widget_text',
 			'label'       => 'Widget Share Text',
 			'tooltip'     => 'Add custom share text when used as a widget',
-			'value'       => $arr_settings['ssba_share_widget_text'],
+			'value'       => isset( $arr_settings['ssba_share_widget_text'] ) ? $arr_settings['ssba_share_widget_text'] : '',
 		);
 
 		// Email share text.
@@ -747,7 +747,7 @@ class Admin_Panel {
 			'name'        => 'ssba_email_message',
 			'label'       => 'Email Text',
 			'tooltip'     => 'Add some text included in an email when people share that way',
-			'value'       => $arr_settings['ssba_email_message'],
+			'value'       => isset( $arr_settings['ssba_email_message'] ) ? $arr_settings['ssba_email_message'] : '',
 		);
 
 		// Email share text for plus.
@@ -758,7 +758,7 @@ class Admin_Panel {
 			'name'        => 'ssba_plus_email_message',
 			'label'       => 'Email Text',
 			'tooltip'     => 'Add some text included in an email when people share that way',
-			'value'       => $arr_settings['ssba_plus_email_message'],
+			'value'       => isset( $arr_settings['ssba_plus_email_message'] ) ? $arr_settings['ssba_plus_email_message'] : '',
 		);
 
 		// Email share text for share bar.
@@ -769,7 +769,7 @@ class Admin_Panel {
 			'name'        => 'ssba_share_email_message',
 			'label'       => 'Email Text',
 			'tooltip'     => 'Add some text included in an email when people share that way',
-			'value'       => $arr_settings['ssba_share_email_message'],
+			'value'       => isset( $arr_settings['ssba_share_email_message'] ) ? $arr_settings['ssba_share_email_message'] : '',
 		);
 
 		// Facebook app id.
@@ -780,7 +780,7 @@ class Admin_Panel {
 			'name'        => 'facebook_app_id',
 			'label'       => 'Facebook App ID',
 			'tooltip'     => 'Enter your Facebook App ID, e.g. 123456789123',
-			'value'       => $arr_settings['facebook_app_id'],
+			'value'       => isset( $arr_settings['facebook_app_id'] ) ? $arr_settings['facebook_app_id'] : '',
 			'disabled'    => 'Y' !== $arr_settings['accepted_sharethis_terms'] ? esc_attr( 'disabled' ) : null,
 		);
 
@@ -792,7 +792,7 @@ class Admin_Panel {
 			'name'        => 'plus_facebook_app_id',
 			'label'       => 'Facebook App ID',
 			'tooltip'     => 'Enter your Facebook App ID, e.g. 123456789123',
-			'value'       => $arr_settings['plus_facebook_app_id'],
+			'value'       => isset( $arr_settings['plus_facebook_app_id'] ) ? $arr_settings['plus_facebook_app_id'] : '',
 			'disabled'    => 'Y' !== $arr_settings['accepted_sharethis_terms'] ? esc_attr( 'disabled' ) : null,
 		);
 
@@ -804,7 +804,7 @@ class Admin_Panel {
 			'name'        => 'share_facebook_app_id',
 			'label'       => 'Facebook App ID',
 			'tooltip'     => 'Enter your Facebook App ID, e.g. 123456789123',
-			'value'       => $arr_settings['share_facebook_app_id'],
+			'value'       => isset( $arr_settings['share_facebook_app_id'] ) ? $arr_settings['share_facebook_app_id'] : '',
 			'disabled'    => 'Y' !== $arr_settings['accepted_sharethis_terms'] ? esc_attr( 'disabled' ) : null,
 		);
 
@@ -816,7 +816,7 @@ class Admin_Panel {
 			'label'      => 'Facebook Insights',
 			'tooltip'    => 'Enable this feature to enable Facebook Insights',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['facebook_insights'] ? 'checked' : null,
+			'checked'    => isset( $arr_settings['facebook_insights'] ) && 'Y' === $arr_settings['facebook_insights'] ? 'checked' : null,
 			'disabled'   => 'Y' !== $arr_settings['accepted_sharethis_terms'] ? 'disabled' : null,
 		);
 
@@ -828,7 +828,7 @@ class Admin_Panel {
 			'label'      => 'Facebook Insights',
 			'tooltip'    => 'Enable this feature to enable Facebook Insights',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['plus_facebook_insights'] ? 'checked' : null,
+			'checked'    => isset( $arr_settings['plus_facebook_insights'] ) && 'Y' === $arr_settings['plus_facebook_insights'] ? 'checked' : null,
 			'disabled'   => 'Y' !== $arr_settings['accepted_sharethis_terms'] ? 'disabled' : null,
 		);
 
@@ -840,7 +840,7 @@ class Admin_Panel {
 			'label'      => 'Facebook Insights',
 			'tooltip'    => 'Enable this feature to enable Facebook Insights',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['share_facebook_insights'] ? 'checked' : null,
+			'checked'    => isset( $arr_settings['share_facebook_insights'] ) && 'Y' === $arr_settings['share_facebook_insights'] ? 'checked' : null,
 			'disabled'   => 'Y' !== $arr_settings['accepted_sharethis_terms'] ? 'disabled' : null,
 		);
 
@@ -852,7 +852,7 @@ class Admin_Panel {
 			'name'        => 'ssba_twitter_text',
 			'label'       => 'Twitter Text',
 			'tooltip'     => 'Add some custom text for when people share via Twitter',
-			'value'       => $arr_settings['ssba_twitter_text'],
+			'value'       => isset( $arr_settings['ssba_twitter_text'] ) ? $arr_settings['ssba_twitter_text'] : '',
 		);
 
 		// Twitter share text for plus.
@@ -863,7 +863,7 @@ class Admin_Panel {
 			'name'        => 'ssba_plus_twitter_text',
 			'label'       => 'Twitter Text',
 			'tooltip'     => 'Add some custom text for when people share via Twitter',
-			'value'       => $arr_settings['ssba_plus_twitter_text'],
+			'value'       => isset( $arr_settings['ssba_plus_twitter_text'] ) ? $arr_settings['ssba_plus_twitter_text'] : '',
 		);
 
 		// Twitter share text for share bar.
@@ -874,7 +874,7 @@ class Admin_Panel {
 			'name'        => 'ssba_share_twitter_text',
 			'label'       => 'Twitter Text',
 			'tooltip'     => 'Add some custom text for when people share via Twitter',
-			'value'       => $arr_settings['ssba_share_twitter_text'],
+			'value'       => isset( $arr_settings['ssba_share_twitter_text'] ) ? $arr_settings['ssba_share_twitter_text'] : '',
 		);
 
 		// Flattr user id.
@@ -885,7 +885,7 @@ class Admin_Panel {
 			'name'        => 'ssba_flattr_user_id',
 			'label'       => 'Flattr User ID',
 			'tooltip'     => 'Enter your Flattr ID, e.g. davidsneal',
-			'value'       => $arr_settings['ssba_flattr_user_id'],
+			'value'       => isset( $arr_settings['ssba_flattr_user_id'] ) ? $arr_settings['ssba_flattr_user_id'] : '',
 		);
 
 		// Flattr user id for plus.
@@ -896,7 +896,7 @@ class Admin_Panel {
 			'name'        => 'ssba_plus_flattr_user_id',
 			'label'       => 'Flattr User ID',
 			'tooltip'     => 'Enter your Flattr ID, e.g. davidsneal',
-			'value'       => $arr_settings['ssba_plus_flattr_user_id'],
+			'value'       => isset( $arr_settings['ssba_plus_flattr_user_id'] ) ? $arr_settings['ssba_plus_flattr_user_id'] : '',
 		);
 
 		// Flattr user id for share bar.
@@ -907,7 +907,7 @@ class Admin_Panel {
 			'name'        => 'ssba_share_flattr_user_id',
 			'label'       => 'Flattr User ID',
 			'tooltip'     => 'Enter your Flattr ID, e.g. davidsneal',
-			'value'       => $arr_settings['ssba_share_flattr_user_id'],
+			'value'       => isset( $arr_settings['ssba_share_flattr_user_id'] ) ? $arr_settings['ssba_share_flattr_user_id'] : '',
 		);
 
 		// Flattr url.
@@ -918,7 +918,7 @@ class Admin_Panel {
 			'name'        => 'ssba_flattr_url',
 			'label'       => 'Flattr URL',
 			'tooltip'     => 'This option is perfect for dedicated sites, e.g. https://simplesharebuttons.com',
-			'value'       => $arr_settings['ssba_flattr_url'],
+			'value'       => isset( $arr_settings['ssba_flattr_url'] ) ? $arr_settings['ssba_flattr_url'] : '',
 		);
 
 		// Flattr url for plus.
@@ -929,7 +929,7 @@ class Admin_Panel {
 			'name'        => 'ssba_plus_flattr_url',
 			'label'       => 'Flattr URL',
 			'tooltip'     => 'This option is perfect for dedicated sites, e.g. https://simplesharebuttons.com',
-			'value'       => $arr_settings['ssba_plus_flattr_url'],
+			'value'       => isset( $arr_settings['ssba_plus_flattr_url'] ) ? $arr_settings['ssba_plus_flattr_url'] : '',
 		);
 
 		// Flattr url for share bar.
@@ -940,7 +940,7 @@ class Admin_Panel {
 			'name'        => 'ssba_share_flattr_url',
 			'label'       => 'Flattr URL',
 			'tooltip'     => 'This option is perfect for dedicated sites, e.g. https://simplesharebuttons.com',
-			'value'       => $arr_settings['ssba_share_flattr_url'],
+			'value'       => isset( $arr_settings['ssba_share_flattr_url'] ) ? $arr_settings['ssba_share_flattr_url'] : '',
 		);
 
 		// Buffer text.
@@ -951,7 +951,7 @@ class Admin_Panel {
 			'name'        => 'ssba_buffer_text',
 			'label'       => 'Custom Buffer Text',
 			'tooltip'     => 'Add some custom text for when people share via Buffer',
-			'value'       => $arr_settings['ssba_buffer_text'],
+			'value'       => isset( $arr_settings['ssba_buffer_text'] ) ? $arr_settings['ssba_buffer_text'] : '',
 		);
 
 		// Buffer text for plus.
@@ -962,7 +962,7 @@ class Admin_Panel {
 			'name'        => 'ssba_plus_buffer_text',
 			'label'       => 'Custom Buffer Text',
 			'tooltip'     => 'Add some custom text for when people share via Buffer',
-			'value'       => $arr_settings['ssba_plus_buffer_text'],
+			'value'       => isset( $arr_settings['ssba_plus_buffer_text'] ) ? $arr_settings['ssba_plus_buffer_text'] : '',
 		);
 
 		// Buffer text for share bar.
@@ -973,7 +973,7 @@ class Admin_Panel {
 			'name'        => 'ssba_share_buffer_text',
 			'label'       => 'Custom Buffer Text',
 			'tooltip'     => 'Add some custom text for when people share via Buffer',
-			'value'       => $arr_settings['ssba_share_buffer_text'],
+			'value'       => isset( $arr_settings['ssba_share_buffer_text'] ) ? $arr_settings['ssba_share_buffer_text'] : '',
 		);
 
 		// Pin featured images.
@@ -984,7 +984,7 @@ class Admin_Panel {
 			'label'      => 'Pin Featured Images',
 			'tooltip'    => 'Force the use of featured images for posts/pages when pinning',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_pinterest_featured'] ? 'checked' : null,
+			'checked'    => isset( $arr_settings['ssba_pinterest_featured'] ) && 'Y' === $arr_settings['ssba_pinterest_featured'] ? 'checked' : null,
 		);
 
 		// Pin featured images for plus.
@@ -995,7 +995,7 @@ class Admin_Panel {
 			'label'      => 'Pin Featured Images',
 			'tooltip'    => 'Force the use of featured images for posts/pages when pinning',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_plus_pinterest_featured'] ? 'checked' : null,
+			'checked'    => isset( $arr_settings['ssba_plus_pinterest_featured'] ) && 'Y' === $arr_settings['ssba_plus_pinterest_featured'] ? 'checked' : null,
 		);
 
 		// Pin featured images for share bar.
@@ -1006,7 +1006,7 @@ class Admin_Panel {
 			'label'      => 'Pin Featured Images',
 			'tooltip'    => 'Force the use of featured images for posts/pages when pinning',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_share_pinterest_featured'] ? 'checked' : null,
+			'checked'    => isset( $arr_settings['ssba_share_pinterest_featured'] ) && 'Y' === $arr_settings['ssba_share_pinterest_featured'] ? 'checked' : null,
 		);
 
 		// Default pinterest image.
@@ -1016,7 +1016,7 @@ class Admin_Panel {
 			'name'       => 'ssba_default_pinterest',
 			'label'      => 'Default Pinterest Image',
 			'tooltip'    => 'Upload a default Pinterest image',
-			'value'      => $arr_settings['ssba_default_pinterest'],
+			'value'      => isset( $arr_settings['ssba_default_pinterest'] ) ? $arr_settings['ssba_default_pinterest'] : '',
 		);
 
 		// Default pinterest image for plus.
@@ -1026,7 +1026,7 @@ class Admin_Panel {
 			'name'       => 'ssba_plus_default_pinterest',
 			'label'      => 'Default Pinterest Image',
 			'tooltip'    => 'Upload a default Pinterest image',
-			'value'      => $arr_settings['ssba_plus_default_pinterest'],
+			'value'      => isset( $arr_settings['ssba_plus_default_pinterest'] ) ? $arr_settings['ssba_plus_default_pinterest'] : '',
 		);
 
 		// Default pinterest image for share bar.
@@ -1036,7 +1036,7 @@ class Admin_Panel {
 			'name'       => 'ssba_share_default_pinterest',
 			'label'      => 'Default Pinterest Image',
 			'tooltip'    => 'Upload a default Pinterest image',
-			'value'      => $arr_settings['ssba_share_default_pinterest'],
+			'value'      => isset( $arr_settings['ssba_share_default_pinterest'] ) ? $arr_settings['ssba_share_default_pinterest'] : '',
 		);
 
 		// Additional css.
@@ -1048,7 +1048,7 @@ class Admin_Panel {
 			'name'       => 'ssba_additional_css',
 			'label'      => 'Additional CSS',
 			'tooltip'    => 'Add your own additional CSS if you wish',
-			'value'      => $arr_settings['ssba_additional_css'],
+			'value'      => isset( $arr_settings['ssba_additional_css'] ) ? $arr_settings['ssba_additional_css'] : '',
 		);
 
 		// Additional css for plus.
@@ -1060,7 +1060,7 @@ class Admin_Panel {
 			'name'       => 'ssba_plus_additional_css',
 			'label'      => 'Additional CSS',
 			'tooltip'    => 'Add your own additional CSS if you wish',
-			'value'      => $arr_settings['ssba_plus_additional_css'],
+			'value'      => isset( $arr_settings['ssba_plus_additional_css'] ) ? $arr_settings['ssba_plus_additional_css'] : '',
 		);
 
 		// Additional css for share.
@@ -1072,7 +1072,7 @@ class Admin_Panel {
 			'name'       => 'ssba_share_additional_css',
 			'label'      => 'Additional CSS',
 			'tooltip'    => 'Add your own additional CSS if you wish',
-			'value'      => $arr_settings['ssba_share_additional_css'],
+			'value'      => isset( $arr_settings['ssba_share_additional_css'] ) ? $arr_settings['ssba_share_additional_css'] : '',
 		);
 
 		// Enable custom css.
@@ -1083,7 +1083,7 @@ class Admin_Panel {
 			'label'      => 'Enable Custom CSS',
 			'tooltip'    => 'Switch on to disable all SSBA styles and use your own custom CSS',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_custom_styles_enabled'] ? 'checked' : null,
+			'checked'    => isset( $arr_settings['ssba_custom_styles_enabled'] ) && 'Y' === $arr_settings['ssba_custom_styles_enabled'] ? 'checked' : null,
 		);
 
 		// Enable custom css for plus.
@@ -1094,7 +1094,7 @@ class Admin_Panel {
 			'label'      => 'Enable Custom CSS',
 			'tooltip'    => 'Switch on to disable all SSBA styles and use your own custom CSS',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_plus_custom_styles_enabled'] ? 'checked' : null,
+			'checked'    => isset( $arr_settings['ssba_plus_custom_styles_enabled'] ) && 'Y' === $arr_settings['ssba_plus_custom_styles_enabled'] ? 'checked' : null,
 		);
 
 		// Enable custom css for share bar.
@@ -1105,7 +1105,7 @@ class Admin_Panel {
 			'label'      => 'Enable Custom CSS',
 			'tooltip'    => 'Switch on to disable all SSBA styles and use your own custom CSS',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_share_custom_styles_enabled'] ? 'checked' : null,
+			'checked'    => isset( $arr_settings['ssba_share_custom_styles_enabled'] ) && 'Y' === $arr_settings['ssba_share_custom_styles_enabled'] ? 'checked' : null,
 		);
 
 		// Custom css.
@@ -1117,7 +1117,7 @@ class Admin_Panel {
 			'name'       => 'ssba_custom_styles',
 			'label'      => 'Custom CSS',
 			'tooltip'    => 'Enter in your own custom CSS for your share buttons',
-			'value'      => $arr_settings['ssba_custom_styles'],
+			'value'      => isset( $arr_settings['ssba_custom_styles'] ) ? $arr_settings['ssba_custom_styles'] : '',
 		);
 
 		// Custom css for plus.
@@ -1129,7 +1129,7 @@ class Admin_Panel {
 			'name'       => 'ssba_plus_custom_styles',
 			'label'      => 'Custom CSS',
 			'tooltip'    => 'Enter in your own custom CSS for your share buttons',
-			'value'      => $arr_settings['ssba_plus_custom_styles'],
+			'value'      => isset( $arr_settings['ssba_plus_custom_styles'] ) ? $arr_settings['ssba_plus_custom_styles'] : '',
 		);
 
 		// Custom css for share bar.
@@ -1141,7 +1141,7 @@ class Admin_Panel {
 			'name'       => 'ssba_share_custom_styles',
 			'label'      => 'Custom CSS',
 			'tooltip'    => 'Enter in your own custom CSS for your share buttons',
-			'value'      => $arr_settings['ssba_share_custom_styles'],
+			'value'      => isset( $arr_settings['ssba_share_custom_styles'] ) ? $arr_settings['ssba_share_custom_styles'] : '',
 		);
 
 		// Switch to new buttons.
@@ -1152,7 +1152,7 @@ class Admin_Panel {
 			'label'      => 'Plus Share Buttons',
 			'tooltip'    => 'If "On" new buttons replace the old on your site.',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_new_buttons'] ? 'checked' : null,
+			'checked'    => isset( $arr_settings['ssba_new_buttons'] ) && 'Y' === $arr_settings['ssba_new_buttons'] ? 'checked' : null,
 		);
 
 		// Select style of new buttons.
@@ -1162,7 +1162,7 @@ class Admin_Panel {
 			'name'       => 'ssba_share_button_style',
 			'label'      => 'Theme',
 			'tooltip'    => 'Choose the style of the new buttons',
-			'selected'   => $arr_settings['ssba_share_button_style'],
+			'selected'   => isset( $arr_settings['ssba_share_button_style'] ) ? $arr_settings['ssba_share_button_style'] : '',
 			'options'    => array(
 				'Round'             => 1,
 				'Square'            => 2,
@@ -1194,7 +1194,7 @@ class Admin_Panel {
 			'name'       => 'ssba_before_or_after_plus',
 			'label'      => 'Placement',
 			'tooltip'    => 'Place share buttons before or after your content',
-			'selected'   => $arr_settings['ssba_before_or_after_plus'],
+			'selected'   => isset( $arr_settings['ssba_before_or_after_plus'] ) ? $arr_settings['ssba_before_or_after_plus'] : '',
 			'options'    => array(
 				'After'  => 'after',
 				'Before' => 'before',
@@ -1218,7 +1218,7 @@ class Admin_Panel {
 			'name'       => 'ssba_share_bar_style',
 			'label'      => 'Style',
 			'tooltip'    => 'Choose the style of the share bar buttons',
-			'selected'   => $arr_settings['ssba_share_bar_style'],
+			'selected'   => isset( $arr_settings['ssba_share_bar_style'] ) ? $arr_settings['ssba_share_bar_style'] : '',
 			'options'    => array(
 				'Round'             => 1,
 				'Square'            => 2,
@@ -1240,7 +1240,7 @@ class Admin_Panel {
 			'name'       => 'ssba_share_bar_position',
 			'label'      => 'Alignment',
 			'tooltip'    => 'Choose the share bar position',
-			'selected'   => $arr_settings['ssba_share_bar_position'],
+			'selected'   => isset( $arr_settings['ssba_share_bar_position'] ) ? $arr_settings['ssba_share_bar_position'] : '',
 			'options'    => array(
 				'Sticky Left'   => 'left',
 				'Sticky Right'  => 'right',
@@ -1256,7 +1256,7 @@ class Admin_Panel {
 			'name'        => 'ssba_plus_height',
 			'label'       => 'Height',
 			'tooltip'     => 'Set the height of the plus buttons',
-			'value'       => $arr_settings['ssba_plus_height'],
+			'value'       => isset( $arr_settings['ssba_plus_height'] ) ? $arr_settings['ssba_plus_height'] : '',
 		);
 
 		// Plus buttons width.
@@ -1268,7 +1268,7 @@ class Admin_Panel {
 			'name'        => 'ssba_plus_width',
 			'label'       => 'Width',
 			'tooltip'     => 'Set the width of the plus buttons',
-			'value'       => $arr_settings['ssba_plus_width'],
+			'value'       => isset( $arr_settings['ssba_plus_width'] ) ? $arr_settings['ssba_plus_width'] : '',
 		);
 
 		// Plus icon size.
@@ -1280,7 +1280,7 @@ class Admin_Panel {
 			'name'        => 'ssba_plus_icon_size',
 			'label'       => 'Icon Size',
 			'tooltip'     => 'Set the icon size of the plus buttons',
-			'value'       => $arr_settings['ssba_plus_icon_size'],
+			'value'       => isset( $arr_settings['ssba_plus_icon_size'] ) ? $arr_settings['ssba_plus_icon_size'] : '',
 		);
 
 		// Plus button margin.
@@ -1292,7 +1292,7 @@ class Admin_Panel {
 			'name'        => 'ssba_plus_margin',
 			'label'       => 'Margin',
 			'tooltip'     => 'Set the margin of the plus buttons',
-			'value'       => $arr_settings['ssba_plus_margin'],
+			'value'       => isset( $arr_settings['ssba_plus_margin'] ) ? $arr_settings['ssba_plus_margin'] : '',
 		);
 
 		// Plus button color override.
@@ -1302,7 +1302,7 @@ class Admin_Panel {
 			'name'       => 'ssba_plus_button_color',
 			'label'      => 'Button Color',
 			'tooltip'    => 'Choose the color for all plus buttons',
-			'value'      => $arr_settings['ssba_plus_button_color'],
+			'value'      => isset( $arr_settings['ssba_plus_button_color'] ) ? $arr_settings['ssba_plus_button_color'] : '',
 		);
 
 		// Plus button hover color override.
@@ -1312,7 +1312,7 @@ class Admin_Panel {
 			'name'       => 'ssba_plus_button_hover_color',
 			'label'      => 'Hover Color',
 			'tooltip'    => 'Choose the color for all plus buttons hover',
-			'value'      => $arr_settings['ssba_plus_button_hover_color'],
+			'value'      => isset( $arr_settings['ssba_plus_button_hover_color'] ) ? $arr_settings['ssba_plus_button_hover_color'] : '',
 		);
 
 		// Plus icon color override.
@@ -1322,7 +1322,7 @@ class Admin_Panel {
 			'name'       => 'ssba_plus_icon_color',
 			'label'      => 'Icon Color',
 			'tooltip'    => 'Choose the color for all plus button icons',
-			'value'      => $arr_settings['ssba_plus_icon_color'],
+			'value'      => isset( $arr_settings['ssba_plus_icon_color'] ) ? $arr_settings['ssba_plus_icon_color'] : '',
 		);
 
 		// Plus button color override.
@@ -1332,7 +1332,7 @@ class Admin_Panel {
 			'name'       => 'ssba_plus_icon_hover_color',
 			'label'      => 'Icon Hover Color',
 			'tooltip'    => 'Choose the color for all plus button icons hover',
-			'value'      => $arr_settings['ssba_plus_icon_hover_color'],
+			'value'      => isset( $arr_settings['ssba_plus_icon_hover_color'] ) ? $arr_settings['ssba_plus_icon_hover_color'] : '',
 		);
 
 		// share buttons height.
@@ -1344,7 +1344,7 @@ class Admin_Panel {
 			'name'        => 'ssba_share_height',
 			'label'       => 'Height',
 			'tooltip'     => 'Set the height of the share bar buttons',
-			'value'       => $arr_settings['ssba_share_height'],
+			'value'       => isset( $arr_settings['ssba_share_height'] ) ? $arr_settings['ssba_share_height'] : '',
 		);
 
 		// share buttons width.
@@ -1356,7 +1356,7 @@ class Admin_Panel {
 			'name'        => 'ssba_share_width',
 			'label'       => 'Width',
 			'tooltip'     => 'Set the width of the share bar buttons',
-			'value'       => $arr_settings['ssba_share_width'],
+			'value'       => isset( $arr_settings['ssba_share_width'] ) ? $arr_settings['ssba_share_width'] : '',
 		);
 
 		// share icon size.
@@ -1368,7 +1368,7 @@ class Admin_Panel {
 			'name'        => 'ssba_share_icon_size',
 			'label'       => 'Icon Size',
 			'tooltip'     => 'Set the icon size of the share bar buttons',
-			'value'       => $arr_settings['ssba_share_icon_size'],
+			'value'       => isset( $arr_settings['ssba_share_icon_size'] ) ? $arr_settings['ssba_share_icon_size'] : '',
 		);
 
 		// share button margin.
@@ -1380,7 +1380,7 @@ class Admin_Panel {
 			'name'        => 'ssba_share_margin',
 			'label'       => 'Margin',
 			'tooltip'     => 'Set the margin of the share bar buttons',
-			'value'       => $arr_settings['ssba_share_margin'],
+			'value'       => isset( $arr_settings['ssba_share_margin'] ) ? $arr_settings['ssba_share_margin'] : '',
 		);
 
 		// share button color override.
@@ -1390,7 +1390,7 @@ class Admin_Panel {
 			'name'       => 'ssba_share_button_color',
 			'label'      => 'Button Color',
 			'tooltip'    => 'Choose the color for all share bar buttons',
-			'value'      => $arr_settings['ssba_share_button_color'],
+			'value'      => isset( $arr_settings['ssba_share_button_color'] ) ? $arr_settings['ssba_share_button_color'] : '',
 		);
 
 		// share button hover color override.
@@ -1400,7 +1400,7 @@ class Admin_Panel {
 			'name'       => 'ssba_share_button_hover_color',
 			'label'      => 'Hover Color',
 			'tooltip'    => 'Choose the color for all share bar buttons hover',
-			'value'      => $arr_settings['ssba_share_button_hover_color'],
+			'value'      => isset( $arr_settings['ssba_share_button_hover_color'] ) ? $arr_settings['ssba_share_button_hover_color'] : '',
 		);
 
 		// share icon color override.
@@ -1410,7 +1410,7 @@ class Admin_Panel {
 			'name'       => 'ssba_share_icon_color',
 			'label'      => 'Icon Color',
 			'tooltip'    => 'Choose the color for all share bar button icons',
-			'value'      => $arr_settings['ssba_share_icon_color'],
+			'value'      => isset( $arr_settings['ssba_share_icon_color'] ) ? $arr_settings['ssba_share_icon_color'] : '',
 		);
 
 		// share button color override.
@@ -1420,7 +1420,7 @@ class Admin_Panel {
 			'name'       => 'ssba_share_icon_hover_color',
 			'label'      => 'Icon Hover Color',
 			'tooltip'    => 'Choose the color for all share bar button icons hover',
-			'value'      => $arr_settings['ssba_share_icon_hover_color'],
+			'value'      => isset( $arr_settings['ssba_share_icon_hover_color'] ) ? $arr_settings['ssba_share_icon_hover_color'] : '',
 		);
 
 		// Enable share bar.
@@ -1431,7 +1431,7 @@ class Admin_Panel {
 			'label'      => 'Share Bar',
 			'tooltip'    => 'If "On" share bar will appear on your site.',
 			'value'      => 'Y',
-			'checked'    => 'Y' === $arr_settings['ssba_share_bar'] ? 'checked' : null,
+			'checked'    => isset( $arr_settings['ssba_share_bar'] ) && 'Y' === $arr_settings['ssba_share_bar'] ? 'checked' : null,
 		);
 
 		// Share bar display.
@@ -1452,7 +1452,7 @@ class Admin_Panel {
 			'name'        => 'ssba_mobile_breakpoint',
 			'label'       => 'Mobile Breakpoint',
 			'tooltip'     => 'Set the share bar mobile breakpoint when it centers on screen',
-			'value'       => $arr_settings['ssba_mobile_breakpoint'],
+			'value'       => isset( $arr_settings['ssba_mobile_breakpoint'] ) ? $arr_settings['ssba_mobile_breakpoint'] : '',
 		);
 
 		// Notices.
