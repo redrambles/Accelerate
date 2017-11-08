@@ -120,7 +120,9 @@ get_header(); ?>
 		?>
 		<!-- The twitter handle is being fetched from the database and appended to the widget title using a filter - in inc/extras.php -->
 		<?php if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
+		
 		<div id="secondary" class="widget-area tweet-module" role="complementary">
+		<!-- see inc/extras.php for how the '@Redrambles' was dynamically output -->
 		    <a href="<?php echo $twitter_link ?>"><?php dynamic_sidebar( 'sidebar-2' ); ?></a>
 
 		    <a href="<?php echo $twitter_link ?>" class="follow-us-link"><?php echo $link_name; ?><span> &rsaquo;</span></a>

@@ -31,10 +31,10 @@ get_header(); ?>
 
 		<article class="case-study">
 			<aside class="case-study-sidebar">
-
+			
 				<h2><?php the_title(); ?></h2>
 				<h6><?php echo $services; ?></h6>
-				<h6 id="client">Client: <?php echo $client; ?></h6>
+				<h6 id="client">Client: <?php echo red_return_texture_to_meta('client'); ?></h6>
 
 				<?php the_content(); ?>
 
@@ -42,7 +42,9 @@ get_header(); ?>
 			</aside>
 
 			<div class="case-study-images">
-				<?php $image_array = array( $image_1, $image_2, $image_3 );
+				<?php 
+				// This code is much less verbose
+				$image_array = array( $image_1, $image_2, $image_3 );
 					foreach ( $image_array as $image ){
 						if( $image ){
 							echo wp_get_attachment_image( $image, $size );

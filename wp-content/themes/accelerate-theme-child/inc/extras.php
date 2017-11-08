@@ -111,3 +111,30 @@ function add_twitter_handle( $title ) {
     	return $title .= '<div class="twitterhandle">@'. $twitter_handle . '</div>';
 		}
 add_filter('widget_title', 'add_twitter_handle'); 
+
+// Make curly quotes straight in excerpts (they are curly by default, just like in the content)
+remove_filter('the_excerpt', 'wptexturize');
+
+
+
+// Allow specific custom fields to have some rich text editing features like smilies
+// Example: red_return_texture_to_meta( 'client' ); // to be used in template file
+function red_return_texture_to_meta( $custom_field ) { 
+	global $post;
+
+	// Fetch our unformatted custom field
+	$unformatted_content = get_post_meta( $post->ID, $custom_field, true );
+
+	// Set up our filters
+	add_filter( 'meta_content', 'convert_smilies' );
+	//add_filter( 'meta_content', 'wptexturize' );
+	// add_filter( 'meta_content', 'wpautop' );
+	// add_filter( 'meta_content', 'shortcode_unautop' );
+	// add_filter( 'meta_content', 'prepend_attachment' );
+	
+	// Make '$formatted_content' filterable with 'meta_content'
+	$formatted_content = apply_filters('meta_content', $unformatted_content);
+
+	return $formatted_content;	
+
+}
