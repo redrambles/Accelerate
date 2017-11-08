@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorho
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.6
 Tested up to: 4.8
-Stable tag: 3.2.3
+Stable tag: 3.2.4
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -65,9 +65,6 @@ Want access to everything we offer, or perhaps just our form building toolkit "B
 
 [Find our more about our Ninja Forms Memberships here.](https://ninjaforms.com/pricing/?utm_medium=referral&utm_source=wordpress.org&utm_campaign=Ninja+Forms+Readme&utm_content=Developer+Membership)
 
-= Demo Site =
-Please feel free to visit our [demo site](http://three.ninjaforms.com?utm_medium=referral&utm_source=wordpress.org&utm_campaign=Ninja+Forms+Readme) where you can test the features of Ninja Forms and all of our extensions.
-
 = For Developers =
 
 The Ninja Forms framework is on [GitHub](https://github.com/wpninjas/ninja-forms)! If you're a developer and want to help make Ninja Forms better, check it out. It's also a great resource for developers who are interested in creating add-ons for our online store.
@@ -114,13 +111,29 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.2.3 (19 October 2017) =
+= 3.2.4 (7 November 2017) =
 
 *Bugs:*
 
-* Fixed a bug that caused some 2.9.x to 3.0 conversion to fail.
+* Multi-select fields can now be updated in the submission edit page.
+* Modified number fields to better handle rounding numbers with decimals.
+
+*Changes:*
+
+* Added the GNU license file.
 
 == Changelog ==
+
+= 3.2.4 (7 November 2017) =
+
+*Bugs:*
+
+* Multi-select fields can now be updated in the submission edit page.
+* Modified number fields to better handle rounding numbers with decimals.
+
+*Changes:*
+
+* Added the GNU license file.
 
 = 3.2.3 (19 October 2017) =
 
