@@ -125,7 +125,12 @@ get_header(); ?>
 		<!-- see inc/extras.php for how the '@Redrambles' was dynamically output -->
 		    <a href="<?php echo $twitter_link ?>"><?php dynamic_sidebar( 'sidebar-2' ); ?></a>
 
-		    <a href="<?php echo $twitter_link ?>" class="follow-us-link"><?php echo $link_name; ?><span> &rsaquo;</span></a>
+				<!-- <a href="<?php //..echo $twitter_link ?>" class="follow-us-link"><?php //echo $link_name; ?><span> &rsaquo;</span></a> -->
+				<?php 
+					$stt_options = get_option( 'widget_pi_simpletwittertweets' );
+					$twitter_handle = $stt_options[2]['name'];
+				?>
+				<a href="http://twitter.com/<?php echo $twitter_handle; ?>" class="follow-us-link">Follow Us<span> &rsaquo;</span></a>
 		</div>
 		<?php endif; ?>
 
@@ -133,4 +138,3 @@ get_header(); ?>
 </section><!-- .recent-posts -->
 
 <?php get_footer(); ?>
-
