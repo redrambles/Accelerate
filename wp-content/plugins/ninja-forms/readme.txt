@@ -1,9 +1,9 @@
 === Ninja Forms - The Easy and Powerful Forms Builder ===
 Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorhouse, jmcelhaney, wpnzach
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
-Requires at least: 4.6
-Tested up to: 4.8
-Stable tag: 3.2.4
+Requires at least: 4.7
+Tested up to: 4.9
+Stable tag: 3.2.6
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -111,18 +111,52 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.2.4 (7 November 2017) =
+= 3.2.6 (13 December 2017) =
 
 *Bugs:*
 
-* Multi-select fields can now be updated in the submission edit page.
-* Modified number fields to better handle rounding numbers with decimals.
+* Submission searching should now work in WordPress version 4.8.3 and above.
+* Fixed an issue that sometimes caused forms not to publish after deleting a field.
+* Fixed a bug that was causing User Management to sometimes not properly set default user meta values.
+* Fixed a compatibility issue with the add a form widget in PHP 7.2.
+* Fixed an issue that caused Ninja Forms to crash on activation with a PHP version missing the Parser Functions package.
+* Fixed a bug that sometimes caused too many database calls on pages where multiple JavaScript errors were present.
+* Fixed a bug that sometimes caused a Request Entity Too Large error on form publish.
+* Fixed an issue that caused the Add Form button to sometimes display improperly on smaller screens.
+* Fixed an issue that was breaking form display when multi-select fields had no pre-selected values.
 
 *Changes:*
 
-* Added the GNU license file.
+* Added an option to ignore UTF-8 encoding on export/import, which can correct forms importing with no field data.
+* Updated the format of submission dates to match that of the WordPress install.
+* Updated the custom field template file path so that it should now properly pull from child themes when active.
 
 == Changelog ==
+
+= 3.2.6 (13 December 2017) =
+
+*Bugs:*
+
+* Fixed an issue that was breaking form display when multi-select fields had no pre-selected values.
+
+= 3.2.5 (13 December 2017) =
+
+*Bugs:*
+
+* Submission searching should now work in WordPress version 4.8.3 and above.
+* Fixed an issue that sometimes caused forms not to publish after deleting a field.
+* Fixed a bug that was causing User Management to sometimes not properly set default user meta values.
+* Fixed a compatibility issue with the add a form widget in PHP 7.2.
+* Fixed an issue that caused Ninja Forms to crash on activation with a PHP version missing the Parser Functions package.
+* Fixed a bug that sometimes caused too many database calls on pages where multiple JavaScript errors were present.
+* Fixed a bug that sometimes caused a Request Entity Too Large error on form publish.
+* Fixed an issue that caused the Add Form button to sometimes display improperly on smaller screens.
+
+*Changes:*
+
+* Added an option to ignore UTF-8 encoding on export/import, which can correct forms importing with no field data.
+* Updated the format of submission dates to match that of the WordPress install.
+* Updated the custom field template file path so that it should now properly pull from child themes when active.
 
 = 3.2.4 (7 November 2017) =
 

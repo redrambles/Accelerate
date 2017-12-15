@@ -123,9 +123,6 @@ final class NF_Admin_Menus_SystemStatus extends NF_Abstracts_Submenu
         elseif( array_key_exists( 'LOCAL_ADDR', $_SERVER ) )
             $server_ip = $_SERVER[ 'LOCAL_ADDR' ];
         $host_name = gethostbyaddr( $server_ip );
-        
-        $tls = WPN_Helper::get_tls();
-        if ( ! $tls ) $tls = 'unknown';
 
         $wp_version = get_bloginfo('version');
         $wp_compatible = ( version_compare( $wp_version, Ninja_Forms::WP_MIN_VERSION ) >= 0 ) ? __( 'Supported', 'ninja-forms' ) : __( 'Not Supported', 'ninja-forms' );
@@ -157,7 +154,6 @@ final class NF_Admin_Menus_SystemStatus extends NF_Abstracts_Submenu
             __( 'WP Version','ninja-forms' ) => $wp_version . ' - ' . $wp_compatible,
             __( 'WP Multisite Enabled','ninja-forms' ) => $multisite,
             __( 'Web Server Info','ninja-forms' ) => esc_html( $_SERVER['SERVER_SOFTWARE'] ),
-            __( 'TLS Version','ninja-forms' ) => $tls,
             __( 'PHP Version','ninja-forms' ) => esc_html( phpversion() ),
             //TODO: Possibly Refactor with Ninja forms global $_db?
             __( 'MySQL Version','ninja-forms' ) => $wpdb->db_version(),

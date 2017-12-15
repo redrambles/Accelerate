@@ -304,10 +304,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
                 $settings = ( is_object( $field ) ) ? $field->get_settings() : $field[ 'settings' ];
                 $settings[ 'id' ] =  $field_id;
 
-
-//                foreach ($settings as $key => $setting) {
-//                    if (is_numeric($setting)) $settings[$key] = floatval($setting);
-//                }
+                $settings = $this->null_data_check( $settings );
 
                 $fields_settings[] = $settings;
             }
@@ -328,6 +325,8 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
                 $settings = $action->get_settings();
                 $settings['id'] = $action->get_id();
+
+                $settings = $this->null_data_check( $settings );
 
                 $actions_settings[] = $settings;
             }
@@ -358,6 +357,27 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             // console.log( preloadedFormData );
         </script>
         <?php
+    }
+
+    /**
+     * Null Data Check
+     * Accepts array of settings and removes null data the array.
+     *
+     * @param $settings - a key/value pair of settings.
+     * @return array
+     */
+    private function null_data_check( $settings )
+    {
+        // Loop over the settings we receive.
+        foreach ($settings as $key => $setting) {
+            // Check for null values in the settings array.
+            if ( null === $setting ) {
+                // Remove null settings from the array.
+                unset( $settings[ $key ] );
+                continue;
+            }
+        }
+        return $settings;
     }
 
     private function _localize_field_type_data()
@@ -625,7 +645,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         foreach( $settings as $setting ){
 
             $name = ( isset( $setting[ 'name' ] ) ) ? $setting[ 'name' ] : '';
-            $default = ( isset( $setting[ 'value' ] ) ) ? $setting[ 'value' ] : '';
+            $default = ( isset( $setting[ 'value' ] ) ) ? $setting[ 'value' ] : null;
             $setting_defaults[ $name ] = $default;
         }
 

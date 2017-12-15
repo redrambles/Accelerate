@@ -212,6 +212,7 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
             global $wpdb;
 
             $keywords = explode(' ', get_query_var('s'));
+
             $query = "";
 
             foreach ($keywords as $word) {
@@ -220,14 +221,17 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
             }
 
             if (!empty($query)) {
-                // add to where clause
-                $pieces['where'] = str_replace("((({$wpdb->posts}.post_title LIKE '%", "( {$query} (({$wpdb->posts}.post_title LIKE '%", $pieces['where']);
+                // Escape place holders for the where clause.
+                $pieces[ 'where' ] = $wpdb->remove_placeholder_escape( $pieces[ 'where' ] );
 
-                $pieces['join'] = $pieces['join'] . " INNER JOIN {$wpdb->postmeta} AS mypm1 ON ({$wpdb->posts}.ID = mypm1.post_id)";
+                // add to where clause
+                $pieces[ 'where' ] = str_replace("((({$wpdb->posts}.post_title LIKE '%", "({$query}(({$wpdb->posts}.post_title LIKE '%", $pieces[ 'where' ]);
+
+                $pieces[ 'join' ] = $pieces[ 'join' ] . " INNER JOIN {$wpdb->postmeta} AS mypm1 ON ({$wpdb->posts}.ID = mypm1.post_id)";
 
             }
         }
-        return ($pieces);
+        return ( $pieces );
     }
 
     public function remove_bulk_edit( $actions ) {
@@ -377,7 +381,12 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
      */
     private function custom_columns_sub_date( $sub )
     {
-        return $sub->get_sub_date( 'm/d/Y h:i A' );
+        // Grab the date and time format options
+        $date_format = get_option( 'date_format' );
+        $time_format = get_option( 'time_format' );
+
+        // Get the sub dates using the date and time formats.
+        return $sub->get_sub_date( $date_format . ' ' . $time_format );
     }
 
     /**

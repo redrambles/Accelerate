@@ -26,7 +26,7 @@ final class NF_Display_Preview
 
     public function pre_get_posts( $query )
     {
-        $query->set( 'posts_per_page', 1 );
+		$query->set( 'posts_per_page', 1 );
     }
 
     /**

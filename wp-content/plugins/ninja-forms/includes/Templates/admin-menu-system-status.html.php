@@ -54,19 +54,22 @@
             <td><?php echo $site_wide_plugins; ?></td>
         </tr>
     </tbody>
-    <thead>
-        <tr>
-            <th colspan="2"><?php _e( 'Recent Errors', 'ninja-forms' ); ?></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td></td>
-            <td>
-                <?php foreach ( $error_log as $error ): ?>
-                    * <?php echo nl2br( $error ) ?> </br>
-                <?php endforeach; ?>
-            </td>
-        </tr>
-    </tbody>
 </table>
+
+<!--TODO: Add this section back in when error collected is fixed.-->
+<!--    <thead>-->
+<!--        <tr>-->
+<!--            <th colspan="2">--><?php //_e( 'Recent Errors', 'ninja-forms' ); ?><!--</th>-->
+<!--        </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--        <tr>-->
+<!--            <td></td>-->
+<!--            <td>-->
+<!--                --><?php //foreach ( $error_log as $error ): ?>
+<!--                    * --><?php //echo nl2br( $error ) ?><!-- </br>-->
+<!--                --><?php //endforeach; ?>
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </tbody>-->
+

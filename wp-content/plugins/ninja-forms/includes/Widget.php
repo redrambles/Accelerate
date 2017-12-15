@@ -106,4 +106,13 @@ class NF_Widget extends WP_Widget {
 
 } // class Foo_Widget
 
-add_action( 'widgets_init', create_function( '', 'register_widget( "NF_Widget" );' ) );
+/**
+ * Register NF widget
+ *
+ * @see 'widgets_init'
+ */
+function NF_register_widgets() {
+    register_widget( 'NF_Widget' );
+}
+
+add_action( 'widgets_init', 'NF_register_widgets' );

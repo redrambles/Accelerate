@@ -36,7 +36,13 @@ final class NF_Admin_Menus_ImportExport extends NF_Abstracts_Submenu
 
         $data = file_get_contents( $_FILES[ 'nf_import_form' ][ 'tmp_name' ] );
 
-        $import = Ninja_Forms()->form()->import_form( $data );
+        // Check to see if the user turned off UTF-8 encoding
+        $decode_utf8 = TRUE;
+        if( $_REQUEST[ 'nf_import_form_turn_off_encoding' ] ) {
+        	$decode_utf8 = FALSE;
+        }
+
+        $import = Ninja_Forms()->form()->import_form( $data, $decode_utf8 );
 
         if( ! $import ){
 

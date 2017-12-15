@@ -164,7 +164,14 @@ class NF_Fields_Terms extends NF_Fields_ListCheckbox
     public function merge_tag_value( $value, $field )
     {
         $terms = explode( ',', $value );
-        if( ! is_array( $terms ) ) return $value;
+        if( ! is_array( $terms ) ) {
+            $term = get_term_by( 'id', $value, $field[ 'taxonomy' ] );
+            if( $term ) {
+                return $term->name;
+            } else {
+                return $value;
+            }
+        }
 
         $term_names = array();
         foreach( $terms as $term_id ){
