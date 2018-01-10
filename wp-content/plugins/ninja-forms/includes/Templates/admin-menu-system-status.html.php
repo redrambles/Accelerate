@@ -38,8 +38,8 @@
 	<tbody>
         <?php foreach( $environment as $key => $value ): ?>
             <tr>
-                <td><?php echo $key . ':'; ?></td>
-                <td><?php echo $value; ?></td>
+                <td><?php echo esc_html( $key ) . ':'; ?></td>
+                <td><?php echo esc_html( $value ); ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

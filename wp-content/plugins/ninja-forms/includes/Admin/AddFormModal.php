@@ -62,7 +62,7 @@ class NF_Admin_AddFormModal {
                     if ( strlen( $label ) > 30 )
                         $label = substr( $label, 0, 30 ) . '...';
 
-                    echo '<option value="' . $form_id . '">' . $label . ' - ID: ' . $form_id . '</option>';
+                    echo '<option value="' . intval( $form_id ) . '">' . $label . ' - ID: ' . $form_id . '</option>';
                 }
                 echo '</select>';
                 ?>

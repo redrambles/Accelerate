@@ -237,7 +237,9 @@ final class NF_Display_Render
 
                 $settings = $field[ 'settings' ];
                 foreach ($settings as $key => $setting) {
-                    if (is_numeric($setting)) $settings[$key] = floatval($setting);
+                    if (is_numeric($setting) && 'custom_mask' != $key )
+                    	$settings[$key] =
+	                    floatval($setting);
                 }
 
                 if( ! isset( $settings[ 'label_pos' ] ) || 'default' == $settings[ 'label_pos' ] ){
@@ -532,7 +534,7 @@ final class NF_Display_Render
 
         if( $is_preview || in_array( $form_id, self::$form_uses_datepicker ) ) {
             wp_enqueue_style( 'pikaday-responsive', $css_dir . 'pikaday-package.css', $ver );
-            wp_enqueue_script('nf-front-end--datepicker', $js_dir . 'front-end--datepicker.min.js', array( 'jquery' ), $ver );
+            wp_enqueue_script('nf-front-end--datepicker', $js_dir . 'front-end--datepicker.min.js', array( 'jquery', 'nf-front-end' ), $ver );
         }
 
         if( $is_preview || in_array( $form_id, self::$form_uses_inputmask ) ) {

@@ -430,17 +430,12 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
         // Include submissions on the end_date.
         $end_date = date( 'm/d/Y', strtotime( '+1 day', strtotime( $end_date ) ) );
 
-        if( $begin_date > $end_date ){
-            $temp_date = $begin_date;
-            $begin_date = $end_date;
-            $end_date = $temp_date;
-        }
-
         if ( ! isset ( $vars['date_query'] ) ) {
 
             $vars['date_query'] = array(
                 'after' => $begin_date,
-                'before' => $end_date
+                'before' => $end_date,
+                'inclusive' => true,
             );
         }
 

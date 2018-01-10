@@ -447,7 +447,7 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
         if( $this->_form_data ) return;
 
         if( function_exists( 'json_last_error' ) // Function not supported in php5.2
-            && function_exists( 'json_last_error_msg' )// Function not supported in php5.2
+            && function_exists( 'json_last_error_msg' )// Function not supported in php5.4
             && json_last_error() ){
             $this->_errors[] = json_last_error_msg();
         } else {

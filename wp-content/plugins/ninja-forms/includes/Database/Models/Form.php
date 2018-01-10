@@ -165,9 +165,10 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
         $wpdb->query( $wpdb->prepare(
            "
            INSERT INTO {$wpdb->prefix}nf3_form_meta ( `parent_id`, `key`, `value` )
-                SELECT %d, `key`, CASE WHEN `key` = '_seq_num' THEN 0 ELSE `value` END
+                SELECT %d, `key`, `value`
                 FROM   {$wpdb->prefix}nf3_form_meta
-                WHERE  parent_id = %d;
+                WHERE  parent_id = %d
+                AND `key` != '_seq_num';
            ", $new_form_id, $form_id
         ));
 

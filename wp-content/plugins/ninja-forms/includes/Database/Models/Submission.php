@@ -341,7 +341,7 @@ final class NF_Database_Models_Submission
 
                 $field_value = apply_filters('nf_subs_export_pre_value', $field_value, $field_id);
                 $field_value = apply_filters('ninja_forms_subs_export_pre_value', $field_value, $field_id, $form_id);
-                $field_value = apply_filters( 'ninja_forms_subs_export_field_value_' . $field->get_setting( 'type' ), $field_value );
+                $field_value = apply_filters( 'ninja_forms_subs_export_field_value_' . $field->get_setting( 'type' ), $field_value, $field );
 
                 if ( is_array($field_value ) ) {
                     $field_value = implode( ',', $field_value );

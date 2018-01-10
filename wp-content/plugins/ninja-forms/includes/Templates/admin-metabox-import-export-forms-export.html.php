@@ -11,7 +11,7 @@
                     <td>
                         <select name="nf_export_form" id="nf_export_form" class="widefat">
                             <?php foreach( $forms as $form ): ?>
-                            <option value="<?php echo $form->get_id(); ?>"><?php echo $form->get_setting( 'title' ); ?></option>
+                            <option value="<?php echo intval( $form->get_id() ); ?>"><?php echo $form->get_setting( 'title' ); ?></option>
                             <?php endforeach; ?>
                         </select>
                     </td>

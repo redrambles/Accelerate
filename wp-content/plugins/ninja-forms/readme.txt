@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorho
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 3.2.6
+Stable tag: 3.2.8
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -111,27 +111,55 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.2.6 (13 December 2017) =
+= 3.2.8 (4 January 2018) =
 
 *Bugs:*
 
-* Submission searching should now work in WordPress version 4.8.3 and above.
-* Fixed an issue that sometimes caused forms not to publish after deleting a field.
-* Fixed a bug that was causing User Management to sometimes not properly set default user meta values.
-* Fixed a compatibility issue with the add a form widget in PHP 7.2.
-* Fixed an issue that caused Ninja Forms to crash on activation with a PHP version missing the Parser Functions package.
-* Fixed a bug that sometimes caused too many database calls on pages where multiple JavaScript errors were present.
-* Fixed a bug that sometimes caused a Request Entity Too Large error on form publish.
-* Fixed an issue that caused the Add Form button to sometimes display improperly on smaller screens.
-* Fixed an issue that was breaking form display when multi-select fields had no pre-selected values.
+* Submissions of duplicated forms should now properly increment their sequence number.
+* The merge tag selector box should now detect the lower edge of the window and shift upwards accordingly.
+* Resolved an issue that was causing input masks on required fields to throw an error on focus.
+* Fields with currency input masks should now properly save data upon submission.
+* Resolved several lingering PHP errors and warnings.
+* Checkbox list and radio list fields with wrapped values should now display properly.
+* Wrapped labels for single checkbox fields should now display properly.
+* Resolved an issue that was causing strictly numeric custom input masks with more than 12 characters to display improperly.
+* Resolved an issue that sometimes caused Forms to not load in the Dashboard.
 
 *Changes:*
 
-* Added an option to ignore UTF-8 encoding on export/import, which can correct forms importing with no field data.
-* Updated the format of submission dates to match that of the WordPress install.
-* Updated the custom field template file path so that it should now properly pull from child themes when active.
+* Added custom checked and unchecked value settings to checkbox fields.
+* The calendar in the date field is now translatable.
+* Made some minor tweaks to improve the loading and processing efficiency of certain admin pages.
 
 == Changelog ==
+
+= 3.2.8 (4 January 2018) =
+
+*Bugs:*
+
+* Resolved an issue that sometimes caused Forms to not load in the Dashboard.
+
+*Changes:*
+
+* Made some minor tweaks to improve the loading and processing efficiency of certain admin pages.
+
+= 3.2.7 (3 January 2018) =
+
+*Bugs:*
+
+* Submissions of duplicated forms should now properly increment their sequence number.
+* The merge tag selector box should now detect the lower edge of the window and shift upwards accordingly.
+* Resolved an issue that was causing input masks on required fields to throw an error on focus.
+* Fields with currency input masks should now properly save data upon submission.
+* Resolved several lingering PHP errors and warnings.
+* Checkbox list and radio list fields with wrapped values should now display properly.
+* Wrapped labels for single checkbox fields should now display properly.
+* Resolved an issue that was causing strictly numeric custom input masks with more than 12 characters to display improperly.
+
+*Changes:*
+
+* Added custom checked and unchecked value settings to checkbox fields.
+* The calendar in the date field is now translatable.
 
 = 3.2.6 (13 December 2017) =
 
