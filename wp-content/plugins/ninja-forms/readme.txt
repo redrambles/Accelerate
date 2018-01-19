@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorho
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 3.2.8
+Stable tag: 3.2.9
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -111,27 +111,21 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.2.8 (4 January 2018) =
+= 3.2.9 (17 January 2018) =
 
 *Bugs:*
 
-* Submissions of duplicated forms should now properly increment their sequence number.
-* The merge tag selector box should now detect the lower edge of the window and shift upwards accordingly.
-* Resolved an issue that was causing input masks on required fields to throw an error on focus.
-* Fields with currency input masks should now properly save data upon submission.
-* Resolved several lingering PHP errors and warnings.
-* Checkbox list and radio list fields with wrapped values should now display properly.
-* Wrapped labels for single checkbox fields should now display properly.
-* Resolved an issue that was causing strictly numeric custom input masks with more than 12 characters to display improperly.
-* Resolved an issue that sometimes caused Forms to not load in the Dashboard.
-
-*Changes:*
-
-* Added custom checked and unchecked value settings to checkbox fields.
-* The calendar in the date field is now translatable.
-* Made some minor tweaks to improve the loading and processing efficiency of certain admin pages.
+* Resolved an issue that sometimes caused certain Categories to not appear in the terms list field.
+* Fixed a visual bug where drop downs in CRM actions were seemingly being reset to the default option on page refresh.
 
 == Changelog ==
+
+= 3.2.9 (17 January 2018) =
+
+*Bugs:*
+
+* Resolved an issue that sometimes caused certain Categories to not appear in the terms list field.
+* Fixed a visual bug where drop downs in CRM actions were seemingly being reset to the default option on page refresh.
 
 = 3.2.8 (4 January 2018) =
 

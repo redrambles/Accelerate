@@ -65,7 +65,8 @@ class NF_Fields_Terms extends NF_Fields_ListCheckbox
 
             foreach( $terms as $term ){
 
-                if( 1 == $term->term_id ) continue;
+                // Check the slug instead of term_id to ensure we ONLY remove 'uncategorized'.
+                if( 'uncategorized' == $term->slug ) continue;
 
                 $tax_term_settings[] =  array(
                     'name' => 'taxonomy_term_' . $term->term_id,
