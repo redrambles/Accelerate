@@ -455,14 +455,14 @@ Label Three, value-three, 3
 
 <script id="tmpl-nf-edit-setting-media" type="text/template">
     <label for="{{{ data.name }}}" class="{{{ data.renderLabelClasses() }}} has-merge-tags">{{{ data.label }}} {{{ data.renderTooltip() }}}
-        <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" placeholder="{{{ data.placeholder }}} />
+        <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" placeholder="{{{ data.placeholder }}}" />
         <span class="extra open-media-manager dashicons dashicons-admin-media merge-tags"></span>
     </label>
 </script>
 
 <script id="tmpl-nf-edit-setting-datepicker" type="text/template">
     <label for="{{{ data.name }}}" class="{{{ data.renderLabelClasses() }}}">{{{ data.label }}} {{{ data.renderTooltip() }}}
-        <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" placeholder="{{{ data.placeholder }}} />
+        <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" placeholder="{{{ data.placeholder }}}" />
     </label>
 </script>
 
