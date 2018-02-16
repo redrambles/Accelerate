@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorho
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 3.2.11
+Stable tag: 3.2.13
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -111,21 +111,38 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.2.11 (26 January 2018) =
+= 3.2.13 (14 February 2018) =
 
 *Bugs:*
 
-* Fixed an issue that sometimes caused forms to not display after publish.
-* Calculations with a decimal setting of 0 should now properly round to 0 decimal places instead of the default 2.
-* Fixed a bug that was causing some settings boxes to contain seemingly random snippets of code.
-* Resolved an error that sometimes caused PHP warnings on certain admin pages.
-* Help text should now display properly again.
+* Resolved an issue that caused recently published forms to not display in Internet Explorer.
+* Localized several strings for translation that had previously been missed.
+* Radio and checkbox lists will now properly save updates made on the edit submission page.
+* Resolved an issue that sometimes caused excessive page load times in the WordPress admin.
 
 *Changes:*
 
-* Updated translation packs for Spanish (Spain and Mexico), courtesy of Jesus Garcia.
+* (Beta) Added a Gutenberg block to replace the shortcode when Gutenberg is active.
 
 == Changelog ==
+
+= 3.2.13 (14 February 2018) =
+
+*Bugs:*
+
+* Resolved an issue that caused recently published forms to not display in Internet Explorer.
+
+= 3.2.12 (13 February 2018) =
+
+*Bugs:*
+
+* Localized several strings for translation that had previously been missed.
+* Radio and checkbox lists will now properly save updates made on the edit submission page.
+* Resolved an issue that sometimes caused excessive page load times in the WordPress admin.
+
+*Changes:*
+
+* (Beta) Added a Gutenberg block to replace the shortcode when Gutenberg is active.
 
 = 3.2.11 (26 January 2018) =
 
