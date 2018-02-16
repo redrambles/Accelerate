@@ -3,10 +3,11 @@ Contributors: Ibericode, DvanKooten, hchouhan, lapzor
 Donate link: https://mc4wp.com/#utm_source=wp-plugin-repo&utm_medium=mailchimp-for-wp&utm_campaign=donate-link
 Tags: mailchimp, mc4wp, email, marketing, newsletter, subscribe, widget, mc4wp, contact form 7, woocommerce, buddypress, ibericode, mailchimp forms, mailchimp integrations
 Requires at least: 4.1
-Tested up to: 4.7.5
-Stable tag: 4.1.3
+Tested up to: 4.9.1
+Stable tag: 4.1.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Requires PHP: 5.2.4
 
 MailChimp for WordPress, the absolute best. Subscribe your WordPress site visitors to your MailChimp lists, with ease.
 
@@ -31,12 +32,13 @@ MailChimp for WordPress helps you add more subscribers to your MailChimp lists u
 	- Default WordPress Registration Form
 	- Contact Form 7
 	- WooCommerce
+	- Gravity Forms
 	- Ninja Forms 3
+	- WPForms
 	- BuddyPress
     - MemberPress
 	- Events Manager
 	- Easy Digital Downloads
-
 
 - A multitude of available add-on plugins:
 	- [MailChimp for WordPress Premium](https://mc4wp.com/)
@@ -194,6 +196,139 @@ MailChimp for WordPress comes with many filter & action hooks which allow you to
 == Changelog == 
 
 
+#### 4.1.14 - January 8, 2018
+
+**Fixes**
+
+- Validate method was incorrectly checking required array fields.
+
+**Improvements**
+
+- Wrap some missing strings in translate calls. Thanks [morlor](https://github.com/morloi).
+- Make it clear that redirecting after successful form submissions will not show the "subscribed" message.
+
+
+
+#### 4.1.13 - December 28, 2017
+
+**Fixes**
+
+- Array to string conversion in default form messages.
+
+**Additions**
+
+- Allow marking Gravity Forms sign-up checkbox as a required field.
+
+
+#### 4.1.12 - December 11, 2017
+
+**Fixes**
+
+- Ninja Forms double opt-in setting was incorrectly inversed.
+
+**Improvements**
+
+- Simplified form processing & notice logic.
+- Prevent 404 errors by proactively replacing lowercased `name="name"` input attributes.
+- Updated JavaScript dependencies.
+
+**Additions**
+
+- Integration for AffiliateWP.
+
+
+#### 4.1.11 - November 2, 2017
+
+**Fixes**
+
+- Filter out empty array values when overriding selected MailChimp lists via `_mc4wp_lists`. 
+
+**Improvements**
+
+- Updated JavaScript dependencies.
+
+**Additions**
+
+- Link to the [HTML Forms](https://www.htmlforms.io/) from the plugin settings pages.
+
+
+#### 4.1.10 - October 19, 2017
+
+**Improvements**
+
+- Remove unused options from Ninja Forms integration.
+- Now logging all sign-ups from Ninja Forms integrations when using [MailChimp for WordPress Premium](https://mc4wp.com/premium-features/). 
+
+**Additions**
+
+- Added Gravity Forms integration. You can now integrate with Gravity Forms by adding the "MailChimp" field to your forms.
+
+
+#### 4.1.9 - September 19, 2017
+
+**Improvements**
+
+- Add `<label>` element to sign-up checkbox for WCAG compatibility.
+- Custom integration now works with Enfold theme's contact form element.
+
+
+#### 4.1.7 & 4.1.8 - September 8, 2017
+
+**Fixes**
+
+- Properly escape the return value of `add_query_arg` when it is used in HTML attributes to prevent cross-site scripting. Thanks to [Karim Ouerghemmi of RIPS](https://www.ripstech.com/) for responsibly disclosing.
+- Now loading integrations after WPML so that String Translations work properly.
+
+**Additions**
+
+- Add sign-up integration for WPForms forms.
+
+**Improvements**
+
+- Updated internal JS dependencies.
+- Form tag `{data key="foo.bar"}` now allows you to access nested array values.
+
+
+#### 4.1.6 - July 31, 2017
+
+**Fixes**
+
+- Method on API class for retrieving campaign data.
+
+**Improvements**
+
+- Show Akamai reference number when an API request is blocked by MailChimp's firewall.
+- Minor output buffering improvements in form previewer.
+
+
+#### 4.1.5 - June 27, 2017
+
+**Fixes**
+
+- Failsafe against outputting sign-up checkbox twice in registration forms.
+- Properly close HTML anchor element in French translation files.
+- Fix BuddyPress sign-ups when using WordPress Multisite.
+
+**Improvements**
+
+- Fire action hook `mc4wp_form_updated_subscriber` whenever a form was used to update a subscriber in MailChimp.
+- Increase browser timeout for AJAX request when fetching MailChimp lists.
+
+**Additions**
+
+- Added campaign & template methods to API client class.
+ 
+
+
+#### 4.1.4 - June 15, 2017
+
+**Fixes**
+
+- Some form specific JS events were not firing due to incorrect event names.
+- Registration form integration now works with WooCommerce registration form.
+- Notice that asks for a plugin review would re-appear after dismissing it.
+
+
 #### 4.1.3 - May 24, 2017
 
 **Improvements**
@@ -309,7 +444,7 @@ MailChimp for WordPress comes with many filter & action hooks which allow you to
 
 **Additions**
 
-- Add `data-hide-if` attribute logic to forms. See [conditionally hide form fields](https://mc4wp.com/kb/conditional-fields-elements/). Thanks to [Kurt Zenisek](http://kurtzenisek.com/).
+- Add `data-hide-if` attribute logic to forms. See [conditionally hide form fields](https://kb.mc4wp.com/conditional-fields-elements/). Thanks to [Kurt Zenisek](http://kurtzenisek.com/).
 - Add hooks for delayed BuddyPress sign-up. Thanks to [Christian Wach](https://profiles.wordpress.org/needle).
 
 
@@ -747,7 +882,7 @@ Added `mc4wp_use_sslverify` filter to disable or explicitly enable SSL certifica
 
 **Improvements**
 
-- Add form-specific classes to preview form element. This allows the [Styles Builder](https://mc4wp.com/features/) to work with the Form Preview.
+- Add form-specific classes to preview form element. This allows the [Styles Builder](https://mc4wp.com/premium-features/) to work with the Form Preview.
 - Form events are now triggered _after_ the page has finished loading, so all scripts are loaded & ready to use.
 - Reset background-color in Form Themes stylesheets.
 
@@ -1177,6 +1312,7 @@ Minor improvements and additions for compatibility with the [MailChimp Sync plug
 - Added sign-up checkbox integration for [WooCommerce](https://wordpress.org/plugins/woocommerce/) checkout.
 - Added sign-up checkbox integration for [Easy Digital Downloads](https://wordpress.org/plugins/easy-digital-downloads/) checkout.
 - The entered email will now be appended to the URL when redirecting to another page
+
 == Upgrade Notice ==
 
 = 3.0.3 =

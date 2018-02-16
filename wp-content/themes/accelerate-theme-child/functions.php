@@ -85,6 +85,28 @@ function accelerate_theme_support() {
 	}
 add_action( 'after_setup_theme', 'accelerate_theme_support' );
 
+add_filter( 'document_title_separator', 'accelerate_title_separator' );
+function accelerate_title_separator( $sep ) {
+
+    $sep = " | ";
+	
+    return $sep;
+}
+
+add_filter( 'pre_get_document_title', 'case_studies_custom_title', 10 );
+/* Create a title tag for the case studies archive that says 'WORK' */
+function case_studies_custom_title($title) {
+
+	if ( is_post_type_archive( 'case_studies' ) ) {
+		$work_title = "WORK";
+		$site_title = get_bloginfo('name');
+		$sep = " | ";
+		$title = $work_title . $sep . $site_title;
+		return $title;  
+	}
+}
+
+
 // Testing the addition of excerpts for pages
 function accelerate_add_excerpt_for_pages() {
 	add_post_type_support( 'page', 'excerpt' );
@@ -152,6 +174,39 @@ function accelerate_create_custom_post_types() {
 			'supports' => array('title', 'editor', 'thumbnail')
 			)
 	 );
+
+	 // private documentation post type
+	 $labels = array(
+		'name' => __( 'Documentation' ),
+		'singular_name' => __( 'Doc' )
+		);
+	 $args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'query_var' => true,
+		'rewrite' => true,
+		'capabilities' => array(
+			'publish_posts' => 'administrator',
+			'edit_posts' => 'administrator',
+			'edit_others_posts' => 'administrator',
+			'delete_posts' => 'administrator',
+			'delete_others_posts' => 'administrator',
+			'read_private_posts' => 'administrator',
+			'edit_post' => 'administrator',
+			'delete_post' => 'administrator',
+			'read_post' => 'administrator',
+		),
+		'hierarchical' => false,
+		'menu_position' => null,
+		'has_archive' => true,
+			'rewrite' => array(
+				'slug' => 'documentation'
+				),
+		'supports' => array('title','editor','thumbnail')
+	); 
+	register_post_type('documentation', $args);
 
 }
 // Hook this custom post type function into the theme
@@ -250,6 +305,9 @@ function accelerate_body_classes( $classes ) {
  
   if ( is_page( 'about' ) ) {
     $classes[] = 'about-page';
+  }
+  if ( is_page( 'about-flexible' ) ) {
+    $classes[] = 'about-flexible';
   }
   if (is_page('success') ) {
     $classes[] = 'success-form-message';
@@ -365,6 +423,12 @@ if( function_exists('acf_add_options_page') ) {
 	'parent_slug'	=> 'accelerate-theme-child-options',
 ));
 
+acf_add_options_sub_page(array(
+	'page_title' 	=> 'Help',
+	'menu_title'	=> 'Help',
+	'parent_slug'	=> 'options-general.php',
+));
+
 }
 /// Security measures
 // Remove WP version from the source code
@@ -409,6 +473,31 @@ function red_remove_ver_css_js( $src ) {
 // 	return '<h5>'. $deny .'</h5>';
 // }
 // add_filter('diy_user_access_filter', 'diy_modify_user_access');
+
+
+
+remove_filter('get_the_excerpt', 'wp_trim_excerpt'); 
+add_filter('get_the_excerpt', 'accelerate_link_excerpt');
+ 
+function accelerate_link_excerpt($text = '') { // Fakes an excerpt if needed
+    global $post;
+	$raw_excerpt = $text;
+    if ( '' == $text ) {
+        $text = get_the_content('');
+        $text = apply_filters('the_content', $text);
+        $text = str_replace('\]\]\>', ']]&gt;', $text);
+        $text = strip_tags($text,'<a>'); // list of tags to allow
+        $excerpt_length = 55; 
+        $words = explode(' ', $text, $excerpt_length + 1);
+        if (count($words)> $excerpt_length) {
+            array_pop($words);
+            array_push($words, '. . .<p><a href="' . get_permalink($post->ID) . '">Read More &raquo;</a></p>');
+            $text = implode(' ', $words);
+        }
+    }
+    return $text;
+}
+
 
 /**
  * Custom template tags for this theme.

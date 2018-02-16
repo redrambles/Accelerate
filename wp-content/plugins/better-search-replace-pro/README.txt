@@ -2,7 +2,7 @@
 Contributors: deliciousbrains, mattshaw
 Tags: search replace, search and replace, update urls, database, search replace database, update database urls, update live url, better search replace, search&replace
 Requires at least: 3.0.1
-Tested up to: 4.6.1
+Tested up to: 4.8.1
 Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -88,6 +88,14 @@ This is likely an issue with your PHP memory limit. Try temporarily increasing i
 2. After running a search/replace dry-run.
 
 == Changelog ==
+
+= 1.3.4 - September 14, 2017 =
+* Security: Check if data is serialized before unserializing it
+* Improvement: Increased size of table select
+* Improvement: Updated plugin updater class
+* Improvement: Max Results setting added to diagnostic info for easier troubleshooting
+* Fix: Profiles with quotes in name not working correctly
+* Fix: Updated links on plugin help tab
 
 = 1.3.3 - November 10, 2016 =
 * Fix: Outdated links to old website

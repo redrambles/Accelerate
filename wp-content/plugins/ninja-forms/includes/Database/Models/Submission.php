@@ -30,10 +30,12 @@ final class NF_Database_Models_Submission
 
         if( $this->_id ){
             $sub = get_post( $this->_id );
-            $this->_status = $sub->post_status;
-            $this->_user_id = $sub->post_author;
-            $this->_sub_date = $sub->post_date;
-            $this->_mod_date = $sub->post_modified;
+            if ($sub) {
+                $this->_status = $sub->post_status;
+                $this->_user_id = $sub->post_author;
+                $this->_sub_date = $sub->post_date;
+                $this->_mod_date = $sub->post_modified;
+            }
         }
 
         if( $this->_id && ! $this->_form_id ){
@@ -81,7 +83,7 @@ final class NF_Database_Models_Submission
         return intval( $this->_seq_num );
     }
 
-    public function get_sub_date( $format = 'm/d/Y' )
+    public function get_sub_date( $format )
     {
         return date( $format, strtotime( $this->_sub_date ) );
     }
@@ -339,7 +341,7 @@ final class NF_Database_Models_Submission
 
                 $field_value = apply_filters('nf_subs_export_pre_value', $field_value, $field_id);
                 $field_value = apply_filters('ninja_forms_subs_export_pre_value', $field_value, $field_id, $form_id);
-                $field_value = apply_filters( 'ninja_forms_subs_export_field_value_' . $field->get_setting( 'type' ), $field_value );
+                $field_value = apply_filters( 'ninja_forms_subs_export_field_value_' . $field->get_setting( 'type' ), $field_value, $field );
 
                 if ( is_array($field_value ) ) {
                     $field_value = implode( ',', $field_value );

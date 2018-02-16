@@ -70,11 +70,6 @@ class MC4WP_Form_Manager {
 				'labels' => array(
 					'name' => 'MailChimp Sign-up Forms',
 					'singular_name' => 'Sign-up Form',
-					'add_new_item' => 'Add New Form',
-					'edit_item' => 'Edit Form',
-					'new_item' => 'New Form',
-					'all_items' => 'All Forms',
-					'view_item' => null
 				),
 				'public' => false
 			)
@@ -87,9 +82,8 @@ class MC4WP_Form_Manager {
 	 * @hooked `init`
 	 */
 	public function init_form_listener() {
-		$request = $this->get_request();
 		$this->listener = new MC4WP_Form_Listener();
-		$this->listener->listen( $request );
+		$this->listener->listen();
 	}
 
 	/**
@@ -140,12 +134,5 @@ class MC4WP_Form_Manager {
 	 */
 	public function get_tags() {
 		return $this->tags->get();
-	}
-
-	/**
-	 * @return MC4WP_Request
-	 */
-	private function get_request() {
-		return mc4wp('request');
 	}
 }

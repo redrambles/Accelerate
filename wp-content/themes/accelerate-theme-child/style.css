@@ -1283,7 +1283,8 @@ aside.sidebar li a {
     /* Don't apply padding to the pages with hero-images */
     .home .site-main,
     .about-page .site-main,
-    .page-template-t_about .site-main{
+    .page-template-t_about .site-main,
+    .about-page-flexible, .site-main {
         padding: 0;
     }
     .homepage-hero h1,

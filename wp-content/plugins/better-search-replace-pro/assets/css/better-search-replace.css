@@ -25,3 +25,4 @@
 #bsr-license-inactive { background: gray; }
 .bsr-no-profiles { vertical-align: middle; }
 #bsr-back-to-overview { width: 100%; position: fixed; margin-top: 0; background: #f8f8f8; border-bottom: 1px solid #ddd; padding: 8px 10px; }
+#bsr-table-select { width:25em; height: 180px; }

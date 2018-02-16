@@ -6,6 +6,7 @@ wp-content/uploads/
 phpinfo.php
 debug.sql
 accel_database.sql
+backup.sh
 
 # build stuff
 npm-debug.log

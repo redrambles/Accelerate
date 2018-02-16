@@ -16,6 +16,28 @@ final class NF_MergeTags_Other extends NF_Abstracts_MergeTags
         add_action( 'init', array( $this, 'init' ) );
     }
 
+    public function replace( $subject )
+    {
+        $subject = parent::replace( $subject );
+
+        if (is_string($subject)) {
+            preg_match_all("/{querystring:(.*?)}/", $subject, $matches );
+        }
+
+        if ( ! isset( $matches ) || ! is_array( $matches ) ) return $subject;
+
+        /**
+         * $matches[0][$i]  merge tag match     {post_meta:foo}
+         * $matches[1][$i]  captured meta key   foo
+         */
+        foreach( $matches[0] as $i => $search ){
+            // Replace unused querystring merge tags.
+            $subject = str_replace( $matches[0][$i], '', $subject );
+        }
+
+        return $subject;
+    }
+
     public function init()
     {
         if( is_admin() ) {
@@ -65,6 +87,11 @@ final class NF_MergeTags_Other extends NF_Abstracts_MergeTags
             $format = 'Y/m/d';
         }
         return date( $format, time() );
+    }
+
+    protected function system_time()
+    {
+        return date_i18n( get_option( 'time_format' ), current_time( 'timestamp' ) );
     }
 
     protected function user_ip()

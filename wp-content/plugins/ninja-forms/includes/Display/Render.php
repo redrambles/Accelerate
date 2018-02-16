@@ -30,6 +30,7 @@ final class NF_Display_Render
     protected static $form_uses_recaptcha      = array();
     protected static $form_uses_datepicker     = array();
     protected static $form_uses_inputmask      = array();
+    protected static $form_uses_currencymask   = array();
     protected static $form_uses_rte            = array();
     protected static $form_uses_textarea_media = array();
     protected static $form_uses_helptext       = array();
@@ -38,6 +39,13 @@ final class NF_Display_Render
     public static function localize( $form_id )
     {
         global $wp_locale;
+        $form_id = absint( $form_id );
+
+        /**
+         * Action that passes the form ID as a parameter.
+         * @since 3.2.2
+         */
+        do_action( 'nf_get_form_id', $form_id );
 
         $capability = apply_filters( 'ninja_forms_display_test_values_capabilities', 'read' );
         if( isset( $_GET[ 'ninja_forms_test_values' ] ) && current_user_can( $capability ) ){
@@ -53,18 +61,18 @@ final class NF_Display_Render
 
         foreach( $settings as $name => $value ){
             if( ! in_array(
-                    $name,
-                    array(
-                        'changeEmailErrorMsg',
-                        'confirmFieldErrorMsg',
-                        'fieldNumberNumMinError',
-                        'fieldNumberNumMaxError',
-                        'fieldNumberIncrementBy',
-                        'formErrorsCorrectErrors',
-                        'validateRequiredField',
-                        'honeypotHoneypotError',
-                        'fieldsMarkedRequired',
-                    )
+                $name,
+                array(
+                    'changeEmailErrorMsg',
+                    'confirmFieldErrorMsg',
+                    'fieldNumberNumMinError',
+                    'fieldNumberNumMaxError',
+                    'fieldNumberIncrementBy',
+                    'formErrorsCorrectErrors',
+                    'validateRequiredField',
+                    'honeypotHoneypotError',
+                    'fieldsMarkedRequired',
+                )
             ) ) continue;
 
             if( $value ) continue;
@@ -72,7 +80,7 @@ final class NF_Display_Render
             unset( $settings[ $name ] );
         }
 
-        $settings = array_merge( Ninja_Forms::config( 'i18nFrontEnd' ), $settings );        
+        $settings = array_merge( Ninja_Forms::config( 'i18nFrontEnd' ), $settings );
         $settings = apply_filters( 'ninja_forms_display_form_settings', $settings, $form_id );
 
         $form->update_settings( $settings );
@@ -196,6 +204,11 @@ final class NF_Display_Render
                     $field[ 'value' ] = $field_class->get_test_value();
                 }
 
+                // Hide the label on invisible reCAPTCHA fields
+                if ( 'recaptcha' === $field[ 'settings' ][ 'type' ] && 'invisible' === $field[ 'settings' ][ 'size' ] ) {
+                    $field[ 'settings' ][ 'label_pos' ] = 'hidden';
+                }
+
                 // Copy field ID into the field settings array for use in localized data.
                 $field[ 'settings' ][ 'id' ] = $field[ 'id' ];
 
@@ -224,7 +237,9 @@ final class NF_Display_Render
 
                 $settings = $field[ 'settings' ];
                 foreach ($settings as $key => $setting) {
-                    if (is_numeric($setting)) $settings[$key] = floatval($setting);
+                    if (is_numeric($setting) && 'custom_mask' != $key )
+                    	$settings[$key] =
+	                    floatval($setting);
                 }
 
                 if( ! isset( $settings[ 'label_pos' ] ) || 'default' == $settings[ 'label_pos' ] ){
@@ -242,7 +257,7 @@ final class NF_Display_Render
                 $default_value = apply_filters('ninja_forms_render_default_value', $default_value, $field_type, $settings);
                 if ( $default_value ) {
 
-                    $default_value = preg_replace( '/{.*}/', '', $default_value );
+                    $default_value = preg_replace( '/{[^}]}/', '', $default_value );
 
                     if ($default_value) {
                         $settings['value'] = $default_value;
@@ -298,6 +313,9 @@ final class NF_Display_Render
                 if( isset( $field[ 'settings' ][ 'mask' ] ) && $field[ 'settings' ][ 'mask' ] ){
                     array_push( self::$form_uses_inputmask, $form_id );
                 }
+                if( isset( $field[ 'settings' ][ 'mask' ] ) && 'currency' == $field[ 'settings' ][ 'mask' ] ){
+                    array_push( self::$form_uses_currencymask, $form_id );
+                }
                 if( isset( $field[ 'settings' ][ 'textarea_rte' ] ) && $field[ 'settings' ][ 'textarea_rte' ] ){
                     array_push( self::$form_uses_rte, $form_id );
                 }
@@ -320,24 +338,11 @@ final class NF_Display_Render
         do_action( 'ninja_forms_before_container', $form_id, $form->get_settings(), $form_fields );
         Ninja_Forms::template( 'display-form-container.html.php', compact( 'form_id' ) );
 
+        $form_id = "$form_id";
+
         ?>
         <!-- TODO: Move to Template File. -->
-        <script>
-            var formDisplay = 1;
-
-            /* Maybe initialize nfForms object */
-            var nfForms = nfForms || [];
-
-            /* Build Form Data */
-            var form = [];
-            form.id = '<?php echo $form_id; ?>';
-            form.settings = <?php echo wp_json_encode( $form->get_settings() ); ?>;
-            form.fields = <?php echo wp_json_encode( $fields ); ?>;
-
-            /* Add Form Data to nfForms object */
-            nfForms.push( form );
-        </script>
-
+        <script>var formDisplay=1;var nfForms=nfForms||[];var form=[];form.id='<?php echo $form_id; ?>';form.settings=<?php echo wp_json_encode( $form->get_settings() ); ?>;form.fields=<?php echo wp_json_encode( $fields ); ?>;nfForms.push(form);</script>
         <?php
         self::enqueue_scripts( $form_id );
     }
@@ -529,23 +534,27 @@ final class NF_Display_Render
 
         if( $is_preview || in_array( $form_id, self::$form_uses_datepicker ) ) {
             wp_enqueue_style( 'pikaday-responsive', $css_dir . 'pikaday-package.css', $ver );
-            wp_enqueue_script('nf-front-end--datepicker', $js_dir . 'front-end--datepicker.min.js', array( 'jquery' ), $ver );
+            wp_enqueue_script('nf-front-end--datepicker', $js_dir . 'front-end--datepicker.min.js', array( 'jquery', 'nf-front-end' ), $ver );
         }
 
         if( $is_preview || in_array( $form_id, self::$form_uses_inputmask ) ) {
             wp_enqueue_script('nf-front-end--inputmask', $js_dir . 'front-end--inputmask.min.js', array( 'jquery' ), $ver );
         }
 
-         if( $is_preview || in_array( $form_id, self::$form_uses_rte ) ) {
-             if( $is_preview || in_array( $form_id, self::$form_uses_textarea_media ) ) {
+        if( $is_preview || in_array( $form_id, self::$form_uses_currencymask ) ) {
+            wp_enqueue_script('nf-front-end--currencymask', $js_dir . 'front-end--autonumeric.min.js', array( 'jquery' ), $ver );
+        }
+
+        if( $is_preview || in_array( $form_id, self::$form_uses_rte ) ) {
+            if( $is_preview || in_array( $form_id, self::$form_uses_textarea_media ) ) {
                 wp_enqueue_media();
-             }
+            }
 
             wp_enqueue_style( 'summernote',         $css_dir . 'summernote.css'   , $ver );
             wp_enqueue_style( 'codemirror',         $css_dir . 'codemirror.css'   , $ver );
             wp_enqueue_style( 'codemirror-monokai', $css_dir . 'monokai-theme.css', $ver );
             wp_enqueue_script('nf-front-end--rte', $js_dir . 'front-end--rte.min.js', array( 'jquery' ), $ver );
-         }
+        }
 
         if( $is_preview || in_array( $form_id, self::$form_uses_helptext ) ) {
             wp_enqueue_style( 'jBox', $css_dir . 'jBox.css', $ver );
@@ -583,24 +592,24 @@ final class NF_Display_Render
         do_action( 'nf_display_enqueue_scripts' );
     }
 
-	/**
-	 * Enqueue NF frontend basic display styles.
-	 *
-	 * @param string $css_dir
-	 */
+    /**
+     * Enqueue NF frontend basic display styles.
+     *
+     * @param string $css_dir
+     */
     public static function enqueue_styles_display( $css_dir ) {
-	    switch( Ninja_Forms()->get_setting( 'opinionated_styles' ) ) {
-		    case 'light':
-			    wp_enqueue_style( 'nf-display',      $css_dir . 'display-opinions-light.css', array( 'dashicons' ) );
-			    wp_enqueue_style( 'nf-font-awesome', $css_dir . 'font-awesome.min.css'       );
-			    break;
-		    case 'dark':
-			    wp_enqueue_style( 'nf-display',      $css_dir . 'display-opinions-dark.css', array( 'dashicons' )  );
-			    wp_enqueue_style( 'nf-font-awesome', $css_dir . 'font-awesome.min.css'      );
-			    break;
-		    default:
-			    wp_enqueue_style( 'nf-display',      $css_dir . 'display-structure.css', array( 'dashicons' ) );
-	    }
+        switch( Ninja_Forms()->get_setting( 'opinionated_styles' ) ) {
+            case 'light':
+                wp_enqueue_style( 'nf-display',      $css_dir . 'display-opinions-light.css', array( 'dashicons' ) );
+                wp_enqueue_style( 'nf-font-awesome', $css_dir . 'font-awesome.min.css'       );
+                break;
+            case 'dark':
+                wp_enqueue_style( 'nf-display',      $css_dir . 'display-opinions-dark.css', array( 'dashicons' )  );
+                wp_enqueue_style( 'nf-font-awesome', $css_dir . 'font-awesome.min.css'      );
+                break;
+            default:
+                wp_enqueue_style( 'nf-display',      $css_dir . 'display-structure.css', array( 'dashicons' ) );
+        }
     }
 
     protected static function load_template( $file_name = '' )
@@ -616,7 +625,7 @@ final class NF_Display_Render
     {
         // Build File Path Hierarchy
         $file_paths = apply_filters( 'ninja_forms_field_template_file_paths', array(
-            get_template_directory() . '/ninja-forms/templates/',
+            get_stylesheet_directory() . '/ninja-forms/templates/',
         ));
 
         $file_paths[] = Ninja_Forms::$dir . 'includes/Templates/';

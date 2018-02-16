@@ -74,7 +74,7 @@ gulp.task('images', function() {
 gulp.task('default', ['scripts', 'styles', 'browser-sync'], function() {
 
   // watch for JS changes
-  gulp.watch('./js/*.js', ['scripts', 'scripts']);
+  gulp.watch('./js/*.js', ['scripts']);
   
   // watch for CSS changes
   gulp.watch('./style.css', ['styles']);

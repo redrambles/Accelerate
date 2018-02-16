@@ -55,7 +55,7 @@ get_header(); ?>
 			 ?>
 			 	<li class="individual-featured-work">	
 				 	<figure>
-				 		<?php echo wp_get_attachment_image($image_1, $size); ?>
+						<a href="<?php the_permalink(); ?>"><?php echo wp_get_attachment_image($image_1, $size); ?></a>
 				 	</figure>
 					<h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
 				</li>
@@ -120,10 +120,17 @@ get_header(); ?>
 		?>
 		<!-- The twitter handle is being fetched from the database and appended to the widget title using a filter - in inc/extras.php -->
 		<?php if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
+		
 		<div id="secondary" class="widget-area tweet-module" role="complementary">
+		<!-- see inc/extras.php for how the '@Redrambles' was dynamically output -->
 		    <a href="<?php echo $twitter_link ?>"><?php dynamic_sidebar( 'sidebar-2' ); ?></a>
 
-		    <a href="<?php echo $twitter_link ?>" class="follow-us-link"><?php echo $link_name; ?><span> &rsaquo;</span></a>
+				<!-- <a href="<?php //..echo $twitter_link ?>" class="follow-us-link"><?php //echo $link_name; ?><span> &rsaquo;</span></a> -->
+				<?php 
+					$stt_options = get_option( 'widget_pi_simpletwittertweets' );
+					$twitter_handle = $stt_options[2]['name'];
+				?>
+				<a href="http://twitter.com/<?php echo $twitter_handle; ?>" class="follow-us-link">Follow Us<span> &rsaquo;</span></a>
 		</div>
 		<?php endif; ?>
 
@@ -175,4 +182,3 @@ get_header(); ?>
 </section><!-- .recent-posts -->
 
 <?php get_footer(); ?>
-
