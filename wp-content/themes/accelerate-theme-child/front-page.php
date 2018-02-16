@@ -141,8 +141,9 @@ get_header(); ?>
 			$home = home_url('/');
 			foreach ( $terms as $term ) {
 				if ($term->count > 0){
-					//echo $term->count;
-					echo '<div class="faq-term clearfix"><a href="'.get_term_link($term->slug, 'faq_genre').'">'.$term->name.'</a></div>';
+					if ($term->name != "no slider"){ // We dont' want to display the 'no slider' title
+						echo '<div class="faq-term clearfix"><a href="'.get_term_link($term->slug, 'faq_genre').'">'.$term->name.'</a></div>';
+					}
 				}
 			?>
 
@@ -150,20 +151,24 @@ get_header(); ?>
 			<?php $args = array(
 					'post_type' => 'faq',
 					'tax_query' => array(
-						array(
+						'relation' => 'AND',
+							array(
+								'taxonomy' => 'faq_genre',
+								'field'    => 'slug', //needed this
+								'terms'    => $term->slug,
+							),
+							array( // we don't want the posts with the 'no slider' term
 							'taxonomy' => 'faq_genre',
 							'field'    => 'slug', //needed this
-							'terms'    => $term->slug,
-						),
-					),
+							'terms'    => array('no slider'),
+							'operator' => 'NOT IN'
+							)
+					)
 				);
-
 
 			$faqs = new WP_Query($args);
 			//var_dump($faqs);
-						while ($faqs-> have_posts() ) : $faqs->the_post(); 
-						//$terms = wp_get_post_terms($post->ID, 'category', array("fields" => "all"));
-						
+					while ($faqs-> have_posts() ) : $faqs->the_post(); 
 						if (has_post_thumbnail()) { ?> 
 							<li class="faq-list-item slide">
 								<figure class="faq-post-thumbnail">
