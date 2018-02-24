@@ -8,21 +8,33 @@
  */
 
 ?>
-<div class="tab-pane fade active in" id="classic-share-buttons">
+<div class="tab-pane fade <?php echo 'active' === $classic ? esc_attr( $classic . ' in' ): ''; ?>" id="classic-share-buttons">
 	<div class="col-sm-12 ssba-tab-container">
-		<?php if ( ! isset( $notice['new-tab-notice'] ) ) : ?>
+		<?php if ( isset( $arr_settings['ssba_new_buttons'] ) && 'Y' === $arr_settings['ssba_new_buttons'] ) :?>
 			<blockquote class="yellow">
 				<p>
-					<?php echo esc_html__( 'All of the plugin settings are now included on this page. No more switching tabs! Scroll down past the preview to access the styling, counters, advanced and css settings.', 'simple-share-buttons-adder' ); ?>
+					<?php echo esc_html__( 'The "Modern Share Buttons" are currently active.  To use the buttons below you must deactivate the "Modern Share Buttons".', 'simple-share-buttons-adder' ); ?>
+
+					<button id="new-tab-notice" type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>
+				</p>
+			</blockquote>
+		<?php else : ?>
+			<blockquote class="yellow" style="display: none;">
+				<p>
+					<?php echo esc_html__( 'The "Modern Share Buttons" are currently active.  To use the buttons below you must deactivate the "Modern Share Buttons".', 'simple-share-buttons-adder' ); ?>
 
 					<button id="new-tab-notice" type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>
 				</p>
 			</blockquote>
 		<?php endif; ?>
-
 		<blockquote>
 			<p>
-				<?php echo esc_html__( 'The', 'simple-share-buttons-adder' ); ?> <b><?php echo esc_html__( 'simple', 'simple-share-buttons-adder' ); ?></b> <?php echo esc_html__( 'options you can see below are all you need to complete to get your', 'simple-share-buttons-adder' ); ?> <b><?php echo esc_html__( 'share buttons', 'simple-share-buttons-adder' ); ?></b> <?php echo esc_html__( 'to appear on your website. Once you\'re done here, you can further customise the share buttons via the Styling tab.', 'simple-share-buttons-adder' ); ?>
+				<?php echo esc_html__( 'The', 'simple-share-buttons-adder' ); ?> <b><?php echo esc_html__( 'simple', 'simple-share-buttons-adder' ); ?></b> <?php echo esc_html__( 'options you can see below are all you need to complete to get your', 'simple-share-buttons-adder' ); ?> <b><?php echo esc_html__( 'share buttons', 'simple-share-buttons-adder' ); ?></b> <?php echo esc_html__( 'to appear on your website. Once you\'re done here, you can further customize the share buttons via the Styling accordion.', 'simple-share-buttons-adder' ); ?>
+			</p>
+		</blockquote>
+		<blockquote>
+			<p>
+				<?php echo esc_html__( 'Classic Share Buttons are image-based. If you\'re looking for CSS-based buttons, head over to the Modern Share Buttons tab!', 'simple-share-buttons-adder' ); ?>
 			</p>
 		</blockquote>
 
@@ -52,7 +64,7 @@
 			<?php if ( in_array( 'whatsapp', explode( ',', $arr_settings['ssba_selected_buttons'] ), true ) ) : ?>
 				<div class="ssbp--theme-4 whatsapp-message">
 					<span class="ssbp-btn ssbp-whatsapp"></span>
-					<?php echo esc_html__( 'The whatsapp button only appears on mobile devices. It is included in your desktop preview for reference only.', 'prodigy-commerce' ); ?>
+					<?php echo esc_html__( 'The whatsapp button only appears on mobile devices. It is included in your desktop preview for reference only.', 'simple-share-buttons-adder' ); ?>
 				</div>
 			<?php endif; ?>
 

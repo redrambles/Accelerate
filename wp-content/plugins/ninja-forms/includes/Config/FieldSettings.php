@@ -470,7 +470,7 @@ return apply_filters( 'ninja_forms_field_settings', array(
                 'value' => 'dddd, MMMM D YYYY',
             ),
         ),
-        'value'         => '',
+        'value'         => 'default',
     ),
 
     /*

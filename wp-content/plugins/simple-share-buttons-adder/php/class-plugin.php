@@ -36,7 +36,7 @@ class Plugin extends Plugin_Base {
 			$forms,
 			new Styles( $this, $class_ssba ),
 			new Admin_Bits( $this, $class_ssba, $database, $admin_panel ),
-			new Buttons( $this, $class_ssba ),
+			new Buttons( $this, $class_ssba, $admin_panel ),
 			new Widget(),
 
 		);
@@ -57,6 +57,7 @@ class Plugin extends Plugin_Base {
 		wp_register_style( "{$this->assets_prefix}-indie", '//fonts.googleapis.com/css?family=Indie+Flower' );
 		wp_register_style( "{$this->assets_prefix}-reenie", '//fonts.googleapis.com/css?family=Reenie+Beanie' );
 		wp_register_style( "{$this->assets_prefix}-ssba", "{$this->dir_url}css/ssba.css", false );
+		wp_register_style( "{$this->assets_prefix}-font-awesome", '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', false );
 	}
 
 	/**

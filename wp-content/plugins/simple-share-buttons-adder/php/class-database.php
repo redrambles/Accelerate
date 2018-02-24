@@ -46,14 +46,12 @@ class Database {
 	}
 
 	/**
-	 * Activate ssba function.
+	 * Add any settings default if it doesn't exist already.
+	 *
+	 * @param bool $return_array Whether to return the default setting array or not.
+	 * @action admin_init
 	 */
-	public function activate() {
-		// Likely a reactivation, return doing nothing.
-		if ( false !== get_option( 'ssba_version' ) ) {
-			return;
-		}
-
+	public function get_setting_array( $return_array = false ) {
 		// Array ready with defaults.
 		$ssba_settings = array(
 			'ssba_image_set'             => 'somacro',
@@ -68,14 +66,14 @@ class Database {
 			'ssba_plus_cats_archs'       => '',
 			'ssba_plus_homepage'         => '',
 			'ssba_plus_excerpts'         => '',
-			'ssba_share_pages'           => '',
-			'ssba_share_posts'           => '',
-			'ssba_share_cats_archs'      => '',
-			'ssba_share_homepage'        => '',
-			'ssba_share_excerpts'        => '',
+			'ssba_bar_pages'           => '',
+			'ssba_bar_posts'           => '',
+			'ssba_bar_cats_archs'      => '',
+			'ssba_bar_homepage'        => '',
+			'ssba_bar_excerpts'        => '',
 			'ssba_align'                 => 'left',
 			'ssba_plus_align'            => 'left',
-			'ssba_share_align'           => 'left',
+			'ssba_bar_align'           => 'left',
 			'ssba_padding'               => '6',
 			'ssba_before_or_after'       => 'after',
 			'ssba_before_or_after_plus'  => 'after',
@@ -85,22 +83,22 @@ class Database {
 			'ssba_plus_additional_css'   => '',
 			'ssba_plus_custom_styles'    => '',
 			'ssba_plus_custom_styles_enabled' => '',
-			'ssba_share_additional_css'   => '',
-			'ssba_share_custom_styles'    => '',
-			'ssba_share_custom_styles_enabled' => '',
+			'ssba_bar_additional_css'   => '',
+			'ssba_bar_custom_styles'    => '',
+			'ssba_bar_custom_styles_enabled' => '',
 			'ssba_email_message'         => '',
 			'ssba_twitter_text'          => '',
 			'ssba_buffer_text'           => '',
 			'ssba_flattr_user_id'        => '',
 			'ssba_flattr_url'            => '',
-			'ssba_share_new_window'      => 'Y',
+			'ssba_bar_new_window'      => 'Y',
 			'ssba_link_to_ssb'           => 'N',
 			'ssba_show_share_count'      => '',
 			'ssba_plus_show_share_count' => '',
-			'ssba_share_show_share_count' => '',
-			'ssba_share_count_style'     => 'default',
-			'ssba_share_count_css'       => '',
-			'ssba_share_count_once'      => 'Y',
+			'ssba_bar_show_share_count' => '',
+			'ssba_bar_count_style'     => 'default',
+			'ssba_bar_count_css'       => '',
+			'ssba_bar_count_once'      => 'Y',
 			'ssba_widget_text'           => '',
 			'ssba_rel_nofollow'          => '',
 			'ssba_default_pinterest'     => '',
@@ -109,10 +107,10 @@ class Database {
 			'ssba_plus_rel_nofollow'     => '',
 			'ssba_plus_default_pinterest'   => '',
 			'ssba_plus_pinterest_featured'  => '',
-			'ssba_share_widget_text'        => '',
-			'ssba_share_rel_nofollow'       => '',
-			'ssba_share_default_pinterest'  => '',
-			'ssba_share_pinterest_featured' => '',
+			'ssba_bar_widget_text'        => '',
+			'ssba_bar_rel_nofollow'       => '',
+			'ssba_bar_default_pinterest'  => '',
+			'ssba_bar_pinterest_featured' => '',
 			'ssba_content_priority'      => '10',
 
 			// Share container.
@@ -138,13 +136,13 @@ class Database {
 
 			// Include.
 			'ssba_selected_buttons'         => 'facebook,google,twitter,linkedin',
-			'ssba_selected_share_buttons'   => 'facebook,google,twitter,linkedin',
+			'ssba_selected_bar_buttons'     => 'facebook,google,twitter,linkedin',
 			'ssba_selected_plus_buttons'    => 'facebook,google,twitter,linkedin',
-			'ssba_share_button_style'       => 1,
-			'ssba_share_bar_style'          => 1,
+			'ssba_plus_button_style'        => 1,
+			'ssba_bar_style'                => 1,
 			'ssba_new_buttons'              => '',
-			'ssba_share_bar'                => '',
-			'ssba_share_bar_position'       => 'left',
+			'ssba_bar_enabled'              => '',
+			'ssba_bar_position'             => 'left',
 			'ssba_plus_height'              => '48',
 			'ssba_plus_width'               => '48',
 			'ssba_plus_margin'              => '12',
@@ -153,16 +151,16 @@ class Database {
 			'ssba_plus_icon_size'           => '',
 			'ssba_plus_icon_color'          => '',
 			'ssba_plus_icon_hover_color'    => '',
-			'ssba_share_height'             => '48',
-			'ssba_share_width'              => '48',
-			'ssba_share_margin'              => '0',
-			'ssba_share_icon_size'          => '',
-			'ssba_share_button_color'       => '',
-			'ssba_share_button_hover_color' => '',
-			'ssba_share_icon_color'         => '',
-			'ssba_share_icon_hover_color'   => '',
-			'ssba_share_desktop'            => '',
-			'ssba_share_mobile'             => '',
+			'ssba_bar_height'             => '48',
+			'ssba_bar_width'              => '48',
+			'ssba_bar_margin'              => '0',
+			'ssba_bar_icon_size'          => '',
+			'ssba_bar_button_color'       => '',
+			'ssba_bar_button_hover_color' => '',
+			'ssba_bar_icon_color'         => '',
+			'ssba_bar_icon_hover_color'   => '',
+			'ssba_bar_desktop'            => 'Y',
+			'ssba_bar_mobile'             => 'Y',
 			'ssba_mobile_breakpoint'        => '',
 
 			// Custom images.
@@ -209,6 +207,34 @@ class Database {
 			'accepted_sharethis_terms'   => 'Y',
 		);
 
+		if ( $return_array ) {
+			return $ssba_settings;
+		}
+
+		// The current setting if any.
+		$current_settings = json_decode( get_option( 'ssba_settings' ), true );
+		$current_settings = is_array( $current_settings ) && null !== $current_settings && false !== $current_settings ? $current_settings : array();
+
+		foreach ( $ssba_settings as $setting_name => $value ) {
+			if ( ! isset( $current_settings[ $setting_name ] ) ) {
+				$current_settings[ $setting_name ] = $value;
+			}
+		}
+
+		update_option( 'ssba_settings', wp_json_encode( $current_settings ) );
+	}
+
+	/**
+	 * Activate ssba function.
+	 */
+	public function activate() {
+		// Likely a reactivation, return doing nothing.
+		if ( false !== get_option( 'ssba_version' ) ) {
+			return;
+		}
+
+		$ssba_settings = $this->get_setting_array( true );
+
 		// Json encode.
 		$json_settings = wp_json_encode( $ssba_settings );
 
@@ -238,6 +264,57 @@ class Database {
 	 * @param string $version The current plugin version.
 	 */
 	public function upgrade_ssba( $arr_settings, $version ) {
+		// If version is less than 7.4.10.
+		if ( $version < '7.4.10' ) {
+			$new_settings = array(
+				'ssba_plus_align'            => 'left',
+				'ssba_bar_align'           => 'left',
+				'ssba_before_or_after_plus'  => 'after',
+				'ssba_share_new_window'      => 'Y',
+				'ssba_plus_share_text'       => esc_html__( 'Share this...', 'simple-share-buttons-adder' ),
+				'ssba_plus_text_placement'   => 'above',
+				'ssba_plus_font_family'      => '',
+				'ssba_plus_font_color'       => '',
+				'ssba_plus_font_size'        => '12',
+				'ssba_plus_font_weight'      => '',
+				'ssba_selected_bar_buttons'     => 'facebook,google,twitter,linkedin',
+				'ssba_selected_plus_buttons'    => 'facebook,google,twitter,linkedin',
+				'ssba_plus_button_style'        => 1,
+				'ssba_bar_style'                => 1,
+				'ssba_new_buttons'              => '',
+				'ssba_bar_enabled'              => '',
+				'ssba_bar_position'             => 'left',
+				'ssba_plus_height'              => '48',
+				'ssba_plus_width'               => '48',
+				'ssba_plus_margin'              => '12',
+				'ssba_plus_button_color'        => '',
+				'ssba_plus_button_hover_color'  => '',
+				'ssba_plus_icon_size'           => '',
+				'ssba_plus_icon_color'          => '',
+				'ssba_plus_icon_hover_color'    => '',
+				'ssba_bar_height'             => '48',
+				'ssba_bar_width'              => '48',
+				'ssba_bar_margin'              => '0',
+				'ssba_bar_icon_size'          => '',
+				'ssba_bar_button_color'       => '',
+				'ssba_bar_button_hover_color' => '',
+				'ssba_bar_icon_color'         => '',
+				'ssba_bar_icon_hover_color'   => '',
+				'ssba_bar_desktop'            => 'Y',
+				'ssba_bar_mobile'             => 'Y',
+				'ssba_mobile_breakpoint'        => '',
+				'ssba_bar_show_share_count'   => '',
+			);
+
+			$current_settings = json_decode( get_option( 'ssba_settings', true ), true );
+			$new_array = $new_settings + $current_settings;
+
+			update_option( 'ssba_settings', wp_json_encode( $new_array ) );
+
+			// Ssba version.
+			update_option( 'soba_version', SSBA_VERSION );
+		} // End if().
+
 		// If version is less than 6.0.5.
 		if ( $version < '6.0.5' ) {
 			// Ensure excerpts are set.
@@ -279,8 +356,8 @@ class Database {
 			}
 
 			// If some custom share count styles are in place.
-			if ( '' !== $arr_settings['ssba_share_count_css'] ) {
-				$custom_css .= $arr_settings['ssba_share_count_css'];
+			if ( '' !== $arr_settings['ssba_bar_count_css'] ) {
+				$custom_css .= $arr_settings['ssba_bar_count_css'];
 
 				update_option( 'ssba_custom_styles_enabled', 'Y' );
 			}
@@ -437,12 +514,12 @@ class Database {
 		delete_option( 'ssba_plus_cats_archs' );
 		delete_option( 'ssba_plus_homepage' );
 		delete_option( 'ssba_plus_excerpts' );
-		delete_option( 'ssba_share_bar' );
-		delete_option( 'ssba_share_pages' );
-		delete_option( 'ssba_share_posts' );
-		delete_option( 'ssba_share_cats_archs' );
-		delete_option( 'ssba_share_homepage' );
-		delete_option( 'ssba_share_excerpts' );
+		delete_option( 'ssba_bar_enabled' );
+		delete_option( 'ssba_bar_pages' );
+		delete_option( 'ssba_bar_posts' );
+		delete_option( 'ssba_bar_cats_archs' );
+		delete_option( 'ssba_bar_homepage' );
+		delete_option( 'ssba_bar_excerpts' );
 		delete_option( 'ssba_align' );
 		delete_option( 'ssba_plus_align' );
 		delete_option( 'ssba_padding' );
@@ -459,9 +536,9 @@ class Database {
 		delete_option( 'ssba_share_new_window' );
 		delete_option( 'ssba_link_to_ssb' );
 		delete_option( 'ssba_show_share_count' );
-		delete_option( 'ssba_share_count_style' );
-		delete_option( 'ssba_share_count_css' );
-		delete_option( 'ssba_share_count_once' );
+		delete_option( 'ssba_bar_count_style' );
+		delete_option( 'ssba_bar_count_css' );
+		delete_option( 'ssba_bar_count_once' );
 		delete_option( 'ssba_widget_text' );
 		delete_option( 'ssba_rel_nofollow' );
 		delete_option( 'ssba_default_pinterest' );
@@ -485,24 +562,24 @@ class Database {
 		delete_option( 'ssba_plus_rel_nofollow' );
 		delete_option( 'ssba_plus_default_pinterest' );
 		delete_option( 'ssba_plus_pinterest_featured' );
-		delete_option( 'ssba_share_additional_css' );
-		delete_option( 'ssba_share_custom_styles' );
-		delete_option( 'ssba_share_custom_styles_enabled' );
-		delete_option( 'ssba_share_email_message' );
-		delete_option( 'ssba_share_buffer_text' );
-		delete_option( 'ssba_share_twitter_text' );
-		delete_option( 'ssba_share_flattr_user_id' );
-		delete_option( 'ssba_share_flattr_url' );
-		delete_option( 'ssba_share_share_new_window' );
-		delete_option( 'ssba_share_link_to_ssb' );
-		delete_option( 'ssba_share_show_share_count' );
-		delete_option( 'ssba_share_share_count_style' );
-		delete_option( 'ssba_share_share_count_css' );
-		delete_option( 'ssba_share_share_count_once' );
-		delete_option( 'ssba_share_widget_text' );
-		delete_option( 'ssba_share_rel_nofollow' );
-		delete_option( 'ssba_share_default_pinterest' );
-		delete_option( 'ssba_share_pinterest_featured' );
+		delete_option( 'ssba_bar_additional_css' );
+		delete_option( 'ssba_bar_custom_styles' );
+		delete_option( 'ssba_bar_custom_styles_enabled' );
+		delete_option( 'ssba_bar_email_message' );
+		delete_option( 'ssba_bar_buffer_text' );
+		delete_option( 'ssba_bar_twitter_text' );
+		delete_option( 'ssba_bar_flattr_user_id' );
+		delete_option( 'ssba_bar_flattr_url' );
+		delete_option( 'ssba_bar_share_new_window' );
+		delete_option( 'ssba_bar_link_to_ssb' );
+		delete_option( 'ssba_bar_show_share_count' );
+		delete_option( 'ssba_bar_share_count_style' );
+		delete_option( 'ssba_bar_share_count_css' );
+		delete_option( 'ssba_bar_share_count_once' );
+		delete_option( 'ssba_bar_widget_text' );
+		delete_option( 'ssba_bar_rel_nofollow' );
+		delete_option( 'ssba_bar_default_pinterest' );
+		delete_option( 'ssba_bar_pinterest_featured' );
 
 		// Share container.
 		delete_option( 'ssba_div_padding' );
@@ -529,10 +606,10 @@ class Database {
 		delete_option( 'ssba_selected_buttons' );
 		delete_option( 'ssba_selected_share_buttons' );
 		delete_option( 'ssba_selected_plus_buttons' );
-		delete_option( 'ssba_share_button_style' );
-		delete_option( 'ssba_share_bar_style' );
+		delete_option( 'ssba_bar_button_style' );
+		delete_option( 'ssba_bar_style' );
 		delete_option( 'ssba_new_buttons' );
-		delete_option( 'ssba_share_bar_position' );
+		delete_option( 'ssba_bar_position' );
 		delete_option( 'ssba_plus_height' );
 		delete_option( 'ssba_plus_width' );
 		delete_option( 'ssba_plus_margin' );
@@ -541,16 +618,16 @@ class Database {
 		delete_option( 'ssba_plus_icon_size' );
 		delete_option( 'ssba_plus_icon_color' );
 		delete_option( 'ssba_plus_icon_hover_color' );
-		delete_option( 'ssba_share_height' );
-		delete_option( 'ssba_share_width' );
-		delete_option( 'ssba_share_margin' );
-		delete_option( 'ssba_share_button_color' );
-		delete_option( 'ssba_share_button_hover_color' );
-		delete_option( 'ssba_share_icon_size' );
-		delete_option( 'ssba_share_icon_color' );
-		delete_option( 'ssba_share_icon_hover_color' );
-		delete_option( 'ssba_share_desktop' );
-		delete_option( 'ssba_share_mobile' );
+		delete_option( 'ssba_bar_height' );
+		delete_option( 'ssba_bar_width' );
+		delete_option( 'ssba_bar_margin' );
+		delete_option( 'ssba_bar_button_color' );
+		delete_option( 'ssba_bar_button_hover_color' );
+		delete_option( 'ssba_bar_icon_size' );
+		delete_option( 'ssba_bar_icon_color' );
+		delete_option( 'ssba_bar_icon_hover_color' );
+		delete_option( 'ssba_bar_desktop' );
+		delete_option( 'ssba_bar_mobile' );
 		delete_option( 'ssba_mobile_breakpoint' );
 
 		// Custom images.

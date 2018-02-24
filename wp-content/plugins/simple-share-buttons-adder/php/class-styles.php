@@ -72,10 +72,12 @@ class Styles {
 		) );
 
 		// If indie flower font is selected.
-		if ( 'Indie Flower' === $arr_settings['ssba_font_family'] ) {
+		if ( 'Indie Flower' === $arr_settings['ssba_font_family'] || 'Indie Flower' === $arr_settings['ssba_plus_font_family'] ) {
 			// Font scripts.
 			wp_enqueue_style( "{$this->plugin->assets_prefix}-indie" );
-		} elseif ( 'Reenie Beanie' === $arr_settings['ssba_font_family'] ) {
+		}
+
+		if ( 'Reenie Beanie' === $arr_settings['ssba_font_family'] || 'Reenie Beanie' === $arr_settings['ssba_plus_font_family'] ) {
 			// Font scripts.
 			wp_enqueue_style( "{$this->plugin->assets_prefix}-reenie" );
 		}
@@ -158,6 +160,31 @@ class Styles {
 			$font_color = '' !== $arr_settings['ssba_font_color'] ? 'color: ' . $arr_settings['ssba_font_color'] . '!important;' : '';
 			$font_weight = '' !== $arr_settings['ssba_font_weight'] ? 'font-weight: ' . $arr_settings['ssba_font_weight'] . ';' : '';
 
+			// Plus styles.
+			$plus_height = '' !== $arr_settings['ssba_plus_height'] ? 'height: ' . $arr_settings['ssba_plus_height'] . 'px!important;' : 'height: 48px!important;';
+			$plus_width = '' !== $arr_settings['ssba_plus_width'] ? 'width: ' . $arr_settings['ssba_plus_width'] . 'px!important;' : 'width: 48px!important;';
+			$plus_icon = '' !== $arr_settings['ssba_plus_icon_size'] ? 'line-' . $plus_height . '; font-size: ' . $arr_settings['ssba_plus_icon_size'] . 'px;' : 'line-' . $plus_height . '; font-size: 18px;';
+			$plus_margin = '' !== $arr_settings['ssba_plus_margin'] ? 'margin-left: ' . $arr_settings['ssba_plus_margin'] . 'px!important;' : 'margin-left: 7px!important;';
+			$plus_font_style = '' !== $arr_settings['ssba_plus_font_family'] ? 'font-family: ' . $arr_settings['ssba_plus_font_family'] . ';' : 'font-family: inherit;';
+			$plus_font_size = '' !== $arr_settings['ssba_plus_font_size'] ? 'font-size: ' . $arr_settings['ssba_plus_font_size'] . 'px;' : 'font-size: 12px;';
+			$plus_font_weight = '' !== $arr_settings['ssba_plus_font_weight'] ? 'font-weight: ' . $arr_settings['ssba_plus_font_weight'] . ';' : 'font-weight: normal;';
+			$plus_font_color = '' !== $arr_settings['ssba_plus_font_color'] ? 'color: ' . $arr_settings['ssba_plus_font_color'] . '!important;' : '';
+			$plus_icon_color = '' !== $arr_settings['ssba_plus_icon_color'] ? 'color: ' . $arr_settings['ssba_plus_icon_color'] . '!important;' : '';
+			$plus_icon_hover = '' !== $arr_settings['ssba_plus_icon_hover_color'] ? 'color: ' . $arr_settings['ssba_plus_icon_hover_color'] . '!important;' : '';
+			$plus_button_color = '' !== $arr_settings['ssba_plus_button_color'] ? 'background-color: ' . $arr_settings['ssba_plus_button_color'] . '!important;' : '';
+			$plus_button_hover = '' !== $arr_settings['ssba_plus_button_hover_color'] ? 'background-color: ' . $arr_settings['ssba_plus_button_hover_color'] . '!important;' : '';
+
+			// Share bar styles.
+			$bar_height = '' !== $arr_settings['ssba_bar_height'] ? 'height: ' . $arr_settings['ssba_bar_height'] . 'px!important;' : 'height: 48px!important;';
+			$bar_width = '' !== $arr_settings['ssba_bar_width'] ? 'width: ' . $arr_settings['ssba_bar_width'] . 'px!important;' : 'width: 48px!important;';
+			$bar_icon = '' !== $arr_settings['ssba_bar_icon_size'] ? 'line-' . $bar_height . '; font-size: ' . $arr_settings['ssba_bar_icon_size'] . 'px;' : 'line-' . $bar_height . '; font-size: 18px;';
+			$bar_margin = '' !== $arr_settings['ssba_bar_margin'] ? 'margin: ' . $arr_settings['ssba_bar_margin'] . 'px 0!important;' : '';
+			$bar_button_color = '' !== $arr_settings['ssba_bar_button_color'] ? 'background-color: ' . $arr_settings['ssba_bar_button_color'] . '!important;' : '';
+			$bar_button_hover = '' !== $arr_settings['ssba_bar_button_hover_color'] ? 'background-color: ' . $arr_settings['ssba_bar_button_hover_color'] . '!important;' : '';
+			$bar_icon_color = '' !== $arr_settings['ssba_bar_icon_color'] ? 'color: ' . $arr_settings['ssba_bar_icon_color'] . '!important;' : '';
+			$bar_icon_hover = '' !== $arr_settings['ssba_bar_icon_hover_color'] ? 'color: ' . $arr_settings['ssba_bar_icon_hover_color'] . '!important;' : '';
+			$bar_break_point = 'Y' !== $arr_settings['ssba_bar_mobile'] && '' !== $arr_settings['ssba_mobile_breakpoint'] ? 'display: none;' : '';
+
 			// Use set options.
 			$html_ssba_style = '	.ssba {
 									' . esc_html( $div_padding ) . '
@@ -176,11 +203,17 @@ class Styles {
 									box-sizing: unset;
 								}
 								
+								#ssba-classic-2 .ssbp-text {
+									display: none!important;
+								}
+								
 								.ssba .fb-save
 								{
 								padding: ' . esc_html( $arr_settings['ssba_padding'] ) . 'px;
-								line-height: ' . esc_html( (int) $arr_settings['ssba_size'] - 5 ) . 'px;
-								}
+								';
+
+			if ( 'Y' !== $arr_settings['ssba_new_buttons'] ) {
+				$html_ssba_style .= 'line-height: ' . esc_html( (int) $arr_settings['ssba_size'] - 5 ) . 'px; }
 								.ssba, .ssba a
 								{
 									text-decoration:none;
@@ -192,10 +225,73 @@ class Styles {
 								}
 								';
 
+			} else {
+				$html_ssba_style .=
+					'}
+					.ssbp-list li a {' .
+	                    esc_html( $plus_height ) . ' ' .
+	                    esc_html( $plus_width ) . ' ' .
+						esc_html( $plus_button_color ) . '
+	                }
+	                .ssbp-list li a:hover {' .
+						esc_html( $plus_button_hover ) . '
+					}
+	                    
+					.ssbp-list li a::before {' .
+						esc_html( $plus_icon ) .
+						esc_html( $plus_icon_color ) .
+					'}
+					.ssbp-list li a:hover::before {' .
+					esc_html( $plus_icon_hover ) .
+					'}
+					.ssbp-list li {
+					' . esc_html( $plus_margin ) . '
+					}
+					
+					.ssba-share-text {
+					' . esc_html( $plus_font_size ) . ' '
+						. esc_html( $plus_font_color ) . ' '
+						. esc_html( $plus_font_weight ) . ' '
+						. esc_html( $plus_font_style ) . '
+						}';
+			} // End if().
+
+			if ( 'Y' === $arr_settings['ssba_bar_enabled'] ) {
+				$html_ssba_style .= '
+				   #ssba-bar-2 .ssbp-bar-list {
+				        max-' . esc_html( $bar_width ) . ';
+				   }
+				   #ssba-bar-2 .ssbp-bar-list li a {' .
+	                    esc_html( $bar_height ) . ' ' .
+	                    esc_html( $bar_width ) . ' ' .
+						esc_html( $bar_button_color ) . '
+	                }
+	                #ssba-bar-2 .ssbp-bar-list li a:hover {' .
+						esc_html( $bar_button_hover ) . '
+					}
+	                    
+					#ssba-bar-2 .ssbp-bar-list li a::before {' .
+				                    esc_html( $bar_icon ) .
+				                    esc_html( $bar_icon_color ) .
+				                    '}
+					#ssba-bar-2 .ssbp-bar-list li a:hover::before {' .
+				                    esc_html( $bar_icon_hover ) .
+				                    '}
+					#ssba-bar-2 .ssbp-bar-list li {
+					' . esc_html( $bar_margin ) . '
+					}';
+
+				$html_ssba_style .= '@media only screen and ( max-width: ' . $arr_settings['ssba_mobile_breakpoint'] . 'px ) {
+					#ssba-bar-2 {
+					' . $bar_break_point . '
+					}
+				}';
+			}
+
 			// If counters option is set to Y.
 			if ( 'Y' === $arr_settings['ssba_show_share_count'] ) {
 				// Styles that apply to all counter css sets.
-				$html_ssba_style .= '.ssba_sharecount:after, .ssba_sharecount:before {
+				$html_ssba_style .= ' .ssba_sharecount:after, .ssba_sharecount:before {
 									right: 100%;
 									border: solid transparent;
 									content: " ";

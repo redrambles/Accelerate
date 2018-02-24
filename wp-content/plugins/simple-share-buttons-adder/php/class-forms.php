@@ -201,7 +201,8 @@ class Forms {
 				$input .= '<p class="text-danger">' . esc_html( $opts['error'] ) . '</p>';
 			break;
 			case 'number':
-				$input .= '<input class="form-control" name="' . esc_attr( $opts['name'] ) . '" id="' . esc_attr( $opts['name'] ) . '" type="number" value="' . esc_attr( $opts['value'] ) . '" placeholder="' . esc_attr( $opts['placeholder'] ) . '" />';
+				$max = isset( $opts['max'] ) ? 'max=' . $opts['max'] : '';
+				$input .= '<input class="form-control" name="' . esc_attr( $opts['name'] ) . '" id="' . esc_attr( $opts['name'] ) . '" type="number" value="' . esc_attr( $opts['value'] ) . '" placeholder="' . esc_attr( $opts['placeholder'] ) . '"' . esc_attr( $max ) . ' />';
 			break;
 			case 'image_upload':
 				$input .= '<div class="input-group">
@@ -212,8 +213,9 @@ class Forms {
 						  </div>';
 			break;
 			case 'number_addon':
+				$max = isset( $opts['max'] ) ? 'max=' . $opts['max'] : '';
 				$input .= '<div class="input-group">
-							<input id="' . esc_attr( $opts['name'] ) . '" name="' . esc_attr( $opts['name'] ) . '" type="number" class="form-control" value="' . esc_attr( $opts['value'] ) . '" placeholder="' . esc_attr( $opts['placeholder'] ) . '" />
+							<input id="' . esc_attr( $opts['name'] ) . '" name="' . esc_attr( $opts['name'] ) . '" type="number" class="form-control" value="' . esc_attr( $opts['value'] ) . '" placeholder="' . esc_attr( $opts['placeholder'] ) . '"' . esc_attr( $max ) . ' />
 							<span class="input-group-addon">' . esc_html( $opts['addon'] ) . '</span>
 						  </div>';
 			break;

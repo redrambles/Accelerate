@@ -180,6 +180,26 @@ class Admin_Bits {
 		update_option( 'ssba_dismiss_notice', $new_notice );
 	}
 
+
+	/**
+	 * Register the new simple share button adder menu dashboard link.
+	 *
+	 * @action admin_menu
+	 */
+	public function add_ssba_menu() {
+		$icon = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iMjcyLjAwMDAwMHB0IiBoZWlnaHQ9IjIzNi4wMDAwMDBwdCIgdmlld0JveD0iMCAwIDI3Mi4wMDAwMDAgMjM2LjAwMDAwMCIKIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoKPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsMjM2LjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIj4KPHBhdGggZD0iTTk3NSAyMjkzIGMtMTQwIC0xNiAtMjQ2IC00OCAtMzY5IC0xMTEgLTI3NSAtMTQxIC00NjEgLTM5MCAtNTI3Ci03MDcgLTE2IC03NyAtMTYgLTI4MyAwIC0zNjAgODIgLTM5NCAzNTkgLTY5MSA3MzcgLTc5MCAxNjQgLTQzIDM1MSAtNDEgNTI2CjYgMTE0IDMxIDExNSAzMiA4NyAxMTAgLTEyIDM1IC0yMyA2NSAtMjQgNjYgLTEgMiAtMjUgLTYgLTUzIC0xNyAtMTE1IC00NAotMjkxIC02MCAtNDIyIC00MCAtMjg3IDQ2IC01MjUgMjI2IC02NDkgNDkyIC01MyAxMTEgLTcwIDE4MyAtNzggMzA4IC0xNCAyNDgKNjYgNDY1IDIzNSA2NDIgMTc5IDE4OCA0MDMgMjc3IDY2MSAyNjUgNjQgLTMgMTQxIC0xMiAxNzEgLTIwIDI1MyAtNzAgNDQxCi0yMTkgNTU4IC00NDUgNDcgLTg5IDkyIC0yNDcgOTIgLTMyMCBsMCAtNDUgNTMgNyBjMjggMyA2MyA2IDc2IDYgMjMgMCAyMyAxCjE3IDYzIC0xNyAxNTIgLTkzIDM1MyAtMTgwIDQ3MiAtOTQgMTMwIC0yNTcgMjY0IC00MDAgMzMwIC0xNTIgNzEgLTM1OSAxMDYKLTUxMSA4OHoiLz4KPHBhdGggZD0iTTg3MCAyMDcwIGMtMjIxIC01OSAtNDA5IC0yMDYgLTUwOSAtNDAwIC02MiAtMTE5IC04MiAtMTk4IC04OCAtMzM1Ci01IC0xMzMgOCAtMjIwIDUwIC0zMjUgNzkgLTE5NCAyNTAgLTM2NyA0NDAgLTQ0MyAxNjcgLTY3IDM3NiAtNzUgNTM3IC0yMQpsODUgMjkgNiAxMTAgYzE2IDI2NiAxNDYgNDY4IDM3NiA1ODIgbDkyIDQ2IC01IDUxIGMtMzMgMzI1IC0yNDIgNTg5IC01NDkKNjkyIC02OCAyMiAtMTAxIDI3IC0yMjAgMzAgLTExNyAzIC0xNTMgMSAtMjE1IC0xNnogbTU4IC01MjUgYzM4IC0zMiA0OCAtNzIKMjggLTExOCAtNDUgLTEwOCAtMTk1IC03NiAtMTk2IDQxIDAgOTAgOTkgMTM1IDE2OCA3N3ogbTM3MiAxMCBjMzcgLTE5IDUwCi00MyA1MCAtOTUgMCAtNTcgLTQyIC0xMDAgLTk3IC0xMDAgLTEwMSAwIC0xNDggMTIwIC03MiAxODQgMzUgMzAgNzYgMzMgMTE5CjExeiBtLTM2MCAtNDEyIGM0MiAtMzkgNDkgLTg3IDE4IC0xMzMgLTM5IC01OCAtMTE0IC02NSAtMTY0IC0xNSAtMTggMTkgLTI0CjM1IC0yNCA3MCAwIDk1IDEwMCAxNDAgMTcwIDc4eiBtMzY5IDEzIGM1OCAtMzAgNjkgLTExOSAyMiAtMTY3IC0yMyAtMjMgLTM4Ci0yOSAtNzEgLTI5IC0zNSAwIC00OCA2IC03NyAzNSAtMzIgMzIgLTM1IDQwIC0zMCA3NiAxMSA4MSA4NSAxMjEgMTU2IDg1eiIvPgo8cGF0aCBkPSJNMTkxMiAxMjUwIGMtMTEwIC0yOSAtMTg3IC03NSAtMjczIC0xNjAgLTEyMiAtMTIwIC0xNzkgLTI1NiAtMTc5Ci00MjUgMCAtMTcwIDU3IC0zMDMgMTgxIC00MjYgMzQwIC0zNDAgOTA5IC0xNjggMTAxNCAzMDUgNjUgMjkyIC0xMDggNTkyCi0zOTcgNjkzIC0xMDIgMzUgLTI0NSA0MSAtMzQ2IDEzeiBtMTk4IC0zNjkgYzUgLTExIDEwIC00OSAxMCAtODUgbDAgLTY2IDc3CjAgYzg5IDAgMTEzIC0xNCAxMTMgLTY2IDAgLTQ4IC0yOCAtNjQgLTExNyAtNjQgbC03MyAwIDAgLTgyIGMwIC05MCAtMTQgLTExOAotNTcgLTExOCAtNTUgMCAtNjMgMTMgLTYzIDExMCBsMCA5MCAtNzMgMCBjLTg5IDAgLTExNyAxNSAtMTE3IDY1IDAgNTMgMjAgNjUKMTExIDY1IGw3OSAwIDAgNzMgYzAgNDMgNSA3OCAxMiA4NSAyMCAyMCA4NiAxNSA5OCAtN3oiLz4KPC9nPgo8L3N2Zz4K';
+
+		add_menu_page(
+			'Simple Share Buttons Adder',
+			'Simple Share Buttons',
+			'manage_options',
+			'simple-share-buttons-adder',
+			array( $this, 'ssba_settings' ),
+			$icon,
+			26
+		);
+	}
+
 	/**
 	 * Menu settings.
 	 *
@@ -227,6 +247,7 @@ class Admin_Bits {
 		if ( isset( $_POST['ssbaData'] ) ) { // WPCS: CSRF ok.
 			// Get posted data.
 			$ssba_post = $_POST['ssbaData']; // WPCS: CSRF ok.
+			$selected_tab = isset( $_POST['ssba_selected_tab'] ) ? sanitize_text_field( wp_unslash( $_POST['ssba_selected_tab'] ) ) : ''; // WPCS: CSRF ok.
 
 			parse_str( $ssba_post, $ssba_post );
 
@@ -249,11 +270,11 @@ class Admin_Bits {
 				'ssba_plus_cats_archs'       => ( isset( $ssba_post['ssba_plus_cats_archs'] ) ? $ssba_post['ssba_plus_cats_archs'] : null ),
 				'ssba_plus_homepage'         => ( isset( $ssba_post['ssba_plus_homepage'] ) ? $ssba_post['ssba_plus_homepage'] : null ),
 				'ssba_plus_excerpts'         => ( isset( $ssba_post['ssba_plus_excerpts'] ) ? $ssba_post['ssba_plus_excerpts'] : null ),
-				'ssba_share_pages'           => ( isset( $ssba_post['ssba_share_pages'] ) ? $ssba_post['ssba_share_pages'] : null ),
-				'ssba_share_posts'           => ( isset( $ssba_post['ssba_share_posts'] ) ? $ssba_post['ssba_share_posts'] : null ),
-				'ssba_share_cats_archs'      => ( isset( $ssba_post['ssba_share_cats_archs'] ) ? $ssba_post['ssba_share_cats_archs'] : null ),
-				'ssba_share_homepage'        => ( isset( $ssba_post['ssba_share_homepage'] ) ? $ssba_post['ssba_share_homepage'] : null ),
-				'ssba_share_excerpts'        => ( isset( $ssba_post['ssba_share_excerpts'] ) ? $ssba_post['ssba_share_excerpts'] : null ),
+				'ssba_bar_pages'           => ( isset( $ssba_post['ssba_bar_pages'] ) ? $ssba_post['ssba_bar_pages'] : null ),
+				'ssba_bar_posts'           => ( isset( $ssba_post['ssba_bar_posts'] ) ? $ssba_post['ssba_bar_posts'] : null ),
+				'ssba_bar_cats_archs'      => ( isset( $ssba_post['ssba_bar_cats_archs'] ) ? $ssba_post['ssba_bar_cats_archs'] : null ),
+				'ssba_bar_homepage'        => ( isset( $ssba_post['ssba_bar_homepage'] ) ? $ssba_post['ssba_bar_homepage'] : null ),
+				'ssba_bar_excerpts'        => ( isset( $ssba_post['ssba_bar_excerpts'] ) ? $ssba_post['ssba_bar_excerpts'] : null ),
 				'ssba_align'                 => ( isset( $ssba_post['ssba_align'] ) ? $ssba_post['ssba_align'] : null ),
 				'ssba_plus_align'            => ( isset( $ssba_post['ssba_plus_align'] ) ? $ssba_post['ssba_plus_align'] : null ),
 				'ssba_padding'               => $ssba_post['ssba_padding'],
@@ -267,12 +288,12 @@ class Admin_Bits {
 				'ssba_buffer_text'           => stripslashes_deep( $ssba_post['ssba_buffer_text'] ),
 				'ssba_flattr_user_id'        => stripslashes_deep( $ssba_post['ssba_flattr_user_id'] ),
 				'ssba_flattr_url'            => stripslashes_deep( $ssba_post['ssba_flattr_url'] ),
-				'ssba_share_new_window'      => ( isset( $ssba_post['ssba_share_new_window'] ) ? $ssba_post['ssba_share_new_window'] : null ),
+				'ssba_bar_new_window'      => ( isset( $ssba_post['ssba_bar_new_window'] ) ? $ssba_post['ssba_bar_new_window'] : null ),
 				'ssba_link_to_ssb'           => ( isset( $ssba_post['ssba_link_to_ssb'] ) ? $ssba_post['ssba_link_to_ssb'] : null ),
 				'ssba_show_share_count'      => ( isset( $ssba_post['ssba_show_share_count'] ) ? $ssba_post['ssba_show_share_count'] : null ),
-				'ssba_share_count_style'     => $ssba_post['ssba_share_count_style'],
-				'ssba_share_count_css'       => $ssba_post['ssba_share_count_css'],
-				'ssba_share_count_once'      => ( isset( $ssba_post['ssba_share_count_once'] ) ? $ssba_post['ssba_share_count_once'] : null ),
+				'ssba_bar_count_style'     => $ssba_post['ssba_bar_count_style'],
+				'ssba_bar_count_css'       => $ssba_post['ssba_bar_count_css'],
+				'ssba_bar_count_once'      => ( isset( $ssba_post['ssba_bar_count_once'] ) ? $ssba_post['ssba_bar_count_once'] : null ),
 				'ssba_widget_text'           => $ssba_post['ssba_widget_text'],
 				'ssba_rel_nofollow'          => ( isset( $ssba_post['ssba_rel_nofollow'] ) ? $ssba_post['ssba_rel_nofollow'] : null ),
 				'ssba_default_pinterest'     => ( isset( $ssba_post['ssba_default_pinterest'] ) ? $ssba_post['ssba_default_pinterest'] : null ),
@@ -296,24 +317,24 @@ class Admin_Bits {
 				'ssba_plus_rel_nofollow'          => ( isset( $ssba_post['ssba_plus_rel_nofollow'] ) ? $ssba_post['ssba_plus_rel_nofollow'] : null ),
 				'ssba_plus_default_pinterest'     => ( isset( $ssba_post['ssba_plus_default_pinterest'] ) ? $ssba_post['ssba_plus_default_pinterest'] : null ),
 				'ssba_plus_pinterest_featured'    => ( isset( $ssba_post['ssba_plus_pinterest_featured'] ) ? $ssba_post['ssba_plus_pinterest_featured'] : null ),
-				'ssba_share_additional_css'        => $ssba_post['ssba_share_additional_css'],
-				'ssba_share_custom_styles'         => $ssba_post['ssba_share_custom_styles'],
-				'ssba_share_custom_styles_enabled' => $ssba_post['ssba_share_custom_styles_enabled'],
-				'ssba_share_email_message'         => stripslashes_deep( $ssba_post['ssba_share_email_message'] ),
-				'ssba_share_twitter_text'          => stripslashes_deep( $ssba_post['ssba_share_twitter_text'] ),
-				'ssba_share_buffer_text'           => stripslashes_deep( $ssba_post['ssba_share_buffer_text'] ),
-				'ssba_share_flattr_user_id'        => stripslashes_deep( $ssba_post['ssba_share_flattr_user_id'] ),
-				'ssba_share_flattr_url'            => stripslashes_deep( $ssba_post['ssba_share_flattr_url'] ),
-				'ssba_share_share_new_window'      => ( isset( $ssba_post['ssba_share_share_new_window'] ) ? $ssba_post['ssba_share_share_new_window'] : null ),
-				'ssba_share_link_to_ssb'           => ( isset( $ssba_post['ssba_share_link_to_ssb'] ) ? $ssba_post['ssba_share_link_to_ssb'] : null ),
-				'ssba_share_show_share_count'      => ( isset( $ssba_post['ssba_share_show_share_count'] ) ? $ssba_post['ssba_share_show_share_count'] : null ),
-				'ssba_share_share_count_style'     => $ssba_post['ssba_share_share_count_style'],
-				'ssba_share_share_count_css'       => $ssba_post['ssba_share_share_count_css'],
-				'ssba_share_share_count_once'      => ( isset( $ssba_post['ssba_share_share_count_once'] ) ? $ssba_post['ssba_share_share_count_once'] : null ),
-				'ssba_share_widget_text'           => $ssba_post['ssba_share_widget_text'],
-				'ssba_share_rel_nofollow'          => ( isset( $ssba_post['ssba_share_rel_nofollow'] ) ? $ssba_post['ssba_share_rel_nofollow'] : null ),
-				'ssba_share_default_pinterest'     => ( isset( $ssba_post['ssba_share_default_pinterest'] ) ? $ssba_post['ssba_share_default_pinterest'] : null ),
-				'ssba_share_pinterest_featured'    => ( isset( $ssba_post['ssba_share_pinterest_featured'] ) ? $ssba_post['ssba_share_pinterest_featured'] : null ),
+				'ssba_bar_additional_css'        => $ssba_post['ssba_bar_additional_css'],
+				'ssba_bar_custom_styles'         => $ssba_post['ssba_bar_custom_styles'],
+				'ssba_bar_custom_styles_enabled' => $ssba_post['ssba_bar_custom_styles_enabled'],
+				'ssba_bar_email_message'         => stripslashes_deep( $ssba_post['ssba_bar_email_message'] ),
+				'ssba_bar_twitter_text'          => stripslashes_deep( $ssba_post['ssba_bar_twitter_text'] ),
+				'ssba_bar_buffer_text'           => stripslashes_deep( $ssba_post['ssba_bar_buffer_text'] ),
+				'ssba_bar_flattr_user_id'        => stripslashes_deep( $ssba_post['ssba_bar_flattr_user_id'] ),
+				'ssba_bar_flattr_url'            => stripslashes_deep( $ssba_post['ssba_bar_flattr_url'] ),
+				'ssba_bar_share_new_window'      => ( isset( $ssba_post['ssba_bar_share_new_window'] ) ? $ssba_post['ssba_bar_share_new_window'] : null ),
+				'ssba_bar_link_to_ssb'           => ( isset( $ssba_post['ssba_bar_link_to_ssb'] ) ? $ssba_post['ssba_bar_link_to_ssb'] : null ),
+				'ssba_bar_show_share_count'      => ( isset( $ssba_post['ssba_bar_show_share_count'] ) ? $ssba_post['ssba_bar_show_share_count'] : null ),
+				'ssba_bar_share_count_style'     => $ssba_post['ssba_bar_share_count_style'],
+				'ssba_bar_share_count_css'       => $ssba_post['ssba_bar_share_count_css'],
+				'ssba_bar_share_count_once'      => ( isset( $ssba_post['ssba_bar_share_count_once'] ) ? $ssba_post['ssba_bar_share_count_once'] : null ),
+				'ssba_bar_widget_text'           => $ssba_post['ssba_bar_widget_text'],
+				'ssba_bar_rel_nofollow'          => ( isset( $ssba_post['ssba_bar_rel_nofollow'] ) ? $ssba_post['ssba_bar_rel_nofollow'] : null ),
+				'ssba_bar_default_pinterest'     => ( isset( $ssba_post['ssba_bar_default_pinterest'] ) ? $ssba_post['ssba_bar_default_pinterest'] : null ),
+				'ssba_bar_pinterest_featured'    => ( isset( $ssba_post['ssba_bar_pinterest_featured'] ) ? $ssba_post['ssba_bar_pinterest_featured'] : null ),
 
 				// Share container.
 				'ssba_div_padding'           => $ssba_post['ssba_div_padding'],
@@ -338,13 +359,13 @@ class Admin_Bits {
 
 				// Included buttons.
 				'ssba_selected_buttons'         => $ssba_post['ssba_selected_buttons'],
-				'ssba_selected_share_buttons'   => $ssba_post['ssba_selected_share_buttons'],
+				'ssba_selected_bar_buttons'   => $ssba_post['ssba_selected_bar_buttons'],
 				'ssba_selected_plus_buttons'    => $ssba_post['ssba_selected_plus_buttons'],
-				'ssba_share_button_style'       => $ssba_post['ssba_share_button_style'],
-				'ssba_share_bar_style'          => $ssba_post['ssba_share_bar_style'],
+				'ssba_plus_button_style'       => $ssba_post['ssba_plus_button_style'],
+				'ssba_bar_style'          => $ssba_post['ssba_bar_style'],
 				'ssba_new_buttons'              => $ssba_post['ssba_new_buttons'],
-				'ssba_share_bar'                => $ssba_post['ssba_share_bar'],
-				'ssba_share_bar_position'       => $ssba_post['ssba_share_bar_position'],
+				'ssba_bar_enabled'                => $ssba_post['ssba_bar_enabled'],
+				'ssba_bar_position'       => $ssba_post['ssba_bar_position'],
 				'ssba_plus_height'              => $ssba_post['ssba_plus_height'],
 				'ssba_plus_width'               => $ssba_post['ssba_plus_width'],
 				'ssba_plus_margin'              => $ssba_post['ssba_plus_margin'],
@@ -353,16 +374,16 @@ class Admin_Bits {
 				'ssba_plus_icon_size'           => $ssba_post['ssba_plus_icon_size'],
 				'ssba_plus_icon_color'          => $ssba_post['ssba_plus_icon_color'],
 				'ssba_plus_icon_hover_color'    => $ssba_post['ssba_plus_icon_hover_color'],
-				'ssba_share_height'             => $ssba_post['ssba_share_height'],
-				'ssba_share_width'              => $ssba_post['ssba_share_width'],
-				'ssba_share_button_color'       => $ssba_post['ssba_share_button_color'],
-				'ssba_share_button_hover_color' => $ssba_post['ssba_share_button_hover_color'],
-				'ssba_share_icon_size'          => $ssba_post['ssba_share_icon_size'],
-				'ssba_share_icon_color'         => $ssba_post['ssba_share_icon_color'],
-				'ssba_share_icon_hover_color'   => $ssba_post['ssba_share_icon_hover_color'],
-				'ssba_share_desktop'            => $ssba_post['ssba_share_desktop'],
-				'ssba_share_margin'             => $ssba_post['ssba_share_margin'],
-				'ssba_share_mobile'             => $ssba_post['ssba_share_mobile'],
+				'ssba_bar_height'             => $ssba_post['ssba_bar_height'],
+				'ssba_bar_width'              => $ssba_post['ssba_bar_width'],
+				'ssba_bar_button_color'       => $ssba_post['ssba_bar_button_color'],
+				'ssba_bar_button_hover_color' => $ssba_post['ssba_bar_button_hover_color'],
+				'ssba_bar_icon_size'          => $ssba_post['ssba_bar_icon_size'],
+				'ssba_bar_icon_color'         => $ssba_post['ssba_bar_icon_color'],
+				'ssba_bar_icon_hover_color'   => $ssba_post['ssba_bar_icon_hover_color'],
+				'ssba_bar_desktop'            => $ssba_post['ssba_bar_desktop'],
+				'ssba_bar_margin'             => $ssba_post['ssba_bar_margin'],
+				'ssba_bar_mobile'             => $ssba_post['ssba_bar_mobile'],
 				'ssba_mobile_breakpoint'        => $ssba_post['ssba_mobile_breakpoint'],
 				'ssba_custom_facebook'          => $ssba_post['ssba_custom_facebook'],
 				'ssba_custom_google'            => $ssba_post['ssba_custom_google'],
@@ -390,26 +411,29 @@ class Admin_Bits {
 				'plus_sharedcount_enabled'      => $ssba_post['plus_sharedcount_enabled'],
 				'plus_sharedcount_api_key'      => $ssba_post['plus_sharedcount_api_key'],
 				'plus_sharedcount_plan'         => $ssba_post['plus_sharedcount_plan'],
-				'share_sharedcount_enabled'     => $ssba_post['share_sharedcount_enabled'],
-				'share_sharedcount_api_key'     => $ssba_post['share_sharedcount_api_key'],
-				'share_sharedcount_plan'        => $ssba_post['share_sharedcount_plan'],
+				'bar_sharedcount_enabled'     => $ssba_post['bar_sharedcount_enabled'],
+				'bar_sharedcount_api_key'     => $ssba_post['bar_sharedcount_api_key'],
+				'bar_sharedcount_plan'        => $ssba_post['bar_sharedcount_plan'],
 
 				// New share counts.
 				'twitter_newsharecounts'        => $ssba_post['twitter_newsharecounts'],
 				'plus_twitter_newsharecounts'   => $ssba_post['plus_twitter_newsharecounts'],
-				'share_twitter_newsharecounts'  => $ssba_post['share_twitter_newsharecounts'],
+				'bar_twitter_newsharecounts'  => $ssba_post['bar_twitter_newsharecounts'],
 
 				// Facebook.
 				'facebook_insights'             => $ssba_post['facebook_insights'],
 				'facebook_app_id'               => $ssba_post['facebook_app_id'],
 				'plus_facebook_insights'        => $ssba_post['plus_facebook_insights'],
 				'plus_facebook_app_id'          => $ssba_post['plus_facebook_app_id'],
-				'share_facebook_insights'       => $ssba_post['share_facebook_insights'],
-				'share_facebook_app_id'         => $ssba_post['share_facebook_app_id'],
+				'bar_facebook_insights'       => $ssba_post['bar_facebook_insights'],
+				'bar_facebook_app_id'         => $ssba_post['bar_facebook_app_id'],
 			);
 
 			// Save the settings.
 			$this->class_ssba->ssba_update_options( $arr_options );
+
+			// Save selected tab.
+			update_option( 'ssba_selected_tab', $selected_tab );
 
 			// Return success.
 			return true;

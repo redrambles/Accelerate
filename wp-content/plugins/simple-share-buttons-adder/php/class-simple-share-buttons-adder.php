@@ -51,7 +51,7 @@ class Simple_Share_Buttons_Adder {
 	public function ssba_update_options( $arr_options ) {
 		// If not given an array.
 		if ( ! is_array( $arr_options ) ) {
-			die( esc_html__( 'Value parsed not an array', 'simple-share-buttons-adder' ) );
+			return esc_html__( 'Value parsed not an array', 'simple-share-buttons-adder' );
 		}
 
 		// Get ssba settings.
