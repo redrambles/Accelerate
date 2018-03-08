@@ -8,7 +8,8 @@
  */
 
 $selected_tab = get_option( 'ssba_selected_tab' );
-$classic = false === $selected_tab || null === $selected_tab || 'classic' === $selected_tab ? 'active' : '';
+$selected_tab = null !== $selected_tab && false !== $selected_tab ? $selected_tab : 'classic';
+$classic = 'classic' === $selected_tab ? 'active' : '';
 $modern = isset( $selected_tab ) && 'modern' === $selected_tab ? 'active' : '';
 $bar = isset( $selected_tab ) && 'bar' === $selected_tab ? 'active' : '';
 
@@ -59,7 +60,7 @@ if ( isset( $_GET['accept-terms'] ) && 'Y' === $_GET['accept-terms'] ) { // WPCS
 	<?php include_once( "{$this->plugin->dir_path}/templates/plus-tab.php" ); ?>
 	<?php include_once( "{$this->plugin->dir_path}/templates/share-bar-tab.php" ); ?>
 </div>
-<input id="ssba_selected_tab" name="ssba_selected_tab" type="hidden" value="classic"/>
+<input id="ssba_selected_tab" name="ssba_selected_tab" type="hidden" value="<?php echo esc_html( $selected_tab ); ?>"/>
 <?php
 echo $this->forms->close(); // WPCS: XSS ok.
 echo $this->admin_footer(); // WPCS: XSS ok.

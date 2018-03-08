@@ -237,7 +237,13 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
                 // Scrub unmerged tags (ie deleted/non-existent fields/calcs, etc).
                 $eq = preg_replace( '/{([a-zA-Z0-9]|:|_|-)*}/', 0, $eq);
 
-                $dec = ( isset( $calc[ 'dec' ] ) && 0 <= $calc[ 'dec' ] ) ? $calc[ 'dec' ] : 2;
+				/**
+				 * PHP doesn't evaluate empty strings to numbers. So check
+	             * for any string for the decimal place
+				**/
+                $dec = ( isset( $calc[ 'dec' ] ) && '' != $calc[ 'dec' ] ) ?
+	                $calc[ 'dec' ] : 2;
+                
                 $calcs_merge_tags->set_merge_tags( $calc[ 'name' ], $eq, $dec, $this->_form_data['settings']['decimal_point'], $this->_form_data['settings']['thousands_sep'] );
                 $this->_data[ 'extra' ][ 'calculations' ][ $calc[ 'name' ] ] = array(
                     'raw' => $calc[ 'eq' ],

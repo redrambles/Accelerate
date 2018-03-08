@@ -784,7 +784,7 @@ return apply_filters( 'ninja_forms_field_settings', array(
         'type' => 'textbox',
         'value' => 5,
         'label' => __( 'Number of stars', 'ninja-forms' ),
-        'width' => '',
+        'width' => 'full',
         'group' => '',
 
     ),

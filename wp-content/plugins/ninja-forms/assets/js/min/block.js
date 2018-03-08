@@ -1,103 +1,97 @@
-// block.js
-( function( blocks, element ) {
-	// These are gutenberg items(React components, etc.)
-	var el = element.createElement,
-		source = blocks.source;
+/**
+ * Ninja Forms Form Block
+ *
+ * A block for embedding a Ninja Forms form into a post/page.
+ */
+( function( blocks, i18n, element, components ) {
 
-	// Register our Gutenberg block
-	blocks.registerBlockType( 'ninja-forms/forms', {
+	var el = element.createElement, // function to create elements
+      // TextControl = blocks.InspectorControls.TextControl, // not needed
+
+      SelectControl = components.SelectControl, // select control
+      InspectorControls = blocks.InspectorControls, // sidebar controls
+      Sandbox = components.Sandbox; // needed to register the block
+
+	// register our block
+	blocks.registerBlockType( 'ninja-forms/form', {
 		title: 'Ninja Forms',
-		icon: 'edit',
+		icon: 'feedback',
 		category: 'common',
+
 		attributes: {
-			nf_form_id: {
-				type: 'string',
-				source: source.children( 'div' ), // This is why we wrap the
-				// short code in the div in the save method. So that we can
-				// grab the short code
-				default: ''
-			},
+            formID: {
+                type: 'integer',
+                default: 0
+            },
 		},
 
-		// This function sets up the block HTML(what you see in the editor)
 		edit: function( props ) {
-			var children,
-				options;
 
-			function setFormId( event ) {
-				// Get the ID value from the select element
-				var selected = event.target.querySelector( 'option:checked' );
-				var tmpId = selected.value;
-				var shortCodeStr = '';
+        var focus = props.focus;
 
-				// set the nf_form_id prop value with the new ID selected
-				if ( 0 !== tmpId.length ) {
-					shortCodeStr = "[ninja_form id=" + tmpId + "]";
-				}
-				props.setAttributes( { nf_form_id: shortCodeStr } );
-				event.preventDefault();
-			}
+        var formID = props.attributes.formID;
 
-			function getElementValue( props ) {
-				// Get our current nf_form_id prop value
-				var tmpVal = props.attributes.nf_form_id;
+        var children = [];
 
-				// Get the actual id value from the short code string
-				// This value will be a Ninja Form short code and we need
-				// the form ID
-				if( 0 < tmpVal.length ) {
-					tmpVal = tmpVal.split( '=' )[1];
-					tmpVal = tmpVal.substring( 0, tmpVal.length - 1 );
-				}
+        if( ! formID ) formID = ''; // Default.
 
-				return tmpVal;
-			}
-			// children will be an array of HTML elements that will be
-			// rendered in the block
-			children = [];
+		function onFormChange( newFormID ) {
+			// updates the form id on the props
+			props.setAttributes( { formID: newFormID } );
+		}
 
-			var containerDiv = el( 'div', {style : {width: '100%'}}, el( 'img',
-				{ src: ninja_forms.block_logo}) );
+		// Set up the form dropdown in the side bar 'block' settings
+        var inspectorControls = el( InspectorControls, {},
+            el( SelectControl, { label: 'Form ID', value: formID, options: ninjaFormsBlock.forms, onChange: onFormChange } )
+        );
 
-			children.push(containerDiv);
 
-			options = [];
-			// create the options for the form dropdown
-			options.push( el( 'option', { value: '' }, '- Select -' ) );
-
-			// iterate over the form data passed from PHP
-			_.each( ninja_forms.nf_forms, function( nf_form ) {
-				options.push( el( 'option' , { value: nf_form.id }, nf_form.title + " (ID: " + nf_form.id + ")" ) );
-
-			});
-
-			// create a select element, get the value that was last saved,
-			// and append the options
-			children.push( el( 'select', {
-						style: { width: '100%' },
-						name: 'nf_form_id',
-						id: 'nf_form_id',
-						value: getElementValue( props ),
-						onChange: setFormId
-					},
-					options
+		/**
+		 * Create the div container, add an overlay so the user can interact
+		 * with the form in Gutenberg, then render the iframe with form
+		 */
+		if( '' === formID ) {
+			children.push( el( 'div', {style : {width: '100%'}}, el( 'img',
+				{ src: ninjaFormsBlock.block_logo}),
+				el( SelectControl, { value: formID, options: ninjaFormsBlock.forms, onChange: onFormChange })
+			) );
+		} else {
+			children.push(
+				el( 'div', { className: 'nf-iframe-container' },
+					el( 'div', { className: 'nf-iframe-overlay' } ),
+					el( 'iframe', { src: ninjaFormsBlock.siteUrl + '?nf_preview_form='
+						+ formID + '&nf_iframe', height: '0', width: '500', scrolling: 'no' })
 				)
-			);
-
-			// Create the form and append the label and select elements
-			var form = el( 'form', { onSubmit: setFormId }, children );
-
-			// This is what renders the elements to the blocks, so we wrap
-			// the form in a div here
-			return el( 'div', { class: 'wp-block-shortcode' }, form );
+			)
+		}
+		return [
+			children,
+			// inspectorControls
+			!! focus && inspectorControls
+        ];
 		},
 
 		save: function( props ) {
-			// This is what will be rendered by our block on the front-end
-			return "<div>" + props.attributes.nf_form_id + "</div>";
+
+            var formID = props.attributes.formID;
+
+            if( ! formID ) return '';
+			/**
+			 * we're essentially just adding a short code, here is where
+			 * it's save in the editor
+			 *
+			 * return content wrapped in DIV b/c raw HTML is unsupported
+			 * going forward
+			 */
+			var returnHTML = '[ninja_forms id=' + parseInt( formID ) + ']';
+			return el( 'div', null, returnHTML);
 		}
 	} );
+
+
 } )(
 	window.wp.blocks,
-	window.wp.element
+	window.wp.i18n,
+	window.wp.element,
+	window.wp.components
 );

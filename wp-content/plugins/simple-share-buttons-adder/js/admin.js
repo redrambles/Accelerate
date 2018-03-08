@@ -613,7 +613,7 @@ var SimpleShareButtonsAdder = ( function( $, wp ) {
 					$( '.ssba-admin-wrap input:checkbox' ).bootstrapSwitch( 'disabled', false );
 					$( 'button.ssba-btn-save' ).html( '<i class="fa fa-floppy-o"></i>' );
 				}
-			).always( function() {
+			).always( function( response ) {
 
 				// Refresh page.
 				location.reload();

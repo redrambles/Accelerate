@@ -217,7 +217,7 @@ class Buttons {
 
 			// If running standard.
 			if ( ! $boo_shortcode ) {
-				// Use wordpress functions for page/post details.
+				// Use WordPress functions for page/post details.
 				$url_current_page = get_permalink( $post->ID );
 				$str_page_title = get_the_title( $post->ID );
 			} else { // Using shortcode.
@@ -285,7 +285,7 @@ class Buttons {
 		// Get sbba settings.
 		$arr_settings = $this->class_ssba->get_ssba_settings();
 
-		if ( ( 'Y' !== $arr_settings['ssba_bar_desktop'] && ! wp_is_mobile() ) || ( 'Y' !== $arr_settings['ssba_bar_mobile'] && wp_is_mobile() ) ) {
+		if ( ( 'Y' !== $arr_settings['ssba_bar_desktop'] && ! wp_is_mobile() ) || ( 'Y' !== $arr_settings['ssba_bar_mobile'] && wp_is_mobile() ) || 'Y' !== $arr_settings['ssba_bar_enabled'] ) {
 			return;
 		}
 
@@ -481,17 +481,17 @@ class Buttons {
 		$network = 'Facebook';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window'] && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window'] && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-facebook ssbp-btn' : '';
 		$count_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-each-share' : ' ssba_sharecount';
 		$html_share_buttons = '';
@@ -718,17 +718,17 @@ class Buttons {
 		$network = 'Twitter';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-		        ( 'Y' === $arr_settings['ssba_bar_share_new_window'] && isset( $arr_settings['bar_call']
-			        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+				( 'Y' === $arr_settings['ssba_bar_share_new_window'] && isset( $arr_settings['bar_call']
+					) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-twitter ssbp-btn' : '';
 		$count_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-each-share' : ' ssba_sharecount';
 		$html_share_buttons = '';
@@ -817,17 +817,17 @@ class Buttons {
 		$network = 'Google+';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window'] && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window'] && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-google ssbp-btn' : '';
 		$count_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-each-share' : ' ssba_sharecount';
 		$html_share_buttons = '';
@@ -932,17 +932,17 @@ class Buttons {
 		$network = 'Digg';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window'] && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window'] && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-diggit ssbp-btn' : '';
 		$count_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-each-share' : ' ssba_sharecount';
 		$html_share_buttons = '';
@@ -994,17 +994,17 @@ class Buttons {
 		$network = 'Reddit';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window'] && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window'] && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-reddit ssbp-btn' : '';
 		$count_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-each-share' : ' ssba_sharecount';
 		$html_share_buttons = '';
@@ -1088,18 +1088,18 @@ class Buttons {
 		$network = 'Linkedin';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window']
-	          && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window']
+			  && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-linkedin ssbp-btn' : '';
 		$count_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-each-share' : ' ssba_sharecount';
 		$html_share_buttons = '';
@@ -1184,18 +1184,18 @@ class Buttons {
 		$network = 'Pinterest';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window']
-	          && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window']
+			  && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-pinterest ssbp-btn' : '';
 		$count_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-each-share' : ' ssba_sharecount';
 		$html_share_buttons = '';
@@ -1295,18 +1295,18 @@ class Buttons {
 		$network = 'StumbleUpon';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window']
-	          && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window']
+			  && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$url = 'http://www.stumbleupon.com/submit?url=' . esc_attr( $url_current_page ) . '&amp;title=' . esc_attr( $str_page_title );
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-stumbleupon ssbp-btn' : '';
 		$count_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-each-share' : ' ssba_sharecount';
@@ -1440,18 +1440,18 @@ class Buttons {
 		$network = 'Flattr';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window']
-	          && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window']
+			  && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-flattr ssbp-btn' : '';
 		$count_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-each-share' : ' ssba_sharecount';
 		$html_share_buttons = '';
@@ -1510,18 +1510,18 @@ class Buttons {
 		$network = 'Buffer';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window']
-	          && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window']
+			  && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-buffer ssbp-btn' : '';
 		$count_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-each-share' : ' ssba_sharecount';
 		$html_share_buttons = '';
@@ -1573,18 +1573,18 @@ class Buttons {
 		$network = 'Tumblr';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window']
-	          && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window']
+			  && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-tumblr ssbp-btn' : '';
 		$count_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-each-share' : ' ssba_sharecount';
 		$html_share_buttons = '';
@@ -1713,18 +1713,18 @@ class Buttons {
 		$network = 'VK';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window']
-	          && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window']
+			  && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-vk ssbp-btn' : '';
 		$html_share_buttons = '';
 
@@ -1775,18 +1775,18 @@ class Buttons {
 		$network = 'Yummly';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window']
-	          && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window']
+			  && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-yummly ssbp-btn' : '';
 		$count_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-each-share' : ' ssba_sharecount';
 		$html_share_buttons = '';
@@ -1873,18 +1873,18 @@ class Buttons {
 		$network = 'Whatsapp';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window']
-	          && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window']
+			  && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-whatsapp ssbp-btn' : '';
 		$html_share_buttons = '';
 
@@ -1935,18 +1935,18 @@ class Buttons {
 		$network = 'Xing';
 		$target =
 			( 'Y' === $arr_settings['ssba_plus_share_new_window']
-			        && 'Y' === $arr_settings['ssba_new_buttons']
-			        && ! isset( $arr_settings['bar_call']
+					&& 'Y' === $arr_settings['ssba_new_buttons']
+					&& ! isset( $arr_settings['bar_call']
 			) )
 			||
-		      ( 'Y' === $arr_settings['ssba_share_new_window']
-		        && 'Y' !== $arr_settings['ssba_new_buttons']
-		        && ! isset( $arr_settings['bar_call']
-		      ) )
-		    ||
-	        ( 'Y' === $arr_settings['ssba_bar_share_new_window']
-	          && isset( $arr_settings['bar_call']
-	        ) ) ? ' target="_blank" ' : '';
+			  ( 'Y' === $arr_settings['ssba_share_new_window']
+				&& 'Y' !== $arr_settings['ssba_new_buttons']
+				&& ! isset( $arr_settings['bar_call']
+			  ) )
+			||
+			( 'Y' === $arr_settings['ssba_bar_share_new_window']
+			  && isset( $arr_settings['bar_call']
+			) ) ? ' target="_blank" ' : '';
 		$plus_class = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-xing ssbp-btn' : '';
 		$html_share_buttons = '';
 

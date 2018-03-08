@@ -129,8 +129,15 @@ final class NF_Admin_Menus_ImportExport extends NF_Abstracts_Submenu
         wp_enqueue_script('postbox');
         wp_enqueue_script('jquery-ui-draggable');
 
+	    wp_enqueue_style( 'nf-admin-settings', Ninja_Forms::$url . 'assets/css/admin-settings.css' );
+
         wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
         wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false );
+
+	    wp_register_script( 'ninja_forms_admin_import_export',
+		    Ninja_Forms::$url . 'assets/js/admin-import-export.js', array( 'jquery' ), FALSE, TRUE );
+
+	    wp_enqueue_script( 'ninja_forms_admin_import_export' );
 
         Ninja_Forms::template( 'admin-menu-import-export.html.php', compact( 'tabs', 'active_tab' ) );
     }
