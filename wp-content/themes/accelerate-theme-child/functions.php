@@ -247,10 +247,7 @@ function accelerate_child_scripts() {
 	wp_enqueue_script( 'slick-activate', trailingslashit( get_stylesheet_directory_uri() ) . 'js/slidorama.js', 'jquery', '20160121', true );
 	wp_enqueue_style( 'slick-css', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css', '', '1.6.0' );
 	wp_enqueue_style( 'slick-theme-css', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css', array( 'slick-css' ), '1.6.0' );
-  // for dynamically outputting the twitter handle in the correct spot inside the twitter widget - used filter instead
-  // if ( is_front_page() ) {
-  //   wp_enqueue_script('front-page-twitter', get_stylesheet_directory_uri() . '/js/front-page-twitter.js', array('jquery'), '20170222', true );
-  // }
+
 }
 add_action( 'wp_enqueue_scripts', 'accelerate_child_scripts' );
 
@@ -376,16 +373,6 @@ function accelerate_no_wpautop_front_page( $content ) {
     }
 }
   
-// // customize admin footer text
-// add_filter('admin_footer_text', 'accelerate_footer');
-
-// function accelerate_footer($footer_text) {
-// 	$footer_text = '<span class="custom-footer">' . __('&copy; ', 'accelerate-theme-child') . date('Y') . ' <a href="' . home_url() .
-// 	'">' . get_bloginfo('name') . '</a> &bull; Accelerate Child Theme</span>';
-// 	echo $footer_text;
-// }
-
-
 // In lieu of a 'maintenance mode plugin' - if in a hurry - will shut down the site to everyone but admins
 
 // add_action( 'get_header', 'emergency_repair' );
@@ -476,28 +463,34 @@ function red_remove_ver_css_js( $src ) {
 
 
 
-remove_filter('get_the_excerpt', 'wp_trim_excerpt'); 
-add_filter('get_the_excerpt', 'accelerate_link_excerpt');
+// remove_filter('get_the_excerpt', 'wp_trim_excerpt'); 
+// add_filter('get_the_excerpt', 'accelerate_link_excerpt');
  
-function accelerate_link_excerpt($text = '') { // Fakes an excerpt if needed
-    global $post;
-	$raw_excerpt = $text;
-    if ( '' == $text ) {
-        $text = get_the_content('');
-        $text = apply_filters('the_content', $text);
-        $text = str_replace('\]\]\>', ']]&gt;', $text);
-        $text = strip_tags($text,'<a>'); // list of tags to allow
-        $excerpt_length = 55; 
-        $words = explode(' ', $text, $excerpt_length + 1);
-        if (count($words)> $excerpt_length) {
-            array_pop($words);
-            array_push($words, '. . .<p><a href="' . get_permalink($post->ID) . '">Read More &raquo;</a></p>');
-            $text = implode(' ', $words);
-        }
-    }
-    return $text;
-}
+// function accelerate_link_excerpt($text = '') { // Fakes an excerpt if needed
+//     global $post;
+// 	$raw_excerpt = $text;
+//     if ( '' == $text ) {
+//         $text = get_the_content('');
+//         $text = apply_filters('the_content', $text);
+//         $text = str_replace('\]\]\>', ']]&gt;', $text);
+//         $text = strip_tags($text,'<a>'); // list of tags to allow
+//         $excerpt_length = 55; 
+//         $words = explode(' ', $text, $excerpt_length + 1);
+//         if (count($words)> $excerpt_length) {
+//             array_pop($words);
+//             array_push($words, '. . .<p><a href="' . get_permalink($post->ID) . '">Read More &raquo;</a></p>');
+//             $text = implode(' ', $words);
+//         }
+//     }
+//     return $text;
+// }
 
+// function accelerate_child_excerpt_more( $more ) {
+// 	if ( is_home() ) {
+// 	return ' <a class="read-more-link" href="'. get_permalink() . '">' . __('Read More', 'accelerate-theme-child') . '</a>';
+// 	}
+// }
+// add_filter( 'excerpt_more', 'accelerate_child_excerpt_more', 100 );
 
 /**
  * Custom template tags for this theme.
