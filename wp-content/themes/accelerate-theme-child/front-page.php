@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying the homepage
  *
@@ -23,7 +24,7 @@ get_header(); ?>
 
 <section class="home-page">
 		<!-- <div class="site-content"> -->
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php while (have_posts()) : the_post(); ?>
 				<div class='homepage-hero'>
 					<?php the_content(); ?>
 					<a class="button" href="<?php echo home_url(); ?>/case-studies">View Our Work</a>			
@@ -39,20 +40,20 @@ get_header(); ?>
 		<ul class="homepage-featured-work">
 			<?php //query_posts('posts_per_page=3&post_type=case_studies&order=DESC'); ?>
 
-			<?php $args = array (
-					'posts_per_page' => 3,
-					'post_type' => 'case_studies',
-					'order' => 'ASC',
-					'status' => 'publish'
-				);
+			<?php $args = array(
+			'posts_per_page' => 3,
+			'post_type' => 'case_studies',
+			'order' => 'ASC',
+			'status' => 'publish'
+		);
 
-			$featured = new WP_Query($args);?>
+		$featured = new WP_Query($args); ?>
 
-			<?php while ($featured-> have_posts() ) : $featured->the_post();
+			<?php while ($featured->have_posts()) : $featured->the_post();
 				//$image_1 = get_field("image_1");
-				$image_1  = get_post_meta(get_the_id(), "image_1", true);
-				$size = "front-page-featured-work";
-			 ?>
+		$image_1 = get_post_meta(get_the_id(), "image_1", true);
+		$size = "front-page-featured-work";
+		?>
 			 	<li class="individual-featured-work">	
 				 	<figure>
 						<a href="<?php the_permalink(); ?>"><?php echo wp_get_attachment_image($image_1, $size); ?></a>
@@ -60,7 +61,7 @@ get_header(); ?>
 					<h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
 				</li>
 			<?php endwhile; //end the while loop
-			wp_reset_postdata();
+		wp_reset_postdata();
 			//wp_reset_query(); ?> <!-- reset altered query back to the original -->
 		</ul>
 	</div>
@@ -69,19 +70,19 @@ get_header(); ?>
 <section class="featured-services">
 	<div class="site-content">
 		<h4><a href="<?php echo home_url(); ?>/about">Services</a></h4>
-		<?php $args = array (
-			'post_type' => 'services',
-			'posts_per_page' => 4,
-			'order' => 'ASC',
-			'status' => 'publish'
-				);
-			$services = new WP_Query($args);?>
+		<?php $args = array(
+		'post_type' => 'services',
+		'posts_per_page' => 4,
+		'order' => 'ASC',
+		'status' => 'publish'
+	);
+	$services = new WP_Query($args); ?>
 
 		<ul class="homepage-featured-services">
-			<?php while ( $services->have_posts() ) : $services->the_post(); 
-				$cpt_service_image = get_field('cpt_service_image');
-				$size = "medium";
-			 ?>
+			<?php while ($services->have_posts()) : $services->the_post();
+		$cpt_service_image = get_field('cpt_service_image');
+		$size = "medium";
+		?>
 		 	<li class="individual-featured-service">	
 			 <a href="<?php the_permalink(); ?>">
 				 	<figure>
@@ -91,45 +92,74 @@ get_header(); ?>
 				</a>
 			</li>
 			<?php endwhile; //end the while loop
-			wp_reset_postdata(); ?>
+		wp_reset_postdata(); ?>
 		</ul>
 	</div>
 </section>
+
+<section class="featured-services">
+	<div class="site-content">
+		<?php
+			$today = date('Ymd');
+			$args = array(
+				'posts_per_page' => 4,
+				'post_type' => 'faq',
+				'meta_key' => 'date',
+				'orderby' => 'meta_value_num',
+				'order' => 'ASC',
+				'meta_query' => array(
+					array(
+						'key' => 'date',
+						'compare' => '>=',
+						'value' => $today,
+						'type' => 'numeric'
+					)
+				)
+			);
+			$date = new WP_Query($args);
+			while($date->have_posts()) : $date->the_post(); 
+
+				the_content();
+
+			endwhile; wp_reset_postdata();  ?>
+	</div>
+</section>
+				
 
 <section class="recent-posts">
 	<div class="site-content">
 		<div class="blog-post">
 			<h4>From the Blog</h4>
-			<?php $args = array (
-					'posts_per_page' => 1
-				);
-			$blog = new WP_Query($args);?>
+			<?php $args = array(
+			'posts_per_page' => 1
+		);
+		$blog = new WP_Query($args); ?>
 
-			<?php while ( $blog->have_posts() ) : $blog->the_post(); ?>
+			<?php while ($blog->have_posts()) : $blog->the_post(); ?>
 			   <h2><?php the_title(); ?></h2>
                 <?php the_excerpt(); ?>
                 <a class="read-more-link" href="<?php the_permalink(); ?>">Read More <span>&rsaquo;</span></a>
 			<?php endwhile; //end the while loop
-			wp_reset_postdata(); ?>
+		wp_reset_postdata(); ?>
 		</div><!-- .blog-post -->
 
 		<!-- Sidebar to host the twitter module  -->
 		<?php 
-		    $twitter_link = get_field('twitter_link');
-		    $link_name = get_field('link_name');
-		?>
+	$twitter_link = get_field('twitter_link');
+	$link_name = get_field('link_name');
+	?>
 		<!-- The twitter handle is being fetched from the database and appended to the widget title using a filter - in inc/extras.php -->
-		<?php if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
+		<?php if (is_active_sidebar('sidebar-2')) : ?>
 		
 		<div id="secondary" class="widget-area tweet-module" role="complementary">
 		<!-- see inc/extras.php for how the '@Redrambles' was dynamically output -->
-		    <a href="<?php echo $twitter_link ?>"><?php dynamic_sidebar( 'sidebar-2' ); ?></a>
+		    <a href="<?php echo $twitter_link ?>"><?php dynamic_sidebar('sidebar-2'); ?></a>
 
 				<!-- <a href="<?php //..echo $twitter_link ?>" class="follow-us-link"><?php //echo $link_name; ?><span> &rsaquo;</span></a> -->
 				<?php 
-					$stt_options = get_option( 'widget_pi_simpletwittertweets' );
-					$twitter_handle = $stt_options[2]['name'];
-				?>
+			$stt_options = get_option('widget_pi_simpletwittertweets');
+			$twitter_handle = $stt_options[2]['name'];
+			?>
 				<a href="http://twitter.com/<?php echo $twitter_handle; ?>" class="follow-us-link">Follow Us<span> &rsaquo;</span></a>
 		</div>
 		<?php endif; ?>
