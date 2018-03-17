@@ -375,6 +375,7 @@ class Buttons {
 	 * @return string
 	 */
 	public function ssba_current_url( $atts ) {
+		global $post;
 
 		if ( ! isset( $_SERVER['SERVER_NAME'] ) || ! isset( $_SERVER['REQUEST_URI'] ) ) {
 			return;
@@ -400,6 +401,8 @@ class Buttons {
 		// Add colon and forward slashes.
 		$url_current_page .= '://' . sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] ) );
 
+		$url_current_page = '_' === $_SERVER['SERVER_NAME'] ? get_permalink( $post->ID ) : $url_current_page;
+
 		// Return url.
 		return esc_url( $url_current_page );
 	}
@@ -415,6 +418,10 @@ class Buttons {
 	 * @return string
 	 */
 	public function get_share_buttons( $arr_settings, $url_current_page, $str_page_title, $int_post_id ) {
+		// Remove wpautop from formatting the buttons.
+		remove_filter( 'the_content', 'wpautop' );
+		remove_filter( 'the_excerpt', 'wpautop' );
+
 		// Variables.
 		$html_share_buttons = '';
 
@@ -526,7 +533,14 @@ class Buttons {
 		$html_share_buttons .= '</a>';
 
 		// If show share count is set to Y.
-		if ( 'Y' === $arr_settings['ssba_show_share_count'] && $boo_show_share_count ) {
+		if ( ( ( 'Y' === $arr_settings['ssba_show_share_count'] && 'Y' !== $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_plus_show_share_count'] && 'Y' === $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_bar_show_share_count'] && isset( $arr_settings['bar_call'] )
+			)
+			&& $boo_show_share_count
+			) ) {
 			// Get and add facebook share count.
 			$html_share_buttons .= '<span class="' . esc_attr( $count_class ) . '">' . esc_html( $this->get_facebook_share_count( $url_current_page, $arr_settings ) ) . '</span>';
 		}
@@ -655,9 +669,20 @@ class Buttons {
 		}
 
 		// If sharedcount.com is enabled.
-		if ( $arr_settings['sharedcount_enabled'] ) {
+		if ( ( ( 'Y' === $arr_settings['sharedcount_enabled'] && 'Y' !== $arr_settings['ssba_new_buttons'] )
+		       ||
+		       ( 'Y' === $arr_settings['plus-sharedcount-enabled'] && 'Y' === $arr_settings['ssba_new_buttons'] )
+		       ||
+		       ( 'Y' === $arr_settings['bar-sharedcount-enabled'] && isset( $arr_settings['bar_call'] )
+		       )
+		) ) {
+
+			$shared_plan = 'Y' !== $arr_settings['ssba_new_buttons'] ? $arr_settings['sharedcount_plan'] : '';
+			$shared_plan = '' === $shared_plan && 'Y' === $arr_settings['ssba_new_buttons'] ? $arr_settings['plus_sharedcount_plan'] : '';
+			$shared_plan = isset( $arr_settings['bar_call'] ) ? $arr_settings['bar_sharedcount_plan'] : '';
+
 			// Request from sharedcount.com.
-			$sharedcount = wp_safe_remote_get( 'https://' . $arr_settings['sharedcount_plan'] . '.sharedcount.com/url?url=' . $url_current_page . '&apikey=' . $arr_settings['sharedcount_api_key'], array(
+			$sharedcount = wp_safe_remote_get( 'https://' . $shared_plan . '.sharedcount.com/url?url=' . $url_current_page . '&apikey=' . $arr_settings['sharedcount_api_key'], array(
 				'timeout' => 6,
 			) );
 
@@ -760,7 +785,14 @@ class Buttons {
 		$html_share_buttons .= '</a>';
 
 		// If show share count is set to Y.
-		if ( 'Y' === $arr_settings['ssba_show_share_count'] && $boo_show_share_count ) {
+		if ( ( ( 'Y' === $arr_settings['ssba_show_share_count'] && 'Y' !== $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_plus_show_share_count'] && 'Y' === $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_bar_show_share_count'] && isset( $arr_settings['bar_call'] )
+			)
+			&& $boo_show_share_count
+			) ) {
 			// Newsharedcount needs to be enabled.
 			if ( 'Y' === $arr_settings['twitter_newsharecounts'] ) {
 				$html_share_buttons .= '<span class="' . esc_attr( $count_class ) . '">' . esc_html( $this->ssba_twitter_count( $url_current_page ) ) . '</span>';
@@ -856,7 +888,14 @@ class Buttons {
 		$html_share_buttons .= '</a>';
 
 		// If show share count is set to Y.
-		if ( 'Y' === $arr_settings['ssba_show_share_count'] && $boo_show_share_count ) {
+		if ( ( ( 'Y' === $arr_settings['ssba_show_share_count'] && 'Y' !== $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_plus_show_share_count'] && 'Y' === $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_bar_show_share_count'] && isset( $arr_settings['bar_call'] )
+			)
+			&& $boo_show_share_count
+			) ) {
 			$html_share_buttons .= '<span class="' . esc_attr( $count_class ) . '">' . esc_html( $this->get_google_share_count( $url_current_page ) ) . '</span>';
 		}
 
@@ -1034,7 +1073,14 @@ class Buttons {
 		$html_share_buttons .= '</a>';
 
 		// If show share count is set to Y.
-		if ( 'Y' === $arr_settings['ssba_show_share_count'] && $boo_show_share_count ) {
+		if ( ( ( 'Y' === $arr_settings['ssba_show_share_count'] && 'Y' !== $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_plus_show_share_count'] && 'Y' === $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_bar_show_share_count'] && isset( $arr_settings['bar_call'] )
+			)
+			&& $boo_show_share_count
+			) ) {
 			// Get and display share count.
 			$html_share_buttons .= '<span class="' . esc_attr( $count_class ) . '">' . esc_html( $this->get_reddit_share_count( $url_current_page ) ) . '</span>';
 		}
@@ -1127,12 +1173,6 @@ class Buttons {
 		// Close href.
 		$html_share_buttons .= '</a>';
 
-		// If show share count is set to Y.
-		if ( 'Y' === $arr_settings['ssba_show_share_count'] && $boo_show_share_count ) {
-			// Get and display share count.
-			$html_share_buttons .= '<span class="' . esc_attr( $count_class ) . '">' . esc_html( $this->get_linkedin_share_count( $url_current_page ) ) . '</span>';
-		}
-
 		// Add closing li if plus.
 		if ( 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ) {
 			$html_share_buttons .= '</li>';
@@ -1143,7 +1183,7 @@ class Buttons {
 	}
 
 	/**
-	 * Get linkedin share count.
+	 * Get linkedin share count. DEPRECATED
 	 *
 	 * @param string $url_current_page The current page url.
 	 *
@@ -1240,7 +1280,14 @@ class Buttons {
 		$html_share_buttons .= '</a>';
 
 		// If show share count is set to Y.
-		if ( 'Y' === $arr_settings['ssba_show_share_count'] && $boo_show_share_count ) {
+		if ( ( ( 'Y' === $arr_settings['ssba_show_share_count'] && 'Y' !== $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_plus_show_share_count'] && 'Y' === $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_bar_show_share_count'] && isset( $arr_settings['bar_call'] )
+			)
+			&& $boo_show_share_count
+			) ) {
 			$html_share_buttons .= '<span class="' . esc_attr( $count_class ) . '">' . esc_html( $this->get_pinterest_share_count( $url_current_page ) ) . '</span>';
 		}
 
@@ -1336,7 +1383,14 @@ class Buttons {
 		$html_share_buttons .= '</a>';
 
 		// If show share count is set to Y.
-		if ( 'Y' === $arr_settings['ssba_show_share_count'] && $boo_show_share_count ) {
+		if ( ( ( 'Y' === $arr_settings['ssba_show_share_count'] && 'Y' !== $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_plus_show_share_count'] && 'Y' === $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_bar_show_share_count'] && isset( $arr_settings['bar_call'] )
+			)
+			&& $boo_show_share_count
+			) ) {
 			$html_share_buttons .= '<span class="' . esc_attr( $count_class ) . '">' . esc_html( $this->get_stumble_upon_share_count( $url_current_page ) ) . '</span>';
 		}
 
@@ -1613,7 +1667,14 @@ class Buttons {
 		$html_share_buttons .= '</a>';
 
 		// If show share count is set to Y.
-		if ( 'Y' === $arr_settings['ssba_show_share_count'] && $boo_show_share_count ) {
+		if ( ( ( 'Y' === $arr_settings['ssba_show_share_count'] && 'Y' !== $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_plus_show_share_count'] && 'Y' === $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_bar_show_share_count'] && isset( $arr_settings['bar_call'] )
+			)
+			&& $boo_show_share_count
+			) ) {
 			$html_share_buttons .= '<span class="' . $count_class . '">' . esc_html( $this->get_tumblr_share_count( $url_current_page ) ) . '</span>';
 		}
 
@@ -1815,7 +1876,14 @@ class Buttons {
 		$html_share_buttons .= '</a>';
 
 		// If show share count is set to Y.
-		if ( 'Y' === $arr_settings['ssba_show_share_count'] && $boo_show_share_count ) {
+		if ( ( ( 'Y' === $arr_settings['ssba_show_share_count'] && 'Y' !== $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_plus_show_share_count'] && 'Y' === $arr_settings['ssba_new_buttons'] )
+			||
+			( 'Y' === $arr_settings['ssba_bar_show_share_count'] && isset( $arr_settings['bar_call'] )
+			)
+			&& $boo_show_share_count
+			) ) {
 			$html_share_buttons .= '<span class="' . esc_attr( $count_class ) . '">' . esc_html( $this->get_yummly_share_count( $url_current_page ) ) . '</span>';
 		}
 
