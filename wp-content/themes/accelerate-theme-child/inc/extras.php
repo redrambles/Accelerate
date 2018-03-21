@@ -138,3 +138,20 @@ function red_return_texture_to_meta( $custom_field ) {
 	return $formatted_content;	
 
 }
+
+
+// function red_grab_random_custom_field(){
+// 	global $post;
+
+// 	$args = array( 'numberposts' => 1, 'post_type' => 'faq' );
+// 	$myposts = get_posts( $args );
+// 	foreach( $myposts as $post ) :
+// 		setup_postdata($post); 
+// 		echo '<p>Here is my custom field for the latest FAQ</p>';
+// 		$faq_field = get_post_meta($post->ID, 'date', true);
+// 		if (!empty($faq_field) ) { 
+// 			echo '<p>' . $faq_field . '</p>';
+// 		}
+// 	endforeach; 
+// 	wp_reset_postdata(); 
+// }
