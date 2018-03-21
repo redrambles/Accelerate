@@ -418,10 +418,6 @@ class Buttons {
 	 * @return string
 	 */
 	public function get_share_buttons( $arr_settings, $url_current_page, $str_page_title, $int_post_id ) {
-		// Remove wpautop from formatting the buttons.
-		remove_filter( 'the_content', 'wpautop' );
-		remove_filter( 'the_excerpt', 'wpautop' );
-
 		// Variables.
 		$html_share_buttons = '';
 
