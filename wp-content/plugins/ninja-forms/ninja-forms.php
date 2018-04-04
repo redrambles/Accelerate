@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 3.2.16
+Version: 3.2.18
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -53,7 +53,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         /**
          * @since 3.0
          */
-        const VERSION = '3.2.16';
+        const VERSION = '3.2.18';
 
         const WP_MIN_VERSION = '4.7';
 
@@ -225,10 +225,14 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                  * AJAX Controllers
                  */
                 self::$instance->controllers[ 'form' ]          = new NF_AJAX_Controllers_Form();
+                self::$instance->controllers[ 'batch_process' ]          = new
+                NF_AJAX_REST_BatchProcess();
                 self::$instance->controllers[ 'preview' ]       = new NF_AJAX_Controllers_Preview();
                 self::$instance->controllers[ 'submission' ]    = new NF_AJAX_Controllers_Submission();
                 self::$instance->controllers[ 'savedfields' ]   = new NF_AJAX_Controllers_SavedFields();
+                self::$instance->controllers[ 'deletealldata' ] = new NF_AJAX_Controllers_DeleteAllData();
                 self::$instance->controllers[ 'jserror' ]       = new NF_AJAX_Controllers_JSError();
+                self::$instance->controllers[ 'dispatchpoints' ] = new NF_AJAX_Controllers_DispatchPoints();
 
                 /*
                  * REST Controllers
@@ -622,8 +626,6 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 NF_Display_Render::localize_preview($form_id);
             }
         }
-
-
 
         /*
          * PRIVATE METHODS
