@@ -13,6 +13,7 @@ npm-debug.log
 wp-content/themes/accelerate-theme-child/node_modules
 #wp-content/themes/accelerate-theme-child/gulpfile.js
 wp-content/themes/accelerate-theme-child/img/source
+vendor/
 
 # debugging
 wp-content/plugins/query-monitor/
