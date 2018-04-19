@@ -1,5 +1,19 @@
 {
+    "name": "redrambles/accelerate",
+    "description": "WordPress site",
+    "authors": [{
+        "name": "Ann Cascarano",
+        "homepage": "https://redrambles.blog"
+    }],
+    "license": "GPL-3.0-or-later",
+    "require": {
+        "php": ">=5.3.7"
+    },
     "require-dev": {
-        "phpro/grumphp": "^0.14.0"
+        "phpmd/phpmd": "^2.6",
+        "phpro/grumphp": "^0.14.0",
+        "sebastian/phpcpd": "^3.0",
+        "squizlabs/php_codesniffer": "^3.2",
+        "jakub-onderka/php-parallel-lint": "^1.0"
     }
 }
