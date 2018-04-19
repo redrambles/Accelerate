@@ -26,19 +26,19 @@ class Plugin extends Plugin_Base {
 		$class_ssba = new Simple_Share_Buttons_Adder( $this );
 		$database = new Database( $this, $class_ssba );
 		$forms = new Forms( $this );
-		$admin_panel = new Admin_Panel( $this, $class_ssba, $forms );
+		$widget_class = new Widget();
+		$admin_panel = new Admin_Panel( $this, $class_ssba, $forms, $widget_class );
 
 		// Initiate classes.
 		$classes = array(
 			$class_ssba,
 			$database,
 			$admin_panel,
+			$widget_class,
 			$forms,
 			new Styles( $this, $class_ssba ),
 			new Admin_Bits( $this, $class_ssba, $database, $admin_panel ),
 			new Buttons( $this, $class_ssba, $admin_panel ),
-			new Widget(),
-
 		);
 
 		// Add classes doc hooks.

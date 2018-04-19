@@ -8,6 +8,8 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
     {
         add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 
+        add_action( 'wp_ajax_nf_ajax_get_new_nonce', array( $this, 'get_new_nonce' ) );
+	    add_action( 'wp_ajax_nopriv_nf_ajax_get_new_nonce', array( $this, 'get_new_nonce' ) );
         add_action( 'wp_ajax_nf_save_form',   array( $this, 'save' )   );
         add_action( 'wp_ajax_nf_delete_form', array( $this, 'delete' ) );
     }
@@ -137,5 +139,24 @@ class NF_AJAX_Controllers_Form extends NF_Abstracts_Controller
         check_ajax_referer( 'ninja_forms_builder_nonce', 'security' );
 
         $this->_respond();
+    }
+
+	/**
+	 * Let's generate a unique nonce for each form render so that we don't get
+	 * caught with an expiring nonce accidentally and fail to allow a submission
+	 * @since 3.2
+	 */
+    public function get_new_nonce() {
+    	// get a timestamp to append to nonce name
+		$current_time_stamp = time();
+
+		// Let's generate a unique nonce
+    	$new_nonce_name = 'ninja_forms_display_nonce_' . $current_time_stamp;
+
+		$res = array(
+			'new_nonce' => wp_create_nonce( $new_nonce_name ),
+			'nonce_ts' => $current_time_stamp );
+
+		$this->_respond( $res );
     }
 }

@@ -16,7 +16,7 @@ class NF_AJAX_Controllers_DeleteAllData extends NF_Abstracts_Controller
 		$post_result = 0;
 		$max_cnt = 250;
 		$form_id = $_POST[ 'form' ];
-		// sequel for getting 250 subs at a time
+		// SQL for getting 250 subs at a time
 		$sub_sql = "SELECT id FROM `" . $wpdb->prefix . "posts` AS p
 			LEFT JOIN `" . $wpdb->prefix . "postmeta` AS m ON p.id = m.post_id
 			WHERE p.post_type = 'nf_sub' AND m.meta_key = '_form_id'

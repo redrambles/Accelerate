@@ -883,6 +883,7 @@ var SimpleShareButtonsAdder = ( function( $, wp ) {
 		 * @param type
 		 */
 		dismissNotice: function( type ){
+
 			// Send newsletter id to the test function.
 			wp.ajax.post( 'dismiss_notice', {
 				type: type,

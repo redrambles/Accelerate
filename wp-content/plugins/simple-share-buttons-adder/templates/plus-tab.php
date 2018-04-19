@@ -181,21 +181,14 @@
 							</strong>
 							<br>
 							<?php echo esc_html__( 'You shall need to follow the instructions here before enabling this feature', 'simple-share-buttons-adder' ); ?> - <a target="_blank" href="http://newsharecounts.com/">newsharecounts.com</a>
-							<?php echo $this->forms->ssbp_input( $opts22 ); // WPCS: XSS ok. ?>
+							<?php echo $this->forms->ssbp_input( $opts22p ); // WPCS: XSS ok. ?>
 						</p>
-
-						<h3>sharedcount.com</h3>
-						<p>
-							<?php echo esc_html__( 'Only necessary if you are experiencing issues with Facebook share counts.', 'simple-share-buttons-adder' ); ?> <a href="https://admin.sharedcount.com/admin/signup.php" target="_blank"><?php echo esc_html__( 'Signup for your free account here', 'simple-share-buttons-adder' ); ?></a>.
-						</p>
-
-						<?php echo $this->forms->ssbp_input( $opts23 ); // WPCS: XSS ok. ?>
 					</div>
 					<div class="col-md-6">
-						<?php echo $this->forms->ssbp_input( $opts24 ); // WPCS: XSS ok. ?>
+						<?php echo $this->forms->ssbp_input( $opts24p ); // WPCS: XSS ok. ?>
 					</div>
 					<div class="col-md-6">
-						<?php echo $this->forms->ssbp_input( $opts25 ); // WPCS: XSS ok. ?>
+						<?php echo $this->forms->ssbp_input( $opts25p ); // WPCS: XSS ok. ?>
 					</div>
 				</div>
 			</div>

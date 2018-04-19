@@ -162,13 +162,13 @@
 							<?php echo esc_html__( 'Only necessary if you are experiencing issues with Facebook share counts.', 'simple-share-buttons-adder' ); ?> <a href="https://admin.sharedcount.com/admin/signup.php" target="_blank"><?php echo esc_html__( 'Signup for your free account here', 'simple-share-buttons-adder' ); ?></a>.
 						</p>
 
-						<?php echo $this->forms->ssbp_input( $opts23 ); // WPCS: XSS ok. ?>
+						<?php echo $this->forms->ssbp_input( $opts23b ); // WPCS: XSS ok. ?>
 					</div>
 					<div class="col-md-6">
-						<?php echo $this->forms->ssbp_input( $opts24 ); // WPCS: XSS ok. ?>
+						<?php echo $this->forms->ssbp_input( $opts24b ); // WPCS: XSS ok. ?>
 					</div>
 					<div class="col-md-6">
-						<?php echo $this->forms->ssbp_input( $opts25 ); // WPCS: XSS ok. ?>
+						<?php echo $this->forms->ssbp_input( $opts25b ); // WPCS: XSS ok. ?>
 					</div>
 				</div>
 			</div>

@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 3.2.18
+Version: 3.2.21
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -53,7 +53,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         /**
          * @since 3.0
          */
-        const VERSION = '3.2.18';
+        const VERSION = '3.2.21';
 
         const WP_MIN_VERSION = '4.7';
 
@@ -367,6 +367,12 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             add_action( 'init', array( self::$instance, 'init' ), 5 );
             add_action( 'admin_init', array( self::$instance, 'admin_init' ), 5 );
 
+            // Checks php version and..
+            if( PHP_VERSION < 5.6 ) {
+                // Pulls in the whip notice if the user is.
+                add_action( 'admin_init', array( self::$instance, 'nf_whip_notice' ) );
+            }
+
             return self::$instance;
         }
 
@@ -383,6 +389,19 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             }
 
             add_filter( 'ninja_forms_dashboard_menu_items', array( $this, 'maybe_hide_dashboard_items' ) );
+        }
+
+        /**
+         * NF Whip Notice
+         * If the user is on a version below PHP 5.6 then we get an instance of the
+         * NF Whip class which will add a non-dismissible admin notice.
+         *
+         * @return NF_Whip
+         */
+        public function nf_whip_notice()
+        {
+            require_once self::$dir . '/includes/Libraries/Whip/NF_Whip.php';
+            return new NF_Whip();
         }
 
         public function maybe_hide_dashboard_items( $items )

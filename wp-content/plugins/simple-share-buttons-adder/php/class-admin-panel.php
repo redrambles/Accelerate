@@ -29,6 +29,13 @@ class Admin_Panel {
 	public $class_ssba;
 
 	/**
+	 * Widget Class instance.
+	 *
+	 * @var object
+	 */
+	public $widget_class;
+
+	/**
 	 * Forms instance.
 	 *
 	 * @var object
@@ -42,10 +49,11 @@ class Admin_Panel {
 	 * @param object $class_ssba Simple Share Buttons Adder instance.
 	 * @param object $forms Forms instance.
 	 */
-	public function __construct( $plugin, $class_ssba, $forms ) {
+	public function __construct( $plugin, $class_ssba, $forms, $widget_class ) {
 		$this->plugin = $plugin;
 		$this->class_ssba = $class_ssba;
 		$this->forms = $forms;
+		$this->widget_class = $widget_class;
 	}
 
 	/**
@@ -595,6 +603,80 @@ class Admin_Panel {
 			'label'       => 'sharedcount.com API Key',
 			'tooltip'     => 'Add some text included in an email when people share that way',
 			'value'       => isset( $arr_settings['sharedcount_api_key'] ) ? $arr_settings['sharedcount_api_key'] : '',
+		);
+
+		// Sharedcount enable.
+		$opts23p = array(
+			'form_group' => false,
+			'type'       => 'checkbox',
+			'name'       => 'plus_sharedcount_enabled',
+			'label'      => 'Enable sharedcount.com API',
+			'tooltip'    => 'Enable if you wish to enable the use of the sharedcount.com API',
+			'value'      => 'Y',
+			'checked'    => isset( $arr_settings['plus_sharedcount_enabled'] ) && 'Y' === $arr_settings['plus_sharedcount_enabled'] ? esc_attr( 'checked' ) : null,
+		);
+
+		// Sharedcount plan.
+		$opts24p = array(
+			'form_group' => false,
+			'type'       => 'select',
+			'name'       => 'plus_sharedcount_plan',
+			'label'      => 'sharedcount.com plan',
+			'tooltip'    => 'Select your sharedcount.com plan',
+			'selected'   => isset( $arr_settings['plus_sharedcount_plan'] ) ? $arr_settings['plus_sharedcount_plan'] : '',
+			'options'    => array(
+				'Free'     => 'free',
+				'Plus'     => 'plus',
+				'Business' => 'business',
+			),
+		);
+
+		// Sharedcount api key.
+		$opts25p = array(
+			'form_group'  => false,
+			'type'        => 'text',
+			'placeholder' => '9b17c12712c691491ef95f46c51ce3917118fdf9',
+			'name'        => 'plus_sharedcount_api_key',
+			'label'       => 'sharedcount.com API Key',
+			'tooltip'     => 'Add some text included in an email when people share that way',
+			'value'       => isset( $arr_settings['plus_sharedcount_api_key'] ) ? $arr_settings['plus_sharedcount_api_key'] : '',
+		);
+
+		// Sharedcount enable.
+		$opts23b = array(
+			'form_group' => false,
+			'type'       => 'checkbox',
+			'name'       => 'bar_sharedcount_enabled',
+			'label'      => 'Enable sharedcount.com API',
+			'tooltip'    => 'Enable if you wish to enable the use of the sharedcount.com API',
+			'value'      => 'Y',
+			'checked'    => isset( $arr_settings['bar_sharedcount_enabled'] ) && 'Y' === $arr_settings['bar_sharedcount_enabled'] ? esc_attr( 'checked' ) : null,
+		);
+
+		// Sharedcount plan.
+		$opts24b = array(
+			'form_group' => false,
+			'type'       => 'select',
+			'name'       => 'bar_sharedcount_plan',
+			'label'      => 'sharedcount.com plan',
+			'tooltip'    => 'Select your sharedcount.com plan',
+			'selected'   => isset( $arr_settings['bar_sharedcount_plan'] ) ? $arr_settings['bar_sharedcount_plan'] : '',
+			'options'    => array(
+				'Free'     => 'free',
+				'Plus'     => 'plus',
+				'Business' => 'business',
+			),
+		);
+
+		// Sharedcount api key.
+		$opts25b = array(
+			'form_group'  => false,
+			'type'        => 'text',
+			'placeholder' => '9b17c12712c691491ef95f46c51ce3917118fdf9',
+			'name'        => 'bar_sharedcount_api_key',
+			'label'       => 'sharedcount.com API Key',
+			'tooltip'     => 'Add some text included in an email when people share that way',
+			'value'       => isset( $arr_settings['bar_sharedcount_api_key'] ) ? $arr_settings['bar_sharedcount_api_key'] : '',
 		);
 
 		// Link to ssb.
@@ -1679,5 +1761,14 @@ class Admin_Panel {
 		}
 
 		wp_add_inline_style( "{$this->plugin->assets_prefix}-admin-theme", $html_share_buttons_form );
+	}
+
+	/**
+	 * Register button widget.
+	 *
+	 * @action widgets_init
+	 */
+	public function register_widget() {
+		register_widget( $this->widget_class );
 	}
 }

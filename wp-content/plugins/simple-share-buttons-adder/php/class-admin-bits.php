@@ -405,15 +405,9 @@ class Admin_Bits {
 				'ssba_custom_facebook_save'     => $ssba_post['ssba_custom_facebook_save'],
 
 				// Shared count.
-				'sharedcount_enabled'           => $ssba_post['sharedcount_enabled'],
+				'sharedcount_enabled'           => isset( $ssba_post['sharedcount_enabled'] ) && 'Y' === $ssba_post['sharedcount_enabled'] ? $ssba_post['sharedcount_enabled'] : 'N',
 				'sharedcount_api_key'           => $ssba_post['sharedcount_api_key'],
 				'sharedcount_plan'              => $ssba_post['sharedcount_plan'],
-				'plus_sharedcount_enabled'      => $ssba_post['plus_sharedcount_enabled'],
-				'plus_sharedcount_api_key'      => $ssba_post['plus_sharedcount_api_key'],
-				'plus_sharedcount_plan'         => $ssba_post['plus_sharedcount_plan'],
-				'bar_sharedcount_enabled'     => $ssba_post['bar_sharedcount_enabled'],
-				'bar_sharedcount_api_key'     => $ssba_post['bar_sharedcount_api_key'],
-				'bar_sharedcount_plan'        => $ssba_post['bar_sharedcount_plan'],
 
 				// New share counts.
 				'twitter_newsharecounts'        => $ssba_post['twitter_newsharecounts'],
