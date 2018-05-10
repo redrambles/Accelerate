@@ -881,6 +881,17 @@ class Admin_Panel {
 			'disabled'   => 'Y' !== $arr_settings['accepted_sharethis_terms'] ? 'disabled' : null,
 		);
 
+		// Ignore sdk.
+		$ignore_sdk = array(
+			'form_group' => false,
+			'type'       => 'checkbox',
+			'name'       => 'ignore_facebook_sdk',
+			'label'      => 'Ignore FB SDK',
+			'tooltip'    => 'Using you\'re own Facebook SDK? Ignore ours.',
+			'value'      => 'Y',
+			'checked'    => isset( $arr_settings['ignore_facebook_sdk'] ) && 'Y' === $arr_settings['ignore_facebook_sdk'] ? esc_attr( 'checked' ) : '',
+		);
+
 		// Facebook insights for plus.
 		$opts33p = array(
 			'form_group' => false,
@@ -891,6 +902,17 @@ class Admin_Panel {
 			'value'      => 'Y',
 			'checked'    => isset( $arr_settings['plus_facebook_insights'] ) && 'Y' === $arr_settings['plus_facebook_insights'] ? 'checked' : null,
 			'disabled'   => 'Y' !== $arr_settings['accepted_sharethis_terms'] ? 'disabled' : null,
+		);
+
+		// Plus ignore sdk.
+		$plus_ignore_sdk = array(
+			'form_group' => false,
+			'type'       => 'checkbox',
+			'name'       => 'plus_ignore_facebook_sdk',
+			'label'      => 'Ignore FB SDK',
+			'tooltip'    => 'Using you\'re own Facebook SDK? Ignore ours.',
+			'value'      => 'Y',
+			'checked'    => isset( $arr_settings['plus_ignore_facebook_sdk'] ) && 'Y' === $arr_settings['plus_ignore_facebook_sdk'] ? esc_attr( 'checked' ) : '',
 		);
 
 		// Facebook insights for share bar.

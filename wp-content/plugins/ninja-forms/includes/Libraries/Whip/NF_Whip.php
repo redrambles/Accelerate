@@ -64,7 +64,8 @@ class NF_Whip
      */
     public function set_dismiss()
     {
-        if( isset( $_GET[ 'page' ] ) && 'ninja-forms' == $_GET[ 'page' ] && 'true' == $_GET[ 'dismiss-whip-message' ]  ) {
+        if( isset( $_GET[ 'page' ] ) && 'ninja-forms' == $_GET[ 'page' ]
+            && isset( $_GET[ 'dismiss-whip-message' ] ) && 'true' == $_GET[ 'dismiss-whip-message' ]  ) {
             set_transient( 'nf_dismiss_whip', 1, 60 * 60 * 24 * 28 );
         }
     }

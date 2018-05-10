@@ -109,7 +109,7 @@ class Styles {
 		$arr_settings = $this->class_ssba->get_ssba_settings();
 
 		// If the sharethis terms have been accepted.
-		if ( 'Y' === $arr_settings['accepted_sharethis_terms'] ) {
+		if ( 'Y' === $arr_settings['accepted_sharethis_terms'] && ( ( 'Y' !== $arr_settings['ssba_new_buttons'] && 'Y' !== $arr_settings['ignore_facebook_sdk'] ) || ( 'Y' === $arr_settings['ssba_new_buttons'] && 'Y' !== $arr_settings['plus_ignore_facebook_sdk'] ) ) ) {
 			// if a facebook app id has been set
 			if ( '' !== $arr_settings['facebook_app_id'] ) {
 				$src = '//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appID=' . $arr_settings['facebook_app_id'];
@@ -183,7 +183,8 @@ class Styles {
 			$bar_button_hover = '' !== $arr_settings['ssba_bar_button_hover_color'] ? 'background-color: ' . $arr_settings['ssba_bar_button_hover_color'] . '!important;' : '';
 			$bar_icon_color = '' !== $arr_settings['ssba_bar_icon_color'] ? 'color: ' . $arr_settings['ssba_bar_icon_color'] . '!important;' : '';
 			$bar_icon_hover = '' !== $arr_settings['ssba_bar_icon_hover_color'] ? 'color: ' . $arr_settings['ssba_bar_icon_hover_color'] . '!important;' : '';
-			$bar_break_point = 'Y' !== $arr_settings['ssba_bar_mobile'] && '' !== $arr_settings['ssba_mobile_breakpoint'] ? 'display: none;' : '';
+			$bar_break_point = 'Y' !== $arr_settings['ssba_bar_mobile'] ? 'display: none;' : 'display: block;';
+			$the_breakpoint = '' === $arr_settings['ssba_mobile_breakpoint'] || null === $arr_settings['ssba_mobile_breakpoint'] ? '750' : $arr_settings['ssba_mobile_breakpoint'];
 
 			// Use set options.
 			$html_ssba_style = '	.ssba {
@@ -281,7 +282,7 @@ class Styles {
 					' . esc_html( $bar_margin ) . '
 					}';
 
-				$html_ssba_style .= '@media only screen and ( max-width: ' . $arr_settings['ssba_mobile_breakpoint'] . 'px ) {
+				$html_ssba_style .= '@media only screen and ( max-width: ' . $the_breakpoint . 'px ) {
 					#ssba-bar-2 {
 					' . $bar_break_point . '
 					}

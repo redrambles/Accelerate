@@ -208,10 +208,12 @@ class Database {
 			// New with sharethis.
 			'facebook_insights'          => '',
 			'facebook_app_id'            => '',
+			'ignore_facebook_sdk'        => '',
 			'plus_facebook_insights'     => '',
 			'plus_facebook_app_id'       => '',
-			'share_facebook_insights'     => '',
-			'share_facebook_app_id'       => '',
+			'plus_ignore_facebook_sdk'   => '',
+			'share_facebook_insights'    => '',
+			'share_facebook_app_id'      => '',
 			'accepted_sharethis_terms'   => 'Y',
 		);
 
@@ -611,6 +613,8 @@ class Database {
 		delete_option( 'ssba_plus_font_weight' );
 
 		// Include.
+		delete_option( 'ignore_facebook_sdk' );
+		delete_option( 'plus_ignore_facebook_sdk' );
 		delete_option( 'ssba_selected_buttons' );
 		delete_option( 'ssba_selected_share_buttons' );
 		delete_option( 'ssba_selected_plus_buttons' );

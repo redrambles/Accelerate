@@ -72,7 +72,6 @@ class NF_THREE_Submenu
      */
     public function register()
     {
-        if( ! ninja_forms_three_calc_check() ) return;
         if( ! ninja_forms_three_addons_version_check() ) return;
 
         if( ! ninja_forms_three_addons_check() ){

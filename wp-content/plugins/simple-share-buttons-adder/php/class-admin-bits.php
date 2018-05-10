@@ -381,9 +381,9 @@ class Admin_Bits {
 				'ssba_bar_icon_size'          => $ssba_post['ssba_bar_icon_size'],
 				'ssba_bar_icon_color'         => $ssba_post['ssba_bar_icon_color'],
 				'ssba_bar_icon_hover_color'   => $ssba_post['ssba_bar_icon_hover_color'],
-				'ssba_bar_desktop'            => isset( $ssba_post['ssba_bar_desktop'] ) && 'Y' === $ssba_post['ssba_bar_desktop'] ? $ssba_post['ssba_bar_desktop'] : 'N',
+				'ssba_bar_desktop'            => isset( $ssba_post['ssba_bar_desktop'] ) ? $ssba_post['ssba_bar_desktop'] : 'N',
 				'ssba_bar_margin'             => $ssba_post['ssba_bar_margin'],
-				'ssba_bar_mobile'             => isset( $ssba_post['ssba_bar_mobile'] ) && 'Y' === $ssba_post['ssba_bar_mobile'] ? $ssba_post['ssba_bar_mobile'] : 'N',
+				'ssba_bar_mobile'             => isset( $ssba_post['ssba_bar_mobile'] ) ? $ssba_post['ssba_bar_mobile'] : 'N',
 				'ssba_mobile_breakpoint'        => $ssba_post['ssba_mobile_breakpoint'],
 				'ssba_custom_facebook'          => $ssba_post['ssba_custom_facebook'],
 				'ssba_custom_google'            => $ssba_post['ssba_custom_google'],
@@ -405,22 +405,24 @@ class Admin_Bits {
 				'ssba_custom_facebook_save'     => $ssba_post['ssba_custom_facebook_save'],
 
 				// Shared count.
-				'sharedcount_enabled'           => isset( $ssba_post['sharedcount_enabled'] ) && 'Y' === $ssba_post['sharedcount_enabled'] ? $ssba_post['sharedcount_enabled'] : 'N',
+				'sharedcount_enabled'           => isset( $ssba_post['sharedcount_enabled'] ) ? $ssba_post['sharedcount_enabled'] : 'N',
 				'sharedcount_api_key'           => $ssba_post['sharedcount_api_key'],
 				'sharedcount_plan'              => $ssba_post['sharedcount_plan'],
 
 				// New share counts.
 				'twitter_newsharecounts'        => $ssba_post['twitter_newsharecounts'],
 				'plus_twitter_newsharecounts'   => $ssba_post['plus_twitter_newsharecounts'],
-				'bar_twitter_newsharecounts'  => $ssba_post['bar_twitter_newsharecounts'],
+				'bar_twitter_newsharecounts'    => $ssba_post['bar_twitter_newsharecounts'],
 
 				// Facebook.
 				'facebook_insights'             => $ssba_post['facebook_insights'],
 				'facebook_app_id'               => $ssba_post['facebook_app_id'],
+				'ignore_facebook_sdk'           => $ssba_post['ignore_facebook_sdk'],
 				'plus_facebook_insights'        => $ssba_post['plus_facebook_insights'],
 				'plus_facebook_app_id'          => $ssba_post['plus_facebook_app_id'],
-				'bar_facebook_insights'       => $ssba_post['bar_facebook_insights'],
-				'bar_facebook_app_id'         => $ssba_post['bar_facebook_app_id'],
+				'plus_ignore_facebook_sdk'      => $ssba_post['plus_ignore_facebook_sdk'],
+				'bar_facebook_insights'         => $ssba_post['bar_facebook_insights'],
+				'bar_facebook_app_id'           => $ssba_post['bar_facebook_app_id'],
 			);
 
 			// Save the settings.

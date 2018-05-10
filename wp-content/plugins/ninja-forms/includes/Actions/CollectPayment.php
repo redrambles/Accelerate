@@ -85,26 +85,29 @@ final class NF_Actions_CollectPayment extends NF_Abstracts_Action
          *
          * If we have selected "Field" as our total type, then we want to use payment_total_field
          *
-         * If we have selected "Custom" as our total type, then we want to use payment_total_custom
+         * If we have selected "Custom" as our total type, then we want to use payment_total_fixed
          */
-        $total_type = isset( $action_settings[ 'payment_total_type' ] ) ? $action_settings[ 'payment_total_type' ] : 'payment_total_custom';
-
-        switch ( $total_type ) {
-            case 'calculation':
-                $payment_total = $action_settings[ 'payment_total_calc' ];
-                break;
-            case 'field':
-                $payment_total = $action_settings[ 'payment_total_field' ];
-                break;
-            case 'custom':
-                $payment_total = $action_settings[ 'payment_total_custom' ];
-                break;
-            default:
-                $payment_total = $action_settings[ 'payment_total_custom' ];
-                break;
-        }
-
-        return $payment_gateway_class->process( $action_settings, $form_id, $data, $payment_total );
+//        $total_type = isset( $action_settings[ 'payment_total_type' ] ) ? $action_settings[ 'payment_total_type' ] : 'payment_total_fixed';
+//
+//        switch ( $total_type ) {
+//            case 'calc':
+//                $payment_total = $action_settings[ 'payment_total_calc' ];
+//                break;
+//            case 'field':
+//                $payment_total = $action_settings[ 'payment_total_field' ];
+//                break;
+//            case 'fixed':
+//                $payment_total = $action_settings[ 'payment_total_fixed' ];
+//                break;
+//            default:
+//                $payment_total = $action_settings[ 'payment_total_fixed' ];
+//                break;
+//        }
+//
+//        return $payment_gateway_class->process( $action_settings, $form_id, $data, $payment_total );
+        // The above block is not actually being used.
+        
+        return $payment_gateway_class->process( $action_settings, $form_id, $data );
     }
 
     public function register_payment_gateways()

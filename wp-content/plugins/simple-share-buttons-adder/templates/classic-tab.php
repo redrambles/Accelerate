@@ -287,11 +287,15 @@
 					</div>
 
 					<div class="col-md-12">
-						<?php echo esc_html__( 'You shall need to follow the instructions here before enabling this feature', 'simple-share-buttons-adder' ); ?> - <a target="_blank" href="https://developers.facebook.com/docs/apps/register"><?php echo esc_html( 'https://developers.facebook.com/docs/apps/register' ); ?></a>
+						<?php echo esc_html__( 'You need to follow the instructions here before enabling this feature', 'simple-share-buttons-adder' ); ?> - <a target="_blank" href="https://developers.facebook.com/docs/apps/register"><?php echo esc_html( 'https://developers.facebook.com/docs/apps/register' ); ?></a>
 					</div>
 
 					<div class="col-md-12">
 						<?php echo $this->forms->ssbp_input( $opts33 ); // WPCS: XSS ok.?>
+					</div>
+
+					<div class="col-md-12">
+						<?php echo $this->forms->ssbp_input( $ignore_sdk ); // WPCS: XSS ok.?>
 					</div>
 
 					<div class="col-md-12">

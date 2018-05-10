@@ -64,6 +64,7 @@ final class NF_Display_Render
                 $name,
                 array(
                     'changeEmailErrorMsg',
+                    'changeDateErrorMsg',
                     'confirmFieldErrorMsg',
                     'fieldNumberNumMinError',
                     'fieldNumberNumMaxError',

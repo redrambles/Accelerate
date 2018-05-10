@@ -43,6 +43,7 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
         foreach( $this->get_fields_sorted() as $field ){
 
             if( ! isset( $field[ 'type' ] ) ) continue;
+
             if( in_array( $field[ 'type' ], array_values( $hidden_field_types ) ) ) continue;
 
             $field[ 'value' ] = apply_filters( 'ninja_forms_merge_tag_value_' . $field[ 'type' ], $field[ 'value' ], $field );
@@ -65,6 +66,8 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
 
         $hidden_field_types = array( 'submit', 'password', 'passwordconfirm' );
 
+        $list_fields_types = array( 'listcheckbox', 'listmultiselect', 'listradio', 'listselect' );
+
         foreach( $this->get_fields_sorted() as $field ){
             if( ! isset( $field[ 'type' ] ) ) continue;
 
@@ -72,13 +75,28 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
             if( in_array( $field[ 'type' ], array_values( $hidden_field_types ) ) ) continue;
 
             $field[ 'value' ] = apply_filters( 'ninja_forms_merge_tag_value_' . $field[ 'type' ], $field[ 'value' ], $field );
+
+            // Check to see if the type is a list field and if it is...
+            if( in_array( $field[ 'type' ], array_values( $list_fields_types ) ) ) {
+                // If we have a comma separated value...
+                if( strpos( $field[ 'value' ], ',' ) ) {
+                    // ...build the value back into an array.
+                    $field[ 'value' ] = explode( ',', $field[ 'value' ] );
+                }
+                // ...then set the value equal to the field label.
+                $field[ 'value' ] = $this->get_list_labels( $field );
+            }
+
             if( is_array( $field[ 'value' ] ) ) $field[ 'value' ] = implode( ', ', $field[ 'value' ] );
+
+            // Check to see if the type is a list field and if it is...
 
             $return .= '<tr><td valign="top">' . apply_filters('ninja_forms_merge_label', $field[ 'label' ]) .':</td><td>' . $field[ 'value' ] . '</td></tr>';
         }
         $return .= '</table>';
         return $return;
     }
+
 
     public function fields_table()
     {
@@ -90,6 +108,8 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
 
         $hidden_field_types = array( 'html', 'submit', 'password', 'passwordconfirm', 'hidden' );
 
+        $list_fields_types = array( 'listcheckbox', 'listmultiselect', 'listradio', 'listselect' );
+
         foreach( $this->get_fields_sorted() as $field ){
 
             if( ! isset( $field[ 'type' ] ) ) continue;
@@ -99,6 +119,17 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
 
             // TODO: Skip hidden fields, ie conditionally hidden.
             if( isset( $field[ 'visible' ] ) && false === $field[ 'visible' ] ) continue;
+
+            // Check to see if the type is a list field and if it is...
+            if( in_array( $field[ 'type' ], array_values( $list_fields_types ) ) ) {
+                // If we have a comma separated value...
+                if( strpos( $field[ 'value' ], ',' ) ) {
+                    // ...build the value back into an array.
+                    $field[ 'value' ] = explode( ',', $field[ 'value' ] );
+                }
+                // ...then set the value equal to the field label.
+                $field[ 'value' ] = $this->get_list_labels( $field );
+            }
 
             $field[ 'value' ] = apply_filters( 'ninja_forms_merge_tag_value_' . $field[ 'type' ], $field[ 'value' ], $field );
 
@@ -170,6 +201,39 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
             $callback = 'field_' . $field_key . '_calc';
             $this->add( $callback, $field_key, '{field:' . $field_key . ':calc}', $calc_value, $calc_value );
         }
+    }
+
+    /**
+     * Get List Labels
+     * Accepts a field loops over options, compares field values and returns the labels.
+     * @since 3.2.22
+     *
+     * @param $field array
+     * @return array - label of the option.
+     */
+    public function get_list_labels( $field )
+    {
+        // Build our array to store our labels.
+        $labels = array();
+        // Loop over our options...
+        foreach( $field[ 'options' ] as $options ) {
+            // ...checks to see if our list has multiple values.
+            if( is_array( $field[ 'value' ] ) ) {
+                // Loop over our values...
+                foreach( $field[ 'value' ] as $value ) {
+                    // ...See if our values match...
+                    if( $options[ 'value' ] == $value ) {
+                        // if they do build an array of the labels.
+                        $labels[] = $options[ 'label' ];
+                    }
+                }
+              // Otherwise if we are dealing with a single value, then...
+            } elseif( $field[ 'value' ] == $options[ 'value' ] ) {
+                // ...Set the label.
+                $labels = $options[ 'label' ];
+            }
+        }
+        return $labels;
     }
 
 	public function add( $callback, $id, $tag, $value, $calc_value = false )

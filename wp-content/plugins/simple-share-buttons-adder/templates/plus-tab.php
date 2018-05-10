@@ -229,6 +229,10 @@
 					</div>
 
 					<div class="col-md-12">
+						<?php echo $this->forms->ssbp_input( $plus_ignore_sdk ); // WPCS: XSS ok.?>
+					</div>
+
+					<div class="col-md-12">
 						<?php echo esc_html__( 'You shall need have created and added a Facebook App ID above to make use of this feature', 'simple-share-buttons-adder' ); ?>
 					</div>
 
