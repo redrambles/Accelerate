@@ -201,14 +201,10 @@ final class NF_Dispatcher
         }
 
         /**
-         * Email address of the current user, defaulting to admin email if they do not have one.
+         * Email address of the current user.
+         * (if one was provided)
          */
-        $current_user = wp_get_current_user();
-        if ( ! empty ( $current_user->user_email ) ) {
-            $email = $current_user->user_email;
-        } else {
-            $email = get_option( 'admin_email' );
-        }        
+        $email = isset( $data[ 'user_email' ] ) ? $data[ 'user_email' ] : '';
 
         $site_data = array(
             'url'           => site_url(),

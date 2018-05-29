@@ -55,6 +55,18 @@ $templates = array(
         'title'                         => __( 'Job Application', 'ninja-forms' ),
         'template-desc'                 => __( 'Allow users to apply for a job. You can add and remove fields as needed.', 'ninja-forms' ),
     ),
+
+    'formtemplate-deletedata'        => array(
+	    'id'                            => 'formtemplate-deletedata',
+	    'title'                         => __( 'Delete Data Request', 'ninja-forms' ),
+	    'template-desc'                 => __( 'Includes action to add users to WordPress\' personal data delete tool, allowing admins to comply with the GDPR and other privacy regulations from the site\'s front end.', 'ninja-forms' ),
+    ),
+
+    'formtemplate-exportdata'        => array(
+	    'id'                            => 'formtemplate-exportdata',
+	    'title'                         => __( 'Export Data Request', 'ninja-forms' ),
+	    'template-desc'                 => __( 'Includes action to add users to WordPress\' personal data export tool, allowing admins to comply with the GDPR and other privacy regulations from the site\'s front end.', 'ninja-forms' ),
+    ),
 );
 
 $ads = array(

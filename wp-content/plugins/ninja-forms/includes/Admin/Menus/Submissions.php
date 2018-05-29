@@ -120,12 +120,18 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
 	 * enqueue scripts here
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_style( 'nf-admin-settings', Ninja_Forms::$url . 'assets/css/admin-settings.css' );
+		// let's check and make sure we're on the submissions page.
+		$test = strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-admin/edit.php' );
+		if( isset( $_GET[ 'post_type' ] ) && 'nf_sub' == $_GET[ 'post_type' ]
+			&& -1 < strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-admin/edit.php' )
+	) {
+			wp_enqueue_style( 'nf-admin-settings', Ninja_Forms::$url . 'assets/css/admin-settings.css' );
 
-		wp_register_script( 'ninja_forms_admin_submissions',
-			Ninja_Forms::$url . 'assets/js/admin-submissions.js', array( 'jquery' ), FALSE, TRUE );
+			wp_register_script( 'ninja_forms_admin_submissions',
+				Ninja_Forms::$url . 'assets/js/admin-submissions.js', array( 'jquery' ), false, true );
 
-		wp_enqueue_script( 'ninja_forms_admin_submissions' );
+			wp_enqueue_script( 'ninja_forms_admin_submissions' );
+		}
 	}
     /**
      * Change Columns

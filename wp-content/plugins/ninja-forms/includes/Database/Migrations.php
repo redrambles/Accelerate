@@ -16,6 +16,7 @@ class NF_Database_Migrations
         $this->migrations[ 'object_meta' ]   = new NF_Database_Migrations_ObjectMeta();
         $this->migrations[ 'relationships' ] = new NF_Database_Migrations_Relationships();
         $this->migrations[ 'settings' ]      = new NF_Database_Migrations_Settings();
+        $this->migrations[ 'upgrades' ]      = new NF_Database_Migrations_Upgrades();
     }
 
     public function migrate()

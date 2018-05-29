@@ -143,11 +143,18 @@ final class NF_Admin_Menus_Settings extends NF_Abstracts_Submenu
 	    }
 	    $form_options = apply_filters( 'ninja_forms_submission_filter_form_options', $form_options );
 	    asort($form_options);
+        
+        if ( get_option( 'ninja_forms_allow_tracking' ) && '1' == get_option( 'ninja_forms_allow_tracking' ) ) {
+            $allow_tel = 1;
+        } else {
+            $allow_tel = 0;
+        }
 
 	    wp_enqueue_script( 'jBox', Ninja_Forms::$url . 'assets/js/lib/jBox.min.js', array( 'jquery' ) );
 
 	    wp_enqueue_style( 'nf-combobox', Ninja_Forms::$url . 'assets/css/combobox.css' );
 	    wp_enqueue_style( 'jBox', Ninja_Forms::$url . 'assets/css/jBox.css' );
+        wp_enqueue_style( 'nf-dashboard', Ninja_Forms::$url . 'assets/css/dashboard.min.css' );
         wp_register_script( 'ninja_forms_admin_menu_settings', Ninja_Forms::$url . 'assets/js/admin-settings.js', array( 'jquery' ), FALSE, TRUE );
         wp_localize_script( 'ninja_forms_admin_menu_settings', 'nf_settings', array(
             'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -156,7 +163,8 @@ final class NF_Admin_Menus_Settings extends NF_Abstracts_Submenu
             'nonce'    => wp_create_nonce( "ninja_forms_settings_nonce" ),
             'i18n'     => array(
                 'rollbackConfirm' => __( 'Are you sure you want to rollback?', 'ninja-forms' )
-            )
+            ),
+            'allow_telemetry' => $allow_tel
         ));
 
 

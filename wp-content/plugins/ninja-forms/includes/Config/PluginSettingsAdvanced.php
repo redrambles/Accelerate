@@ -50,10 +50,18 @@ return apply_filters( 'ninja_forms_plugin_settings_advanced', array(
 
     'allow_tracking' => array(
         'id'    => 'allow_tracking',
-        'type'  => 'checkbox',
-        'label' => __( 'Allow Tracking', 'ninja-forms' ),
-        'desc'  => __( 'If you opt-in, some data about your installation of Ninja Forms will be sent to NinjaForms.com (this does NOT include your submissions).', 'ninja-forms' )
+        'type'  => 'html',
+        'html'  => '<span id="nfTelOptin" class="button hidden">' . __( 'Opt-in', 'ninja-forms' ) . '</span><span id="nfTelOptout" class="button hidden">' . __( 'Opt-out', 'ninja-forms' ) . '</span><span id="nfTelSpinner" class="nf-loading-spinner" style="display:none;"></span>',
+        'label' => __( 'Allow Telemetry', 'ninja-forms' ),
+        'desc'  => __( 'Opt-in to allow Ninja Forms to collect anonymous usage statistics from your site, such as PHP version, installed plugins, and other non-personally idetifiable informations.', 'ninja-forms' ),
     ),
+
+//    'allow_tracking' => array(
+//        'id'    => 'allow_tracking',
+//        'type'  => 'checkbox',
+//        'label' => __( 'Allow Tracking', 'ninja-forms' ),
+//        'desc'  => __( 'If you opt-in, some data about your installation of Ninja Forms will be sent to NinjaForms.com (this does NOT include your submissions).', 'ninja-forms' )
+//    ),
 
     /*
     |--------------------------------------------------------------------------

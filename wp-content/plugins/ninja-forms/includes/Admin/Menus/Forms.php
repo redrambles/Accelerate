@@ -127,10 +127,14 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             wp_enqueue_script( 'nf-moment', Ninja_Forms::$url . 'assets/js/lib/moment-with-locales.min.js', array( 'jquery', 'nf-dashboard' ) );
             wp_enqueue_script( 'nf-dashboard', Ninja_Forms::$url . 'assets/js/min/dashboard.min.js', array( 'backbone-radio', 'backbone-marionette-3' ) );
 
+            $current_user = wp_get_current_user();
             wp_localize_script( 'nf-dashboard', 'nfi18n', Ninja_Forms::config( 'i18nDashboard' ) );
             wp_localize_script( 'nf-dashboard', 'nfAdmin', array(
                 'ajaxNonce'         => wp_create_nonce( 'ninja_forms_dashboard_nonce' ),
-                'formTelemetry'     => ( get_option( 'nf_form_tel_sent' ) ) ? 0 : 1
+                'formTelemetry'     => ( get_option( 'nf_form_tel_sent' ) ) ? 0 : 1,
+                'showOptin'         => ( get_option( 'ninja_forms_do_not_allow_tracking' ) ||
+                                         get_option( 'ninja_forms_allow_tracking' ) ) ? 0 : 1,
+                'currentUserEmail'  => $current_user->user_email
             ) );
 
             wp_enqueue_style( 'nf-builder', Ninja_Forms::$url . 'assets/css/builder.css' );

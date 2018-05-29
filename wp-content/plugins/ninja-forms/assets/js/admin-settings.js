@@ -178,4 +178,43 @@ jQuery(document).ready(function($) {
 		$( "#delete_on_uninstall" ).attr( 'checked', true );
 
 	} );
+    
+    // If we're allowed to track site data...
+    if ( '1' == nf_settings.allow_telemetry ) {
+        // Show the optout button.
+        $( '#nfTelOptin' ).addClass( 'hidden' );
+        $( '#nfTelOptout' ).removeClass( 'hidden' );
+    } // Otherwise...
+    else {
+        // Show the optin button.
+        $( '#nfTelOptout' ).addClass( 'hidden' );
+        $( '#nfTelOptin' ).removeClass( 'hidden' );
+    }
+    
+    // If optin is clicked...
+    $( '#nfTelOptin' ).click( function( e ) {
+        // Hide the button.
+        $( '#nfTelOptin' ).addClass( 'hidden' );
+        $( '#nfTelSpinner' ).css( 'display', 'inline-block' );
+        // Hit AJAX endpoint and opt-in.
+        $.post( ajaxurl, { action: 'nf_optin', ninja_forms_opt_in: 1 },
+                    function( response ) {
+            $( '#nfTelOptout' ).removeClass( 'hidden' );
+            $( '#nfTelSpinner' ).css( 'display', 'none' );
+        } );  
+    } );
+    
+    // If optout is clicked...
+    $( '#nfTelOptout' ).click( function( e ) {
+        // Hide the button.
+        $( '#nfTelOptout' ).addClass( 'hidden' );
+        $( '#nfTelSpinner' ).css( 'display', 'inline-block' );
+        // Hit AJAX endpoint and opt-out.
+        $.post( ajaxurl, { action: 'nf_optin', ninja_forms_opt_in: 0 },
+                    function( response ) {
+            $( '#nfTelOptin' ).removeClass( 'hidden' );
+            $( '#nfTelSpinner' ).css( 'display', 'none' );
+        } );  
+    } );
+    
 });
