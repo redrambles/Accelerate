@@ -32,7 +32,9 @@ class NF_AJAX_REST_BatchProcess extends NF_AJAX_REST_Controller
 	                $batch = new NF_Admin_Processes_ChunkPublish(
 	                	$request_data );
                     break;
-                case 'delete_submissions':
+                case 'data_cleanup':
+                    $batch = new NF_Admin_Processes_DataCleanup(
+                        $request_data );
                     break;
                 default:
                     $data[ 'error' ] = __( 'Invalid request.', 'ninja-forms' );

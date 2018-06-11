@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 3.3.1
+Version: 3.3.3
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -18,6 +18,11 @@ require_once dirname( __FILE__ ) . '/lib/NF_Conversion.php';
 require_once dirname( __FILE__ ) . '/lib/NF_ExceptionHandlerJS.php';
 require_once dirname( __FILE__ ) . '/lib/Conversion/Calculations.php';
 require_once dirname( __FILE__ ) . '/lib/NF_UpgradeThrottle.php';
+
+// Services require PHP v5.6+
+if( version_compare( PHP_VERSION, '5.6', '>=' ) ) {
+  include_once dirname( __FILE__ ) . '/services/bootstrap.php';
+}
 
 function ninja_forms_three_table_exists(){
     global $wpdb;
@@ -53,7 +58,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         /**
          * @since 3.0
          */
-        const VERSION = '3.3.1';
+        const VERSION = '3.3.3';
 
         const WP_MIN_VERSION = '4.7';
 
@@ -200,6 +205,11 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 }
 
                 $saved_version = get_option( 'ninja_forms_version' );
+                // If this is a fresh install... (The version has never been saved.)
+                if ( ! $saved_version ) {
+                    // Assume we have clean data.
+                    update_option( 'ninja_forms_data_is_clean', 'true' );
+                }
                 // If we have a recorded version...
                 // AND that version is less than our current version...
                 if ( $saved_version && version_compare( $saved_version, self::VERSION, '<' ) ) {
@@ -418,6 +428,12 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             }
 
             add_filter( 'ninja_forms_dashboard_menu_items', array( $this, 'maybe_hide_dashboard_items' ) );
+            
+            // If we don't have clean data...
+            if ( ! get_option( 'ninja_forms_data_is_clean' ) ) {
+                // Register a new notice.
+                add_filter( 'ninja_forms_admin_notices', array( $this, 'data_cleanup_notice' ) );
+            }
         }
 
 	    /**
@@ -804,6 +820,8 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 
             if( Ninja_Forms()->form()->get_forms() ) return;
 
+            // Assume we're on a clean installation.
+            update_option( 'ninja_forms_data_is_clean', 'true' );
             $form = Ninja_Forms::template( 'formtemplate-contactform.nff', array(), TRUE );
             Ninja_Forms()->form()->import_form( $form );
         }
@@ -836,6 +854,25 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                     // Alternatively we could dump this to a file.
                 }
             }
+        }
+        
+        /**
+         * Function to register an admin notice if we detect that this installation has "unclean" Ninja Forms data.
+         * 
+         * @since 3.3.1
+         * 
+         * @param $notices (Array) Our array of admin notices.
+         * @return $notices (Array) Our array of admin notices.
+         */
+        public function data_cleanup_notice( $notices ) {
+            $notices[ 'data_cleanup' ] = array(
+                'title' => __( 'Data Cleanup', 'ninja-forms' ),
+                'msg' => sprintf( __( 'Ninja Forms has detected data on your site leftover from old forms or Ninja Forms versions.%sWe would like to run a quick cleanup process to remove this old data. Your forms will not be impacted by this process, but it may take several minutes to complete.%sPlease %sclick here%s to begin.', 'ninja-forms' ), '<br />', '<br /><br />', '<a href="' . admin_url( 'admin.php?page=ninja-forms&action=cleanup' ) . '">', '</a>' ),
+                'int' => 0,
+                'ignore_spam' => true,
+                'dismiss' => 0
+            );
+            return $notices;
         }
 
     } // End Class Ninja_Forms

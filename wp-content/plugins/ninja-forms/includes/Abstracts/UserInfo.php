@@ -29,6 +29,7 @@ abstract class NF_Abstracts_UserInfo extends NF_Fields_Textbox
 	            'help',
 	            'description',
 	            'custom_name_attribute',
+	            'personally_identifiable',
 	            'disable_browser_autocomplete' )
         );
 

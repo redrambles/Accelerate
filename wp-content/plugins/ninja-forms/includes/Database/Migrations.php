@@ -86,10 +86,19 @@ class NF_Database_Migrations
         global $wpdb;
         /* Delete known options */
         delete_option( 'nf_admin_notice' );
-        delete_option( 'ninja_forms_settings' );
-        delete_option( 'ninja_forms_load_deprecated' );
+        delete_option( 'nf_form_tel_data' );
+        delete_option( 'nf_form_tel_sent' );
+        delete_option( 'nf_tel_collate' );
         delete_option( 'ninja_forms_allow_tracking' );
+        delete_option( 'ninja_forms_db_version' );
         delete_option( 'ninja_forms_do_not_allow_tracking' );
+        delete_option( 'ninja_forms_load_deprecated' );
+        delete_option( 'ninja_forms_mailchimp_interests' );
+        delete_option( 'ninja_forms_oauth_client_secret' );
+        delete_option( 'ninja_forms_optin_reported' );
+        delete_option( 'ninja_forms_settings' );
+        delete_option( 'ninja_forms_transactional_email_enabled' );
+        delete_option( 'ninja_forms_version' );
 
         /* Delete possible options */
         $wpdb->query( "DELETE FROM `{$wpdb->options}` WHERE `option_name` LIKE 'wp_nf_%'" );

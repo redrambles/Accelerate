@@ -81,6 +81,12 @@ final class NF_Actions_DeleteDataRequest extends NF_Abstracts_Action
 		*/
 		if( ! $request_id instanceof WP_Error ) {
 			// send the request if it's not an error.
+
+			// to anonymize or not to anonymize, that is the question
+			add_post_meta( $request_id,
+				'nf_anonymize_data',
+				$action_settings[ 'anonymize' ] );
+
 			wp_send_user_request( $request_id );
 		}
 

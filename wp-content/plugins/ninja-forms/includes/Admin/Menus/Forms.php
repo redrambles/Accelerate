@@ -111,6 +111,11 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 //                'add_new_text' => __( 'Add New Form', 'ninja-forms' )
 //            ) );
 
+            $use_services = false; // Feature Flag.
+            $use_services = apply_filters( 'ninja_forms_use_services', $use_services ); // The WordPress Way.
+            $use_services = $use_services && ( version_compare( PHP_VERSION, '5.6', '>=' ) ); // PHP Version Check.
+
+
             /*
              * DASHBOARD
              */
@@ -118,6 +123,8 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             ?>
             <script>
                 var nfDashItems = <?php echo( json_encode( array_values( $dash_items ) ) ); ?>;
+                var useServices = <?php echo ( $use_services ) ? 'true' : 'false'; ?>;
+                var serviceSuccess = '<?php echo ( isset( $_GET[ 'success' ] ) ) ? $_GET[ 'success' ] : ''; ?>';
             </script>
             <?php
 
@@ -129,12 +136,16 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
             $current_user = wp_get_current_user();
             wp_localize_script( 'nf-dashboard', 'nfi18n', Ninja_Forms::config( 'i18nDashboard' ) );
+            wp_localize_script( 'nf-dashboard', 'nfPromotions', array_values( Ninja_Forms::config( 'DashboardPromotions' ) ) );
             wp_localize_script( 'nf-dashboard', 'nfAdmin', array(
                 'ajaxNonce'         => wp_create_nonce( 'ninja_forms_dashboard_nonce' ),
                 'formTelemetry'     => ( get_option( 'nf_form_tel_sent' ) ) ? 0 : 1,
                 'showOptin'         => ( get_option( 'ninja_forms_do_not_allow_tracking' ) ||
                                          get_option( 'ninja_forms_allow_tracking' ) ) ? 0 : 1,
-                'currentUserEmail'  => $current_user->user_email
+                'currentUserEmail'  => $current_user->user_email,
+                'doingCleanup'      => ( ! get_option( 'ninja_forms_data_is_clean' ) &&
+                                        isset( $_REQUEST[ 'action' ] ) &&
+                                        'cleanup' == $_REQUEST[ 'action' ] ) ? 1 : 0,
             ) );
 
             wp_enqueue_style( 'nf-builder', Ninja_Forms::$url . 'assets/css/builder.css' );
@@ -496,6 +507,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             $nicename = ( isset( $action[ 'nicename' ] ) ) ? $action[ 'nicename' ] : '';
             $image = ( isset( $action[ 'image' ] ) ) ? $action[ 'image' ] : '';
             $link = ( isset( $action[ 'link' ] ) ) ? $action[ 'link' ] : '';
+            $modal_content = ( isset( $action[ 'modal_content' ] ) ) ? $action[ 'modal_content' ] : '';            
 
             if ( $u_id ) {
                 $last_slash = strripos( $link, '/' );
@@ -512,6 +524,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
                 'nicename' => $nicename,
                 'image' => $image,
                 'link' => $link,
+                'modal_content' => $modal_content,
                 'settingGroups' => array(),
                 'settingDefaults' => array()
             );
@@ -576,7 +589,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         foreach( Ninja_Forms()->merge_tags as $key => $group ){
             /*
              * If the merge tag group doesn't have a title, don't localise it.
-             * 
+             *
              * This convention is used to allow merge tags to continue to function,
              * even though they can't be added to new forms.
              */

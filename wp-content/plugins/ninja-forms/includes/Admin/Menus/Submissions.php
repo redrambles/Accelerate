@@ -158,6 +158,8 @@ final class NF_Admin_Menus_Submissions extends NF_Abstracts_Submenu
         $hidden_field_types = apply_filters( 'ninja_forms_sub_hidden_field_types', array() );
 
         foreach( $fields as $field ){
+            
+            if ( is_null( $field ) ) continue;
 
             if( in_array( $field->get_setting( 'type' ), $hidden_field_types ) ) continue;
 

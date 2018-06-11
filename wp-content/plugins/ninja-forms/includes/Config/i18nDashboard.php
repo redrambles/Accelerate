@@ -74,6 +74,9 @@ return apply_filters( 'ninja_forms_i18n_dashboard', array(
     'optinSecondary'                        => __( 'Not Now', 'ninja-forms' ),
     'optinPrimary'                          => __( 'Yes, I agree!', 'ninja-forms' ),
     'optinAwesome'                          => __( 'Keep being awesome!', 'ninja-forms' ),
-    'optinThanks'                           => __( 'Thank you for opting in!', 'ninja-forms' )
-    
+    'optinThanks'                           => __( 'Thank you for opting in!', 'ninja-forms' ),
+    'cleanupContent'                        => sprintf( __( '%sOnce we begin this process, it might take several minutes to complete.%sNavigating away from this page before it is finished could lead to unexpected results.%sPlease confirm when you are ready to begin.%s', 'ninja-forms' ), '<p>', '</p><p>', '</p><p>', '</p>' ),
+    'cleanupSecondary'                      => __( 'Cancel', 'ninja-forms' ),
+    'cleanupPrimary'                        => sprintf( __( 'Clean up my data', 'ninja-forms' ) ),
+    'cleanupLoading'                        => __( 'Processing...', 'ninja-forms' )
 ));

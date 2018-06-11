@@ -5,6 +5,16 @@ return apply_filters( 'ninja_forms_action_email_settings', array(
     /*
      * To
      */
+	'submitter_email' => array(
+		'name' => 'submitter_email',
+		'type' => 'email-select',
+		'options' => array(),
+		'group' => 'primary',
+		'label' => __( 'Designated Submitter\'s Email Address', 'ninja-forms' ),
+		'value' => '',
+		'help' => __( 'The email address used in this field will be allowed to '
+			. 'make data export and delete requests on behalf of their form submission.', 'ninja-forms' ),
+	),
 
     'fields_save_toggle' => array(
         'name' => 'fields-save-toggle',

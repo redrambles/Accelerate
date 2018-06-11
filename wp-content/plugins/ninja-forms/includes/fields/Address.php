@@ -25,5 +25,6 @@ class NF_Fields_Address extends NF_Fields_Textbox
         $this->_nicename = __( 'Address', 'ninja-forms' );
 
 	    $this->_settings[ 'custom_name_attribute' ][ 'value' ] = 'address';
+	    $this->_settings[ 'personally_identifiable' ][ 'value' ] = '1';
     }
 }

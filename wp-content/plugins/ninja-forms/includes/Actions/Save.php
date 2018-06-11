@@ -79,8 +79,7 @@ final class NF_Actions_Save extends NF_Abstracts_Action
             if( 'save_all' == $save_all_none ) {
             	$save_field = true;
                 // For each exception to that rule...
-            	foreach( $action_settings[ 'exception_fields' ] as
-		            $exception_field ) {
+            	foreach( $action_settings[ 'exception_fields' ] as $exception_field ) {
                     // Remove it from the list.
             		if( $field[ 'key' ] == $exception_field[ 'field'] ) {
             			$save_field = false;
@@ -104,7 +103,20 @@ final class NF_Actions_Save extends NF_Abstracts_Action
             // If we're supposed to save this field...
             if( $save_field ) {
                 // Do so.
-	            $sub->update_field_value( $field['id'], $field['value'] );
+	            $sub->update_field_value( $field[ 'id' ], $field[ 'value' ] );
+            } // Otherwise...
+            else {
+                // If this field is not a list...
+                // AND If this field is not a checkbox...
+                // AND If this field is not a product...
+                // AND If this field is not a termslist...
+                if ( false == strpos( $field[ 'type' ], 'list' ) &&
+                    false == strpos( $field[ 'type' ], 'checkbox' ) &&
+                    'products' !== $field[ 'type' ] &&
+                    'terms' !== $field[ 'type' ] ) {
+                    // Anonymize it.
+                    $sub->update_field_value( $field[ 'id' ], '(redacted)' );
+                }
             }
         }
 

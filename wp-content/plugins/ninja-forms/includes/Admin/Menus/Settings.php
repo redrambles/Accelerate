@@ -159,7 +159,7 @@ final class NF_Admin_Menus_Settings extends NF_Abstracts_Submenu
         wp_localize_script( 'ninja_forms_admin_menu_settings', 'nf_settings', array(
             'ajax_url' => admin_url( 'admin-ajax.php' ),
             'forms'    => $form_options,
-            'nf_nuke_title' => __( 'Remove ALL Ninja Forms data upon uninstall?', 'ninja-forms' ),
+            'nf_nuke_title' => __( 'Remove ALL Ninja Forms data and uninstall?', 'ninja-forms' ),
             'nonce'    => wp_create_nonce( "ninja_forms_settings_nonce" ),
             'i18n'     => array(
                 'rollbackConfirm' => __( 'Are you sure you want to rollback?', 'ninja-forms' )
