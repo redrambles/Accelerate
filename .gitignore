@@ -7,6 +7,7 @@ phpinfo.php
 debug.sql
 accel_database.sql
 backup.sh
+test-db-connection.php
 
 # build stuff
 npm-debug.log
