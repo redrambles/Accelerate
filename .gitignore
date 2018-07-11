@@ -10,6 +10,7 @@ backup.sh
 test-db-connection.php
 
 # build stuff
+wp-cli.yml
 npm-debug.log
 wp-content/themes/accelerate-theme-child/node_modules
 #wp-content/themes/accelerate-theme-child/gulpfile.js
