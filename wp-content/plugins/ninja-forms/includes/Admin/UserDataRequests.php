@@ -242,6 +242,11 @@ class NF_Admin_UserDataRequests {
 		// merge anonymous and author submissions ids and get unique
 		$sub_ids = array_unique( array_merge( $logged_in_subs, $anon_sub_ids ) );
 
+		// return empty array if $sub_ids is empty
+		if( 1 > count( $sub_ids ) ) {
+			return array();
+		}
+
 		// get post objects related to the email address
 		return get_posts(
 			array(

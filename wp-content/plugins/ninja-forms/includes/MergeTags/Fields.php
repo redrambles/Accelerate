@@ -90,7 +90,6 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
             if( is_array( $field[ 'value' ] ) ) $field[ 'value' ] = implode( ', ', $field[ 'value' ] );
 
             // Check to see if the type is a list field and if it is...
-
             $return .= '<tr><td valign="top">' . apply_filters('ninja_forms_merge_label', $field[ 'label' ]) .':</td><td>' . $field[ 'value' ] . '</td></tr>';
         }
         $return .= '</table>';
@@ -173,6 +172,8 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
         $field_id  = $field[ 'id' ];
         $callback  = 'field_' . $field_id;
 
+        $list_fields_types = array( 'listcheckbox', 'listmultiselect', 'listradio', 'listselect' );
+
         if( is_array( $field[ 'value' ] ) ) $field[ 'value' ] = implode( ',', $field[ 'value' ] );
 
         $field[ 'value' ] = strip_shortcodes( $field[ 'value' ] );
@@ -200,6 +201,35 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
             //echo('myspace');
             $callback = 'field_' . $field_key . '_calc';
             $this->add( $callback, $field_key, '{field:' . $field_key . ':calc}', $calc_value, $calc_value );
+
+
+            /*
+             * Adds the ability to add :label to list field merge tags
+             * this will cause the label to be displayed on the front end
+             * instead of the value.
+             *
+             * @since 3.3.3
+             */
+            // Check to see if the type is a list field and if it is...
+            if( in_array( $field[ 'type' ], array_values( $list_fields_types ) ) ) {
+                // If we have a comma separated value...
+                if ( strpos( $field[ 'value' ], ',' ) ) {
+                    // ...build the value back into an array.
+                    $field[ 'value' ] = explode( ',', $field[ 'value' ] );
+                }
+                // ...then set the value equal to the field label.
+                $field[ 'value' ] = $this->get_list_labels( $field );
+
+                // If we have multiple values in from the list field...
+                if( is_array( $field[ 'value' ] ) ){
+                    // ...convert our values into an array.
+                    $field[ 'value' ] = implode( ', ', $field[ 'value' ] );
+                }
+
+                // Set callback and add this merge tag.
+                $callback = 'field_' . $field_key . '_label';
+                $this->add( $callback, $field_key, '{field:' . $field_key . ':label}', $field[ 'value' ] );
+            }
         }
     }
 
@@ -236,6 +266,13 @@ final class NF_MergeTags_Fields extends NF_Abstracts_MergeTags
         return $labels;
     }
 
+    /**
+     * @param $callback
+     * @param $id
+     * @param $tag
+     * @param $value
+     * @param bool $calc_value
+     */
 	public function add( $callback, $id, $tag, $value, $calc_value = false )
 	{
 		$this->merge_tags[ $callback ] = array(

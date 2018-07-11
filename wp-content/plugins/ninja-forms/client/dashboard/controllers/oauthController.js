@@ -6,6 +6,8 @@ define([ 'models/oauthModel' ], function( OAuthModel ) {
       nfRadio.channel( 'dashboard' ).reply( 'get:oauth', this.getOAuth, this );
 			nfRadio.channel( 'dashboard' ).reply( 'disconnect:oauth', this.disconnect, this );
 
+			nfRadio.channel( 'dashboard' ).reply( 'oauth:learn-more', this.learnMoreModal, this );
+
 			this.initOAuth();
 		},
 
@@ -33,9 +35,9 @@ define([ 'models/oauthModel' ], function( OAuthModel ) {
 
 			new jBox('Confirm', {
 				width: 750,
-				content: 'Disconnecting from my.ninjaforms.com will disrupt the functionality of all services.',
-				confirmButton: 'Disconnect',
-				cancelButton: 'Stay Connected',
+				content: nfi18n.oauthDisconnectContent,
+				confirmButton: nfi18n.oauthDisconnectConfirm,
+				cancelButton: nfi18n.oauthDisconnectCancel,
 				closeOnConfirm: true,
 				confirm: function(){
 					jQuery.ajax({
@@ -47,6 +49,18 @@ define([ 'models/oauthModel' ], function( OAuthModel ) {
 						}
 					});
 				}
+			}).open();
+		},
+
+		/**
+		 * Show a Learn More modal.
+		 */
+		learnMoreModal: function() {
+			var that = this;
+
+			new jBox('Modal', {
+				width: 500,
+				content: nfi18n.oauthLearnMoreContent,
 			}).open();
 		}
 	});

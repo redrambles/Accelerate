@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ninja Forms\n"
-"POT-Creation-Date: 2018-06-05 12:45-0400\n"
-"PO-Revision-Date: 2018-06-05 12:45-0400\n"
+"POT-Creation-Date: 2018-06-15 16:04-0400\n"
+"PO-Revision-Date: 2018-06-15 16:04-0400\n"
 "Last-Translator: \n"
 "Language-Team: WP Ninjas <info@wpninjas.com>\n"
 "Language: en\n"
@@ -13,10 +13,11 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-SearchPath-0: includes\n"
-"X-Poedit-SearchPath-1: lib\n"
-"X-Poedit-SearchPath-2: deprecated\n"
-"X-Poedit-SearchPath-3: ninja-forms.php\n"
+"X-Poedit-SearchPath-0: ninja-forms.php\n"
+"X-Poedit-SearchPath-1: services\n"
+"X-Poedit-SearchPath-2: lib\n"
+"X-Poedit-SearchPath-3: deprecated\n"
+"X-Poedit-SearchPath-4: includes\n"
 
 #: deprecated/classes/add-form-modal.php:41
 #: deprecated/classes/add-form-modal.php:99 includes/Admin/AddFormModal.php:42
@@ -30,9 +31,9 @@ msgstr ""
 #: deprecated/classes/add-form-modal.php:89
 #: deprecated/includes/admin/pages/ninja-forms-settings/tabs/general-settings/general-settings.php:123
 #: deprecated/includes/admin/upgrades/convert-forms-reset.php:71
-#: deprecated/includes/fields/list.php:176 includes/Config/i18nDashboard.php:68
-#: includes/Config/i18nDashboard.php:79
-#: includes/Templates/admin-menu-dashboard.html.php:241
+#: deprecated/includes/fields/list.php:176 includes/Config/i18nBuilder.php:78
+#: includes/Config/i18nDashboard.php:68 includes/Config/i18nDashboard.php:79
+#: includes/Templates/admin-menu-dashboard.html.php:247
 #: includes/Templates/ui-nf-header.html.php:12
 msgid "Cancel"
 msgstr ""
@@ -264,7 +265,7 @@ msgstr ""
 #: deprecated/classes/subs-cpt.php:389
 #: deprecated/includes/admin/pages/ninja-forms/tabs/form-list/form-list.php:188
 #: includes/Templates/admin-menu-all-forms-column-title.html.php:10
-#: includes/Templates/admin-menu-dashboard.html.php:279
+#: includes/Templates/admin-menu-dashboard.html.php:285
 #: includes/Templates/admin-menu-new-form.html.php:168
 #: includes/Templates/ui-item-controls.html.php:4
 msgid "Edit"
@@ -275,9 +276,9 @@ msgstr ""
 #: deprecated/includes/admin/pages/ninja-forms/tabs/form-list/form-list.php:102
 #: deprecated/includes/admin/pages/ninja-forms/tabs/form-list/form-list.php:189
 #: includes/Admin/AllFormsTable.php:222 includes/Admin/Menus/Settings.php:132
-#: includes/Config/i18nDashboard.php:67
+#: includes/Config/i18nBuilder.php:77 includes/Config/i18nDashboard.php:67
 #: includes/Templates/admin-menu-all-forms-column-title.html.php:15
-#: includes/Templates/admin-menu-dashboard.html.php:283
+#: includes/Templates/admin-menu-dashboard.html.php:289
 #: includes/Templates/ui-item-controls.html.php:2
 #: includes/Templates/ui-nf-drawer-buttons.html.php:2
 msgid "Delete"
@@ -286,7 +287,7 @@ msgstr ""
 #: deprecated/classes/notifications-table.php:131
 #: deprecated/includes/admin/pages/ninja-forms/tabs/form-list/form-list.php:190
 #: includes/Templates/admin-menu-all-forms-column-title.html.php:19
-#: includes/Templates/admin-menu-dashboard.html.php:280
+#: includes/Templates/admin-menu-dashboard.html.php:286
 #: includes/Templates/ui-item-controls.html.php:3
 #: includes/Templates/ui-nf-drawer-buttons.html.php:3
 msgid "Duplicate"
@@ -332,7 +333,7 @@ msgstr ""
 #: includes/Admin/Menus/AddNew.php:20 includes/Config/ActionSaveSettings.php:41
 #: includes/Config/FieldSettings.php:180 includes/Config/FieldSettings.php:1064
 #: includes/Config/FormCalculationSettings.php:12
-#: includes/Templates/admin-menu-dashboard.html.php:240
+#: includes/Templates/admin-menu-dashboard.html.php:246
 msgid "Add New"
 msgstr ""
 
@@ -703,7 +704,7 @@ msgstr ""
 #: deprecated/includes/admin/pages/ninja-forms/tabs/field-settings/edit-field-ul.php:7
 #: deprecated/includes/admin/pages/ninja-forms/tabs/field-settings/edit-field-ul.php:19
 #: deprecated/includes/admin/scripts.php:75
-#: includes/Templates/admin-menu-dashboard.html.php:122
+#: includes/Templates/admin-menu-dashboard.html.php:128
 msgid "Save"
 msgstr ""
 
@@ -985,7 +986,7 @@ msgstr ""
 
 #: deprecated/includes/admin/form-preview.php:39
 #: includes/Templates/admin-menu-all-forms-column-title.html.php:23
-#: includes/Templates/admin-menu-dashboard.html.php:281
+#: includes/Templates/admin-menu-dashboard.html.php:287
 msgid "Preview Form"
 msgstr ""
 
@@ -1528,7 +1529,7 @@ msgstr ""
 #: deprecated/includes/admin/pages/ninja-forms/tabs/form-list/form-list.php:218
 #: deprecated/includes/admin/welcome.php:355
 #: includes/Admin/AllFormsTable.php:75
-#: includes/Templates/admin-menu-dashboard.html.php:257
+#: includes/Templates/admin-menu-dashboard.html.php:263
 msgid "Shortcode"
 msgstr ""
 
@@ -1549,7 +1550,7 @@ msgstr ""
 #: deprecated/includes/admin/pages/ninja-forms/tabs/form-list/form-list.php:192
 #: deprecated/includes/admin/sidebar.php:155
 #: includes/Templates/admin-menu-all-forms-column-title.html.php:27
-#: includes/Templates/admin-menu-dashboard.html.php:282
+#: includes/Templates/admin-menu-dashboard.html.php:288
 msgid "View Submissions"
 msgstr ""
 
@@ -1920,7 +1921,7 @@ msgstr ""
 msgid "Reset the form conversion process for v2.9+"
 msgstr ""
 
-#: deprecated/includes/admin/scripts.php:75 includes/Admin/Menus/Forms.php:248
+#: deprecated/includes/admin/scripts.php:75 includes/Admin/Menus/Forms.php:250
 msgid "Edit Form"
 msgstr ""
 
@@ -4905,15 +4906,15 @@ msgid "Dashboard"
 msgstr ""
 
 #: includes/Admin/Menus/Forms.php:37 includes/Config/i18nBuilder.php:5
-#: includes/Config/i18nFrontEnd.php:9 ninja-forms.php:446
+#: includes/Config/i18nFrontEnd.php:9 ninja-forms.php:450
 msgid "Ninja Forms"
 msgstr ""
 
-#: includes/Admin/Menus/Forms.php:184
+#: includes/Admin/Menus/Forms.php:186
 msgid "Form Template Import Error."
 msgstr ""
 
-#: includes/Admin/Menus/Forms.php:585 includes/Config/ActionSaveSettings.php:28
+#: includes/Admin/Menus/Forms.php:587 includes/Config/ActionSaveSettings.php:28
 #: includes/MergeTags/Fields.php:14
 msgid "Fields"
 msgstr ""
@@ -5195,6 +5196,14 @@ msgstr ""
 
 #: includes/Config/ActionSaveSettings.php:48
 msgid "Form Field"
+msgstr ""
+
+#: includes/Config/ActionSaveSettings.php:62
+msgid "Set Submissions to expire?"
+msgstr ""
+
+#: includes/Config/ActionSaveSettings.php:74
+msgid "How long in days until subs expire?"
 msgstr ""
 
 #: includes/Config/ActionSuccessMessageSettings.php:16
@@ -6496,6 +6505,20 @@ msgstr ""
 msgid "Sa"
 msgstr ""
 
+#: includes/Config/i18nBuilder.php:74
+msgid ""
+"This will DELETE all data associated with this field. You will not be able "
+"to retrieve data for this field!"
+msgstr ""
+
+#: includes/Config/i18nBuilder.php:79
+msgid ""
+"In order to prevent errors, values may only contain a specific subset of "
+"characters ( a-z, 0-9, -, _, @, space ). You can use the option label in "
+"your success message(s) or email action(s) by adding the :label attribute to "
+"your list field merge tags. For example: {field:key:label}"
+msgstr ""
+
 #: includes/Config/i18nDashboard.php:62
 msgid "You are about to delete the form"
 msgstr ""
@@ -6561,6 +6584,40 @@ msgstr ""
 
 #: includes/Config/i18nDashboard.php:81
 msgid "Processing..."
+msgstr ""
+
+#: includes/Config/i18nDashboard.php:88
+#, php-format
+msgid ""
+"Disconnecting from my.ninjaforms.com will disrupt the functionality of all "
+"services. To manage your service subscriptions please visit %smy.ninjaforms."
+"com%s"
+msgstr ""
+
+#: includes/Config/i18nDashboard.php:89
+msgid "Disconnect"
+msgstr ""
+
+#: includes/Config/i18nDashboard.php:90
+msgid "Stay Connected"
+msgstr ""
+
+#: includes/Config/i18nDashboard.php:91
+#, php-format
+msgid ""
+"%sSince you’re using one of our Ninja Forms services, like Ninja Mail or our "
+"Add-on Manager, your site is connected to my.ninjaforms.com. This allows us "
+"to send data between your site and my.ninjaforms.com. For details about what "
+"is being shared, you can see our %sPrivacy Policy%s.%s"
+msgstr ""
+
+#: includes/Config/i18nDashboard.php:94
+#, php-format
+msgid "%sRedirecting to NinjaForms.com%s"
+msgstr ""
+
+#: includes/Config/i18nDashboard.php:95
+msgid "Unable to update the service."
 msgstr ""
 
 #: includes/Config/i18nFrontEnd.php:16
@@ -7195,184 +7252,188 @@ msgstr ""
 msgid "Ninja Forms Dashboard"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:120
+#: includes/Templates/admin-menu-dashboard.html.php:98
+msgid "Setup"
+msgstr ""
+
+#: includes/Templates/admin-menu-dashboard.html.php:126
 msgid "Agency"
-msgstr ""
-
-#: includes/Templates/admin-menu-dashboard.html.php:123
-#: includes/Templates/admin-menu-dashboard.html.php:164
-#: includes/Templates/admin-menu-dashboard.html.php:197
-msgid "Buy Now"
-msgstr ""
-
-#: includes/Templates/admin-menu-dashboard.html.php:128
-msgid "Unlimited Sites"
 msgstr ""
 
 #: includes/Templates/admin-menu-dashboard.html.php:129
 #: includes/Templates/admin-menu-dashboard.html.php:170
 #: includes/Templates/admin-menu-dashboard.html.php:203
+msgid "Buy Now"
+msgstr ""
+
+#: includes/Templates/admin-menu-dashboard.html.php:134
+msgid "Unlimited Sites"
+msgstr ""
+
+#: includes/Templates/admin-menu-dashboard.html.php:135
+#: includes/Templates/admin-menu-dashboard.html.php:176
+#: includes/Templates/admin-menu-dashboard.html.php:209
 msgid "Updates & Support"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:133
-#: includes/Templates/admin-menu-dashboard.html.php:174
-#: includes/Templates/admin-menu-dashboard.html.php:207
+#: includes/Templates/admin-menu-dashboard.html.php:139
+#: includes/Templates/admin-menu-dashboard.html.php:180
+#: includes/Templates/admin-menu-dashboard.html.php:213
 #, php-format
 msgid "50% off recurring renewals"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:134
+#: includes/Templates/admin-menu-dashboard.html.php:140
 msgid "Renews at $249.50/year"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:138
+#: includes/Templates/admin-menu-dashboard.html.php:144
 msgid "Fastest Support"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:139
+#: includes/Templates/admin-menu-dashboard.html.php:145
 msgid "1 Year of Updates & Support"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:143
+#: includes/Templates/admin-menu-dashboard.html.php:149
 msgid "All add-ons included!"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:145
+#: includes/Templates/admin-menu-dashboard.html.php:151
 msgid "Builder PRO Pack"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:146
+#: includes/Templates/admin-menu-dashboard.html.php:152
 msgid "PDF Form Submissions"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:147
+#: includes/Templates/admin-menu-dashboard.html.php:153
 msgid "Zapier"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:148
+#: includes/Templates/admin-menu-dashboard.html.php:154
 msgid "Newsletters (MailChimp, etc.)"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:149
+#: includes/Templates/admin-menu-dashboard.html.php:155
 msgid "CRMs (Saleforce, etc.)"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:150
+#: includes/Templates/admin-menu-dashboard.html.php:156
 msgid "Payments (PayPal, etc.)"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:151
+#: includes/Templates/admin-menu-dashboard.html.php:157
 msgid "And so much more..."
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:161
+#: includes/Templates/admin-menu-dashboard.html.php:167
 msgid "Professional"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:163
+#: includes/Templates/admin-menu-dashboard.html.php:169
 msgid "Save $197"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:169
+#: includes/Templates/admin-menu-dashboard.html.php:175
 msgid "20 Sites"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:175
+#: includes/Templates/admin-menu-dashboard.html.php:181
 msgid "Renews at $99.50/year"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:179
+#: includes/Templates/admin-menu-dashboard.html.php:185
 msgid "Faster Support"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:183
-#: includes/Templates/admin-menu-dashboard.html.php:216
+#: includes/Templates/admin-menu-dashboard.html.php:189
+#: includes/Templates/admin-menu-dashboard.html.php:222
 msgid "Builder Pro Pack"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:184
-#: includes/Templates/admin-menu-dashboard.html.php:217
+#: includes/Templates/admin-menu-dashboard.html.php:190
+#: includes/Templates/admin-menu-dashboard.html.php:223
 msgid "Layout & Styles, Multi-Part Forms, Conditional Logic, File Uploads"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:188
-#: includes/Templates/admin-menu-dashboard.html.php:221
+#: includes/Templates/admin-menu-dashboard.html.php:194
+#: includes/Templates/admin-menu-dashboard.html.php:227
 msgid "Additional Add-Ons"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:194
+#: includes/Templates/admin-menu-dashboard.html.php:200
 msgid "Personal"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:196
+#: includes/Templates/admin-menu-dashboard.html.php:202
 msgid "Save $57"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:202
+#: includes/Templates/admin-menu-dashboard.html.php:208
 msgid "1 Site"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:208
+#: includes/Templates/admin-menu-dashboard.html.php:214
 msgid "Renews at $49.50/year"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:212
+#: includes/Templates/admin-menu-dashboard.html.php:218
 msgid "Fast Support"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:229
+#: includes/Templates/admin-menu-dashboard.html.php:235
 msgid "That sounds amazing! What else comes with Ninja Forms?"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:230
+#: includes/Templates/admin-menu-dashboard.html.php:236
 msgid "We're glad you asked! Checkout our full list of features!"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:231
+#: includes/Templates/admin-menu-dashboard.html.php:237
 #, php-format
 msgid ""
 "All plans include 50% discount on automatic renewals, and a 14 day money "
 "back guarantee."
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:232
+#: includes/Templates/admin-menu-dashboard.html.php:238
 msgid "Requires a current active license and subject to our"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:232
+#: includes/Templates/admin-menu-dashboard.html.php:238
 msgid "Terms & Conditions"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:250
+#: includes/Templates/admin-menu-dashboard.html.php:256
 msgid "Search Forms"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:256
+#: includes/Templates/admin-menu-dashboard.html.php:262
 msgid "Title"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:258
+#: includes/Templates/admin-menu-dashboard.html.php:264
 msgid "Date Created"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:262
+#: includes/Templates/admin-menu-dashboard.html.php:268
 msgid "Loading Forms..."
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:267
+#: includes/Templates/admin-menu-dashboard.html.php:273
 msgid "More"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:268
+#: includes/Templates/admin-menu-dashboard.html.php:274
 msgid "Less"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:297
+#: includes/Templates/admin-menu-dashboard.html.php:303
 msgid "No Forms"
 msgstr ""
 
-#: includes/Templates/admin-menu-dashboard.html.php:300
+#: includes/Templates/admin-menu-dashboard.html.php:306
 msgid "Loading Forms"
 msgstr ""
 
@@ -7723,37 +7784,37 @@ msgstr ""
 msgid "Looks Good!"
 msgstr ""
 
-#: ninja-forms.php:458
+#: ninja-forms.php:463
 msgid "Ninja Forms allows you to collect personal information"
 msgstr ""
 
-#: ninja-forms.php:459
+#: ninja-forms.php:464
 msgid ""
 "If you are using Ninja Forms to collect personal information, you should "
 "consult a legal professional for your use case."
 msgstr ""
 
-#: ninja-forms.php:731
+#: ninja-forms.php:737
 msgid "Notice: JavaScript is required for this content."
 msgstr ""
 
-#: ninja-forms.php:848
+#: ninja-forms.php:854
 #, php-format
 msgid ""
 "%1$s is <strong>deprecated</strong> since Ninja Forms version %2$s! Use %3$s "
 "instead."
 msgstr ""
 
-#: ninja-forms.php:852
+#: ninja-forms.php:858
 #, php-format
 msgid "%1$s is <strong>deprecated</strong> since Ninja Forms version %2$s."
 msgstr ""
 
-#: ninja-forms.php:869
+#: ninja-forms.php:875
 msgid "Data Cleanup"
 msgstr ""
 
-#: ninja-forms.php:870
+#: ninja-forms.php:876
 #, php-format
 msgid ""
 "Ninja Forms has detected data on your site leftover from old forms or Ninja "
@@ -7762,6 +7823,18 @@ msgid ""
 "several minutes to complete.%sPlease %sclick here%s to begin."
 msgstr ""
 
-#: ninja-forms.php:941
+#: ninja-forms.php:947
 msgid "Once per month"
+msgstr ""
+
+#: services/bootstrap.php:16
+msgid "Add-on Manager (Beta)"
+msgstr ""
+
+#: services/bootstrap.php:43
+msgid "Ninja Mail - Transactional Email"
+msgstr ""
+
+#: services/bootstrap.php:85
+msgid "Sorry, you are not allowed to install plugins on this site."
 msgstr ""

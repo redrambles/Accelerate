@@ -122,6 +122,7 @@ class NF_THREE_Submenu
             'forms' => $all_forms,
             'redirectURL' => admin_url( 'admin.php?page=ninja-forms&nf-switcher=upgrade' ),
             'optedIn' => $opted_in,
+            'nonce' => wp_create_nonce( 'ninja_forms_upgrade_nonce' ),
         ) );
 
         include plugin_dir_path( __FILE__ ) . 'tmpl-submenu.html.php';

@@ -243,68 +243,40 @@ define( [ 'views/sections/widgets.js', 'views/sections/services.js', 'views/sect
                 } );
             } // If we've been told to run cleanup...
             else if ( '1' == nfAdmin.doingCleanup ) {
-                var cleanupModal = new jBox( 'Modal', {
-                    closeOnEsc:     false,
-                    closeOnClick:   false,
-                    width:          400
-                } );
+                // Get the context for later.
                 var that = this;
-                // Define the modal content.
-                var content = document.createElement( 'div' );
-                content.classList.add( 'message' );
-                content.style.padding = '0px 20px 20px 20px';
-                content.innerHTML = nfi18n.cleanupContent;
-                var bar = document.createElement( 'div' );
-                bar.id = 'nf-progress-bar';
-                bar.classList.add( 'nf-progress-bar' );
-                bar.style.display = 'none';
-                var progress = document.createElement( 'div' );
-                progress.classList.add( 'nf-progress-bar-slider' );
-                bar.appendChild( progress );
-                content.appendChild( bar );
-                var loading = document.createElement( 'p' );
-                loading.id = 'nf-loading-text';
-                loading.style.color = '#1ea9ea';
-                loading.style.fontWeight = 'bold';
-                loading.innerHTML = nfi18n.cleanupLoading;
-                loading.style.display = 'none';
-                content.appendChild( loading );
-                var actions = document.createElement( 'div' );
-                actions.id = 'nf-action-buttons';
-                actions.classList.add( 'buttons' );
-                var cancel = document.createElement( 'div' );
-                cancel.id = 'nf-cancel';
-                cancel.classList.add( 'nf-button', 'secondary' );
-                cancel.innerHTML = nfi18n.cleanupSecondary;
-                actions.appendChild( cancel );
-                var confirm = document.createElement( 'button' );
-                confirm.id = 'nf-confirm';
-                confirm.classList.add( 'nf-button', 'primary', 'pull-right' );
-                confirm.innerHTML = nfi18n.cleanupPrimary;
-                actions.appendChild( confirm );
-                content.appendChild( actions );
-                // Set the options for the modal and open it.
-                cleanupModal.setContent( document.createElement( 'div' ).appendChild( content ).innerHTML );
-                cleanupModal.open();
-                // Setup the cancel click event.
-                jQuery( '#nf-cancel' ).click( function( e ) {
-                    cleanupModal.close();
-                } );                
-                // Setup the confirm click event.
-                jQuery( '#nf-confirm' ).click( function( e ) {
-                    // Prevent the user from leaving without firing an alert.
-                    jQuery( window ).bind( 'beforeunload', function() { 
-                        return 'Are you sure? Leaving before the process completes could cause damage to your data.';
-                    } );
-                    // Hide the buttons.
-                    jQuery( '#nf-cancel' ).hide();
-                    jQuery( '#nf-confirm' ).hide();
-                    // Show the progress bar.
-                    jQuery( '#nf-progress-bar' ).show();
-                    jQuery( '#nf-loading-text' ).show();
-                    // Begin our cleanup process.
-                    that.cleanupProcess( that, -1, cleanupModal );
-                } );
+                // Define our modal options.
+                var modalData = {
+                    width: 450,
+                    closeOnClick: false,
+                    closeOnEsc: false,
+                    content: nfi18n.cleanupContent,
+                    useProgressBar: true,
+                    loadingText: nfi18n.cleanupLoading,
+                    btnSecondary: {
+                        text: nfi18n.cleanupSecondary,
+                        callback: function() {
+                            cleanupModal.toggleModal( false );
+                        }
+                    },
+                    btnPrimary: {
+                        text: nfi18n.cleanupPrimary,
+                        callback: function() {
+                            // Prevent the user from leaving without firing an alert.
+                            jQuery( window ).bind( 'beforeunload', function() { 
+                                return 'Are you sure? Leaving before the process completes could cause damage to your data.';
+                            } );
+                            // Hide the buttons.
+                            cleanupModal.maybeShowActions( false );
+                            // Show the progress bar.
+                            cleanupModal.maybeShowProgress( true );
+                            // Begin our cleanup process.
+                            that.cleanupProcess( that, -1, cleanupModal );
+                        },
+                    },
+                };
+                // Setup our modal.
+                var cleanupModal = new NinjaModal( modalData );
             }
             // If form telemetry is defined...
             // AND if we should run it...
@@ -352,17 +324,17 @@ define( [ 'views/sections/widgets.js', 'views/sections/services.js', 'views/sect
             var data = {
                 action: 'nf_batch_process',
                 batch_type: 'data_cleanup',
-                security: nfAdmin.ajaxNonce
+                security: nfAdmin.batchNonce
             };
             jQuery.post( ajaxurl, data, function( response ) {
                 response = JSON.parse( response );
                 // If we're done...
                 if ( response.batch_complete ) {
                     // Push our progress bar to 100%.
-                    jQuery( '.nf-progress-bar-slider' ).css( 'width', '100%' );
+                    modal.setProgress( 100 );
                     // Allow the user to leave the page now.
                     jQuery( window ).unbind( 'beforeunload' );
-                    modal.close();
+                    modal.toggleModal( false );
                     // Exit.
                     return false;
                 }
@@ -382,14 +354,8 @@ define( [ 'views/sections/widgets.js', 'views/sections/services.js', 'views/sect
                 var step = steps - response.step_remaining;
                 // Calculate our maximum progress for this step.
                 var maxProgress = Math.round( step / steps * 100 );
-                // Get our current progress for this step.
-                var currentProgress = Math.round( jQuery( '.nf-progress-bar-slider' ).width() / jQuery( '.nf-progress-bar-slider' ).parent().width() * 100 );
-                // If our maximum progress is more than our current progress...
-                if ( maxProgress > currentProgress ) {
-                    // Increment our progress bar.
-                    currentProgress = Number( currentProgress ) + 1;
-                    jQuery( '.nf-progress-bar-slider' ).css( 'width', currentProgress + '%' );
-                }
+                // Increment the progress.
+                modal.incrementProgress ( maxProgress );
                 // Recall our function...
                 context.cleanupProcess( context, steps, modal );
             } );

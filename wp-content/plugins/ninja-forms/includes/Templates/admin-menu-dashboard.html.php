@@ -29,7 +29,7 @@
     </a> -->
     <# } else { #>
     <div class="nf-oauth--connected">
-      Connected to My.NinjaForms.com
+      Connected to My.NinjaForms.com &nbsp; <span style="cursor:pointer;" onclick="Backbone.Radio.channel( 'dashboard' ).request( 'oauth:learn-more' );">Learn More</span>
       <span class="js--disconnect" style="float:right;cursor:pointer;">
         <span class="dashicons dashicons-no"></span>
       </span>
@@ -91,7 +91,13 @@
         <# } #>
         <# if( ( ! data.is_connected ) || ( data.slug && data.installPath ) ){ #>
           <# if( ! data.is_installing ){ #>
-            <a href="#services" class="nf-button primary js--install" style="float:right;">Setup</a>
+            <a href="#services" class="nf-button primary js--install" style="float:right;">
+              <# if( data.setupButtonText ){ #>
+                {{{ data.setupButtonText }}}
+              <# } else { #>
+                <?php echo __( 'Setup', 'ninja-forms' ); ?>
+              <# } #>
+            </a>
           <# } else { #>
             <a href="#services" class="nf-button primary" style="float:right;" disabled>
               <span class="dashicons dashicons-update dashicons-update-spin"></span>

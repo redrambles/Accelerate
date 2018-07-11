@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorho
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 3.3.3
+Stable tag: 3.3.9
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -67,7 +67,7 @@ Want access to everything we offer, or perhaps just our form building toolkit "B
 
 = For Developers =
 
-The Ninja Forms framework is on [GitHub](https://github.com/wpninjas/ninja-forms)! If you're a developer and want to help make Ninja Forms better, check it out. It's also a great resource for developers who are interested in creating add-ons for our online store.
+The Ninja Forms framework is on [GitLab](https://git.saturdaydrive.io/ninja-forms/ninja-forms)! If you're a developer and want to help make Ninja Forms better, check it out. It's also a great resource for developers who are interested in creating add-ons for our online store.
 
 If you're a developer and would like to talk about creating some premium extensions for Ninja Forms, send us an email: info@wpninjas.com.
 
@@ -93,7 +93,7 @@ Documentation for Ninja Forms can be found at <a href="https://ninjaforms.com/do
 
 = Where can I report a bug? =
 
-Report bugs, suggest ideas, and participate in development at <a href="https://github.com/wpninjas/ninja-forms">https://github.com/wpninjas/ninja-forms</a>.
+Report bugs, suggest ideas, and participate in development at <a href="https://git.saturdaydrive.io/ninja-forms/ninja-forms">https://git.saturdaydrive.io/ninja-forms/ninja-forms</a>.
 
 == Installation ==
 
@@ -111,26 +111,82 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.3.3 (5 June 2018) =
+= 3.3.9 (6 July 2018) =
+
+*Security:*
+
+* Patched a vulnerability that could allow certain Export Personal Data requests to retrieve unrelated submission data.
 
 *Bugs:*
 
-* Resolved an issue that sometimes caused our opt-in modal to become undismissable.
-* Fields that do not actually save data should no longer appear in the include/exclude fields list for the store submission action.
-* Improved performance of our Add Form modal in the post editor.
-* Resolved an issue that sometimes caused the Submissions page to display as a white screen.
+* Fixed a broken image link in the Edit User Profile template.
+* Resolved an issue that was very rarely causing the conversion process to run again after upgrade, removing all forms but the default Contact Me.
+
+== Changelog ==
+
+= 3.3.9 (6 July 2018) =
+
+*Security:*
+
+* Patched a vulnerability that could allow certain Export Personal Data requests to retrieve unrelated submission data.
+
+*Bugs:*
+
+* Fixed a broken image link in the Edit User Profile template.
+* Resolved an issue that was very rarely causing the conversion process to run again after upgrade, removing all forms but the default Contact Me.
+
+= 3.3.8 (2 July 2018) =
+
+*Bugs:*
+
+* The styling of the Ninja Forms settings page has been corrected.
+* Forms can once again be previewed before they have been published.
+* Resolved an issue that was sometimes causing submission expiration to not register properly on publish.
+* The submission expiration setting will no longer accept a negative number as valid input.
 
 *Changes:*
 
-* (GDPR) Fields excluded by the store submission action will now show their values as (redacted) in the edit submission screen, rather than displaying nothing.
-* (GDPR) The delete data request action now includes a setting to specify anonimization of Ninja Forms data, rather than full deletion.
-* (GDPR) Fields now have a setting to specify if they are personally identifiable data.
-* Registered a cleanup process to take care of some outdated and unnecessary data we have been storing in various data records.
-* Added several ARIA attributes to the fields that were missing them.
-* The Delete All Data button now cleans up several additional options that we'd recently added.
-* The list of actions in the form builder has been updated, and non-enabled actions now include a short blurb describing their usage.
+* Ninja Forms has migrated to GitLab! All repository links should now be updated.
+* Added an expired submissions cleanup button to our settings page to supplement cleanup on sites with a large number of submissions.
 
-== Changelog ==
+= 3.3.7 (21 June 2018) =
+
+*Bugs:*
+
+* Submissions removed by the expired submissions feature should now be moved to the trash instead of completely removed.
+
+= 3.3.6 (20 June 2018) =
+
+*Bugs:*
+
+* Resolved an issue that sometimes caused the form builder to crash when deleting a field.
+
+= 3.3.5 (18 June 2018) =
+
+*Bugs:*
+
+* Made some performance updates to several of our popup modals.
+* The agency remove marketing hook should now properly hide the new services tab.
+
+*Changes:*
+
+* Fields now display admin labels (if they exist) instead of labels in the store submission action settings.
+* Added a tooltip to the value section of list fields, giving details about allowed characters.
+* List field merge tags can now be configured to show labels instead of values by appending ":label" to the merge tag.
+* The store submissions action can now be configured to remove submissions that exceed a defined timeframe.
+* Added a confirm modal to field deletion to prevent accidental removal of data.
+
+= 3.3.4 (11 June 2018) =
+
+*Bugs:*
+
+* Resolved an issue that was preventing placeholder text from appearing in paragraph text fields.
+
+*Chnages:*
+
+* Unlocked the services tab.
+* (Beta) Ninja Forms Add-on Manager is now available.
+* Ninja Mail - Transactional Email is now available.
 
 = 3.3.3 (5 June 2018) =
 

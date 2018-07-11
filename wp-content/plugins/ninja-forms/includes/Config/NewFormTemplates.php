@@ -160,7 +160,7 @@ $ads = array(
         'type'                          => 'ad',
         'modal-title'                   => 'Get User Management for Ninja Forms',
         'modal-content'                 => '<div class="modal-template">
-                                                <img src="' . Ninja_Forms::$url . 'assets/img/add-ons/user-management-product-graphic.png"/>
+                                                <img src="' . Ninja_Forms::$url . 'assets/img/add-ons/user-management.png"/>
                                                 <p>In order to use this template, you need User Management for Ninja Forms.</p>
                                                 <p>User Management brings you the remarkable flexibility to register new WordPress users and manage existing ones through your Ninja Forms!</p>
                                                 <div class="actions">
@@ -176,7 +176,7 @@ $ads = array(
         'type'                          => 'ad',
         'modal-title'                   => 'Get User Management for Ninja Forms',
         'modal-content'                 => '<div class="modal-template">
-                                                <img src="' . Ninja_Forms::$url . 'assets/img/add-ons/user-management-product-graphic.png"/>
+                                                <img src="' . Ninja_Forms::$url . 'assets/img/add-ons/user-management.png"/>
                                                 <p>In order to use this template, you need User Management for Ninja Forms.</p>
                                                 <p>User Management brings you the remarkable flexibility to register new WordPress users and manage existing ones through your Ninja Forms!</p>
                                                 <div class="actions">

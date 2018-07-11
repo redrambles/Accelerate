@@ -29,8 +29,10 @@ define( [], function() {
             width: 300,
             addClass: 'dashboard-modal',
             overlay: true,
-            closeOnClick: 'body',
+            closeOnClick: true,
             content: this.get( 'successMessage' ),
+            title: this.get( 'successMessageTitle' ),
+            closeButton: 'box'
         } ).open();
       }
 
@@ -50,7 +52,7 @@ define( [], function() {
                         addClass: 'dashboard-modal',
                         overlay: true,
                         closeOnClick: 'body',
-                        content: '<p style="text-align:center;">Redirecting to NinjaForms.com</p>',
+                        content: nfi18n.serviceRedirect,
                     } ).open();
 
         // Trigger a redirect, where depends on the connected status.
@@ -78,7 +80,7 @@ define( [], function() {
       }).done( function( response ){
         var data = JSON.parse( response );
         if( 'undefined' !== typeof data.error ) {
-          alert( 'Unable to update the service. ' + data.error );
+          alert( nfi18n.serviceUpdateError + ' ' + data.error );
           that.set( 'enabled', ! that.get( 'enabled' ) );
         }
         nfRadio.channel( 'dashboard').trigger( 'save:service-' + that.get( 'slug' )  );

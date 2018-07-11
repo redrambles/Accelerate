@@ -78,5 +78,19 @@ return apply_filters( 'ninja_forms_i18n_dashboard', array(
     'cleanupContent'                        => sprintf( __( '%sOnce we begin this process, it might take several minutes to complete.%sNavigating away from this page before it is finished could lead to unexpected results.%sPlease confirm when you are ready to begin.%s', 'ninja-forms' ), '<p>', '</p><p>', '</p><p>', '</p>' ),
     'cleanupSecondary'                      => __( 'Cancel', 'ninja-forms' ),
     'cleanupPrimary'                        => sprintf( __( 'Clean up my data', 'ninja-forms' ) ),
-    'cleanupLoading'                        => __( 'Processing...', 'ninja-forms' )
+    'cleanupLoading'                        => __( 'Processing...', 'ninja-forms' ),
+
+    /**
+     * Services Tab
+     */
+
+    /** OAuth Controller */
+    'oauthDisconnectContent'               => sprintf( __( 'Disconnecting from my.ninjaforms.com will disrupt the functionality of all services. To manage your service subscriptions please visit %smy.ninjaforms.com%s', 'ninja-forms' ), '<a href="https://my.ninjaforms.com">', '</a>' ),
+    'oauthDisconnectConfirm'               => __( 'Disconnect', 'ninja-forms' ),
+    'oauthDisconnectCancle'                => __( 'Stay Connected', 'ninja-forms' ),
+    'oauthLearnMoreContent'                => sprintf( __( '%sSince you’re using one of our Ninja Forms services, like Ninja Mail or our Add-on Manager, your site is connected to my.ninjaforms.com. This allows us to send data between your site and my.ninjaforms.com. For details about what is being shared, you can see our %sPrivacy Policy%s.%s', 'ninja-forms' ), '<p>', '<a href="https://ninjaforms.com/privacy-policy/">', '</a>', '</p>'),
+
+    /** Service Model */
+    'serviceRedirect'                     => sprintf( __( '%sRedirecting to NinjaForms.com%s', 'ninja-forms' ), '<p style="text-align:center;">', '</p>' ),
+    'serviceUpdateError'                  => __( 'Unable to update the service.' , 'ninja-forms' ),
 ));

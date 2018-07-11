@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 3.3.3
+Version: 3.3.9
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -58,7 +58,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         /**
          * @since 3.0
          */
-        const VERSION = '3.3.3';
+        const VERSION = '3.3.9';
 
         const WP_MIN_VERSION = '4.7';
 
@@ -213,6 +213,11 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 // If we have a recorded version...
                 // AND that version is less than our current version...
                 if ( $saved_version && version_compare( $saved_version, self::VERSION, '<' ) ) {
+                    // *IMPORTANT: Filter to delete old bad data.
+                    // Leave this here until at least 3.4.0.
+                    if ( version_compare( $saved_version, '3.3.7', '<' ) && version_compare( $saved_version, '3.3.4', '>' ) ) {
+                        delete_option( 'nf_sub_expiration' );
+                    }
                     // We just upgraded the plugin.
                     $plugin_upgrade = true;
                 } else {
@@ -249,8 +254,8 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                  * AJAX Controllers
                  */
                 self::$instance->controllers[ 'form' ]          = new NF_AJAX_Controllers_Form();
-                self::$instance->controllers[ 'batch_process' ]          = new
-                NF_AJAX_REST_BatchProcess();
+                self::$instance->controllers[ 'fields' ]    = new NF_AJAX_Controllers_Fields();
+                self::$instance->controllers[ 'batch_process' ] = new NF_AJAX_REST_BatchProcess();
                 self::$instance->controllers[ 'preview' ]       = new NF_AJAX_Controllers_Preview();
                 self::$instance->controllers[ 'submission' ]    = new NF_AJAX_Controllers_Submission();
                 self::$instance->controllers[ 'savedfields' ]   = new NF_AJAX_Controllers_SavedFields();
@@ -275,6 +280,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                  */
                 require_once Ninja_Forms::$dir . 'includes/Libraries/BackgroundProcessing/wp-background-processing.php';
                 self::$instance->requests[ 'update-fields' ] = new NF_AJAX_Processes_UpdateFields();
+
 
                 /*
                  * WP-CLI Commands
@@ -362,6 +368,9 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                  */
                 self::$instance->tracking = new NF_Tracking();
 
+
+                self::$instance->submission_expiration_cron = new NF_Database_SubmissionExpirationCron();
+
                 /*
                  * JS Exception Handler
                  *
@@ -448,6 +457,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 
         }
 
+
 	    /**
 	     * Return the default suggested privacy policy content.
 	     *
@@ -504,7 +514,8 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             if ( apply_filters( 'ninja_forms_disable_marketing', $disable_marketing ) ) {
                 unset(
                     $items[ 'apps' ],
-                    $items[ 'memberships' ]
+                    $items[ 'memberships' ],
+                    $items[ 'services' ]
                 );
             }
             return $items;

@@ -129,7 +129,7 @@ jQuery(document).ready(function($) {
                 return 'You have unsaved changes.';
             } );
 
-            $.post( ajaxurl, { nf2to3: 1, action: 'ninja_forms_ajax_migrate_database' }, function( response ) {
+            $.post( ajaxurl, { nf2to3: 1, action: 'ninja_forms_ajax_migrate_database', security: nfThreeUpgrade.nonce }, function( response ) {
 
                 $.post( ajaxurl, { action: 'nfThreeUpgrade_GetSerializedFields' }, function( fieldsExport ) {
                     $.post(ajaxurl, { nf2to3: 1, fields: fieldsExport.serialized, action: 'ninja_forms_ajax_import_fields' }, function ( fieldsImport ) {
