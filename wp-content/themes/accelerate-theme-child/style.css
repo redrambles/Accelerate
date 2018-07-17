@@ -416,6 +416,8 @@ ul.faq-list {
     clear: both;
 }*/
 
+/* Menu Icons Plugin */
+
 .social-media-navigation ul {
     list-style: none;
 }
@@ -437,6 +439,30 @@ ul.faq-list {
     color: white;
 }
 
+.social-media-menu  .menu-item i._mi {
+    margin-top: 0;
+}
+
+/* Social Media Navigation */ 
+/* .social-media-navigation { 
+    width: 107px; 
+    } 
+    
+    .social-media-navigation ul li { 
+    list-style: none; 
+    display: inline-block; 
+    width: 23px; 
+    height: 23px; 
+    border-radius: 50%; 
+    color: white; 
+    background-color: #3b3b3b; 
+    margin: 2px; 
+    } 
+    
+    .social-media-navigation ul li a { 
+    color: white; 
+    margin-left: 5px; 
+    }  */
 
 /* Social Icons without plugin - manual approach. Must uncomment the span tags in menu in footer.php */
 
