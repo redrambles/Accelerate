@@ -467,7 +467,7 @@ ul.faq-list {
 /* Social Icons without plugin - manual approach. Must uncomment the span tags in menu in footer.php */
 
 
-/*.social-media-navigation ul {
+.social-media-navigation ul {
     float: right;
     text-align: center;
     list-style: none;    
@@ -509,7 +509,7 @@ ul.faq-list {
 .social-media-navigationli a[href*="flickr.com"]::before { content: '\f16e'; }
 .social-media-navigation li a[href*="vimeo.com"]::before { content: '\f194'; }
 .social-media-navigation li a[href*="instagram.com"]::before { content: '\f16d'; }
-.social-media-navigation li a[href*="linkedin.com"]::before { content: '\f0e1'; }*/
+.social-media-navigation li a[href*="linkedin.com"]::before { content: '\f0e1'; }
 
 
 /* Social Sharing Icons */
