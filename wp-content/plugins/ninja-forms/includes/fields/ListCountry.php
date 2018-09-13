@@ -86,6 +86,7 @@ class NF_Fields_ListCountry extends NF_Abstracts_List
     {
         ob_start();
         echo "<select name='fields[$id]'>";
+	    echo "<option value=''>- " . __( 'Select Country', 'ninja-forms' ) . " -</option>";
         foreach( Ninja_Forms()->config( 'CountryList' ) as $label => $abbr ){
             $selected = ( $value == $abbr ) ? ' selected' : '';
             echo "<option value='" . $abbr . "'" . $selected . ">" . $label . "</option>";
@@ -97,6 +98,11 @@ class NF_Fields_ListCountry extends NF_Abstracts_List
     private function get_default_value_options()
     {
         $options = array();
+        // Option to have no default country
+        $options[] = array(
+            'label' => '- ' . __( 'Select Country', 'ninja-forms' ) . ' -',
+	        'value' => ''
+        );
         foreach( Ninja_Forms()->config( 'CountryList' ) as $label => $value ){
             $options[] = array(
                 'label'  => $label,
@@ -111,6 +117,15 @@ class NF_Fields_ListCountry extends NF_Abstracts_List
     {
         $order = 0;
         $options = array();
+        // option to have no default country selected
+	    $options[] = array(
+		    'label' => '- ' . __( 'Select Country', 'ninja-forms' ) . ' -',
+		    'value' => '',
+		    'calc' => '',
+		    'selected' => 0,
+		    'order' => $order,
+	    );
+	    $order++;
         foreach( Ninja_Forms()->config( 'CountryList' ) as $label => $value ){
             $options[] = array(
                 'label'  => $label,

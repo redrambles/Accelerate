@@ -89,4 +89,8 @@ return apply_filters( 'ninja_forms_currency', array(
         'label' => __( 'South African Rand', 'ninja-forms' ),
         'value' => 'ZAR'
     ),
+	'INR' => array(
+		'label' => __( 'Indian Rupee', 'ninja-forms' ),
+		'value' => 'INR'
+	),
 ));

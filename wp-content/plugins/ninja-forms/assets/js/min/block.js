@@ -7,7 +7,7 @@
 
 	var el = element.createElement, // function to create elements
 		TextControl = components.TextControl,// text input control
-        InspectorControls = blocks.InspectorControls, // sidebar controls
+        InspectorControls = wp.editor.InspectorControls, // sidebar controls
         Sandbox = components.Sandbox; // needed to register the block
 
 	// register our block
@@ -48,6 +48,10 @@
 				var elID = event.target.getAttribute( 'id' );
 				var idArray = elID.split( '-' );
 				var nfOptions = document.getElementById( 'nf-filter-container-' + idArray[ idArray.length -1 ] );
+				// get the related input element
+				var nfInput = document.getElementById( 'nf-formFilter-' + idArray[ idArray.length -1 ] );
+				// set focus to the element so the onBlur function runs properly
+				nfInput.focus();
 				nfOptions.style.display = 'block';
 			}
 
@@ -65,7 +69,7 @@
 				var elID = event.target.parentNode.parentNode;
 				var idArray = elID.getAttribute( 'id' ).split( '-' );
 				var nfOptions = document.getElementById( 'nf-filter-container-' + idArray[ idArray.length -1 ] );
-				var inputEl = document.getElementById( 'formFilter-sidebar' );
+				var inputEl = document.getElementById( 'nf-formFilter-sidebar' );
 				inputEl.value = '';
 				nfOptions.style.display = 'none';
 			}
@@ -87,7 +91,7 @@
 				 * Get the main div of the filter to tell if this is being
 				 * selected from the sidebar or block so we can SHOW the dropdown
 				 */
-				var filterInputContainer = event.target.parentNode.parentNode;
+				var filterInputContainer = event.target.parentNode.parentNode.parentNode;
 				filterInputContainer.querySelector( '.nf-filter-option-container' ).style.display = 'block';
 				filterInputContainer.style.display = 'block';
 
@@ -115,7 +119,7 @@
 			// Set up form filter for the block
 			var inputFilterMain = el( 'div', { id: 'nf-filter-input-main',
 					className: 'nf-filter-input' },
-				el( TextControl, { id: 'formFilter-main',
+				el( TextControl, { id: 'nf-formFilter-main',
 					placeHolder: 'Select a Form',
 					className: 'nf-filter-input-el blocks-select-control__input',
 					onChange: nfOnValueChange,
@@ -135,7 +139,7 @@
 			// Create filter input for the sidebar blocks settings
 			var inputFilterSidebar = el( 'div', { id: 'nf-filter-input-sidebar',
 					className: 'nf-filter-input' },
-				el( TextControl, { id: 'formFilter-sidebar',
+				el( TextControl, { id: 'nf-formFilter-sidebar',
 					placeHolder: 'Select a Form',
 					className: 'nf-filter-input-el blocks-select-control__input',
 					onChange: nfOnValueChange,
@@ -160,7 +164,8 @@
 		        el( 'span', null, formName ),
 		        el( 'br', null ),
 		        el ('hr', null ),
-		        el ( 'label', { for: 'formFilter-sidebar' }, 'Type to filter' +
+		        el ( 'label', { for: 'nf-formFilter-sidebar' }, 'Type to' +
+			        ' filter' +
 			        ' forms' ),
 		        inputFilterSidebar
 	            // el( SelectControl, { label: 'Form ID', value: formID, options: ninjaFormsBlock.forms, onChange: onFormChange } )
@@ -187,9 +192,9 @@
 					)
 				)
 			}
+			children.push(inspectorControls);
 			return [
-				children,
-				!! focus && inspectorControls
+				children
 	        ];
 		},
 

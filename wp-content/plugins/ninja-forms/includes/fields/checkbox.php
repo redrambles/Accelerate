@@ -153,8 +153,14 @@ class NF_Fields_Checkbox extends NF_Abstracts_Input
             __( 'unchecked', 'ninja-forms' ) == $value ) return $value;
 
         // Creating settings variables for our check.
-        $checked_setting    = $field->get_setting( 'checked_value' );
-        $unchecked_setting  = $field->get_setting( 'unchecked_value' );
+        if( is_array( $field ) ) {
+            // The email action sends teh field variable as an array
+            $checked_setting    = $field[ 'setting' ][ 'checked_value' ];
+            $unchecked_setting  = $field[ 'setting' ][ 'unchecked_value' ];
+        } else {
+            $checked_setting    = $field->get_setting( 'checked_value' );
+            $unchecked_setting  = $field->get_setting( 'unchecked_value' );
+        }
 
         // If the the value and check to see if we have checked and unchecked settings...
         if ( 1 == $value && ! empty( $checked_setting ) ) {

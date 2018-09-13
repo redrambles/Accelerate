@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 3.3.9
+Version: 3.3.15
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -17,7 +17,6 @@ require_once dirname( __FILE__ ) . '/lib/NF_Tracking.php';
 require_once dirname( __FILE__ ) . '/lib/NF_Conversion.php';
 require_once dirname( __FILE__ ) . '/lib/NF_ExceptionHandlerJS.php';
 require_once dirname( __FILE__ ) . '/lib/Conversion/Calculations.php';
-require_once dirname( __FILE__ ) . '/lib/NF_UpgradeThrottle.php';
 
 // Services require PHP v5.6+
 if( version_compare( PHP_VERSION, '5.6', '>=' ) ) {
@@ -58,7 +57,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         /**
          * @since 3.0
          */
-        const VERSION = '3.3.9';
+        const VERSION = '3.3.15';
 
         const WP_MIN_VERSION = '4.7';
 
@@ -226,8 +225,16 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 update_option( 'ninja_forms_version', self::VERSION );
                 // If we've not recorded our db version...
                 if ( ! get_option( 'ninja_forms_db_version' ) ) {
-                    // Set it to the baseline (1.0).
-                    add_option( 'ninja_forms_db_version', '1.0', '', 'no' );
+					// If this isn't a fresh install...
+					// AND If we're upgrading from a version before 3.3.0...
+					if ( $saved_version && version_compare( $saved_version, '3.3.0', '<' ) ) {
+                    	// Set it to the baseline (1.0) so that our upgrade process will run properly.
+						add_option( 'ninja_forms_db_version', '1.0', '', 'no' );
+					}
+					else {
+						// Set it to 1.1.
+						add_option( 'ninja_forms_db_version', '1.1', '', 'no' );
+					}
                 }
 
                 /*
@@ -400,6 +407,27 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                     // Ensure all of our tables have been defined.
                     $migrations = new NF_Database_Migrations();
                     $migrations->migrate();
+                    // If our db version is below 1.1...
+                    if ( version_compare( get_option( 'ninja_forms_db_version' ), '1.1', '<' ) ) {
+                        // Do our stage 1 updates.
+                        $migrations->do_stage_one();
+                        // Update our db version.
+                        update_option( 'ninja_forms_db_version', '1.1' );
+                    }
+					// Fix for legacy versions that upgraded without a set DB version.
+					// If our version is exactly 1.1...
+					if ( version_compare( get_option( 'ninja_forms_db_version' ), '1.1', '==' ) ) {
+						global $wpdb;
+						// Fetch the form_title column from the fields table.
+						$sql = "SHOW FULL COLUMNS FROM `{$wpdb->prefix}nf3_forms` WHERE Field = 'form_title'";
+						$result = $wpdb->get_results( $sql, 'ARRAY_A' );
+						// If we didn't get a result...
+						if ( empty( $result ) ) {
+							// Do our stage 1 updates, even though they should have already run.
+							$migrations->do_stage_one();
+						}
+					}
+					
                 }
             }
 

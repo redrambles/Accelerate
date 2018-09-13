@@ -296,7 +296,7 @@ final class WPN_Helper
      */
     public static function update_nf_cache( $id, $data ) {
         // Define our current stage here for use as we run various upgrades.
-        $CURRENT_STAGE = 0;
+        $CURRENT_STAGE = 1;
         // Serialize our data.
         $cache = serialize( $data );
         global $wpdb;

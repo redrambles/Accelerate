@@ -30,6 +30,9 @@ final class NF_Admin_Menus_ImportExport extends NF_Abstracts_Submenu
         $capability = apply_filters( 'ninja_forms_admin_import_form_capabilities',   $capability      );
         if( ! current_user_can( $capability ) ) return;
 
+        if( ! isset( $_REQUEST['nf_import_security'] )
+        || ! wp_verify_nonce( $_REQUEST[ 'nf_import_security' ], 'ninja_forms_import_form_nonce' ) )  return;
+
         if( ! isset( $_FILES[ 'nf_import_form' ] ) || ! $_FILES[ 'nf_import_form' ] ) return;
 
         $this->upload_error_check( $_FILES[ 'nf_import_form' ] );
@@ -38,7 +41,8 @@ final class NF_Admin_Menus_ImportExport extends NF_Abstracts_Submenu
 
         // Check to see if the user turned off UTF-8 encoding
         $decode_utf8 = TRUE;
-        if( $_REQUEST[ 'nf_import_form_turn_off_encoding' ] ) {
+        if( isset( $_REQUEST[ 'nf_import_form_turn_off_encoding' ] ) &&
+        $_REQUEST[ 'nf_import_form_turn_off_encoding' ] ) {
         	$decode_utf8 = FALSE;
         }
 

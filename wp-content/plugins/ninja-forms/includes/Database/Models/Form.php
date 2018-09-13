@@ -13,8 +13,14 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
 
     protected $_columns = array(
         'title',
-        'key',
-        'created_at'
+        'created_at',
+        'form_title',
+        'default_label_pos',
+        'show_title',
+        'clear_complete',
+        'hide_complete',
+        'logged_in',
+        'seq_num'
     );
 
     protected $_fields;
@@ -119,10 +125,21 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
         , $form_id ) );
 
         if( $last_seq_num ) {
-            $wpdb->update( $wpdb->prefix . 'nf3_form_meta', array( 'value' => $last_seq_num + 1 ), array( 'key' => '_seq_num', 'parent_id' => $form_id ) );
+            $wpdb->update( $wpdb->prefix . 'nf3_form_meta', array( 'value' => $last_seq_num + 1,
+                'meta_value' => $last_seq_num + 1, 'meta_key' => '_seq_num' )
+	            , array( 'key' => '_seq_num', 'parent_id'
+            => $form_id ) );
+            $wpdb->update( $wpdb->prefix . 'nf3_forms', array( 'seq_num' => $last_seq_num + 1 ), array( 'id' => $form_id ) );
         } else {
             $last_seq_num = 1;
-            $wpdb->insert( $wpdb->prefix . 'nf3_form_meta', array( 'key' => '_seq_num', 'value' => $last_seq_num + 1, 'parent_id' => $form_id ) );
+            $wpdb->insert( $wpdb->prefix . 'nf3_form_meta',
+	            array( 'key' => '_seq_num',
+	                   'value' => $last_seq_num + 1,
+	                   'parent_id' => $form_id,
+		                'meta_key' => '_seq_num',
+		                'meta_value' => $last_seq_num + 1
+	            ) );
+	        $wpdb->update( $wpdb->prefix . 'nf3_forms', array( 'seq_num' => $last_seq_num + 1 ), array( 'id' => $form_id ) );
         }
 
         return $last_seq_num;
@@ -298,6 +315,14 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
                 ", $new_action_id, $old_action->id
             ));
         }
+
+        /*
+         * In order for our new form and form_meta fields to populate on
+         * duplicate we need to update_settings and save
+         */
+        $new_form = Ninja_Forms()->form( $new_form_id )->get();
+        $new_form->update_settings( $new_form->get_settings() );
+        $new_form->save();
 
         return $new_form_id;
     }

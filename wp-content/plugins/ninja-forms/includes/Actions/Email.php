@@ -310,6 +310,9 @@ final class NF_Actions_Email extends NF_Abstracts_Action
                 $value = implode( ',', $value );
             }
 
+            // add filter to add single quote if first character in value is '='
+            $value = apply_filters( 'ninja_forms_subs_export_field_value_' . $field[ 'type' ], $value, $field );
+
             $csv_array[ 0 ][] = $label;
             $csv_array[ 1 ][] = $value;
         }

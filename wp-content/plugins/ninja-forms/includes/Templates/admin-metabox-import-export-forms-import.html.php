@@ -1,7 +1,8 @@
 <div class="wrap">
 
     <form action="" method="post" enctype="multipart/form-data">
-
+        <input type="hidden" name="nf_import_security" id="nf_import_security"
+            value="<?php echo wp_create_nonce( 'ninja_forms_import_form_nonce' );?>" />
         <table class="form-table">
             <tbody>
             <tr id="row_nf_import_form">

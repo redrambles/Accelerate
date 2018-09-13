@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorho
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 3.3.9
+Stable tag: 3.3.15
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -111,18 +111,70 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.3.9 (6 July 2018) =
-
-*Security:*
-
-* Patched a vulnerability that could allow certain Export Personal Data requests to retrieve unrelated submission data.
+= 3.3.15 (31 August 2018) =
 
 *Bugs:*
 
-* Fixed a broken image link in the Edit User Profile template.
-* Resolved an issue that was very rarely causing the conversion process to run again after upgrade, removing all forms but the default Contact Me.
+* Fixed an issue causing errors when forms containing checkboxes had csv files attached to Email Actions
 
 == Changelog ==
+
+= 3.3.15 (31 August 2018) =
+
+*Bugs:*
+
+* Fixed an issue causing errors when forms containing checkboxes had csv files attached to Email Actions
+
+= 3.3.14.1 (28 August 2018) =
+
+*Security:*
+
+* Corrected patch for CSV injection vulnerability to include a previously overlooked input.
+
+= 3.3.14 (27 August 2018) =
+
+*Security:*
+
+* Patched an XSS vulnerability that allowed javascript injection into the form import function. Many thanks to Adam Roberts for practicing responsible disclosure.
+* Patched a CSV injection vulnerability that allowed user values to run some scripts when opening exported CSV files with Excel.
+
+*Bugs:*
+
+* The selector in the add a form modal should now scroll properly instead of being cut off by the bottom of the browser when it contains a large number of forms.
+* Resolved an issue that sometimes caused the character limit option for paragraph fields to count words instead.
+
+= 3.3.13 (8 August 2018) =
+
+*Changes:*
+
+* Added the abililty to have no default value for Country and State fields. 
+* Added the Indian Rupee to the list of available currencies
+* Removed unnecessary comments from the main field template
+
+*Bugs:*
+
+* User Meta Tags will no longer print out the tag when users are not logged in
+
+= 3.3.12 (31 July 2018) =
+
+*Bugs:*
+
+* Resolved an issue that sometimes caused form titles to not display in dropdown menus.
+
+= 3.3.11 (23 July 2018) =
+
+*Changes:*
+
+* Updated save methods for form settings to reduce potential encoding errors.
+
+= 3.3.10 (16 July 2018) =
+
+*Bugs:*
+
+* (Beta) The Ninja Forms Gutenberg block should now work properly on the newest version of Gutenberg.
+* Min and max values for number fields should once more accept decimal values.
+* Resolved an issue that was sometimes causing a description text block to be output, even if it contained no text.
+* Radio lists should now properly display the default value when using our opinionated styles.
 
 = 3.3.9 (6 July 2018) =
 
