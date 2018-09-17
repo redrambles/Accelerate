@@ -289,18 +289,39 @@ section.home-page {
 }
 
 .blog-post h4,
-.PI_SimpleTwitterTweets h3 {
+.PI_SimpleTwitterTweets h3,
+.tweet-module h4 {
     text-transform: uppercase;
     color: #a6a6a6;
     font-family: 'Montserrat';
     font-size: 16px;
 }
 
-.blog-post h2 {
+.tweet-module h4 {
+    padding-bottom: 1em;
+}
+
+.tweet-module,
+.tweet-module aside,
+.tweet-module aside .ctf-tweets .ctf-item,
+.tweet-module .follow-us-link {
+    padding: 0;
+}
+
+.tweet-module aside .ctf-tweets .ctf-item .ctf-tweet-text {
+    color: #818181;
+    line-height: 2.1;
+    font-size: 1.1em;
+}
+
+
+.blog-post h2,
+.tweet-module aside .widget-title {
     padding-bottom: 20px;
     font-family: 'Montserrat';
     font-size: 24px;
     font-weight: bold;
+    color: rgb(59, 59, 59);
 }
 
 .blog-post p {
@@ -322,7 +343,7 @@ section.home-page {
 .tweet-module {
     float: right;
     width: 45%;
-    padding: 2% 0 0 5%;
+    padding: 0 0 0 5%;
 }
 
 .tweets {

@@ -20,7 +20,6 @@ get_header(); ?>
 //while ( have_rows( 'social-icon', 'option' ) ) : the_row(); ?>
 <!-- <a href="<?php //the_sub_field( 'social-media-address', 'option' ); ?>"><?php //the_sub_field( 'social-media-address', 'option' ); ?></a> -->
 <?php //endwhile; ?>
-
 <section class="home-page">
 		<!-- <div class="site-content"> -->
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -122,6 +121,7 @@ get_header(); ?>
 		<?php if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
 		
 		<div id="secondary" class="widget-area tweet-module" role="complementary">
+		<h4>Recent Tweet</h4>
 		<!-- see inc/extras.php for how the '@Redrambles' was dynamically output -->
 		    <a href="<?php echo $twitter_link ?>"><?php dynamic_sidebar( 'sidebar-2' ); ?></a>
 
