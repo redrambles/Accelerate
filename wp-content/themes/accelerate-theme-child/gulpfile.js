@@ -3,6 +3,7 @@ var gulp = require('gulp');
 
 // include plug-ins
 var jshint = require('gulp-jshint'),
+browserSync = require('browser-sync'),
 imagemin = require('gulp-imagemin'),
 postcss = require('gulp-postcss'),
 cssnano = require('gulp-cssnano'),
@@ -28,7 +29,7 @@ gulp.task('images', function() {
   
   // Browser Sync
   var browserSync = require('browser-sync');
-  var reload      = browserSync.reload;
+  // var reload      = browserSync.reload;
 
   // browser-sync task for starting the server.
   gulp.task('browser-sync', function() {
@@ -45,21 +46,24 @@ gulp.task('images', function() {
       // initialize browsersync
       browserSync.init(files, {
         // browsersync with a php server
-        proxy: "localhost/accelerate/",
+        proxy: "localhost:8888/accelerate/",
         notify: false
+      })
+      gulp.watch(files, function(){
+        browserSync.reload();
       })
     });
     
     gulp.task('styles', function(){
     /* the 'return' is necessary to respect the asynchronous nature of postcss*/
     gulp.src('./style.css')
-    .pipe(csslint())
-    .pipe(csslint.formatter())
+    // .pipe(csslint())
+    // .pipe(csslint.formatter())
     .pipe(autoprefixer({
       browsers: ['last 3 versions'],
       cascade: false
     }))
-    .pipe(gulp.dest('./css/'))
+    // .pipe(gulp.dest('./css/'))
   });
 
   // gulp.task('minifyStyles', function(){

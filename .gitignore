@@ -8,6 +8,7 @@ debug.sql
 accel_database.sql
 backup.sh
 test-db-connection.php
+wpsucli
 
 # build stuff
 wp-cli.yml
