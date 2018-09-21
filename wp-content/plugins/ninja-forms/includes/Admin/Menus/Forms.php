@@ -10,6 +10,9 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
     public $position = '35.1337';
 
+    // Stores whether or not this form has a password field.
+    private $legacy_password = false;
+
     public function __construct()
     {
         parent::__construct();
@@ -288,7 +291,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 //            $cache_updated = false;
 
             foreach ($fields as $field) {
-
+                
                 $field_id = ( is_object( $field ) ) ? $field->get_id() : $field[ 'id' ];
 
                 /*
@@ -322,6 +325,15 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
                 /* END Duplicate field check. */
 
                 $type = ( is_object( $field ) ) ? $field->get_setting( 'type' ) : $field[ 'settings' ][ 'type' ];
+
+                /*
+                 * As of version 3.3.16, we want password fields to only show up if the user is using an add-on that requires them.
+                 * But, because we don't want to break any forms that may already have a password field, we enable them if the current form already has them.
+                 * The $legacy_password class var holds whether or not this form has a pre-existing password or confirm password field.
+                 */
+                if ( 'password' == $type || 'passwordconfirm' == $type ) {
+                    $this->legacy_password = true;
+                }
 
                 if( ! isset( Ninja_Forms()->fields[ $type ] ) ){
                     $field = NF_Fields_Unknown::create( $field );
@@ -416,6 +428,11 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         $setting_defaults = array();
 
         foreach( Ninja_Forms()->fields as $field ){
+            if ( 'password' == $field->get_type() || 'passwordconfirm' == $field->get_type() ) {
+                if( ! $this->legacy_password && ! apply_filters( 'ninja_forms_enable_password_fields', false ) ){
+                    continue;
+                }
+            }
 
             $name = $field->get_name();
             $settings = $field->get_settings();

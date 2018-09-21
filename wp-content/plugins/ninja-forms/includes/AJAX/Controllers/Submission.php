@@ -352,12 +352,19 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
 
             if( ! is_string( $type ) ) continue;
 
-            $action_class = Ninja_Forms()->actions[ $type ];
+            /*
+             *  test if Ninja_Forms()->actions[ $type ] is not empty
+             */
+            if(isset(Ninja_Forms()->actions[ $type ])) 
+            { 
+                $action_class = Ninja_Forms()->actions[ $type ];
 
-            if( ! method_exists( $action_class, 'process' ) ) continue;
-
-            if( $data = $action_class->process($action[ 'settings' ], $this->_form_id, $this->_data ) ){
-                $this->_data = apply_filters( 'ninja_forms_post_run_action_type_' . $action[ 'settings' ][ 'type' ], $data );
+                if( ! method_exists( $action_class, 'process' ) ) continue;
+    
+                if( $data = $action_class->process($action[ 'settings' ], $this->_form_id, $this->_data ) )
+                {
+                    $this->_data = apply_filters( 'ninja_forms_post_run_action_type_' . $action[ 'settings' ][ 'type' ], $data );
+                }
             }
 
 //            $this->_data[ 'actions' ][ $type ][] = $action;

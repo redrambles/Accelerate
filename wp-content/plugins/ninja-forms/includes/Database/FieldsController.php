@@ -67,11 +67,14 @@ final class NF_Database_FieldsController
         foreach( $this->fields_data as $field_data ){
             $field_id = $field_data[ 'id' ];
             foreach( $field_data[ 'settings' ] as $key => $value ){
-                if( isset( $existing_meta[ $field_id ][ $key ] ) ){
-                    if( $value == $existing_meta[ $field_id ][ $key ] ) continue;
-                    $this->update_field_meta( $field_id, $key, $value );
-                } else {
-                    $this->insert_field_meta( $field_id, $key, $value );
+                // we don't need object type or domain stored in the db
+                if( ! in_array( $key, array( 'objectType', 'objectDomain' ) ) ) {
+                    if( isset( $existing_meta[ $field_id ][ $key ] ) ){
+                        if( $value == $existing_meta[ $field_id ][ $key ] ) continue;
+                        $this->update_field_meta( $field_id, $key, $value );
+                    } else {
+                        $this->insert_field_meta( $field_id, $key, $value );
+                    }
                 }
             }
         }

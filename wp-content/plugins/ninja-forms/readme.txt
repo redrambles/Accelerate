@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorho
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 3.3.15
+Stable tag: 3.3.16
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -111,13 +111,35 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.3.15 (31 August 2018) =
+= 3.3.16 (17 September 2018) =
 
 *Bugs:*
 
-* Fixed an issue causing errors when forms containing checkboxes had csv files attached to Email Actions
+* Resolved an issue that was sometimes causing upgrades on multi-site to delete forms from other sites on the installation.
+* Corrected a bad reference in our Create a Post template documentation.
+* List field values sent in an email via CSV should no longer display as NULL if their value was 0.
+* Resolved a couple issues that were causing server warnings.
+
+*Changes:*
+
+* Removed some outdated objects to improve speed of publish.
+* Added modal on downgrade to prevent accidental usage.
+* Password fields have been deprecated in Ninja Forms core. Some of our add-ons will still utilize them.
 
 == Changelog ==
+
+*Bugs:*
+
+* Resolved an issue that was sometimes causing upgrades on multi-site to delete forms from other sites on the installation.
+* Corrected a bad reference in our Create a Post template documentation.
+* List field values sent in an email via CSV should no longer display as NULL if their value was 0.
+* Resolved a couple issues that were causing server warnings.
+
+*Changes:*
+
+* Removed some outdated objects to improve speed of publish.
+* Added modal on downgrade to prevent accidental usage.
+* Password fields have been deprecated in Ninja Forms core. Some of our add-ons will still utilize them.
 
 = 3.3.15 (31 August 2018) =
 

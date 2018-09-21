@@ -303,7 +303,7 @@ final class NF_Actions_Email extends NF_Abstracts_Action
             $label = ( '' != $field[ 'admin_label' ] ) ? $field[ 'admin_label' ] : $field[ 'label' ];
 
             $value = WPN_Helper::stripslashes( $field[ 'value' ] );
-            if ( empty( $value ) ) {
+            if ( empty( $value ) && ! isset( $value ) ) {
                 $value = '';
             }
             if ( is_array( $value ) ) {

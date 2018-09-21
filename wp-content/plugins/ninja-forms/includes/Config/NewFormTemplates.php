@@ -144,11 +144,11 @@ $ads = array(
         'modal-title'                   => 'Get Front-End Posting for Ninja Forms',
         'modal-content'                 => '<div class="modal-template">
                                                 <img src="' . Ninja_Forms::$url . 'assets/img/add-ons/front-end-posting.png"/>
-                                                <p>In order to use this template, you need User Management for Ninja Forms.</p>
+                                                <p>In order to use this template, you need Front-End Posting for Ninja Forms.</p>
                                                 <p>Create posts, pages, or any custom post type from the front-end.</p>
-                                                <p>The Ninja Forms Front-end Posting extension gives you the power of the WordPress post editor on any publicly viewable page you choose.</p>
+                                                <p>The Ninja Forms Front-End Posting extension gives you the power of the WordPress post editor on any publicly viewable page you choose.</p>
                                                 <div class="actions">
-                                                    <a target="_blank" href="https://ninjaforms.com/extensions/user-management/?utm_medium=plugin&utm_source=dashboard&utm_campaign=New+Form+Templates&utm_content=Frontend+Posting" title="Create Post" class="primary nf-button">Learn More</a>
+                                                    <a target="_blank" href="https://ninjaforms.com/extensions/front-end-posting/?utm_medium=plugin&utm_source=dashboard&utm_campaign=New+Form+Templates&utm_content=Frontend+Posting" title="Create Post" class="primary nf-button">Learn More</a>
                                                 </div>
                                             </div>',
     ),

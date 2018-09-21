@@ -58,6 +58,30 @@ jQuery(document).ready(function($) {
 	message = document.createElement( 'div' );
 	message.appendChild( container );
 
+	var downgradeContainer, downgradeTitle, downgradeWarning, downgradeCTA, downgradeInput;
+	downgradeInput 						= document.createElement( 'input' );
+	downgradeInput.setAttribute( 'type', 'text' );
+	downgradeInput.id 					= 'downgradeConfirmInput';
+	downgradeInput.style.marginBottom 	= '15px';
+	downgradeInput.style.padding 		= '7px';
+	downgradeInput.style.border 		= '1px solid #D3D3D3';
+	downgradeInput.style.width 			= '100%';
+	downgradeInput.style.height 		= '3em';
+	downgradeCTA 						= document.createElement( 'p' );
+	downgradeCTA.innerHTML 				= nf_settings.i18n.downgradeConfirmMessage;
+	downgradeWarning 					= document.createElement( 'p' );
+	downgradeWarning.innerHTML 			= nf_settings.i18n.downgradeWarningMessage;
+	downgradeWarning.style.color 		= 'red';
+	downgradeTitle 						= document.createElement( 'h3' );
+	downgradeTitle.innerHTML 			= nf_settings.i18n.downgradeMessage;
+	downgradeContainer 					= document.createElement( 'div' );
+	downgradeContainer.appendChild( downgradeTitle );
+    downgradeContainer.appendChild( downgradeWarning );
+    downgradeContainer.appendChild( downgradeCTA );
+    downgradeContainer.appendChild( downgradeInput );
+
+
+
 	// set up delete model with all the elements created above
 	deleteAllDataModal = new jBox( 'Modal', {
 		width: 450,
@@ -161,13 +185,65 @@ jQuery(document).ready(function($) {
             });
     });
 
-    $( '#nfRollback' ).on( 'click', function( event ){
-        var rollback = confirm( nf_settings.i18n.rollbackConfirm );
-        if( ! rollback ){
-            event.preventDefault();
-        }
-    });
+	// Start building our downgrade model.
+    jQuery( '#nfDowngrade' ).click( function( e ) {
+        var data = {
+            class: 'nfDowngradeModal',
+            closeOnClick: 'body',
+            closeOnEsc: true,
+			// TODO: Maybe this should be build using DOM node construction?
+            content: downgradeContainer.innerHTML,
+            btnPrimary: {
+                text: nf_settings.i18n.downgradeButtonPrimary,
+				class: 'nfDowngradeButtonPrimary',
+                callback: function( e ) {
+                	// If our "Downgrade" button does not have have an attribute of disabled...
+                    if( 'disabled' !== $('.nfDowngradeButtonPrimary').attr( 'disabled' ) ){
+                    	// ...get the url...
+                    	var url = window.location.href;
+                    	// ...split the url based on the question mark from the query string...
+                    	url = url.split( '?' );
+                    	// build the downgrade url and redirect the user.
+                    	url[0] = url[0] + '?page=ninja-forms&nf-switcher=rollback';
+                    	window.location.replace( url[0] );
+					}
+                }
+            },
+            btnSecondary: {
+                text: nf_settings.i18n.downgradeButtonSecondary,
+				class: 'nfDowngradeButtonSecondary',
+                callback: function( e ) {
+                	// Close the modal if this button is clicked.
+                    downgradeModel.toggleModal( false );
+                }
+            },
+            useProgressBar: false,
+        };
+        var downgradeModel = new NinjaModal( data );
+        // Style and add the disabled tag by default.
+        $('.nfDowngradeButtonPrimary').css( 'background', '#ccc' );
+        $('.nfDowngradeButtonPrimary').css( 'border', '#ccc 1px solid' );
+        $('.nfDowngradeButtonPrimary').attr( 'disabled', true );
 
+        // Listen to our input and...
+        $('#downgradeConfirmInput').on( 'keyup', function(){
+        	// ...if DOWNGRADE is typed then...
+        	if( 'DOWNGRADE' == $('#downgradeConfirmInput').val() ) {
+                // ...apply our blue styling to button and remove disabled attribute.
+        		$('.nfDowngradeButtonPrimary').css( 'background', '#1EA9EA' );
+                $('.nfDowngradeButtonPrimary').css( 'border', '#1EA9EA 1px solid' );
+                $('.nfDowngradeButtonPrimary').removeAttr( 'disabled' );
+            }
+
+            // ...if DOWNGRADE is not typed then...
+            if( 'DOWNGRADE' !== $('#downgradeConfirmInput').val() ) {
+                // ...set styling back to default and reapply the disabled prop.
+        		$('.nfDowngradeButtonPrimary').css( 'background', '#ccc' );
+                $('.nfDowngradeButtonPrimary').css( 'border', '#ccc 1px solid' );
+                $('.nfDowngradeButtonPrimary').prop( 'disabled', true );
+			}
+		})
+    });
 
 	$( document ).on( 'click', '#delete_on_uninstall', function( e ) {
 		deleteAllDataModal.open();

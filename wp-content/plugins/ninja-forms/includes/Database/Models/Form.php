@@ -347,13 +347,19 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
         $fields = Ninja_Forms()->form( $form_id )->get_fields();
 
         foreach( $fields as $field ){
-            $export['fields'][] = $field->get_settings();
+            // If the field is set.
+            if ( ! is_null( $field ) && ! empty( $field ) ) {
+                $export['fields'][] = $field->get_settings();
+            }
         }
 
         $actions = Ninja_Forms()->form( $form_id )->get_actions();
 
         foreach( $actions as $action ){
-            $export[ 'actions' ][] = $action->get_settings();
+            // If the action is set.
+            if ( ! is_null( $action ) && ! empty( $action ) ) {
+                $export[ 'actions' ][] = $action->get_settings();
+            }
         }
 
         if( $return ){
