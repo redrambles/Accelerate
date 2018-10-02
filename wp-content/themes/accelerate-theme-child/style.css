@@ -11,16 +11,12 @@ Text Domain: accelerate-theme-child
 /*@import url('../accelerate-theme/style.css');*/
 
 html {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-    -webkit-box-sizing: inherit;
-    -moz-box-sizing: inherit;
     box-sizing: inherit;
 }
 
@@ -41,6 +37,12 @@ img {
     height: auto;
     vertical-align: middle;
     border: 0;
+}
+
+::-moz-selection {
+    color: #fff;
+    background: #45AC9D;
+    text-shadow: none;
 }
 
 ::selection {
@@ -135,10 +137,6 @@ header#masthead {
 .mobile-menu:hover,
 .mobile-menu:active {
     cursor: pointer;
-    -webkit-transition: all 800ms ease;
-    -moz-transition: all 800ms ease;
-    -ms-transition: all 800ms ease;
-    -o-transition: all 800ms ease;
     transition: all 800ms ease;
     background: #2e6d64;
 }
@@ -158,6 +156,7 @@ header#masthead {
     width: 0;
     content: '';
     transition: width 0.45s ease;
+    -ms-transform-origin: left;
     transform-origin: left;
     opacity: 0;
     border-bottom: 2px solid #fff;
@@ -428,8 +427,6 @@ ul.faq-list {
     margin: 0px 3px;
     padding: 10px 0;
     text-align: center;
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
     border-radius: 100%;
     background: rgba(0, 0, 0, 0.8);
     font-size: 0.6em;
@@ -1010,7 +1007,9 @@ aside.sidebar li a {
 
 .blog .blog-page .site-content {
     overflow: auto;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 }
 
@@ -1173,10 +1172,6 @@ aside.sidebar li a {
     width: 206px;
     height: 55px;
     margin: 24px 0;
-    -webkit-transition: all 450ms linear;
-    -moz-transition: all 450ms linear;
-    -ms-transition: all 450ms linear;
-    -o-transition: all 450ms linear;
     transition: all 450ms linear;
     color: #fff;
     border: 0;
@@ -1216,9 +1211,6 @@ aside.sidebar li a {
 
 .faq .entry-wrap {
     padding: 0.5em;
-    -webkit-transition: 800ms ease-in-out;
-    -moz-transition: 800ms ease-in-out;
-    -o-transition: 800ms ease-in-out;
     transition: 800ms ease-in-out;
     border: 1px solid lightgray;
 }

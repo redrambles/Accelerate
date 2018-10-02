@@ -63,7 +63,7 @@ gulp.task('images', function() {
       browsers: ['last 3 versions'],
       cascade: false
     }))
-    // .pipe(gulp.dest('./css/'))
+     //.pipe(gulp.dest('./css/'))
   });
 
   // gulp.task('minifyStyles', function(){
