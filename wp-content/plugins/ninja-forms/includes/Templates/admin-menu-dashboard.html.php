@@ -119,6 +119,10 @@
 
 <!-- Section: Memberships -->
 <script id="tmpl-nf-memberships" type="text/template">
+    <?php
+        $saved = get_option( 'ninja_forms_memberships_feed', false );
+        if ( ! $saved ) {
+    ?>
     <div class="widget widget-memberships">
         <div class="pricing-container">
             <div class="pricing-block widget">
@@ -133,11 +137,6 @@
                         <i class="fa fa-users" aria-hidden="true"></i>
                         <span class="pricing-body-title"><?php _e( 'Unlimited Sites', 'ninja-forms' ); ?></span>
                         <span><?php _e( 'Updates & Support', 'ninja-forms' ); ?></span>
-                    </div>
-                    <div>
-                        <i class="fa fa-money" aria-hidden="true"></i>
-                        <span class="pricing-body-title"><?php _e( '50% off recurring renewals', 'ninja-forms' ); ?></span>
-                        <span><?php _e( 'Renews at $249.50/year', 'ninja-forms' ); ?></span>
                     </div>
                     <div>
                         <i class="fa fa-rocket" aria-hidden="true"></i>
@@ -176,11 +175,6 @@
                         <span><?php _e( 'Updates & Support', 'ninja-forms' ); ?></span>
                     </div>
                     <div>
-                        <i class="fa fa-money" aria-hidden="true"></i>
-                        <span class="pricing-body-title"><?php _e( '50% off recurring renewals', 'ninja-forms' ); ?></span>
-                        <span><?php _e( 'Renews at $99.50/year', 'ninja-forms' ); ?></span>
-                    </div>
-                    <div>
                         <i class="fa fa-plane" aria-hidden="true"></i>
                         <span class="pricing-body-title"><?php _e( 'Faster Support', 'ninja-forms' ); ?></span>
                     </div>
@@ -209,11 +203,6 @@
                         <span><?php _e( 'Updates & Support', 'ninja-forms' ); ?></span>
                     </div>
                     <div>
-                        <i class="fa fa-money" aria-hidden="true"></i>
-                        <span class="pricing-body-title"><?php _e( '50% off recurring renewals', 'ninja-forms' ); ?></span>
-                        <span><?php _e( 'Renews at $49.50/year', 'ninja-forms' ); ?></span>
-                    </div>
-                    <div>
                         <i class="fa fa-car" aria-hidden="true"></i>
                         <span class="pricing-body-title"><?php _e( 'Fast Support', 'ninja-forms' ); ?></span>
                     </div>
@@ -234,9 +223,14 @@
     <div class="widget widget-plan-notice">
         <p class="widget-title"><?php _e( 'That sounds amazing! What else comes with Ninja Forms?', 'ninja-forms' ); ?></p>
         <a href="https://ninjaforms.com/features/?utm_medium=plugin&utm_source=plugin-dashboard&utm_campaign=Ninja+Forms+Memberships&utm_content=Features" target="_blank" class="nf-button primary feature-list-link"><?php _e( 'We\'re glad you asked! Checkout our full list of features!', 'ninja-forms' ); ?> <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
-        <div><em><?php _e( 'All plans include 50% discount on automatic renewals, and a 14 day money back guarantee.', 'ninja-forms' ); ?></em></div>
+        <div><em><?php _e( 'All plans include a 14 day money back guarantee.', 'ninja-forms' ); ?></em></div>
         <div><?php _e( 'Requires a current active license and subject to our', 'ninja-forms' ); ?> <a target="_blank" href="https://ninjaforms.com/terms-conditions/?utm_medium=plugin&utm_source=plugin-dashboard&utm_campaign=Ninja+Forms+Memberships&utm_content=Terms+Conditions"><?php _e( 'Terms & Conditions', 'ninja-forms' ); ?></a>.</div>
     </div>
+    <?php
+    } else {
+        echo( $saved );
+    }
+    ?>
 </script>
 
 <!-- Widget: Forms -->

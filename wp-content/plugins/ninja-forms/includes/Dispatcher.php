@@ -35,6 +35,8 @@ final class NF_Dispatcher
      * 
      * @since  3.2
      * @return void
+     * 
+     * @updated 3.3.17
      */
     public function update_environment_vars() {
         global $wpdb;
@@ -73,6 +75,7 @@ final class NF_Dispatcher
 
         $environment = array(
             'nf_version'                => Ninja_Forms::VERSION,
+            'nf_db_version'             => get_option( 'ninja_forms_db_version', '1.0' ),
             'wp_version'                => get_bloginfo('version'),
             'multisite_enabled'         => $multisite_enabled,
             'server_type'               => $_SERVER['SERVER_SOFTWARE'],

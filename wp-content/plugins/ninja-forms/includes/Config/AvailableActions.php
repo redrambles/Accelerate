@@ -9,7 +9,7 @@ return apply_filters( 'ninja_forms_available_actions', array(
         'link'              => 'https://ninjaforms.com/extensions/mail-chimp/?utm_medium=plugin&utm_source=plugin&utm_campaign=Ninja+Forms+Actions+Drawer&utm_content=MailChimp',
         'plugin_path'       => 'ninja-forms-mail-chimp/ninja-forms-mail-chimp.php',
         'modal_content'     => '<div class="available-action-modal">
-                                    <img src="' . Ninja_Forms::$url . 'assets/img/add-ons/mailchimp-for-ninja-forms.png"/>
+                                    <img src="' . Ninja_Forms::$url . 'assets/img/add-ons/mail-chimp.png"/>
                                     <p>In order to use this action, you need MailChimp for Ninja Forms.</p>
                                     <p>The MailChimp extension allows you to quickly create newsletter signup forms for your MailChimp account using the power and flexibility that Ninja Forms provides.</p>
                                     <div class="actions">

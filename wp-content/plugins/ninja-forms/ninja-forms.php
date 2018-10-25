@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 3.3.16
+Version: 3.3.17
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -57,7 +57,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         /**
          * @since 3.0
          */
-        const VERSION = '3.3.16';
+        const VERSION = '3.3.17';
 
         const WP_MIN_VERSION = '4.7';
 
@@ -974,11 +974,23 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
     }
     add_action( 'nf_optin_cron', 'nf_optin_update_environment_vars' );
 
-    // Custom Cron Recurrences
+    /**
+     * Function to register our Custom Cron Recurrences.
+     * 
+     * @param $schedules (Array) The available cron recurrences.
+     * @return (Array) The filtered cron recurrences.
+     * 
+     * @since 
+     * @updated 3.3.17
+     */
     function nf_custom_cron_job_recurrence( $schedules ) {
         $schedules[ 'nf-monthly' ] = array(
             'display' => __( 'Once per month', 'ninja-forms' ),
             'interval' => 2678400,
+        );
+        $schedules[ 'nf-weekly' ] = array(
+            'display' => __( 'Once per week', 'ninja-forms' ),
+            'interval' => 604800,
         );
         return $schedules;
     }
@@ -990,6 +1002,42 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             wp_schedule_event( current_time( 'timestamp' ), 'nf-monthly', 'nf_optin_cron' );
         }
     }
-
     add_action( 'wp', 'nf_optin_send_admin_email_cron_job' );
+    
+    /**
+     * Function called via weekly wp_cron to update our marketing feeds.
+     * 
+     * @since 3.3.17
+     */
+    function nf_update_marketing_feed() {
+        // Fetch our membership data.
+        $data = wp_remote_get( 'http://api.ninjaforms.com/feeds/?fetch=memberships' );
+        // If we got a valid response...
+        if ( 200 == $data[ 'response' ][ 'code' ] ) {
+            // Save the data to our option.
+            $data = wp_remote_retrieve_body( $data );
+            update_option( 'ninja_forms_memberships_feed', $data, false );
+        }
+        // Fetch our addon data.
+        $data = wp_remote_get( 'http://api.ninjaforms.com/feeds/?fetch=addons' );
+        // If we got a valid response...
+        if ( 200 == $data[ 'response' ][ 'code' ] ) {
+            // Save the data to our option.
+            $data = wp_remote_retrieve_body( $data );
+            update_option( 'ninja_forms_addons_feed', $data, false );
+        }
+    }
+    add_action( 'nf_marketing_feed_cron', 'nf_update_marketing_feed' );
+
+    /**
+     * Function called by our marketing feed cron.
+     * 
+     * @since 3.3.17
+     */
+    function nf_marketing_feed_cron_job() {
+        if ( ! wp_next_scheduled( 'nf_marketing_feed_cron' ) ) {
+            wp_schedule_event( current_time( 'timestamp' ), 'nf-weekly', 'nf_marketing_feed_cron' );
+        }
+    }
+    add_action( 'wp', 'nf_marketing_feed_cron_job' );
 }
