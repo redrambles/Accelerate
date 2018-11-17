@@ -1,0 +1,24 @@
+name: accelalando
+recipe: wordpress
+config:
+  webroot: .
+
+proxy:
+  mailhog:
+    - mail.accelalando.lndo.site
+
+# Mailhog things
+services:
+
+  # Spin up a mailhog container called "mailhog"
+  # NOTE: "mailhog" is arbitrary, you could just as well call this "blackhole" or "weezer"
+  mailhog:
+
+    # Use the latest mailhog version
+    type: mailhog
+
+    # List of services that we want to capture mail from
+    # You can run `lando info` to get a list of services that are available
+    # Mailhog expects that these services will be php services
+    hogfrom:
+      - appserver
