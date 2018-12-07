@@ -28,7 +28,7 @@ class NF_FormBlock {
 		wp_register_script(
 			'ninja-forms-block',
 			$js_dir . 'block.js',
-			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'underscore' )
+			array( 'wp-blocks', 'wp-editor', 'wp-components', 'wp-i18n', 'wp-element', 'underscore' )
 		);
 
 		wp_register_style(

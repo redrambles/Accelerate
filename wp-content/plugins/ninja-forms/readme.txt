@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorho
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 3.3.17
+Stable tag: 3.3.20
 License: GPLv2 or later
 
 Drag and drop fields in an intuitive UI to create contact forms, email subscription forms, order forms, payment forms, send emails and more!
@@ -111,20 +111,50 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Upgrade Notice ==
 
-= 3.3.17 (16 October 2018) =
-
-*Bugs:*
-
-* Pressing the tab key while in the delete a form modal should now shift focus to the delete button.
-* Resolved an issue that could have caused some display issues on the dashboard due to cached scripts.
+= 3.3.20 (6 December 2018) =
 
 *Changes:*
 
-* Updated several of our product images on the apps & integrations tab of the dashboard.
-* Our in-app marketing feed will now fetch from a remote site for more swift product updates.
-* [Ninja Shop](https://getninjashop.com/?utm_medium=dashboard_banner&utm_source=ninja-forms&utm_campaign=Awareness) has arrived!
+* Finalized the Gutenberg block. (No longer a Beta feature.)
 
 == Changelog ==
+
+= 3.3.20 (6 December 2018) =
+
+*Changes:*
+
+* Finalized the Gutenberg block. (No longer a Beta feature.)
+
+= 3.3.19.1 (29 November 2018) =
+
+*Security:*
+
+* Patched an open redirect vulnerability using a url parameter in our submission download page. Thank you to Muhammad Talha Khan for practicing responsible disclosure.
+
+= 3.3.19 (20 November 2018) =
+
+*Bugs:*
+
+* Placeholder text should now be visible in number fields that have a minimum value.
+* Corrected an error that was sometimes causing number fields to clear themselves when Multi-part Forms is active.
+
+*Changes:*
+
+* The rich text editor in the form builder should now wrap lines while in code view.
+
+= 3.3.18 (14 November 2018) =
+
+*Security:*
+
+* Patched a redirect XSS vulnerability using code injection on our submissions page. Thank you to Muhammad Talha Khan for practicing responsible disclosure.
+
+*Bugs:*
+
+* Resolved an issue where the WordPress is_search function was being called incorrectly in some cases.
+* Custom columns should no longer be added to non-Ninja Forms custom post types with meta values containing '_field'.
+* Resolved an issue that sometimes caused error log entries related to an invalid IP.
+* The form selector on the submissions page should now be visible on mobile devices.
+* Resolved an issue that sometimes caused CSV exports to have multiple header rows.
 
 = 3.3.17 (16 October 2018) =
 

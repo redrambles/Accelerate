@@ -65,7 +65,13 @@ final class NF_Dispatcher
             $ip_address = $_SERVER[ 'LOCAL_ADDR' ];
         }
 
-        $host_name = gethostbyaddr( $ip_address );
+        // If we have a valid IP Address...
+        if ( filter_var( $ip_address, FILTER_VALIDATE_IP ) ) {
+            // Get the hostname.
+            $host_name = gethostbyaddr( $ip_address );
+        } else {
+            $host_name = 'unknown';
+        }
 
         if ( is_multisite() ) {
             $multisite_enabled = 1;
