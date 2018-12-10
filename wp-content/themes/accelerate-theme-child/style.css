@@ -185,11 +185,11 @@ section.home-page {
     background: url("img/taxi-photo.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
 }
 
-.home .site-content {
+/* .home .site-content {
     overflow: auto;
-}
-/* Home Page Featured Work */
+} */
 
+/* Home Page Featured Work */
 .featured-work {
     margin-bottom: 20px;
 }
@@ -200,20 +200,18 @@ section.home-page {
 }
 
 .homepage-featured-work {
-    overflow: hidden;
+    /* overflow: hidden; */
     margin: 0;
+    display: flex;
     padding-bottom: 10%;
     list-style: none;
 }
 
 .individual-featured-work {
-    display: inline-block;
-    width: 31%;
     margin-right: 3%;
-}
-
-.individual-featured-work:nth-child(3n) {
-    margin-right: 0;
+    flex: 0 1 auto;
+    min-width: 33%;
+    justify-content: space-between;
 }
 
 .individual-featured-work figure {
@@ -1356,9 +1354,6 @@ aside.sidebar li a {
         width: 75%;
         opacity: 1;
     }
-    .menu-top-nav-container {
-        /*background: red;*/
-    }
     .menu-top-nav-container .nav-menu li {
         display: block;
         float: none;
@@ -1407,15 +1402,14 @@ aside.sidebar li a {
 
 @media screen and (max-width: 980px) {
     .individual-featured-work {
-        width: 40%;
-        padding: 1rem 1rem;
+        min-width: 50%;
+        /* padding: 1rem 1rem; */
     }
 }
 
 @media screen and (max-width: 700px) {
     .individual-featured-work {
-        width: 100%;
-        padding: 1rem 0;
+        min-width: 100%;
     }
 }
 
