@@ -8,6 +8,7 @@
  */
 class MC4WP_Container implements ArrayAccess {
 
+
 	/**
 	 * @var array
 	 */
@@ -33,18 +34,17 @@ class MC4WP_Container implements ArrayAccess {
 	 * @throws Exception
 	 */
 	public function get( $name ) {
-
-		if( ! $this->has( $name ) ) {
+		if ( ! $this->has( $name ) ) {
 			throw new Exception( sprintf( 'No service named %s was registered.', $name ) );
 		}
 
 		$service = $this->services[ $name ];
 
 		// is this a resolvable service?
-		if( is_callable( $service ) ) {
+		if ( is_callable( $service ) ) {
 
 			// resolve service if it's not resolved yet
-			if( ! isset( $this->resolved_services[ $name ] ) ) {
+			if ( ! isset( $this->resolved_services[ $name ] ) ) {
 				$this->resolved_services[ $name ] = call_user_func( $service );
 			}
 
@@ -118,4 +118,5 @@ class MC4WP_Container implements ArrayAccess {
 	 */
 	public function offsetUnset( $offset ) {
 		unset( $this->services[ $offset ] );
-}}
+	}
+}

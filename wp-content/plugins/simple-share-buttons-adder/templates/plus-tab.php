@@ -59,6 +59,7 @@
 		<?php
 		echo $this->forms->ssbp_checkboxes( $opts48 ); // WPCS: XSS ok.
 		echo $this->forms->ssbp_input( $opts49 ); // WPCS: XSS ok.
+		echo $this->forms->ssbp_input( $page_omit_plus ); // WPCS: XSS ok.
 		?>
 
 		<h3 id="ssba-preview-title-2"><?php echo esc_html__( 'Preview - the order of your preview will update when you save.', 'simple-share-buttons-adder' ); ?></h3>
@@ -71,6 +72,7 @@
 					</div>
 
 					<ul class="ssbp-list">
+						<?php if ( is_array( $arr_plus_buttons ) ) : ?>
 						<?php foreach ( $arr_plus_buttons as $buttons ) :
 							$button = strtolower( str_replace( ' ', '_', str_replace( '+', '', $buttons['full_name'] ) ) ); ?>
 
@@ -90,6 +92,7 @@
 							<?php endif; ?>
 							</li>
 						<?php endforeach; ?>
+						<?php endif; ?>
 					</ul>
 				</div>
 			</div>
@@ -174,21 +177,6 @@
 						echo $this->forms->ssbp_input( $opts19p ); // WPCS: XSS ok.
 						echo $this->forms->ssbp_input( $opts20p ); // WPCS: XSS ok.
 						?>
-
-						<p>
-							<strong>
-								<?php echo esc_html( 'newsharecounts.com Counts for Twitter', 'simple-share-buttons-adder' ); ?>
-							</strong>
-							<br>
-							<?php echo esc_html__( 'You shall need to follow the instructions here before enabling this feature', 'simple-share-buttons-adder' ); ?> - <a target="_blank" href="http://newsharecounts.com/">newsharecounts.com</a>
-							<?php echo $this->forms->ssbp_input( $opts22p ); // WPCS: XSS ok. ?>
-						</p>
-					</div>
-					<div class="col-md-6">
-						<?php echo $this->forms->ssbp_input( $opts24p ); // WPCS: XSS ok. ?>
-					</div>
-					<div class="col-md-6">
-						<?php echo $this->forms->ssbp_input( $opts25p ); // WPCS: XSS ok. ?>
 					</div>
 				</div>
 			</div>
@@ -280,20 +268,7 @@
 					</div>
 
 					<div class="col-sm-12">
-						<?php echo $this->forms->ssbp_input( $opts40p ); // WPCS: XSS ok.?>
-					</div>
-
-					<div class="col-md-12">
-						<blockquote>
-							<p><?php echo esc_html__( 'If you want to take over control of your share buttons\' CSS entirely, turn on the switch below and enter your custom CSS.', 'simple-share-buttons-adder' ); ?> <strong><?php echo esc_html__( 'ALL of Simple Share Buttons Adder\'s CSS will be disabled', 'simple-share-buttons-adder' ); ?></strong>.</p>
-						</blockquote>
-					</div>
-
-					<div class="col-sm-12">
-						<?php
-						echo $this->forms->ssbp_input( $opts41p ); // WPCS: XSS ok.
-						echo $this->forms->ssbp_input( $opts42p ); // WPCS: XSS ok.
-						?>
+						<?php echo $this->forms->ssbp_input( $opts40p ); // WPCS: XSS ok. ?>
 					</div>
 				</div>
 			</div>

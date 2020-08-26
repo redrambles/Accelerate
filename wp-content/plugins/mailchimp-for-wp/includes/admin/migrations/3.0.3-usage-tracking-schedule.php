@@ -2,7 +2,7 @@
 defined( 'ABSPATH' ) or exit;
 
 $options = (array) get_option( 'mc4wp', array() );
-if( empty( $options['allow_usage_tracking'] ) ) {
+if ( empty( $options['allow_usage_tracking'] ) ) {
 	return;
 }
 
@@ -15,7 +15,7 @@ if( empty( $options['allow_usage_tracking'] ) ) {
 function _mc4wp_303_add_monthly_cron_schedule( $schedules ) {
 	$schedules['monthly'] = array(
 		'interval' => 30 * DAY_IN_SECONDS,
-		'display' => 'Once a month'
+		'display'  => 'Once a month',
 	);
 
 	return $schedules;

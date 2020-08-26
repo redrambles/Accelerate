@@ -13,6 +13,10 @@
 	width: 100%;
 }
 
+.ssba a {
+	text-decoration: none!important;
+}
+
 .ssba-float-right-btn {
 	float:right;
 	margin: 20px 0 0 20px;
@@ -265,4 +269,11 @@
 
 .ssbp-list li img {
 	box-sizing: unset;
+}
+
+.right li .ssbp-each-share {
+	left: unset;
+	right: 100%;
+	margin-right: -12px;
+	margin-left: 0;
 }

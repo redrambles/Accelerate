@@ -1,9 +1,9 @@
 === Simple Share Buttons Adder ===
 Contributors: sharethis, scottstorebloom, surlyrightclick, DavidoffNeal
-Tags: share buttons, social buttons, facebook, twitter, google+, share, share links, stumble upon, linkedin, pinterest, yummly, vk
+Tags: share buttons, social buttons, facebook, twitter, google+, share, share links, stumble upon, linkedin, pinterest, yummly, vk, flattr
 Requires at least: 4.5
-Tested up to: 4.9.5
-Stable tag: 7.4.18
+Tested up to: 5.4.1
+Stable tag: 7.7.1
 License: GPLv2 or later
 
 A simple plugin that enables you to add share buttons to all of your posts and/or pages.
@@ -65,6 +65,38 @@ Please visit the <a href="https://wordpress.org/support/plugin/simple-share-butt
 4. An example of the buttons shown below page content using the "Ribbon" theme.
 
 == Changelog ==
+
+= 7.7.1 =
+* Add: Add new button images.
+
+= 7.7.0 =
+* Add: Add Line, Weibo, and Skype buttons.
+* Fix: Update DB data structure away from JSON.
+* Add: Review us dismissible popup.
+
+= 7.6.21 =
+* Security: Added esc_url to incoming shortcode URLs to avoid nafarious share links.
+
+= 7.6.20 =
+* Add: Added new block for Gutenberg users.
+
+= 7.6.19 =
+* Add: remove sharecount.com opions.
+* Add: Add page omit by title options for all buttons.
+* Fix: Flattr button.
+* Fix: Email custom text.
+* Fix: Twitter custom text.
+* Fix: Verify 5+ compatibility with gutenberg.
+
+= 7.5.19 =
+* Fix: double class issue.
+* Add: remove gloogle plus from button options.
+
+= 7.5.18 =
+* Fix: Make sure all custom/advanced css fields work properly and separately.
+* Add: Style to avoid decoration to the buttons.
+* Fix: Major conflict with classic and modern buttons if no networks selected.
+* Add: change wrapper id to a class.
 
 = 7.4.18 =
 * Fix: Mobile disable option for Share Bar.

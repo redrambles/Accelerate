@@ -8,6 +8,7 @@
  */
 class MC4WP_Admin_Messages {
 
+
 	/**
 	 * @var array
 	 */
@@ -27,14 +28,14 @@ class MC4WP_Admin_Messages {
 	}
 
 	private function load() {
-		if( is_null( $this->bag ) ) {
+		if ( is_null( $this->bag ) ) {
 			$this->bag = get_option( 'mc4wp_flash_messages', array() );
 		}
 	}
 
 	// empty flash bag
 	private function reset() {
-		$this->bag = array();
+		$this->bag   = array();
 		$this->dirty = true;
 	}
 
@@ -48,7 +49,7 @@ class MC4WP_Admin_Messages {
 		$this->load();
 		$this->bag[] = array(
 			'text' => $message,
-			'type' => $type
+			'type' => $type,
 		);
 		$this->dirty = true;
 	}
@@ -61,7 +62,7 @@ class MC4WP_Admin_Messages {
 	public function show() {
 		$this->load();
 
-		foreach( $this->bag as $message ) {
+		foreach ( $this->bag as $message ) {
 			echo sprintf( '<div class="notice notice-%s is-dismissible"><p>%s</p></div>', $message['type'], $message['text'] );
 		}
 
@@ -74,7 +75,7 @@ class MC4WP_Admin_Messages {
 	 * @hooked `shutdown`
 	 */
 	public function save() {
-		if( $this->dirty ) {
+		if ( $this->dirty ) {
 			update_option( 'mc4wp_flash_messages', $this->bag, false );
 		}
 	}

@@ -44,7 +44,7 @@
 			<div class="ssbp-wrap ssbp--centred ssbp--theme-4">
 				<div class="ssbp-container">
 					<ul id="ssbasort1" class="ssbp-list ssbaSortable">
-						<?php echo wp_kses_post( $this->get_available_ssba( $arr_settings['ssba_selected_buttons'], $arr_settings ) ); ?>
+						<?php echo wp_kses_post( $this->get_available_ssba( $arr_settings['ssba_selected_buttons'], $arr_settings, 'classic' ) ); ?>
 					</ul>
 				</div>
 			</div>
@@ -55,7 +55,7 @@
 				<div class="ssbp-wrap ssbp--centred ssbp--theme-4">
 					<div class="ssbp-container">
 						<ul id="ssbasort2" class="ssba-include-list ssbp-list ssbaSortable">
-							<?php echo wp_kses_post( $this->get_selected_ssba( $arr_settings['ssba_selected_buttons'], $arr_settings ) ); ?>
+							<?php echo wp_kses_post( $this->get_selected_ssba( $arr_settings['ssba_selected_buttons'], $arr_settings, 'classic' ) ); ?>
 						</ul>
 					</div>
 				</div>
@@ -73,6 +73,7 @@
 		<?php
 		echo $this->forms->ssbp_checkboxes( $opts1 ); // WPCS: XSS ok.
 		echo $this->forms->ssbp_input( $opts2 ); // WPCS: XSS ok.
+		echo $this->forms->ssbp_input( $page_omit ); // WPCS: XSS ok.
 
 		$line_height = 'below' === $arr_settings['ssba_text_placement'] || 'above' === $arr_settings['ssba_text_placement'] ? 'inherit' : ( (int) $arr_settings['ssba_size'] + (int) $arr_settings['ssba_padding'] + 3 ) . 'px';
 		$image_line_height = $arr_settings['ssba_size'] . 'px';
@@ -212,28 +213,6 @@
 						echo $this->forms->ssbp_input( $opts20 ); // WPCS: XSS ok.
 						echo $this->forms->ssbp_input( $opts21 ); // WPCS: XSS ok.
 						?>
-
-						<p>
-							<strong>
-								<?php echo esc_html( 'newsharecounts.com Counts for Twitter', 'simple-share-buttons-adder' ); ?>
-							</strong>
-							<br>
-							<?php echo esc_html__( 'You shall need to follow the instructions here before enabling this feature', 'simple-share-buttons-adder' ); ?> - <a target="_blank" href="http://newsharecounts.com/">newsharecounts.com</a>
-							<?php echo $this->forms->ssbp_input( $opts22 ); // WPCS: XSS ok. ?>
-						</p>
-
-						<h3>sharedcount.com</h3>
-						<p>
-							<?php echo esc_html__( 'Only necessary if you are experiencing issues with Facebook share counts.', 'simple-share-buttons-adder' ); ?> <a href="https://admin.sharedcount.com/admin/signup.php" target="_blank"><?php echo esc_html__( 'Signup for your free account here', 'simple-share-buttons-adder' ); ?></a>.
-						</p>
-
-						<?php echo $this->forms->ssbp_input( $opts23 ); // WPCS: XSS ok. ?>
-					</div>
-					<div class="col-md-6">
-						<?php echo $this->forms->ssbp_input( $opts24 ); // WPCS: XSS ok. ?>
-					</div>
-					<div class="col-md-6">
-						<?php echo $this->forms->ssbp_input( $opts25 ); // WPCS: XSS ok. ?>
 					</div>
 				</div>
 			</div>

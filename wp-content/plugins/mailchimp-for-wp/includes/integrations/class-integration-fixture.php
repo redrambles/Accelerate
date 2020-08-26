@@ -8,6 +8,7 @@
  */
 class MC4WP_Integration_Fixture {
 
+
 	/**
 	 * @var string
 	 */
@@ -44,13 +45,14 @@ class MC4WP_Integration_Fixture {
 	 * @param bool $enabled_by_default
 	 * @param array $options
 	 */
-	public function __construct( $slug, $class, $enabled_by_default = false, $options = array() ) {
-		$this->slug = $slug;
-		$this->class = $class;
-		$this->enabled = $this->enabled_by_default = $enabled_by_default;
-		$this->options = $options;
+	public function __construct( $slug, $class, $enabled_by_default = false, array $options = array() ) {
+		$this->slug               = $slug;
+		$this->class              = $class;
+		$this->enabled_by_default = $enabled_by_default;
+		$this->enabled            = $enabled_by_default;
+		$this->options            = $options;
 
-		if( ! empty( $options['enabled'] ) ) {
+		if ( ! empty( $options['enabled'] ) ) {
 			$this->enabled = true;
 		}
 	}
@@ -61,7 +63,7 @@ class MC4WP_Integration_Fixture {
 	 * @return MC4WP_Integration
 	 */
 	public function load() {
-		if( ! $this->instance instanceof MC4WP_Integration ) {
+		if ( ! $this->instance instanceof MC4WP_Integration ) {
 			$this->instance = new $this->class( $this->slug, $this->options );
 		}
 
@@ -72,6 +74,7 @@ class MC4WP_Integration_Fixture {
 	 * Tunnel everything to MC4WP_Integration class
 	 *
 	 * @param $name
+	 * @param $arguments
 	 *
 	 * @return MC4WP_Integration
 	 */
@@ -94,5 +97,4 @@ class MC4WP_Integration_Fixture {
 	public function __toString() {
 		return $this->slug;
 	}
-
 }

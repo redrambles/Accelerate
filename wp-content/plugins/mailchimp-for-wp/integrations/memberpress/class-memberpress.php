@@ -9,27 +9,34 @@ defined( 'ABSPATH' ) or exit;
  */
 class MC4WP_MemberPress_Integration extends MC4WP_Integration {
 
-	/**
-	 * @var string
-	 */
-	public $name = "MemberPress";
 
 	/**
 	 * @var string
 	 */
-	public $description = "Subscribes people from MemberPress register forms.";
+	public $name = 'MemberPress';
+
+	/**
+	 * @var string
+	 */
+	public $description = 'Subscribes people from MemberPress register forms.';
 
 
 	/**
 	 * Add hooks
 	 */
 	public function add_hooks() {
-
-		if( ! $this->options['implicit'] ) {
-			add_action( 'mepr_checkout_before_submit', array( $this, 'output_checkbox' ) );
+		if ( ! $this->options['implicit'] ) {
+			if ( has_action( 'mepr_checkout_before_submit' ) ) {
+				add_action( 'mepr_checkout_before_submit', array( $this, 'output_checkbox' ) );
+			} else {
+				add_action( 'mepr-checkout-before-submit', array( $this, 'output_checkbox' ) );
+			}
 		}
-
-		add_action( 'mepr_signup', array( $this, 'subscribe_from_memberpress' ), 5 );
+		if ( has_action( 'mepr_signup' ) ) {
+			add_action( 'mepr_signup', array( $this, 'subscribe_from_memberpress' ), 5 );
+		} else {
+			add_action( 'mepr-signup', array( $this, 'subscribe_from_memberpress' ), 5 );
+		}
 	}
 
 
@@ -43,7 +50,7 @@ class MC4WP_MemberPress_Integration extends MC4WP_Integration {
 	public function subscribe_from_memberpress( $txn ) {
 
 		// Is this integration triggered? (checkbox checked or implicit)
-		if( ! $this->triggered() ) {
+		if ( ! $this->triggered() ) {
 			return false;
 		}
 
@@ -52,12 +59,11 @@ class MC4WP_MemberPress_Integration extends MC4WP_Integration {
 		$data = array(
 			'EMAIL' => $user->user_email,
 			'FNAME' => $user->first_name,
-            'LNAME' => $user->last_name
+			'LNAME' => $user->last_name,
 		);
 
 		// subscribe using email and name
 		return $this->subscribe( $data, $txn->id );
-
 	}
 
 	/**
@@ -66,5 +72,4 @@ class MC4WP_MemberPress_Integration extends MC4WP_Integration {
 	public function is_installed() {
 		return defined( 'MEPR_VERSION' );
 	}
-
 }

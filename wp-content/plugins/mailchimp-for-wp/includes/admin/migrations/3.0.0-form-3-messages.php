@@ -4,9 +4,9 @@ defined( 'ABSPATH' ) or exit;
 // find all form posts
 $posts = get_posts(
 	array(
-		'post_type' => 'mc4wp-form',
+		'post_type'   => 'mc4wp-form',
 		'post_status' => 'publish',
-		'numberposts' => -1
+		'numberposts' => -1,
 	)
 );
 
@@ -18,15 +18,14 @@ $message_keys = array(
 	'text_already_subscribed',
 	'text_required_field_missing',
 	'text_unsubscribed',
-	'text_not_subscribed'
+	'text_not_subscribed',
 );
 
-foreach( $posts as $post ) {
-
+foreach ( $posts as $post ) {
 	$settings = get_post_meta( $post->ID, '_mc4wp_settings', true );
 
-	foreach( $message_keys as $key ) {
-		if( empty( $settings[ $key ] ) ) {
+	foreach ( $message_keys as $key ) {
+		if ( empty( $settings[ $key ] ) ) {
 			continue;
 		}
 

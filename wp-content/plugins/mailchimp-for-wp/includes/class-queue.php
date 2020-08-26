@@ -7,165 +7,183 @@
  */
 class MC4WP_Queue {
 
-    /**
-     * @var MC4WP_Queue_Job[]
-     */
-    protected $jobs;
+	/**
+	 * @var MC4WP_Queue_Job[]
+	 */
+	protected $jobs;
 
-    /**
-     * @var string
-     */
-    protected $option_name;
+	/**
+	 * @var string
+	 */
+	protected $option_name;
 
-    /**
-     * @var bool
-     */
-    protected $dirty = false;
+	/**
+	 * @var bool
+	 */
+	protected $dirty = false;
 
-    /**
-     * MC4WP_Ecommerce_Queue constructor.
-     *
-     * @param string $option_name
-     */
-    public function __construct( $option_name ) {
-        $this->option_name = $option_name;
+	/**
+	 * @var int
+	 */
+	const MAX_JOB_COUNT = 1000;
 
-        register_shutdown_function( array( $this, 'save' ) );
-    }
+	/**
+	 * MC4WP_Ecommerce_Queue constructor.
+	 *
+	 * @param string $option_name
+	 */
+	public function __construct( $option_name ) {
+		$this->option_name = $option_name;
 
-    /**
-     * Load jobs from option
-     */
-    protected function load() {
-        $jobs = get_option( $this->option_name, array() );
+		register_shutdown_function( array( $this, 'save' ) );
+	}
 
-        if( ! is_array( $jobs ) ) {
-            $jobs = array();
-        }
+	/**
+	 * Load jobs from option
+	 */
+	protected function load() {
+		if ( ! is_null( $this->jobs ) ) {
+			return;
+		}
 
-        $this->jobs = $jobs;
-    }
+		$jobs = get_option( $this->option_name, array() );
 
-    /**
-     * Get all jobs in the queue
-     *
-     * @return MC4WP_Queue_Job[] Array of jobs
-     */
-    public function all() {
+		if ( ! is_array( $jobs ) ) {
+			$jobs = array();
+		} else {
+			$valid_jobs = array();
 
-        if( is_null( $this->jobs ) ) {
-            $this->load();
-        }
+			foreach ( $jobs as $i => $obj ) {
+				// filter invalid data from array
+				if ( ! is_object( $obj ) || empty( $obj->data ) ) {
+					continue;
+				}
 
-        return $this->jobs;
-    }
+				// make sure each job is instance of MC4WP_Queue_Job
+				if ( $obj instanceof MC4WP_Queue_Job ) {
+					$job = $obj;
+				} else {
+					$job     = new MC4WP_Queue_Job( $obj->data );
+					$job->id = $obj->id;
+				}
 
-    /**
-     * Add job to queue
-     *
-     * @param mixed $data
-     * @return boolean
-     */
-    public function put( $data ) {
+				$valid_jobs[] = $job;
+			}
 
-        if( is_null( $this->jobs ) ) {
-            $this->load();
-        }
+			$jobs = $valid_jobs;
+		}
 
-        // check if we already have a job with same data
-        foreach( $this->jobs as $job ) {
-            if( $job->data === $data ) {
-                return false;
-            }
-        }
+		$this->jobs = $jobs;
+	}
 
-        // add job to queue
-        $job = new MC4WP_Queue_Job( $data );
-        $this->jobs[] = $job;
-        $this->dirty = true;
-        return true;
-    }
+	/**
+	 * Get all jobs in the queue
+	 *
+	 * @return MC4WP_Queue_Job[] Array of jobs
+	 */
+	public function all() {
+		$this->load();
+		return $this->jobs;
+	}
 
-    /**
-     * Get all jobs in the queue
-     *
-     * @return MC4WP_Queue_Job|false
-     */
-    public function get() {
+	/**
+	 * Add job to queue
+	 *
+	 * @param mixed $data
+	 * @return boolean
+	 */
+	public function put( $data ) {
+		$this->load();
 
-        if( is_null( $this->jobs ) ) {
-            $this->load();
-        }
+		// check if we already have a job with same data
+		foreach ( $this->jobs as $job ) {
+			if ( $job->data === $data ) {
+				return false;
+			}
+		}
 
-        // do we have jobs?
-        if( count( $this->jobs ) === 0 ) {
-            return false;
-        }
+		// if we have more than MAX_JOB_COUNT jobs, remove first job item.
+		// this protects against an ever-growing job list, but also potentially loses jobs if the queue is not processed soon enough.
+		if ( count( $this->jobs ) > self::MAX_JOB_COUNT ) {
+			array_shift( $this->jobs );
+		}
 
-        // return first element
-        return reset( $this->jobs );
-    }
+		// add job to end of jobs array
+		$job          = new MC4WP_Queue_Job( $data );
+		$this->jobs[] = $job;
+		$this->dirty  = true;
+		return true;
+	}
 
-    /**
-     * @param MC4WP_Queue_Job $job
-     */
-    public function delete( MC4WP_Queue_Job $job ) {
+	/**
+	 * Get all jobs in the queue
+	 *
+	 * @return MC4WP_Queue_Job|false
+	 */
+	public function get() {
+		$this->load();
 
-        if( is_null( $this->jobs ) ) {
-            $this->load();
-        }
+		// do we have jobs?
+		if ( count( $this->jobs ) === 0 ) {
+			return false;
+		}
 
-        $index = array_search( $job, $this->jobs, true );
+		// return first element
+		return reset( $this->jobs );
+	}
 
-        // check for "false" here, as 0 is a valid index.
-        if( $index !== false ) {
-            unset( $this->jobs[ $index ] );
-            $this->jobs = array_values( $this->jobs );
-            $this->dirty = true;
-        }
-    }
+	/**
+	 * @param MC4WP_Queue_Job $job
+	 */
+	public function delete( MC4WP_Queue_Job $job ) {
+		$this->load();
 
-    /**
-     * @param MC4WP_Queue_Job $job
-     */
-    public function reschedule( MC4WP_Queue_Job $job  ) {
-        if( is_null( $this->jobs ) ) {
-            $this->load();
-        }
+		$index = array_search( $job, $this->jobs, true );
 
-        // delete job from start of queue
-        $this->delete( $job );
+		// check for "false" here, as 0 is a valid index.
+		if ( $index !== false ) {
+			unset( $this->jobs[ $index ] );
+			$this->jobs  = array_values( $this->jobs );
+			$this->dirty = true;
+		}
+	}
 
-        // add job to end of queue
-        $this->jobs[] = $job;
-        $this->dirty = true;
-    }
+	/**
+	 * @param MC4WP_Queue_Job $job
+	 */
+	public function reschedule( MC4WP_Queue_Job $job ) {
+		$this->load();
 
-    /**
-     * Reset queue
-     */
-    public function reset() {
-        $this->jobs = array();
-        $this->dirty = true;
-    }
+		// delete job from start of queue
+		$this->delete( $job );
 
-    /**
-     * Save the queue
-     */
-    public function save() {
+		// add job to end of queue
+		$this->jobs[] = $job;
+		$this->dirty  = true;
+	}
 
-        if( ! $this->dirty || is_null( $this->jobs ) ) {
-            return false;
-        }
+	/**
+	 * Reset queue
+	 */
+	public function reset() {
+		$this->jobs  = array();
+		$this->dirty = true;
+	}
 
-        $success = update_option( $this->option_name, $this->jobs, false );
+	/**
+	 * Save the queue
+	 */
+	public function save() {
+		if ( ! $this->dirty || is_null( $this->jobs ) ) {
+			return false;
+		}
 
-        if( $success ) {
-            $this->dirty = false;
-        }
+		$success = update_option( $this->option_name, $this->jobs, false );
 
-        return $success;
-    }
+		if ( $success ) {
+			$this->dirty = false;
+		}
 
-
+		return $success;
+	}
 }

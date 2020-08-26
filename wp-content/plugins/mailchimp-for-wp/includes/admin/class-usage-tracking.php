@@ -9,10 +9,11 @@
  */
 class MC4WP_Usage_Tracking {
 
+
 	/**
 	 * @var string
 	 */
-	protected $tracking_url = 'https://mc4wp.com/api/usage-tracking';
+	protected $tracking_url = 'https://www.mc4wp.com/api/usage-tracking';
 
 	/**
 	 * @var MC4WP_Usage_Tracking The One True Instance
@@ -23,18 +24,12 @@ class MC4WP_Usage_Tracking {
 	 * @return MC4WP_Usage_Tracking
 	 */
 	public static function instance() {
-
-		if( ! self::$instance instanceof MC4WP_Usage_Tracking ) {
+		if ( ! self::$instance instanceof MC4WP_Usage_Tracking ) {
 			self::$instance = new MC4WP_Usage_Tracking();
 		}
 
 		return self::$instance;
 	}
-
-	/**
-	 * Constructor
-	 */
-	public function __construct() {}
 
 	/**
 	 * Add hooks
@@ -54,7 +49,7 @@ class MC4WP_Usage_Tracking {
 	public function cron_schedules( $schedules ) {
 		$schedules['monthly'] = array(
 			'interval' => 30 * DAY_IN_SECONDS,
-			'display' => __( 'Once a month' )
+			'display'  => esc_html__( 'Once a month', 'mailchimp-for-wp' ),
 		);
 		return $schedules;
 	}
@@ -66,7 +61,7 @@ class MC4WP_Usage_Tracking {
 	 */
 	public function enable() {
 		// only schedule if not yet scheduled
-		if( ! wp_next_scheduled( 'mc4wp_usage_tracking' ) ) {
+		if ( ! wp_next_scheduled( 'mc4wp_usage_tracking' ) ) {
 			return wp_schedule_event( time(), 'monthly', 'mc4wp_usage_tracking' );
 		}
 
@@ -98,11 +93,13 @@ class MC4WP_Usage_Tracking {
 		$data = $this->get_tracking_data();
 
 		// send non-blocking request and be done with it
-		wp_remote_post( $this->tracking_url, array(
-				'body' => json_encode( $data ),
-				'headers' => array(
+		wp_remote_post(
+			$this->tracking_url,
+			array(
+				'body'     => json_encode( $data ),
+				'headers'  => array(
 					'Content-Type' => 'application/json',
-					'Accept' => 'application/json'
+					'Accept'       => 'application/json',
 				),
 				'blocking' => false,
 			)
@@ -115,27 +112,26 @@ class MC4WP_Usage_Tracking {
 	 * @return array
 	 */
 	protected function get_tracking_data() {
-
 		$data = array(
 			// use md5 hash of home_url, we don't need/want to know the actual site url
-			'site' => md5( home_url() ),
+			'site'                      => md5( home_url() ),
 			'number_of_mailchimp_lists' => $this->get_mailchimp_lists_count(),
-			'mc4wp_version' => $this->get_mc4wp_version(),
-			'mc4wp_premium_version' => $this->get_mc4wp_premium_version(),
-			'plugins' => (array) get_option( 'active_plugins', array() ),
-			'php_version' => $this->get_php_version(),
-			'curl_version' => $this->get_curl_version(),
-			'wp_version' => $GLOBALS['wp_version'],
-			'wp_language' => get_locale(),
-			'server_software' => $this->get_server_software(),
-			'using_https' => $this->is_site_using_https()
+			'mc4wp_version'             => $this->get_mc4wp_version(),
+			'mc4wp_premium_version'     => $this->get_mc4wp_premium_version(),
+			'plugins'                   => (array) get_option( 'active_plugins', array() ),
+			'php_version'               => $this->get_php_version(),
+			'curl_version'              => $this->get_curl_version(),
+			'wp_version'                => $GLOBALS['wp_version'],
+			'wp_language'               => get_locale(),
+			'server_software'           => $this->get_server_software(),
+			'using_https'               => $this->is_site_using_https(),
 		);
 
 		return $data;
 	}
 
 	public function get_php_version() {
-		if( ! defined('PHP_MAJOR_VERSION' ) ) { // defined since PHP 5.2.7
+		if ( ! defined( 'PHP_MAJOR_VERSION' ) ) { // defined since PHP 5.2.7
 			return null;
 		}
 
@@ -150,7 +146,7 @@ class MC4WP_Usage_Tracking {
 	}
 
 	/**
-	 * Returns the MailChimp for WordPress version
+	 * Returns the Mailchimp for WordPress version
 	 *
 	 * @return string
 	 */
@@ -163,16 +159,14 @@ class MC4WP_Usage_Tracking {
 	 */
 	protected function get_mailchimp_lists_count() {
 		$mailchimp = new MC4WP_MailChimp();
-		$list_ids = $mailchimp->get_list_ids( false );
-		return count( $list_ids );
+		return count( $mailchimp->get_lists() );
 	}
-
 
 	/**
 	 * @return string
 	 */
 	protected function get_curl_version() {
-		if( ! function_exists( 'curl_version' ) ) {
+		if ( ! function_exists( 'curl_version' ) ) {
 			return null;
 		}
 
@@ -192,7 +186,7 @@ class MC4WP_Usage_Tracking {
 	 * @return string
 	 */
 	protected function get_server_software() {
-		if( ! isset( $_SERVER['SERVER_SOFTWARE'] ) ) {
+		if ( ! isset( $_SERVER['SERVER_SOFTWARE'] ) ) {
 			return null;
 		}
 

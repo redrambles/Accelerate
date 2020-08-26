@@ -8,15 +8,11 @@
  */
 class MC4WP_Integration_Admin {
 
+
 	/**
 	 * @var MC4WP_Integration_Manager
 	 */
 	protected $integrations;
-
-	/**
-	 * @var MC4WP_MailChimp
-	 */
-	protected $mailchimp;
 
 	/**
 	 * @var MC4WP_Admin_Messages
@@ -25,13 +21,11 @@ class MC4WP_Integration_Admin {
 
 	/**
 	 * @param MC4WP_Integration_Manager $integrations
-	 * @param MC4WP_MailChimp           $mailchimp
 	 * @param MC4WP_Admin_Messages $messages
 	 */
-	public function __construct( MC4WP_Integration_Manager $integrations, MC4WP_Admin_Messages $messages, MC4WP_MailChimp $mailchimp ) {
+	public function __construct( MC4WP_Integration_Manager $integrations, MC4WP_Admin_Messages $messages ) {
 		$this->integrations = $integrations;
-		$this->mailchimp = $mailchimp;
-		$this->messages = $messages;
+		$this->messages     = $messages;
 	}
 
 	/**
@@ -61,26 +55,26 @@ class MC4WP_Integration_Admin {
 	public function enqueue_assets( $suffix, $page = '' ) {
 
 		// only load on integrations pages
-		if( $page !== 'integrations' ) {
+		if ( $page !== 'integrations' ) {
 			return;
 		}
 
 		wp_register_script( 'mc4wp-integrations-admin', MC4WP_PLUGIN_URL . 'assets/js/integrations-admin' . $suffix . '.js', array( 'mc4wp-admin' ), MC4WP_VERSION, true );
-		wp_enqueue_script( 'mc4wp-integrations-admin');
+		wp_enqueue_script( 'mc4wp-integrations-admin' );
 	}
 
 	/**
-	 * @param $items
+	 * @param array $items
 	 *
 	 * @return array
 	 */
 	public function add_menu_item( $items ) {
 		$items[] = array(
-			'title' => __( 'Integrations', 'mailchimp-for-wp' ),
-			'text' => __( 'Integrations', 'mailchimp-for-wp' ),
-			'slug' => 'integrations',
+			'title'    => esc_html__( 'Integrations', 'mailchimp-for-wp' ),
+			'text'     => esc_html__( 'Integrations', 'mailchimp-for-wp' ),
+			'slug'     => 'integrations',
 			'callback' => array( $this, 'show_integrations_page' ),
-			'position' => 20
+			'position' => 20,
 		);
 
 		return $items;
@@ -91,12 +85,11 @@ class MC4WP_Integration_Admin {
 	 * @return array
 	 */
 	public function save_integration_settings( array $new_settings ) {
-
-		$integrations = $this->integrations->get_all();
+		$integrations     = $this->integrations->get_all();
 		$current_settings = (array) get_option( 'mc4wp_integrations', array() );
-		$settings = array();
+		$settings         = array();
 
-		foreach( $integrations as $slug => $integration ) {
+		foreach ( $integrations as $slug => $integration ) {
 			$settings[ $slug ] = $this->parse_integration_settings( $slug, $current_settings, $new_settings );
 		}
 
@@ -105,9 +98,9 @@ class MC4WP_Integration_Admin {
 
 	/**
 	 * @since 3.0
-	 * @param $slug
-	 * @param $current
-	 * @param $new
+	 * @param string $slug
+	 * @param array $current
+	 * @param array $new
 	 *
 	 * @return array
 	 */
@@ -115,17 +108,17 @@ class MC4WP_Integration_Admin {
 		$settings = array();
 
 		// start with current settings
-		if( ! empty( $current[ $slug ] ) ) {
+		if ( ! empty( $current[ $slug ] ) ) {
 			$settings = $current[ $slug ];
 		}
 
 		// if no new settings were given, return current settings.
-		if( empty( $new[ $slug ] ) ) {
+		if ( empty( $new[ $slug ] ) ) {
 			return $settings;
 		}
 
 		// merge new settings with currents (to allow passing partial setting arrays)
-		$settings = array_merge( $settings, $new[ $slug] );
+		$settings = array_merge( $settings, $new[ $slug ] );
 
 		// sanitize settings
 		$settings = $this->sanitize_integration_settings( $settings );
@@ -135,13 +128,12 @@ class MC4WP_Integration_Admin {
 
 	/**
 	 * @param array $settings
-	 *
 	 * @return array
 	 */
 	protected function sanitize_integration_settings( $settings ) {
 
 		// filter null values from lists setting
-		if( ! empty( $settings['lists'] ) ) {
+		if ( ! empty( $settings['lists'] ) ) {
 			$settings['lists'] = array_filter( $settings['lists'] );
 		} else {
 			$settings['lists'] = array();
@@ -156,8 +148,7 @@ class MC4WP_Integration_Admin {
 	 * @internal
 	 */
 	public function show_integrations_page() {
-
-		if( ! empty( $_GET['integration'] ) ) {
+		if ( ! empty( $_GET['integration'] ) ) {
 			$this->show_integration_settings_page( $_GET['integration'] );
 			return;
 		}
@@ -166,10 +157,9 @@ class MC4WP_Integration_Admin {
 		$enabled_integrations = $this->integrations->get_enabled_integrations();
 
 		// get all integrations but remove enabled integrations from the resulting array
-		$available_integrations = $this->integrations->get_all();
-		$available_integrations = array_diff( $available_integrations, $enabled_integrations );
+		$integrations = $this->integrations->get_all();
 
-		require dirname( __FILE__ ) . '/views/integrations.php';
+		require __DIR__ . '/views/integrations.php';
 	}
 
 	/**
@@ -178,19 +168,17 @@ class MC4WP_Integration_Admin {
 	 * @internal
 	 */
 	public function show_integration_settings_page( $slug ) {
-
 		try {
 			$integration = $this->integrations->get( $slug );
-		} catch( Exception $e ) {
+		} catch ( Exception $e ) {
 			echo sprintf( '<h3>Integration not found.</h3><p>No integration with slug <strong>%s</strong> was found.</p>', esc_html( $slug ) );
 			return;
 		}
 
-		$opts = $integration->options;
-		$lists = $this->mailchimp->get_lists();
+		$opts      = $integration->options;
+		$mailchimp = new MC4WP_MailChimp();
+		$lists     = $mailchimp->get_lists();
 
-		require dirname( __FILE__ ) . '/views/integration-settings.php';
+		require __DIR__ . '/views/integration-settings.php';
 	}
-
-
 }

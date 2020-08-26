@@ -213,7 +213,7 @@ class acf_admin_field_group {
 		
 		
 		// set global var
-		$field_group = acf_get_field_group( $post );
+		$field_group = acf_get_field_group( $post->ID );
 		
 		
 		// metaboxes
@@ -407,15 +407,7 @@ class acf_admin_field_group {
 	
 	// modify status
 	$('#post-status-display').html('<?php echo $status; ?>');
-	
-	
-	// remove edit links
-	$('#misc-publishing-actions a').remove();
-	
-	
-	// remove editables (fixes status text changing on submit)
-	$('#misc-publishing-actions .hide-if-js').remove();
-	
+
 })(jQuery);	
 </script>
 <?php	
@@ -557,7 +549,7 @@ class acf_admin_field_group {
 		
 		// get fields
 		$view = array(
-			'fields'	=> acf_get_fields_by_id( $field_group['ID'] ),
+			'fields'	=> acf_get_fields( $field_group ),
 			'parent'	=> 0
 		);
 		

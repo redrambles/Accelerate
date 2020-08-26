@@ -4,11 +4,13 @@
  * Class MC4WP_Plugin
  *
  * Helper class for easy access to information like the plugin file or plugin directory.
+ * Used in MC4WP Premium.
  *
  * @access public
  * @ignore
  */
 class MC4WP_Plugin {
+
 
 	/**
 	 * @var string The plugin version.
@@ -25,7 +27,7 @@ class MC4WP_Plugin {
 	 * @param string $version The main plugin file.
 	 */
 	public function __construct( $file, $version ) {
-		$this->file = $file;
+		$this->file    = $file;
 		$this->version = $version;
 	}
 
@@ -57,7 +59,7 @@ class MC4WP_Plugin {
 	public function dir( $path = '' ) {
 
 		// ensure path has leading slash
-		if( '' !== $path ) {
+		if ( '' !== $path ) {
 			$path = '/' . ltrim( $path, '/' );
 		}
 

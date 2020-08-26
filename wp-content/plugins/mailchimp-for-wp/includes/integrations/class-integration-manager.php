@@ -8,6 +8,7 @@
  */
 class MC4WP_Integration_Manager {
 
+
 	/**
 	 * @var MC4WP_Integration_Fixture[]
 	 */
@@ -42,7 +43,7 @@ class MC4WP_Integration_Manager {
 		/*** @var MC4WP_Integration_Fixture $integration */
 		$enabled_integrations = $this->get_enabled_integrations();
 
-		foreach( $enabled_integrations as $integration ) {
+		foreach ( $enabled_integrations as $integration ) {
 			$integration->load()->initialize();
 		}
 	}
@@ -66,9 +67,8 @@ class MC4WP_Integration_Manager {
 	 * @throws Exception
 	 */
 	public function get( $slug ) {
-
-		if( ! isset( $this->integrations[ $slug ] ) ) {
-			throw new Exception( sprintf( "No integration with slug %s has been registered.", $slug ) );
+		if ( ! isset( $this->integrations[ $slug ] ) ) {
+			throw new Exception( sprintf( 'No integration with slug %s has been registered.', $slug ) );
 		}
 
 		return $this->integrations[ $slug ]->load();
@@ -82,7 +82,7 @@ class MC4WP_Integration_Manager {
 	 * @param bool $enabled
 	 */
 	public function register_integration( $slug, $class, $enabled = false ) {
-		$raw_options = $this->get_integration_options( $slug );
+		$raw_options                 = $this->get_integration_options( $slug );
 		$this->integrations[ $slug ] = new MC4WP_Integration_Fixture( $slug, $class, $enabled, $raw_options );
 	}
 
@@ -92,7 +92,7 @@ class MC4WP_Integration_Manager {
 	 * @param string $slug
 	 */
 	public function deregister_integration( $slug ) {
-		if( isset( $this->integrations[ $slug ] ) ) {
+		if ( isset( $this->integrations[ $slug ] ) ) {
 			unset( $this->integrations[ $slug ] );
 		}
 	}
@@ -128,7 +128,6 @@ class MC4WP_Integration_Manager {
 	 * @return array
 	 */
 	public function get_enabled_integrations() {
-
 		// get all enabled integrations
 		$enabled_integrations = array_filter( $this->integrations, array( $this, 'is_enabled' ) );
 
@@ -142,8 +141,8 @@ class MC4WP_Integration_Manager {
 	}
 
 	/**
-     * Gets all integration options in a keyed array
-     *
+	 * Gets all integration options in a keyed array
+	 *
 	 * @return array
 	 */
 	private function load_options() {
@@ -156,7 +155,7 @@ class MC4WP_Integration_Manager {
 		 *
 		 * @since 3.0
 		 * @param array $options
-         * @ignore
+		 * @ignore
 		 */
 		return (array) apply_filters( 'mc4wp_integration_options', $options );
 	}
@@ -168,12 +167,11 @@ class MC4WP_Integration_Manager {
 	 * @return array
 	 */
 	public function get_integration_options( $slug ) {
-	    static $options;
-	    if( $options === null ) {
-	        $options = $this->load_options();
-        }
+		static $options;
+		if ( $options === null ) {
+			$options = $this->load_options();
+		}
 
 		return isset( $options[ $slug ] ) ? $options[ $slug ] : array();
 	}
-
 }

@@ -9,6 +9,7 @@ defined( 'ABSPATH' ) or exit;
  */
 class MC4WP_Comment_Form_Integration extends MC4WP_Integration {
 
+
 	/**
 	 * @var bool
 	 */
@@ -17,19 +18,18 @@ class MC4WP_Comment_Form_Integration extends MC4WP_Integration {
 	/**
 	 * @var string
 	 */
-	public $name = "Comment Form";
+	public $name = 'Comment Form';
 
 	/**
 	 * @var string
 	 */
-	public $description = "Subscribes people from your WordPress comment form.";
+	public $description = 'Subscribes people from your WordPress comment form.';
 
 	/**
 	 * Add hooks
 	 */
 	public function add_hooks() {
-
-		if( ! $this->options['implicit'] ) {
+		if ( ! $this->options['implicit'] ) {
 			// hooks for outputting the checkbox
 			add_filter( 'comment_form_submit_field', array( $this, 'add_checkbox_before_submit_button' ), 90 );
 
@@ -58,7 +58,7 @@ class MC4WP_Comment_Form_Integration extends MC4WP_Integration {
 	 * Will output the checkbox if comment_form() function does not use `comment_form_submit_field` filter yet.
 	 */
 	public function maybe_output_checkbox() {
-		if( ! $this->added_through_filter ) {
+		if ( ! $this->added_through_filter ) {
 			$this->output_checkbox();
 		}
 	}
@@ -86,8 +86,8 @@ class MC4WP_Comment_Form_Integration extends MC4WP_Integration {
 		$comment = get_comment( $comment_id );
 
 		$data = array(
-			'EMAIL' => $comment->comment_author_email,
-			'NAME' => $comment->comment_author,
+			'EMAIL'    => $comment->comment_author_email,
+			'NAME'     => $comment->comment_author,
 			'OPTIN_IP' => $comment->comment_author_IP,
 		);
 
@@ -106,12 +106,11 @@ class MC4WP_Comment_Form_Integration extends MC4WP_Integration {
 	 */
 	public function get_object_link( $object_id ) {
 		$comment = get_comment( $object_id );
-		
-		if( ! $comment ) {
+
+		if ( ! $comment ) {
 			return '';
 		}
 
 		return sprintf( '<a href="%s">Comment #%d</a>', get_edit_comment_link( $object_id ), $object_id );
 	}
-
 }

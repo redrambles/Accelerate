@@ -6,12 +6,7 @@
  * @ignore
  * @access private
  */
-class MC4WP_Integration_Tags{
-
-	/**
-	 * @var MC4WP_Dynamic_Content_Tags
-	 */
-	protected $tags;
+class MC4WP_Integration_Tags extends MC4WP_Dynamic_Content_Tags {
 
 	/**
 	 * @var MC4WP_Integration
@@ -19,33 +14,22 @@ class MC4WP_Integration_Tags{
 	protected $integration;
 
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
-		$this->tags = new MC4WP_Dynamic_Content_Tags( 'integrations' );
-	}
-
-	/**
 	 * Add hooks
 	 */
 	public function add_hooks() {
-		add_filter( 'mc4wp_dynamic_content_tags_integrations', array( $this, 'register' ) );
-		add_filter( 'mc4wp_integration_checkbox_label', array( $this, 'replace' ), 10, 2 );
+		add_filter( 'mc4wp_integration_checkbox_label', array( $this, 'replace_in_checkbox_label' ), 10, 2 );
 	}
 
 	/**
-	 * Register dynamic content tags for integrations
-	 *
-	 * @hooked `mc4wp_dynamic_content_tags_integrations`
-	 * @param array $tags
-	 * @return array
+	 * Register template tags for integrations
 	 */
-	public function register( array $tags ) {
-		$tags['subscriber_count'] = array(
+	public function register() {
+		parent::register();
+
+		$this->tags['subscriber_count'] = array(
 			'description' => __( 'Replaced with the number of subscribers on the selected list(s)', 'mailchimp-for-wp' ),
-			'callback'    => array( $this, 'get_subscriber_count' )
+			'callback'    => array( $this, 'get_subscriber_count' ),
 		);
-		return $tags;
 	}
 
 	/**
@@ -54,20 +38,21 @@ class MC4WP_Integration_Tags{
 	 * @param MC4WP_Integration $integration
 	 * @return string
 	 */
-	public function replace( $string, MC4WP_Integration $integration ) {
+	public function replace_in_checkbox_label( $string, MC4WP_Integration $integration ) {
 		$this->integration = $integration;
-		$string = $this->tags->replace( $string );
+		$string            = $this->replace( $string, 'esc_html' );
 		return $string;
 	}
 
-    /**
-     * Returns the number of subscribers on the selected lists (for the form context)
-     *
-     * @return int
-     */
-    public function get_subscriber_count() {
-        $mailchimp = new MC4WP_MailChimp();
-        $count = $mailchimp->get_subscriber_count( $this->integration->get_lists() );
-        return number_format( $count );
-    }
+	/**
+	 * Returns the number of subscribers on the selected lists (for the form context)
+	 *
+	 * @return int
+	 */
+	public function get_subscriber_count() {
+		$mailchimp = new MC4WP_MailChimp();
+		$list_ids  = $this->integration->get_lists();
+		$count     = $mailchimp->get_subscriber_count( $list_ids );
+		return number_format( $count );
+	}
 }

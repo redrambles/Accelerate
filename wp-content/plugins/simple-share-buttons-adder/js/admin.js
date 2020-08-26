@@ -53,6 +53,15 @@ var SimpleShareButtonsAdder = ( function( $, wp ) {
 		listen: function() {
 			var self = this;
 
+            // Close review us.
+            $('body').on('click', '#close-review-us', function() {
+                wp.ajax.post( 'ssba_ajax_hide_review', {
+                    nonce: self.data.nonce
+                } ).always( function( results ) {
+                    $('.ssba-review-us').fadeOut();
+                });
+            });
+
 			// If selecting a tab.
 			$( 'body' ).on( 'click', '.ssba-classic-tab, .ssba-modern-tab, .ssba-bar-tab', function() {
 				var selection = 'classic';

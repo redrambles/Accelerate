@@ -1,4 +1,31 @@
 
+ ### v0.12.5 - 2020-08-18 
+ **Changes:** 
+  
+ ### v0.12.4 - 2020-07-13 
+ **Changes:** 
+ * Fix Font Awesome not loading
+ 
+ ### v0.12.3 - 2020-07-13 
+ **Changes:** 
+ * Fixed Menu Icons in Block Editor not working
+* Fixed CWP links.
+ 
+ ### v0.12.2 - 2019-11-15 
+ **Changes:** 
+  
+ ### v0.12.1 - 2019-11-15 
+ **Changes:** 
+ * Improve legacy compatibility
+ 
+ ### v0.12.0 - 2019-11-15 
+ **Changes:** 
+ * Fix issues with WordPress 5.3.
+ 
+ ### v0.11.5 - 2019-05-23 
+ **Changes:** 
+ * Sync composer dependencies with the latest version
+ 
  ### v0.11.4 - 2018-12-10 
  **Changes:** 
  * fix issue with composer libraries.

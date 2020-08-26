@@ -5,6 +5,7 @@
  */
 class MC4WP_Debug_Log_Reader {
 
+
 	/**
 	 * @var resource|null
 	 */
@@ -15,10 +16,10 @@ class MC4WP_Debug_Log_Reader {
 	 */
 	private static $regex = '/^(\[[\d \-\:]+\]) (\w+\:) (.*)$/S';
 
-    /**
-     * @var string
-     */
-    private static $html_template = '<span class="time">$1</span> <span class="level">$2</span> <span class="message">$3</span>';
+	/**
+	 * @var string
+	 */
+	private static $html_template = '<span class="time">$1</span> <span class="level">$2</span> <span class="message">$3</span>';
 
 	/**
 	 * @var string The log file location.
@@ -41,34 +42,34 @@ class MC4WP_Debug_Log_Reader {
 		return file_get_contents( $this->file );
 	}
 
-    /**
-     * Sets file pointer to $n of lines from the end of file.
-     *
-     * @param int $n
-     */
+	/**
+	 * Sets file pointer to $n of lines from the end of file.
+	 *
+	 * @param int $n
+	 */
 	private function seek_line_from_end( $n ) {
-        $line_count = 0;
+		$line_count = 0;
 
-        // get line count
-        while( ! feof( $this->handle ) ) {
-            fgets( $this->handle );
-            $line_count++;
-        }
+		// get line count
+		while ( ! feof( $this->handle ) ) {
+			fgets( $this->handle );
+			$line_count++;
+		}
 
-        // rewind to beginning
-        rewind( $this->handle );
+		// rewind to beginning
+		rewind( $this->handle );
 
-        // calculate target
-        $target = $line_count - $n;
-        $target = $target > 1 ? $target : 1; // always skip first line because oh PHP header
-        $current = 0;
+		// calculate target
+		$target  = $line_count - $n;
+		$target  = $target > 1 ? $target : 1; // always skip first line because oh PHP header
+		$current = 0;
 
-        // keep reading until we're at target
-        while( $current < $target ) {
-            fgets( $this->handle );
-            $current++;
-        }
-    }
+		// keep reading until we're at target
+		while ( $current < $target ) {
+			fgets( $this->handle );
+			$current++;
+		}
+	}
 
 	/**
 	 * @return string|null
@@ -76,37 +77,37 @@ class MC4WP_Debug_Log_Reader {
 	public function read() {
 
 		// open file if not yet opened
-		if( ! is_resource( $this->handle ) ) {
+		if ( ! is_resource( $this->handle ) ) {
 
 			// doesn't exist?
-			if( ! file_exists( $this->file ) ) {
+			if ( ! file_exists( $this->file ) ) {
 				return null;
 			}
 
 			$this->handle = @fopen( $this->file, 'r' );
 
-            // unable to read?
-            if( ! is_resource( $this->handle ) ) {
-                return null;
-            }
+			// unable to read?
+			if ( ! is_resource( $this->handle ) ) {
+				return null;
+			}
 
-            // set pointer to 1000 files from EOF
-            $this->seek_line_from_end( 1000 );
+			// set pointer to 1000 files from EOF
+			$this->seek_line_from_end( 1000 );
 		}
 
 		// stop reading once we're at the end
-		if( feof( $this->handle ) ) {
-            fclose( $this->handle );
-            $this->handle = null;
-            return null;
-        }
+		if ( feof( $this->handle ) ) {
+			fclose( $this->handle );
+			$this->handle = null;
+			return null;
+		}
 
 		// read line, up to 8kb
 		$text = fgets( $this->handle );
 
-      // strip tags & trim 
-      $text = strip_tags( $text );
-      $text = trim( $text );
+		// strip tags & trim
+		$text = strip_tags( $text );
+		$text = trim( $text );
 
 		return $text;
 	}
@@ -117,15 +118,15 @@ class MC4WP_Debug_Log_Reader {
 	public function read_as_html() {
 		$line = $this->read();
 
-      // null means end of file
-      if( is_null( $line ) ) {
-         return null;
-      }
+		// null means end of file
+		if ( is_null( $line ) ) {
+			return null;
+		}
 
-      // empty string means empty line, but not yet eof
-      if( empty( $line ) ) {
-         return '';
-      }
+		// empty string means empty line, but not yet eof
+		if ( empty( $line ) ) {
+			return '';
+		}
 
 		$line = preg_replace( self::$regex, self::$html_template, $line );
 		return $line;
@@ -142,15 +143,14 @@ class MC4WP_Debug_Log_Reader {
 	 */
 	public function lines( $start, $number ) {
 		$handle = fopen( $start, 'r' );
-		$lines = '';
+		$lines  = '';
 
 		$current_line = 0;
-		while( $current_line < $number ) {
+		while ( $current_line < $number ) {
 			$lines .= fgets( $handle );
 		}
 
 		fclose( $handle );
 		return $lines;
 	}
-
 }

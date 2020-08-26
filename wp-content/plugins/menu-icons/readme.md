@@ -2,7 +2,7 @@
 **Contributors:** [codeinwp](https://profiles.wordpress.org/codeinwp), [themeisle](https://profiles.wordpress.org/themeisle)  
 **Tags:** menu, nav-menu, icons, navigation  
 **Requires at least:** 4.3  
-**Tested up to:** 5.0  
+**Tested up to:** 5.4  
 **Stable tag:** trunk  
 **License:** GPLv2  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -47,7 +47,7 @@ Development of this plugin is done on [GitHub](https://github.com/codeinwp/wp-me
 
 ## If you like this plugin, then consider checking out our other projects: ##
 
-[CodeinWP Blog](https://codeinwp.com/blog/) – Designer's Guide To WordPress
+[CodeinWP Blog](https://www.codeinwp.com/blog/) – Designer's Guide To WordPress
 [Revive.Social](https://revive.social) – Social Media Tools
 [JustFreeThemes](https://justfreethemes.com) - Free WordPress Themes directory
 
@@ -224,6 +224,40 @@ Add this block of code to your [mu-plugin file](http://codex.wordpress.org/Must_
 Read [this blog post](http://kucrut.org/add-custom-image-sizes-right-way/).
 
 ## Changelog ##
+### 0.12.5 - 2020-08-18  ###
+
+
+
+### 0.12.4 - 2020-07-13  ###
+
+* Fix Font Awesome not loading
+
+
+### 0.12.3 - 2020-07-13  ###
+
+* Fixed Menu Icons in Block Editor not working
+* Fixed CWP links.
+
+
+### 0.12.2 - 2019-11-15  ###
+
+
+
+### 0.12.1 - 2019-11-15  ###
+
+* Improve legacy compatibility
+
+
+### 0.12.0 - 2019-11-15  ###
+
+* Fix issues with WordPress 5.3.
+
+
+### 0.11.5 - 2019-05-23  ###
+
+* Sync composer dependencies with the latest version
+
+
 ### 0.11.4 - 2018-12-10  ###
 
 * fix issue with composer libraries.

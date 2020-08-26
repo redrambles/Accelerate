@@ -59,6 +59,7 @@
 		<div id="ssba-preview-2" class="<?php echo esc_attr( $arr_settings['ssba_bar_position'] ); ?> ssbp-wrap ssbp--theme-<?php echo esc_attr( $arr_settings['ssba_bar_style'] ); ?>">
 			<div class="ssbp-container">
 				<ul class="ssbp-list">
+					<?php if ( is_array( $arr_bar_buttons ) ) : ?>
 					<?php foreach ( $arr_bar_buttons as $buttons ) :
 						$button = strtolower( str_replace( ' ', '_', str_replace( '+', '', $buttons['full_name'] ) ) ); ?>
 						<li style="margin: <?php echo esc_attr( $arr_settings['ssba_bar_margin'] ); ?>px 0;" class="ssbp-li--<?php echo esc_attr( $button );
@@ -74,12 +75,14 @@
 							<span class="<?php echo 'Y' !== $arr_settings['ssba_bar_show_share_count'] ? esc_attr( 'ssba-hide-button' ) : ''; ?> ssbp-each-share">1.8k</span>
 						</li>
 					<?php endforeach; ?>
+					<?php endif; ?>
 				</ul>
 			</div>
 		</div>
 		<?php
 		echo $this->forms->ssbp_checkboxes( $opts45 ); // WPCS: XSS ok.
 		echo $this->forms->ssbp_checkboxes( $share_bar_display ); // WPCS: XSS ok.
+		echo $this->forms->ssbp_input( $page_omit_bar ); // WPCS: XSS ok.
 		?>
 		<div class="accor-wrap">
 			<div class="accor-tab">
@@ -147,28 +150,6 @@
 						echo $this->forms->ssbp_input( $opts19s ); // WPCS: XSS ok.
 						echo $this->forms->ssbp_input( $opts20s ); // WPCS: XSS ok.
 						?>
-
-						<p>
-							<strong>
-								<?php echo esc_html( 'newsharecounts.com Counts for Twitter', 'simple-share-buttons-adder' ); ?>
-							</strong>
-							<br>
-							<?php echo esc_html__( 'You shall need to follow the instructions here before enabling this feature', 'simple-share-buttons-adder' ); ?> - <a target="_blank" href="http://newsharecounts.com/">newsharecounts.com</a>
-							<?php echo $this->forms->ssbp_input( $opts22 ); // WPCS: XSS ok. ?>
-						</p>
-
-						<h3>sharedcount.com</h3>
-						<p>
-							<?php echo esc_html__( 'Only necessary if you are experiencing issues with Facebook share counts.', 'simple-share-buttons-adder' ); ?> <a href="https://admin.sharedcount.com/admin/signup.php" target="_blank"><?php echo esc_html__( 'Signup for your free account here', 'simple-share-buttons-adder' ); ?></a>.
-						</p>
-
-						<?php echo $this->forms->ssbp_input( $opts23b ); // WPCS: XSS ok. ?>
-					</div>
-					<div class="col-md-6">
-						<?php echo $this->forms->ssbp_input( $opts24b ); // WPCS: XSS ok. ?>
-					</div>
-					<div class="col-md-6">
-						<?php echo $this->forms->ssbp_input( $opts25b ); // WPCS: XSS ok. ?>
 					</div>
 				</div>
 			</div>
@@ -252,19 +233,6 @@
 
 					<div class="col-sm-12">
 						<?php echo $this->forms->ssbp_input( $opts40s ); // WPCS: XSS ok.?>
-					</div>
-
-					<div class="col-md-12">
-						<blockquote>
-							<p><?php echo esc_html__( 'If you want to take over control of your share buttons\' CSS entirely, turn on the switch below and enter your custom CSS.', 'simple-share-buttons-adder' ); ?> <strong><?php echo esc_html__( 'ALL of Simple Share Buttons Adder\'s CSS will be disabled', 'simple-share-buttons-adder' ); ?></strong>.</p>
-						</blockquote>
-					</div>
-
-					<div class="col-sm-12">
-						<?php
-						echo $this->forms->ssbp_input( $opts41s ); // WPCS: XSS ok.
-						echo $this->forms->ssbp_input( $opts42s ); // WPCS: XSS ok.
-						?>
 					</div>
 				</div>
 			</div>

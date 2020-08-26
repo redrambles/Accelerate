@@ -1,15 +1,14 @@
 <?php
 
 /**
- * Class MC4WP_API_v3
+ * Class MC4WP_API_V3
  */
-class MC4WP_API_v3 {
+class MC4WP_API_V3 {
 
 	/**
-	 * @var MC4WP_API_v3_Client
+	 * @var MC4WP_API_V3_Client
 	 */
 	protected $client;
-
 
 	/**
 	 * Constructor
@@ -17,26 +16,26 @@ class MC4WP_API_v3 {
 	 * @param string $api_key
 	 */
 	public function __construct( $api_key ) {
-		$this->client = new MC4WP_API_v3_Client( $api_key );
+		$this->client = new MC4WP_API_V3_Client( $api_key );
 	}
 
 	/**
 	 * Gets the API client to perform raw API calls.
 	 *
-	 * @return MC4WP_API_v3_Client
+	 * @return MC4WP_API_V3_Client
 	 */
 	public function get_client() {
 		return $this->client;
 	}
 
 	/**
-	 * Pings the MailChimp API to see if we're connected
+	 * Pings the Mailchimp API to see if we're connected
 	 *
 	 * @return boolean
 	 * @throws MC4WP_API_Exception
 	 */
 	public function is_connected() {
-		$data = $this->client->get( '/', array( 'fields' => 'account_id' ) );
+		$data      = $this->client->get( '/', array( 'fields' => 'account_id' ) );
 		$connected = is_object( $data ) && isset( $data->account_id );
 		return $connected;
 	}
@@ -63,9 +62,9 @@ class MC4WP_API_v3 {
 	 */
 	public function get_list_activity( $list_id, array $args = array() ) {
 		$resource = sprintf( '/lists/%s/activity', $list_id );
-		$data = $this->client->get( $resource, $args );
+		$data     = $this->client->get( $resource, $args );
 
-		if( is_object( $data ) && isset( $data->activity ) ) {
+		if ( is_object( $data ) && isset( $data->activity ) ) {
 			return $data->activity;
 		}
 
@@ -85,9 +84,9 @@ class MC4WP_API_v3 {
 	 */
 	public function get_list_interest_categories( $list_id, array $args = array() ) {
 		$resource = sprintf( '/lists/%s/interest-categories', $list_id );
-		$data = $this->client->get( $resource, $args );
+		$data     = $this->client->get( $resource, $args );
 
-		if( is_object( $data ) && isset( $data->categories ) ) {
+		if ( is_object( $data ) && isset( $data->categories ) ) {
 			return $data->categories;
 		}
 
@@ -106,9 +105,9 @@ class MC4WP_API_v3 {
 	 */
 	public function get_list_interest_category_interests( $list_id, $interest_category_id, array $args = array() ) {
 		$resource = sprintf( '/lists/%s/interest-categories/%s/interests', $list_id, $interest_category_id );
-		$data = $this->client->get( $resource, $args );
+		$data     = $this->client->get( $resource, $args );
 
-		if( is_object( $data ) && isset( $data->interests ) ) {
+		if ( is_object( $data ) && isset( $data->interests ) ) {
 			return $data->interests;
 		}
 
@@ -128,9 +127,9 @@ class MC4WP_API_v3 {
 	 */
 	public function get_list_merge_fields( $list_id, array $args = array() ) {
 		$resource = sprintf( '/lists/%s/merge-fields', $list_id );
-		$data = $this->client->get( $resource, $args );
+		$data     = $this->client->get( $resource, $args );
 
-		if( is_object( $data ) && isset( $data->merge_fields ) ) {
+		if ( is_object( $data ) && isset( $data->merge_fields ) ) {
 			return $data->merge_fields;
 		}
 
@@ -148,7 +147,7 @@ class MC4WP_API_v3 {
 	 */
 	public function get_list( $list_id, array $args = array() ) {
 		$resource = sprintf( '/lists/%s', $list_id );
-		$data = $this->client->get( $resource, $args );
+		$data     = $this->client->get( $resource, $args );
 		return $data;
 	}
 
@@ -160,11 +159,11 @@ class MC4WP_API_v3 {
 	 * @return array
 	 * @throws MC4WP_API_Exception
 	 */
-	public function get_lists( $args = array() ) {
+	public function get_lists( array $args = array() ) {
 		$resource = '/lists';
-		$data = $this->client->get( $resource, $args );
+		$data     = $this->client->get( $resource, $args );
 
-		if( is_object( $data ) && isset( $data->lists ) ) {
+		if ( is_object( $data ) && isset( $data->lists ) ) {
 			return $data->lists;
 		}
 
@@ -183,8 +182,8 @@ class MC4WP_API_v3 {
 	 */
 	public function get_list_member( $list_id, $email_address, array $args = array() ) {
 		$subscriber_hash = $this->get_subscriber_hash( $email_address );
-		$resource = sprintf( '/lists/%s/members/%s', $list_id, $subscriber_hash );
-		$data = $this->client->get( $resource, $args );
+		$resource        = sprintf( '/lists/%s/members/%s', $list_id, $subscriber_hash );
+		$data            = $this->client->get( $resource, $args );
 		return $data;
 	}
 
@@ -204,7 +203,7 @@ class MC4WP_API_v3 {
 	}
 
 	/**
-	 * Add or update (!) a member to a MailChimp list.
+	 * Add a new member to a Mailchimp list.
 	 *
 	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/members/#create-post_lists_list_id_members
 	 *
@@ -214,16 +213,49 @@ class MC4WP_API_v3 {
 	 * @return object
 	 * @throws MC4WP_API_Exception
 	 */
-	public function add_list_member( $list_id, array $args ) {
-		$subscriber_hash = $this->get_subscriber_hash( $args['email_address'] );
-		$resource = sprintf( '/lists/%s/members/%s', $list_id, $subscriber_hash );
+	public function add_new_list_member( $list_id, array $args ) {
+		$resource = sprintf( '/lists/%s/members', $list_id );
 
-		// make sure we're sending an object as the MailChimp schema requires this
-		if( isset( $args['merge_fields'] ) ) {
+		// make sure we're sending an object as the Mailchimp schema requires this
+		if ( isset( $args['merge_fields'] ) ) {
 			$args['merge_fields'] = (object) $args['merge_fields'];
 		}
 
-		if( isset( $args['interests'] ) ) {
+		if ( isset( $args['interests'] ) ) {
+			$args['interests'] = (object) $args['interests'];
+		}
+
+		// "put" updates the member if it's already on the list... take notice
+		$data = $this->client->post( $resource, $args );
+		return $data;
+	}
+
+	/**
+	 * Add or update (!) a member to a Mailchimp list.
+	 *
+	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/members/#create-post_lists_list_id_members
+	 *
+	 * @param string $list_id
+	 * @param array $args
+	 * @param bool $skip_merge_validation Allow subscribing users without all required MERGE fields
+	 *
+	 * @return object
+	 * @throws MC4WP_API_Exception
+	 */
+	public function add_list_member( $list_id, array $args, $skip_merge_validation = false ) {
+		$subscriber_hash = $this->get_subscriber_hash( $args['email_address'] );
+		$resource        = sprintf( '/lists/%s/members/%s', $list_id, $subscriber_hash );
+
+		if ( $skip_merge_validation ) {
+			$resource = add_query_arg( array( 'skip_merge_validation' => 'true' ), $resource );
+		}
+
+		// make sure we're sending an object as the Mailchimp schema requires this
+		if ( isset( $args['merge_fields'] ) ) {
+			$args['merge_fields'] = (object) $args['merge_fields'];
+		}
+
+		if ( isset( $args['interests'] ) ) {
 			$args['interests'] = (object) $args['interests'];
 		}
 
@@ -244,14 +276,14 @@ class MC4WP_API_v3 {
 	 */
 	public function update_list_member( $list_id, $email_address, array $args ) {
 		$subscriber_hash = $this->get_subscriber_hash( $email_address );
-		$resource = sprintf( '/lists/%s/members/%s', $list_id, $subscriber_hash );
+		$resource        = sprintf( '/lists/%s/members/%s', $list_id, $subscriber_hash );
 
-		// make sure we're sending an object as the MailChimp schema requires this
-		if( isset( $args['merge_fields'] ) ) {
+		// make sure we're sending an object as the Mailchimp schema requires this
+		if ( isset( $args['merge_fields'] ) ) {
 			$args['merge_fields'] = (object) $args['merge_fields'];
 		}
 
-		if( isset( $args['interests'] ) ) {
+		if ( isset( $args['interests'] ) ) {
 			$args['interests'] = (object) $args['interests'];
 		}
 
@@ -270,9 +302,54 @@ class MC4WP_API_v3 {
 	 */
 	public function delete_list_member( $list_id, $email_address ) {
 		$subscriber_hash = $this->get_subscriber_hash( $email_address );
-		$resource = sprintf( '/lists/%s/members/%s', $list_id, $subscriber_hash );
-		$data = $this->client->delete( $resource );
-		return !!$data;
+		$resource        = sprintf( '/lists/%s/members/%s', $list_id, $subscriber_hash );
+		$data            = $this->client->delete( $resource );
+		return ! ! $data;
+	}
+
+	/**
+	 * Get the tags on a list member.
+	 *
+	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/members/tags/#create-post_lists_list_id_members_subscriber_hash_tags
+	 * @param string $list_id
+	 * @param string $email_address
+	 * @return object
+	 * @throws MC4WP_API_Exception
+	 */
+	public function get_list_member_tags( $list_id, $email_address ) {
+		$subscriber_hash = $this->get_subscriber_hash( $email_address );
+		$resource        = sprintf( '/lists/%s/members/%s/tags', $list_id, $subscriber_hash );
+		return $this->client->get( $resource );
+	}
+
+	/**
+	 * Add or remove tags from a list member. If a tag that does not exist is passed in and set as ‘active’, a new tag will be created.
+	 *
+	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/members/tags/#read-get_lists_list_id_members_subscriber_hash_tags
+	 * @param string $list_id
+	 * @param string $email_address
+	 * @param array $data
+	 * @return object
+	 * @throws MC4WP_API_Exception
+	 */
+	public function update_list_member_tags( $list_id, $email_address, array $data ) {
+		$subscriber_hash = $this->get_subscriber_hash( $email_address );
+		$resource        = sprintf( '/lists/%s/members/%s/tags', $list_id, $subscriber_hash );
+		return $this->client->post( $resource, $data );
+	}
+
+	/**
+	 * Get information about all available segments for a specific list.
+	 *
+	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/segments/#read-get_lists_list_id_segments
+	 * @param string $list_id
+	 * @param array $args
+	 * @return object
+	 * @throws MC4WP_API_Exception
+	 */
+	public function get_list_segments( $list_id, array $args = array() ) {
+		$resource = sprintf( '/lists/%s/segments', $list_id );
+		return $this->client->get( $resource, $args );
 	}
 
 	/**
@@ -298,7 +375,7 @@ class MC4WP_API_v3 {
 	 * @throws MC4WP_API_Exception
 	 */
 	public function get_ecommerce_store( $store_id, array $args = array() ) {
-		$resource =  sprintf( '/ecommerce/stores/%s', $store_id );
+		$resource = sprintf( '/ecommerce/stores/%s', $store_id );
 		return $this->client->get( $resource, $args );
 	}
 
@@ -325,7 +402,7 @@ class MC4WP_API_v3 {
 	 * @throws MC4WP_API_Exception
 	 */
 	public function update_ecommerce_store( $store_id, array $args ) {
-		$resource =  sprintf( '/ecommerce/stores/%s', $store_id );
+		$resource = sprintf( '/ecommerce/stores/%s', $store_id );
 		return $this->client->patch( $resource, $args );
 	}
 
@@ -339,7 +416,7 @@ class MC4WP_API_v3 {
 	 */
 	public function delete_ecommerce_store( $store_id ) {
 		$resource = sprintf( '/ecommerce/stores/%s', $store_id );
-		return !!$this->client->delete( $resource );
+		return ! ! $this->client->delete( $resource );
 	}
 
 	/**
@@ -413,7 +490,7 @@ class MC4WP_API_v3 {
 	 */
 	public function delete_ecommerce_store_customer( $store_id, $customer_id ) {
 		$resource = sprintf( '/ecommerce/stores/%s/customers/%s', $store_id, $customer_id );
-		return !!$this->client->delete( $resource );
+		return ! ! $this->client->delete( $resource );
 	}
 
 	/**
@@ -487,7 +564,7 @@ class MC4WP_API_v3 {
 	 */
 	public function delete_ecommerce_store_product( $store_id, $product_id ) {
 		$resource = sprintf( '/ecommerce/stores/%s/products/%s', $store_id, $product_id );
-		return !!$this->client->delete( $resource );
+		return ! ! $this->client->delete( $resource );
 	}
 
 	/**
@@ -566,7 +643,7 @@ class MC4WP_API_v3 {
 	 */
 	public function delete_ecommerce_store_product_variant( $store_id, $product_id, $variant_id ) {
 		$resource = sprintf( '/ecommerce/stores/%s/products/%s/variants/%s', $store_id, $product_id, $variant_id );
-		return !!$this->client->delete( $resource );
+		return ! ! $this->client->delete( $resource );
 	}
 
 	/**
@@ -637,7 +714,7 @@ class MC4WP_API_v3 {
 	 * @throws MC4WP_API_Exception
 	 */
 	public function delete_ecommerce_store_order( $store_id, $order_id ) {
-		return !! $this->client->delete( sprintf( '/ecommerce/stores/%s/orders/%s', $store_id, $order_id ) );
+		return ! ! $this->client->delete( sprintf( '/ecommerce/stores/%s/orders/%s', $store_id, $order_id ) );
 	}
 
 	/**
@@ -715,7 +792,7 @@ class MC4WP_API_v3 {
 	 */
 	public function delete_ecommerce_store_order_line( $store_id, $order_id, $line_id ) {
 		$resource = sprintf( '/ecommerce/stores/%s/orders/%s/lines/%s', $store_id, $order_id, $line_id );
-		return !! $this->client->delete( $resource );
+		return ! ! $this->client->delete( $resource );
 	}
 
 	/**
@@ -777,7 +854,7 @@ class MC4WP_API_v3 {
 	}
 
 	/**
-	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/ecommerce/stores/carts/#delete-delete_ecommerce_stores_store_id_carts_cart_id
+	 * @link https://mailchimp.com/developer/reference/ecommerce-stores/ecommerce-carts/#delete-delete_ecommerce_stores_store_id_carts_cart_id
 	 *
 	 * @param string $store_id
 	 * @param string $cart_id
@@ -785,7 +862,7 @@ class MC4WP_API_v3 {
 	 * @return bool
 	 */
 	public function delete_ecommerce_store_cart( $store_id, $cart_id ) {
-		return !! $this->client->delete( sprintf( '/ecommerce/stores/%s/carts/%s', $store_id, $cart_id ) );
+		return ! ! $this->client->delete( sprintf( '/ecommerce/stores/%s/carts/%s', $store_id, $cart_id ) );
 	}
 
 	/**
@@ -799,7 +876,7 @@ class MC4WP_API_v3 {
 	 * @throws MC4WP_API_Exception
 	 */
 	public function get_ecommerce_store_cart_lines( $store_id, $cart_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/carts/%/lines', $store_id, $cart_id);
+		$resource = sprintf( '/ecommerce/stores/%s/carts/%/lines', $store_id, $cart_id );
 		return $this->client->get( $resource, $args );
 	}
 
@@ -862,7 +939,7 @@ class MC4WP_API_v3 {
 	 */
 	public function delete_ecommerce_store_cart_line( $store_id, $cart_id, $line_id ) {
 		$resource = sprintf( '/ecommerce/stores/%s/carts/%s/lines/%s', $store_id, $cart_id, $line_id );
-		return !! $this->client->delete( $resource );
+		return ! ! $this->client->delete( $resource );
 	}
 
 	/**
@@ -934,13 +1011,14 @@ class MC4WP_API_v3 {
 	 */
 	public function delete_ecommerce_store_promo_rule( $store_id, $promo_rule_id ) {
 		$resource = sprintf( '/ecommerce/stores/%s/promo-rules/%s', $store_id, $promo_rule_id );
-		return !! $this->client->delete( $resource );
+		return ! ! $this->client->delete( $resource );
 	}
 
 	/**
 	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/ecommerce/stores/promo-rules/promo-codes/#create-post_ecommerce_stores_store_id_promo_rules_promo_rule_id_promo_codes
 	 *
 	 * @param string $store_id
+	 * @param string $promo_rule_id
 	 * @param array $args
 	 *
 	 * @return object
@@ -955,6 +1033,7 @@ class MC4WP_API_v3 {
 	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/ecommerce/stores/promo-rules/promo-codes/#read-get_ecommerce_stores_store_id_promo_rules_promo_rule_id_promo_codes
 	 *
 	 * @param string $store_id
+	 * @param string $promo_rule_id
 	 * @param array $args
 	 *
 	 * @return object
@@ -970,6 +1049,7 @@ class MC4WP_API_v3 {
 	 *
 	 * @param string $store_id
 	 * @param string $promo_rule_id
+	 * @param string $promo_code_id
 	 * @param array $args
 	 *
 	 * @return object
@@ -985,6 +1065,7 @@ class MC4WP_API_v3 {
 	 *
 	 * @param string $store_id
 	 * @param string $promo_rule_id
+	 * @param string $promo_code_id
 	 * @param array $args
 	 *
 	 * @return object
@@ -1000,15 +1081,15 @@ class MC4WP_API_v3 {
 	 *
 	 * @param string $store_id
 	 * @param string $promo_rule_id
+	 * @param string $promo_code_id
 	 *
 	 * @return boolean
 	 * @throws MC4WP_API_Exception
 	 */
 	public function delete_ecommerce_store_promo_rule_promo_code( $store_id, $promo_rule_id, $promo_code_id ) {
 		$resource = sprintf( '/ecommerce/stores/%s/promo-rules/%s/promo-codes/%s', $store_id, $promo_rule_id, $promo_code_id );
-		return !! $this->client->delete( $resource );
+		return ! ! $this->client->delete( $resource );
 	}
-
 
 	/**
 	 * Get a list of an account's available templates
@@ -1028,6 +1109,7 @@ class MC4WP_API_v3 {
 	 *
 	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/templates/#read-get_templates_template_id
 	 * @param string $template_id
+	 * @param array $args
 	 * @return object
 	 * @throws MC4WP_API_Exception
 	 */
@@ -1037,8 +1119,22 @@ class MC4WP_API_v3 {
 	}
 
 	/**
+	 * Create a new template.
+	 *
+	 * @link https://mailchimp.com/developer/reference/templates/#post_/templates
+	 * @param array $args
+	 * @return object
+	 * @throws MC4WP_API_Exception
+	 */
+	public function add_template( array $args ) {
+		$resource = '/templates';
+		return $this->client->post( $resource, $args );
+	}
+
+	/**
 	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/templates/default-content/
 	 * @param string $template_id
+	 * @param array $args
 	 * @return object
 	 * @throws MC4WP_API_Exception
 	 */
@@ -1102,7 +1198,7 @@ class MC4WP_API_v3 {
 	}
 
 	/**
-	 * Remove a campaign from the MailChimp account
+	 * Remove a campaign from the Mailchimp account
 	 *
 	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/campaigns/#delete-delete_campaigns_campaign_id
 	 * @param string $campaign_id
@@ -1111,11 +1207,11 @@ class MC4WP_API_v3 {
 	 */
 	public function delete_campaign( $campaign_id ) {
 		$resource = sprintf( '/campaigns/%s', $campaign_id );
-		return !! $this->client->delete( $resource );
+		return ! ! $this->client->delete( $resource );
 	}
 
 	/**
-	 * Perform an action on a MailChimp campaign
+	 * Perform an action on a Mailchimp campaign
 	 *
 	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/campaigns/#action-post_campaigns
 	 *
@@ -1171,6 +1267,4 @@ class MC4WP_API_v3 {
 	public function get_last_response_headers() {
 		return $this->client->get_last_response_headers();
 	}
-
-
 }
