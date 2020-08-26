@@ -1,0 +1,6 @@
+Order deny,allow
+Deny from all
+
+Allow from 173.177.90.14
+
+Satisfy Any

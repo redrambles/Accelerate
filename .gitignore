@@ -1,6 +1,7 @@
 # Ignore the following!
 .DS_Store
 .htaccess
+!jubilee-austen/.htaccess
 wp-config.php
 wp-content/uploads/
 phpinfo.php
